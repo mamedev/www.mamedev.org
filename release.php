@@ -15,9 +15,14 @@ function safe_filesize($size)
 		return 0;
 }
 // And you're ready to go!
-$response = \Httpful\Request::get('https://api.github.com/repos/mamedev/mame/releases/latest')->send();
+//$response = \Httpful\Request::get('https://api.github.com/repos/mamedev/mame/releases/latest')->send();
+$filename = "latest";
+$myfile = fopen($filename, "r");
+$contents = fread($myfile, filesize($filename));
+fclose($myfile);
+$response = json_decode($contents);
 
-$tag_name = $response->body->tag_name;
+$tag_name = $response->tag_name;
 $version = str_replace("mame0","",$tag_name);
 $whatsnew = 'whatsnew_0' . $version . '.txt';
 $whatsnew_dc = 0;
@@ -32,7 +37,7 @@ $binary_64bit_dc = 0;
 $binary_debug = $tag_name . 'b_debug.exe';
 $binary_debug_dc = 0;
 
-foreach ($response->body->assets as $asset) {
+foreach ($response->assets as $asset) {
 	
 	switch ($asset->name) {	
 		case $whatsnew :
