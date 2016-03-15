@@ -1,0 +1,163 @@
+0.134u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03403: [DIP/Input] rollfr_2: Can't init Roll Fruit game. (MetalliC)
+- 03458: [Sound] bzone and clones: Broken engine sound (couriersud)
+
+
+
+Source Changes
+--------------
+Added genuine sets of Rally-X and New Rally-X [Team Japump!!!]
+
+discrete_sound_r now can inquiry any node: [couriersud]
+ - the return type is UINT8, consequently the designer needs to ensure
+    that the node delivers adequately scaled data.
+ - input nodes allow the input data to be scaled. The return value is 
+    the node value *after* scaling.
+
+DISCRETE_74LS624 - optimized for some more speed. [Derrick Renaud]
+
+DISCRETE_566 - started making a more accurate simulation based on 
+testing of a real IC. This makes the rest of Sky Raider sounds work.
+[Derrick Renaud]
+
+Completed dump of Gun Survivor 2 cart [Guru]
+
+Hacked in the dsp56156's "Long Interrupts."  Added SUB opcode. 
+Polygonet Commanders now goes in-game! [Andrew Gardner]
+
+plygonet.c: hooked up 53936 roz layer. [R. Belmont, David Haywood]
+
+Fleshed out SCC68070 definition in m68k core, for CD-i use in MESS 
+[Harmony]
+
+m68k: disassemble PMOVE instruction (move to/from PMMU). [R. Belmont]
+
+exp is slow, but pow is even slower [couriersud]
+ - more LS624 optimization, replace pow(10, x) by pow10(x)
+ - mixer loop optimizations
+
+Impromved discrete performance for mario: [couriersud]
+ - pow to exp : 5%
+ - parallel tasks : 45%
+ - minor tweaks
+
+M680x0 update: [R. Belmont]
+ - Add CPU types 68EC030, 68030, and 68EC040
+ - Start of 030/040 PMMU, including stubbed PMOVE
+
+Fixed up RAM bank names to prevent crashes with memdump. Extended 
+explicit banks to 96. [Aaron Giles]
+
+multfish.c driver fixes and improvements: [MetalliC]
+ - Hooked up inputs for Roll Fruit
+ - Added hopper emulation, payout now works
+ - Added information on how to initialize Roll Fruit
+ - Added in missing rom to a few MultiFish sets
+
+DISCRETE_555_MSTABLE - optimized speed and added new operating modes.
+[Derrick Renaud]
+
+Fixed ROM name of warpwarp. Also removed 4th program ROM which is not 
+present on real board. [Team Japump!!!]
+
+Memory references can now explicitly specify logical or physical 
+access by prepending with an 'l' or 'p'. Logical remains the default. 
+Example: ppb@1000 = physical program space byte at address $1000. 
+ldw@2000 = logical data space word at address $2000. Changed cheat
+finder to explicitly reference physical memory when writing out new
+cheats. [Aaron Giles]
+
+Added simple system for auto-detecting cheat-worthy RAM areas.
+[Sandro Ronco]
+
+Added NULL check to prevent MAME from crashing if a new input device
+was connected at runtime. [David Haywood]
+
+Expanded PROFILER_USERx to support up to 8 custom profiler areas.
+[Christophe Jaillet]
+
+Added more _NAME macros to be consistent with the standard naming
+conventions. [Atari Ace]
+
+Removed old master system code from megaplay.c, megatech.c, segae.c
+and updated the drivers to use more recent implementation (from
+HazeMD) [David Haywood]
+
+Sped up mario_custom_run() discrete sound. [Derrick Renaud]
+
+Added discrete sound to Sprint 8. [Derrick Renaud]
+
+Removed capacitor aging code and assumed range input is gnd for all 
+74LS629. [couriersud]
+
+Omplemented m:n logic for buffered task nodes in discrete sound
+[couriersud]
+ - preparation work so that a task node output buffer may be read by
+    more than one following task.
+ - target: implementation of task groups: tasks in a task group run 
+    parallel, task groups serial. The current main task may than just 
+    be task (in the last task group)
+
+Space Walk - started discrete sounds. [Derrick Renaud]
+
+Added static qualifiers where possible throughout the code. 
+[Atari Ace]
+
+Discrete task groups [couriersud]
+ - DISCRETE_TASK_START now requires a parameter TASK_GROUP (>=0, <=9)
+ - Tasks are scheduled in the order of their task group
+ - Nodes are automatically buffered between task groups
+ - Discrete core determines nodes which need buffering to minimize 
+    overhead (information in DISCRETE_LOG)
+ - A discrete block list now must put each stepped node into a task 
+    if it uses tasks
+ - Drivers not using tasks will get one task allocated automatically
+ - Updated drivers accordingly
+ - Some more constification
+
+Optimized tab removal in srcclean. [Atari Ace]
+
+Centralized color definitions and made some colors more specific.
+[Mamesick]
+
+Hooked up Polynet Warriors joystick properly. [Andrew Gardner]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Othello (version 3.0) [Tomasz Slanina, Stefan Lindberg]
+
+
+
+New clones added
+----------------
+Total Vice (ver UAC) [Phil Bennett]
+Street Fighter II - The World Warrior (Quicken Pt-I, bootleg) 
+   [D. Beneke, Guru, Smitdogg, The Dumping Union]
+Street Fighter II' - Champion Edition (Accelerator!, bootleg) 
+   [D. Beneke, Guru, Smitdogg, The Dumping Union]
+Ironman Ivan Stewart's Super Off-Road Track-Pak (2 Players) [Darran]
+Gals Panic 4 (Korea) [Choi Sung Ho]
+Mortal Kombat II (rev L3.1 (European)) [Andy Welburn]
+Cadash (Germany) [Volker Hann, Team Europe]
+Space Empire (bootleg) [Team Europe]
+Target Hits (ver 1.0) [Andrew Conroy]
+Vulcan Venture (Older) [Irongiant]
+Astro Blaster (German) [Volker Hann & Team Europe]
+Pac-Man (Galaxian hardware, set 2) [Team Europe]
+Zaxxon (Japan) [Team Japump!!!]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Virtua Fighter 4 Evolution (Cartridge) [f205v, David Haywood]
+48-in-1 MAME bootleg (ver 3.09) [Guru]
+48-in-1 MAME bootleg (ver 3.02) [Guru]
+Seta Roulette? [Team Europe]

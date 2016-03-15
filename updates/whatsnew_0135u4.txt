@@ -1,0 +1,333 @@
+0.135u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03583: [Core] Windows Debug: Stack crawl is not generated anymore 
+         (Firewave)
+- 03588: [Sound] mystston, myststono: Music is faster than original 
+         PCB (Kold666)
+- 03589: [Graphics] mystston, myststono: VSYNC does not match original 
+         PCB (Kold666)
+- 03592: [Original Reference] outrun, outrunra, outruno, outrundx, 
+         outrunb: Master clock is incorrect (Tafoid)
+- 00400: [Graphics] combascb: Graphic issues on the "players" screen 
+         as scrolling problems on 1st stage. (Fabio Priuli)
+- 03575: [Crash/Freeze] block2: [debug] Memory Leak in Debug 
+         (Fabio Priuli)
+- 03569: [Crash/Freeze] escounts: Access Violation after OK 
+         (Phil Bennett)
+- 03444: [Debugger] Registered ram blocks registered with save state 
+         cannot be viewed with debugger (Aaron Giles)
+- 03567: [Crash/Freeze] trvquest: Access Violation after OK 
+         (Fabio Priuli)
+- 03574: [Crash/Freeze] All sets in drivers using s2636 video chip: 
+         [debug] assert: src/emu/video/s2636.c:320: offset < 8 
+         (Fabio Priuli)
+- 03570: [Crash/Freeze] kf2k3pcb: Access Violation after OK 
+         (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+Added driver data struct to: [Fabio Priuli]
+ - airbustr.c
+ - cvs.c
+ - 8080bw.c and mw8080bw.c
+ - 88games.c, combatsc.c and rockrage.c
+ - psikyo4.c and psikyosh.c
+
+Added driver data struct and save states to: [Fabio Priuli]
+ - djboy.c
+ - toratora.c and sf.c
+ - neogeo.c
+ - cps1.c, cps2.c and fcrash.c
+ - cbasebal.c, chinsan.c, mitchell.c and quasar.c
+ - malzak.c
+ - battlnts.c, bladestl.c, crshrace.c and contra.c
+ - f1gp.c, fastlane.c, flkatck.c, hcastle.c, labyrunr.c and suprslam.c
+ - psikyo.c and pgm.c
+
+Removed old index-based DISCRETE_ADJUSTMENT and then renamed the newer
+DISCRETE_ADJUSTMENT_TAG to replace it. Updated all callers. 
+[Aaron Giles]
+
+Removed all uses of input_port_by_index(), and removed the function.
+[Fabio Priuli, Aaron Giles]
+
+Added saves to 6522via.c. This fixes problems of gameplan.c and 
+trvquest.c games with -autosave. [Fabio Priuli]
+
+Enabled GAME_SUPPORTS_SAVE flag to dday.c because some of the core 
+changes have fixed the sound problem at loading. [Fabio Priuli]
+
+Imported SAA5050 emulation from MESS and made it a device. Updated 
+malzak.c to use it, removing the almost identical implementation in 
+the driver. [Fabio Priuli]
+
+Added TILE_GET_INFO_DEVICE and SET_TILE_INFO_DEVICE macros to 
+tilemap.c. [Fabio Priuli]
+
+Made MB14241 Shifter IC a device and moved its source to emu/machine. 
+Updated mw8080bw.c and 8080bw.c accordingly. Also converted fgoal.c 
+to use this implementation in place of its own version. [Fabio Priuli]
+
+Enhanced the UML opcodes for LOAD, LOADS, and STORE to support
+arbitrary scaling factors. Previously, specifying a size implied
+a scaling factor equal to the size (i.e., specifying DWORD meant
+the index was scaled by 4). This is still the default. However,
+now you can specify the scale explicitly for other cases. For
+example, you can specify DWORD_x1 to fetch a DWORD but don't
+scale the index at all, or BYTE_x8 to fetch a BYTE while scaling
+the index by 8. Updated all backends to make this work. [Aaron Giles]
+
+Konami devic-fication and improvements: [Fabio Priuli]
+ - Added device versions of all the Konami custom ICs currently 
+    emulated in machine/konamiic.c and video/konamiic.c
+ - Updated combatsc.c, contra.c, crshrace.c, f1gp.c, fastlane.c, 
+    flkatck.c, hcastle.c, labyrunr.c and suprslam.c to use the 
+    new code.
+ - Moved k056800 sound device to emu/sound and removed the old code; 
+    updated gticlub.c, hornet.c, nwk-tr.c, ultrsprt.c and zr107.c to 
+    use this implementation
+ - Updated 88games.c, battlnts.c, bladestl.c and rockrage.c to use new
+    devices
+ - Updated asterix.c and moo.c to use the new devices.
+ - Converted aliens.c, blockhl.c, crimfght.c and gbusters.c to use 
+    Konami video devices
+ - Updated parodius.c, simpsons.c, thunderx.c, vendetta.c and 
+    xexex.c to use the new video devices
+ - Updated overdriv.c to use the Konami video devices
+ - Updated gradius3.c, mainevt.c & gijoe.c to use Konami video devices
+ - Updated ajax.c, bottom9.c, chqflag.c, rollerg.c, spy.c, surpratk.c 
+    to use Konami video devices
+ - Updated dbz.c, lethal.c, metro.c, rungun.c, tail2nos.c, tmnt.c, 
+    ultraman.c, wecleman.c, xmen.c & zr107.c to use Konami video 
+    devices instead of konamiic.h code
+ - Updated bishi.c and djmain.c to use Konami video devices
+ - Updated plygonet.c to use Konami video devices and 
+    input_port_write for eepromdev_read_bit
+ - Updated asterix.c, gijoe.c, hornet.c, lethal.c, moo.c, overdriv.c, 
+    rungun.c, vendetta.c, xexex.c & xmen.c to use eeprom device
+ - Updated konamigx.c, tmnt.c and mystwarr.c to use eeprom device
+
+Fixed tilemaps so they can be initialized at device start time.
+[Aaron Giles]
+
+Added redumped roms to coolridr. [David Haywood]
+
+Fixed crash on exit for systems with no tilemaps. [Aaron Giles]
+
+Added warning messages for auto_malloc, timer, and save state
+allocations done after init time. These should be fixed when detected,
+and will soon be disallowed entirely. Fixed many cases in the code
+where this was being done. [Aaron Giles]
+
+Converted Taito F3 sound to a separate machine driver which is
+imported into games that use it. [Aaron Giles]
+
+Converted the balsente driver to driver_data structure. [Aaron Giles]
+
+Some more Atari driver shuffling. Added atarigen_init() function
+which allocates all timers and registers for save states. Updated
+all drivers to call it. Converted some drivers to use device timers.
+[Aaron Giles]
+
+Changed ticket.c into a device, updated all users. [Aaron Giles]
+
+CIA6526: fixed FLAG handling and slight interface cleanup. 
+[Curt Coder]
+
+Moved SNES timer allocation to MACHINE_START. [Fabio Priuli]
+
+Koi Koi Part 2: written an hardcoded table (disabled by default), 
+concluded that a color prom is currently undumped. Also documented a 
+bunch of unused ports [Angelo Salese]
+
+Carrera: fixed colors [Angelo Salese]
+
+Sky Army: cleaned up the driver, also removed the GAME_WRONG_COLORS 
+flag since the colors actually seems correct according to the 
+references. [Angelo Salese]
+
+Trivia Madness: Improved graphics & colors [Angelo Salese]
+
+Super Rider: improved bitplane order and colors [Angelo Salese]
+
+Preliminary RSP recompiler, with all vector ops stubbed out to C 
+functions for now. [Harmony]
+
+sbowling.c - Added proper COINAGE selections as well DIP LOCATIONS to 
+the driver. Added mapping for button 1 which is used to allow change 
+from curve to straight throw. Replaced clock speeds with XTAL values.
+[Tafoid]
+
+Re-implemented 3d rasterization in the hng64 driver as a FIFO system.
+[Andrew Gardner]
+
+ggconnie.c - Added DIP LOCATIONS to match those showing in service 
+mode.  Added game year to source from title screen. [Tafoid]
+
+Added preliminary decryption to Victor 5, Victor 21 and Cross Bingo 
+[David Haywood]
+
+Decoded Cross Bingo proms [Angelo Salese]
+
+hexa.c - Added DIP LOCATIONS as well as assigned XTAL for the clock 
+speeds, using those from Arkanoid, since the boards are nearly 
+identical in many aspects. [Tafoid]
+
+RSP recompiler improvements / optimizations: [Harmony]
+ - Split SATURATE_ACCUM into a signed and unsigned version to reduce 
+    stack usage.
+ - Corrected an issue with the 0h variants of VMRG, VAND, VNAND, VOR, 
+    VNOR, VXOR and VNXOR.
+ - Slightly optimized unaligned reads and writes
+ - Optimized unaligned dword reads
+ - Corrected an issue where badly-written RSP programs could jump to 
+    invalid addresses
+
+Added new profiler bucket for DRC recompilation. [Aaron Giles]
+
+luckgrln: Implemented CRT Controller hook-up [Angelo Salese]
+
+gomoku.c, sspeedr.c - Added DIPS and changed clock values to XTAL
+[Tafoid]
+
+nitedrvr.c, tourtabl.c - Changed clock values to XTAL [Tafoid]
+
+Added new option "numprocessors" (see windows.txt for an explanation).
+[couriersud]
+
+Optimized N64 RDP renderer by using function pointers to function 
+variants that eliminate costly branches. [Harmony]
+
+Minor drc improvments: [Aaron Giles]
+ - simplified RSP's misaligned memory accesses
+ - removed now-unnecessary shifts from direct memory accesses in
+    mips3/powerpc drcs
+ - optimized AND with 0xff/0xffff/0xffffffff cases for x86/x64
+ - added rudimentary memory/register tracking in x86 backend to
+    remove redundant loads
+
+cb2001 improvements: [robiza]
+ - added ay8910 and 8255ppi devices
+ - added some info about relation between cmast91 and cb2001
+ - added many opcodes
+
+Fixed sprite-tilemap priorities in Super Slams [Angelo Salese]
+
+Worked around protection in sranger, srangerw and srangerb 
+[Angelo Salese]
+
+Converted 7474, 74148, and 74153 TTL implementations to devices.
+[Aaron Giles]
+
+More rom name corrections for the merit.c driver [Brian Troha]
+
+Added Guru's board notes to the Outrun/Super Hang-on Driver.
+[Guru]
+
+Converted the ds2404 to a device. [Aaron Giles]
+
+Removed deprecated core function decodegfx() [Christophe Jaillet]
+
+Removed the global "includes" include and instead specify the 
+"includes" path in all #include occurences. [Oliver Stoneberg]
+
+Eliminated the use of generic.colorram and generic.videoram in 
+several drivers [Atari Ace]
+
+Fixed Brick Zone parent set bitplane graphics [Angelo Salese]
+
+Fix megadrive emulation to use the SMSIII version of the sn76489 
+sound chip. [Lord Nightmare, DFJustin]
+
+Added save states to ics2115 sound device. [Fabio Priuli]
+
+Changed EEPROM usage in many drivers to use the new device version.
+[Aaron Giles, Fabio Priuli]
+
+Removed auto-init hack from some Konami games. Hold down F2 and reset
+(via F3) to initialize the EEPROM, like all the other Konami games.
+[Fabio Priuli]
+
+Cleaned up EEPROM device implementation a bit. [Aaron Giles]
+
+Added flickering effect in Super Slams title screen 
+[Angelo Salese, Guru]
+
+Fixed sprite bank bit in Spark Man [Angelo Salese]
+
+Converted gaelco3d.c to use eeprom device code. [Fabio Priuli]
+
+Spark Man: Refactored the protection, implemented thrash protection 
+that's used after the title screen. [Angelo Salese]
+
+EEPROM device now looks for a matching memory region to fetch the
+default values from. Fixed bug in ROM loader that would change the
+memory region flags to match devices with no address bus. Updated
+groundfx to use the new default loading scheme. [Aaron Giles]
+
+Reworked the hng64 polygon chunk recovery code to be more crash-proof.
+Documented what's known about the 3d data much better. Fixed vertex 
+ROM loading for fatfurwa and buriki. [Andrew Gardner]
+
+Converted rtc65271 to a device. [Aaron Giles]
+
+Added "new" command -listdevices (or -ld) to list the devices attached
+to a driver. I notice that MESS has a command with the same name; 
+hopefully the behaviors can be combined eventually. [Aaron Giles]
+
+Got rid of explicit resource tracking for state saving. Now we just 
+use the auto_ allocators, since registration is restricted to 
+initialization. [Aaron Giles]
+
+Moved machine->gfx initialization out of the video module and into
+drawgfx. We now call this before devices are initialized, so that 
+devices can dynamically append to the machine->gfx as needed.
+[Aaron Giles]
+
+i386 improvements: [Barry Rodewald]
+ * minimal implementation of the LSL protected mode instruction
+ * fixed the REP instruction when used with a segment prefix.
+
+Updated readme for Race Drivin' Compact. [Guru]
+
+Fixed a couple of edge case parsing bugs in srcclean.c. [Atari Ace]
+
+Fixed some unbalanced quotes/braces lurking in the source (mostly in
+disabled code). [Atari Ace]
+
+Added a new CPU core for the PIC 16c62x series of processors.
+[Samuele Zannoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Shark Party (Italy, v1.3) [David Haywood, Angelo Salese]
+Victor 5 [David Haywood, Angelo Salese]
+Victor 21 [David Haywood, Angelo Salese]
+Poker Carnival [David Haywood, Angelo Salese]
+
+
+
+New clones added
+----------------
+Hyper Street Fighter 2: The Anniversary Edition (USA 040202) 
+   [Artemio Urbina, David Haywood]
+ST-V BIOS 1.11 [2 sets - Japan and Taiwan] [XingXing]
+Blood Bros. (set 3) [Dlfrsilver]
+Caveman Ninja (bootleg) [Dlfrsilver] (NOT WORKING)
+Pipi & Bibis / Whoopee!! (Z80 sound cpu, set 2) [Dlfrsilver]
+Mortal Kombat 4 v1.0 (not working) 
+   [xrodney, HobbyRoms, Patrick McCarron]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Happy 6-in-1 [XX]

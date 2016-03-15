@@ -1,0 +1,93 @@
+0.108u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gotya0107u3yel [David Haywood]
+spcewars36rc2ora [Robert]
+prehisle0104u5gre [Vas Crabb]
+shangha3237b7gre [Canim]
+
+
+
+Source Changes
+--------------
+Added support for reverse-order entry in the BFM code. [El Condor]
+
+Cleaned up DIP switches and documentation in the merit.c and 
+coinmstr.c drivers. [wolf676]
+
+Updated the MPU4 layout and added more documentation. [El Condor]
+
+Fixed neocrypt.c to work on big-endian machines. [R. Belmont]
+
+Improved DIP switches for spcewars and invadpt2. Fixed sound in
+spcewars. [Robert]
+
+Fixed UI for cheat system watchpoints, making them usable again.
+[Nicola Salmoria]
+
+Fixed flipscreen mode for liquidk and other games using the same
+Taito graphics chips. [Robzia]
+
+Added many more notes/info to the arkanoid driver. [steph]
+
+Added save state support for YM3812, YM3526 and uPD7759 sound chips, 
+and Prehistoric Isle video hardware. Also added partial save state
+support for the Y8950 sound chip. [Vas Crabb]
+
+Did a bit of object-orienting the core. All core init functions now
+take a running_machine parameter. All exit, reset, and pause 
+callbacks now require a running_machine parameter to register, and
+pass in the running_machine when called. [Aaron Giles]
+
+Added a running_machine parameter to the following driver callbacks:
+  DRIVER_INIT
+  MACHINE_START/MACHINE_RESET
+  SOUND_START/SOUND_RESET
+  VIDEO_START/VIDEO_RESET/VIDEO_EOF/VIDEO_UPDATE
+  NVRAM_HANDLER/MEMCARD_HANDLER
+For the most part, this didn't affect the code thanks to the macros,
+apart from cases where direct calls were made. [Aaron Giles]
+
+Altered most of the mame.c and palette.c interfaces to take a
+running_machine parameter. Hung private data for these modules off of
+the running_machine structure instead of using global variables.
+[Aaron Giles]
+
+Did some cleanup and de-Achoization of the palette code. Removed some
+features used only by Grand Champion, which only complicated things
+for all the other drivers. Marked Grand Champion as imperfect graphics
+until it gets rewritten. [Aaron Giles]
+
+Since I had to visit all call sites of palette_set_color to add the
+running_machine parameter, I also updated quite a lot of them to use
+the nice palnbit() inlines in palette.h, which cleaned up the code in
+many cases. Since this was a manual process, I probably messed up one
+or two cases, so if you notice odd colors, please report them to the
+http://mametesters.org site. [Aaron Giles]
+
+More Turbo work: cleaned up the sound code, added support for proper
+speaker placement in all games, a few other minor fixes. Sprite
+scaling is still not 100%, but I need some real hardware to verify.
+Apart from that, no further work is planned. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Shooting Master [David Haywood, Tomasz Slanina]
+Quizmaster (German) [wolf676]
+
+
+
+New clones added
+----------------
+Gals Panic II (German) [Patrik Styrnell]
+Pocket Gal 2 (Japanese) [Patrik Styrnell]
+Locked 'n Loaded (World) [Patrik Styrnell]
+Mad Ball V2.0 (hack? With Nudity) [f205v]
+Arkanoid (Tayto bootleg, harder) [steph]
+Arkanoid (Game Corporation bootleg, set 2) [steph]
+Arkanoid (bootleg with MCU, harder) [steph]

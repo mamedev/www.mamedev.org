@@ -1,0 +1,94 @@
+0.109u1
+-------
+
+IMPORTANT NOTE TO OSD DEVELOPERS: The file I/O interface has changed
+significantly. It is now much simpler. Please read osdepend.h for
+full details on how the new OSD-defined functions work. In addition,
+you must now use the options.c to specify your search paths. If you
+are parsing standard command line options and INI files, this work
+is relatively straightforward. Otherwise, you can manually call
+options_set_string() for each of the search paths to configure them
+from whatever options store you are using.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+silentd0108u5yel [Mamesick]
+gradius30104u3gre [Mamesick]
+spelunk2099u6gre [robzia]
+twinactn0105u2gre [robzia]
+czeroize0108u2yel [David Haywood]
+listrom0109red [Aaron Giles]
+chdbaddump0109ora [Aaron Giles]
+ddrawcoloroverlay0109yel [Aaron Giles]
+new_debugger0109ora [Aaron Giles]
+ronnamelength0109ora [krick]
+shtngmst0108u4ora [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+More findout.c/getrivia.c improvements: [wolf676]
+ - added ticket dispenser to Trivia/Sexual Trivia
+ - found last unknown dipswitch in Selection/Poker
+ - added missing "Payout" button; payout hardware unknown 
+ - added missing "Play / Raise" button and its lamp 9
+ - added "Button 12 ?" to selection, function unknown
+ - re-added PORT_IMPULSE(2) to poker games buttons because they do 
+    not like it if two or more buttons are held; trivia games still 
+    respond better without this
+ - changed coin_lockout_global to coin_lockout_w(0) and 
+    coin_lockout_w(1) for 2 coin slots in selection; 
+ - added missing lamps 11 (coin slot 2), 12 and 13 (unknown) 
+    to selection
+
+Fixed crash in the MPU4 driver. [El Condor]
+
+Hooked up ARM ROM for kovsh, though it doesn't work yet. [ElSemi]
+
+Some fixes for the 8080bw driver: [Robert]
+ - The correct samples are being used for lrescue, lrescuem, 
+    grescue, desterth 
+ - Dipswitch corrections for superinv, invadrmr, sinvemag, 
+    spceking, spacewr3 
+- Remove extraneous beeping noise from indianbt 
+
+Converted all the toaplan2.c games to mono since the PCBs are JAMMA
+without external stereo connectors. [Corrado Tomaselli]
+
+Added bounds checking to the qsound driver. [David Haywood]
+
+Redesigned the OSD file I/O interfaces to be simpler and more
+straightforward. Also simplified the core's file I/O routines and
+included some functionality that was previously left to the OSD
+layer. [Aaron Giles]
+
+Rewrote unzip.c to return richer errors and generally behave better.
+[Aaron Giles]
+
+Rewrote audit.c to simplify the code and not rely on extraneous
+functions that were in the old file I/O system. [Aaron Giles]
+
+Simplified the 68000 core generation logic to just produce one
+file. Hopefully this will cure some of the build issues with the
+core. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Five a Side Soccer [Ville Linde]
+Super Street Fighter II - The New Challengers [David Haywood, stephh]
+Dynamic Shooting [Tomasz Slanina, Guru]
+Doki Doki Penguin Land [Tomasz Slanina, Guru]
+Shooting Gallery [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+The Cliffhanger - Edward Randy (World) [Patrik Styrnell]
+Double Dragon 3 (Japan) [Corrado Tomaselli]
+Twin Brats (set 2) [Patrik Styrnell]

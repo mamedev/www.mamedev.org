@@ -1,0 +1,576 @@
+0.103
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+astrob0102u5gre [Nicola Salmoria]
+
+
+
+Source Changes
+--------------
+Completely rewrote machine/stvcd.c and .h. There's a lot less there now, 
+but what's there is more understandable and works much better. [R. Belmont]
+
+Some RF5C400 improvements. [hoot development team]
+
+Cleaned up/reorganized some of the messy Neo Geo code. Separated out bootleg-
+specific hacks into additional files. [David Haywood]
+
+Replaced a few stray exit() calls with osd_die(). [Oliver Stoneberg]
+
+Fixed layer 1 colors in Blandia. [Pierpaolo Prazzoli]
+
+Corrected interrupt timing in wwfstar driver. [David Haywood]
+
+Fixed chdman to support 64-bit file sizes on some *nix platforms.
+[Lawrence Gold]
+
+More ST-V updates: [Mariusz Wojcieszek]
+ * added idle loop skipping for rsgun
+ * added RBG caching
+ * added RBG "two screens" mode
+ * added Critter Crusher (not working due to missing inputs)
+ * fixed several bugs introduced recently with all the other changes
+
+Changed i286 core to use the same INPUT_LINE_A20 that the i386 core uses.
+[Nathan Woods]
+
+Added partial updates and boosted the interleave in the ddragon driver.
+[David Haywood]
+
+Added cdrom_get_track_length() to cdrom.c. [R. Belmont]
+
+Added an atexit handler to ensure trace files are closed in the debugger
+in the event of an early exit. [Nathan Woods]
+
+Merged the Sprint 4/Ultra Tank drivers and made the following fixes:
+[Stefan Jokisch]
+
+ * Ultra Tank:
+    - hardware collision detection (computer is now able to manoeuvre 
+         around barriers)
+    - sprite fixes (invisble tank option works, tank explosion sequence)
+    - playfield fixes (text colors are different)
+    - watchdog and coin lockout added
+    - sync and color proms added
+    - motor sound fix (previously this was hooked up to the wrong address)
+    - misc internal fixes like cpu speed, RAM size etc
+
+ * Sprint 4:
+   - sound support (inherited from Ultra Tank)
+   - watchdog added
+
+Fixed bug in the Grand Champion fog effect. [Hans Andersson]
+
+Fixed Triple Hunt and several older Atari games to use RAM mirroring for
+zero page memory. [Stefan Jokisch]
+
+Fixed several endian issues with the SE3208 core and the Crystal System
+driver. [Brad Oliver]
+
+Got the DCS-3 sound system working for Road Burners. [Aaron Giles]
+
+Did some cleanup in the ADSP-21xx core to support program memory more 
+correctly and support execution from multiple banks. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mad Ball [David Haywood, Brian Troha]
+Super Model [David Haywood]
+Garogun Seroyang (Korea) [David Haywood, Pierpaolo Prazzoli]
+MuHanSeungBu (SemiCom Baseball) [David Haywood, Brian Troha]
+Games V18.2 [Pierpaolo Prazzoli, Guru]
+
+
+
+New clones added
+----------------
+Puzzle Bang Bang [Brian Troha, Pierpaolo Prazzoli]
+Super World Court (World) [Stefan Lindberg]
+Out Zone (set 3) [David Haywood]
+Mini Vegas 4in1 [Tomasz Slanina]
+Crazy Rally (set 2) [David Haywood, Guru]
+Gouketsuji Ichizoku (Japan) [Pierpaolo Prazzoli, Guru]
+Dynamite Duke (Japan) [Pierpaolo Prazzoli, Guru]
+The Double Dynamites (Japan) [Pierpaolo Prazzoli, Bryan McPhail, Guru]
+Passing Shot (World, 4 Players, FD1094 317-0074) [Mame Italia]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Martial Masters [David Haywood]
+Demon Front [David Haywood]
+Canvas Croquis [David Haywood]
+Go 2000 [David Haywood, Brian Troha]
+Gekisou (Japan) [David Haywood]
+Critter Crusher [Mariusz Wojcieszek, Guru]
+Card Line [Tomasz Slanina]
+Shuttle Invader [Tomasz Slanina, Guru]
+
+
+
+0.102u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+dspirit099u2yel [BUT]
+mjkjidai097u2gre [Mamesick]
+suprnova0102u4red [Aaron Giles]
+nbmj8991c095u2yel [Mamesick]
+grchamp055yel [Hans Andersson]
+grchamp137b12gre [Hans Andersson]
+grchamp237b12gre [Hans Andersson]
+vulcan137b1gre (part 2, and maybe parts 4 and 5) [Pierpaolo Prazzoli]
+gunlock097u2yel [Nicola Salmoria]
+gekirido096u3gre [Nicola Salmora]
+ssi061gre [Nicola Salmoria]
+ssi137b2gre [Nicola Salmoria]
+ctribe088u4gra [Mamesick]
+groundfx068gra [Mamesick]
+tengai062gre [AWJ]
+
+
+
+Source Changes
+--------------
+Fixed bug in discrete filtering code. [Frank Palazzolo]
+
+Fixed speedup for znpwfv so that it boots once again. [Mariusz Wojcieszek]
+
+Improvements to cuoreuno and elephfam: [Roberto Fresca]
+ * Corrected videoram and colorram (now can see the nvram initialization).
+ * Corrected the CPU frequency to 2 MHz.
+Still not working...
+
+Fixed Playchoice/VSNES drivers. [Rob Bohms]
+
+Hooked up the same NES APU implementation in both MAME and MESS. Also
+correctd the memory mapping of the APU in the Playchoice 10 driver. 
+[R. Belmont]
+
+Hooked up Psikyo 4 PCM banking. [Anonymous]
+
+Significant improvements to the Grand Champion driver: [Hans Andersson]
+ * Tunnel headlights
+ * Corrected rain effect
+ * Corrected colors
+ * Added speech
+ * Improved collision detection (removed false collision when lightning)
+ * Improved fog effect
+ * Added skeleton code for motor noise
+ * Fixed graphic glitch in bottom row
+ * Corrected CPU speed for Cpu board / Game board
+
+Added simulated version of the N64 PIF boot rom to the Aleck64 driver, so 
+the cartridges now boot properly, though the cartridge CRC check fails on 
+both games. [Ville Linde]
+
+Fixed instruction alignment in the old debugger. Also added support for
+64-bit qword display. [AWJ]
+
+Fixed timing between CPU and MCU in chaknpop. In previous driver, you will 
+notice problems in stages with water and coffee break (not always). New 
+driver fixes it but it is not perfect about timing. [BUT]
+
+Added sound to Honey Doll. [David Haywood]
+
+Changed activecpu_dasm() and activecpu_dasm_new() so that they "function" 
+even if the getinfo handler does not specify CPUINFO_PTR_DISASSEMBLE nor 
+CPUINFO_PTR_DISASSEMBLE_NEW. [Nathan Woods]
+
+Completed the X-Multiply DIP switches. [Roberto Fresca]
+
+Moved m6809, hd6309 and z80 disassemblers to the new interface, and did 
+some cleanups. [Nathan Woods]
+
+Fixed the SUBW H flag in the SPC700 core. [Rob Bohms]
+
+Added missing functionality needed to get rsgun working. [Olivier Galibert]
+
+SP0250 update: [Nicola Salmoria]
+ * Added SP0250 speech chip to 3 Stooges.
+ * Streamlined the SP0250 emulation to avoid timing issues which were 
+    preventing 3 stooges from working.
+ * Fixed glitches in the speech that were caused by not resetting the 
+    filter stages when a speech frame is loaded.
+ * Made the SP0250 support the external clock rate
+ * Changed the playback rate to match the real board by making the clock 
+    divider a reasonable number.
+
+Added new debugger command 'map', which tells logical -> physical mappings
+as well as what read/write handlers are connected to an address. Also added
+'mapd' and 'mapi' for performing the same operation on data and I/O space.
+[Aaron Giles]
+
+More Voodoo updates: [Aaron Giles]
+ * fixed overflow in 1/W calculation that messed up some textures
+ * added missing color combine mode used by Gauntlet Dark Legacy
+
+Fixed subtle bug in the MIPS3 recompiler that prevented Tenth Degree from
+working. [Aaron Giles]
+
+Implemented some more functionality of the ADSP-2181 needed for Road Burners.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mosaic (F2 System) [Pierpaolo Prazzoli]
+Vs. Hot Smash [Nicola Salmoria]
+Noah's Ark [David Widel]
+Top Roller [Tomasz Slanina]
+Squash (Ver. 1.0) [David Haywood, Mike Coates, Nicola Salmoria]
+
+
+
+New clones added
+----------------
+California Speed (Version 2.1a) [Reznor007]
+Gauntlet Dark Legacy (version DL 2.52) [Reznor007]
+Tenkomori Shooting (Japan) [Guru]
+Soul Calibur (SOC11/VER.B) [smf]
+Tekken Tag Tournament (TEG3/VER.C1) [smf]
+Quiz [Pierpaolo Prazzoli]
+King of Gladiator (The King of Fighters '97 bootleg)
+Crouching Tiger Hidden Dragon 2003 (The King of Fighters 2001 bootleg)
+King Of Fighters 10th Anniversary (The King of Fighters 2002 bootleg)
+The King of Fighters Special Edition 2004 (The King of Fighters 2002 bootleg)
+Lansquenet 2004 (Shock Troopers - 2nd Squad bootleg)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Real Battle Mahjong King [Tomasz Slanina, David Haywood]
+Little Robin [David Haywood, Pierpaolo Prazzoli]
+Ghoul Panic (OB2/VER.A) [Guru]
+Knights of Valour 2
+
+
+
+0.102u4
+-------
+
+
+Source Changes
+--------------
+Corrected some YM2151 frequencies in the dooyong.c driver. [Mamesick]
+
+Major update to the STV driver: [Mariusz Wojcieszek]
+ * sh2: introduced cpu_readop16() for opcode fetching
+ * stv: added idle skip to various games
+ * stv: optimized master/slave sh2 syncing
+ * vdp1: fixed sprite transparency for RGB sprites
+ * vdp2: added linescroll
+ * vdp2: added 16x16 15bit tiles (fixes missing gfx in znpwfv)
+ * vdp2: optimized tilemap scrolling, bitmaps and framebuffer drawing
+ * vdp2: fixed page and map calculation
+ * dsp: fixed some bugs making vfremix run up to the end of second match
+
+Fixed sprite-tilemap collision detection in Taito SJ driver when the screen
+is flipped. [Nicola Salmoria]
+
+Fixed some logical errors in sprite handling and palette reads, DMA timing, 
+and one invalid opcode in the NES drivers. [Rob Bohms]
+
+Cleaned up and standardized usage of M_PI constants in the code.
+[William Krick]
+
+Added external ram read and write handlers and data read port to YMZ280B.
+[Ville Linde]
+
+Fixed sprite priorities in Tang Tang. [Pierpaolo Prazzoli]
+
+Fixed bug in Chack'n Pop that was introduced in the recent memory system
+changes. [Nicola Salmoria]
+
+Fixes branch target address disassembly in the PSX disassembler. [smf]
+
+More Voodoo updates: [Aaron Giles]
+ * fixed bug that trashed fbzMode when the fogMode was changed
+ * added preliminary Voodoo 2 support; Gauntlet Legends works again
+ * changed float-to-int conversion to be done manually
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Flame Gunner [Guru, smf]
+Paca Paca Passion Special [Guru, smf]
+Paca Paca Passion 2 [Guru, smf]
+
+
+
+New clones added
+----------------
+WWF Superstars (US, Newer) [Philip Bennett]
+Time Pilot '84 (set 3) [chaneman]
+Multi Champ Deluxe (ver. 0106) [David Haywood]
+Columns (US, cocktail) [Arzeno Fabrice]
+Mace: The Dark Age (boot ROM 1.0ce) [Brian Troha]
+Arabian Fight (World) [Arzeno Fabrice]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Emergency Call Ambulance [Ville Linde]
+
+
+
+0.102u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+taotaida088u4gra [RansAckeR]
+tempest095u5gre [RansAckeR]
+
+
+
+Source Changes
+--------------
+Aquarium update: [Pierpaolo Prazzoli]
+ * Fixed tilemaps - sprites priority
+ * Added sprites wrap around y
+ * Added tiles flipx and flipy
+
+Fixed several bugs in the SPC700 core: [R. Belmont]
+ * Fixed carry usage in ADC/SBC
+ * Fixed overflow flag in ADDW/SUBW (I think)
+ * BRK now modifies the status register properly
+ * Fixed DAA/DAS edge case
+
+Updated driver.c with more consistent and updated info. [Brian Troha]
+
+NSS/SNES updates from latest MESS: [R. Belmont]
+ * Improved memory mapping
+ * Improved raster timing
+ * Added HIRQ support and better VIRQ support
+ * Improved joypad support
+ * DSP-1 support (including all subtypes)
+ * Counter latching support
+ * Fixed OAM read/write
+ * Fixed stereo sound
+
+Added a MESS specific ROM entry type, and changed ROM entry processing code 
+to ignore any unrecognized ROM entry types. [Nathan Woods]
+
+Merged in recent changes to the PC share code from MESS. [Nathan Woods]
+
+Removed several obsolete files: machine\s16math.h, vidhrdw\medlanes.h,
+windows\dirty.h, windows\snprintf.c. [Giuseppe Gorgoglione]
+
+Fixed a couple of minor compatibility exposed by VC2005.
+[Giuseppe Gorgoglione]
+
+Fixed the ADC and SBC opcodes in G65816 (for BCD math). [Rob Bohms]
+
+Fixed $4014 sprite DMA in NES PPU. [Rob Bohms]
+
+Updated the H8/3002 emulation: [R. Belmont]
+ * Added more bXXX.b #imm, (@)Rn instructions
+ * Added subtract with carry instructions
+
+Implemented some N2A03 undocumented opcodes. [Rob Bohms]
+
+Major update to Namco System 22: [Phil Stroffolino]
+ * depth cueing support (fog); some open issues remain
+ * depth bias improvements
+ * zbuffer has been replaced with back-to-front rendering
+ * sprite and text translucency
+ * direct access to rendering device (used by video tests)
+ * preliminary support for spotlight feature
+ * support for sprite bottom-alignment
+ * support for sprite, polygon priority over text
+
+More Voodoo updates: [Aaron Giles]
+ * Added support for CLUT/gamma ramps; enables fade in/out effects
+ * Changed stall callback to notify both start and end of stalling
+ * Decreased bilinear resolution to 4 bits for Voodoo 1
+ * Fixed statistics and added some new ones
+ * Now properly masking off unsupported bits for earlier chipsets
+ * Fixed NOP command so it doesn't always reset statistics
+ * Fixed bug that caused the refresh rate to never be updated
+ * Fixed 16-bit writes to the frame buffer
+ * Fixed crashing bug after resetting the chip
+ * Added support for Voodoo 2's new fog, colorpath, and chromaRange modes
+ * Added correct wrapping for ARGB, W and Z values
+ * Fixed bug where depth was written to the Z buffer without bias
+ * Now aggregates shorter commands to reduce the number of context switches
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magic Stick [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Progressive Music Trivia (Question set 3) [Pierpaolo Prazzoli]
+Super Puzzle Fighter II Turbo (Asia 960529) [Razoola]
+Funky Jet (Japan) [Guru]
+Kid Niki - Radical Ninja (World) [Stefan Lindberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Fortress 2 Blue Arcade [Guru]
+
+
+
+0.102u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+f1en097u1gre2 [Anonymous]
+ozmawars055gre [RansAckeR]
+
+
+
+Source Changes
+--------------
+Some minor cleanups to the System 32 driver. Air Rescue and F1 Exhaust Note
+now share common multi-PCB faking logic. [Anonymous]
+
+Properly hooked up tape samples in Thief, NATO Defense, and Shark Attack now
+that sample pausing is available. [Bart Tobalske]
+
+Fixed several uninitialized variables, incorrect string compares, and
+inconsistent variable declarations found by the VC compiler. [Oshah]
+
+Fixed 16-bit i386 disassembly so it stays within the current segment.
+[Nathan Woods]
+
+Some minor Turbo Sub changes: [Philip Bennett]
+ * Added some more notes.
+ * Corrected some hardware functions in accordance with the schematics.
+
+Tweaked the 68000 disassembler to display F-line traps in a more obvious
+fashion. Also changed to decorate jump targets for relative branches.
+[Alex Jackson]
+
+Rewrote the Voodoo emulation code to be more accurate to the original.
+ * Support for multiple simultaneous boards (hello Silent Scope)
+ * Pixel-pipelined framebuffer accesses now work
+ * Alpha buffer operations now supported
+ * Triple buffering now supported
+ * Proper memory allocation and handling based on configuration
+ * Proper FIFO handling, including low/high water marks and stalling
+ * Approximate timing calculations based on quoted fill rate specs
+ * Detail textures implemented
+ * All math is done in fixed point
+ * Proper edges calculated for polygons (stars appear in Gradius 4 now)
+ * Much easier to add specific rasterizers now
+This is a work in progress; some stuff is not quite right yet. Voodoo 2
+emulation is completely broken. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Lovely Pop Mahjong Jan Jan Shimasyo 2 [Guru]
+
+
+
+New clones added
+----------------
+Trivia Master (set 2) [Pierpaolo Prazzoli]
+Tech Romancer (EURO 980914) [Arzeno Fabrice]
+Splatter House (World) [Arzeno Fabrice]
+Strider 2 (USA 991213) [Brian Troha]
+Touch & Go (World) [Stefan Lindberg]
+Wonder Boy (system 2) [David Widel]
+Kageki (World?, hack) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Fighting Vipers 2 [Ville Linde]
+Tang Tang [David Haywood]
+Spectrum 2000 [David Haywood]
+Spikeout [Ville Linde]
+Spikeout Final Edition [Ville Linde]
+
+
+
+0.102u1
+-------
+
+
+Source Changes
+--------------
+Several fixes for the kaneko16 drivers: [Pierpaolo Prazzoli]
+ - fixed tilemap priorities
+ - fixed some sprites priorities
+ - added some missing coin counters
+ - added right palette filling for games using sprite type 1
+ - swapped berlwall and berlwalt sets as per SebV notes in the source code
+
+Fixed compilation issue for MSVC when using the winalloc code. [Nathan Woods]
+
+Replaced the 68705 MCU from the bootleg Knight Boy with simulation. Added 
+Knight Boy to keep using the MCU code. [Nicola Salmoria]
+
+Added redump of bad ROMs for Cruis'n World (rev L1.3). [Guru]
+
+Changed some i386 disassembly parameters to be unsigned. [Nathan Woods]
+
+Fixed output of mame.ini options that have spaces in them. [Nathan Woods]
+
+Improvements to Wheels and Fire, partial understanding of the blitter.
+[David Haywood, Tomasz Slanina]
+
+Added very, very preliminary emulation of the Ricoh RF5C400. [Ville Linde]
+
+Added new inline math functions to mamecore.h, along with mechanisms for the
+OSD layer to override them with platform-specific variants: 
+count_leading_zeros, count_leading_ones, and fixed_mul_shift. Updated the
+TMS32031 core to make use of the first two. [Aaron Giles]
+
+Changed the Windows blitters to use an array allocated by 
+osd_alloc_executable() to prevent potential access violations on systems
+with no-execute support. [Aaron Giles]
+
+Fixed some minor problems with the LOD calculations in the Voodoo driver.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Dark Horse [Luca Elia]
+Virtua Bowling (Japan) [Luca Elia]
+Honey Dolls [David Haywood]
+
+
+
+New clones added
+----------------
+Red Clash (set 2) [chaneman]
+Stack Columns (World) [Arzeno Fabrice]
+Puzzle & Action: Ichidant-R (Korea) [David Haywood]
+Knight Boy [Nicola Salmoria]
+Dragon World [Luca Elia]
+Billiard Academy Real Break (Europe) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Fred Flintstones' Memory Match [Brian Troha]

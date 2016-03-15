@@ -1,0 +1,228 @@
+0.122u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+pangpoms098u3ora [Brian Troha]
+cuebrckj0102u5gre [Zsolt Vasvari]
+astinvad0106u11gre [Aaron Giles]
+victory137b4gre [Zsolt Vasvari]
+victory37b16gre [Zsolt Vasvari]
+dcs057ora [Aaron Giles]
+pleiads0111u4gre [Robbert]
+armwrest35b9yel [David Haywood]
+gstrik20105u4gra [Brian Troha]
+narc060gra [Aaron Giles]
+mia0106u5gra [RansAckeR]
+nss_smw0115ora [Atari Ace]
+darkplnt0119u3yel [Atari Ace]
+mhhonban0120u3gra [RansAckeR]
+rollerg0111u5gra [RansAckeR]
+bionicc0109ora [RansAckeR]
+lcasino0111ora [RansAckeR]
+megaplay.c0122u4red [Atari Ace]
+nmnlnd0122u3yel [Mamesick]
+cocktail0119yel [Robbert]
+tokisens0122u3gra [RansAckeR]
+alleymas0119u3gre [RansAckeR]
+crbaloon36finalgre [Zsolt Vasvari]
+topsecrt0109gre2 [Bryan McPhail]
+quasar0122u5red [Zsolt Vasvari]
+stadhero0122u3gra [RansAckeR]
+
+
+
+Source Changes
+--------------
+Swinging Singles cleanup: [Tomasz Slanina]
+ - hooked up crt6845
+ - converted to tilemaps
+ - simplified protection(?) emulation
+ - removed tilemap, a bit more low level video hw emulation
+ - fake colors
+
+Lowerd FPS in lasso.c to avoid corrupting Chameleon's high score 
+table. [Zsolt Vasvari]
+
+Removed obsolete uitext.c and all references to it. [Aaron Giles]
+
+Some more modernization/clean-up in the exidy driver. [Zsolt Vasvari]
+
+Added VIDEO_ALWAYS_UPDATED for reliable collision detection in the 
+CVS driver. [Zsolt Vasvari]
+
+Cleaned up astinvad driver: [Aaron Giles]
+ * Proper video timing
+ * Hooked up 8255 PPIs
+ * Correct interrupt timing
+ * Consolidated code into single file
+
+i8039.c/mario.c updates: [couriersud]
+ * fixed movd instructions
+ * add MB8884 and M58715 cpu types
+ * moved timer hack to M58715
+ * added ram_mask for internal ram access
+ * added R.A11 as 'M' to dasm flags
+ * added EA "IO" port
+ * mario now uses M58715 as sound cpu
+ * hooked up EA line for M58715
+ * fixed portA startup value
+ * documented hardware changes to use a I8039 on a mario board
+
+sauro.c: [couriersud]
+ * revert promsize to 256 for trckydoc
+
+Added XTAL clocks to zaxxon.c. [Aaron Giles]
+
+Cleaned up cojag/jaguar driver: [Aaron Giles]
+ * proper video timing, configured by the chipset
+ * 32-bit rendering, removing 16bpp hacks
+ * support for borders
+ * proper object processor timing, including multiple passes per line
+ * added R3041 as a clone of the R3000
+ * fixed XTALs based on documentation
+
+Consolidated exidy and victory drivers. Removed complicated dirty
+tracking from victory.c. Reorganized the exidy audio hardware code.
+Changed Targ to use a loaded PROM instead of a hard-coded one. Renamed
+Side Trak to Side Track as per the title screen. [Zsolt Vasvari]
+
+6821 PIA changes: [Zsolt Vasvari]
+ - Added orthogonal accessors
+ - Removed hacky update_shared_irq_handler(), now the same
+   IRQ callback maybe called multiple times, but this shouldn't 
+   be a problem
+ - IRQ lines are cleared on a reset
+
+Disabled code in the TMS5220 that set the Buffer Empty flag after a 
+stop frame. This fixes Victory. This might be the incorrect fix but 
+the old code wasn't working either. [Zsolt Vasvari]
+
+Hooked up revx dcs reset line. Signaled IRQ on correct CPU when DCS 
+sends data back (duh). [Aaron Giles]
+
+Removed unnecessary check that could cause SCSP hangs in grdforce.
+[kingshriek]
+
+Tweaked deco156 clock speed to be 28 to prevent the games from running
+in slow motion. I suspect the 156 chip has an internal multiplier, the 
+usual input pin is 7Mhz IIRC. [David Haywood]
+
+dkong.c changes: [couriersud]
+ * added equivalence circuit for Sanyo EZV audio amplifier
+ * Set DK_C159 = 0 to avoid over-aggressive high-pass filter. Solely 
+    based on observations. 
+ * added comment on above to source
+ * Added define DK_NO_FILTERS to turn of DAC filters and post-mixer 
+    filters for debugging
+
+Adds dips for Water Balls. Adds dip port locations to all dips.
+[Brian Troha]
+
+Added CPUINFO_INT_CLOCK_MULTIPLIER to support CPU clock multipliers.
+Updated all CPU cores to return a CPUINFO_INT_CLOCK_MULTIPLIER of 1.
+Changed the core to actually respect both CPUINFO_INT_CLOCK_MULTIPLIER 
+and CPUINFO_INT_CLOCK_DIVIDER. Updated a number of drivers to use 
+cpunum_get_clock() instead of Machine->drv->cpu[x].clock. Raw input 
+clock speeds should now be specified for all CPUs in the 
+MACHINE_DRIVER. [Aaron Giles]
+
+Changed TLC43076 and games using it to RGB32. Removed global Machine 
+variable where possible. [Zsolt Vasvari]
+
+Removed dirtybuffer from video/generic.c and all drivers still using 
+it. Good riddance... Removed videoram_w, colorram_w and spriteram_w 
+and changed all drivers using it to access RAM directly. Removed 
+videoram_r, colorram_r, spriteram_r, spriteram16_r and spriteram16_w 
+from video/generic.c and changed all games to use (possibly shared) 
+RAM. [Zsolt Vasvari]
+
+Cleaned up memory maps in the seibu sound interfaces. Changed to use
+shared sound configs instead of statically copying them in each 
+driver. [Aaron Giles]
+
+Verified and changed cpu frequencies and oki m6295 pin 7 on the 
+following pcbs: Asuka&Asuka, Cadash, Equites h/w games and sound 
+board, F1GP, Super Formula, Gladiator, Ping Pong king, Great 
+Swordsman, Irem m52 sound board, Tropical Angel, Explosive Breakers, 
+Magical Crystal, Mad Gear, Roller Aces, Chinese Hero, Simpsons, 
+Golfing Greats, Time Pilot 84. [Corrado Tomaselli]
+
+Added some more static qualifiers on recent new/changed code.
+[Atari Ace]
+
+Fixed dbreed72 crash introduced in 0.122u5. [Mamesick]
+
+Fixed HuC6280 low-speed mode so it uses 4 cycles instead of 3.
+[Charles MacDonald]
+
+Hand fixed Road Runner's corrupted ROM. We are 99.99% sure that the 
+bad bytes are the same as the Desert Gun ones. [Zsolt Vasvari]
+
+Cleaned up leland clocks a little. Made the i186 divide-by-2 clock 
+internal. [Aaron Giles]
+
+Added clocks to the MCR sound boards and some of the MCR games. Added 
+TMS5220 variants TMS5200 and TMC0285 as proper chips. Changed MCR 
+squawk & talk to use the TMS5200 as documented. [Aaron Giles]
+
+Cleaned up Crazy Baloon driver: proper memory maps, crystals, etc.
+Implemented the missing features of the collision detector custom IC.
+[Zsolt Vasvari]
+
+First pass at fixing the cpu clock speeds on the playstation based 
+hardware. The system 10 & 12 clock speeds have been raised as they 
+run on an upgraded chipset. The internal divide in the CPU core has
+been set to 4 as we have no wait states, incorrect dma timing, 
+no gpu timing, no dma bus stealing and no gte timing. [smf]
+
+Fixed RET instruction on the i960 core. [Ernesto Corvi, ElSemi]
+
+Removed speedups in the gstream and limenko drivers which were 
+breaking the games. [David Haywood]
+
+Fixed regression on i8039 T1 counter mode. [couriersud]
+
+Added CUSTOM_INPUT macro for defining input port callbacks. Pushed
+its usage throughout the code. [Aaron Giles]
+
+phoenix and clones: [couriersud]
+ * video timing from schematics
+ * palette from schematics (resnet.h)
+ * no more colortable
+ * added save state
+
+Minor RSP fixes: [SGINut]
+ - Fixed accumulator state on powerup by testing against real hardware
+ - Fixed single-step behavior by testing against real hardware
+
+Added save state support to atetris.c. [Svante Gerhard]
+
+Fixed up atetris memory maps and clocks according to schematics.
+[Aaron Giles]
+
+Added targ and spectar to TinyMAME. [neoforma]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Ripper Ribbit [Aaron Giles]
+Chicken Farm [Aaron Giles]
+Crazzy Clownz [Aaron Giles]
+Space Fighter Mark II [Zsolt Vasvari, Guru]
+
+
+
+New clones added
+----------------
+Heated Barrel (US set 2) [Corrado Tomaselli]
+Player's Edge Plus (XMP00006) Multi-Poker [Jim Stolis]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+International Toote (Germany) [Luca Elia]
+Dodge City [Roberto Fresca]

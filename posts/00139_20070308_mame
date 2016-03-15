@@ -1,0 +1,52 @@
+MAME 0.113u1
+
+<p>
+A new 'u' release of MAME is <a title="Latest Release Page" 
+href="http://mamedev.org/release.html">now available</a>. 
+The biggest underlying change in this round is some internal code movement. 
+In previous versions of MAME, the OS-specific code was responsible for 
+all the frameskipping, throttling, fast forwarding, and timing behavior. 
+What ended up happening is that most ports simply copied the Windows code, 
+made a couple of tiny tweaks, and left it as-is. As of this version of 
+MAME, all that logic has moved into the core video system, which means 
+that there is less work for the OS-specific port maintainers to do. This 
+is the first of a series of changes in this direction, which will mean 
+that ports like <a title="SDLMAME Home Page" href="http://rbelmont.mameworld.info/?page_id=163" 
+target="_blank">SDLMAME</a> and <a title="MAME 
+OS X Page" href="http://mameosx.sourceforge.net/" target="_blank">MAME 
+OS X</a> have less code to maintain.
+</p>
+
+<p>
+As a side-effect of this change, the "frames_to_run" command 
+line parameter has changed to "seconds_to_run", which is the 
+same concept but uses the more neutral concept of time rather than frames. 
+This is in preparation for a future time when games like the vector games 
+will use asynchronous frame updating instead of using the frame rate hack 
+we currently use.
+</p>
+
+<p>
+In addition to this change, Zsolt Vasvari has been taking on the task of 
+cleaning up the usage of video parameters in MAME. This involves converting 
+older drivers to using the new, more accurate video timing functions. It's 
+possible there will be some regressions as a result of this, so be on the 
+lookout and report bugs to <a title="MAME Testers" href="http://mametesters.org" 
+target="_blank">MAMETesters</a>. Sebastien Volpe also 
+submitted an improved Kaneko driver which brings several of those games 
+closer to playable.
+</p>
+
+<p>
+And finally, you may notice a slightly different look to the default font. 
+I have been wanting to replace the default fixed-width font with a proportional 
+font ever since the new video code went in, but have been finding it difficult 
+to find a good BDF font editor (or a font that I liked that was compatible 
+with the MAME license). I finally got fed up with this situation and threw 
+together a quick PNG to BDC font converter (BDC is the binary cached version 
+of BDF files that MAME can read) and designed a basic low-resolution font. 
+As always, if you have a high resolution display, you are better off converting 
+a TrueType font at high point size to BDF and using that, but for those 
+using DirectDraw, the new font should be a good legible default, and the 
+proportional sizing means more text will fit on those cramped game screens.
+</p>

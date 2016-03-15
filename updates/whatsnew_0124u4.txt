@@ -1,0 +1,194 @@
+0.124u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+00426: [Core] tenkaibb, mjreach: don't bootup correctly. (Emuman)
+01711: [Gameplay] connect4, mpu4met0, mpu4tst2, mpu4utst, bctvidbs: 
+       Using -CHEAT trigger causes a crash (Atari Ace)
+00149: [Misc.] No error report for invalid BIOS setting. (Atari Ace)
+01588: [Core] timecrsa, timecris: MAME simply quits after pressing F3 
+       in both sets, game cannot be runned (Atari Ace)
+01733: [Core] diehard: Game fails to start (Aaron Giles)
+01710: [DIP/Input] spacetrk, sptrekct: Cannot insert coins in both sets 
+       (Aaron Giles)
+01721: [DIP/Input] sspaceat, sspacat2, sspacat3, sspacatc : Problems 
+       with inserting coins. (Aaron Giles)
+01740: [DIP/Input] carnival, headon, heiankyo, pulsar, samurai, 
+       tranqgun : Is not possible to insert any coin. (Aaron Giles)
+01724: [Core] garou, garouo: Can't start the game (Aaron Giles)
+01732: [Core] kof99, kof99a, kof99e: Game doesn't start (Aaron Giles)
+01742: [Interface] punchout, armwrest + many vsnes.c and playch10.c 
+       games: Refreshspeed causes fatal exception in punchout 
+       (Aaron Giles)
+01670: [Graphics] kungfum, kungfud, spartanx, kungfub, kungfub2: Main 
+       character sprite not hidden at end of level. (Nicola Salmoria)
+01686: [Graphics] ldrun3, ldrun3jp: visible area problem 
+       (Nicola Salmoria)
+00248: [Graphics] repulse: Once the player has been shot, a misplaced 
+       tile appears on the screen. (robiza)
+01145: [Graphics] sonofphx, 99lstwar, 99lstwrk, repulse: When you die 
+       in the first level, there's a red graphics glitch at the lower 
+       left. (robiza)
+00498: [Graphics] sonofphx, 99lstwar, 99lstwra, 99lstwrk, repulse: When 
+       the end-level mothership appears in the stage 4, it shows through 
+       the trees and scrolls showing through. (robiza)
+
+
+
+Source Changes
+--------------
+Improvements to aerfboo2: [robiza]
+ - fix bg1 and bg2 offset
+ - fix sprites
+ - promoted to "working" (NO SOUND)
+
+Added a macro for the CDP1869 interface, and made write handlers 
+optional. [Curt Coder]
+
+Fixed offset sprite/background in kyugo.c. [robiza]
+
+Fixed the 6502 family of disassemblers to show the correct bit to 
+operate for BBR, BBS, RMB and SMB instructions. (65C02/65CE02 CPUs 
+and variants) [Roberto Fresca]
+
+Fixed 2 opcodes for quizf1: now the little machines move correctly.
+[robiza]
+
+Converted the ppi8255 implementation to a device. [Wilbert Pol]
+
+Changed the inline validity checks to work around GCC bug #35885.
+[Wilbert Pol]
+
+Expanded the set of memory accessor functions. In addition to
+direct byte, word, dword, and qword accessors for all bus sizes,
+there are now masked word, dword, and qword accessors for all
+bus sizes. [Aaron Giles]
+
+Further CPS1 improvements: 
+[Nicola Salmoria, Corrado Tomaselli, Charles MacDonald]
+ * fixed layer enable at the end of stage 4 in Varth.
+ * increased Varth CPU clock to 12MHz to reduce slowdowns (the game 
+    was released after sf2ce so the faster A-board was available).
+ * verified more gfx rom mappings against PAL dumps (thanks to Corrado) 
+ * verified memory maps using A-board PAL dumps (thanks to Charles)
+ * separated the address ranges for CPS-A and CPS-B customs. This 
+    finally clarifies why some registers are fixed and some change 
+    with every game.
+ * identified three new unknown registers in the CPS-B-21 custom. 
+    Their purpose is unknown.
+ * all unhandled accesses to CPS-A/CPS-B registers will now be 
+    reported. There shouldn't be any left. Look out for 
+    "contact MAMEDEV" popups.
+ * cleaned memory maps. Moved forgotten worlds special input mmeory 
+    handlers to DRIVER_INIT.
+ * moved extra input handlers to video/cps1.c since the extra 
+    connectors are on the C-board.
+ * added sound to Final Crash.
+ * lowered SF2 clock speed to 10MHz. This is on the assumption that, 
+    since the 12MHz A-Board is called "89626A-4 DASH", it should 
+    have started to be used with SF2 DASH--that is, sf2ce.
+
+Inverted the sense of the memory mask that is passed to read/write
+handlers. Previously, the mask indicated which bits were NOT requested
+to be read/written. Now, the mask indicates which bits ARE to be
+read/written, which is more logical. Updated a number of drivers and
+the MIPS CPU cores to comply. [Aaron Giles]
+
+Funworld updates: [Roberto Fresca]
+ - Removed the temporary hack to jolyc980.
+ - Updated technical notes
+ - Moved snookr10 to its own driver.
+-  Minor clean-up.
+
+Improved the IGS017 based games: [Luca Elia]
+- iqblocka: bypassed the protection, emulated the video hardware, 
+   inputs and sound.
+- tjsb: it now boots and has partially decrypted graphics.
+
+Added new Windows option -watchdog, which creates a watchdog thread
+that forcibly kills the application after a certain number of seconds.
+Primarily intended to be used in regression test runs to handle the
+occasional hung game. [Aaron Giles]
+
+Improved popper.c colors useing resistor values from schematics.
+[couriersud, Joe Magiera]
+
+Changed and verified cpu frequencies on kyugo.c games. Gyrodine and 
+99 the last war and clones run on the same board. [Corrado Tomaselli]
+
+Added preliminary 68681 DUART (machine\68681.c) [Mariusz Wojcieszek]
+
+Moved Microtouch touch screen controller emulation to separate module 
+(machine\microtch.c). [Mariusz Wojcieszek]
+
+Specifying an invalid bios is now a fatalerror. Also, "default" is
+no longer a special BIOS type; if you want the default BIOS, leave
+the bios option blank. [Atari Ace]
+
+DEC T-11 CPU improvements: [Miodrag Milanovic]
+ - HALT - now calls interrupt vector
+ - ILLEGAL - had PC=0 at the end which makes code not run fine
+ - MARK - now it is implemented
+
+Memory map merge for twin16 driver. [Andrew Gardner]
+
+Removed silly idle skip code in prehisle driver. [David Haywood]
+
+AY-3-8910 rewrite: [couriersud]
+ * adds a model to calculate mixing of channels with different 
+    resistance loads.
+ * based on above, each channel may be assigned a different load in 
+    individual case, i.e. channels not tied together
+ * rewrote ay8910.c to make emulation simpler
+ * changed the config structure to include a flag field and output 
+    resistor loads.
+ * Updated all drivers affected.
+ * Added some "Todos" related to stuff I discovered when reading 
+    datasheets.
+ * Fixed a bug in disc_flt.c (konami filters)
+
+Fixed discrete sound and konami filter addressing in galaxian driver.
+Also changed addressing of AY-3-8910 to be in line with schematics.
+[couriersud]
+
+Added discrete sound for filtering ("konami"-style) and mixing in
+gyruss.c. [couriersud]
+
+Changed UI to allow volumes higher than 2.0. [Nicola Salmoria]
+
+Changed code which used assignment in conditionals to break out the
+assignment. [Atari Ace]
+
+Converted a large number of Machine -> machine and removed #include
+"deprecat.h" where possible. [Atari Ace]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Side by Side [Maruwa]
+Jumping Pop (NICs, Korean bootleg of Plump Pop) 
+  [Robin Cooper, David Haywood]
+Touchmaster [Mariusz Wojcieszek]
+Touchmaster 3000 [Mariusz Wojcieszek]
+Touchmaster 4000 [Mariusz Wojcieszek]
+Touchmaster 5000 [Mariusz Wojcieszek]
+Touchmaster 7000 [Mariusz Wojcieszek]
+
+
+
+New clones added
+----------------
+Aero Fighters (bootleg set 2) [robiza]
+1942 (Williams Electronics license) [Quarterarcade]
+Rygar (US set 3 Old Version) [Corrado Tomaselli]
+Ghosts'n Goblins (Italian bootleg, harder) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Apple 10 (Ver 1.21) [Roberto Fresca]
+Ten Balls (Ver 1.05) [Roberto Fresca]

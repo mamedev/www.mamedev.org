@@ -1,0 +1,329 @@
+0.128u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02638: [Compiling] various cpu cores don't compile anymore 
+         (Aaron Giles)
+- 02709: [Documentation] nstockr2: nstockr2 not defined as clone of 
+         nstocker? (Luigi30, Edward Swiftwood)
+- 02713: [Crash/Freeze] demndrgn, profpac: demndrgn gives a black 
+         screen only. profpac doesn't accept coins. (Aaron Giles)
+- 01442: [Sound] wwfsstar: The OKI6295 playback frequency is too high.
+         (Phil Bennett)
+- 00894: [Crash/Freeze] elecyoyo: Inserted coins and pressing start 
+         sometimes leads back to the test menu. (Mamesick)
+- 02658: [Interface] Supplement game status reports with yellow screen
+         (Edward Swiftwood)
+- 02689: [Multisession] jumpbug: Jumpbug won't start second time 
+         around (Atari Ace)
+- 02673: [Crash/Freeze] All Sets with HuC6280 as Audio Device 
+         (PCE-Based titles): Fatal Error after OK (Aaron Giles)
+- 02676: [Color/Palette] All Laserdisc Games: Wrong colors using 
+         Direct3D on ATI cards. (Aaron Giles)
+- 02680: [Misc.] carnevil: -verifyrom fails to consider if a CHD is a 
+         BAD_DUMP (Aaron Giles)
+- 02705: [Crash/Freeze] connect4: connect4 crashes if nvram file is 
+         present (Aaron Giles)
+- 02702: [Sound] tturf: no audio (Aaron Giles)
+- 02691: [Sound] Some drivers with z80/ay8910 Audio: Audio tempo has 
+         changed (Aaron Giles)
+- 02669: [Sound] pandoras: music tempo is too fast (Aaron Giles)
+- 02683: [Crash/Freeze] Pressing F5 while running debugger causes 
+         access violation (Aaron Giles)
+- 02687: [Core] emuopts.c: CORE INPUT AUTOMATIC ENABLE OPTIONS 
+         (Aaron Giles)
+- 02688: [DIP/Input] DIP switch settings are not being stored in INP 
+         files. (Aaron Giles)
+- 02693: [Crash/Freeze] dacholer, kickboy: Freeze on the title or 
+         credit. (Mamesick)
+- 02653: [Sound] all games on artmagic.c: OKI clipping in artmagic 
+         games (Nicola Salmoria)
+- 02690: [Graphics] jantouki: The upper screen is totally garbled. 
+         (Mamesick)
+- 02672: [Crash/Freeze] Most Sets using MCS48/51.C (intel 80xx family):
+         Fatal Error when using -cheat trigger (Aaron Giles)
+- 02670: [Core] Many sets using SH2: The SH2 timers aren't firing at 
+         the correct speed / time, causing various issues (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Fixes subtle timing calculation problems that affected SH-2 timers.
+[Aaron Giles]
+
+Fixed copy/paste error on viostorm rom names. [David Haywood]
+
+Made non-critical UI warnings yellow instead so that they stand out. 
+[BarnacleEd]
+
+Added Treasure Island to the Burger Time HW. It doesn't work because 
+I highly suspect that there's an unhandled encryption scheme in it.
+[Angelo Salese]
+
+Pointer-ified the CCPU and T-11 cores. [Aaron Giles]
+
+Removed globals from cpuexec. Also removed ATTOTIME_TO_CYCLES() and 
+ATTOTIME_IN_CYCLES(). Replaced them with functions in cpuexec: 
+cpu_clocks_to_attotime() and cpu_attotime_to_clocks(), both of which 
+take CPU devices instead of indexes. Updated all callers, many of 
+which were using the functions dubiously. [Aaron Giles]
+
+Added placeholders for interrupt callback and Z80 daisy chain 
+functions in Z80DMA. [Curt Coder]
+
+Pool items are now tracked globally, and freed in reverse order of 
+allocation. This enables proper nesting. [Aaron Giles]
+
+Changed timer_alloc, timer_set, timer_pulse, timer_call_after_resynch,
+and timer_get_time to pass the machine parameter. Moved timer globals
+to hang off of the running_machine. [Aaron Giles]
+
+Pointer-ified the hyperstone core, and removed all activecpu refs.
+[Aaron Giles]
+
+Removed cpunum_get_active() calls and activecpu references from all
+of the CPU cores. [Aaron Giles]
+
+Normalized several local CPU state variables to the generic 'cpustate'
+instead of names_with_underscores. [Aaron Giles]
+
+Added macros to access ROM and MACHINE_DRIVER by name. [Curt Coder]
+
+Normalized CDP1802 state variables to 'cpustate'. [Curt Coder]
+
+Removed all references to cpunum_get_active() and removed the function
+entirely. [Aaron Giles, Andrew Gardner]
+
+Updated t5182 memory mapping a bit to properly handle mirrored areas; 
+added comments about how shared ram works. [Lord Nightmare]
+
+Fixed reversed VBLANK-IN/OUT events in ST-V. Fixes hanagumi/groovef 2 
+credits at start-up. [Angelo Salese]
+
+Added ATTR_NONNULL to various declarations. [Nathan Woods]
+
+Pointer-ified the 65816. [R. Belmont]
+
+Many improvements on the irq handling of the ST-V driver:
+    [Angelo Salese, Charles MacDonald]
+ * Fixed a bug with irq timings;
+ * Added ODD bit emulation;
+ * Fixed vblank period timings;
+ * Optimized a bit the whole interrupt routines, getting a 4x speed 
+    gain
+ * Fixed an irq mask handling bug;
+This fixes at least Astra SuperStars and Pebble Beach booting, but 
+the latter still fails the timer 1 irq routines...I need to check why)
+
+Pointer-ified the SPC700. [R. Belmont]
+
+Fixed stepping in the debugger. [R. Belmont]
+
+ARM7 updates: [R. Belmont]
+ - Pointer-ified ARM7 core
+ - Added disassembler and execution support for ARMv5 LDRD/STRD 
+    instructions. 39in1 now makes it until it needs the MMU.
+
+The jchan gamse aren't really clones even if they share most of the 
+same roms. They're very different. [David Haywood]
+
+Pmpoker.c major rewrite (part 2): [Roberto Fresca]
+ - Changed the driver name to goldnpkr.c (Golden Poker is the most 
+    representative hardware).
+ - Splitted the PIA interfases to cover witchcrd/pottenpkr connections.
+ - Fixed the witchcrd/pottnpkr/sloco93 double up mode.
+ - Replaced the pottenpkr layout with goldnpkr one in all Jack 
+    Potten's Poker sets.
+ - Updated game notes for Witch Card and Super Loco 93 sets.
+ - Fixed al inputs & lamps to allow double up mode to the above games.
+ - Added Witch Card (Video Klein) but still not working.
+ - Added several Buena Suerte! sets.
+ - Added new games: Maverik, Brasil 89 & Poker'91.
+ - Reworked the sets parent-clone relationship (still in progress).
+
+Cleaned up gfx decode on Sengoku Mahjong. [Angelo Salese]
+
+Improvements to funworld.c driver [Roberto Fresca, Andreas Naive]
+ - Decripted saloon's program, graphics and color PROM.
+ - Created a new memory map and machine driver for saloon.
+ - Removed set jolycdae (it's not coming from a real board).
+ - Renamed the sets magiccrd, magiccda and magiccdb, to magicrd2, magicd2a and magicd2b.
+ - Updated technical notes.
+
+Fixed RGB565 bugs in Ghost Eolith driver. [Angelo Salese]
+
+Changed oki 6295 to use a reasonable volume table derived from the 
+manual. Added popmessages to notify of invalid commands so we can 
+investigate them if some game uses them. It should also be noted that 
+many games using this chip are clipping at the moment. This is 
+something that might date back to when sound mixing was upgraded to 
+32-bit. It is sensible for the 6295 emulator to output at this level 
+because it ensures that bits of precision are not lost, so the mixing 
+levels in the drivers should be adjusted to avoid clipping. 
+[Nicola Salmoria]
+
+Cool Riders: added an hack for the SH-2, fixed some irqs and some 
+memory maps/ram sharing. Got to the point that area 0x03e00000 on the 
+SH-2 loads some DMA-style tables. (and this is going to be REALLY 
+nasty to do without docs...) [Angelo Salese]
+
+Added layer enable register, coin counter, coin lockout and cleaned-up 
+the Sengoku Mahjong driver. [Angelo Salese]
+
+Big debugger cleanup: [Aaron Giles]
+
+  Important note for OSD ports: the get/set property functions have 
+  been retired for debug_views. Instead, there are specific functions
+  to perform each get/set operation. In addition, the format of the
+  update callback has changed to pass the osd private data in, and
+  the update callback/osd private data must be passed in at view
+  allocation time. And osd_wait_for_debugger() now gets a CPU object
+  instead of the machine.
+
+  Removed extra debugger tracking for address spaces and added some
+  of the useful data to the address_space structure. Updated all
+  debugger commands and views to use CPU and address space objects
+  where appropriate.
+
+  Added new memory functions for converting between bytes and
+  addresses, and for performing translations for a given address
+  space. Removed debugger macros that did similar things in favor
+  of calling these functions.
+
+  Rewrote most of the memory view handling. Disasm and register views
+  still need some additional tweaking.
+
+  Added the concept of 'subviews' to the debugger views. The core
+  now creates a list of possible subviews, and the OSD can select
+  between them. This removes code from the OSD that was previously
+  required to find all possible memory and disassembly views.
+
+  Added machine parameters to debugger console output functions.
+
+  Moved globals to hang off of the machine structure.
+
+  Fixed bug where the visiblecpu was not updated immediately upon
+  a break.
+
+Made the 6850 ACIA a device. [Nathan Woods]
+
+Re-enabled the OSD key for master volume control. All other sliders
+are still only accessible via the menus. [Aaron Giles]
+
+Renamed constants: [Aaron Giles]
+   CPU_IS_LE -> ENDIANNESS_LITTLE
+   CPU_IS_BE -> ENDIANNESS_BIG
+
+To fix 02688 (DIP switch settings are not being stored in INP files), 
+old INP files had to be broken. Since they were already broken, the
+corefile module was enhanced to support streaming compression, and
+the new INP files are output and processed compressed. [Aaron Giles]
+
+Added a number of new cputag_* macros to cpuexec.h. [Aaron Giles]
+
+Removed fillbitmap() macro in favor of direct calls to bitmap_fill().
+Note that the parameters to the latter are in a different order
+(bitmap, clip, color). [Atari Ace]
+
+Furthered the process of aligning the sound cores with the recent cpu 
+core changes. Added a fake device implementation similar to the one 
+the cpu cores are using. Made some interface adjustments aligned to 
+128u4 (i.e. adding snd_class_header, adding get_ to various getter 
+functions). The primary benefit of this change is the removal of 
+"deprecat.h" from 23 sound cores. Also adjusted ui.c to stop calling 
+sndnum_clock and access the clock data similarly to how it does the 
+cpu clock data. (Note from Aaron: further changes to the sound
+interfaces will be kept to a minimum until the CPUs are sorted out.)
+[Atari Ace]
+
+Fixed 8080 interrupt handling: [Miodrag Milanovic]
+ 1. previous implementation cleared interrupt enable bit on interrupt 
+     trigger which is wrong since interrupts should stay enabled 
+ 2. service interrupt number was not cleared after interrupt is 
+     executed, so if same one is triggered it will not be catched.
+
+Made the 6526/8520 CIA implementations be devices. Added 
+differentiation between the r1 and r2 versions of the 6526; not acting
+on it yet. [Nathan Woods]
+
+Save state system improvements: [Aaron Giles]
+  Changed save state system to accept machine parameters where
+  appropriate, and to keep all global variables hanging off the
+  machine structure. Once again, this means all state registration
+  call sites have been touched:
+
+    - state_save_register_global* now takes a machine parameter
+    - state_save_register_item* now takes a machine parameter
+    - added new state_save_register_device_item* which now uses
+       the device name and tag to generate the base name
+
+Extended the fake sound devices to have more populated fields.
+Modified sound cores to use tags from the devices and simplified
+the start function. [Aaron Giles]
+
+Renumbered CPU and sound get/set info constants to align with
+the device constants, and shared values where they were perfectly
+aligned. [Aaron Giles]
+
+Set the type field in the fake device_configs for CPU and sound
+chips to a get_info stub which calls through to the CPU and sound
+specific get_info functions. This means the device_get_info()
+functions work for CPU and sound cores, even in their fake state.
+[Aaron Giles]
+
+Changed device information getters from device_info() to
+device_get_info() to match the CPU and sound macros. [Aaron Giles]
+
+Removed cpunum_get_active(). Main important change is that IDE 
+controllers with bus mastering (DMA) need to specify the target 
+address space in the IDE device configuration. [Aaron Giles]
+
+Removed mame_find_cpu_index(). Use cputag_get_cpu() instead.
+Updated all drivers calling this to the newer function, and
+generally simplified their code as a result. [Aaron Giles]
+
+Added NVRAM emulation to Sengoku Mahjong. [Angelo Salese]
+
+Merged The Couples driver with Merit, fixing most of the graphics/
+color bugs in it. [Angelo Salese]
+
+Removed mostly silly uses of activecpu from the CPU cores. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Tennis (bootleg of Pro Tennis) [Angelo Salese]
+Maverik [Roberto Fresca]
+Brasil 89 [Roberto Fresca]
+Poker'91 [Roberto Fresca]
+New Magic Card [David Haywood, Angelo Salese]
+Millenium Nuovo 4000 [David Haywood, Angelo Salese]
+
+
+
+New clones added
+----------------
+Buena Suerte (21 new sets) [Roberto Fresca]
+Royalea [Roberto Fresca]
+Black Tiger (bootleg alt) [mameitalia]
+Surf Planet (Version 4.0) [Smittdogg]
+Worldcup 90 (bootleg) [robiza]
+J.J. Squawkers (bootleg) [robiza]
+Loco-Motion (bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Treasure Island [Angelo Salese]
+Destiny Horoscope [Angelo Salese]
+Galaxian 3 [Andy Welburn]
+Witch Card (Video Klein) [Roberto Fresca, Guru]
+Bra$il [David Haywood, Angelo Salese]
+Fashion (Version 2.14) [David Haywood, Angelo Salese]
+Il Pagliaccio [David Haywood, Angelo Salese]

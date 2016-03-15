@@ -1,0 +1,67 @@
+0.20
+
+Program:
+- Yes!!  Finally I wrote a driver for Gyruss, one of my favourite games
+  and one of the reasons why I started emulation.  Big special thanks
+  to Michael Cuddy, without help and information this game would probably
+  never be done;  and to Nicola Salmoria that fixed some of the sprites
+  bugs that turned me mad and cleaned the code! ;)
+
+- The following changes were done by Nicola Salmoria:
+  - 1942 has correct colours.  Also fixed rom paging, so now it has no more
+    slowdowns.  Fixed jerkiness.  Sound is better, too.  How about the
+    tempo?  How about the pitch?  Are they right?
+  - fixed missing sprites when exiting from doors in Elevator Action. There
+    are still some sprite priority bugs.  Also better colors.
+  - Thanks to Marc Lafontaine's invaluable help, Popeye is now fully playable
+    and has 100% accurate colors.  Supports high score saving, too.
+    Still very slow.
+
+- Brad Oliver found a lot of bugs around the code.  Fixed 1942 background
+  scroll, Arabian video driver, and Phoenix sound init routine (all those
+  caused trashes on MAC).
+
+- Paul Berberich fixed some colors of Donkey Kong that is now quite close
+  to original arcade.  Also Donkey Kong Jr. has better colors now.
+
+- Fabrice Frences provided a driver for Krull.  Also fixed some bugs in
+  qbert, and returned audio to Mad Planets.
+
+- Ron Fries created a new set of Donkey Kong samples, using Mike Cuddy's
+  8039 emulator.  The new samples no longer have static, they are aliased
+  and louder.  All names are now generic, so the same name can be used
+  across Nintendo line (DK, DKjr, DK3, Mario).
+
+- Chris Hardly kindly provided a working driver for Warp Warp.
+
+- Dave W. provided a new set of invaders samples.  Should be better, though.
+
+- Frogger music tempo bring back to original value.  Fast but flawless!
+
+Sources:
+- Changed 8910intf to support 5 PSGs (Gyruss have them!)
+
+- Changes in MAME.C:  added -list option.  This is useful for mantaining
+  the readme file.  It lists currently supported games.  Thanks to Zanello
+  Maurizio for suggestion.
+
+- Changes in MSDOS.C:  vesa and vesascan are now mutex.  Also fixed a bug
+  caused by calling joystick initialize before starting allegro.
+
+- To UNIX users:  sorry for the mess I did in my previous distribuition.
+  All names and patches should be ok now.
+
+- Nicola Salmoria provided the following changes:
+  - changed GENERIC.C to add sound_command_latch_r(): this always return the
+    last command, instead of 0, if there are no more pending commands. This
+    was required by 1942.
+
+  - new flag for the cpu type: CPU_AUDIO_CPU. For example, you'll define a CPU
+    type as CPU_Z80 | CPU_AUDIO_CPU. This indicates that the CPU is a slave
+    used for audio only, and is therefore not needed if sound is disabled.
+    The CPU will not be emulated when sound is turned off, therefore speeding
+    up the emulation a lot.
+
+  - also, 8910_sh_update() doesn't emulate the 8910 audio if sound is disabled
+    (the I/O ports of the chip are still emulated, since some games use them
+     for input).

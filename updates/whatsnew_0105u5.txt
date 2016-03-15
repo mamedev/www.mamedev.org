@@ -1,0 +1,93 @@
+0.105u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+memory0105u4red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Cleaned up the freekick.c driver [Sonikos]:
+ - added 2nd button in gigas/gias2m/oigas
+ - matched the Z80 chip mhz to the "confirmed" mhz of gigas
+
+Extended the gfxlayout structure to support "extended" arrays of
+x and y offsets. These are used for layouts that are larger than
+32x32. This enables the standard structure to be smaller for the
+vast majority of games that don't require huge graphics decodes.
+The end result is that the MAME .exe is ~3MB smaller.
+[Atari Ace, Aaron Giles]
+
+Added some Amiga enhancements needed for MESS Amiga and CDTV 
+drivers. [Dirk Best]
+
+Removed non-existant 3rd & 4th player controls from deadconx.
+[Don Maeby]
+
+Improvements to the MACS driver: [Tomasz Slanina]
+ - fixed a couple of gfx bugs in st0016 video emulation
+ - added hacks to allow MACS games to boot
+ - removed REGION_DISPOSE flag from srmp5 and speaglsht (no more 
+    crashes)
+
+Fixed/improved DIP switches in the powerbal.c, konamigx.c, and 
+gsword.c drivers. [Twisty]
+
+More improvements to the BFM driver and the 6840 timer emulation.
+[El Condor]
+
+Improvements to the x86 drc engine and the Windows blitters:
+ - Blitter CPUID features now accessed by drc_x86_get_features() call
+ - Added win_blit_init(), to initialize the blitter
+ - Changes to DRC to support usage for things other than CPU cores
+ - Fixed drc_dasm() so it works once again
+ - Added macros for a number of MMX/SSE instructions
+ - Added a number of MMX/SSE instructions to the i386 disassembler
+
+Actually applied the Marine Date fixes which were mentioned in a
+previous u release. [Aaron Giles]
+
+Added experimental support for building using Visual C++ 2003/2005.
+To do this, you still need the mingw environment (ironically) because
+we rely on the mingw make system to call out to the MSVC compilers.
+Set the variable MSVC_BUILD=1 on the command line or by modifying
+windows.mak, and it will build using the Microsoft compilers. This
+works through the use of a stub program vconv.exe which translates
+gcc options into MSVC options. As a bootstrapping measure, vconv.exe
+is compiled at the start of a clean build by mingw. Most of the
+standard build options just work (SYMBOLS, MAP, DEBUG, etc). If you
+have a beefy computer, you can also set MAXOPT=1 and use link-time
+code generation for maximum optimization effect. :) [Aaron Giles]
+
+Added preliminary support for 64-bit targets. A new makefile define
+PTR64 should be set if you are compiling for a 64-bit target. This
+propogates a PTR64 define into the C files as well. Made the makefile
+smart enough to auto-disable the drc cores for 64-bit, and removed
+most of the roadblocks to a 64-bit build, apart from the assembly
+blitters, which are currently undergoing a rewrite. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Hidden Catch 2 [Pierpaolo Prazzoli, Guru]
+Fishing Maniac 3 [Pierpaolo Prazzoli, Guru]
+Yu-Ka [Tomasz Slanina]
+Yu-Jan [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Greyhound Selection (Version 40.02TMB) set 2 [Brian Troha]
+Greyhound Poker (3 new sets) [Brian Troha]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Master Boy [David Haywood]
+Intersecti [David Haywood]
+

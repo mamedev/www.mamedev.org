@@ -1,0 +1,101 @@
+0.117u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+headon0117u2ora [Aaron Giles]
+numpadremap0117u2gra [Aaron Giles]
+joystick0117u2gra [Aaron Giles]
+NewUI0117u2ora [Aaron Giles]
+mtrap0117u2ora [Aaron Giles]
+verifyroms0117u2ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added some more setup code for the Naomi driver. [R. Belmont]
+
+Improved DIP switches in powerins driver. [BisonSAS]
+
+Added some basic cdrom switching to the system 573 driver. Hooked it
+up for best of cool dancers to work and the Club versions. Added
+DIP locations. Moved fake switches to the configuration menu. [smf]
+
+Added preliminary video hw emulation and sound support to the
+2 Minute Drill driver. [Tomasz Slanina]
+
+Added an optional vsync callback to the TIA emulation to allow a 
+driver to dynamically change the screen configuration. [Wilbert Pol]
+
+Cleaned up redundant function names. [Atari Ace]
+
+Changed CreateWindowEx() call to be win_create_window_ex_utf8(), 
+removing the need for a string conversion. [Nathan Woods]
+
+Fixed running the konamigx BIOS on its own do what it should: 
+display a scrolling marquee telling the operator to attach
+a ROM board. [Alex Jackson]
+
+Added new debugger commands for hardreset and softreset. 
+[Nathan Woods]
+
+Added built-in support for 14-segment and 16-segment LEDs with
+comma/period additions. Split vacfdisp into component specific 
+drivers. The system now supports the Rockwell 10937 (aka MSC1937) 
+and 10957, as well as the BD1. All relevant drivers have been 
+updated with the new code, and new layouts have been prepared.
+[James Wallace]
+
+Fixed a few more 64-bit build errors. [Aaron Giles]
+
+Separated build tools from general tools. Build tools are now located
+in the build/ subdirectory. [Aaron Giles]
+
+Added new general library module astring.c, which supports allocated
+strings of arbitrary length and a number of basic functions on them.
+[Aaron Giles]
+
+Replaced assemble_x_strings() functions with the astring equivalents.
+Updated code in several places to use astrings where appropriate.
+[Aaron Giles]
+
+Added new tool src2html which is used to convert the MAME source tree
+to HTML format with linked include files and color coded keywords
+and comments. [Aaron Giles]
+
+Converted the memory pool code to a more generic resource pool. 
+Changed internal MAME tracking of timers and save state registrations
+over to using the new system. [Aaron Giles]
+
+Removed underscores from some keycode token names. Thus, 
+KEYCODE_0_PAD now becomes KEYCODE_0PAD. This is to prevent confusion
+when parsing multiple keyboard items. Due to this change, also removed
+imperfect backward compatibility with older configs; some mappings
+will still work, but some won't. Note that this change will also
+break some existing ctrlr files; new ones will be provided. 
+[Aaron Giles]
+
+Did some cleanup of the tilemap interfaces. Changed tilemap type
+constants to be an enum prefixed by TILEMAP_TYPE_* instead of simply
+TILEMAP_*. Removed unused members from the tile_info structure. 
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Cross Blades! (Japan) [Stefan Lindberg]
+Shadow Force (Japan Version 2) [Stefan Lindberg]
+Dig Dug (Sidam bootleg) [David Haywood]
+Dance Dance Revolution Best of Cool Dancers [smf]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Astron Belt [Andrew Gardner]
+Cobra Command (Sega LaserDisc Hardware) [Andrew Gardner]
+Galaxy Ranger [Andrew Gardner]
+Star Blazer [Andrew Gardner]

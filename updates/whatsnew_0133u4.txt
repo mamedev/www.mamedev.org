@@ -1,0 +1,223 @@
+0.133u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03405: [Misc.] trckydoc trckydoca: Default hiscore wrong 
+         (Pierpaolo Prazzoli)
+- 03412: [Gameplay] goindol and clones: Unable to control and graphics 
+         corrupted (Tafoid)
+- 03404: [Crash/Freeze] Some drivers using mc6845.c: Access Violation 
+         (hap)
+- 01043: [DIP/Input] m79amb: There's considerable difficulty in aiming 
+         in the game. (hap)
+- 01754: [Graphics] tm7k, tm, tm3k, tm4k, tm5k: Background Color/
+         Palette Incorrect (Luca Elia)
+- 02191: [Sound] wseries, basebal2, dblplay, strkzone: Speech quality 
+         regression (couriersud)
+- 02608: [Color/Palette] machomou: Colors are wrong. (hap)
+
+
+
+Source Changes
+--------------
+Intel 8085: [Curt Coder]
+ - refactored callbacks to use devcb
+ - added 8080A variant
+
+Added helper macros to devcb for input lines tied to GND/Vcc. 
+[Curt Coder]
+
+Added Dirt Dash wave ROM redumps [Guru]
+
+Battle Zone discrete sound & discrete sound additions: [couriersud]
+ - added discrete sound to battle zone
+ - engine frequency (resistor R11) can be changed with slider
+ - discrete sound may be disabled by setting BZONE_DISCRETE to 0 in 
+    bzone.h
+
+Discrete sound improvements: [couriersud]
+ - DISCRETE_RCDISC3: added diode junction voltage; junction voltage 
+    also indicates polarity
+ - DISCRETE_OPAMP_FILTER: added type 
+    DISC_OP_AMP_FILTER_IS_LOW_PASS_1M; INP2 takes role of v_ref in 
+    this type
+ - DISCRETE_OPAMP: fixed a bug (possible divide by 0)
+ - DISCRETE_LFSR: fixed bug preventing output of shift reg to sub 
+    node 1
+
+SNES improvements: [Angelo Salese]
+- Fixed half colour blending behaviour
+
+Added infrastructure to compile universal standalone disassembler:
+[Aaron Giles]
+ - added unidasm to the tools build
+ - split the disassemblers out of libcpu and into new libdasm
+ - ensured the disassembly entry points for all disassemblers are
+    in the source file for the disassembler (sometimes new generic
+    versions were created)
+
+Improvements to Noraut Poker driver... [Roberto Fresca]
+ * Switched to pre-defined Xtal clock.
+ * Changed the way how graphics are banked/accessed.
+ * Fixed the graphics offset and number of tiles per bank.
+ * Added new set: Noraut Red Hot Joker Poker.
+ * Added new set: Noraut Poker (NTX10A).
+ * Added new set: Noraut Joker Poker (V3.010a).
+ * Fixed the tile size/decode for the first GFX bank.
+ * Added proper norautrh inputs, including the readout button.
+ * Added partial DIP switches to norautrh.
+ * Added an extra DIP switch to Noraut Red Hot Joker Poker.
+ * Also added DIP locations to the whole bank.
+ * Added a default NVRAM for Noraut Joker Poker
+ * Executed a trojan on 2 noraut systems to confirm the way 16x32 
+    tiles are decoded.
+ * Fixed the x-offset for 32x32 tiles lines.
+ * Fixed the screen aspect and visible area.
+ * Confirmed correct colors. No bipolar PROM involved.
+ * Added Noraut Joker Poker hardware and PCB layouts.
+ * Documented the discrete audio circuitry. Added a full diagram.
+ * Fixed the coin counters.
+ * Documented all the output ports.
+ * Added a scheme with descriptions for every existent port.
+ * Added full lamps support to naroutp, naroutjp, naroutrh and naroutpn.
+ * Created lamps layouts for 11 and 12-lamps scheme.
+ * Rerouted some inputs to mantain the inputs layout.
+ * Renamed some inputs to match the text with the real cab buttons.
+ * Removed the imperfect colors flag from the existent sets.
+ * Added 2 different control panel layouts to the source.
+ * Updated technical notes.
+
+Fixed redundancy in clock speed assignments in some drivers by 
+cleaning all divided by 1 (/1) instances. [Tafoid]
+
+Argonaut SuperFX core improvements: [Anonymous]
+ - Hooked up Branch instructions 
+ - Fixed numerous SuperFX core bugs.
+ - Improved disassembler to more gracefully handle ALT* opcode effects.
+ - Corrected instruction behaviors: STOP, SUB, SBC, SUBI, CMP
+ - Added LSR and ROL opcodes
+ - Updated instructions to use the safer superfx_gpr_write: LOOP, 
+    PLOT, INC, DEC
+ - Added missing register writeback to LMS
+ - Corrected carry flag behavior in ROL opcode
+ - Corrected BRA target address calculation (maybe still wrong)
+ - Corrected LOOP target address calculation
+ - Made sure that FROM sets cpustate->sreg_idx
+ - Disabled RAM/ROM clocking, going with instant transfer for now
+ - Understood and re-enabled pipelined instruction architecture, Star 
+    Fox runs farther
+ - Fixed a ridiculous typo in ROL instruction
+ - Fixed overflow flag calculation on ADDI / ADCI
+ - Fixed lack of register reset after ADD / ADC / ADDI / ADCI
+
+tmaster.c update [Luca Elia]
+- implemented carts banking and multiple EEPROMs
+- added "pen replacement" blit mode
+- fixed palette size
+
+Discrete work [couriersud] 
+ - change the way custom modules are handled
+ - updated drivers mario and dkong accordingly
+ - minor change to stream input handling
+ - no more linear lists for nodes. All node processing switched to 
+    linked lists.
+ - module step and reset now only get a node pointer passed
+ - Added discrete_info * pointer to node
+ - Only nodes with a step routine actually get processed.
+ - Fixed a bug: discrete logs did not work since some time
+ - preliminary parallel task constants; depending on results these may 
+    vanish again.
+ - Overall slight performance increase. dkong 940% to 960%, galaxian 
+    740% to 790%
+
+Fix NULL timers crash in the mc6845. [hap]
+
+Fixed IM2 interrupt cycles in the Z80 core. [eke]
+
+kaneko16 updates:
+ - Decoded all protection data for B.Rap Boys 
+    [David Haywood, Tomasz Slanina]
+ - Cleaned up decryption function for B.Rap Boys external Rom 
+    [David Haywood]
+ - Improved video emulation for B.Rap Boys [David Haywood]
+ - Marked several GFX roms as bad on B.Rap Boys [David Haywood]
+ - Improved protection simulation logic w/regards to writeback 
+    addresses, allowing B.Rap Boys to boot [Tomasz Slanina]
+ - Redumped GFX Roms [Guru]
+ - Added hitbox simulation based on suprnova / game requirements 
+    [Tomasz Slanina]
+ - Converted MCU writes to use write_byte [David Haywood]
+ - Added kludge to reset MCU data write address to prevent game from 
+    running out of ram and crashing [David Haywood]
+ - Added DSWs [David Haywood]
+ - Added eeprom support to the B Rap Boys protection simulation 
+    [David Haywood]
+ - Change to priorities to fix some visibility problems. 
+    [David Haywood]
+
+Added correct U2 sound ROM to the mk3 sets [MK3Fan - Mike]
+
+Discrete sound parallel tasks support: [couriersud]
+ - Introduced DISCRETE_TASK_START, DISCRETE_TASK_END
+ - DISCRETE_TASK_START: Start a new task. A task is a set of nodes 
+    which only depend on input nodes and nodes in the set
+ - DISCRETE_TASK_END(task_output_node): Marks the end of the task. 
+    task_output_node is the node whose output over time should be 
+    preserved. This node can be accessed by nodes in the main thread.
+ - Illustrated the concept in the dkong discrete emulation. This also 
+    has been enhanced to buffer DAC output. 
+ - Discrete tasks now support multiple task output nodes
+
+Further discrete changes: [couriersud]
+ - DISCRETE_OUTPUT now is a stepping node.
+ - DISCRETE_STREAM_INPUT now advances input pointer in step.
+ - More linked_list usage.
+
+Pit Boss driver updates: [Brian Troha]
+ - Corrected rom names for the Megastar & Supertouch 30
+ - Added missing rom to Supertouch 30 and verified old bad_dumps
+ - Added documentation about the Megastar sets
+ - Made pbst30b a clone of pbst30 and added program versions to the 
+    name, IE: Pit Boss Supertouch 30 (9234-10-01)
+
+Fixed B-Rap Boys sound banking [Phil Bennett]
+
+Sigma Poker: Fixed duplicated definition of Hold 2 button. Added the 
+missing Hold 3 button. [Roberto Fresca]
+
+Continued discrete sound system "list-ification": [couriersud]
+ - No more constraints on number of input and output nodes
+ - input nodes now make use of a context
+
+Removed osd_is_bad_read_ptr function. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Noraut Red Hot Joker Poker [Roberto Fresca, Alan Griffin]
+Galaxy Games StarPak 2 [Luca Elia, Siftware]
+Great Football 
+  [Kevin Eshbach, Charles MacDonald, Smitdogg, Dumping Union]
+Pit Boss Megastar (9244-00-01) [Mariusz Wojcieszek]
+ B.Rap Boys / B.Rap Boys Special 
+   [David Haywood, Tomasz Slanina, Luca Elia]
+Billiard [Alexander Stakhanov, CaH4e3, Black1972]
+
+
+
+New clones added
+----------------
+Kollon (V2.04JC)  [Joerg Hartenberger, Frank Berlt]
+Mortal Kombat Turbo Ninja (rev 3.1 T-Unit 03/19/93, hack) 
+  [MK3Fan - Mike]
+Pit Boss Megastar (9244-00-01) [Brian Troha, Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Noraut Poker (NTX10A) [Roberto Fresca, Alan Griffin]
+Noraut Joker Poker (V3.010a) [Roberto Fresca, Alan Griffin]

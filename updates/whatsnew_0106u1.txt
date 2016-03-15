@@ -1,0 +1,91 @@
+0.106u1
+-------
+
+IMPORTANT NOTE: Major video-related changes are beginning in the
+system. Attempts will be made to keep the existing video code
+working to a large degree, but some features may be broken or
+working improperly until the video changes are complete. Most
+notably, in this release, RGB effects are broken for non-Direct3D
+blitting. For the moment, do not report anomalies or problems in 
+the video system. If you like a nice, stable MAME, please stick 
+with the 0.106 release. You have been warned.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+gladiatr0105u4gra [Don Maeby]
+
+
+
+Source Changes
+--------------
+Updates to the taito_x driver: [AWJ]
+ - fixed sound problems in twinhawk
+ - fixed a couple of dipswitch mistakes introduced recently
+ - added PORT_DIPLOCATIONs for superman and twinhawk
+
+Improved MSVC compiler support: [Nathan Woods]
+ - modified vconv to support multiple versions of MSVC based on 
+    version info
+ - added support for more parameter translations
+ - makefile now displays compiling and linking messages when
+    building vconv
+
+Converted the Windows blitters to use the DRC engine for 
+generation. RGB effects are officially broken with this change.
+[Nathan Woods]
+
+Fixed a bug that caused a crash when the -debugscript command line 
+option was used with an invalid filename. [Nathan Woods]
+
+Corrected the ordering of the DIP_PORTLOCATION() macros to be
+consistent. Multi-bit DIP switches should be specified in LSB-
+first order. Added a comment to this effect in inptport.h.
+[AWJ, Aaron Giles]
+
+Fixed background color in the Deco cassette games.
+[Nicola Salmoria]
+
+Fixed potential crash in the micro3d driver. [MamePlus!]
+
+Improvements to CHD-CD support: [R. Belmont]
+ - additional RAW CD sector conversion support, so a game can request 
+    e.g. 2048-byte data sectors from a RAW CHD-CD and still get the 
+    right data
+- reversed CHDMAN error message - now non-RAW CHD-CDs are deprecated
+- susume now uses a RAW CHD-CD read directly from an original pressed 
+   Konami disc
+
+Some improvements to the Polygonet Commanders driver: [Andrew Gardner]
+ - adds change_PC() calls to the dsp56k core
+ - removed hacky dsp56k initialization, enabling, and disabling
+ - added preliminary implementation of banking hardware tied to the 
+    dsp56k in Polygonet Commanders
+
+Fixed MSB accesses and latch reading in the 6840 emulator. [El Condor]
+
+Improved N64 audio output: [R. Belmont]
+ - rewrote Audio Interface as a stereo DMADAC (which it actually is), 
+    greatly simplifying the code along the way
+ - fixed AI interrupt semantics
+
+Changed a number of games that were incorrectly using IPT_LIGHTGUN
+to use IPT_AD_STICK instead. [Aaron Giles]
+
+Some preparations for proper multiple screen support. The 
+visible_area and refresh_rate values in the Machine structure are
+now defined as arrays (1 per screen). The machine_config structure
+has been altered as well, removing the following fields:
+
+   frames_per_second
+   aspect_x, aspect_y
+   screen_width, screen_height
+   default_visible_area
+   vblank_duration
+
+These are all stored per-screen in a new screen_config structure. 
+[Aaron Giles]
+
+Reorganized the user interface code to better support the new render
+system. [Aaron Giles]

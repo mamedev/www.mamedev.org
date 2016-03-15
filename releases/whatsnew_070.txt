@@ -1,0 +1,350 @@
+
+0.70
+
+This contains all the updates listed which were part of the source only diffs listed below
+(0.69a, 0.69b, 0.69u3) plus a few extra bits and pieces.  A couple of drivers still appear to
+be broken with the new timer system (deadang, artmagic for example) but hopefully most of the
+problems were ironed out.
+
+General Source Changes
+----------------------
+
+Konami GX Sound Improvements [R.Belmont]
+
+General Konami Updates [Acho A. Tang, R. Belmont]
+
+Various Dipswitch fixes / conversion of drivers to tilemaps [Curt Coder]
+
+Removed hacks from Oriental Legend [Olivier Galibert]
+	src\drivers\pgm.c
+
+Some D3D updates / fixes [Leon van Rooij]
+
+Sanity checks for Ports [Pierpaolo Prazzoli]
+	src\mame.c
+	
+Documentation updates [Santeri Saarimaa, Randolph, Leon van Rooij]
+
+Improved bios selection code, now -bios japan can be used with the NeoGeo driver for
+example [Paul Priest]
+
+New clones supported
+--------------------
+
+Korosuke Roller (clone of Crush Roller) [BUT, nono]
+	src\drivers\pacman.c
+	
+New TESTDRIVERS in source
+-------------------------
+
+DJ Boy [Phil Stroffolino]
+	not working due to protection
+	src\drivers\djboy.c
+	src\vidhrdw\djboy.c
+
+0.69u3 (0.69 Update 3)
+
+source diff, changed numbering system to ux instead of a,b,c because people were getting
+confused and thinking mame069b.zip (mame 0.69 _b_inary) was the updated version when it
+wasn't.
+
+misc fixes and improvements this time, no changes related to the timer system so as far
+as testing that goes this isn't an essential upgrade.
+
+if you use this code in your own build of Mame please make sure you use the correct
+version number to reflect the inclusion of this updated code.
+
+General Source Changes
+----------------------
+
+Direct 3D update to change the way cleanstretch is handled [Leon van Rooij]
+	-cleanstretch works like this:
+	-cleanstretch auto: let blitter decide, the same as -nocs in 0.69 (default).
+	-cleanstretch full: same as -cs in 0.69
+	-cleanstretch none: disable (won't look good with scanlines)
+	-cleanstretch horizontal: horz only
+	-cleanstretch vertical: vert only
+	
+Added Ozon 1 Prom [Pierpaolo Prazzoli]
+	src\drivers\galaxian.c
+	
+Added correct roms to Mighty Monkey (bootleg on Super Cobra Hardware) [Pierpaolo Prazzoli]
+	src\drivers\scobra.c
+
+Fixed some problems in the makefile for the xml2info program [Andrea Mazzoleni]
+	makefile
+	src\core.mak
+	
+Fixed crash in usclssic []
+	src\drivers\seta.c
+
+Fixed problem where controls stopped working after the first level in Tugboat [Tomasz Slanina]
+	src\drivers\tugboat.c
+
+Changed MULU timing in asm 68k core so that it matches the C ones [Razoola]
+	src\cpu\m68000\make68k.c
+
+Bug fix to loop addressing on YMF278B which helps stablise the tuning on looped samples
+(noticable in parts of s1945 at least). [OpenMSX]
+	src\sound\ymf278b.c
+	
+Fixed hedpanic sound banking []
+	src\drivers\esd16.c
+	
+Corrected various clocks in the vball driver [TheGuru]
+	src\drivers\vball.c
+
+New clones supported
+--------------------
+
+Field Day (now the parent of The Undoukai) [Tomasz Slanina]
+	src\drivers\40love.c
+
+King of Fighters '98 (alt M1) [Razoola]
+King of the Monsters (set 2) [Razoola]
+	src\drivers\neogeo.c
+	
+Various CPS2 clones [Razoola]
+	src\drivers\cps2.c
+	
+New TESTDRIVERS in source
+-------------------------
+
+Sparkman [Luca Elia]
+	not working, protection
+	src\drivers\suna8.c
+
+
+
+0.69b (0.69 Update 2)
+
+Another source diff update, this fixes some of the problems Mametesters discovered
+with the new timer code, please test this well too, if anything else is broken which
+worked in .69 let us know, it could be important.
+
+General Source Changes
+----------------------
+
+Fixed Dipswitches and Inputs in Atlantic City Action / Broadwalk Casion [Peter Storey]
+	src\drivers\pacman.c
+	
+Fixed a few Misc Typos [Santeri Saarimaa]
+	src\drivers\metro.c
+	src\drivers\oneshot.c
+	src\drivers\lethalj.c
+	
+Added 'Right' in Moon Shuttle [David Haywood]
+	src\drivers\galaxian.c
+
+Various fixes to the PIC16C5x core. [Quench]
+	src\cpu\pic16c5x\pic16c5x.c
+	src\cpu\pic16c5x\pic16c5x.h
+	src\cpuintrf.c
+	
+Sound working in BIGTWIN [Quench]
+	src\drivers\playmark.c
+	
+The use of the PIC HEX dumps for DRGNMST and BIGTWIN [Quench]
+	src\drivers\playmark.c
+	src\drivers\drgnmst.c
+
+Fixed a bug in the V60 CPU core causing it to break with the new timer system [Aaron Giles]
+	src\cpu\v60\v60.c
+	
+Fixed a problem in snprintf.c printing out floats with fractional partswith leading
+zeroes [Chris Kirmse]
+	src\windows\snprintf.c
+
+Fixed bug in K054539 causing bad vocals in Dadandarn [R.Belmont]
+	src\sound\k054539.c
+	
+Added PGM Calender [Pierpaolo Prazzoli]
+	src\drivers\pgm.c
+	
+Fixed a problem which caused sound to break in games using a YM2610 using the new timer
+system [Aaron Giles]
+	src\cpuint.c
+	
+Changed NeoGeo to use boost_interleave for tight CPU communications instead of throwing
+cyces away [Aaron Giles]
+	src\drivers\neogeo.c
+
+New games supported:
+--------------------
+
+Space Cruiser [Tomasz Slanina]
+	src\drivers\taitosj.c
+
+Mustache Boy [Tomasz Slanina, Nicola Salmoria]
+	previously a TESTDRIVER, decryption completed by Nicola
+	still bad colours and no sound due to missing roms / mcu?
+	src\drivers\mustache.c
+	src\vidhrdw\mustache.c
+	
+Evil Stone [Tomasz Slanina]
+	src\drivers\taito_l.c
+	
+Glass [Manuel Abadia]
+	this isn't playable due to protection but I've enabled it anyway
+	src\drivers\glass.c
+	src\vidhrdw\glass.c
+	
+Tri-Pool [David Haywood]
+	src\drivers\jack.c
+
+New clones supported
+--------------------
+
+Final Fight (Japan Set 2) [Razoola]
+	src\drivers\cps1.c
+	src\vidhrdw\cps1.c
+
+0.69a (0.69 Update 1)
+
+This version is provided as a source diff only, more releases like this may follow
+depending on how this one goes down, the intention is to allow people to have the
+latest code without the hassle and bandwidth requirements of a new binary.
+
+If you can't compile this then don't worry, normal releases will still happen, this
+doesn't change anything as normal release plans are concerned, please don't hassle
+whoever maintains your favourite port of Mame to add the updates here, not everybody
+is going to have time to make new binaries on a regular basis.
+
+General Source Changes
+----------------------
+
+Fixed eeprom in Head Panic [Paul Priest]
+	src\drivers\esd16.c
+
+Few tweaks/minor optimizations to MIPS3 Dynacrec [Aaron Giles]
+	src\x86drc.c
+	src\x86drc.h
+	src\cpu\mips\mips3drc.c
+
+Improved Save-State support for NeoGeo games [Mame32Plus]
+Changed NeoGeo Resolution to be 320 wide, this is correct, the glitches it causes
+are verified against a real MVS [David Haywood]
+Verified and corrected clock speeds etc. for NeoGeo [TheGuru]
+	src\drivers\neogeo.c
+	src\machine\neogeo.c
+	src\vidhrdw\neogeo.c
+	src\includes\neogeo.h
+	
+Removed analog input definition and encoded it directly from
+Joystick input in Metal Soldier Isaac II [Jarek Burczynski]
+	src\drivers\msisaac.c
+
+IDE Update adding support for a few things needed in the future [Aaron Giles]
+	src\machine\idectrl.c
+	src\machine\idectrl.h
+
+TMS32010 BIO fix [Aaron Giles]
+	src\cpu\tms32010\tms32010.h
+	
+C 68k core is now default, this fixes collisions in Assault []
+
+Fixed bug causing Timings to be broken when using D3D [Leon van Rooij]
+	src\windows\wind3d.c
+
+Optional XML output and xml to info converter (see xmlinfo.txt) [Andrea Mazzoleni]
+	use -listxml, converter isn't fully set up yet.
+	src\info.c
+	src\info.h
+	src\windows\fronthlp.c
+	src\xml2info\*
+
+A number of Changes to the Timer System [Aaron Giles]
+
+	All the CPU scheduling has moved into cpuexec.c and been taken out of
+	timer.c. A number of bugs relating to time tracking for suspended CPUs have
+	been fixed.
+
+	A side effect of all this is a change in the behavior of the CPU scheduling.
+	For the most part, games are fine with this. However, there were a few
+	exceptions:
+
+	* taitosj.c: timing of the MCU communication broke
+	* arkanoid.c: timing of the MCU communication broke
+	* harddriv.c: stunrun timing glitches, racedriv/steeltal/hdrivair broken
+	
+	(There may be more, but I haven't found them yet.)
+
+	The first two problems have been fixed, as has racedriv, but steeltal,
+	hdrivair, and stunrun still have issues.
+	
+	Oh, one other useful function I added is this:
+
+	   cpu_boost_interleave(double timeslice_duration, double boost_duration);
+
+	You call this if you need to temporarily crank up the interleave for a short
+	period of time in order to get CPU synchronization working. I used this in
+	arkanoid and taitosj to get the MCU communications working. For example, you
+	could say:
+
+	   cpu_boost_interleave(TIME_IN_USEC(1), TIME_IN_USEC(100));
+
+	which would interleave the CPUs on 1 usec boundaries for the next 100 usecs.
+	Even more useful is this:
+
+	   cpu_boost_interleave(0, TIME_IN_USEC(10));
+
+	A very small value (0) for the first parameter means "use perfect
+	synchronization", which should guarantee cycle-accurate synchronization for
+	the specified duration. Note that this is *really* slow, so you don't want
+	to be doing it too much!
+
+	Let us know ASAP if anything else is broken as a result of this update
+	
+	src\cpuintrf.c
+	src\cpuintrf.h
+	src\cpuexec.c
+	src\cpuexec.h
+	src\timer.c
+	src\timer.h
+	src\drivers\taitosj.c
+	src\machine\taitosj.c
+	src\machine\arkanoid.c
+	src\drivers\harddriv.c
+	src\machine\harddriv.c
+	src\sndhrdw\harddriv.c
+	
+New games supported:
+--------------------
+
+Guts'n [Paul Priest]
+	src\drivers\suprnova.c
+	src\vidhrdw\suprnova.c
+	
+Dragonball Z [R.Belmont]
+	src\drivers\dbz.c
+	src\vidhrdw\dbz.c
+	src\vidhrdw\konamiic.c
+	src\vidhrdw\konamiic.h
+
+Ozon I [Pierpaolo Prazzoli]
+	bad colours due to missing prom
+	src\drivers\galaxian.c
+
+New clones supported
+--------------------
+
+King of Fighters '95 (set 2) [Jarek Burczynski]
+	note, we use the new v1,c1,c2,c3,c4 from this set in the parent too
+	src\drivers\neogeo.c
+Kyros No Yakata (Japan) [David Haywood]
+	src\drivers\alpha68k.c
+Ambush (Tecfri) [David Haywood]
+	src\drivers\ambush.c
+Frisky Tom (set 2) [David Haywood]
+	src\drivers\seicross.c
+
+New TESTDRIVERS in source
+-------------------------
+
+Photo Y2K [ElSemi]
+	unemulated protection
+Stadium Cross [David Haywood]
+	graphic problems, no controls
+	src\drivers\multi32.c
+
+

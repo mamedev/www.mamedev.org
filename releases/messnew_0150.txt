@@ -1,0 +1,458 @@
+0.150
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+
+New System Drivers Supported:
+-----------------------------
+-Lola 8A [Zarko Zivanov, Miodrag Milanovic]
+-Mattel HyperScan [Sandro Ronco]
+-Ampro Little Z80 Board [Robbbert]
+
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+
+Skeleton drivers:
+-----------------
+-Hilger Analytical AB6089 Mk. 1 (LSI Octopus) [Robbbert]
+-Davidge DSB-4/6 [Al Kossow, Curt Coder]
+-Genrad Futuredata 2301 Network Control Processor  [Al Kossow, Robbbert]
+-Control Data Corporation CDC721 Terminal [Al Kossow, Robbbert]
+-Seattle Computer SCP-300F [Al Kossow, Robbbert]
+-Onyx C8002 [Al Kossow, Robbbert]
+-Intertec SuperBrain [Al Kossow, Robbbert]
+-IBM6580 DisplayWriter [Al Kossow, Robbbert]
+-Telcon Zorba [Cowering, Robbbert]
+-Microtek Mice [Al Kossow, Robbbert]
+-ICS8080 Trainer [Robbbert]
+-Millennium Systems 9540  [Al Kossow, Robbbert]
+-Wicat [Al Kossow, Robbbert]
+-Callan PM68K [Al Kossow, Robbbert]
+-LFT 1230 LFT 1510 [Robbbert]
+-Televideo TS816 [Robbbert]
+-Televideo TV950 [Robbbert]
+-Imsai MPU-B [Robbbert]
+-Jade JGZ80 [Robbbert]
+-Jonos Escort [Robbbert]
+
+
+Source Changes
+--------------
+-Emulated the SSE HardBox, a Corvus interface for PET
+ [Mike Naberezny]
+
+-at: preliminary PS/1 support [Carl]
+
+-sage2.xml: Added Sage Sources floppies. [Chris Burrows]
+
+-Mac: cleaned up and fixed NuBus IRQ handling for machines with
+ fake VIA2s. [R. Belmont]
+
+-Mac: convert ASC to devcb2 IRQ output, some minor
+ modernization. [R. Belmont]
+
+-Softlist Updates:  [Kaylee] 
+ amigaxxx_flop: Added two recently released files and corrected wrongly placed sets. 
+
+-studio2.xml: Added MPT-02 dumps. [ranger_lennier, Charles MacDonald]
+
+-Apple II: Support for the PCPI Applicard. [R. Belmont, Alex Freed]
+
+-Fixed XML validation in studio2.xml [Kaylee]
+
+-sms.c: Enhancements for Sega Scope and LCD persistence and fix
+ SMS Light Phaser TH read bug.  [Enik Land]
+
+-studio2: Fixed loose .bin/.rom cartridge file loading, and
+ supported loading ROMs to multiple base addresses in the software
+ list. [Curt Coder] 
+
+-visicom: Added cartridge software list. [ranger_lennier, Charles MacDonald]
+
+-mpt02: Fixed CDP1864 colors. [Curt Coder, Guru]
+
+-Added skeleton for the C64/128 version of the Star NL-10
+ printer interface cartridge. [Curt Coder]
+
+-a7800.c - Green miscalculated proportions fixed.
+ [Robert Tuccitto]
+
+-Ensoniq 16-bit: SQ series are 21-voice, not 32.  Fixes tuning
+ vs. h/w. [R. Belmont]
+
+-PC200 : Added v1.3 bios [Phill Harvey-Smith]
+
+-visicom: Fixed colors and video. [Curt Coder]
+
+-visicom.xml: Fixed cartridge data bit order. [Charles MacDonald, Marcel van Tongeren]
+
+-wd_fdc: Don't switch off the motor when the fdc doesn't have a motor
+ control pin [O. Galibert, Duke]
+
+-rainbow.c:  [Bavarese]
+ * Added 4 DIP switches (W13, W14, W15 and W18) present on the
+    DEC-Rainbow 100-B board. W18 not wired to DSR yet.
+
+-ES5510: fixed saturating ALU operations, greatly improving the
+ behavior of many programs. [Christian Brunschen]
+
+-added skeleton 'Yamaha Mixt Book Player Copera' to the Sega Pico
+ driver, it appears to be similar to the Pico but with extra sound
+ hardware (a complete Sound Blaster clone) on the MB.  Added a
+ preliminary Softlist.  Added board layouts for both [Team Europe]
+
+-MPU-401: preliminary checkpoint. [R. Belmont, kevtris]
+
+-MPU-401: Preliminary working MIDI out. [R. Belmont]
+
+-mpt02: Fixed CDP1864 background color sequence. [Curt Coder]
+
+-MIDI: System Common messages should not override running status, fixes
+ Sierra games crashing with the MT-32. [R. Belmont]
+
+-megaduck.xml : new card dumps added [Anna Wu]
+
+-a7800.c - Normalized contrast and brightness, providing a
+ standardized grayscale and adjusted color values.  [Robert Tuccitto]
+
+-Separate Ensoniq "pump" device out from esq5505.c [R. Belmont]
+
+-Rainbow updates:
+ * add beeper, NVRAM. LED output for keyboard, Z80 and 8088 [Bavarese]
+ * correct NVRAM mirroring [R. Belmont]
+ * DC012 48 line mode. 3 new character attributes (reverse, blink,
+    underline) [Bavarese]
+
+-codata : added a terminal, system responds to commands. [Robbbert]
+
+-Fix GD-Rom booting in DC US and PAL [PsyMan]
+
+-sms.c: Reduce tagmap lookups for sscope and fixed validation
+ error when using the lphaser controller on a driver with sscope
+ support.  [Enik Land]
+
+-Fixed crashes from reading the reset port on some drivers.  [Wilbert Pol]
+
+-c64: Emulated the SFX Sound Expander External Keyboard. [Curt Coder]
+
+-c64: Emulated the Wersi Wersiboard Music 64 / Siel CMK 49
+ Keyboard. [Curt Coder]
+
+-AppleII: Correct the TMS5220 clock rate to 640khz on the EchoII
+ and EchoIIplus AppleII cards [Jayson Smith]
+
+-socrates.c: Add note that the Vtech Socrates' speech cart
+ speech chip is a Toshiba TC8802AF with between 1 and 3 T6684F mask rom
+ VSMs attached [Lord Nightmare]
+ [epiphany brought on by Kevtris, Team Europe, Stiletto]
+
+-socrates.c: add internal and vsm german speech cart dumps
+ [Team Europe, Lord Nightmare]
+
+-vtvideo.c : 132 column mode uses compressed characters with 1
+ filler pixel instead of 2. Bold implemented: 3 color palette and
+ separate device_reset() on Rainbow. Double width line attribute fix. 
+ [Bavarese]
+
+-vtvideo.h : separate device_reset(). New variable m_height_MAX
+ for those parts of the code shared with VT-100.  [Bavarese]
+
+-rainbow.c : changed GAME_NO_SOUND to GAME_IMPERFECT_COLORS [Bavarese]
+
+-ampro : The system starts up and commands can be entered [Robbbert]
+
+-Softlists added for ampro and wicat systems.  [Kaylee]
+
+-sms.c:  [Enik Land]
+ * Added expansion slot and implemented the gender adapter to allow
+    regular cartridges to be played through the expansion slot. Usage
+    example: mess sms1 -exp genderadp -cart2 wcup90
+ * Made the cartridge slot on the sg1000m3 driver to no longer be
+    mandatory allowing the driver to also be started with media in the
+    cardslot.
+
+-cat.c: switched driver to use the new DUART n68681 core [Lord Nightmare]
+
+-cat.c: Fix a silly issue with the video ram mapping on the IAI
+ Swyft; now it does visible I/O accesses; the peripherals need to be
+ figured out and hooked up still. [Lord Nightmare]
+
+-cat.c: more swyft WIP, still doesn't do very much. Found out it
+ uses an ACIA (by looking at the rom code, 'init6850' function is kind
+ of a giveaway), plus found where the control register for it lives.
+ [Lord Nightmare]
+
+-sms.c: Enabled crosshair display on all screens. This makes
+ missil3d playable on the plain '2D' view with scope emulation enabled.
+ [Enik Land]
+
+-c64: Emulated the digital parts of the Magic Voice cartridge.
+ Speech synthesis is not supported yet. [Curt Coder, Stefan Uhlmann]
+
+-wd_fdc: Fix ready handling, allow ready connected to vcc [O. Galibert] 
+
+-wd_fdc: Data overrun drops drq [O. Galibert] 
+
+-kaypro: Fix motor on line, connect ready to vcc, disable the floppy delay [O. Galibert]
+
+-ampro: Fix fdc [O. Galibert]
+
+-Added preliminary S+core CPU emulation. [Sandro Ronco]
+
+-cat.c: significantly updated the IAI Swyft driver: added
+ preliminary guru-style readme of the swyft pcb, prepared for hooking
+ up the VIAs [Lord Nightmare, Sandy Bumgarner, Dwight Elvey]
+
+-Renamed IDE8 to XTIDE. [smf]
+
+-dectalk.c: DECtalk DTC-01: updated to use n68681, and to use
+ proper device for x2212 NVRAM; updated various comments
+ [Lord Nightmare, R.Belmont, Robbert, smf]
+
+-esq5505: Sorted out BIOSes for the SD-1 family: newly dumped 3.0 for
+ 21-voice, allow selecting 4.02 or 4.10 for 32-voice.
+ [Christian Brunschen, R. Belmont]
+
+
+-a7800.c:  Stored data for 26.7 & 27.7 phase shifts with corrections
+ and label for 25.7 values. Made 26.7 (medium) default. Phase shifting
+ falls outside the realm of video controls and hope to implement a
+ selectable toggle hardware option similar to Donkey Kong TKG02/TKG04.
+ [Robert Tuccitto]
+
+-rainbow.c:  RAM OPTION (up to 896K) now emulated; DIP switch
+ enhancements; cold / warm boot OK now.  [Bavarese]
+
+-sms.c: Improved I/O handling for Japanese and Korean drivers
+ (Pause button for sg1000m3, TH input for sg1000m3 and smsj, and output
+ via controller ports for Japanese and Korean drivers)  [Enik Land]
+
+-Software list update [ReadOnly]
+ * new softlist : snes_vkun.xml (Voice-Kun audio compact discs) first
+    Voice-Kun public dump from King Mike added
+ * snes.xml : new prototype public dump from SNES Central
+
+- c128: Added support for double-sided Commodore GCR images to be used
+  with the 1571 disk drive. Images can be created with e.g. 
+  "copy /b side0.g64+side1.g64 disk.g71" [Curt Coder]
+
+
+
+0.149u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05215: [Crash/Freeze] (pce.c) [pce] cdrom games: Peroidic
+  crashes or black screen (Fabio Priuli)
+
+New System Drivers Supported:
+-----------------------------
+(none)
+
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+-EVMBUG (Texas Instruments TMS9995 Trainer) [Robbbert]
+-Ithaca InterSystems DPS-1 [Al Kossow, Curt Coder]
+
+
+Software Lists:
+----------------
+-pet_flop.xml: Added Z-RAM floppy. [Mike Naberezny]
+
+-Added software list for BASIC programs saved to tape
+ [Anna Wu, UglyJoe, Fabio Priuli]
+
+-victor9k_flop.xml: Added preliminary software list.
+ [Jonathan Gevaryahu]
+
+-alphatro_flop.xml: Added floppy software list. [Spirantho]
+
+-ibm5150.xml: Added a few more disks [Kaylee]
+
+-bml3: added software list for floppy disks. [Anna Wu]
+
+-ibm5140.xml: Added floppies and fixed form factor. [Curt Coder]
+
+-ibm5170.xml: Added IBM diagnostics floppies. [Curt Coder]
+
+-pet_flop.xml: Added 8050 version of VisiCalc. [Curt Coder]
+
+Source Changes
+--------------
+
+-softbox: Fixed reset. [Mike Naberezny] 
+
+-corvushd: Supported 4 hard disks and usage from within a device. [Curt Coder]
+
+-Added skeleton for IMI 5000H hard disk controller. [Curt Coder, Al Kossow]
+
+-PC driver cleanup: [Dirk Best]
+ * Much improved CS4031 emulation, added DMA, interrupt controller,
+    timer, RTC directly to the device as sub devices and added the
+    generic functions needed for AT compatibility
+ * Moved the ct486 driver to its own file, to avoid all the legacy
+    stuff in at.c
+ * Added support for the IOCHCK signal to the ISA bus, this is used
+    instead of directly issuing an NMI to the main CPU
+ * Moved ISA device slot definitions to its own file to avoid copy &
+    pasting the same list to different drivers
+ * Updated MC146818 RTC for devcb2
+
+-Added skeleton device for Mator SHARK (22 MB Winchester hard
+ disk for the Commodore PET). [Curt Coder, Mike Naberezny]
+
+-Rename the bridge challenger 3 model 7014 driver from 'abc' to
+ 'bridgec3', added pcb locations, notes, and better labels.
+ [Lord Nightmare]
+
+-famicom: added support for loading/saving BASIC programs
+ from/to cassette. wav files supported only. [Fabio Priuli]
+
+-nes.c: improvements and fixes to inputs [Fabio Priuli]
+ * simplified input reading
+ * moved most Famicom controllers to the expansion port (still
+    configurable in the Driver Config menu) because it is more
+    accurate and because it allows to use both the FC keyboard and the
+    controllers in BASIC games
+ * fixed NES paddle emulation which broke some years ago
+ * added FC paddle emulation, see Arkanoid and Chase HQ
+ * added Hori Twin Adapter with correct P3 & P4 Famicom protocol, see
+    e.g. four players games by Technos Japan
+   just a cleanup and the whatsnew entry for previous changes...
+
+-nes.c: emulated microphone input for old famicom controller, as
+ detected by games (i.e. it only detects voice/no voice, while the
+ actual transmission of your voice to the speakers is not emulated). To
+ use it in games expecting you to blow or shout in the mic, select the
+ "Gamepad (Older Version)" as "P2 Controller" in the Driver
+ Configuration submenu, and press "6" when the game requires it.
+ [Fabio Priuli]
+
+-nes.c: added emulation of the NES Power Pad controller, to be
+ enabled in Controller Port 2 through the Driver Configuration submenu,
+ and mapped by default on TY,FGHJ,BN keys for side A layout and
+ RTYU,FGHJ,VBNM keys for side B. [Fabio Priuli]
+
+-MEK6800D2 : Added cassette interface, system listed as WORKING [Robbbert]
+
+-nes.c: added emulation of the FC Family Trainer controller, to
+ be enabled in Expansion Port through the Driver Configuration submenu,
+ and mapped by default like the Power Pad. [Fabio Priuli]
+
+-corvushd: Fixed physical sector calculation. [Mike Naberezny]
+
+-snes.c: simplified input handling and made controller ports 16bits
+ wide, since this is the way they are accessed by our code.
+ [Fabio Priuli]
+
+-snes.c: simplified input handling, moved the console specific
+ inputs to MESS driver and added preliminary Multitap support. Multitap
+ has to be enabled in the Driver Configuration menu. The code is
+ considered preliminary because some games recognize 4 pads (e.g.
+ Kunio-kun no Dodge Ball), other ones recognize 3 pads only (e.g. Super
+ Bomberman 3, 4 & 5) and some recognize 2 pads only (e.g. FIFA 96 and
+ 97). [Fabio Priuli]
+
+-Acorn System 1: added cassette [Robbbert]
+
+-corvushd: Fixed log message. [Mike Naberezny]
+
+-sms: Converted SMS inputs to use slot devices. You now select
+ controllers in the Slot Devices menu of the internal UI, not in the
+ Driver Configurations anymore. [Enik]
+
+-bml3: split into three variants (bml3, bml3a and bml3b)
+ according to floppy disk support. Only bml3a (5.25" disk) is
+ considered working. [jedwidz]
+
+-c64: Updated SwiftLink/Turbo232 settings. [Mike Naberezny]
+
+-SNES SA-1 improvements [R. Belmont]
+ * S-CPU can properly write to SA-1 registers
+ * SA-1 CPU boots properly from its own vectors
+ * Interrupt controller implemented
+ * Message-passing registers and status flags hooked up
+
+-SNES SA-1: fixed initial SA-1 status and added preliminary SA-1
+ to S-CPU IRQ. [R. Belmont]
+
+-gameboy: converted the various LCD types (DMG, MGB, CGB...) to
+ be devices. [Fabio Priuli]
+
+-pet: Fixed ROM signatures for Mator Shark hard drive. [Mike Naberezny]
+
+-Fidelz80.c: rename vbc to vbrc, and noted that Fidelity Bridge
+ Challenger models VBRC and 7002 are two names for the same thing.
+ [Lord Nightmare, Cowering, Kevtris]
+
+-apollo: fixed disk and tape DMA, improved logging [Hans Ostermeyer]
+
+-ibm5170: Emulated the IBM Model F PC/AT 84-key keyboard. [Curt Coder, John Elliott]
+
+-Apollo: fix out-of-bounds framebuffer access crash on OS X [Hans Ostermeyer]
+
+-SNES SA-1 work: [Fabio Priuli, R. Belmont]
+ * Initial support for plain SA-1 DMA
+ * Fixed incorrect BWRAM banking
+ * Fixed SA-1 vectors to not blot out all banks
+ * Added S-CPU vector override
+ * Fire interrupt for CC type 1; this allows levelling up in SMRPG
+    (gfx not correct yet)
+
+-bml3: Add stub variants bml3mk2 (for MB-6891) and bml3mk5 [jedwidz]
+ (for MB-6892). For now these behave the same as bml3
+ (MB-6890). Refactor disk controllers and kanji ROM as slot devices.
+ This allows switching between MP-1802 and MP-1805 disk controllers.
+ MP-1805 disk controller now works. Kanji ROM now works. Keyboard
+ scanning in 'counter disabled' mode now works.
+
+-imgtool: Add bml3 driver, supporting both single-density (MP-1805  [jedwidz]
+ controller) and double-density (MP-1802 controller) disks in D88
+ format.
+
+-ibm5160: Emulated the IBM Model F PC/XT 83-key keyboard.
+ [Curt Coder, John Elliott]
+
+-PDP1 : Fixed loading of paper tape, Spacewar works again [Robbbert]
+
+-TX0 : Fixed paper tape reader [Robbbert]
+
+-Fixes for building MESS with Visual Studio 2013 preview [smf]
+
+-Vtech1 : fixed i/o error when reading disks. [Robbbert]
+
+-vtech1: fixed i/o ports for vz300, laser310 allowing disk to work. [Robbbert]
+
+-pc1640: Promoted to working with imperfect graphics, the
+ extended Paradise EGA-350 video modes are not supported yet.
+ [Curt Coder]
+
+-sms.c: Converted TH line callbacks to use write_line.  [Enik Land]
+
+-Ensoniq 16-bit: better A/D parameter handling, allow panel
+ device to send new analog data. [Christian Brunschen]
+
+-a7800.c - XM/XBoard POKEY support.  'Bentley Bear - Crystal Quest' &
+ 'Donkey Kong XM' now work, while maintaining support for original
+ library titles, Commando and Ballblazer.  [Robert Tuccitto]
+
+-Mac updates: [R. Belmont]
+ * Corrected memory map errors with the SE and Classic
+ * Preliminary support for the SE's 68000 processor-direct slot
+ * Preliminary support for the Radius Full Page Display card which
+    goes in the SE PDS slot
+
+-softbox: Added reset when IEEE-488 IFC is asserted. [Mike Naberezny]

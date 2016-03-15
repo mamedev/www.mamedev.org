@@ -1,0 +1,166 @@
+0.142u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04354: [Crash/Freeze] bigappg, casino5, dodge, slither, slithera,
+         ssingles: Heap corruption detected by VS2010 RTC (R. Belmont)
+- 04350: [Graphics] buggyboy, buggyboyjr: Missing/corrupt graphics
+         (Alex Jackson)
+- 04346: [Graphics] dangar, galivan and clones: Scrolling incorrectly
+         changes scene (Angelo Salese)
+
+Source Changes
+--------------
+Removed deprecat.h usage for the following drivers: [Angelo Salese]
+ - galpanic.c, gradius3.c, halleys.c, hexion.c
+
+Inputs from the scratch for Champion Poker (v100) [Roberto Fresca]
+
+Cleaned-up protection simulation in Yam Yam!? [Angelo Salese]
+
+Implemented an almost complete Konami k053252 device emulation, adds
+accurate refresh rate timings and irq acks to many mid-90-era Konami
+games [Angelo Salese, O.Galibert]
+
+Various changes for PSX HW [smf]
+- Modernised internal memory map;
+- MDEC is now an internal device of the PlayStation CPU;
+- Root counter & Serial I/O converted to internal CPU devices;
+- Moved PlayStation IRQ code to sub device of the CPU;
+
+Switch input ports to use function-based constructors instead of
+tokens. Remove the old tokenizing helpers. Add basic classes for
+ports, fields, settings, and dip locations as a first step. These will
+be fully cleaned up later. Added machine() method to field to hide all
+the necessary indirection. Changed custom/changed handlers into
+generic read/write handlers, and added wrappers to convert them to
+device read/write lines. [Aaron Giles]
+
+Changed input read/write and crosshair callbacks into delegates.
+Changed signature for callbacks to take an input_field_config
+reference instead of pointer. [Aaron Giles]
+
+Removed legacy trampolines from eeprom_device, taking advantage of new
+input port support for delegates. [Aaron Giles]
+
+mc6845.c: Converted to C++.  [Wilbert Pol]
+
+Fixed the disassembly of the "mov ax, mem" instructions (opcodes A0-
+A3) in the i386 and NEC disassemblers. The argument (the memory
+address) was being displayed as a signed number, which doesn't make
+any sense. [Alex Jackson]
+
+Fixed a tiny bug with the debugger hex dump command: the printable
+characters in ASCII range from 32 to 12*6*, not 127. [Alex Jackson]
+
+Fixed input regression with Racin' Force, allowing it to boot again
+[Angelo Salese]
+
+Gave labels to many inputs in Midway's T, Wolf and Y Unit games as
+well as CPS1 and CPS3.  [Joe Caporale]
+
+Implemented experimental HLSL post-processing support on Direct3D 9
+targets. [Ryan Holtz, Bat Country Entertainment]
+ * 5-pass post-processing: Upscale, Post-Process, Store Last Frame,
+    Defocus 1, Defocus 2
+ * Many tunable effects including: Scanlines, defocus, linear
+    deconvergence, radial deconvergence, pincushion, RGB colorspace
+    convolution, YIQ colorspace convolution, saturation, simulated dot
+    crawl, simulated chroma subsampling, aperture masking, and more.
+ * Requires a GPU that supports Shader Model 3.0 to be enabled and a
+    powerful GPU, the entire pipeline consists of approximately 30
+    texel fetches and approximately 230 arthimetic ops.
+ * Will supersample the framebuffer up to 9x in both X and Y, but this
+    requires an enormously powerful GPU that has not been invented;
+    users with Radeon 5000-class cards should limit themselves to 3x,
+    Radeon 4000 to 1.5x.
+ * The default configuration will NOT appear to do anything; it
+    requires tuning to the user's liking.
+ * Should nicely fall back in all cases except missing shaders, and it
+    might fall back correctly in that case as well. Report any
+    anomalies.
+- For obvious reasons, the Direct3D8 renderer cannont support this.
+
+Enable Visual Studio basic run-time checks in non-optimized builds 
+[Oliver Stoneberg]
+
+Flush stderr, so the data is actually written when output is being
+redirected [Oliver Stoneberg]
+
+i286 - Added 286 LOADALL and triple fault resets. [Carl]
+
+i286 - Added support for 16-bit protected mode far calls and segment
+privilege checks. [Carl] 
+
+i86 - Fixed shift instructions, helps detecting proper CPU [Miodrag
+Milanovic]
+
+i86 - Fixed handling of invalid instructions in 0x60-0x6f section
+[Miodrag Milanovic]
+
+Major clean-up and state machine conversion for the Sega ST-V / Saturn
+driver [Angelo Salese]
+
+HLSL Updates [Ryan Holtz, Bat Country Entertainment]
+ * Split color convolution and deconvergence into separate shaders for
+    potential GPU savings down the line
+ * Added light and heavy variants of the color convolution shader, the
+    former with YIQ colorspace removed
+ * Re-worked defocus to occur prior to shadow mask application, as it
+    would be on a real monitor.
+ * Split "pincushion" into "Pincushion" and "Screen Curvature", the
+    former affecting the only the displayed image and the latter only
+    affecting the shadow mask.
+ * Made major fixes to CVBS simulation, significantly increasing color
+    saturation
+ * Added magnet deconvergence via a shader uniform
+ * Improved phosphorescence
+ * Improved YIQ codec
+ * Added adjustable color carrier in YIQ processing mode. 
+ * Fixed resolution-change crash and likely D3D performance regression
+    with -nohlsl on low-spec cards
+ * Created a new OSD function, osd_get_slider_list, which allows
+    OS-specific slider controls.
+
+HLSL Post-Processing Updates: [Ryan Holtz, Bat Country Entertainment, cgwg]
+ * The defocus pass is now switched off when defocus_x and defocus_y
+    are zero, allowing finer-grained performance tuning.
+ * Removed YIQ convolution from the main color-convolution shader and
+    replaced it with a full composite encode/decode pass. This is slower,
+    but looks amazing(ly like a terrible TV) and can be turned off.
+ * More authentic NTSC dot crawl and bandwidth limiting.
+
+i86 - Implemented POP CS and MOV CS,reg instructions that are 8086
+specific [Miodrag Milanovic]
+
+Implemented multi-cart support to ST-V driver [Angelo Salese, Tafoid]
+
+Managed to get the multiplexer/state machine emulated, amongst some
+watchdog fixes for BFM games. [J. Wallace]
+
+Added missing bipolar PROM dumps to Lucky Lady (Wing) [Team Europe]
+
+pic8259 - updated to be more according to documentation [Carl]
+
+Initial frameworking for upcoming artwork updates [Mr. Do]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Doraemon no Eawase Montage (prototype)
+  [dopefishjustin, Smitdogg, Luca Elia, The Dumping Union]
+
+New clones added
+----------------
+Champion Poker (v100) [Roberto Fresca, Team Europe]
+Gunbarl (Japan, GNB4/VER.A) [The Dumping Union]
+Amidar (Konami/1982)  [Patrik Styrnell]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Baryon Future Assault [ Corrado Tomaselli, f205v, The Dumping Union]
+Brixian [ Corrado Tomaselli, f205v, The Dumping Union]
+Orbatak (prototype)
+Popeye (20p/8 GBP Token) [J. Wallace]

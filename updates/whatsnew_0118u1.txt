@@ -1,0 +1,71 @@
+0.118u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+boogwing0118yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed behavior of auto_realloc() so that it always reallocs from its
+original pool. [Atari Ace]
+
+Fixed divide-by-zero when running with -video none in some cases.
+[Atari Ace]
+
+ARM7 core fixes: [R. Belmont, Ryan Holtz]
+ - Fixed behavior when R15 is the source of a MOV
+ - Fixed flags calc for ADC/SBC
+ - Fixed flags calc for NEG
+ - Fixed flags calc for CMP
+ - Fixed time running backwards on Thumb instructions
+ - Fixed some ARM instructions doing indiscriminate change_pc()s
+
+Fixed converting CD's containing audio that were ripped by cdrdao, 
+which was broken recently. The code is cleaner and more maintainable 
+now. [smf]
+
+Fixed chdman_open() "w" to always create/truncate the file, leaving 
+"r+" to try opening first and then truncating. This matches behavior
+in the core. [smf]
+
+Added missing port 3/4 to M6803 cpu core. [Curt Coder]
+
+Changed 6850ACIA to use MSB/LSB read handlers. [Curt Coder]
+
+Fixed two minor bugs in the COP400 CPU disassembler. Hooked up the 
+internal 64 bytes of DATA RAM to the core. [Andrew Gardner]
+
+Added support in the debugger for reading/writing memory without
+translation. [Olivier Galibert]
+
+MSM6242 updates: [Ernesto Corvi]
+ - Added support for 12/24 hour mode
+ - Added support for the HOLD bit
+ 
+Galaxian driver updates: [stephh]
+ - fixed 'spcdraga' GFX ROMS loading
+ - 100% verified Dip Switches for all sets
+ - added long notes for all sets
+ 
+Significantly revamped the tilemap rendering code. There are now only
+two tilemap types, based on whether or not you want transparency
+based on pen or color. All existing tilemap effects are built on top
+of these two modes. The internal tilemap handling code has been
+reorganized and simplified in a number of cases. For most games, this
+change is transparent (har har), apart from the change in tilemap
+type values. Several concepts within the tilemap system now have
+different terminology for clarity and to remove some ambiguous naming
+('priority', for example, was overloaded). A small tutorial and better
+documentation is now present at the top of tilemap.h and provides
+more details of the changes. [Aaron Giles]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mahjong Almond Pinky [BET] (Roberto Fresca)
+Jack Potten's Poker (bootleg 2) (Roberto Fresca)

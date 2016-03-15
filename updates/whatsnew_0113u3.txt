@@ -1,0 +1,135 @@
+0.113u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+eprom0113u2gre [Zsolt Vasvari]
+
+
+
+Source Changes
+--------------
+Added proper MC8123 decryption code. Hooked up a number of games that
+were using the chip, making many of them playable. [Nicola Salmoria]
+
+Fixed several SHARC opcodes where data transfer was done regardless 
+of the condition. This fixes many things, like the upside-down 
+geometry in Model 2B games. And also, probably all the remaining 
+clipping issues in Gradius 4. At least the planet zooming out in the 
+intro works now. [Ville Linde]
+
+Added Z-clipping to the Model 2 driver. [Ville Linde]
+
+Replaced old Sega System E driver with new one based on HazeMD.
+[David Haywood]
+
+Fixed a large pile of DIP switches in the Sega System E games.
+[Brian Troha]
+
+Fixed crashing bugs in SCSP emulation. [David Haywood]
+
+ES5503 improvements: [R. Belmont]
+ - Fixed extraneous click at end of samples
+ - Improved timing behavior. Fixes music tempo in many Apple IIgs 
+    apps and games in MESS.
+
+Fixed display of immediate word and long operands in the TMS340x0
+disassembler. [Philip Bennett]
+
+Updated Ultra Tank to component value code instead of a generic 
+emulation and added Sprint 4 audio. [Derrick Renaud]
+
+Added save state support to the gaelco3d driver. Also added save 
+state support to tms32031.c and dmadac.c. [couriersud]
+
+"Fixed" analog controls in some vector games by adding back a faux
+VBLANK timing. [Derrick Renaud]
+
+Changed the TMS340x0 core to clear the HSTCTLH NMI bit on an 
+acknowledge. [Philip Bennett]
+
+Externalized CDP1869 color bit handling to a callback function for 
+MESS. [Curt Coder]
+
+Refactored the options code into a new generic utility module
+options.c. Moved the MAME core options into a new module emuopts.c.
+[Nathan Woods]
+
+Some minor NeoGeo set updates. [Johnboy]
+
+Updates to the cybertnk driver: [PS]
+ - inter CPU communications
+ - inputs (almost complete)
+ - sound
+ - program ROMs marked as bad dumps
+ - unmapped reads
+
+Updated some more drivers updated to the new video timing.
+[Zsolt Vasvari]
+
+Did a ground-up rewrite of the VIC Dual driver. [Zsolt Vasvari]
+
+Added a preliminary MB86233 CPU core. Still needs to be hooked up to
+the Sega Model 2 driver. [Ernesto Corvi]
+
+Fixed an interrupt delay slot problem in the SHARC core. [Ville Linde]
+
+Improved K001005 polygon rendering. [Ville Linde]
+
+Introduced a video_screen_exists() call, to determine whether a given 
+screen exists. Updated the debugger to use this so as not to crash
+if no screens are present. [Nathan Woods]
+
+Fixed glitches in neogeo driver introduced in last update.
+[Aaron Giles]
+
+Added extensive (but still WIP) FD1094 debugging tools for help in
+brute force searching for keys. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Opa Opa [Nicola Salmoria, David Haywood]
+Fantasy Zone II [Nicola Salmoria, David Haywood]
+Ganbare Chinsan Ooshoubu [Nicola Salmoria, David Haywood]
+Block Gal [Nicola Salmoria, David Haywood]
+Master Boy [David Haywood, Charles MacDonald, Clawgrip]
+7 Ordi [Brian Troha, stephh]
+Koi Koi Part 2 [Tomasz Slanina]
+Heuk Sua Baek Sa [David Haywood, Brian Troha]
+Bestri [David Haywood, Brian Troha]
+Guitar Freaks 2nd Mix Ver 1.01 [smf]
+SD Fighter (Korea) [David Haywood, Brian Troha]
+
+
+
+New clones added
+----------------
+Funny Bubble (In Chang Electronic Co) [Brian Troha]
+Twin Adventure (Korea) [Brian Troha]
+One + Two (earlier) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Sheng Dan Wu Xian [Xing Xing]
+Super Dou Di Zhu [Xing Xing]
+Da Ban Cheng [Xing Xing]
+Dou Di Zhu [Xing Xing]
+Mahjong Long Hu Zheng Ba 2 [Xing Xing]
+Mahjong Man Guan Cai Shen [Xing Xing]
+Mahjong Shuang Long Qiang Zhu 2 [Xing Xing]
+Mahjong Super Da Man Guan 2 [Xing Xing]
+Mahjong Tian Jiang Shen Bing [Xing Xing]
+Big D2 [David Haywood]
+Good (Korea) [David Haywood, Brian Troha]
+Long Hu Zheng Ba 3 [Xing Xing]
+Long Hu Zheng Ba 4 [Xing Xing]
+Kuai Le Xi You Ji [Xing Xing]
+Man Guan Fu Xing [Xing Xing]
+WonderLeague Star [David Haywood, Brian Troha]
+Dance Maniax [smf]
+Guitar Freaks 3rd Mix [smf]

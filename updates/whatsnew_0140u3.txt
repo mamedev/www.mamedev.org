@@ -1,0 +1,232 @@
+0.140u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03791: [Sound] pandoras: Missing elements in emulated audio 
+         (Phil Bennett)
+- 04074: [Crash/Freeze] raidndxa2: Segmentation Fault after OK 
+         (Angelo Salese)
+- 04073: [Crash/Freeze] nzerotea: Segmentation Fault after OK 
+         (Angelo Salese)
+- 04150: [Documentation] shrike: Year is 1986. (Tafoid)
+- 04142: [Interface] Multiple escapes keypresses needed to exit MAME 
+         (Miodrag Milanovic)
+- 03467: [Graphics] firebarr: Extensive issues with Tilemaps/Sprites 
+         (Angelo Salese)
+- 03723: [Gameplay] schaser: Screen is upsidedown (hap)
+- 04144: [DIP/Input] mazeinv: Incorrect amount of buttons (Tafoid)
+- 04051: [Sound] hunchbks: No sound (hap)
+- 04126: [Sound] minefld, rescue, aponow: Sound is missing (hap)
+- 04145: [Documentation] strtheat: Game name description. (M.A.S.H.)
+- 04137: [Color/Palette] rpatrol, rpatrolb: Wrong sprite colors. 
+         (M.A.S.H.)
+- 04103: [Save/Restore] pesadelo: Complete graphic breakage on save (hap)
+- 02942: [Crash/Freeze] wpksoc: Freeze after the "Recycle" screen 
+         (Angelo Salese)
+- 04121: [Debugger] Debugger cannot set 8bit registers with 'do' command 
+         (Robbbert)
+- 04130: [Debugger] Debugger print command does not behave as per the 
+         help (Robbbert)
+- 04131: [Debugger] Debugger symlist command crashes MAME (Robbbert)
+
+
+
+Source Changes
+--------------
+Adjust MC6850 receive/transmit timer periods when clocks are changed.
+[Curt Coder]
+
+Fixed (?) end of spritelist marker in PGM [David Haywood]
+
+Assorted accuracy updates: [Corrado Tomaselli]
+ * pacmania roms relabeled with the correct names.
+ * chaknpop changed clocks to PCB verified levels.
+ * tankbust changed clocks to PCB verified levels.
+ * kyros clocks changed to match bootleg PCB.
+ * mshuttlej (Japan - Set 1) sample rom MY06 should match US set.
+
+Updates to Naomi/Naomi2 M2/M3 decryption. [Andreas Naive]
+
+Add key for vf4cart [Andreas Naive]
+
+Fixed debug command symlist (bug #4131) [Robbbert]
+
+Hand tuned Z80 clock divider in Pastel Gal driver, needed to correct
+galds sound sample pitch [Angelo Salese]
+
+Added correct refresh rate for PGM games [Zakk]
+
+Fixed service mode in Tatakae Big Fighter [Angelo Salese]
+
+Removed ROM patches to Tatakae Big Fighter [Angelo Salese]
+
+Added reset line trigger from main to sound CPU in Irem M107 driver,
+fixing Fire Barrel sound [Angelo Salese]
+
+Added a preliminary hook-up for an alternative rowscroll effect in
+Irem M107 HW, noticeable in Fire Barrel stage 2 and 6 and World PK
+Soccer goal scrolling [Angelo Salese]
+
+Fixed regressed gameplay speed in Dream Soccer '94 (M107 version)
+[Angelo Salese]
+
+Added preliminary row select effect in Irem M107, fixes for good the
+start-up transitioning in Fire Barrel [Angelo Salese, David Haywood]
+
+Added Synertek SY6845E subtype to mc6845.c [Curt Coder]
+
+Ported row select to every other tilemap in Irem M107 and fixed a bug
+in it, gives correct stretching gfxs at the end of level 1 and at the
+start of level 8 in Fire Barrel [Angelo Salese]
+
+Fixed a title screen color bug in World PK Soccer [Angelo Salese]
+
+forte2.c, pengadvb.c: fixed savestates [ShimaPong]
+
+cb2001: fixed 2 opcodes [Roberto Zandona']
+
+Fixed rowscroll effect in Fire Barrel  [David Haywood]
+
+SDL: Clear and flip 3 times on resolution changes instead of twice,
+required by some OpenGL drivers [Chris Kennedy]
+
+Removed static variables in FM sound cores. [Atari Ace]
+
+Fixed sprite wrap-around y in Irem M107 HW [Angelo Salese]
+
+Correct clocks documented from original PCB (galpani2i) for Gal Panic
+2 [Corrado Tomaselli]
+
+Fixed a misplaced sprite bug in Fire Barrel [Angelo Salese]
+
+Fixed sprite-sprite priorities and fixed a sprite sticking bug on game
+over screen in Fire Barrel [Angelo Salese, David Haywood]
+
+Fixed up Maze Invaders inputs, adding notes (Fixed MT#4144).  Fixed up
+Dip Locations to match open/closed states shown in service modes for
+the centiped.c driver.  [Tafoid]
+
+Fixed an un-inited bankswitch problem in the Seibu Audio driver, gives
+preliminary working sound in Denjin Makai [Angelo Salese]
+
+missile.c: Corrected Missile Attack ROM locations and added PROMs to
+Super Missile Attack [Kevin Eshbach]
+
+scobra.c: Added Super Cobra and Lost Tomb DIP switch locations
+[Kevin Eshbach]
+
+Commented out a bogus irq ack in Seibu Audio HW, fixes sound for good
+in Denjin Makai and removes a cheesy kludge for Denjin Makai and SD
+Gundam Psycho Salamander no Kyoui [Angelo Salese]
+
+H8: implement ldc #imm, ccr and rotr.w Rx for csplayh5 [R. Belmont]
+
+Added a 'changed by' search to the cheat engine [Pugsy]
+
+ics2115: Fix the timer [O. Galibert]
+
+raiden2: Advance the cop code a little [O. Galibert]
+
+Added key dump for scptour [Guru]
+
+i8085 cpu Fixed loading of reg A from debugger 'do' command [Robbbert]
+
+Add DEVICE_SELF_OWNER which allows an address map to refer to the
+owner of its owning device. Useful for CPU address map handlers for
+CPU's that are part of a device. [Aaron Giles]
+
+Added sound comms in Raiden 2, giving working sound to it
+[Angelo Salese]
+
+Added receive byte function to MC6850 ACIA for MESS generic terminal
+emulation. [Curt Coder]
+
+Updated the PALs that need to be dumped for Puyo Puyo and Bloxeed
+[Kevin Eshbach]
+
+vsnes.c: Corrected the Vs. Super Mario Bros (Alt) set name and added
+the Vs. Castlevania ROM location [Kevin Eshbach]
+
+Z80DART changes: [Curt Coder]
+ * fixed asynchronous transmit mode
+ * fixed channel A interrupt vector
+ * improved logging
+
+multfish.c update: [MetalliC]
+ * full save-states support
+ * changed to use timekeeper-device instead of mvram + custom code
+ * now  use  timekeeper as Z80 banked RAM (verified with hardware, now
+    full game stats saved on power on/off as on real machine)
+ * graphics roms naming scheme changed as on Irgrosoft's hash-lists
+ * Roll Fruit's always-locked-coinlock bug fixed
+ * few old missing roms found and added: Fruit Cocktail 030623
+    fcockt_3 Lucky Haunter 030804  lhaunt_2 Resident 040415      
+    resdnt
+ * all known hashes added (entertainment, lottery, etc)
+ * misc cleanup
+
+Decoded GFX roms in Seibu Cup Soccer bootleg sets [David Haywood]
+
+Added a preliminary DMA to the Legionnaire driver, fixes some color
+issues in Legionnaire and Denjin Makai [Angelo Salese]
+
+Fixed BK3 bitplane order in Legionnaire, fixes the map screen colors
+in it [Angelo Salese]
+
+Naomi updates:
+ * Added Rev. C Naomi 2 Export BIOS [The Dumping Union]
+ * Fixed some rom filenames that didn't fit MAME standard [Cah4e3]
+
+Corrected game clock for dai3wksi as verified on PCB [Guru]
+
+Added DMA mode 0x0e in seicop.c, used by Seibu Cup Soccer, Godzilla
+and SD Gundam [Angelo Salese]
+
+Fixed sound comms in Seibu Cup Soccer sets [Angelo Salese]
+
+Added idle skip for Ghost Eolith driver [David Haywood]
+
+Made Zero Team and X Se Dae to boot [Angelo Salese]
+
+Implemented a preliminary V25/V35 CPU core [Alex Jackson]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Bullet [Aaron Giles, Charles MacDonald, Chris Hardy]
+Rumba Lumber [Corrado Tomaselli, David Haywood, Angelo Salese]
+Deluxe Trivia ? Whiz (Edition 5)
+  [Mariusz Wojcieszek, Smitdogg, The Dumping Union]
+Denjin Makai [Angelo Salese, David Haywood, Tomasz Slanina]
+Balloon & Balloon (BnB Arcade) [Tim Schuerewegen]
+Happy Tour [Tim Schuerewegen]
+Dai San Wakusei Meteor [Hau, Chack'n]
+
+
+
+New clones added
+----------------
+World Class Bowling v1.4 [Brian Troha, The Dumping Union]
+Ataxx (Europe) [Corrado Tomaselli]
+Gals Ds - Three Dealers Casino House (bootleg?)
+  [Team Europe & catSushi]
+Gyruss (bootleg) [Darran]
+Parodius DA! (World, set 2) [Corrado Tomaselli, The Dumping Union]
+Gals Panic 2 (Italy) [Corrado Tomaselli]
+Quester Special Edition (Japan) [taka-e]
+Tic Tac Trivia (Vertical) [Smitdogg, The Dumping Union]
+Raiden II (set 7, US Fabtek)
+  [Smitdogg, The Dumping Union] (not working)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Race On! (RO2 Ver. A) [Guru]
+Crisis Zone (CSZ04 Ver. B) [Guru]
+Hydro Thunder [Mr. Do]
+Offroad Thunder [Tom, gamerfan, Smitdogg, The Dumping Union]
+Derby Owner's Club World Edition (Rev. D) [f205v, Cah4e3]

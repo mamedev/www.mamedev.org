@@ -1,0 +1,297 @@
+0.128u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02728: [Crash/Freeze] galpani3: 'Illegal Instruction' after ROM Check 
+         (R. Belmont)
+- 02739: [Sound] skysoldr: In-game music (three level BGMs and boss theme)
+         plays one octave higher. (Phil Bennett)
+- 02718: [Crash/Freeze] zigzag, zigzag2: Don't boot correctly. The screen
+         just flashes over and over. (Aaron Giles)
+- 02730: [Crash/Freeze] fiveside: locks up at rom check (Aaron Giles)
+- 02740: [Debugger] resizing the debug window, the text is only in the 
+         old area (Aaron Giles)
+- 02721: [Crash/Freeze] All Sets in arcadia.c: Games not booting, they 
+         just keep resetting to a white screen. (Aaron Giles)
+- 02661: [Gameplay] f1gpstr2: Game freezes upon reaching track (Mamesick)
+- 02708: [Crash/Freeze] wildplt: Gameplay freezes at start (Mamesick)
+- 02724: [DIP/Input] elgrande, jjpoker, ssipkr24: Unable to locate input 
+         port 'SW2'. (Roberto Fresca)
+- 02677: [Graphics] eprom, eprom2: missing graphical brightness effect, 
+         verified on real machine w/video (Nicola Salmoria)
+
+
+
+Source Changes
+--------------
+Pointer-ified the following CPU cores:
+ - DSP32 [Aaron Giles]
+ - m6805 [Andrew Gardner]
+ - MIPS 3 [Aaron Giles]
+ - PowerPC [Aaron Giles]
+ - Konami [Aaron Giles]
+ - ARM [Andrew Gardner]
+ - SHARC [Atari Ace]
+ - V60 [Aaron Giles]
+ - Z8000 [Aaron Giles]
+ - Z180 [Aaron Giles]
+ - V810 [Aaron Giles]
+ - V30MZ [Aaron Giles]
+ - PDP1/TX0 [Wilbert Pol]
+ - H6280 [Andrew Gardner]
+ - F8 [Atari Ace]
+ - TLCS-90 [Atari Ace]
+ - Cube Quest CPUs [Aaron Giles]
+ - i86/i286 [Aaron Giles]
+ - i386 [Aaron Giles]
+ - ALPHA-8201 [Aaron Giles]
+ - i8085 [Aaron Giles]
+ - APEXC [Aaron Giles]
+ - RSP [Aaron Giles]
+ - MB88 [Aaron Giles]
+ - MB86233 [Aaron Giles]
+ - TMS7000 [Aaron Giles]
+ - SH2 [Aaron Giles]
+ - SH4 [Aaron Giles]
+ - uPD7810 [Aaron Giles]
+ - TMS32051 [Aaron Giles]
+ - MC68HC11 [Aaron Giles]
+ - CP1610 [Aaron Giles]
+ - LH5801 [Aaron Giles]
+ - LR35902 [Aaron Giles]
+ - PDP1 [Aaron Giles]
+ - Saturn [Aaron Giles]
+ - SC61860 [Aaron Giles]
+ - TMS32010 [Quench]
+ - PIC16C5x [Quench]
+ - TMS99xx [Aaron Giles]
+ - TMS32025 [Quench]
+ - dsp56k [Quench]
+
+Enabled all CPU cores/variants. Fixed compile issue revealed as a 
+result. [Aaron Giles]
+
+Changed konami setlines callback to pass a device. Updated all drivers
+accordingly. [Aaron Giles, Atari Ace]
+
+Added best-known CRC in wb90b2 and jjsquawb "bad dump" roms. [robiza]
+
+Made the PCI bus a device. The bus is declared in the machine config,
+and the devices attached to it are enumerated there. Eventually, the 
+PCI config read/write functions should be moved to well-known 
+functions within the device, but for now they are kept separate.
+[Aaron Giles]
+
+Added correct proms for arkgcbl. [robiza]
+
+Changed many, many global Machine references to use machine, 
+device->machine, etc. instead. [Atari Ace]
+
+Changed megadriv.c to pass running_machine to I/O callbacks plus other 
+MESS support. [R. Belmont]
+
+Re-synced f3853 core with MESS. [Nathan Woods]
+
+Introduced function macros for SAMPLES_START, CUSTOM_{START,STOP,RESET},
+and ANTIC_RENDERER. Pushed the running_machine * passing through these
+functions. In other locations added "running_machine *machine = Machine"
+to the top of functions to isolate the dependencies. [Atari Ace]
+
+Added logic to track OSD debugger updates separately from internal 
+view updates. In order to get the OSD to update, a new function 
+debug_view_flush_updates() must be called. Currently this is 
+automatically called before osd_wait_for_debugger(), and during the 
+periodic updates while executing. The OSD code may occasionally need 
+to call it under other circumstances (for example, the Windows code 
+calls it explicitly while tracking scrollbar thumbs to get live 
+scrolling). [Aaron Giles]
+
+Updated gradius2 to use proper gfx2 roms (same values of vulcan but 
+byteswapped). [robiza]
+
+Disabled the use of PULSE_LINE for any input lines except NMI and 
+RESET. Added a helper function generic_pulse_irq_line() for doing a 
+single-cycle assert/deassert for those few drivers remaining that were 
+trying to use PULSE_LINE directly. [Aaron Giles]
+
+Updated z8000 tables to reflect recent findings. [Juergen Buchmueller]
+
+Fixed the widely used konamiic/taitoic/deco16ic/segaic16 video cores
+to no longer reference the global Machine. [Atari Ace]
+
+Added wrappers for ADSP21xx callbacks. Added device parameters to them.
+Updated IRQ setters to use generic_pulse_irq_line(). [Aaron Giles]
+
+Added MDRV_PIC8259_ADD, MDRV_PIT8353_ADD, MDRV_PIT8254_ADD, and 
+MDRV_DMA8237_ADD macros. [Wilbert Pol]
+
+Added the sound device to the parameters passed to stream_create so 
+that the global Machine can be removed from streams.c. [Atari Ace]
+
+Improvements to Millennium 4000 driver: [Roberto Fresca]
+ - Completed normal Inputs/Outputs.
+ - Added button-lamps calculation.
+ - Created button-lamps layout.
+ - Documented the PCB RAM.
+ - Fixed NVRAM size based on PCB picture (2x CY62256L-70PC near the 
+    battery).
+ - Added notes about the method to make appear the real poker cards.
+ - Fixed the OKI 6295 frequency (1000 kHz resonator near). Now the 
+    game has more decent sounds.
+ - Corrected CPU clock to 12 MHz. (main Xtal).
+
+Updated adp driver: now fashiong show something. [robiza]
+
+Widened some machine init interfaces to pass the machine parameter, 
+allowing more Machine global references to be eliminated. Eventually 
+most of these need to be converted to devices, but this change reduces 
+the deprecation surface in the meantime. [Atari Ace]
+
+Relaxed the OKI 6295 command validity check. [Nicola Salmoria]
+
+Added new function cpuexec_describe_context(machine) which can be
+used in logerror() and other printf-style functions to return a
+description of the current CPU/PC given only the machine. Changed
+several dozen sites to use this instead of directly interrogating
+the activecpu. [Aaron Giles]
+
+Removed all other uses of activecpu throughout the system. Removed
+activecpu from the machine structure to prevent future abuse.
+[Aaron Giles]
+
+Removed cpu_push_context() and cpu_pop_context(), and all call
+sites. [Aaron Giles]
+
+Voodoo devices now require a CPU to be defined in the configuration
+in order to know whom to steal cycles from or stall when FIFOs get
+full. Updated all voodoo users to specify one. [Aaron Giles]
+
+CPD1869 devices now also require a CPU to be defined in the
+configuration, in order to know which CPU's registers to fetch.
+Updated all cdp1869 users to specify one. [Aaron Giles]
+
+Removed get context/set context calls from the CPU interface entirely.
+[Aaron Giles]
+
+Removed safe_cpu_get_pc() which doesn't really make sense anymore.
+[Aaron Giles]
+
+Moved cpu_execute() to be an inline function. [Aaron Giles]
+
+Writes to a pit8253 timer control word always restart the timer.
+[Wilbert Pol]
+
+Updated the fcompress APIs to allow for specifying a compression level.
+[Aaron Giles]
+
+Removed the concept of state saving tags, which was a hack to get save 
+states to work with multiple CPU cores. Simplified the state saving 
+system as a result, performing the operation in a single pass and 
+without allocating a full blob of memory. Also enabled minimal 
+compression. [Aaron Giles]
+
+Squashed another deprecated use of Machine from the mame core by 
+plumbing machine_config into rendlay.c. [Atari Ace]
+
+Fix Altivec RGB primitives on newer GCCs. [budge, Vas Crabb]
+
+Changed commonly-used verboselog to require a machine parameter.
+[Atari Ace]
+
+Removed remaining deprecat.h references from the CPU and sound cores.
+[Atari Ace]
+
+i8085: added INTE and state word callbacks [Curt Coder]
+
+n8080.c changes: [Curt Coder]
+ - rewrote interrupt handling according to schematics
+ - added interrupt acknowledge
+
+Re-ordered SCSP init to fix crash. [R. Belmont]
+
+Modified regrep to display the soruce file. [Aaron Giles]
+
+Expanded cpuexec cycles <-> attotime functions to handle UINT64s.
+[Aaron Giles]
+
+Reduced all alpha68k.c YM2413 clocks from 8MHz to 3.579545MHz.
+[Philip Bennett]
+
+Changed attotime_to_ticks/ticks_to_attotime to use UINTs and the 
+eminline functions where possible. [Aaron Giles]
+
+Changed the 6522 VIA implementation to be a device. [Nathan Woods]
+
+Removed the ACIA6850 device from Cal Omega System 905 machine driver. 
+It fixes the wrong lack of SW2. [Roberto Fresca]
+
+Fixed EI handling in the 8080/85 core to have a shadow like the Z80.
+[Miodrag Milanovic]
+
+Modified the tms34010.h, pc16552.h, and tms34061.h interfaces to 
+eliminate some more global Machine variables. Six more deprecat.h 
+includes eliminated. [Atari Ace]
+
+Eliminated the #include "deprecat.h" from tilemap.c. The main change 
+is to require callers of tilemap_create to provide a machine pointer. 
+This pointer is then attached to the tilemap and used when needed 
+inside tilemap.c. [Atari Ace]
+
+Eliminated the #include "deprecat.h" from drawgfx.h.  It does so in a 
+fashion similar to my recent tilemap patch, adding the machine pointer 
+to gfx_element, changing allocgfx to take a machine, and then 
+adjusting the internals to use the machine field as needed. 
+[Atari Ace]
+
+i960: fixed nor opcode and added notor opcode [robiza]
+
+Fixed raster effects in nbbatman by altering the V33 prefetch timing
+(just a guess as no documentation has been found). [couriersud]
+
+Removed unnecessary address masking in disassembly view. Changed 
+console subview computations to leave the registers portion fixed.
+[Aaron Giles]
+
+Removed hack for setting mcs51 serial callbacks. Updated micro3d to 
+use new functions. [Aaron Giles]
+
+Merged goldstar.c & cmaster.c drivers. Converted the Reels video to 
+tilemaps. [David Haywood]
+
+Added proper artwork for the LEDs in Gridiron Fight. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Pool 99 [David Haywood, Angelo Salese]
+Bra$il / Fashion [Angelo Salese]
+Pesadelo [Mariusz Wojcieszek, hap]
+Super Free Kick [Tomasz Slanina]
+Jangou [David Haywood, Angelo Salese, Phil Bennett]
+Jangou Lady [David Haywood, Angelo Salese, Phil Bennett]
+
+
+
+New clones added
+----------------
+Europa 2002 Space (Ver 3.0) [Roberto Fresca]
+Triv Two (Vertical) [David Haywood]
+Super High Impact (prototype, rev 6.0 09/23/91) [Smittdogg]
+Giga Man 2: The Power Fighters [David Haywood, Arzeno Fabrice]
+CarnEvil (v1.0.3) [Brian Troha]
+(New?) Cherry Bonus III (not working) [David Haywood]
+Cherry Bonus III (not working) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cherry Bonus 2001 [David Haywood, robiza]
+Four Roses (encrypted, 2 sets) [Roberto Fresca]
+Queen [David Haywood]
+Cherry Master (Corsica, v8.01) [David Haywood]
+Cherry Master 91? [David Haywood]
+Jackie [David Haywood]

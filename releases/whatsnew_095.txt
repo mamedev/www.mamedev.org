@@ -1,0 +1,577 @@
+0.95
+----
+
+Changes from Aaron Giles
+------------------------
+
+Sound rewrite crash fixes
+* fixed crash in garyoret
+* fixed crash in system18.c bootlegs
+* fixed crash in konamigt
+* fixed crash in scion
+* fixed crash in double dribble
+* fixed crash in iron horse
+
+CPUs tagged as audio CPUs are no longer disabled when sound is turned off.
+
+
+Changes from Nicola Salmoria
+----------------------------
+
+Sega Updates
+- decrypted and added aurailj. the program roms are bad however so it doesn't work
+- the Altered Beast sets were a mess. Some of them were using the wrong  version of
+  the gfx ROMs (that's why they had to be loaded in a strange way) Should be correct now.
+- bayrout1 is the us version not world
+- wally1 is revision B
+- added a few keys with NO_DUMP
+- more fixes to descriptions and ROM names
+
+
+Changes from Pierpaolo Prazzoli
+-------------------------------
+
+added sound to Excelsior
+
+fixed title screen glitch in Super Slam
+
+fixed sprite bug in Buccaneers
+
+fixed crash in new Bull Fighter set
+
+added proper PROM decoding for Ring King (Woodplace license)
+
+fixed cocktail mode in Calorie Kun
+
+fixed ufosensi093u3gra and ufosensi093gre
+
+
+Changes from R.Belmont
+----------------------
+
+- Moved actual CD-ROM and harddisk device emulation out of am53cf96.c to new scsicd.c
+  and scsihd.c files.
+- AM53cf96.c is now fully configurable: you can have any combination of up to 7 CD-ROMs
+  and/or harddisks attached to the emulated SCSI bus and specify what each one's SCSI ID
+  is.
+- CD-ROM emulation expanded to support more SCSI commands and bugfix some existing ones.
+- Changed konamigv and konamigq drivers to support the new 53cf96 configuration system.
+
+Added -extractcd to convert CHD-CDs back into CDRDAO
+.bin/.toc images.
+
+
+Other Changes
+-------------
+
+Improvements to Best League [Angelo Salese]
+
+Corrected XX mission dips [Brian Troha]
+
+Verified Simpsons sound chip frequency against real board [Chris Hardy]
+
+Added 24-bit cheat finding support [Thorwak]
+
+MESS specific sndintrf update [Nathan Woods]
+
+Fixed Buccaneers sound frequency [Corrado Tomaselli]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Demons & Dragons (prototype) [Frank Palazzolo] (no sound)
+Ghost Hunter [Pierpaolo Prazzoli]
+Tut's Tomb [Pierpaolo Prazzoli]
+MegaPlay: Streets of Rage 2 [Guru] (may crash due to poor genesis emulation)
+MegaPlay: Biohazard Battle [Guru]
+Nagano Winter Olympics '98 (GX720 EAA) [R.Belmont]
+
+clones
+------
+
+Hex Pool [Brian Troha]
+Hook (Japan) [Corrado Tomaselli]
+Puzzle Club (set 2) [Corrado Tommaselli]
+Big Kong [Tom Girardot, Joe Magiera]
+Sunset Riders (Ver ADD) [Razoola]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Pinball Action (set 3, encrypted?) (seems to be encrypted, segacrpt?)
+
+
+0.94u5
+------
+
+Changes from Aaron Giles
+------------------------
+
+segaxbd.c:
+* fixed missing sound in rachero/abcop
+* used explicit sync to get rid of high interleave on loffire
+* marked 317-0136.key bad until Nicola fixes it
+* marked loffire as working now that the divide chip is better
+
+segaic16.c:
+* fixed several divide chip behaviors, fixing loffire and gprider
+    - divide by zero just returns the divisor (needs to be verified)
+    - mode 1 divides are unsigned
+    - divides are only triggered by a write with A4 set
+
+midvunit.c:
+* turned off debugging code in the hotspots, giving a HUGE speed improvement 
+to the V-unit games (d'oh!)
+
+
+Changes from Angelo Salese
+--------------------------
+	
+realbrk.c
+* Fixed Pachinko Gindama Shoubu sets (Normal and DX) and added specific controls to them.
+  Games are now playable but with a hack on the backup ram,I don't know what's going on,
+  probably it's just missing nvram emulation;
+* Reorganized a bit the memory map in the driver;
+
+2413intf
+* Added two new functions for the YM2413 sound chip,
+  YM2413_register_port_0_msb_w() and YM2413_data_port_0_msb_w(),they are used by pkgnsh.
+
+splash.c
+* Fixed Funny Strip sprite graphics.
+
+jalmah.c
+* Improved the MCU protection code for Mahjong Daireikai & fixed various ROM loading issues
+  now more graphics are correctly displayed.
+  
+  
+Changes from Derrick Renaud
+---------------------------
+
+dominos - updated discrete sound to the new component
+value code
+
+clowns - added coin counter and proper watchdog. 
+Added discrete emmulation for music and balloon
+popping.
+
+clowns - added discrete emulation of the springboard
+hit
+
+clowns - fixed dipswitches
+
+firetrk, montecar, superbug - updated to use new 7492
+counter. Changed adjusters so frequency goes higher
+when adjusted to the right.
+
+
+Changes from Nathan Woods
+-------------------------
+
+src/cpu/m6502/6502dasm.c:
+    - Implemented dasmflags
+    - Minor cleanups
+
+src/cpu/m6502/m6502.c:
+src/cpu/m6502/m6502.h:
+src/cpu/m6502/m65ce02.c:
+src/cpu/m6502/m65ce02.h:
+    - Removed RUNTIME_LOADED cruft
+
+
+Changes from Nicola Salmoria
+----------------------------
+
+Updated FD1094 documentation
+
+Corrected Shisen 2 visible area (it was too small)
+
+
+Changes from Pierpaolo Prazzoli
+-------------------------------
+
+Fixed dipswitches in Shisen 2
+
+Fixed transparency issue in Buccaneers
+
+
+Changes from Sebastien Volpe
+----------------------------
+
+Minor update to SRMP6 driver, adding dips and updating the memory map.
+The GFX format on this hardware is still not understood, however the chip used could
+be related to the ST0016 chip.
+
+Update to the Kaneko drivers, loading correct roms for Blood Warrior
+
+Other Changes
+-------------
+
+Model 3 video emulation update [Ville Linde]
+	improves rendering on all the games that currently run
+
+Risky Challenge, Pushman, Olibochu, Funny Strip dipswitches [Brian Troha]
+
+Fixed ROM names in Shadow Dancer sets [Chack'n]
+
+sprint1/sprint2 - updated discrete sound to the new component value code [Hans Andersson]
+
+Fixed seibuspi link warning [Lawrence Gold]
+
+Corrected Galaga & Bosconian Starfields [James Rowan]
+
+Fixed problem with Nemesis sound created during sound rewrite [R.Belmont]
+
+Reorganized makefile slightly [Atari Ace]
+
+Added P3 Controls to Gain Ground and fixed Dips [Unknown]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Cookie & Bibi [David Haywood]
+Search Eye [Pierpaolo Prazzoli]
+Pachinko Gindama Shoubu [Angelo Salese]
+Pachinko Gindama Shoubu Deluxe [Angelo Salese]
+Shrike Avenger [Peter Sealy]
+GP Rider [Aaron Giles]
+Line of Fire [Aaron Giles]
+
+clones
+------
+
+Bull Fighter (without Sega license) [Brian Troha, Mame Italia Forum]
+Best League (bootleg of Big Striker) [Angelo Salese, David Haywood]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Mazin Wars (Mega Play)
+Grand Slam Tennis (Mega Play)
+	These have problems with the MegaPlay / Genesis emulation
+	
+0.94u4
+------
+
+Fix crash games using FM sound chips when you load state [BUT]
+
+Changed FD1094 state change behavior slightly to keep Gain Ground happy [Nicola Salmoria]
+
+Improved NMK004 simulation and prevented hang in Black Heart [Nicola Salmoria]
+
+Fixed some sprite colours in playmark.c [Pierpaolo Prazzoli]
+
+Hooked up guns in Deadeye for when it works [smf]
+
+Fixed memory dumping problem in debugger at very high addresses [Ville Linde]
+
+Fixed bugs in PSX texture window (pitch in libero grande & playfield in aquarush) [smf]
+
+Fixed Pengo ROM loading [shimapong]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Buccaneers [David Haywood]
+Calorie Kun vs Moguranian [David Haywood, Pierpaolo Prazzoli]
+	(only bootleg works, original is encrypted)
+Gain Ground [David Haywood]
+Libero Grande [smf]
+Pipeline [Tomasz Slanina]
+	(no sound)
+
+clones
+------
+
+Crazy Rally (Gecas license) [Manuel Assoni]
+Passing Shot (Japan, FD1094 317-0070) [Chack'n]
+Wonder Boy III (Japan, FD1094 317-0087) [Chack'n]
+Tekken (TE2/VERC) [smf]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Snapper [David Haywood]
+
+0.94u3
+------
+
+Compiler fixes [Atari Ace]
+Misc fixes [Nathan Woods]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+clones
+------
+
+Bubble Bobble (newer set) [Tormod Tjaberg]
+Puyo Puyo (World) [Fabrice Arzeno]
+
+
+0.94u2
+------
+
+Changes from Aaron Giles
+------------------------
+
+mame.c: updated documentation
+cps1.c: fixed QSound routing
+cps2.c: fixed QSound routing
+itech32.c: fixed Driver's Edge colors (red/blue were swapped)
+segaorun.c: many tweaks based on schematics
+    - connected some outputs via 8255 PPI
+    - fixed IRQ handling to match schematics
+    - hooked up watchdog, global mute
+    - fixed IRQ2 timing
+segaxbd: tweaks
+    - added hack to make GP Rider boot; input bug prevents full playability
+    - fixed IRQ handling to match schematics
+    - hooked up watchdog, sound reset, and global mute
+    - hooked up dummy CPU for running SMGP communications
+    - reduced interleave on all games except LOF
+segaybd: tweaks
+    - fixed CPU speeds according to schematics
+    - hooked up global mute
+    - reduced interleave on all games
+machine/segaic16.c: changed divide-by-zero case to return a value
+vidhrdw/segaic16.c: several updates
+    - implemented Y-board sprite priorities (not fully understood, but 
+      seems to work)
+    - found missing 8th bit in Outrun/X-board sprite pitch
+    - implemented Outrun/X-board road priorities according to logic dump 
+      from Leopardcats
+    - hooked up road RAM double buffering that was missing for 
+      Outrun/X-board
+    - disabled direct scanline mode for Outrun road, which doesn't support 
+      it
+
+Fixed sample playback glitch
+
+Fixed othunder sound clipping
+
+Fixed Batrider sound
+
+Fixed Dream Shopper crash
+
+Added sound balancing assistance display to debug builds
+
+cpuintrf.c cleanup
+
+Removed some unwanted clamping code from sound core
+
+Adjusted Frogger volume
+
+Changes from Brian Troha
+
+
+
+
+Changes from Derrick Renaud
+---------------------------
+
+Added proper watchdogs to
+Bosconian, Galaga, Pole Position, Xevious
+
+Fixed Wiggie Waggle crash
+
+Fixed some speaker settings
+
+schaser - updated sounds to include missle effect and
+fix dot sounds per schematics.
+
+SN76477 emulation - fixed bug where gain was 3x more
+then it should be, causing effects to clip for 2/3rds
+of the time.
+
+SN76477 emulation - fixes the attack time for one-shot
+envelope mode.
+
+Fixed crash in crash, ripcord and robotbwl and added
+sample support to them.  Samples not currently
+recorded.
+
+robotbwl - added discrete simulation for footsteps
+
+crash - added discrete simulation for beeper
+
+
+Changes from Nathan Woods
+-------------------------
+
+src/sndintrf.c:
+src/sndintrf.h:
+    - Added entries for two MESS specific sound cores
+
+src/sound/wavwrite.c:
+src/sound/wavwrite.h:
+src/sound/discrete.c:
+    - Changed wavwrite type from 'void *' type to an opaque pointer 
+      'wav_file *'
+
+src/cpu/g65816/g65816op.h:
+    - This patch fixes a bug whereby the CPU could switch modes without 
+      entering the set of functions for that mode.  Specifically, if a mode 
+      change occurs it will break out of the execute function and reenter the 
+      correct function.
+
+Changes from Nicola Salmoria
+----------------------------
+
+documented debug mode in TNZS
+
+Fixed some bad gfx in Sky Lancer
+
+Rebalanced Gyruss volume
+
+NMK004 sound simulation
+
+playmark.c updates
+- Fixed sprite/tile priorities in World Beach Volley, and fixed SOME 
+  priorities in Excelsior - but not all of them, the high score screen is 
+  still wrong.
+- Found bitmap enable bit, fixes girl pictures sticking in Big Twin and 
+  Excelsior, and garbage graphics in Excelsior.
+- Added rowscroll support, fixes wbeachvl37b7gre.
+- As previously noted, wbeachvl37b16gre could be a genuine bug of the 
+  original - I don't see how it could work otherwise.
+
+Changes from Pierpaolo Prazzoli
+-------------------------------
+
+Super Slam update
+- Fixed sprites
+- Fixed text tilemap colors
+- Fixed text tilemap scrolls
+- Fixed VSync
+
+Fixed dips in Sky Lancer
+
+playmark.c update
+- Fixed dipswitches in Excelsior
+- Tweaked bitmap scroll in Excelsior
+- Changed bitmap to be drawn after the fg_tilemap (this is correct in Excelsior
+  and looks better in Big Twin, but looking at the service mode in Excelsior
+  some "good" bits are trasparent)
+- Added Continue dipswtich in Big Twin
+
+
+
+Other Changes
+-------------
+
+NMK16 dipswitch fixes [Brian Troha]
+
+Progress on TX1 / Speed Buggy driver [Phil Bennett]
+	Still To Do:
+	
+	Buggy Boy/Speed Buggy
+	# Arithmetic chip support.
+	# Correct object drawing and attributes (e.g. zoom factors).
+	# Road drawing.
+	# Fix inter-CPU communications.
+	# Layer mixing.
+	# Fix controls.
+	# Discrete sound hardware
+
+	TX-1
+	# All of above
+	# Missing PROMs
+
+
+Allow for more than 40 entries in the Analog menu [Christopher Stone]
+
+Fixed dips in Dunk Shot [Sonikos]
+
+Fixed some bad gfxlayouts [Atari Ace]
+
+Update to Shrike Avenger, documentating the motor behavior [Peter Sealy]
+	game is now partially working
+
+Added scroll mouse support [Robin Merrill]
+
+Allowed f1en to show full attract mode [David Haywood]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+clones
+------
+
+Pit n Run (set 2) [MAN]
+Sky Lancer (Orca) [Manuel Assoni]
+Star Trek (defender bootleg) [Pierpaolo Prazzoli]
+Poker Ladies (Leprechaun ver. 401) [Manuel Assoni]
+Pinbo (set 2) [Pierpaolo Prazzoli]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+TX-1 [Phil Bennett]
+Buggy Boy [Phil Bennett]
+
+0.94u1
+------
+
+Mostly bugfixes related to problems caused by the 0.93 sound update
+
+---
+
+Fixed itech32 driver, the previous 64-bit fix caused graphical problems
+both should be fixed now [Aaron Giles]
+
+Fixed '3 speaker problem' with Qsound [Aaron Giles]
+
+Fixed 'deadang' crashing [Aaron Giles]
+
+Fixed games using the 5110 which refused to start (bagman, cvs driver
+etc.) [Aaron Giles]
+
+Other sound fixes [Aaron Giles]
+* fixed initialization order problem in niyanpai
+* removed unused filters in othunder
+* fixed initialization order problem in rungun
+* prevented setting negative timers to fix stkclmns crash
+* fixed triplfun by making sure the X1-010 chip is present before trying to 
+reset it
+* sound in outrun
+
+fixed cheat.c typo + other [Atari Ace]
+
+attempted to fix batrider crash [Aaron Giles]
+
+Intel Flash improvements [smf]
+
+Fixed Laser Ghost title screen [Aaron Giles] 
+
+Discrete sound updates [Derrick Renaud]
+
+Started cleaning up konamigx driver [R.Belmont]
+
+Fixed auto_malloc compiler warning with DOS tools [smf]
+
+Updates to XML output [Logiqx]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Excelsior [Pierpaolo Prazzoli]
+	no sound (PIC not dumped)
+	
+Star Fire 2 [David Rolfe]
+
+Tecmo World Cup Millenium [smf]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Calorie Kun [David Haywood]
+	preliminary driver, basic tilemap + sprites hooked up
+	
+Pipeline [David Haywood]
+	rom loading, not much else.

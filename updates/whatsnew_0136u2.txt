@@ -1,0 +1,363 @@
+0.136u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03667: [Interface] All default/per-game .cfg files are not saved 
+         correctly (Aaron Giles)
+- 03671: [Sound] fcrash: Bad sound ingame (Mamesick)
+- 03663: [Graphics] tgm2, tgm2p: The warning boot screen has a black 
+         background which should be blue.
+
+
+
+Source Changes
+--------------
+Replaced vsnetscr GFX ROMs with correct dumps 
+[Team Japump, Dumping Union]
+
+Fixed memory allocation issue in debug builds. [Aaron Giles]
+
+Added makefile autotest for BIGENDIAN. A bit hacked, though.
+[couriersud]
+
+Redumped sound roms in Cyber Tank 
+[Antonio Gonzalez Jr., Dumping Union]
+
+psikyosh improvements: [PsikyoFan]
+ * Add support for per-scanline scroll/zoom and per-column effects. 
+   This is adds a significant performance penalty when enabled. 
+   Removed warning flag from s1945ii and s1945iii. s1945iii needs 
+   confirmation of correctness and x-zoom is a guess.
+ * Virtually completed video rendering. Only flipscreen missing (and 
+    conversion to tilemaps one day). Per-line effects now respect 
+    per-line alpha, priority and bank. As a result daraku text works 
+    without any hacks.
+ * Added various optimisations to get back all games to a playable 
+    speed.
+ * Fixed missing soldivid effect on final boss that was broken due to 
+    above daraku hack.
+ * Added accurate scaling effects based on measurements from hardware.
+
+cybertnk improvements: [Angelo Salese]
+ * Fixed sprite height
+ * Implemented flip x and negative y offsets
+ * Implemented preliminary zooming
+
+sdl.mak rewrite [couriersud]
+ - TARGETOS=freebsd may now be given on make invocation
+ - modular approach, separate sections for opengl, x11, debugger
+ - most target specific settings parametrized.
+ - Added GTL_INSTLL_ROOT to optionally build win32 with the mame 
+    debugger.
+ - On targets supporting "-m64" and "-m32" use them.
+ - On unix ppc targets, add -Dpowerpc automatically
+
+Improved stack walking on crash in Windows. Now using StackWalk64 to
+do the stack walk, resulting in cleaner logs. Also will try to use
+system function to look up symbol and source/line information if
+present. [Aaron Giles]
+
+Improvements to subsino.c [Roberto Fresca]
+ (general):
+ - Lowered CPU clock to 1.5 MHz.
+ - Reworked former inputs.
+ - Added specific game and technical notes.
+ - Added lamps support.
+ - Cleaned-up a bit the driver.
+
+ Victor 5:
+ - Mapped the M6295 but commented out due to missing sample roms.
+ - Added keyin, keyout, payout, stats and settings inputs.
+ - Added coin/keyin/keyout counters.
+ - Limited the bet and coin pulses to avoid repeats and coin jams.
+ - Added complete coinage and keyin DIP switches.
+ - Added main game and double-up rates DIP switches.
+ - Added minimum bet DIP switches.
+ - Added maximum bet DIP switches.
+ - Added attract music DIP switch.
+ - Added button-lamps layout.
+
+ Victor 21:
+ - Mapped the M6295 but commented out due to missing sample roms.
+ - Added bet x10, keyin, keyout, stats and settings inputs.
+ - Added coin/keyin/keyout/payout counters.
+ - Limited the bet and coin pulses to avoid repeats and coin jams.
+ - Added complete coinage and keyin DIP switches.
+ - Added main game rate DIP switches.
+ - Added minimum bet DIP switches.
+ - Added attract music DIP switch.
+ - Added button-lamps layout.
+
+ Poker Carnival (crsbingo):
+ - Added change card, keyin, keyout, stats and settings inputs.
+ - Added coin/keyin/keyout/payout counters.
+ - Limited the bet and coin pulses to avoid repeats and coin jams.
+ - Added complete coinage and keyin DIP switches.
+ - Added double-up rate DIP switches.
+ - Added minimum bet DIP switches.
+ - Added maximum bet DIP switches.
+ - Added cards graphics DIP switches.
+ - Added double-up type DIP switches.
+ - Added button-lamps layout.
+
+ Super Rider, Super Moto:
+ - Added stats and settings inputs.
+ - Added coin counters.
+ - Added main game and double-up rates DIP switches.
+ - Added double-up and control type DIP switches.
+ - Added coinage and demo sounds DIP switches.
+ - Added button-lamps layout.
+
+ Shark Party:
+ - Added stats and settings inputs.
+ - Added coin counters.
+ - Added main game and double-up rates DIP switches.
+ - Added double-up, coinage and demo sounds DIP switches.
+ - Added button-lamps layout.
+
+Created new template class tagged_list which manages a simple list
+along with a tagmap. Changed memory regions, input ports, and devices
+to use this class. For devices, converted typenext and classnext
+fields into methods which dynamically search for the next item.
+Changed a number of macros to use the features of the class, removing
+the need for a bunch of helper functions. [Aaron Giles]
+
+Replaced device_find_child_by_tag() -> device->subdevice().
+
+Added Am29000 CPU core [Phil Bennett]
+
+Removed stdlib.h from osdcomm.h. [couriersud]
+ - Added #include stdlib.h where now necessary
+ - Fixed Solaris build
+ - Fixed building unidasm for OSD=sdl on win32
+
+Tools now include stdlib.h where needed. [couriersud]
+
+Changed core library files to use osd_malloc/osd_free where 
+appropriate. [couriersud]
+
+Added checkautodetect target to makefile. [couriersud]
+
+Permit zlib and expat to be linked dynamically without changing the 
+makefile by specifying "=0": make BUILD_ZLIB=0 BUILD_EXPAT=0
+[couriersud]
+
+Improved vsnet sprite/roz alignment [David Haywood]
+
+Converted the following drivers to use a driver_data structure: 
+[Atari Ace]
+ - bigstrkb, mugsmash, pass, sbugger, sderby, shadfrce, shootout,
+    silkroad, spbactn, sslam, stlforce, taitojc, tunhunt,
+    welltris, wwfsstar, xyonix
+ - 39in1, safarir, sbowling, shougi, skeetsht, skyarmy, sliver,
+    spoker, spool99, srmp5, srmp6, ssingles, sstrangr, sub, supdrapo,
+    superdq, supertnk, suprgolf
+
+hng64 : Implemented low-res texture decoding.  All red/green polygons 
+should now be textured. [Andrew Gardner]
+
+Correct a long-standing design flaw: device configuration state is
+now separate from runtime device state: [Aaron Giles]
+
+ * There is a new class 'running_device' which represents the
+    state of a live device. A list of these running_devices sits
+    in machine->devicelist and is created when a running_machine
+    is instantiated.
+
+ * To access the configuration state, use device->baseconfig()
+    which returns a reference to the configuration.
+
+ * The list of running_devices in machine->devicelist has a 1:1
+    correspondance with the list of device configurations in
+    machine->config->devicelist, and most navigation options work
+    equally on either (scanning by class, type, etc.)
+
+ * For the most part, drivers will now deal with running_device
+    objects instead of const device_config objects. In fact, in
+    order to do this patch, I did the following global search &
+    replace:
+
+      const device_config -> running_device
+      device->static_config -> device->baseconfig().static_config
+      device->inline_config -> device->baseconfig().inline_config
+
+    and then fixed up the compiler errors that fell out.
+
+ * Removed device_get_info_* functions and replaced them with
+    methods called get_config_*.
+  
+ * Added methods for get_runtime_* to access runtime state from
+    the running_device.
+  
+ * DEVICE_GET_INFO callbacks are only passed a device_config *.
+    This means they have no access to the token or runtime state
+    at all. For most cases this is fine.
+  
+ * Added new DEVICE_GET_RUNTIME_INFO callback that is passed
+    the running_device for accessing data that is live at runtime.
+    In the future this will go away to make room for a cleaner
+    mechanism.
+  
+ * Cleaned up the handoff of memory regions from the memory
+    subsystem to the devices.
+
+Fix bug introduced with astring changes that caused malformed tokens
+when writing out cfg files. [Aaron Giles]
+
+Fix bug where memory regions were not properly enumerated for the
+debugger memory view. Also, stop creating empty regions for disk 
+regions. [Aaron Giles]
+
+Added Guru(TM)-readme to trackfld. [Curt Coder]
+
+Refactored the CIA 6526 interface, adding SP/CNT callbacks. Fixed 
+serial transfer. [Curt Coder]
+
+Convrted the rest of devintrf to classes and moved management
+functions into methods of those classes. The most wide-ranging
+change was converting device_reset() to device->reset(). Apart
+from that it was mostly internal shuffling in the core. [Aaron Giles]
+
+Added OS/2 autodetect to makefile. [couriersud]
+
+Autodetection of PTR64 can be inhibited now by specifying PTR64=0.
+On mixed 32bit/64bit targets identifying themselves as 64bit this can 
+be used to build a 32bit executable. [couriersud]
+
+Added OpenBSD support in makefile/sdl.mak. Fixed XBSD detection of 
+PTR64 (uses amd64). [couriersud]
+
+Fix bug that mistook a non-NULL token to mean that a device was 
+started. Fixes -video ddraw issue. [Aaron Giles]
+
+Replaced vsnes bank installs with RAM installs, since the banks were 
+never changed. [Aaron Giles]
+
+Exit from the unhandled exception filter cleanly now. Use 
+SetErrorMode() to disable the appearance of dialog boxes when crashes 
+occur. [Aaron Giles]
+
+Fixed a typo in pgm.c that was causing a memory test error and 
+corrected some comments [XingXing]
+
+Made direct accessors for device configuration state. Currently they
+just call through to the get info function. Removed old macros that
+wrapped calls. [Aaron Giles]
+
+Removed some aliases between CPUINFO_ and DEVINFO_ to help clarify
+usage. Also converted a few more places to use the new accessors.
+[Aaron Giles]
+
+Replaced drgninja set with one dumped from a genuine Data East PCB 
+[dlfrsilver]
+
+Added MEC-M1 PCB layout to the dec0 driver and updated some clocks 
+and ROM names [Guru]
+
+hng64 : Partially decodes translation-only geometry type 0102. This 
+makes the road appear in the racing games, the edge of the ring in 
+buriki, and a hallway during the buriki attract. [Andrew Gardner]
+
+The return of the "misc" [couriersud]
+ - Added sdlmisc_<targetos>.c again. This was necessary since
+    certain tools create stubs for e.g. osd_break_into_debugger.
+    If we do not have this in a separate file, the link stage may
+    break.
+ - Applied OS/2 patch [Credit: KO Myung-Hun]
+ - Cleaned up #includes. Removed stdlib.h were possible.
+ - More malloc to osd_malloc rename.
+ - SDL monitor modes are read now when they are needed. This is now 
+    consistent across platforms.
+
+GTK Debugger work [couriersud]
+ - glade-2 can now be used again to edit the debug.glade file. 
+ - No more need to edit the files created by glade-2
+ - All "activate" handlers now pass the parent window pointer.
+ - malloc ==> osd_malloc to prevent mixed c++/c window allocations.
+ - Run to cursor (main view)
+ - In place memory editing (memory view)
+ - implement key handling (Up, down, ..) like in windows
+ - Tab and ESC not yet handled
+ - Functionality now matches win32 debugger
+ - Further code review/rewrite/simplification
+ - Added more comment headings
+ - fix a compile warning for gcc-4.4 (not detected by gcc-4.2)
+ - Horizontal divider bar to individually size views.
+ - minimum height aligned to win32 debugger 
+
+ARM: preliminary SA-1110 support [R. Belmont]
+
+Verified all deco32 clocks and corrected HuC6280 clock following old 
+Charles McDonald notes I had about internal divisor. Added a note on 
+the Arm cpu used by this game: it's a Data East 101 custom 
+[Corrado Tomaselli]
+
+Changed the following games to use the 76489A variant (verified on my 
+pcbs): Green Beret, Do Run Run, Mr.Do's Castle, Jail Break, 
+Shaolin's Road, Yie Ar Kung-Fu [Corrado Tomaselli]
+
+Fixed sn76489a periodic noise once again (and simplified a bit of 
+code), now should be closer to or match real chips as sampled. Added 
+true clock divider emulation, so emulation may be a bit slower. 
+[Lord Nightmare, PlgDavid, Kold666]
+
+Popmessages can now be used in drivers which have an MC6845.
+[Curt Coder]
+
+Ensure that RAM and bitmaps are cleared when the ms32 driver is 
+started to avoid 64-bit build crashes [David Haywood]
+
+Converted HD63484 ACRTC to be device. [Fabio Priuli]
+
+hng64 : Hacks the camera to work in sams64.  [Andrew Gardner]
+
+Fixed crash issues with mchampdx [Fabio Priuli]
+
+s14001a: updated comments; got rid of the squealing noise (hidden 
+behind a #define now, code is still there) until some other issues 
+can be resolved. [Lord Nightmare]
+
+Dumped the proms in D-Day (Jaleco) [Chack'n, Team Japump]
+
+Fixed background and sprites colors in D-Day (Jaleco) [Angelo Salese]
+
+UI menu interface changes [couriersud]
+ - all ui functions now expect a render_container
+ - removed all macros referencing render_container_get_ui
+ - ui_menu_alloc now is passed a container to which to render the menu.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+F-15 Strike Eagle (2 sets) [Phil Bennett]
+Battle of the Solar System (rev. 1.1) [Phil Bennett]
+Tank Battle (prototype rev. 4/21/92) [Phil Bennett]
+Fortune I (PK485-S) Draw Poker [Jim Stolis]
+Versus Net Soccer (5 sets) [David Haywood]
+Island 2 (060529, banking address hack) [David Haywood]
+
+
+
+New clones added
+----------------
+Insector X (Japan) [Gyrovision, Gatinho, Smitdogg, Dumping Union]
+Viper Phase 1 =U.S.A= [Keven Eshbach, Dumping Union]
+Cube Quest (12/30/83) [Bill K]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+King Tut (Australia) [David Haywood]
+Money Bank (Australia) [David Haywood]
+Penguin Adventure (bootleg) [Mariusz Wojcieszek]
+Quarter Horse Classic [Siftware, Mariusz Wojcieszek]
+Pinkiri 8 [Gyrovision, Smitdogg, The Dumping Union]
+Poker Ladies (Censored bootleg) [David Haywood]
+Gundam Wing: Endless Duel (SNES bootleg) 
+   [N. Francfort, manliodp, Smitdogg, The Dumping Union]
+Mortal Kombat 3 (bootleg of Megadrive version) 
+   [Patrick McCarron, Smitdogg, The Dumping Union]

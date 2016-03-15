@@ -1,0 +1,176 @@
+0.145u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04741: [Sound] xmen: Instruments in the music are playing back at
+         the wrong volume (hap)
+- 02675: [Sound] rdft, rdft2: Music used in the boss levels of Raiden
+         Fighters and Raiden Fighters 2 play (Mssion 1-3, 2-3) slower
+	 than the original. (Sonikos)
+- 04734: [Crash/Freeze] tylz: Crash after OK (Pugsy)
+- 04743: [Crash/Freeze] pzloop2jr1: Black Screen (Tafoid)
+- 04735: [Crash/Freeze] breywood, shackled: Black screen (stephh)
+- 04737: [Original Reference] ckong: correct manufacturer found for
+         Crazy Kong (Falcon?)
+
+Source Changes
+--------------
+Change DirectInput joystick acquisition method to be non exclusive.
+[bdam]
+
+toaplan2.c: Correct the video (character layer) offset for 1945 Part-2
+(Chinese hack of Battle Garegga) [Dave Haywood]
+
+dc: Fix the maple hookup and controllers and add the missing maple irq
+[O. Galibert]
+
+galaxia.c: Improved colors and hooked up cvs stars circuit. [hap]
+
+Hooked up TMS9928 and PIA devices to Baby Pac-Man video CPU, gives
+some gfx if you press the service switch [Angelo Salese]
+
+pgm.c: Continued refactoring of the protections, including improved
+notes.  Moved some code into the states and split states by protection
+type.  [David Haywood]
+
+Set the correct cpu in mpu5.c driver and split a few alternate
+revisions into clone sets.  [David Haywood]
+
+Decrypted the rest of the gambling sets in igs_m027.c.  No further
+advancements in visible emulation to report, though.  [iq132]
+
+Redumped sound roms in funcube2 and funcube3 [Guru, Yasuhiro Ogawa]
+
+Improved irqs in Little Robin, and added preliminary sound to it
+[Angelo Salese]
+
+model2.c: Added the I/O Controller rom (Z80 based) for Rail Chase 2
+[Brian Troha, The Dumping Union]
+
+Converted gamtor.c to use VGA device (doesn't work though due of a
+weird banking problem) [Angelo Salese]
+
+m68k: add preliminary on-board peripherals to 68307 and 68340
+[David Haywood]
+
+SDL: Fix formatting of chdman man page [wallyweek]
+
+Allow compilation with compatible system-installed versions of libjpeg
+and libflac [wallyweek, R. Belmont]
+
+Solved the remaining issues with Raiden 2's sprite decryption.
+[Andreas Naive]
+
+Major driver modernization changes [Miodrag Milanovic]
+- Added 4th parameter to all address maps
+- Added missing state classes
+- Removed ADDRESS_MAP_MODERN define
+
+rastan.c: Add dipswitch locations to the Rastan sets. [Brian Troha]
+
+namcos21.c: Added Namco game prefix to the Winning Run 91 set. Added
+minor documentation about the System21B two board stack. [Brian Troha]
+
+nmk16.c: Fixes some issues and cleaned up the video sources a bit
+[trap15]
+
+Fixed ymf271.c core timer allowing for greater accuracy. [Sonikos]
+
+BFM Scorpion 4 Hardware:  [David Haywood]
+ * General update which fleshes out some of the 68307 code (not 100%
+    correct hookups, just improved logging and enough to get us
+    somewhere).
+ * Added various devices to the SC4 emulation, added a default layout
+    showing the VFD, to which most of the earlier games will now write
+    'Initializing'.  Timers and other devices still need to be
+    implemented properly before they actually initialize.
+ * Put the actual SC4 hardware emulation in drivers/bfm_sc4h.c so that
+    it doesn't get lost in the swamp of sets (scrolling through a file
+    is quite hard when it's almost entirely set definitions)
+
+mirax, miraxa (mirax.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+
+Implemented flip screen support to Mirax [Angelo Salese]
+
+galdrvr.c: Added preliminary protection emulation to Monster Zero.
+[hap]
+
+Moved all drivers to using the paletteram helpers defined in the
+driver_device base class. The palette base is now specified via an
+AM_SHARE of "paletteram" or "paletteram2". The driver_device base
+class now finds these pointers and places them in
+m_generic_paletteram_8/_16/_32 and m_generic_paletteram2_8/_16/_32.
+[Aaron Giles]
+
+Removed machine.generic.paletteram*, and machine.generic entirely.
+Removed AM_BASE_GENERIC/AM_SIZE_GENERIC as they don't apply anymore.
+[Aaron Giles]
+
+Changed required_/optional_shared_ptr to support set_target with base
+and size for manually configuring a shared pointer, and a new allocate
+method for dynamically allocating (and registering the memory for save
+states). [Aaron Giles]
+
+Converted memory_private to memory_manager and moved global memory
+operations into methods on it. Converted the less-popular cases over
+in drivers that used them, leaving the bank management APIs global for
+now. [Aaron Giles]
+
+Add logic to ensure that shared pointers are checked to be of the
+right width. The primary upshot is that if you declare
+AM_SHARE("paletteram") in an 8-bit memory map, then only
+m_generic_paletteram_8 will be populated, and m_generic_paletteram_16
+will be NULL. But it applies to all required_/optional_shared_ptrs
+declared, so make sure they are of the right type. [Aaron Giles]
+
+Added code to cdrom.c to compute and verify ECC codes for mode 1/2
+sectors. [David Haywood]
+
+Added CD compressor template which separates subcode data from sector
+data, removes redundant ECC data prior to compression, and uses
+separate compressors for each part. Defined LZMA and ZLib CD
+compressors based on this and made them the default for CDs.
+[Aaron Giles]
+
+Redumped sprites rom of lhzb2 [Guru]
+
+Decrypted sprites in lhzb. Decrypted tiles and palette in lhzb2 and
+slqz2. Added inputs and memory maps in these games, pending protection
+simulation [Luca Elia]
+
+Move driver list/enumerator to new file drivenum.c/.h. Move
+game_driver definition and constants to new header gamedrv.h. [Aaron
+Giles]
+
+wldarrow.c: Added service inputs, allowing battery RAM to be
+initialized in test mode, making the games close to playable. [hap]
+
+namcos10: Fix banking for Mr. Driller 2, first stab at the encryption
+[O. Galibert]
+
+misc sc4/68307 updates + prelim peripheral hookups, allows most sc4
+sets to run their sound rom checks [David Haywood]
+
+rastan.c: Cleaned up Parent/Child order. Corrected ROM names and added
+additional information / notes. [Brian Troha]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fun River [Sara S.]
+unknown Japanese horse gambling game (preliminary) [hap, Paul Swan]
+
+
+New clones added
+----------------
+Rastan (US) [Stefan Lindberg]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Quiz Show [hap, Siftware]
+Dragon World Pretty Chance [Smitdogg, Tjeerd Carter]

@@ -1,0 +1,115 @@
+0.37 BETA 2
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Accurate sprite drawing in MCR 1 & 2 games (see Satan's Hollow) [Aaron Giles]
+
+- Fixed sprite / tile priority in Mad Gear and Garyo Retsuden. [Bryan McPhail]
+
+- Fixed rowscroll in Ghostbusters. [Bryan McPhail]
+
+- Correct colors in Lasso. [Phil Stroffolino]
+
+- Fixed colors in Reactor. [Fabrice Frances]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed adpcm decoding in the K053260, this improves several Konami games.
+  [Ernesto Corvi]
+
+- Sound in Demon. [Zsolt Vasvari]
+
+- Samples in Warrior. [Mathis Rosenhauer]
+
+- Sound in Lasso. [Phil Stroffolino]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed Gang Wars original version, Super Baseball, Battlefield,
+  Time Solders rev 1. [Bryan McPhail]
+
+
+Changes to the main program:
+----------------------------
+
+- Massive rewrite of the cheat system user interface. This is still a work
+  in progress. [Brad Oliver]
+
+- First pass for multi language support with external translation files.
+  [Brad Oliver]
+
+- Extended the internal font to support characters 128-255 (ISO Latin-1).
+  [Juergen Buchmueller]
+
+- Fixed Hu6280 emulation bugs which caused missing levels in Trio the Punch.
+  [Bryan McPhail]
+
+
+Source:
+-------
+
+- Replaced instances of "if (errorlog) fprintf(errorlog," with a call to the
+  new function logerror().
+
+- New filetypes that must be supported by the OS dependant code:
+  FILETYPE_HIGHSCORE_DB
+  FILETYPE_HISTORY
+  FILETYPE_CHEAT
+  FILETYPE_LANGUAGE
+
+  new functions:
+  osd_readkey_unicode
+  osd_fgetc
+  osd_ungetc
+  osd_fgets
+  osd_feof
+  osd_ftell
+
+  new filed in struct Gameoptions: language_file. The OS dependant code must
+  initialize it if it wants to use a translation file.
+  [Brad Oliver]
+
+- I added a new parameter to the end of the EEPROM interface to enable multiple
+  reads to occur after a single read command. Added an EEPROM_set_data()
+  routine that can be used to explicitly initialize the contents of the EEPROM
+  if the NVRAM file isn't found. [Aaron Giles]
+
+
+New games supported:
+--------------------
+
+Pipe Dreams [Bryan McPhail, Aaron Giles]
+Tail to Nose [Nicola Salmoria]
+Poly-Play [Martin Buchholz]
+Kyros [Bryan McPhail]
+Super Stingray [Bryan McPhail]
+Battle Rangers / Bloody Wolf [Bryan McPhail]
+Dangun Feveron [Luca Elia]
+Esprade [Luca Elia]
+Uo Poko [Luca Elia]
+Insector (prototype) [Fabrice Frances]
+Screw Loose (prototype) [Fabrice Frances]
+Mermaid [Zsolt Vasvari]
+
+
+New clones supported:
+---------------------
+
+Psycho-Nics Oscar (2 Japanese sets)
+Astro Blaster (version 3)
+Grind Stormer (= V-Five)
+Sheriff (= Bandido)
+Super Burger Time (World)
+Vapor Trail (World)
+In The Hunt (US)
+Space Chaser (CV)
+Space Attack (older)
+800 Fathoms (= Mariner)
+Spinal Breakers (US)
+Bosconian (older)
+Juno First (Gottlieb)

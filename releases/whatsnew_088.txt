@@ -1,0 +1,622 @@
+0.88 (includes 0.87u5 whatsnew.txt details)
+
+General Improvements
+--------------------
+
+Emulation of Sega FD1094 encrypted 68k CPUs, this will allow for significant progress
+in the emulation of the remaining encrypted Sega games.  Note that we require working
+CPUs to extract encryption data from in order to emulate the encrypted titles, see
+http://cgfm2.emuviews.com/ for more details.  As a result of this code several of the
+encrypted games will now boot (astorm, ddcrew, wb3a, wb3b, tetris, ddux, sonicbom etc.)
+	[Charles MacDonald - extracting data from CPUs,
+	  Nicola Salmoria - decryption code]
+
+Misc fixes from Mame32Plus
+	ay.diff: add save state support for AY8910 and friends
+	crbaloon.diff: add music support
+	darius.diff: adjust FM/ADPCM balance
+	f3.diff: fix landmakr sound loading
+	harddriv.diff: fix undersized array causing memory trashing
+	mario.diff: added save state support
+	qsound.diff: added save state support
+	renegade.diff: fixed missing break; in MCU simulation
+	s16.diff: adjust FM/ADPCM balance
+	scsp.diff: fixed undersized array causing stack trashing
+	ssv.diff: fixed hypreac2 sound loading
+
+i960 and model 2 update [R.Belmont, ElSemi]
+	i960:
+	- Fixed bug in movl (ElSemi)
+
+	model2:
+	- Removed hotd and lastbrnx hacks, the i960 fix
+	obsoletes them
+	- Added port 0 switching, player 2 start works in
+	several games now (ElSemi)
+	- Added working timer support, including timer IRQs
+	- Updated game status listing
+
+Fixed some c99 related compiler issues [Jeff Mitchell, Lawrence Gold]
+
+update to ppmast93 driver, still not playable [David Haywood]
+
+Discrete sound changes [Derrick Renaud]
+
+	Discrete Sound Changes
+	======================
+	* Continued cleanup of code to make it more readable
+
+	New Discrete Modules Added
+	==========================
+	* DISCRETE_NOTE - counter circuit used to create tones/music.
+	* DISCRETE_INTEGRATE - various op amp integration (ramp) circuits.
+	* DISCRETE_OP_AMP_TRIG_VCA - Did not know what to call this. :-)  Basically it
+	is a programable voltage controlled amp.  But uses only an on/off trigger.  It
+	has resistors to select the rise/fall times.  Also it is not a true VCA.  It
+	actually adjusts amplitude by clipping more/less off the bottom of the input
+	signal.  But it is a common circuit.
+	
+	Game Driver Changes
+	===================
+	* polaris - complete sound rewrite to use new component value code.  Hooked up
+	watchdog timer.
+
+New watchdog functionality [Derrick Renaud]
+
+	Game Driver Changes
+	===================
+	* dominos, sprint1, sprint2, dragrace, canyon, nitedrvr - added watchdog and
+	set to proper time using new MDRV_WATCHDOG_VBLANK_INIT function.
+	* firetrk, montecar, superbug, pacman, polaris - changed watchdog to proper
+	time using new MDRV_WATCHDOG_VBLANK_INIT function.
+	* galpania, galpanib - changed to MDRV_WATCHDOG_VBLANK_INIT because these
+	games need watchdog init at game start.
+	
+	Core Changes
+	============
+	Changed watchdog to allow it to start at machine run start.  If not used, the
+	previous watchdog functionality is retained.  Only define 1 of the 2 watchdogs
+	per game.  If both are defined then  MDRV_WATCHDOG_VBLANK_INIT will be used
+	only.
+	
+	* MDRV_WATCHDOG_VBLANK_INIT(watch_count)- Initializes the watchdog in
+	MACHINE_DRIVER_.  watch_count is the # of vertical blanking intervals before a
+	forced reset.  If the time is unkown then you can use these defaults:
+	DEFAULT_60HZ_3S_VBLANK_WATCHDOG or DEFAULT_30HZ_3S_VBLANK_WATCHDOG
+	
+	* MDRV_WATCHDOG_TIME_INIT(time)- Initializes the watchdog in MACHINE_DRIVER_.
+	time is the time in seconds before a forced reset.
+	
+	New function to enable/disable the watchdog in game.
+	watchdog_enable(0 or 1) - used to 0=disable or !0=enable.
+	
+	Made a macro that calculates the pulse time of a 74LS122 or LS123.
+	TIME_OF_74LS123(r,c)
+	r is in Ohms.  c is in Farads.
+	c must be greater then 1000pF to use this function
+	
+
+Added runtime option to disable validity checks [Derrick Renaud]
+
+	Added run time option:
+	-[no]skip_validitychecks
+	    Forces MAME to skip doing the code validity checks. The default is
+	    OFF (-noskip_validitychecks).
+	This new option will default to doing the test and force you to confirm you
+	do not want to use it.  This way users can test their submissions easily and
+	then speed things up when confirmed ok.
+	
+	NOTE: DO NOT disable the checks when submitting code
+
+Fixed voodoo code broken by cleanup in u3 [Aaron Giles]
+
+Fixed qdrmfgp broken by cleanup in u3 [Olivier Galibert]
+
+Fixed cut and paste error in chdman [René Single]
+
+Fixed mayday inputs [Stefan Jokisch]
+
+Fixed Puzzle Club dips [Brian Troha]
+
+Input Port System Update [Aaron Giles]
+	PORT_INCLUDE() works the same as before.
+
+	PORT_MODIFY("tag") allows you to modify any given input port by specifying 
+	its tag.
+
+	Any PORT_BIT() entries that you put after a PORT_MODIFY will nuke any 
+	matching entries in the previous definition, allowing you to overwrite them 
+	with new stuff.
+	
+	I also added a few new functions:
+	
+	readinputportbytag_safe() takes a tag and a default value. If the tag is not 
+	found, the default value is returned.
+	
+	port_tag_to_handler8()
+	port_tag_to_handler16()
+	port_tag_to_handler32() -- these 3 new functions take a tag string, find the 
+	input port, and return the appropriate handler. They can be used in AM_READ, 
+	so instead of:
+	
+	  AM_RANGE(0x00, 0x00) AM_READ(input_port_1_r)
+	
+	You can use
+	
+	  AM_RANGE(0x00, 0x00) AM_READ(port_tag_to_handler8("MyPortName"))
+
+	I've modified exidy.c to use these features as a testbed. Let me know if you 
+	see any problems.
+
+Memory system changes / fixes [Aaron Giles]
+	* added explicit casting to the memory handler width when computing the 
+	shifted data/mask values for read/write handlers -- this should in theory 
+	fix R. Belmont's 64-bit issues
+
+	* added memory_install_read/write8/16/32/64_matchmask_handler functions to 
+	allow dynamic installation of match/mask (AM_SPACE-style) memory ranges --  
+	this should satisfy Frank P's request for the astrocade driver
+	
+	* changed masking behavior for match/mask pairs so that an AM_SPACE with an 
+	AM_MASK does not expand the explicitly-specified mask value -- this should 
+	fix dwidel's problem getting Pac-Man accurate
+	
+	* changed dynamic bank assignment to always assign a bank if you have 
+	explicitly specified a mask value via AM_MASK -- this should allow mirroring 
+	via AM_MASK if you want to, though AM_MIRROR is still preferred
+	
+Fixed OKI banking in Fixeight bootleg [Quench]
+
+More changes [Derrick Renaud]
+
+	Game Driver Changes
+	===================
+	* firetrk, montecar - added proper CPU clock frequency change when going
+	in/out of service mode.
+	
+	Core Changes
+	============
+	Fixed some last remaining issues with the new watchdog.  The watchdog would
+	not remain disabled after a watchdog_enable(0) in some conditions.
+
+	Added a new function to change CPU clock speed in game.  The current scaling
+	factor will still apply.  eg. If you force the CPU to change clock to 1MHz
+	while the scaling is at 50%, the effective CPU speed will be 500kHz.  Then
+	reading the clock speed will give 1MHz, because clock scaling is transparent
+	to the driver.
+
+	/* Returns the current CPU's actual unscaled running clock speed */
+	int cpunum_get_clock(int cpunum);
+
+	/* Sets the current CPU's clock speed and then adjusts for scaling */
+	void cpunum_set_clock(int cpunum, int clock);
+
+Fixed some problems in Steel Force [Pierpaolo Prazzoli]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+F1 Grand Prix Star II [Brian Troha]
+	roms redumped
+
+Sonic Boom [Charles MacDonald, Nicola Salmoria]
+
+Mighty Warriors [Pierpaolo Prazzoli]
+	some sprite problems
+
+Twins [David Haywood]
+	missing eeprom
+
+Greyhound Selection [Pierpaolo Prazzoli]
+
+BMC Bowling [Tomasz Slanina]
+	missing music, some wrong gfx
+
+Field Combat [Tomasz Slanina]
+	bad sprite colours
+	
+Gallop Racer 3 [smf]
+	sound problems
+	
+Tank 8 [Stefan Jokisch]
+	
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Tetris (Sega) (2 encrypted sets) [Charles MacDonald, Nicola Salmoria]
+
+Wonderboy 3 (2 encrypted sets) [Charles MacDonald, Nicola Salmoria]
+
+Greyhound trivia (alt questions) [Pierpaolo Prazzoli]
+
+Astro Blaster (version 2a) [Mash]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+D.D. Crew [Charles MacDonald, Nicola Salmoria]
+	some issues with system18 emulation
+
+Dynamite Dux (original) [Charles MacDonald, Nicola Salmoria]
+	some issues with system16 emulation
+	
+BC Story (set 2) [David Haywood]
+	more protection issues?
+	
+Super GX [Mash]
+	bad rom
+	
+Skelagon [Mash]
+	bad rom
+
+Virtua Formula
+	same issues as VR
+
+
+
+0.87u4
+
+General Improvements
+--------------------
+
+Fixed bugs introduced in u3 causing Atari / Midway drivers to crash [Olivier Galibert]
+
+Changed where source filename based config files are stored to avoid conflicts with
+set name configs [René Single]
+
+Changes the static function implementations in memory.h to inline [Brad Oliver]
+
+Improvements to Hyper Neogeo 64 rendering, 3d graphics can now be seen although
+emulation is still incomplete and Fatal Fury WA still needs a hack to boot
+	[Andrew Gardner, Rasterizing code provided in part by Andrew Zaferakis]
+	
+Code to decrypt FD1094 CPU 317-0092 in states 0x00-0xff (0x00 is reset, 0x10 is IRQ)
+this is the CPU used by tetris, code is not hooked up yet [Nicola Salmoria]
+
+Changed instr86.c based on comment below:
+In the cpu/i86 code emulating the CMPSW instruction there is what seems to
+be a cut+paste bug: It calls the SUBB() macro where it should call SUBW().
+Line 524 of instr86.c.
+	[Juergen Buchmueller]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Puzzle Club (Yun Sung) [Pierpaolo Prazzoli]
+Pop Bingo [David Haywood]
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Explosive Breaker (parent of bakubrkr) [David Haywood]
+Street Fighter 2 EX (USA) [Brian Troha]
+Top Racer (bootleg, set 2) [Pierpaolo Prazzoli]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Funny Strip [David Haywood]
+	unemulated protection?
+	
+Ping Pong Masters '93
+Twin Brats
+Twins
+Mighty Warriors
+	these four drivers are still being worked on
+
+0.87u3
+
+General Improvements
+--------------------
+
+Exidy Games update [Aaron Giles]
+	This update is mainly a bunch of cleanup on the classic Exidy drivers. The 
+	memory maps are merged now, and I've gone through and removed a bunch of RAM 
+	that wasn't actually present on the real boards. I also fixed up the input 
+	ports on several of the bootlegs.
+
+Cinematronics Vector driver update [Aaron Giles]
+	* completely rewrote the CCPU core to be much simpler and follow MAME 
+	semantics
+	* rewrote the CCPU disassembler to use the "official" syntax
+	* added newly dug-up prototype game QB-3
+	* now require the CCPU PROMs for all the games
+	* added sound to Barrier, Star Hawk, War of the Worlds, and Boxing Bugs 
+	(note that samples don't exist yet, but I'm working with Zonn Moore to get 
+	them for everything except Barrier)
+	* rewrote sound routines for all the games based on schematics and Zonn's 
+	documentation
+	* fixed sound in Demon (was seriously wrong)
+	* changed sound handling in Solar Quest to play the music by looping a 
+	square wave instead of using canned samples
+	* added 64-level support for Solar Quest
+	* added proper color support for Boxing Bugs and War of the Worlds
+	* added star twinkle effects (not really visible without my future update to 
+	vector.c)
+	* made wotw the black & white hardware which was commonly seen as a Star 
+	Castle upgrade
+	* added wotwc as the color hardware version (same ROMs)
+	* cleaned up and fixed input ports for all the games
+
+Namco IC update [Phil Stroffolino]
+	Fixes to the advanced ROZ chip used by System FL, Namco NB2, and some Namco System 2
+	games.  Huge improvements to Mach Breakers, and game specific ROZ hacks have been removed.
+
+	Fixes for the ROZ system used in older System2 games; in particular Dragon Blade glitches
+	are no more.
+
+	Abstraction for the tilemap system used in many Namco titles.
+
+	Merged memory maps.
+
+	The ROZ fixes unfortunately use a handful of custom code, to work around limitations of
+	tilemap.c's roz support.  I'll improve tilemap.c when I get a chance.
+
+Improvements to jalmah.c [Angelo Salese]
+
+Improvements to sound in recalh and intcup94 [David Haywood]
+
+Massive compiler warnings cleanup for gcc 3.4.2 [Olivier Galibert]
+
+Added some hooks to C 68k core in preparation for Sega decryption updates [Olivier Galibert]
+
+Hooked up GNET bios roms so boot screen shows [smf]
+
+Improvement to (se)xfiles driver, now shows some startup screens [Tomasz Slanina]
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+QB-3 (prototype) [Aaron Giles]
+	some gfx problems
+Space Raiders [Frank Palazzolo]
+	some gfx problems, things need verifying against board
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+War of the Worlds (color) [Aaron Giles]
+Operation Thunderbolt (US, older) [Fabrice Arzeno] 
+Killer Instinct (proto v4.7) [Aaron Giles]
+Killer Instinct 2 (v1.0) [Aaron Giles]
+Farmer Rebelion (clone of ikki) [Pierpaolo Prazzoli]
+Atlant Olimpic (bootleg of trackfld) [Pierpaolo Prazzoli]
+Ginga NinkyouDen (set 2) [Mash]
+'99: The Last War (Kyugo) [Mash]
+Tron (set 3) and (set 4) [Mash]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Oriental Legend Super
+	unemulated protection
+Killer Instinct 2 (v1.4k, upgrade kit) [Aaron Giles]
+Beat the Champ [R.Belmont]
+	SCSI / CD-ROM emulation problems
+
+
+
+0.87u2
+
+i960 updates [R.Belmont]
+	- Added spanbit
+	- Fixed error noted by ElSemi in spanbit and scanbit
+	- Added non-queued interrupts to support games with
+	the interrupt table in ROM (this fixes the colors and
+	hanging in Sky Target, and Pilot Kids will need it
+	too)
+	- Added the ability for read/write handlers to declare
+	themselves "noburst", for memory regions which don't
+	auto-increment the address on i960 bulk transfers
+	- General cleanup of the interrupt handling to remove
+	duplicated code.  There should be no functional
+	difference
+
+model2 updates [R.Belmont]
+	- Properly mapped 'unplaced' ROMs for Daytona and
+	Desert Tank
+	- Added calls to i960 noburst support for the timer
+	and interrupt control registers
+	- Updated game status with latest knowledge
+	- Noted that Last Bronx boots now
+	- VF2 reparent: 2.1 is parent, ver. B and original are
+	children
+	- SHA1s for lastbexp, doa, and pltkids
+	- Removed unnecessary code patch from DOA
+	- Added Martin Marietta co-credit for Desert Tank
+	- Added EPL Productions co-credit for Behind Enemy
+	Lines
+	- "Sonic Championship" renamed to "Sonic The Fighters"
+	- Virtual On is "Cyber Troopers" (two words) on the
+	title screen, not "Cybertroopers"
+	- Zero Gunner changed from (Jap) to (Japan)
+	- Mapped framebuffer RAM (used by Last Bronx)
+	- Fixed non-32 bit writes to the interrupt registers
+	- Fixed serial hardware mapping
+	- Temporary hack to keep HOTD from freezing until I
+	properly implement the timers
+	- Split the 2O/2A/2B/2C drivers better.  von now
+	prints "MODEL 2BCRX" correctly
+	- Hack to make Last Bronx run while I track down an
+	i960 core bug that's haunting it
+	- Patch from ElSemi for Zero Gunner crashing
+	- Patched Daytona busywait for the TGPs (not sure how
+	it worked without this before)
+	- Fixed 68000 ROM load for skytargt
+	- Fixed thinko in the interrupt register handling
+	(still no help for Last Bronx, but the wrong way was
+	definitely hurting it worse)
+	- Fixed issue on big-endian machines
+	- Added framework so the DSP program uploads are now
+	handled correctly
+	
+C352 Pitch adjustment [R.Belmont, Cap]
+
+Analog Port Fixes [Derrick Renaud]
+	downtown - Both analog controls were set to player 1.
+	eterm - Crashed, due to inc/dec buttons not being defined for the analog
+	ports.
+	
+Now loading sync prom in Atari Soccer [Stefan Jokisch]
+
+Added eeprom and flipscreen to the games in vamphalf driver [Pierpaolo Prazzoli]
+
+Improved sound in Hard Head / Popper [Pierpaolo Prazzoli, Corrado Tomaselli]
+
+Misc updates [Nathan Woods]
+	src/mame.c:
+	    - Created a MAME_VALIDITYCHECKS macro that when defined, can specify 
+	whether validity checks should be run.  If undefined, it defaults to 
+	running the validity checks.  This will facilitate turning off validity 
+	checks in MAME derivative projects.
+	
+	Please DO NOT turn these off if you are making changes to the Mame
+	source, any changes which fail the validity checks will be rejected.
+
+	src/windows/fronthlp.c:
+	    - Changed the stat() call to use Win32 equivalents.
+	    
+Fixed some Compiler Warnings [Lawrence Gold]
+
+Improvements to SPI sprite decryption in rf2_2k [Ville Linde]
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Fix Eight (bootleg) [Tomasz Slanina]
+	turn on invunerability dipswitch to see an intro!
+Title Fight [David Haywood]
+Raiders [Mash]
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Sega Space Attack (set 3) [Mash]
+Pengo (set 4) [Mash]
+Eagle (set 3) [chaneman]
+Crazy climber 2 (Japan Harder) [chaneman]
+Nibbler (Olympia) [Costa Sgantzos]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Mazer Blazer (set 2) [chaneman]
+Zero Team (set 2)
+Dark Edge (World)
+Farmer Rebelion (clone of ikki) [Pierpaolo Prazzoli]
+	maybe a rom is bad?
+Dynamite Deka 2 (clone of Dynamite cop) [Chris Hardy]
+
+
+0.87u1
+
+General Improvements
+--------------------
+
+Minor Compiler fixes [Brad Oliver]
+
+Removed options.color_depth (obsolete anyway) [Brad Oliver]
+
+Compiler Fixes for VC [Bryan McPhail]
+	src\drivers\suprgolf.c		- C99 fix
+	src\cpu\m37710\m37710op.h	- Fixed warnings under VC
+	src\cpu\powerpc\ppc.c		- Fixed warnings under VC
+	src\cpu\powerpc\ppc403.c	- Fixed warnings under VC
+
+Added default eeprom to Recalhorn to prevent crash [Bryan McPhail]
+
+Fixed Mametesters bug sotsugyo069u3gre [Bryan McPhail].
+	sotsugyo: On the result screen (the one that appears when finishing a stage
+	i.e after the first two trials), zeroes don't appear at all.
+
+Modified tilemap.c so roz and RGB_DIRECT can be used together [Andrew Gardner]
+
+Fixed I/O addresses in Hyperstone and so removed the hack from vamphalf
+driver [Pierpaolo Prazzoli]
+
+Yumefuda update (eeprom etc.) [Gondos, Pierpaolo Prazzoli]
+
+fixed some gfx in tmmjprd [Pierpaolo Prazzoli]
+
+i960 updates [R.Belmont]
+	- Added support for the following opcodes: nor, addc,
+	subc, atanr, sinr, cosr, tanr, atanrl, logrl, sinrl,
+	cosrl, and tanrl.
+	- Added those and some others to the disassembler.
+	- Added parens for the compiler warning.
+	- Fixed stt to only store 3 words instead of 4.
+	- Added logepr and cvtri.
+	- Fixed cmpr and cmprl - they were comparing garbage
+	instead of the correct registers.
+	- Added disassembly for movrl.
+	- Added scanbit.
+	- Rewrote flushreg, it was *totally* wrong before. 
+	HOTD now runs, among others.
+	- Added hack to divo so divide by zero doesn't crash
+	MAME (some games read back 0 from the not-yet-existing
+	DSP and do this).
+	- More disassembler improvements.
+	- Added NAND, EDIV, SCALER, SCALERL, ROUNDR, ROUNDRL,
+	EXPRL, MOVRE, and CPYSRE opcodes.
+	- Fixed some errors in interrupt handling.  Solves
+	corrupt graphics in fvipers and crashes in fvipers,
+	schamp, and dynamcop.
+	- Added REMR opcode.
+
+SegaIC24 update [R.Belmont]
+	Add 32-bit access methods for char and tile RAM.
+
+Grand Champion sound fix [Justin Szczap]
+
+INP changes [Barry Rodewald]
+	Basically, reading/writing analog port data every single time
+	interpolate_analog_port() isn't a good idea, especially since it's called
+	every time readinputport() is.  I've just moved the analogue port
+	reading/writing into the for loop, so analogue ports are only read/written
+	if the port is actually is analogue. 
+
+Dynagears dip fix [Derrick Renaud]
+
+ZN1/ZN2 big endian fix [smf]
+
+SPI decryption improvements (for rf2_2k) [Ville Linde]
+
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Painted Lady (Splash) (Ver 1.3 US) [Manuel Abadia]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Tatsumi Driver [Bryan McPhail]
+	playable to a degree, but not really working properly
+
+	Apache 3
+	Round Up 5
+	Cycle Warriors
+
+	Incredibly complex hardware!  These are all different boards, but share
+	a similar sprite chip (TZB215 on Apache 3, TZB315 on others).  Other
+	graphics (road, sky, bg/fg layers) all differ between games.
+
+	Todo:
+		Sprite rotation
+		Finish road layer (Round Up 5)
+		Implement road layer (Apache 3, Cycle Warriors)
+		BG layer(s) (Cycle Warriors)
+		BG layer (Round Up 5) - May be driven by missing VRAM data
+		Round Up 5 always boots with a coin inserted
+		Round Up 5 doesn't survive a reset
+		Dip switches
+		Various other things..
+
+Sega Model 2 Driver [R.Belmont]
+	(see model2.c for list of games)
+	Tilemaps, sound, and inputs working to varying degrees
+	in various games.  Most of the games at least start
+	up, although some don't and some crash.

@@ -1,0 +1,188 @@
+0.53
+
+We have abandoned the "beta" numbering scheme, which was becoming pointless.
+The current version is 0.53 because 0.36 (the last "non-beta" release) + .16
+(the number of "beta" releases since then) = 0.52.
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed background in Bioship Paladin. [Nicola Salmoria]
+
+- Fixed some issues in Taito B system games. [Nicola Salmoria]
+
+- Real shadows in some Konami games (88 Games, Chequered Flag, X-Men, Asterix,
+  Surprise Attack, Sunset Riders, etc.). [Nicola Salmoria]
+
+- Real shadows in some SNK games (Ikari Warriors, Victory Road, etc.).
+  [David Haywood]
+
+- Real shadows in Cisco Heat and F1 Grand Prix Star. [Luca Elia]
+
+- Fixed some protection related issues in Sunset Riders. [Nicola Salmoria]
+
+- Fixed colors in Major Title 2. [Nicola Salmoria]
+
+- Fixed colors in Berlin Wall. [Nicola Salmoria]
+
+- Fixed radar display in Aztarac. [Mathis Rosenhauer]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Decrypted the sound CPU in Gunforce, Blade Master, Lethal Thunder, Undercover
+  Cops, Mystic Riders, Major Title 2, Hook, R-Type Leo, In the Hunt, and
+  Perfect Soldiers. [Bryan McPhail, Nicola Salmoria]
+
+- Fixed a EX550x bug that caused Taito F3 and Incredible Tech games to sound
+  bad. [Aaron Giles]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed the remaining issues in Slapstic emulation.
+  - Pit Fighter works to the end
+  - Rampart works to the end
+  - Tetris now uses the slapstic code
+  [Aaron Giles]
+
+- Fixed the protection in the original Robocop. [Bryan McPhail]
+
+- Decrypted the original Popeye. [Nicola Salmoria]
+
+- Fixed Free Play mode in Galaga. [Scott Brasington]
+
+- Added support for the target data extracted from the laserdisc to MACH 3.
+  [Fabrice Frances]
+
+
+Changes to the main program:
+----------------------------
+
+- The Windows port is now called "MAME" (instead of "MAMEW"). The DOS port is
+  called "DMAME".
+
+- [Windows] CLI improvements:
+  * config option for steadykey (default: OFF)
+  * parse debug.ini in debug builds
+  * mamew \anywhere\roms\pacman.zip works
+  * improved -log option
+  * mame will now parse argv[0].ini instead of mame.ini.
+    i.e. if the mame executable is called "m37b17.exe" it will
+    parse m37b17.ini instead of mame.ini
+  [Paul Priest, Bernd Wiebelt]
+
+- [DOS] Support for C64/Atari/Sinclair joysticks connected via DB9 or
+  Turbografix interface. [Aley Keprt]
+
+
+Source:
+-------
+
+- Big changes to the palette system. 8-bit modes are no longer supported, only
+  16-bit ones are used. 8-bit support may be removed from the OS dependant
+  code; the core will never ask for an 8-bit deep screen. 8-bit bitmaps could
+  still be used though.
+
+- Palette compression has been removed. palette_recalc(), palette_transparent_pen
+  and palette_used_colors[] are not available anymore. Drivers that relied on
+  PALETTE_COLOR_TRANSPARENT for transparency effects must be rewritten to
+  implement them differently. As a result of this, all games using the Taito
+  TC0480SCP video chip, and all Taito F3 games, are broken in this release.
+
+- tilemap_update() is gone. Everything is handled by tilemap_draw().
+
+- IMPORTANT CHANGE FOR PORTERS: the OS dependant code is now required to
+  guarantee, in 16-bit palettized mode, that Machine->pens[i] == i. The "pens"
+  argument to osd_allocate_colors() will be NULL, actually it has been renamed
+  "rgb_components" since direct RGB modes are the only ones that will pass that
+  argument.
+
+- Remove VIDEO_MODIFIES_PALETTE and the "modifiable" parameter from
+  osd_allocate_colors().
+
+- New flags VIDEO_HAS_SHADOWS and VIDEO_HAS_HIGHLIGHTS that automatically extend
+  the palette creating a darker(brighter copy for shadows handling.
+  palette_set_shadow_factor() and palette_set_highlight_factor() allow to
+  control the adjustment to apply (shadow can be > 1.0, making it an highlight,
+  and highlight can be < 1.0 making it a shadow - the names are just conventional).
+  [Nicola Salmoria]
+
+- New function palette_set_brightness(), allowing selective control of palette
+  brightness independently of the palette RAM contents. [Nicola Salmoria]
+
+- MachineDriver.color_table_len can now be 0, meaning that the colortable is a
+  1:1 mapping from the palette. Note that you CANNOT use this feature if you use
+  TRANSPARENCY_COLOR; but of course, if you need TRANSPARENCY_COLOR you'll not
+  have a 1:1 colortable.
+
+- New function tilemap_draw_roz(). [Phil Stroffolino]
+
+- New function auto_malloc(); this is the same as malloc(), but the memory is
+  automatically freed when the driver exits. [Aaron Giles]
+
+- osd_bitmap.line is now a void ** to prevent confusion.
+
+
+New games supported:
+--------------------
+
+Mazinger Z [Luca Elia, Nicola Salmoria]
+Pretty Soldier Sailor Moon [Luca Elia, Nicola Salmoria]
+Sokonuke Taisen Game [Luca Elia]
+Mahjong Doukyuusei [Luca Elia]
+Mahjong Doukyuusei Special [Luca Elia]
+Big Run [Luca Elia]
+Magical Crystals [Luca Elia]
+Sand Scorpion [Luca Elia]
+Continental Circus [David Graves]
+Chase HQ [David Graves]
+Battle Shark [David Graves]
+Special Criminal Investigation [David Graves]
+Night Striker [David Graves]
+Aqua Jack [David Graves]
+Double Axle [David Graves]
+World Grand Prix 2 [David Graves]
+Super Real Mahjong Part 3 [Takahiro Nogi]
+Mahjong Yuugi [Takahiro Nogi]
+Funky Jet [Bryan McPhail, Nicola Salmoria]
+Sotsugyo Shousho [Bryan McPhail, Nicola Salmoria]
+Hasamu [Bryan McPhail, Nicola Salmoria]
+Kengo [Bryan McPhail, Nicola Salmoria]
+Dirt Fox
+Mighty Guy [Victor Trucco]
+Ultra Tank [Phil Stroffolino]
+
+
+New clones supported:
+---------------------
+
+Astro Flash (= Transformer)
+Twin Hawk (= Daisenpu)
+Omega (= The End)
+Gingateikoku No Gyakushu (bootleg, set 2)
+Point Blank (= Gun Bullet)
+Robocop 2 (World, Japan)
+Don Doko Don (US)
+Thunder Fox (World)
+Camel Try (US, alt sound)
+Robocop (World rev 4)
+Chelnov (World)
+Twin Hawk (World)
+Swimmer (set 3)
+Boulder Dash (Japan)
+Robocop (Japan)
+Great 1000 Miles Rally (USA)
+Super Real Darwin (World)
+Pit Fighter (bootleg)
+Klax (2 prototypes)
+Up'n Down (encrypted)
+
+
+Removed:
+--------
+
+Speak & Rescue bootleg (identical to Speak & Rescue with copyright notice removed)

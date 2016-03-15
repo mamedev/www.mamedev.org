@@ -1,0 +1,53 @@
+MAME 0.113
+
+<p>
+<a href="http://mamedev.org/release.html">Lucky 113</a>! 
+There have been a lot of changes this time around, so make sure you look 
+over the <a href="http://mamedev.org/releases/whatsnew_0113.txt">whatsnew</a> 
+file to see what's been going on.
+</p>
+
+<p>
+If you haven't been following the news until recently, be aware that this 
+release contains a number of updates to both the input and sound code. 
+The sound code in particular bears mentioning because its new behavior 
+has tripped up a few people. Sound output is now exclusively controlled 
+by the emulation, not by the OS layer. This means that it is very important 
+to have accurate timing and throttling. Because of this, the throttling 
+code has been rewritten to be more forgiving of "hiccups" and 
+other anomalies.
+</p>
+
+<p>
+One non-obvious side effect is that if you are running your games with 
+-triplebuffer or -waitvsync on a system with a 60Hz video mode (like most 
+LCDs have), and you are running a game with a framerate greater than 60fps 
+(any of the common older Namco titles will do fine), then you will experience 
+sound hiccups unless you enable a little bit of frameskipping, either automatic 
+or a frameskip of 1. This is because you are hard-limiting the game 
+to run at 60Hz due to your monitor's refresh, but it needs to produce more 
+than 60 frames per second, so you are always running behind the emulation.
+</p>
+
+<p>
+On the input front, Derrick Renaud has done a lot of work to try and normalize 
+the behavior of analog inputs across the project. He has fixed and tweaked 
+quite a number of analog controls in the system. Because of this, you may 
+find that you need to throw away your existing calibrations and re-calibrate 
+with the new settings. The advantage of the new system is that it fixes 
+a number of inaccuracies in the behavior of the controls and allows games 
+to have more flexible options when it comes to mapping controls on your 
+PC to the controls the game used.
+</p>
+
+<p>
+In addition to these changes there are quite a lot of new unplayable Bemani 
+games that have come out of the woodwork over the past week or so, as well 
+as an implementation of the long-desired (by pinball guys anyway) BSMT2000 
+ADPCM code. For this release I've also enclosed some regression testing 
+tools I've been using for the past few months to help catch problems introduced 
+between versions of MAME. You can see an example of the progress between 
+0.112 and 0.112u4 by looking <a href="http://mamedev.org/regressions/0112u4">here</a>. 
+Note that there are still a few glitches in the system, but I felt it was 
+worth providing the code.
+</p>

@@ -1,0 +1,213 @@
+0.127u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00596: [DIP/Input] pocketrc: The car turns only to the right and 
+         there is no way to calibrate controls. (smf)
+- 02075: [DIP/Input] mooncrgx: Cabinet DIP setting is duplicated.
+         (MikeDX)
+- 02137: [DIP/Input] rockduck: DIP setting for LIVES is incorrect
+         (MikeDX)
+- 02179: [DIP/Input] lethalej: lethalej crosshairs backwards 
+         (Luigi30, MikeDX)
+- 02035: [DIP/Input] gwarb: Guerrilla War bootleg doesn't need a 
+         rotary joy (robiza)
+- 02174: [Sound] dkongjr and clones + mario and clones + pestplce: 
+         Music speed regression (Aaron Giles)
+- 02173: [Crash/Freeze] radarscp, radarsc1: Hang or Reset before game 
+         start. (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Optimized DISCRETE_RCDISC_MODULATED. Added X_TALs to circus. Optimized 
+DISCRETE_RCINTEGRATE and DISCRETE_555_ASTABLE. Optimized 
+DISCRETE_555_ASTABLE_CV and DISCRETE_MIXER. Optimized DISCRETE_555_CC. 
+The 555 and mixer changes also speed up just about every current 
+discrete game. [Derrick Renaud]
+
+Added updated information about Sorcer Striker and moved Fix Eight 
+bootleg PCB layout down by the roms like the other layouts in the 
+driver. [Brian Troha]
+
+Added redumped roms for the Bubble Symphony (bootleg with OKI6295) 
+set. [Brian Troha]
+
+Started removing extraneous enable lines from the discrete modules.  
+Most modules are always enabled anyways. [Derrick Renaud]
+
+Changed MCS-48 core to write p1 and p2 on reset. [couriersud]
+
+dkong/dkongjr: use MB8884 as sound cpu / verified on schematics.
+[couriersud]
+
+mcs48.c: Use banking to handle ea line: [couriersud]
+ * Adds MCS48_INTERNAL_ROMBANK define to header
+ * Drivers which need to control the ea line have to initialize 
+    banking for internal/external rom
+This is not yet optimal but works as expected with existing drivers 
+and modified mario.c
+
+Changed MCS-48 EA line handling to use an explicit bank for now.
+[couriersud]
+
+Added EggVenture readme to lethalj.c. [Guru]
+
+Changed sound cpu type in saiyugb1 to I8748. [couriersud]
+
+dkong.c: S2650 based games consolidated [couriersud]
+ * consolidated memory maps for S2650 based games
+ * renamed handlers to s2650_*
+ * joined protection handlers
+
+Added Cruis'n USA and new Raiden DX/2 readme. Cleaned up some 
+documentation in raiden2.c. Renamed "Raiden DX (set 2)" to "Raiden DX 
+(Tuning license)", and renamed ROMs to match the actual PCB.
+[Guru]
+
+Updated documentation and disk/ROM names in segas24 based on new
+information. [Brian Troha, T.Fujita]
+
+Removed "game_no_sound" from the 2 Hotrod games (in segas24.c) as all 
+3 seem to have the same sound capabilities. [Brian Troha]
+
+toaplan2: [Brian Troha]
+ * removed duplicate info
+ * changed most speeds to "xtal_xxMHz" define
+ * corrected Battle Battle Bakraid Z80 clock based on readme info
+
+Fixed Dip Switches and Inputs for 'aso', 'alphamis', 'arian' (same as 
+'alphamis'), 'tnk3', 'tnk3j' (same as 'tnk3') and 'athena'. [stephh]
+
+Improvements to galaxi driver... [Roberto Fresca]
+ - Added Magic Joker.
+ - Fixed the 3rd background offset to Galaxi.
+ - Remapped inputs to match the standard poker games.
+
+Began the "big IO_MAP merge of 2008". A number of drivers have had
+their I/O space address maps merged. [Andrew Gardner]
+
+Changed the default bootleg gwar pcb to be joystick only, and removed 
+code duplication. Fixed jcross cabinet dip switches. [Nicola Salmoria]
+
+M377xx:  8-bit I/O port reads no longer cause bogus reads of 
+neighboring ports. [R. Belmont]
+
+Removed unnecessary ARM7 hooks so MRC and MCR disassemble properly.
+[R. Belmont]
+
+Updated TMS5100 LPC tables based on mathematical analysis of 1st and 
+2nd derivatives of the values and comparison to the best quality 
+patent image, which nearly always showed which values were in error. 
+Some off-by-one issues may remain, but it is now nearly perfect. 
+Further perfection will require PROMOUT dumping, which is planned.
+[Lord Nightmare]
+
+snk update: [Nicola Salmoria]
+ * added another ikari us clone
+ * renamed ikaria to ikarinc (for Ikari No Continues)
+ * ikari is the JAMMA board, with conitnues
+ * ikaria is the non-JAMMA board, with continues
+ * ikarinc is the non-JAMMA board, without continues
+ * fixed sound in Jumping Cross
+ * adjusted some input bits in several games
+ * merged hal21.c into snk.c
+ * removed hacks and kludges
+ * fixed colors (I think--though some sprites do look weird)
+ * fixed emulation of the "SNK Wave" custom sound used by Marvin's 
+    Maze and Vanguard II and made it into a proper sound core
+ * fixed palette decoding of early SNK games (from marvins to 
+    athena + fitegolf). The least significan bits were assigned 
+    incorrectly.
+ * merged marvins.c into snk.c, with all resulting fixes (removed 
+    hacks, correct shadows, scroll offsets etc)
+
+Replaced aso ROMs (which were possibly from a bootleg) with split ones 
+that are definitely from an original. Renamed ROMs across sets 
+accordingly. [Nicola Salmoria]
+
+Converted timekeeper to a device, all default contents are loaded from 
+disk. slapshot & opwolf3 read/write memory map have been merged.
+[smf]
+
+Shadow Force changes: [Pierpaolo Prazzoli]
+ - Added irqs ack
+ - Implemented raster irq
+ - Fixed coin2 and service input not working during the game
+ - Added watchdog
+ - Fixed visible area
+ - Added video enable and irqs enable flags
+
+Added decryption of 39in1. Doesn't get far due to very odd RAM check 
+routine. [Andreas Naive]
+
+Changed all MCS-48 chips to have a 12-bit address space, regardless
+of internal ROM size. [Aaron Giles]
+
+Enabled internal COP410 program map. [Curt Coder]
+
+Fixed Dip Switches and Inputs for 'hal21', 'hal21j' (same as 'hal'), 
+'fitegolf', 'fitegol2' (same as 'fitegolf') and 'countryc'. [stephh]
+
+Changed refreshspeed target to 0.25Hz below rate provided, in order to 
+guarantee that inexact timings do not lead to sound stuttering.
+[Aaron Giles]
+
+Added Fist of the North Star and (partial) Demolish Fist sets 
+(Atomiswave) and decryption. [Andreas Naive]
+
+Added PCB info for Hard Yardage & earlier World Class Bowling. 
+Corrected a few rom names. [Brian Troha]
+
+Split core laserdisc functionality into separate file ldcore.c.
+Each player now gets its own source file, along with new hooks
+which enable more precise control over the behavior. Updated the
+PR-8210 and LD-V1000 implementations to the new spec. Other 
+players will come online shortly. [Aaron Giles]
+
+Changed laserdisc scan behavior so that it requires a constant stream 
+of signals to continue scanning. Updated ldplayer accordingly.
+[Aaron Giles]
+
+Updated debugger to pass running_machine around where appropriate.
+Added running_machine to several devices which really should 
+eventually be converted into proper devices. [Oliver Stoenberg]
+
+Concluded input port cleanups for drivers W->Z. Changed Primal Rage
+start buttons into input buttons. Removed unused protection bit in
+Driver's Edge. Introduced a new PORT_CUSTOM which returns a tagged
+input that can be used to route bits from one port into another.
+[Fabio Priuli]
+
+Added the missing SHA1 checksums to the atrowar set. 
+[Oliver Stoenberg]
+
+Added basic implementation of the "update ended" interrupt flag to the
+MC146818. [Barry Rodewald]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Video Poker [Grull Osgo, Roberto Fresca]
+Black Jack [Grull Osgo, Roberto Fresca]
+Video Dado [Grull Osgo, Roberto Fresca]
+Video Cordoba [Grull Osgo, Roberto Fresca]
+Magic Joker (v1.25.10.2000) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Egg Venture (A.L. Release) [Guru]
+Ikari Warriors (US) [Nicola Salmoria]
+Double Dragon (bootleg) [Sonikos]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mad Zoo [Roberto Fresca]

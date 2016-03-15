@@ -1,0 +1,73 @@
+0.99u8
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+demonwld37b5gre [Pierpaolo Prazzoli]
+batrider099u1gra [Mamesick]
+
+
+
+Source Changes
+--------------
+Added save/restore of tilemap parameters. [Aaron Giles]
+
+Improvements to the ST-V driver: [Mariusz Wojcieszek]
+ * dma:  added another checking for dma parameters
+ * stv:  changed v-blank timing
+ * vdp1: implemented two framebuffers and flipping
+ * vdp1: added manual changing and erasing of framebuffers
+ * vdp1: added manual trigger for drawing
+ * vdp1: mapped framebuffer into memory (for 16bpp only)
+ * vdp1: added shadow and half luminance for RGB sprites
+ * vdp2: fixed bitmaps scrolling (fixes bad gfx in batmanfr and
+    bakubaku intro)
+ * vdp2: added preliminary window effect for tilemaps and sprite layer
+    (for batmanfr)
+ * vdp2: added scaling for 8bpp and 15bpp bitmaps (fixes vmahjong and
+    myfairld backgrounds)
+
+Fixed sprite-sprite priorities in toaplan1 games. [Pierpaolo Prazzoli]
+
+Fixed background color in Jolly Jogger. [Pierpaolo Prazzoli]
+
+Made input port conditionals work more generically. This necessitated a bit
+of a minor reorg in the input port code. Please verify that controls work as
+before. This change has also required a modification to how analog ports are
+recorded, so existing INPs may not work. [Aaron Giles]
+
+Minor tweak to fix Time Crisis crash. [Phil Stroffolino]
+
+Fixed spurious vectors in Top Gunner. [Mathis Rosenhauer]
+
+Added new functions memory_configure_bank() and memory_set_bank() which
+abstract bankswitching better. This allows current memory banking states to
+automatically be saved for drivers that use this feature. m62.c games have
+been updated to use this new feature as an example. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+World Trophy Soccer (Arcadia) [Mariusz Wojcieszek]
+Funky Head Boxers [Mariusz Wojcieszek]
+Pebble Beach - The Great Shot [Mariusz Wojcieszek]
+Air Rescue [Anonymous]
+Cuore Uno (Italia) [Roberto Fresca]
+Elephant Family (Italia) [Roberto Fresca]
+Royal Card (Austria) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+1000 Miglia: Great 1000 Miles Rally (94/06/13) [Corrado Tomaselli]
+Frogger (Falcon bootleg) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cookie and Bibi 3 [David Haywood]
+Soccer Superstar ver EAA [Corrado Tomaselli]

@@ -1,0 +1,350 @@
+0.93
+----
+
+The main feature of this release is Aaron's huge update to the sound system.
+There is a high chance this has introduced new sound / crashing bugs in
+several drivers. A number of problems were already found and fixed prior to
+the 0.93 release thanks to Aaron, Derrick and R.Belmont.  Updates will follow
+to correct any severe bugs found.  Please test this release extensively.
+
+----
+
+Sound System update [Aaron Giles]
+ (see list below for changes)
+
+Sound System Changes
+--------------------
+
+Core changes
+-----------
+common.c:
+* Changed auto_malloc() behavior so that a failure is absolute (calls 
+osd_die); you can now assume that auto_malloc will always succeed and will 
+never return NULL.
+* Removed all sample loading code; this is now in sound/samples.c
+
+config.c:
+* Tried to update this to the new mixer stuff in usrintrf.c, but it hasn't 
+been tested and I bet it's busted somehow.
+
+driver.h:
+* driver->sound_attributes is gone; if you need to detect stereo support, 
+count the speakers.
+
+mame.h:
+* Machine->samples is history (yay!)
+
+timer.c:
+* I created a new type of timer that has a pointer for a callback param 
+instead of an int. These sit next to the existing timer code, so nothing 
+else is affected. They made object orienting the sound cores much much 
+cleaner.
+
+usrintrf.c:
+* Mixing volumes are retrived from the sound core, not from the mixer (which 
+is gone). Mixing volumes can now be overdriven to 2.0 (could be increased in 
+the future)
+
+
+Machine driver changes
+----------------------
+* MDRV_SPEAKER_ADD is how to create a new speaker. You specify a name and a 
+3D vector for where the speaker is relative to the player's head.
+* MDRV_SPEAKER_REMOVE and MDRV_SPEAKER_REPLACE operate as expected.
+* MDRV_SPEAKER_STANDARD_MONO("name") specifies a single standard mono 
+speaker positioned directly in front of the user.
+* MDRV_SPEAKER_STANDARD_STEREO("leftname","rightname") specifies a standard 
+pair of stereo speakers situated to the left/right of the user.
+
+* MDRV_SOUND_ADD now takes a 'clock' parameter instead of an interface 
+pointer. The clock for each chip is specified here rather than in the 
+interface. I have removed any 'clock'-like parameters from all the sound 
+interface structures.
+* MDRV_SOUND_CONFIG is where you specify the interface. This mirrors 
+MDRV_CPU_CONFIG. Note that you do not have to specify a config; in this 
+case, it is NULL. This is ok. Many sound chips really only need a clock and 
+volume info (which has also been removed from the interface structs).
+* MDRV_SOUND_ROUTE is how to control where a sound chip outputs its data. 
+The first parameter is the output index, or ALL_OUTPUTS if you want to route 
+all the outputs for a given chip to the same place. The second parameter is 
+either the name of a speaker or the name of another tagged sound chip. The 
+third parameter is a floating point gain: 1.0 is standard.
+* You can specify as many sound routes as you need; multiple routes for the 
+same output will split the sound. For example, you can route the single mono 
+output of an OKIM6295 to both the left and right speakers on a stereo 
+system.
+
+
+Sound core interface changes
+----------------------------
+mixer.c/.h:
+* These files are gone, gone, gone. Everything is handled by the streams or 
+by sndintrf.c directly. Mixing is performed by code in sndintrf.c which 
+creates a stream to do the final mixing.
+
+sndintrf.h:
+* We now no longer #include every sound core's header. You have to include 
+them yourself in your driver.
+
+sndintrf.c:
+* Sound cores are now hooked up very much like CPU cores. There is a single 
+get_info function that is public for each core; all other functions and data 
+are retrieved through it.
+* Similar to CPU cores, you can call sndtype_xxx() to query/set values for a 
+specific sound chip type; you can also call sndnum_xxx() to query/set values 
+for an indexed sound chip in the Machine->drv->sound array; finally, you can 
+call sndti_xxx() to query/set values for the nth instance of any give sound 
+chip type (sndti = sound type+index).
+* At startup, all sound cores/filters are created. Then all the speakers are 
+created. Finally, everything is wired up together. There are new consistency 
+checks to make sure you don't do anything wildly bad.
+* sndintrf.c calls the OSD layer now, and always requests stereo output. It 
+also does a final downmix from the various speaker streams into left/right 
+streams based on the X coordinate of the speaker.
+
+sound/streams.c:
+* I have added a new type defined in sound/streams.h: stream_sample_t, which 
+is used to represent a sample as used by the stream system. It is typedef'd 
+to an INT32.
+* Regardless of the size of stream_sample_t, all streams should be generated 
+as if 16 bits were the maximum. The extra bits give us headroom to overdrive 
+things if we want.
+* All streams have the same format callback, with support for multiple 
+inputs and outputs.
+* Each stream has a sample rate; inputs to that stream will be 
+down/upsampled to that rate; outputs will be down/upsampled as necessary to 
+connect to the input of the next stream/speaker in line.
+* Each input to a stream has its own gain, and each output has a gain as 
+well. These can be controlled while things are running to provide some extra 
+volume knobs.
+* I haven't done much in the way of optimizations in order to keep things 
+simple and working. Once things are back to normal, I may consider some 
+additional optimizations.
+
+
+Notes for sound core authors
+----------------------------
+* I marked all sound cores as Copyright the MAME Team; if you want your own 
+credit there, feel free to send an update.
+* I removed all volume and clock speeds from the interfaces; these are 
+specified elsewhere now.
+* I made interfaces optional for many sound chips that often don't need an 
+interface.
+* Many sound cores used global variables and assumed a single instance of 
+themselves; this has been fixed in all cases.
+* In some cases I removed global lookup tables and pushed them into the 
+sound interfaces. This can eventually be fixed but I didn't want to deal 
+with it.
+* stream_init and stream_init_multi are gone; there is only stream_create 
+now.
+* Streams are named for you automatically, so you don't need to pass in 
+names to stream_create. Volumes are also outside of your control now, so you 
+don't need to pass in volumes to stream_create either.
+* The get_info function can return pointers to set_info(), start(), stop(), 
+and reset(). There is no concept of an update() function anymore -- updates 
+are handled via streams.
+* The start() function is passed three things: a 'sound index', which 
+indicates which instance of chip you are (i.e., 0 if you're the first chip 
+of this type to be created, 1 if you're the second, etc); a 'clock' which is 
+specified in the driver (no clocks in the interfaces please!); and a 
+'config' which is a pointer to the interface for this chip (it can be NULL 
+too, be careful).
+* The start() function now is expected to allocate memory for its data 
+structures and return a pointer to that if successful. If not, it should 
+return NULL.
+* The pointer returned by the start() function is passed to the stop() and 
+reset() functions.
+* Since there were many cases where we provided a read/write handler for the 
+'nth' chip, you can also fetch the pointer from the start() function by 
+calling sndti_token(chip_type, index).
+* If you have a non-digital chip that doesn't do internal clipping, you can 
+probably remove the clipping code and let the mixer clip it in the end.
+* If you do your mixing in a secondary buffer to get more bits of 
+resolution, you can probably optimize your code to mix directly into the 
+stream buffer.
+* While fixing up all the sound cores I was VERY brute force in getting 
+things to work. If you don't like what I did to your sound core, feel free 
+to fix it up.
+
+
+Sound core-specific changes
+---------------------------
+* ADPCM -- I removed this entirely and wired up dummy MSM5205s to most of 
+the drivers still using it; these need to be revisited and fixed.
+* AY8910 -- cleaned up the interface for the YM chips to access this.
+* Custom -- many drivers using "custom" drivers were just using hard-coded 
+samples and playing them with the (now-defunct) mixer. This is not "custom", 
+it is "samples". They have been converted over to samples.
+* Filter (volume) -- this is a new very simple filter that can be used to 
+control the volume of a stream if you need an extra knob.
+* Filter (RC) -- this is a new filter that replaces the old RC filter that 
+was in the streams code. Eventually, this could get replaced by some simple 
+discrete logic.
+* IremGA20 -- Acho cod... transmission lost
+* NES APU -- changed the way this worked so that it used streams properly 
+instead of an update function.
+* Samples -- there is now a start function that allows you to create your 
+own custom samples if you want. This allows us to replace "custom" drivers 
+with "samples" in several cases. There is a new call sample_start_raw() 
+which lets you play a raw sample from a pointer to INT16 data.
+* Votrax -- there was a dead Vortrax core that was still being 
+hard-compiled. I pulled this out and made it a proper sound type (which 
+currently isn't included).
+* VRender0 -- fixed a clipping bug that was lurking there (negative clipping 
+wrapped to positive values -- noticeable at 32-bits)
+* YM2151 -- removed the alternate version and kept only Jarek's around. 
+Having two cores was confusing and caused problems.
+* YM2203/2608/2610 -- these chips now pass a set of functions into the FM 
+core with pointers to all the AY8910-compatibility routines, rather than 
+relying on global pointers.
+* YMZ280B -- this code is just terrible now compared to when I first wrote 
+it! :(
+
+----
+
+Other changes in 0.93
+---------------------
+
+Misc patch [Nathan Woods]
+	src/debug/debugcpu.c:
+	   - Changed an instance of memory_get_read_ptr() to memory_get_op_ptr() 
+
+	src/cpu/g65816/g65816ds.h:
+	src/cpu/g65816/g65816ds.c:
+	src/cpu/g65816/g65816.c:
+	   - G65816 disassembler changes; program_read_byte() is no longer used
+	for disassembling and also the core now reports the PC as being the full
+	PB or'd with PC 
+
+Fixed controls in Hyper Crash (still needs freeplay to start) [Angelo Salese]
+
+Changed Big Striker to use its PROM [Pierpaolo Prazzoli]
+
+Changed way .map file is generated [smf]
+
+SPI Big Endian fix [R.Belmont]
+
+Swapped Namco 54xx filters on Port A & C [Derrick Renaud]
+	(fixes xevious sound)
+	
+C89 fix [Lawrence Gold]
+
+Decrypted GFX in all SPI games [Nicola Salmoria]
+
+Fixed crash in WCBowling 1.2 [Derrick Renaud]
+
+FD1089 update (adding 317-0028) [Nicola Salmoria]
+
+Added many opcodes to Shisensho II decryption table [Pierpaolo Prazzoli]
+	game is *almost* working correctly, still some errors
+	
+Updated MACs driver [Tomasz Slanina]
+	yujan now boots but isn't playable
+
+Fixed ddcrew (2 player) sound loading [David Haywood]
+
+Fixed Alien Syndrome ROM names [Shinobiz]
+
+Removed ingame debug button in rachero which was causing you to be locked
+to the middle lane [David Haywood]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Ufo Senshi Yohko Chan [Pierpaolo Prazzoli, Nicola Salmoria]
+
+Senkyu / Battle Balls [Nicola Salmoria, Ville Linde]
+Raiden Fighters [Nicola Salmoria, Ville Linde]
+Raiden Fighters 2 [Nicola Salmoria, Ville Linde]
+Raiden Fighters Jet [Nicola Salmoria, Ville Linde]
+Viper Phase 1 [Nicola Salmoria, Ville Linde]
+E-Jan High School [Nicola Salmoria, Ville Linde]
+	sound emulation on the SPI games is still incomplete
+	various alpha blending effects missing
+	
+clones
+------
+
+Super Cross (Japan set 2) [Pierpaolo Prazzoli]
+
+Alpha Mission [Dave Widel]
+
+Aliens (World set 3, Japan set 2) [MAN]
+
+Defense [Torsten]
+	(note the program roms are bad on the original board, a patch is needed)
+
+High Impact Football Proto v8.6 [Brian Troha]
+
+Surprise Attack (Asia Ver L.) [Andreas Thorsén]
+
+G-Darius (Ver 2.02A)
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+MoonQuake [Mariusz Wojcieszek]
+
+Tuts Tomb
+Ghost Hunter
+	guns not hooked up
+
+
+0.92u2000 (0.92u1)
+---------
+
+Given the circumstances this seems a worthwhile update ;-).
+
+----
+
+Improvements to Seibu SPI decryption [Nicola Salmoria]
+	Tile graphics are decrypted for all Games
+	Sprites decrypted for Raiden Fighters 2000
+
+Discrete Sound in Tank8 [Hans Andersson]
+
+Added Trackballs in Championship Bowling [Pierpaolo Prazzoli]
+
+Fixed Super Trio sound frequency [Pierpaolo Prazzoli]
+
+Compiler Fixes [R.Belmont]
+
+FD1089 Update [Nicola Salmoria, Charles MacDonald]
+	Complete table for 317-0033 (Alien Syndrome) and  317-0034 (S.Hang On)
+
+Updated Mahjong drivers to use new default controls [James Wallace]
+
+Updated Gladiator driver [Nicola Salmoria]
+	- verified with schematics (though the schematics are very hard to read
+	  so there are still dubious places)
+	- converted to tilemaps, fixed scrolling
+	- simplified tile decoding
+	- flip screen support
+	- fixed spriteram size (this fixes gladiatr36rc2gre)
+	- support for sprite dual buffer (this fixes sprite trails)
+	- adjusted YM2203 mixing levels so bass notes can still be heard (the
+	  audio mixing stage has some program controlled filters though which
+	  aren't supported)
+	- merged with ppking, drivers/ppking.c is no longer needed
+	- proper blending of the fg layer (it's a palette effect not alpha
+	  blending)
+
+Improved video emulation in XFiles [Tomasz Slanina]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Raiden Fighters 2: 2000 [Nicola Salmoria, Ville Linde]
+	Sound is not yet perfect, some graphical effects are missing
+	
+clones:
+Little Hero (bootleg of KidNiki) [Pierpaolo Prazzoli]
+Astro Combat (bootleg of Astro Blaster) [Pierpaolo Prazzoli]
+Super Missile Attack (encrypted set) [Mowerman, Dave Widel]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+TurboSub [Tomasz Slanina]
+	basic driver for now, acts as a bitmap viewer for the GFX roms.

@@ -1,0 +1,232 @@
+0.126u1
+-------
+
+NOTE: The cheat engine is disabled as of this version. It is 
+currently undergoing a desperately-needed complete redesign and 
+rewrite from scratch. By the time 0.127 is ready, we should have
+support for the vast majority of existing cheats working once
+again.
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00368: [Graphics] aliens: There are a few graphics glitches. 
+          (Nicola Salmoria)
+- 00871: [Graphics] pow: At 3/4 of the 1st level, there is a large 
+          pillar, which pops up too late. (Nicola Salmoria)
+- 02006: [DIP/Input] rtriv: All four buttons for player 1 are mapped 
+          twice (Fabio Priuli)
+- 02009: [Graphics] frogger and clones: background doesn't rotate in 
+          cocktail mode (couriersud)
+- 01547: [Sound] cabalbl: Cabal (bootleg) soundfx wrong 
+          (Nicola Salmoria)
+- 00244: [Graphics] aliens: In two player mode, there are some 
+          problems with the player sprites. (Nicola Salmoria)
+- 01910: [DIP/Input] changela: Gear Shift defaults to Reverse 
+          (RansAckeR)
+- 00900: [Color/Palette] kaiserkn, kaiserkj, gblchmp, dankuga: When 
+          thrown by Azteca's medium punch throw the palette of the 
+          thrown character gets all messed up. (Nicola Salmoria)
+- 00895: [Color/Palette] arabianm and clones: During level 6, there 
+          is a rain effect, but the water is coloured green. 
+          (Nicola Salmoria)
+- 01917: [Color/Palette] gunlock, rayforce, rayfocj: The color of 
+          Battleships is wrong in the 1st stage. (Nicola Salmoria)
+- 01058: [Documentation] exctsccb: Exciting soccer bootleg should be 
+          placed in champbas.c. (Nicola Salmoria)
+- 00079: [Graphics] faceoff: When you go for a penalty shot the 
+          screen is upside down. (Nicola Salmoria)
+- 01887: [DIP/Input] pushman, pushmana, pushmans: Flip screen DIP 
+          switch doesn't work. (Nicola Salmoria)
+- 01891: [DIP/Input] matchit, shisen, sichuan2, sichuana: Flip screen 
+          DIP switch doesn't work. (Nicola Salmoria)
+- 01574: [DIP/Input] dankuga, gblcmhp, kaiserkj, kaiserkn: Player 1 
+          and Player 2 Button 4 mapped twice. (Nicola Salmoria)
+- 01925: [Color/Palette] gunlock, rayforce, rayforcj: The explosive 
+          color of the demo is different. (Nicola Salmoria)
+- 01973: [Core] champbbj: Game resets itself in the middle of test 
+          process (Nicola Salmoria)
+
+
+
+Source Changes
+--------------
+makemeta changes: [Aaron Giles]
+ * Split out Manchester code parsing into a separate utility module.
+ * Rewrote Manchester code parsing to be clock based.
+ * Updated makemeta to call the new functions.
+ * Changed makemeta to parse a different format for metadata.
+ * Fixed Huffyuv decompression in aviio.
+ * Added more robust logic to parse out the white flag.
+
+Newest Japanese Naomi BIOS added [batman2509, starke/peap]
+
+pit8253 updates: [Wilbert Pol]
+ - Changed the implementation to use timers internally.
+ - Removed the frequency change callbacks.
+
+slapfght driver update: [stephh]
+ * Renamed sets :
+    - tigerh2  -> tigerhb1 ("Japan set 2"   -> "bootleg set 1")
+    - tigerhb1 -> tigerhb3 ("bootleg set 1" -> "bootleg set 3")
+    - gtstarba -> gtstarb1 ("bootleg set 2" -> "bootleg set 1")
+    - getstarb -> gtstarb2 ("bootleg set 1  -> "bootleg set 2")
+ * "Performan" :
+    - cleaned/fixed Dip Switches and added port locations
+ * "Tiger Heli" :
+    - added MCU simulation for 'tigerhb1' (in fact, I only had to 
+       return the correct value for the hardware test as there 
+       doesn't seem to be any other communication - I'm still not 
+       convinced that this bootleg had a MCU)
+    - cleaned/fixed Dip Switches and added port locations
+    - added notes with the differences between the different sets
+ * "Get Star" / "Guardian" :
+    - added MCU simulation for 'getstar' and 'getstarj' heavily based 
+       on 'gtstarb1' bootleg
+    - cleaned/fixed Dip Switches and added port locations
+    - added notes with the differences between the different sets 
+       (and especially detailed the numerous ingame bugs in 
+       'gtstarb2')
+
+Added new module uiinput.c which manages input for the user interface.
+The OSD is responsible for pushing mouse events and character events
+to this interface in order to support mouse movement and text-based
+input (currently only used for the select game menu). Added support
+for navigating through the menus using the mouse. 
+[Nathan Woods, Aaron Giles]
+
+Redesigned the UI menus so that they can maintain a richer state. Now
+the menus can be generated once and reused, rather than requiring 
+them to be regenerated on each frame. All menus also share a comment 
+eventing system and navigation through them is managed centrally. 
+Rewrote all the menus to use the new system, apart from the cheat 
+menus, which are now disabled. Reorganized the video menu to make it 
+easier to understand. [Aaron Giles]
+
+Converted UI startup screens to use astrings. [Aaron Giles]
+
+Fixed edge case in the DRC front-end that would incorrectly tag the
+end of a sequence as "return to start" even if the last instruction
+did not abet the starting instruction. [Aaron Giles]
+
+Replaced the crazy number of get/set functions for render containers 
+with a single get/set of a user settings struct. [Aaron Giles]
+
+merged exctsccr.c into champbas.c. [Nicola Salmoria]
+
+UDRC-based SH-2 dynamic recompiler: [R. Belmont]
+ - All games on all drivers should work as before except "colmns97" 
+    and "stress" which crash due to sound system trouble.
+- All idle skips are still included. They are quite a bit less 
+   effective than they were on the interpreter, but they still give a 
+   boost.
+- Fast RAM bypass is not included yet so this does not represent 
+   final performance. That said, it's consistently faster than the 
+   interpreter even now. Example: sfiii3 on 0.126 gets 609% on the 
+   interpreter and 961% on the DRC.
+
+Added ST-V BIOS info based on text at 0x800 (byte swapped). 
+Reorganized the BIOS list & description. Added the USA bios to 
+smleague and it's a USA only cart. [Brian Troha]
+
+Added save state suport to Konami CPU & Aliens. [Nicola Salmoria]
+
+Moved kodb to fcrash.c (which will probably end up being the home of 
+the cps1 bootlegs). [David Haywood]
+
+SH-4 update [Samuele Zannoli]
+ - Fixed TRAPA and some versions of FMOV
+ - Improved disassembly for MOV.W, MOVA, MOV.L, FIPR, and FSCA.
+
+Fixed memory leak in romcmp. [Nicola Salmoria]
+
+Merged memory maps in the cabal driver. [Nicola Salmoria]
+
+i960: respect the rounding mode for CVTRI [ElSemi]
+
+Corrected g13knd wave ROM 0 offset. [Philip Bennett]
+
+Fixed cocktail sprite position in galaxian.c. Fixes that the frog 
+disappears for player 2 if moved backwards. [couriersud]
+
+Changed direct access EEPROM interface to return the "bus width" of 
+the EEPROM data, and the size is in terms of units, not bytes. 
+Updated all drivers accordingly. [Aaron Giles]
+
+Changed the ROM loading code to actually alter the region flags based
+on the CPU endianness and bus width when creating the region, rather
+than fixing them up on the fly. This means that callers to
+memory_region_flags() will get the correct results. [Aaron Giles]
+
+Changed the expression engine to use two callbacks for read/write 
+rather than relying on externally defined functions. [Aaron Giles]
+
+Expanded memory access support in the expression engine. Memory 
+accesses can now be specified as [space][num]<size>@<address>. 
+'space' can be one of the following:
+
+   p = program address space of CPU #num (default)
+   d = data address space of CPU #num
+   i = I/O address space of CPU #num
+   o = opcode address space of CPU #num (R/W access to decrypted opcodes)
+   r = direct RAM space of CPU #num (always allows writes, even for ROM)
+   e = EEPROM index #num
+   c = direct REGION_CPU#num access
+   u = direct REGION_USER#num access
+   g = direct REGION_GFX#num access
+   s = direct REGION_SOUND#num access
+
+The 'num' field is optional for p/d/i/o/r, where is defaults to the
+current CPU, and for e, where it defaults to EEPROM #0. 'num' is 
+required for all region-related prefixes. Some examples:
+
+   w@curpc = word at 'curpc' in the active CPU's program address space
+   dd@0    = dword at 0x0 in the active CPU's data address space
+   r2b@100 = byte at 0x100 from a RAM region in CPU #2's program space
+   ew@7f   = word from EEPROM address 0x7f
+   u2q@40  = qword from REGION_USER2, offset 0x40
+   
+The 'size' field is always required, and can be b/w/d/q for byte, word,
+dword, and qword accesses. [Aaron Giles]
+
+Added World Rally support to tiny.mak/.c. [Macareno]
+
+changela input improvements: [RansAckeR]
+ - DIP switch fixes
+ - Added DIP locations.
+
+Minor srmp5 update: [Sonikos]
+ - Removed hack in drive machine R3000
+ - Adjusted  R3000 frequency to 25 Mhz according to speglsht 
+    (the hardware is the same)
+ - Adjusted visible area (but i'm not sure it's correct)
+ - Fix one rom loading
+
+Changed partial refresh policy in snk68.c and updated comments.
+[Nicola Salmoria]
+
+More conversion to input_port_read(): [Fabio Priuli]
+ * converted to use tagged inputs and handlers all drivers starting 
+    with S & T
+ * simplified input reads in system24 (removing a redundant handler)
+ * cleaned up a bit inputs in system 16 & 18 bootlegs (among the 
+    other things, now coinage and P2 inputs in fpointbl & fpointbj 
+    work again)
+ * removed a lot of redundant #define from taito drivers, replacing 
+    them with PORT_INCLUDEs and definitions from taitoipt.h
+
+
+
+New clones added
+----------------
+World Class Bowling v1.6N [Brian Troha]
+Tiger Heli (bootleg set 1) [stephh]
+Guardian (US) [stephh]
+Get Star (Japan) [stephh]
+Virtua Fighter 2 (Revision A) [Peabo / ElSemi]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Daytona USA Deluxe '93 [Peabo / ElSemi]

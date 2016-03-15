@@ -1,0 +1,62 @@
+[note: only important changes are listed]
+
+0.9
+---
+
+Program:
+- Bomb Jack support.
+
+- Background graphics in Zaxxon now work, albeit a bit slow (45-50 fps on my
+  486/100)
+
+- Support for the original version of Super Cobra. Note that I renamed the
+  other one (which is a bootleg) "scobrab".
+
+- Support for the original Moon Cresta (Nichibutsu copyright). These ROMs are
+  encrypted, and slightly different from the other version. This is very
+  likely the version Chuck Cochems remembers (with aliens teleporting right in
+  front of your ship). I renamed the other version (which looks like a mix of
+  the code from a bootleg version and the graphics from the Gremlin original
+  version) "mooncrsb".
+
+- Space Invaders now seems to work correctly. Deluxe version still doesn't
+  work properly.
+
+- F12 to take a snapshot of the gfx set (displayed using F4) now works.
+
+- Better colors in Donkey Kong Jr. (thanks to Brad Oliver)
+
+- Thanks to Gary Walton, Moon Quasar dip switches now are correctly described
+  in the dip switch menu.
+
+- F11 is now a toggle, also added F10 to turn off speed throttling (toggle as
+  well)
+
+Source:
+- The memory handling was no longer up to the task, so I had to make it more
+  flexible.
+  RAM is no longer a static array; it is dynamically allocated by readroms(),
+  split in memory regions (one for the CPU addressing space, one for graphics
+  ROMs, and so on) so data not needed at run time, like the graphics data, can
+  be unloaded from memory after conversion. The definition and usage of struct
+  RomModule and struct GfxDecodeInfo has changed. struct RunningMachine
+  contains an array of pointers to memory regions.
+  RomModules are now defined using macros, and readroms() does some error
+  checking as well. This greatly reduces the chance of making a silly mistake.
+
+  And don't ask me why, but as a result of this change the emulation seems to
+  run much faster than before!
+
+- New rom_decode function pointer in the GameDriver structure. It is used to
+  decrypt the whole ROMs after loading them (as opposed to opcode_decode,
+  which is used to decrypt only CPU opcodes).
+  Also, opcode_decode is now handled differently: instead of calling it at
+  runtime when the CPU reads an opcode, another 64k of memory are allocated
+  and the whole ROMs decrypted. opcodes are then fetched from this new array.
+  This approach is less flexible, for example it cannot handle code created
+  in RAM (Pengo does that). However, it is MUCH faster (finally I get 60fps
+  in Crazy Climber!), so I'll go with it for now. Should the need arise for
+  a more flexible decryption, we'll think about it.
+
+- Some changes to the MachineDriver definition and mame.c needed to support
+  multiple CPUs (they are NOT supported yet - this is just the first step)

@@ -1,0 +1,84 @@
+0.98u2
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+pleiads061gre [MASH]
+47pie2077gra [Mamesick]
+
+
+
+Source Changes
+--------------
+Added new 'screen' parameter to the VIDEO_UPDATE callbacks. It is not
+currently used but is a placeholder for the future. [Aaron Giles]
+
+Replaced direct access to Machine->scrbitmap in the following drivers with
+the use of force_partial_update(): m92.c, m107.c, astrocde.c, battlera.c,
+snes.c. [Aaron Giles]
+
+Rewrote the Z80/Z180 daisy chaining logic to work a little closer to the
+hardware. Updated the Z80 CTC and PIO modules to support the new model.
+Changed the CTC module to not generate interrupts if there is an outstanding
+request on the same timer is currently in service; this allows Journey to 
+(finally) run with the correct CPU speed. [Aaron Giles]
+
+Partial rewrite of the MCR video system. Should still work roughly the same,
+just a little different under the covers. This is still very much a work in
+progress. [Aaron Giles]
+
+Fixed clipping in nemesis.c. [Fujix]
+
+Normalized names in Konami drivers according R. Belmont's wishes. [Mamesick]
+
+More PowerPC updates: [Nathan Woods]
+ - Moved update_counters() to be executed after the DRC epilogue code 
+    is appended; now behaves more like the non-DRC core
+ - Fixed some bugs in DRC exeception handling (SRR1 was not being set 
+    up properly, and not all MSR flags were being cleared)
+ - Refactored DRC core to call MMU hooks
+ - ISI exceptions will now be thrown if the MMU hooks report an 
+    unexecutable address in the DRC core
+ - Fixed a rounding error in the decrementer
+ - Added support for decrementer exceptions when the DEC register is 
+    written to in both cores
+ - Added support for ISI/DSI exceptions with setjmp()/longjmp() in 
+    the non-DRC core
+
+Significant rewrite of the Legend of Kage driver: [Phil Stroffolino]
+ - correct/added dipswitches
+ - converted to use pdrawgfx; affects stage#4
+ - a priority effect on the title screen has been mapped - this gives the 
+    foreground layer priority over all sprites, and screenshots now match 
+    those from arcade flyers.
+ - the "virtual palette" hack has been removed; it was an optimization from 
+    back when we used 8 bit color and hardware palettes.
+
+Cleaned up the Soungoku Mahjong driver, fixed colors, improved sound and 
+fixed the hang before the match started. Also I found the output for the 
+coins used to play the match. It's still missing something to enable / 
+disable the tilemaps. [Pierpaolo Prazzoli]
+
+Fixed the i386->z80 communication in the Seibu SPI driver. This fixes the 
+flash rom update and should also fix any remaining hangs/pauses. The flash 
+rom update should take around 5 minutes. Now all games should have proper 
+sample data. [Ville Linda, David Haywood]
+
+Some progress on the Deco 156 encryption. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Chuukanejyo [Luca Elia]
+PK Scramble [David Haywood]
+
+
+
+New clones added
+----------------
+AmeriDarts (set 2) [Aaron Giles]
+Flash Point (set 2) [Aaron Giles]
+Line of Fire (US) [Aaron Giles]
+Street Fighter Zero (Asia 950627) [Razoola]

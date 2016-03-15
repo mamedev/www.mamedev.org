@@ -1,0 +1,218 @@
+0.28
+
+New games supported in this release (in no particular order):
+Omega Race
+Bank Panic
+Pop Flamer
+Super Basketball
+Kick
+Solar Fox
+Tron
+Two Tigers
+Domino Man
+Satan's Hollow
+Wacko
+Kozmik Kroozr
+Journey
+Tapper
+Discs of Tron
+Demolition Derby
+Timber
+Spy Hunter
+Rampage
+Espial
+Time Pilot 84
+Rastan
+
+Program:
+- Fabrice Frances added *emulated* sound to Q*Bert, Reactor, Krull and Mad
+  Planets. The samples are no longer needed and may be removed.
+  Q*Bert Qubes would work as well, if we had the sound ROM ;-(
+  Speech is not emulated... yet! Please do not complain because there is no
+  speech in Q*Bert. We are aware of that.
+
+- John Butler provided a new 6809 emulator. It is faster than the previous
+  one, and fixes some bugs including the ship moving in the wrong direction
+  on the tower level of Star Wars and the bonus maze in Pac & Pal.
+
+- John Butler also added optimizations to some Williams games, GnG and Qix.
+  He also fixed several problems in Qix.
+
+- Bernd Wiebelt provided a driver for Omega Race and added a "director's cut"
+  mode to Battle Zone. DELETE BZONE\BZONE.CFG OTHERWISE THE GAME WILL NOT
+  WORK CORRECTLY.
+
+- Nibbler and Vanguard are back to (hopefully) normal speed.
+
+- Christopher Kirmse, Aaron Giles and Brad Oliver provided a MCR I/II/III
+  driver, supporting:
+  Kick
+  Solar Fox
+  Tron
+  Two Tigers
+  Domino Man
+  Satan's Hollow
+  Wacko
+  Kozmik Kroozr
+  Journey
+  Tapper
+  Discs of Tron
+  Demolition Derby
+  Timber
+  Spy Hunter
+  Rampage
+
+- Aaron Giles perfected the CTC emulation, needed by the MCR driver.
+
+- Sean Trowbridge found a workaround to make Tempest not lock up at 150,000
+  points.
+
+- Mike Balfour (overload@primenet.com) did some fixes to the Exidy games
+  (Venture, Mouse Trap, Pepper II)
+  Collision detection is now supported, Venture is playable.
+
+- Mike Balfour also added high score support to Elevator Action, Pisces, War
+  of the Bugs, Eggs, Exed Exes, Diamond Run, Jungle King, Wizard of Wor,
+  Robby Roto, Gorf, Space Zap, Seawolf II, Loco-Motion, Mysterious Stones,
+  Blue Print, Carnival, Snap Jack, Cosmic Avenger, Yie Ar Kung Fu, Scramble,
+  Battle of Atlantis and The End.
+
+- Mike Balfour also pointed out that ROM 2H of Battle of Atlantis seems to
+  be bad; that's the cause of the strange coins per credit values.
+
+- Many thanks to Luis Longeri (llongeri@cbb.cl) for helpful tips about Exed
+  Exes' background, which is now partially working.
+
+- Tatsuyuki Satoh made several fixes to the Xevious driver.
+
+- Aaron Giles provided a driver reference sheet (mamelist.txt)
+
+- Steve Baines fixed color intensities in Star Wars - objects now fade out
+  properly. You might find it a bit too dark now, but this is done to
+  reproduce the differences in brightness that the original has.
+
+- Frank Palazzolo fixed the "bad tranch vectors" and "fail to approach Death
+  Star" bugs in Star Wars.
+
+- David Winter provided a driver for Amigo (a bootleg version of Amidar)
+
+- Brad Oliver provided drivers for Pop Flamer and Espial.
+
+- Zsolt Vasvari supplied a Super Basketball driver.
+
+- Marc Lafontaine provided a driver for Time Pilot 84. John Butler optimized
+  it.
+
+- Mirko Buffoni added explosions to Rally X, using a sample.
+
+- Jarek Burczynski adapted the M68000 emulator from the System 16 Arcade Emulator
+  by Thierry Lescot. The only known problem of this emulator is that it doesn't
+  count CPU cycles, only instructions.
+  The first driver to use the 68000 is Rastan, also provided by Jarek.
+
+Sources:
+- New osd_modify_pen() function, proposed by Aaron Giles. It allows drivers
+  to dynamically modify the palette. WARNING: since this feature can severely
+  reduce performance on some systems, it must only be used when necessary -
+  that is, when the emulated game dynamically modifies the palette. The other
+  games should continue to use the static palette as before.
+  Many games already use this feature (e.g. Crystal Castles, the Gottlieb
+  games, Tapper, Bubble Bobble, and many others).
+  There's also osd_get_pen(), which is used by usrintf.c to dynamically pick
+  the pens used to render menus.
+
+
+The following changes were done by Nicola Salmoria:
+
+Program:
+- Crystal Castles now has accurate colors and load/save of high score and
+  settings (I mean the settings done in the service menu).
+
+- Nibbler and Fantasy have sound, using the Vanguard driver. I don't know
+  how accurate it is.
+
+- Thanks to Gary Walton and Simon Walls, Son Son now has accurate colors.
+
+- Son Son also has sound.
+
+- Since there are now many games which don't run at 60fps (e.g. Popeye and
+  the vector games), F11 was confusing and lead people to think the emulation
+  was slow, while it was running at the correct speed. F11 now  displayes the
+  percentage of the speed of the real machine. 100% is the correct speed,
+  200% is twice as fast, 50% is half as fast.
+
+- Snap Jack and Cosmic Avenger are oriented correctly, and small sprites in
+  Cosmic Avenger (bullets, bombs etc.) and Snap Jack (wheels) are properly
+  supported.
+
+- Some of the games now support Cocktail mode (only the graphics, not the
+  controls yet)
+
+- New command line option: "-cheat". Cheats like the speedup in Pac Man or
+  the level skip in many other games are disabled by default. Use this switch
+  to turn them on.
+
+- The speedup cheat in Pac Man can now be permanently set to ON from the dip
+  switch settings menu.
+
+- Zaxxon and Congo Bongo can go in service mode (F2).
+
+- Bank Panic support. Thanks to Virtu-Al, colors are correct.
+
+- Colors in Donkey Kong are now 100% accurate. Several people complained that
+  girders should be pink instead of red, but to the best of my knowledge the
+  current colors are an accurate conversion of the color PROMs, and this has
+  been confirmed by some people. There might be two different versions of
+  Donkey Kong, with slightly different colors. If someone has a "pink" board
+  and wants to read the PROMs from there, I'll be happy to include them.
+
+- Dip switches now work in Xevious. Also fixed a bug in the targeting cursor
+  colors (black corners while firing). Super Xevious works.
+  Explosions are emulated with samples, thanks to Andrew Scott.
+
+- Support for another version of Mr Do's Castle ("docastl2").
+
+- Support for the Japanese version of Commando ("commandj").
+
+- Thanks to Gary Walton, fixed sprite placement in Turtles.
+
+Sources:
+- All-new handling of rotation. The GameDriver structure now has a
+  "orientation" field which allows driver writers to handle fairly easily
+  games which run on the same hardware but with different orientations.
+  Crazy Climber/Crazy Kong, Lady Bug/Snap Jack/Cosmic Avenger and the Gottlieb
+  games are examples of drivers using this feature.
+  Rotation is handled automatically by gfxdecode(), which creates a prerotated
+  charset, and drawgfx(), which swaps the arguments appropriately. Drivers
+  which use only the standard functions to render their display will
+  automatically handle the "orientation" field. If a driver writes directly to
+  the bitmap, it must handle the rotation itself.
+  IMPORTANT NOTE: osd_create_bitmap() swaps width and height when a rotation
+  is requested. Take that into account or you'll risk trashing memory.
+  IMPORTANT NOTE TO PORTERS: remember to update osd_create_bitmap() and
+  osd_create_display() to take into account the rotation. Check msdos.c to
+  see how this must be done.
+
+- Totally new Input port definition structure. See driver.h for the new
+  structures definition; several drivers already use it, check them for
+  working examples.
+  The new definition is much more powerful and easier to maintain than the
+  previous one. It isn't complete yet, but it will eventually handle
+  everything, including trackballs and analog joysticks. Drivers using the
+  old definition will gradually be converted to the new one. Please do not
+  submit new drivers using the old definition. It is obsolete and will be
+  removed as soon as the conversion of the existing drivers is finished.
+
+- Moved the input handling to the new source file inptport.c.
+
+- Some driver compacting:
+  - merged Pengo and Pac Man vidhrdw
+  - merged Dkong and Dkong 3 driver and vidhrdw
+  - merged Crazy Climber and Crazy Kong driver and vidhrdw
+  - merged mooncrst, moonqsr and scramble vidhrdw into the new "galaxian.c"
+
+- Rewritten the decryption routines in Pengo and Crazy Climber.
+
+- MachineDriver/init_machine is now a void (*)(void), and the function is
+  called by cpu_run() during a reset. Some games, like Espial and the MCR
+  games, needed that to perform a reset correctly.

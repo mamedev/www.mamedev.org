@@ -1,0 +1,155 @@
+0.143u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04242: [Graphics] All sets in m62.c and phoenix.c: Colors appears
+         "washed out" (hap)
+- 04432: [Crash/Freeze] destroyr, destroyr1: Irratic timing and crash
+         (hap)
+- 02729: [Core] tms9928a.c: wrong address write, wrong sprite overflow
+         (hap)
+- 04431: [Graphics] cottonbm: 1st Level boss play completely invisible
+         (Angelo Salese)
+- 00460: [DIP/Input] gimeabrk: When cabinet is switched to cocktail
+         mode, player 1 controls do not function. (Tafoid)
+- 04428: [Sound] All sets in balsente.c: Audio/Sound is malfunctioning
+         or completely missing (Tafoid)
+- 04423: [Graphics] vulgus, vulgusa: Screen rotated 90 degrees from
+         normal (Angelo Salese)
+
+Source Changes
+--------------
+balsente.c - A number of fixes and improvements: [Tafoid]
+ * gghost - DIP Location fixes. 
+ * gimeabrk - Added 2nd Player trackball, button and a 2 player
+   start button to complete Cocktail support.  Note:  When mode is
+   Cocktail, normal player 1 controls becomes player 2's.  
+   Fixes MT Bug#00460. 
+ * hattrick - Player 1 (Blue) Control re-addition.  Left
+   player could not be controlled correctly. 
+ * rescraid - Fixed control orientation to match that of an actual control panel 
+   (steering = left stick, shooting = right stick). 
+ * stompin - Dropped redundant left/right joystick controls. 
+ * toggle - Default controls changed to a normal joystick, rather then the left-side of a two-joystick setup.
+
+Corrected Cosmic Monsters overlay to match that from a reference video
+of an actual cabinet.  [Tafoid)
+
+taitoair: give perfect interleave, improves 3D in topland (still not
+perfect). [R. Belmont]
+
+Model 3: working sound comms [Bart Trzynadlowski, R. Belmont]
+
+Various Sega Saturn / ST-V fixes, that allows correct sound in Baku
+Baku Animal and Funky Head Boxers, also removed instadma hack, used by 
+Pebble Beach Golf and Funky Head Boxers [Angelo Salese]
+
+m68k: set read/write bit properly in special status on MMU bus errors
+[R. Belmont]
+
+Fixed a silly bug in Puzzli 2 protection routines [Balrog]
+
+Updated documentation about known Aristocrat MK6 game titles. 
+[Heihachi_73]
+
+m68k: added bus error input line, fixed FMOVEM, fixed issues with HMMU
+[R. Belmont]
+
+ppc: Implemented correct BATs for 601 and memory-forced I/O controller
+interface accesses [R. Belmont]
+
+Fix autorelease pool warnings when running multithreaded on Mac OS X
+[Tim Lindner]
+
+seta.c: Implemented Coin Mode 1 & 2 for Arbalester, Blandia, Caliber
+50, Downtown, Dragon Unit / Castle of Dragon, Meta Fox, Thundercade /
+Twin Formation & Twin Eagle. Added dip locations for Arbalester,
+Caliber 50, Meta Fox, Quiz Kokology, Quiz Kokology 2, Sokonuke Taisen
+Game & Twin Eagle [Brian Troha]
+
+i386: implemented FCLEX FPU instruction. [Barry Rodewald]
+
+Re-enabled scheduler cothread execution. [Curt Coder]
+
+Made some basic progress to Stepping Stage driver [Angelo Salese]
+
+More work for ROM naming conventions for Neo-Geo driver games
+[Johnboy]
+
+Fixes for variable shadowing [Oliver Stöneberg]
+
+Added DSP end IRQ event in Sega Saturn / ST-V SCU DSP core
+[Angelo Salese]
+
+sshangha.c: Added dipswitch locations to the Super Shanghai Dragon's
+Eye sets [Brian Troha]
+
+speglsht.c: Added dipswitch locations to Super Eagle Shot [Brian
+Troha]
+
+speedspn.c: Added dipswitch locations to Speed Spin [Brian Troha]
+
+cave.c: Added a PCB layout for Hotdog Storm as well as some addition
+notes/information. [Brian Troha]
+
+chaknpop.c: Added a fully documented PCB layout for Chack'n Pop [Guru]
+
+chaknpop.c: Added dipswitch locations to Chack'n Pop [Brian Troha]
+
+If a rom is bad for a clone but is good for the parent then it doesn't
+count towards the clone being found. optimized also_used_by_parent &
+uses the length as well as hashes. [smf]
+
+m68k: Generate a per-cpu-type jump table.  Correct linef handling
+makes the atari st less cranky.  [O. Galibert]
+
+Added the AMS40041 variant (used in the Amstrad PC1512) to mc6845.c.
+[Curt Coder]
+
+Fixed double-free of d3d->hlsl [Oliver Stoneberg]
+
+tagteam.c misc cleanups [hap]
+ * fixed maincpu irqs
+ * added resnet for color prom
+ * added coincounters
+ * added diplocations
+
+m62.c: amplified default contrast, this fixes washed out colors
+[hap]
+
+Major organization, documentation and addition of numerous (over 1600)
+gambling game titles covering the following systems:  [David Haywood]
+- Aristocrat MK6
+- Barcrest MPU3, MPU4, MPU4 (Video), MPU5
+- JPM Impact, MPS1, MPS2, System 5, System 5 (Video), System 6, System 6 (Video), System 80
+- Maygay EPOCH, MV1
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+GP Rider (set 2, World, FD1094 317-0163) [Fallout (Arcadezentrum)]
+Hanafuda Hana Gokou Bangaihen [Guru, Dyq, Luca Elia]
+
+
+New clones added
+----------------
+Donkey King Jr. (bootleg of Donkey Kong Jr.) [Guru, Tingoes]
+Sauro (Philko license) [Guru]
+Raiders (Rev.3) [Andrew Welburn]
+Magic Card Export 94 [Team Europe]
+Sagaia (dual screen) (World) [an UK collector]
+Mortal Kombat (Nifty Kombo, hack) [Colonel_Klink]
+Mortal Kombat (Nifty Kombo 666, hack)
+[bulldawg, B2K24, kosmo, vascodiaz, Paratech, S. Arnold, S. Healey, J.
+ Bijl, M. David, R. Balke, D. Leipold, N. Francfort, Smitdogg, 
+ The Dumping Union]
+Savanna (Jungler bootleg)  [f205v, robotype]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Quiz Punch [Guru]
+Castle Revolution [David Haywood]

@@ -1,0 +1,336 @@
+0.141u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04225: [Sound] gangwars: Samples incorrectly played (Tafoid)
+- 04221: [Misc.] chryangl: Incorrect sizes listed in source.
+- 04215: [Graphics] quizf1: missing graphics in a startup screen 
+         (robiza)
+- 04214: [DIP/Input] grobda, motos, phozon: No directional controls 
+         available for second player (Tafoid)
+- 04107: [Save/Restore] All sets in aristmk4.c: Unable to write save 
+         state (Fabio Priuli)
+- 04202: [Sound] asteroid, llander and clones (+ others): Discrete sound 
+         missing/broken (Derrick Renaud)
+
+
+
+Source Changes
+--------------
+arm7: Fix for "MOV LR, Rx" (where Rx bit 0 = 1) + "F800" situation.
+This fixes the lockup in GBA "Golden Sun: The Lost Age".
+[Tim Schuerewegen]
+
+SSV: Hook up uPD96050 (ST-010) math/protection DSP [R. Belmont]
+
+[mysticrib] added one opcode and fixed music and sound
+[Roberto Zandona']
+
+Fixed DISCRETE_WAVLOG & DISCRETE_RCFILTER fixing dkongjr and likely
+other sounds. [Derrick Renaud]
+
+intelfsh: Support flash ROMs that have a bankswitch command
+[Tim Schuerewegen]
+
+Fixed banking in daytona2 by adding a second aperture to CROM at
+0xc3000000. A couple of CROMs checksum as bad, but most come out good.
+[Aaron Giles]
+
+A new WE DSP16A cpu disassembler.  [Andrew Gardner]
+
+Added a preliminary Softlist support for Sega Megatech, that allows
+multi-cart support. syntax is (similar to the MESS one)
+mame megatech -cart1 mt_beast -cart2 mt_soni2 ... -cart8 mt_shar2
+SMS games have issues when moving between games, so stick to only
+a single SMS game for now or the z80 will crash. [David Haywood]
+
+Fix missing sound channel in beezer; sound should now be more or less
+correct, but the noise source still isn't accurate yet.
+[Lord Nightmare]
+
+Improved beezer volume DAC handling to be accurate to hardware.
+[Lord Nightmare]
+
+quizf1: added opcodes [Roberto Zandona']
+
+C++-ified the sound and streams interfaces. Combined sound.c and
+streams.c into one file, and separated the speaker device into its own
+file. Generalized the concept of dynamically assigned inputs and
+re-wired the speaker to work this way, so it is now treated just like
+any other sound device. Added methods to the device_sound_interface
+for controlling output gain and mapping device inputs/outputs to
+stream inputs/outputs. Also made the sound_stream_update() method pure
+virtual, so all modern sound devices must use the new mechanism for
+stream updates. [Aaron Giles]
+
+Clean up megatech.xml. [Fabio Priuli, David Haywood]
+
+Clean up natural keyboard support. [Atari Ace]
+
+Eliminated static/global variables in a number of Atari drivers by
+moving them into a driver_device. [Atari Ace]
+
+Fixed Metal Slug 6 ROM mirror, game is fully playable [Cah4e3]
+
+Fix a bug in palette_normalize_range which caused color distortion.
+The luminance normalization now converts r,g,b to y,u,v and normalizes
+y prior to converting back to r,g,b. This affects e.g. radarscp, dkong
+and mario drivers. [Couriersud]
+
+Modernized the DSP32 core. [Aaron Giles]
+
+Rewrote video routines and fixed partial updates in the Dottori Kun
+driver [Angelo Salese]
+
+Added all CPU and sound devices in emu folder to the MAME build.
+[Curt Coder]
+
+arm7: [Tim Schuerewegen]
+ - Improved LDM/STM unaligned word access in THUMB mode.
+ - Fixed LDM unaligned read in THUMB mode.
+
+Imported the MC68901 device from MESS so it can be shared with
+micro3d.c. [Curt Coder]
+
+ksys573: Hook up part of the i2c communication with the mas3507d.
+[O. Galibert]
+
+Renamed bishjan.c to subsino2.c [Luca Elia]
+ * Implemented reel layer
+ * Fixed rogue tiles in xplan
+ * Hopper emulation in bishjan
+
+m90: fixed line scroll [Roberto Zandona]
+
+ARM7: Fix an LDM base register write-back bug. [Tim Schuerewegen]
+
+Added correct LA revision levels to the Pigskin 621AD rom set as well
+as including the date in the game titles of Arch Rivals and Pigskin
+621AD sets. [The Dumping Union]
+
+Fixed interrupt vector in F8 CPU core [Sandro Ronco]
+
+namcops2: Added dumped key for Ridge Racer V RRV3 Ver. A [Guru]
+
+Converted TMS3203X to a modern device. [Aaron Giles]
+
+Removed redundant m_machine from the state and execute interfaces
+to fix ambiguity when using m_machine from within a device that
+inherits from these. [Aaron Giles]
+
+beezer now uses correct mm5837 noise source (clock may be a bit off
+though), and now has mm5837 properly hooked to audio via. May still be
+some issues with intermittent noise updating which need fixing.
+[Lord Nightmare]
+
+Improvements to Magic's 10 driver. [Roberto Fresca]
+ * New inputs from the scratch for Music Sort.
+ * Complete DIP Switches and DIP locations for Music Sort.
+ * Added a new button-lamps layout for Music Sort.
+ * Created a default NVRAM that allow Music Sort work properly.
+
+NetBSD support [Thomas Klausner]
+
+pollux: fixed sprite flip x and y and removed old comments
+[Roberto Zandona']
+
+Converted attotime to a class, with proper operators. Removed old
+global functions which are now superceded by the operators and methods
+on the class. [Aaron Giles]
+
+Eliminated global/static variables in a number of Taito/Irem drivers 
+by introducing/using driver_device classes. [Atari Ace]
+
+Cleaned up shared implementation of CDi [David Haywood]
+ * merged MESS CDi driver file with the MAME CDi driver file (used for
+    Quizard)
+ * the cdimono1 system is now the parent / bios of Quizard, the Quizard
+    games run on a retail CDi unit with Jamma adapter / dongle for
+    protection so this is a logical step.
+
+Replaced anonymous timers used in video/segaic16.c, drivers/segaorun.c
+and drivers/segaxbd.c with allocated timers, making it possible to add
+save state support to these drivers.  [Alex Jackson]
+
+Updates to cave.c and toaplan2.c: [Alex Jackson]
+ * Added savestate support to all games in cave.c. Most of the work
+    was already done by someone else; the blocker was a
+    perpetually-running anonymous timer, which I converted to an
+    allocated timer.
+ * Changed OKI sample banking to use device address maps instead of
+    memcpy() in all cave.c games except the nmk112-based games. If
+    someone wants to try to convert nmk112.c to use device address
+    maps and bank pointers, be my guest--you'll need 8 banks of
+    varying sizes per OKI chip...
+ * Fixed description of the Japanese Air Gallet set--the game's
+    Japanese title is "Akuu Gallet".
+ * Made machine/nmk112.c actually restore its state properly. Also
+    refactored it a little (if you can talk about refactoring a source
+    file that almost fits on one screen)
+ * Fixed bgaregga's nmk112 interface to work with the refactored
+    nmk112.c.
+ * Removed excessive CPU interleaving from batsugun, left over from
+    when I was initially hooking up the V25.
+ * Removed a useless printf and some obsolete comments, more leftovers
+    from the process of hooking up the V25.
+
+Added MCFG_SCREEN_RAW_PARAMS to twincobr.c and wardner.c, correcting
+their refresh rates.  [Alex Jackson]
+
+Add basic LOAD function to the debugger to complement the existing
+SAVE function. It allows you to load a binary file straight into
+writeable memory.  The format is the same as the SAVE function with
+the exception that the <length> can be handled differently.  [Pugsy]
+
+68681 patch to fix dectalk's startup test in MESS [Hans Ostermeyer]
+
+drcuml: fix compile on systems that use the C backend [R. Belmont]
+
+Reimplemented fruit-machine mechanical meters to use timers [AGEMAME]
+
+Various MPU4 changes [AGEMAME]:
+ * Revised timing/input system to stop flickering
+ * Tidied up the LED drawing code to remove flicker
+ * Support for all known extenders and reel multiplex boards used in
+    MPU4 H/W
+ * Partial support for OKI sampled sound card, need for some titles
+ * Fixed Old Timer characteriser
+ * Some general tidying up to allow better study of the BwB titles
+
+Implemented proper mouse wheel event handling in the Windows debugger.
+[Curt Coder]
+
+Convert emu_timers to objects. Moved implementation and management of
+timers into the scheduler. Retain TIMER devices as a separate wrapper
+in timer.c/.h. Rather than using macros which hide generation of a 
+string-ified name for callback functions, the new methods require 
+passing both a function pointer plus a name string. A new macro 
+FUNC() can be used to output both, and another macro MSTUB() can be 
+used to output a stub-wrapped class member as a callback. [Aaron Giles]
+
+Added a time() method on the machine, so that machine->time()
+gives the current emulated time. [Aaron Giles]
+
+Added methods to the device_t class that make creating and managing 
+device timers much simpler. Modern devices were updated to use these.
+[Aaron Giles]
+
+Ensured that the debugger disassembly PC cursor is visible on startup.
+[Curt Coder]
+
+Made changes to the PORT_ADJUSTER values for MSM5232 clocks in all
+games in drivers to best match PCB recordings.  [Fujix, Tafoid]
+
+Removed cpuexec_describe_context, cpuexec_boost_interleave, 
+cpuexec_trigger, and cpuexec_triggertime in favor of calls to the
+scheduler. [Aaron Giles]
+
+tms57002: significantly improved build speed on lower-end h/w
+[R. Belmont]
+
+G65816: fixed operation on PowerPC Linux where char is unsigned
+[R. Belmont, billb]
+
+Move generic templates from emucore.h to emutempl.h. Normalize the
+tagged_list template to wrap a regular standard_list and have similar
+semantics. Updated a few direct callers to handle the changes.
+[Aaron Giles]
+
+sigmab98: fixed zooming, added priorities and flipping [Luca Elia]
+
+Moved the state saving system to C++. For now the registration macros
+are still intact. The new state_manager class has templatized methods
+for saving the various types, and through template specialization can
+save more complex system types cleanly (like bitmaps and attotimes).
+Added NAME() macro which is a generalization of FUNC() and can be used
+to wrap variables that are registered when directly using the new
+methods as opposed to the previous macros. [Aaron Giles]
+
+Added new mechanism to detect proper state save types. This is much
+more strict and there will likely be some games/devices that
+fatalerror at startup until they are remedied. Spot checking has
+caught the more common situations. [Aaron Giles]
+
+Added methods in the device_t class that implicitly register state
+against the current device, making for a cleaner interface. Bulk
+updated existing devices and drivers with driver_device classes to
+use these methods. [Aaron Giles]
+
+cps1.c: CPS-1 update [Team CPS-1]:
+ * Added Tenchi wo Kurau (Japan Resale Ver.)
+ * Confirmed B-Board # for chikij, added ROMs positions, PALs and some
+    pcb infos to video\cps1.c
+ * Fixed sf2uk labels and added pcb infos
+ * Identified and documented willowje as an early and genuine USA
+    release, added a note and renamed willowje -> willowo
+ * Verified and fixed XTALs of Japan Resale Versions to work at 12MHz,
+    they all use DASH A-Boards
+ * Minor cleanups and fixes
+
+Migrated allocated buffers to arrays in the driver_data classes of
+several drivers. [Aaron Giles]
+
+Made "run to next CPU" more reliable. [Aaron Giles]
+
+Fix memory manager bug when calling 32-bit handlers on a 64-bit
+address space. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Express Card / Top Card [Smitdogg, The Dumping Union, Luca Elia]
+Magic Train [Grull Osgo, Roberto Fresca, David Haywood, Luca Elia]
+X-Train [Smitdogg, The Dumping Union, Luca Elia]
+Music Sort (ver 2.02, English) [Roberto Fresca, Team Europe]
+18 Wheeler [hap, Siftware]
+Animal Catch
+  [Luca Elia, Gnoppi, john666, Gerald (COY), Smitdogg, The Dumping Union]
+Itazura Monkey
+  [Luca Elia, Gnoppi, john666, Gerald (COY), Smitdogg, The Dumping Union]
+California Games (Mega-Tech)
+  [f205v, incog, Smitdogg, The Dumping Union]
+
+
+
+New clones added
+----------------
+Space Bomber [hap, N. Francfort, Smitdogg, The Dumping Union]
+Top Skater (Japan) [Pat Daderko]
+Prehistoric Isle in 1930 (Korea) [Artemio Urbina
+Zero Hour (set 2) [Andrew Welburn, The Dumping Union]
+Prehistoric Isle in 1930 (Korea) [Artemio Urbina
+Hidden Catch 2 (pcb ver 1.00) (Kor/Eng/Jpn/Chi)
+  [Yohji, Smitdogg, The Dumping Union]
+Tenchi wo Kurau (Japan Resale Ver.)
+  [J. Finney, italie, john666, Yohji, Smitdogg, The Dumping Union]
+Red Earth / Warzard (961023) [Smitdogg, The Dumping Union]
+Double Dribble (prototype?) [Smitdogg, The Dumping Union]
+Tetris Plus 2 (Japan, V2.1) [Yohji, Smitdogg, The Dumping Union]
+Violent Storm (ver AAB) [Denis Lechevalier]
+Black Tiger (older) [David Raingeard]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Metal Slug 6 [Guru]
+Evil Night (ver UBA) [Guru]
+Oinori-daimyoujin Matsuri
+  [Yohji, Kevin Eshbach, R. Mucciarelli, Cah4e3, The Dumping Union]
+Funky Ball [krick, incog, Smitdogg, Guru, The Dumping Union]
+Reno Reels (20p/10GBP Cash, release A) [AGEMAME]
+BwB Tetris v 2.2 [AGEMAME]
+Red Hot Poker (20p/10GBP Cash, release 3) [AGEMAME]
+Samurai Spirits Tenkaichi Kenkakuden [Guru]
+Pye-nage Taikai
+  [Gnoppi, john666, Gerald (COY), Smitdogg, The Dumping Union]
+Hae Hae Ka Ka Ka
+  [Gnoppi, john666, Gerald (COY), Smitdogg, The Dumping Union]
+Taihou de Doboon
+  [Gnoppi, john666, Gerald (COY), Smitdogg, The Dumping Union]
+Dream Fruit [Yohji, Smitdogg, The Dumping Union]
+NeopriSP Retro Collection [Yohji, Smitdogg, The Dumping Union]
+Last Bank [Yohji, Smitdogg, The Dumping Union]

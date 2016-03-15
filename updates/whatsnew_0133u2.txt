@@ -1,0 +1,283 @@
+0.133u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00191: [Graphics] miaj: some text of the boot-up screen is not 
+         correctly displayed (hap)
+- 02267: [Graphics] devilw, darkadv, majuu: Some rogue sprites (hap)
+- 03370: [Sound] gng and clones: Music slows down while shooting
+         (Corrado Tomaselli)
+- 03373: [Misc.] looping: Unmapped I/O read/writes result in large 
+         error log and major performance drop (robiza)
+- 03381: [Crash/Freeze] pc_moglf, pc_mtoid: Crashes with access 
+         violation a short time after boot. (hap)
+- 03376: [Crash/Freeze] All Sets with Rev 1 Sound Board in gottlieb.c:
+         Access Violation (hap)
+- 03175: [Crash/Freeze] cham24: Game doesn't start correctly
+- 03354: [DIP/Input] cobram3: Infinite lives dip switch triggers service mode
+- 03352: [DIP/Input] cobram3: No demo (attract) sound (Xander)
+- 03370: gng and clones: Music slows down while shooting
+
+
+
+Source Changes
+--------------
+Add PCB locations to the rom names for Dream Land (Bubble Bobble 
+bootleg). [Briah Troha]
+
+Added preliminary sound to 39in1, still buggy. [MooglyGuy]
+
+Hand-tuned BGM tempo in Tryout thanks to a side-by-side reference.
+[Angelo Salese]
+
+SNES fixes (mostly MESS specific) [Angelo Salese]
+ - Fixed Super Kick Boxing booting and sound.
+ - Preliminary open bus emulation for allowing Shien's Revenge / 
+    Shien the Blade Chaser to boot
+ - Fixed mode 5/6 bg drawing cutted in half bug
+ - Fixed (presumably) broken gfxs in nss_sten
+ - More accurate behaviour of the last scroll register.
+ - Improved mode 5/6 gfxs when tile size = 16x16.
+ - Fixed rowscroll line bugs in many games
+ - Made the unsupported reads on i/o open bus, fixed a layer enable 
+    in Super Kick Boxing
+ - Fixed vram size when in hires mode
+ - Hooked up interlace mode
+ - Fixed doubled y-axis sprites when in interlace mode
+ - Improved window effects when in H-512 mode.
+ - Removed a kludge with color windows.
+ - Fixed buggy layer clearance when in H-512 modes
+ - Fixed the x scrolling wrap around bug when hscroll == 0
+ - Fixed a bug that were causing a row of corrupted tiles during 
+    scrolling situations
+ - Fixed irq ack and fixed TIMEUP register open bus behaviour.
+ - Even more aggressive open bus fixes.
+ - Fixed a partial update bug when the screen is in interlace mode
+ - Fixed 8bpp layer colors.
+
+Patched progolfa rom like progolf. Removed bad dump flag in progolf; 
+with progolfa you get the same rom error in test mode and progolfa 
+have different encryption. [robiza]
+
+Added a stop4 input to slot default and remapped slot default keys to 
+better suit Amcoe games. [Fabio Priuli]
+
+Updated sfbonus.c to use the new gambling inputs. Fixed many years 
+and descriptions. Reworked parent/clone relationships so that parent 
+is the higher revision and/or the Export version. Also, tried to 
+establish common rules in the choice of the romset names. 
+[Fabio Priuli]
+
+Added default input mappings for Hanafuda games. Updated most of the 
+Hanafuda games to use them. Like for Mahjong games, keys A->H are used.
+"Yes" is mapped to M, "No" is mapped to N. [Fabio Priuli]
+
+Add correct color PROM for panther. [Mr. Do, Angelo Salese]
+
+Removed fake P3 Start from Nichibutsu mahjong games and properly 
+called "Credit Clear" that input. Also, added back Bet button in 
+nb1413m3.c fixing omotesnd. [Fabio Priuli]
+
+nmk16.c driver documentation update / clean up: [Briah Troha]
+ - Moved the PCB layout for S.B.S Gomorrah (Bio-Ship Paladin) down by 
+    the game's romdef.
+ - Added PCB layout for Spectrum 2000 & corrected company name to 
+    YONA Tech
+ - Added PCB layout for Red Hawk
+ - Moved decryption routines (if needed) to between the info/PCB 
+    layout header and game romdef.
+
+Added the 8751 MCU code to Saigo no Nindou (nspiritj).
+[Guru, David Haywood]
+
+Implemented preliminary bg map banking in 18 Holes Pro Golf.
+[Angelo Salese, Robiza]
+
+Fixed a mapping error with Maikobana [BET] (mmaiko) which caused the 
+NVRAM not to save correctly. [Tafoid]
+
+Aristocrat MK-4 HW: Hooked up mc6845, fixed a rom crc in goldenc and 
+implemented flip y. [Angelo Salese]
+
+DIP switch cleanups in gberet, mainevt, ninjakd2, and taito_z. 
+[kanikani]
+
+Added GAME_IMPERFECT_SOUND flag to all sets that use external samples 
+which were not already flagged for sound. Flagged Speed Freak 
+(speedfrk) as GAME_SUPPORTED_SAVE to match the rest of the driver.
+[Tafoid]
+
+SNES video updates: [Fabio Priuli]
+ * re-enabled video debug functionalities in debug build (to toggle 
+    background layers)
+ * added proper priority tables for various bg/obj layers
+ * largely simplified tile and line drawing routines, and fixed small 
+    bits here and there
+ * further simplification of tile drawing routines
+ * added palette index to 8bpp tiles (correct color_shift still unsure, 
+    though)
+ * reworked video drawing routine to simplify the various graphic 
+    mode drawing and to allow proper implementation of priority orders 
+    (especially bg3 priority bit and mode 7 priority order)
+ * improved mode 7 extbg (still missing mosaic)
+ * added some more debugging options
+ * improved Mode 7 math precision (but still some issues remain) and 
+    added a few elements to PPU struct
+ * implemented Mosaic in Mode 7
+ * merged OAM functions
+ * added a few elements to PPU struct (this might be handy if we ever 
+    come to convert SNES PPU to a device)
+ * fixed Mode 7 shared scrolling/matrix registers
+ * slightly optimized Mode 7 math (by using Anomie's recursive 
+    formula)
+ * moved some more register contents to PPU struct
+ * added PPU1/PPU2 Open Bus support, STAT77/STAT78 registers should be
+    more accurate (even if still not perfect)
+ * simplified window masking code and moved some more regs to PPU 
+    struct
+
+More NES work: [Robert Bohms]
+ * Fixed bug in nes_apu that caused errors reading $4015
+ * Added length counter status bits to $4015
+ * Fixed 4-screen mirroring (PPU regression)
+ * Fixed cham24
+ * Improved Sprite Overflow emulation of NES PPU (this fixes the first 
+    of blargg's Sprite Overflow tests)
+
+Added remaining PCB "U" locations to roms that didn't have for 
+G-Stream G2020. [Brian Troha]
+
+Atomiswave updates: [R. Belmont, Cah4e3]
+ - Hooked up flash ROM at 0
+ - Use proper AW memory map
+ - Emulate AW ROM board (different from Naomi)
+
+Fixed buggy breakpoints in the g65816 cpu core. [Angelo Salese]
+
+Fixed Atomiswave COIN ERROR. [Wind]
+
+n8080 update [Team Japump!!!]
+ - corrected ROM names for Space Fever and SF High Splitter
+ - renamed spacefeva to spacefevo2
+ - added spacefevo
+ - added highspltb
+
+Updated Sega Hikaru readme [Guru]
+
+Discrete sound update: [couriersud]
+ - Added "abs" function to DISCRETE_TRANSFORM
+ - Fixed a bug in DISCRETE_RCDISC5
+
+Added 1 missing sample to safarir.c [Team Japump!!!]
+
+Created discrete sound emulation for galaxian [couriersud]
+ - Changed all audio related AM_WRITE to AM_DEV_WRITE
+ - Moved discrete sound related pieces such as initialization into 
+    audio/galaxian.h
+ - Split some memory maps into sound related and not sound related 
+    parts.
+ - Added possibility in discrete.h to select hardware (galaxian/moon 
+    cresta) at compile time. This leads to slightly different volume 
+    levels. Hit sound (explosion) has been hacked to increase volume. 
+    Currently, we can not accurately model the switch/opamp filter 
+    circuit.
+ - Rewrote timer code so that the pitch timer is only used when it 
+    produces audible results.
+
+Cojag/jaguar video updates (primarily for MESS) [Robbbert]
+ * Added variable pixel width.
+ * Fixed display of screens wider than 360 pixels.
+ * Enabled use of RGB16.
+
+looping: modified the cop420 rom region, fixed mcu rom region in clone 
+set, added mcu support. [robiza]
+
+Redumped bingor2 program roms [Klaus Sommers]
+
+Corrected Kamakazi III's dipswitch setting (the same as superg) and 
+relabeled it a superg hack. Also the dipswitch setting for the Taito 
+license was the same as superg so I eliminated one. [Brian Troha]
+
+Improved speaker-toggle emulation with alias filter. 
+[Anders Hallstrom]
+
+NES: Fixed bank switching in multigm3 (broken due to a mistake of 
+mine when including original Rob Bohms' code). The game still refuses 
+to work, unfortunately. [Fabio Priuli]
+
+vsnes update [Team Japump!!!]
+ - fixed ROM names
+ - added vssoccerj
+
+ROM name fixes for sicv, sisv, and sisv2 [Team Japump!!!]
+
+Corrected TNZS vsync to 59.15 as verified on pcb. [Corrado Tomaselli]
+
+Fixed bootleg description inconsistency in goldnpkr.c. [hap]
+
+Fixed sprite wrapping in sonson. [hap]
+
+Added Intel 4004 CPU core. [Miodrag Milanovic]
+
+Converted the tilemap lists to be private information held by the
+running_machine instead of global variables. Added new APIs to the
+tilemap code to handle the "ALL_TILEMAPS" cases, and removed the
+old ALL_TILEMAPS definition. [Atari Ace]
+
+Added redumped gfx rom on Shogun Warrior [Guru]
+
+Updated romload.c and validity.c to not rely on global variables.
+[Atari Ace]
+
+Corrected resistor values in Cliff Hanger discrete sound based on 
+actual PCB values. [Ruben Panossian]
+
+Removed DAA tables from the 8085 and Z180 implementations in favor of
+just computing the values. Also fixed code in 8085 to prevent
+accidental multiple reads due to macro overuse. [hap]
+
+Added game time and coinage DIP switches to Space Walk, along with
+service mode and test. Also added support for the 2nd controller and
+coin counter. Removed GAME_NOT_WORKING as it is working fine. Added
+color overlay based on photo. [hap]
+
+Added a simple color overlay for Depthcharge based on flyers. [hap]
+
+Updated the Konami twin16 driver. Functional changes: [hap]
+ - improved sprite status register, this fixed the rogue sprites 
+    problem in devilw
+ - added fround coin counters
+ - lowered k007232 volume
+ - added savestate support
+ - added shadows
+ - fixed devilw and gradius2 sprite lag
+ - added text layer x/y flipping
+ - reverted gradius2 sprite-background priority hack, this fixes 
+    severe priority problems in devilw, but reintroduces bugs on 
+    gradius2 level 7 and ending
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+18 Holes Pro Golf [robiza, Angelo Salese]
+Python (Photon System) [Mick, Mariusz Wojcieszek]
+Pop n' Music 2 [Guru]
+beatmania ClubMIX [Team Japump!!!, The Guru]
+Ridge Racer (3 screen? Rev. RR2, World) [Guru, Smitdogg]
+Sky Love [bbmmamoh, David Haywood]
+Triple Draw Poker [Team Europe, David Haywood] (Wrong Colours)
+
+
+
+New clones added
+----------------
+Gun Bullet (World, GN3 Rev B) [Brian Troha, Dumping Union]
+Megatouch 5 (9255-60-01 ROI, Standard version) 
+   [Brian Troha, Dumping Union]
+Dragon World (V021O) [f205v, Olivier Galibert, David Haywood]
+Winding Heat (JAA, JPN v2.11) [Guru]
+Qix (set 2, smaller roms) [Team Europe]
+9-Ball Shootout Championship [SiftWare]

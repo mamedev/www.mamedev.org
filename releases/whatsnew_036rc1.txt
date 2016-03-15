@@ -1,0 +1,140 @@
+0.36 RELEASE CANDIDATE 1
+
+A few drivers which didn't strictly fit MAME's purpose have been removed.
+First of all there were a few drivers which, just like consoles or computers,
+don't fall into the category of "arcade video games" that MAME attempts to
+emulate. They should have never been added in the first place, and that mistake
+is now being rectified.
+One of the removed drivers is Street Fighter Zero for the CPS Changer, which
+is not an arcade game even if it runs on arcade hardware. The source is left
+in, commented out, because it could be useful as a reference for people
+attempting to emulate CPS-2 (which, before you ask, won't happen anytime soon).
+The so-called "home" versions of NeoGeo games have not ben removed because
+there isn't anything in them suggesting that they are home-only games: they
+accept coins just like all the others, and might just be different revisions
+of the code.
+Other removed drivers are four gambling machines. Note that a "gambling
+machine" is different from a "video game with a gambling theme". The
+discrimination is strictly a technical one, not a moral one (a gambling
+machine gives back money/tokens/tickets, a video game does not).
+The "Sente diagnostic cartridge" has not been removed because, even if it is
+not a game, it is equivalent to the diagnostic tools that are built-in in many
+other games - it's just that instead of pressing a service switch you had to
+insert this special cartridge to test the board.
+The last driver removed is Pong, which at this point was too much of a
+simulation and too little of an emulation. It didn't really fit into MAME's
+architecture which is CPU-based and targeted at accurately reproducing the
+gameplay of the original.
+
+That was a difficult decision to make, but thankfully I won't have to bother
+about these things anymore in the future. Gotta go now! *waves*
+
+
+New games supported:
+--------------------
+
+Teki Paki [Quench]
+Knuckle Bash [Quench]
+Pipi & Bibis [Quench]
+Snow Bros. 2 [Quench]
+Takeda Shingen [Luca Elia]
+Ultraman [Manuel Abadia]
+Fire Shark [Quench]
+Mole Attack [Jason Nelson, Phil Stroffolino]
+Quester [Vernon C. Brooks]
+Face Off [Vernon C. Brooks]
+Dream Shopper [Zsolt Vasvari]
+Labyrinth Runner [Nicola Salmoria]
+
+
+New clones supported:
+---------------------
+
+Yokai Douchuuki (Japan old version)
+Ghouls 'n Ghosts (US)
+Varth (US)
+Super Punch Out!! (Japan)
+Rampart (Japan)
+Defender (White label)
+Berlin Wall (set 2)
+Bubble Bobble (US set 2)
+Van Van Car (Sanritsu)
+Champion Wrestler (US)
+Tumble Pop (Japan)
+Pole Position 2 (two original sets)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed sprites colors in Contra (I hope) and other improvements to Konami
+  007121-based games. [Nicola Salmoria]
+
+- Fixed shadows in Gauntlet and other Atari games. [Aaron Giles]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- New samples in Asteroids/Asteroids Deluxe. [Jarek Parchanski]
+
+- Samples are no longer needed in Stratovox, Battle Zone, Red Baron, Asteroids.
+  [Juergen Buchmueller]
+
+- Preliminary sound in Bandido. [Zsolt Vasvari, Juergen Buchmueller]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed controls in atarifb4 and atari soccer. [Nicola Salmoria]
+
+- Fixed protection in Super World Stadium '92. [Vernon C. Brooks]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] -hotrod selects a more appropriate button configuration when NeoGeo
+  games are played. [Paolo Fiorani]
+
+- The coin/start buttons are slightly changed. NOw they are layed out this way:
+  1,2,3,4 -> start 1,2,3,4
+  5,6,7,8 -> coin 1,2,3,4
+  9,0,-,= -> service coin 1,2,3,4
+
+- Preliminary support for HISCORE.DAT. [Phil Stroffolino]
+
+
+Source:
+-------
+
+- 65sc02 and 65ce02 cpu cores. [Peter Trauner]
+
+- [DOS] Compiled with Allegro WIP 3.9.31.
+
+- Rewritten the Pokey emulator for greater accuracy. [Juergen Buchmueller]
+
+- Preliminary SN76477 emulation. [Juergen Buchmueller]
+
+- Fixed a rounding error in IPF_CENTER handling which caused problems with
+  Centipede. Note, however, that it would be advisable to not use IPF_CENTER
+  at all for trackball/dial inputs, since this is probably not how the
+  hardware works in reality.
+  For the same reason, also removed the "clip" parameter from the
+  PORT_ANALOG() macro. Incidentally, this fixed Peek-a-Boo. [Nicola Salmoria]
+
+- Lots of CPU fixes and cleanup. [Juergen Buchmueller]
+
+- Struct GfxLayout can now be parametric on the size of the memory region
+  it refers to. This way the same gfx definition can be used for games with
+  the same layout but different number of tiles. See drivers/m72.c,
+  drivers/dec0.c for usage examples. [Nicola Salmoria]
+
+- Fixes and improvements to the 6800 family emulator. [Tatsuyuki Satoh]
+
+- Improvements to the YM2151 emulator. [Jarek Burczynski]
+
+- Only one of the two YM2151 emulators is linked, this is determined at compile
+  time. The default is Jarek's, which is more accurate though a little slower.
+  It can be replaced with Tatsuyuki's changing the makefile.

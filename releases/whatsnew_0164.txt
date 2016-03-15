@@ -1,0 +1,320 @@
+0.164
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01444: [Sound] (seta2.c) gundamex: The music is only emitted from the right channel. (system11)
+- 01943: [Sound] (seta2.c) pzlbowl: Right heavy stereo balance. (system11)
+- 05981: [Graphics] (aerofgt.c) turbofrc: Sprite priority bugs in some stages (Mamesick)
+- 04405: [Graphics] (seta.c) tndrcade + others: Offset issues in seta drivers (Mamesick)
+- 04877: [Graphics] (seta.c) usclssic: Graphics are shifted. (Mamesick)
+- 00317: [Graphics] (seta.c) daioh: On the attract mode screen with the earth down, 
+  there is a glitchy line at the bottom and the explosion is glitched. (Mamesick)
+- 05959: [Sound] (alpha68k.c) kyros, kyrosj: A few sound FX are missing (Mamesick)
+- 05968: [Graphics] (hornet.c) gradius4, nbapbp: Most of colours are completly wrong (MooglyGuy)
+- 05318: [Crash/Freeze] (djmain.c) bm1stmix and other: Error on loading CHD / disk error (peterferrie)
+- 04918: [Flip Screen/Cocktail] (dooyong.c) gulfstrm, lastday and clones: Screen slightly
+  offset left when flipped (Osso)
+- 05711: [Graphics] (msx.c) cf3300, expertdp, svi738 (and possibly all MSX and MSX2): 
+  [possible] The MSX demo "Riyadh by Bandwagon" does not works properly. (Wilbert Pol)
+- 05949: [Crash/Freeze] (msx.c) expert11 [hero]: H.E.R.O. - Game does not start anymore (Wilbert Pol)
+- 05986: [Core] (msx.c) All sets in msx.c: Cartridge mapper not detected using Full Path (Wilbert Pol)
+
+Source Changes
+--------------
+-memory: Remove support for decrypted bases, use an address space
+ instead [O. Galibert]
+
+-atarisy2: Slapstic doesn't need a direct update handler anymore
+ [O. Galibert]
+
+-dsp56k: Remove the not required direct update handler [O. Galibert]
+
+-namcos1: Remove direct-update-handler-using optimization, will be done
+ differently later [O. Galibert]
+
+-psx: Remove quickload, may be handled differently later [O. Galibert]
+
+-apple2gs: Remove the not required direct update handler [O. Galibert]
+
+-spc1000 added the centronics printer port [Miso Kim]
+
+-topland: Fix the background gradient [O. Galibert]
+
+-Unitron AP II: New Brazilian Apple 2 clone [Felipe Sanches]
+
+-M1COMM update, S32COMM initial commit [SailorSat]
+
+-Polymax Maxxi: New brazilian Apple2 clone. [Felipe Sanches]
+
+-validity: add basic signed integer arithmetic tests to core validation
+ [Alex Jackson]
+
+-idehd.c: decrease IDE read fill-time to avoids timeouts [Peter Ferrie]
+
+-Improved kidniki sound quality while maintaining speed by adding more
+ frontiers. Added LOGIC_INPUT to netlist which allows to specify a
+ logic family, i.e. output characterics. Used this for improved AY8910
+ port modeling. [Couriersud]
+
+-m68k: fix '020 cache emulation corner case. [Hans Ostermeyer]
+
+-3c505: move option ROM to the card to reflect real h/w
+ [Hans Ostermeyer]
+
+-apollo: improved mouse emulation [Hans Ostermeyer]
+
+-Add MCFG_FORCE_NO_DRC. [MooglyGuy]
+
+-Redumped bad rom from Mayjinsen 3 (Aleck64), internal checksum now
+ matches ROM dump [Brizzo, theboy181, Zoinkity]
+
+-pet_flop.xml: Added alternate Commodore SFD-1001 Test/Demo
+ diskette. [Curt Coder]
+
+-Netlist now compiles with
+ * std=c++98 -Wall -Wpedantic -Wextra -Wno-long-long
+    -Wno-variadic-macros and
+ * std=c++11 -Wall -Wpedantic -Wextra [Couriersud]
+
+-Arkanoid.c: Add rom numbering list, add more info and more correct rom
+ labels for first version arkanoid (US, Romstar License) board from pcb
+ pics [Brizzo, Lord Nightmare]
+
+-Added macro object registration and dynamic includes to netlist. This
+ allows the creation of macro libraries going forward. Any IC which can
+ be described by a truthtable and a package wrapper can now be entirely
+ described in netlist syntax. [Couriersud]
+
+-m20: 8086 apb [Carl, rfka01, Christian Groessler]
+
+-firebeat: Completely rewrote the graphics chip emulation [Ville Linde]
+
+-Identify size_t usage in printf by enclosing the argument in
+ SIZET_PRINTF(). This is typesafe, can be identified and allows to use
+ proper 64bit computing with compilers up to it. [Couriersud]
+
+-fixed SAA1099 driver to actually use clock (nw); corrected Game-
+ Blaster/SB1.0 clock to 7.159mhz [NewRisingSun]
+
+-Added MM5837 Noise Generator used by Congo Bongo. [Couriersud]
+
+-pet_cass.xml: Added tapes. [Dagarman] 
+
+-pet_flop.xml: Added disks. [Dagarman]
+
+-Further improvements + two missing files. Congo Bongo netlist now
+ parses without issues. [Couriersud]
+
+-DEC Rainbow: fixed Z80 access to shared RAM, motor on/off signal, and
+ ROM labels. [Karl-Ludwig Deisenhofer]
+
+-winfile.c: Stop crashing after saving to a disk image loaded from a
+ software list. [Curt Coder]
+
+-g64_dsk: Respect the number of tracks specified in the image header.
+ [Curt Coder]
+
+-c128_flop.xml: Added Paperback Writer 128, Term Paper Writer, The
+ Great War, and Your Personal Financial Planner 128 disk images.
+ [Curt Coder]
+
+-Document progress on congo bongo. Gorilla sound now works. Performance
+ up from 30% to 170%. Use ./nltool -c run -f nl_examples/congoBongo.c
+ -t 2 to test. Minor enhancements and bugfixes. [Couriersud]
+
+-m68k: fix unaligned pc-relative accesses [O. Galibert]
+
+-scfinals: Add correct default eeproms [O. Galibert]
+
+-Add a second rom label variant to NSS Super Mario World IC1 [byuu]
+
+-peoplepc: split from pc.c and make it work [Carl]
+
+-peoplepc: new roms [rfka01]
+
+-verified protection data on gaialast [system11]
+
+-Created macro libraries for CD4XXX and 74XX chip families. Going
+ forward, these will contain all devices which can be described using
+ truthtables and DIPPINS. [Couriersud]
+
+-SDL: fix 0.160 aspect ratio regression. [Hans Ostermeyer]
+
+-correct PROMs for 'mayac' set, fixes colours [system11]
+
+-thedealr.c: Figured out Coinage, Max Bet, Payout, Double up, Jacks or
+ Better and Fever Mode dipswitches. [Brian Troha]
+
+-sdk80.c: Begun hooking up devices [MooglyGuy]
+ * Hooked up i8251 USART and RS232 device. Can use standard RS232 slot
+    devices, including the internal serial terminal, or a terminal
+    program running on the host machine.
+ * Hooked up USART baud rate selection switch.
+
+-chihiro.c: bruteforced DES key for "Sega Network Taisen Mahjong MJ 3
+ Evolution" [f205v]
+ 
+-jvs13551.c: Sega 838-13683 and 837-13551 JVS I/O MCU firmwares dumped
+ [Soyandroid]
+
+-VK100.c: correct prom locations based on schematics; Mark one PROM as
+ bad pending a redump. [Lord Nightmare]
+
+-VK100: More work based on schematic. Self test doesn't get much
+ farther yet. [Lord Nightmare]
+
+-Hooked up speech in "Harem". Added save-states. Verified colors
+ [Luca Elia, tirino73]
+
+-sdk80.c: Added video board control PROM.  Promoted to Working [MooglyGuy]
+
+-Fixed World Heroes Perfect (Sega Saturn) TH Control Mode in SMPC.
+ [Angelo Salese]
+
+-Added preliminary CD-DA routing to SCSP EXTS parallel port, fixes
+ CD-Rom player equalizer in Sega Saturn. [Angelo Salese]
+
+- "1942p" improvements
+ * dumped correct sound ROM for this set [mastercello]
+ * hooked up alt. memory map needed by new sound rom [David Haywood]
+ * retagged as a Tecfri bootleg PCB rather than prototype
+ * fixed interrupt generation for this version, allowing powerups to
+   scroll correctly [David Haywood]
+
+-Re-add NetBSD support. [Thomas Klausner]
+
+-n64: Fix crash when fast-forwarding. [MooglyGuy]
+
+-VK100: Fix diagrams for memory map decoding in comments, based on
+ schematics. [Lord Nightmare]
+
+-firebeat: Added basic SPU board emulation [Ville Linde]
+
+-rspcp2: Make the align declarations gcc-compatible [O. Galibert]
+
+-Decrypted external ARM code in slqz3 [iq_132]
+
+-a7800: fix 0x2800 mirroring behavior [Mike Saarna, Robert Tuccitto]
+
+-Commodore VIC-1515 printer. [Curt Coder]
+
+-Commodore VIC-1520 plotter [Jim Brain, Curt Coder]
+
+-add rom locations to zookeeper sets [Lord Nightmare]
+
+-Improve sound in some Mortal Kombat Yawdim bootlegs [Luca Elia]
+
+-Added nlwav to tools. nlwav converts netlist logs into wav files. [Couriersud]
+ Example usage:
+
+ ./nlwav -i netlist.log_RO.1.log -o tt.wav
+
+ ./nlwav -h
+
+-Commodore 1526/MPS-802/4023 printer [Curt Coder]
+
+-c128: Added a skeleton for the PARTNER 128 cartridge. [Curt Coder]
+
+-ti99: MFM low-level hard disk emulation, removed legacy floppy [Michael Zapf]
+
+-315_5124.c: avoid saving the dynamic RAM used for temp rendering, the save
+ state system does not currently agree with RAM that gets reallocated at
+ run time which was happening whenever the resolution changed.
+
+-shadfrce: remove runtime tag lookups and optimized video rendering to restore
+ speed back to what it was in versions prior to 0.161. [David Haywood]
+
+-dreamwld.c: fix visible areas based on PCB tests, fixed linescroll modes,
+ fixed tilemap sizes etc.
+ This improves visuals in cutefght, rolcrush, baryon etc. [David Haywood]
+
+-sm510: initial Sharp SM510 MCU core [hap]
+
+-tb303: hooked up basic button inputs and ext. RAM [hap]
+
+- additional gameking dumps listed in Software List, including 2 for Game King 3
+  [Team Europe]
+
+- some additional famiclone bios sets [Team Europe]
+
+- Added / completed /enabled save state support to the following drivers:
+decos32.c, destroyr.c, gstriker.c, itech8.c, namcona1.c, namcond1.c, namcos86.c, 
+naughtyb.c, nbmj9195.c, paranoia.c, pcktgal.c, poolshrk.c, sbowling.c, spbactn.c,
+spdodgeb.c, starcrus.c, tank8.c, tapatune.c, ttchamp.c, vicdual.c [Osso]
+
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Intel SDK-80 [Nigel Barnes, MooglyGuy]
+Gaia - The Last Choice of Earth [David Haywood, system11]
+The Dealer (Visco Games)
+  [Luca Elia, Fabrice Arzeno, Porchy, rtw, The Dumping Union]
+Mahjong Magic Lamp (v. JAA02) [Dyq, Guru, Luca Elia]
+Mahjong Super Dai Chuuka Ken (Japan, D115) [Dyq, Guru, Luca Elia]
+Mahjong Gorgeous Night (Japan, TSM003-01) [Dyq, Guru, Luca Elia]
+The Round Up [Brian Troha, The Dumping Union]
+Monkey Magic [Smitdogg, *=/STARRIDER\=*, BrianT,  russ h., Mucci, Justin Kerk,
+  Bigster, Dave France, Dulleron, Nicolas Francfort, f205v, Gilby, rtw,
+  gregf, Andy Welburn, Shoutime, MooglyGuy, balrog, Gor, The Dumping Union,
+  Dirk Best]
+
+
+New clones added
+----------------
+The Rumble Fish 2 (prototype)
+  [Brizzo, MetalliC, Coolmod, The Dumping Union]
+X-Men Vs. Street Fighter (USA 960910) [kawaks]
+Turbo (encrypted, program 1363-1365 rev B) [Andrew Welburn]
+Turbo (encrypted, program 1363-1365) [Andrew Welburn]
+Indianapolis (bootleg of Turbo) [f205v]
+Sunset Riders (4 Players ver JAD) [Fraspe]
+Quizard (v1.0) [TeamEurope] (and reorganized sets)
+Vendetta (Asia, 4 Players, ver. Z) [Fraspe]
+Karate Blazers (bootleg) [Gerald (Coy) and Thierry (ShinobiZ)]
+Run and Gun (ver EAA 1993 9.10, prototype?) [caius, mastercello]
+Maya (set 4, clean) [system11]
+Hot Rod (Japan, 4 Players, Floppy Based, Rev C) [Ordyne]
+Varth: Operation Thunderstorm (Japan Resale Ver. 920714)
+  [Alex Cmaylo, The Dumping Union]
+Hot Chase (set 2)
+Shinobi (Datsu bootleg, set 2) [Andrew Welburn]
+Midnight Resistance (Joystick bootleg) [Guru]
+Super Cobra (Stern Electronics) (encrypted, KONATEC XC-103SS CPU)
+  [Kevin Eshbach, David Haywood]
+Mortal Kombat (Yawdim bootleg, set 4) [Marco, Guru]
+Gang Hunter [Smitdogg, The Dumping Union]
+Spatter (315-5099) [Andrea Palazzetti]
+Phoenix (Assa, Spanish bootleg) [Rockman & Edcross]
+Ave Fenix (Laguna, Spanish bootleg of Phoenix) [Rockman]
+Vautour (bootleg of Phoenix) (Z80 CPU, single PROM) [system11]
+Hana to Ojisan [BET] (ver 1.00, 1991/08/23) [AeroCityMayor]
+Power Spikes (Italian bootleg) [Manual Assoni]
+NFL Blitz '99 (ver 1.2, Aug 28 1998) [SiftWare]
+California Speed (Version 1.0r8 Mar 10 1998, GUTS Mar 10 1998 / MAIN Mar 10 1998)
+  [jmurjr]
+PuzzLove (Korea) [system11]
+Bubble Bobble II (Ver 2.6O 1994/12/16) [rtw, Team Europe, The Dumping Union]
+Crush Roller (Famaresa PCB) [Rockman, Edcross] (not working, different protection?)
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Microdigital ONYX: new colecovision prototype (unreleased).[Felipe Sanches]
+Daruma DS348 dot-matrix printer skeleton driver. [Felipe Sanches]
+Aqua Stage [MooglyGuy, Smitdogg, Charles MacDonald, The Dumping Union]
+Sega Network Taisen Mahjong MJ 3 Evolution (Rev B) (GDX-0021B)
+  [Andy Geezer]
+Mahjong Shuang Long Qiang Zhu 3 [Dyq, Guru]
+Konami Top Gun [hap, Sean Riddle]
+Konami TMNT [hap, Sean Riddle]
+Game & Watch: Mickey & Donald [hap, Sean Riddle, segher, O. Galibert]
+Gakken Jungler [hap, Kevin Horton, Rik]
+Bandai Zaxxon [hap, Kevin Horton, Rik]
+Bandai Ultra Man [hap, Kevin Horton, Rik]
+Bandai Pengo [hap, Kevin Horton, Rik]
+Bandai Burger Time [hap, Kevin Horton, Rik]
+NBA Showtime Gold / NFL Blitz 2000 (ver 3.0) (Sports Station?) [?]
+

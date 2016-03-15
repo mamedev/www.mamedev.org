@@ -1,0 +1,89 @@
+0.113u1
+-------
+
+NOTE TO OSD PORTERS: There are some major changes happening in this
+version. Most importantly, throttling and frameskipping are now part
+of the core. Please read the whatsnew carefully!
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+janptr96_0110u4gra  [Mike Ellery]
+dokidoki0111u5gra [Mike Ellery]
+
+
+
+Source Changes
+--------------
+Began converting drivers over to the new more accurate video timing
+functions (video_screen_* functions instead of cpu_*). This first
+batch includes all the games using the TMS34010 chip and the Atari 
+games that use atarigen.c. [Zsolt Vasvari]
+
+Fixed Windows-isms in regrep.c. [couriersud, Aaron Giles]
+
+Improvements to the kaneko driver. All the protection data should be 
+correct now. [Sebastien Volpe]
+
+Added DIP switch locations based on information from the manuals for
+the following drivers: Karnov, Magmax, Omega Race, Spiders, Bagman,
+and Bank Panic. [Justin Szczap]
+
+Added a call winwindow_ui_exec_on_main_thread() to allow code on the 
+window thread to cause a function to be executed on the main thread.
+[Nathan Woods]
+
+Fixed a crash when verifying samples when a sample has a NULL name.
+[Nathan Woods]
+
+Built the iButton data for keyboardmania 2nd mix and Pop'n Music 7.
+With this update Pop'n Music will also show the self tests. 
+[Ville Linde]
+
+Properly fixed tile flipping in Mustache Boy. [David Haywood]
+
+Built iButton data for ppd. [Ian Patterson]
+
+Fixed the rest of the Atari games and the Cinematronics CCPU games to
+use the newer video timing system. Also fixed reset problem in
+Destroyer. [Zsolt Vasvari]
+
+Fixed sample audit to report all missing samples. [BUT]
+
+Marked unknown dips for 005 according to manual. [Mike Ellery]
+
+Updates drivers from C-E to use the newer video timing system.
+[Zsolt Vasvari]
+
+Fixed timer dipswitch in Alien Syndrome set 1. [Don Maeby]
+
+Moved throttling, frameskipping, fast forwarding, and timing into the
+core. Removed the equivalent code from the Windows OSD layer. This
+now relies on options being set for controlling these features by the
+OSD layer via options.c. Deprecated the old osd_get_fps_text()
+function. Changed osd_update() to take a parameter indicating whether
+or not the frame was skipped. Added new function osd_sleep() to the
+OSD core timing library. [Aaron Giles]
+
+Added a new mechanism for building in fonts. A new tool, png2bdc can
+convert a specially formatted PNG file into a binary cached MAME font.
+This cached font can be embedded into MAME. A new default small UI
+font is now included, and built via this process to replace the old
+hard-coded one. The new font is proportional, so there is better use
+of limited screen real estate in small video modes. Some balancing/
+tweaking of the actual font still needs to be done, and some basic
+functionality still needs to be added to png2bdc. Consider this a
+work-in-progress. [Aaron Giles]
+
+
+
+New clones added
+----------------
+A Question of Sport (39-960-089) [Highwayman]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Megatouch 6 [chaneman]

@@ -1,0 +1,181 @@
+0.117u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+brkthru091u1gra [Luigi30]
+debbuger+psx_0117ora [Aaron Giles]
+cbtime0117red [Zsolt Vasvari]
+hotpinbl0117gra [Roberto Fresca]
+batrider0114red [Alex Jackson]
+battleg0113u4red [Alex Jackson]
+battleg0116u1ora [Alex Jackson]
+    
+    
+
+Source Changes
+--------------
+Fixed bug in screenless systems. [Nathan Woods]
+
+Fixed crash in chd code if reading beyond the end of the file.
+[Roman Scherzer]
+
+Moved Sand Scorpian and Gals Panic over to use the Pandora emulation.
+Also fixed some problems in the pandora emulation which improves the 
+sprites in Djboy. [David Haywood]
+
+Added new function timer_call_after_resynch(), which effectively
+sets a zero-duration timer for resynchronization. Replaced instances
+of zero-duration timers in the code with this more descriptive call.
+[Zsolt Vasvari]
+
+Defined new macro TIMER_CALLBACK, which should be used to wrap
+timer callbacks. Added a running_machine * parameter to timer 
+callbacks. Updated all existing timer callbacks to use the new
+macro. [Zsolt Vasvari]
+
+Added more opcode decryption to gussun. [Robiza]
+
+Added discrete sound to headon and clones in vicdual.c. [couriersud]
+
+Added two inverter oscillators supporting enable and mixing in signals
+to discrete.h / disc_wav.c. [couriersud]
+
+Fixed a few bugs in the change lanes video emulation. [Adam Bousley]
+
+Updated the monzagp driver into a somewhat playable state. There are
+still some graphics problems. LEDs still need to be hooked up for
+score/time-remaining display. [Phil Stroffolino]
+
+Neo-Geo update: [Zsolt Vasvari]
+ - BIOS only driver 'neogeo' no longer crashes
+ - Cleaned up memory banking code to use memory_set_bank() instead 
+    of memory_set_bank_ptr()
+ - Fixed LEDs
+
+Improvements to the toaplan2 driver: [Alex Jackson]
+ - Replaced byteswapped truxton2 M68K program ROM with correct one
+ - Fixed sound CPU communications in the Raizing games. This is 
+    educated guesswork, but it's more complete and probably more
+    correct than what was there before, and doesn't rely on excessive 
+    use of cpu_yield()
+ - Added more information about the Raizing sets to the comments in 
+    the driver, and corrected some errors
+ - Reorganized the Battle Garegga sets in a more sensible fashion
+
+Reworked input system to push more features into the core. Cleaned
+up architecture to properly separate dependencies. Please note that
+this change only addresses the lower layer of input handling. The
+upper layer (i.e., input port handling at the driver layer) remains
+the same. [Aaron Giles]
+
+Major changes include:
+
+  * Removed the concept of os_code from the system. Now all codes
+    are defined via a set of macros in input.h. Each code is a 32-bit
+    value that encodes a device class, device index, item class,
+    item modifier, and item ID.
+    
+  * Removed OSD functions osd_get_code_list() and osd_get_code_value().
+    Instead, the OSD layer during osd_init() must register one or more
+    devices and the input items attached to each device via two new
+    functions input_device_add() and input_device_item_add().
+    
+  * Separated input sequence code into new module inputseq.c.
+    
+  * Moved support for the following options into the core: -mouse,
+    -joystick, -lightgun, -steadykey, -offscreen_reload, -joy_deadzone,
+    -joy_saturation, -paddle_device, -adstick_device, -pedal_device,
+    -dial_device, -trackball_device, -lightgun_device, 
+    -positional_device, -mouse_device. The OSD layer should simply 
+    register all devices at osd_init() time and allow the core to 
+    enable/disable them according to the options.
+  
+  * Added two new options: -multikeyboard and -multimouse. By default,
+    both options are OFF. When OFF, the core will combine all keyboard
+    or mouse input into a single keyboard or mouse device. When ON,
+    these options instruct the core to keep inputs for each keyboard
+    and/or mouse independent.
+    
+  * Added new option: -joystick_map. This option allows for a 9x9 grid
+    to be specified which controls analog-to-digital mapping of 
+    joystick inputs.
+    
+  * Changed the Windows implementation of input handling to fully
+    support the raw input interfaces for keyboard and mouse. 
+    DirectInput is still used for all joystick inputs, as well as for
+    keyboard and mouse inputs on pre-Windows XP systems. This allows
+    for multiple keyboards and mice to be supported. Also changed
+    keyboard and mouse behavior to use non-exclusive mode in 
+    DirectInput, and to keep the devices alive during pause for more
+    consistent input handling.
+
+  * Broke windows.txt into config.txt, which contains all common
+    core-supported options and commmands, and windows.txt, which now
+    only lists Windows-specific additions.
+
+Added support for frame update callbacks, similar to pause and exit
+callbacks but called at the same time as osd_update(). [Aaron Giles]
+
+Changed osd_init() to no longer return a value. OSD initialization
+should now rely on fatalerror() to report fatal initialization
+problems. [Aaron Giles]
+
+Added new function mame_schedule_new_driver() which allows for a new
+driver to be queued after a hard reset. [Aaron Giles]
+
+Added experimental new minimal game selection user interface. This
+interface can be accessed if MAME is started with no parameters, or
+via the main menu by choosing "Select a New Game". This interface
+allows you to select a game driver by typing in the name of the game.
+As you type, MAME's fuzzy name matching code will list the top 15
+selections that match. The interface will only display games that
+it finds in your rompath. [Aaron Giles]
+
+Added "empty" driver which is used to host the game selection screen
+when no valid game is selected. [Aaron Giles]
+
+Changed behavior in the Windows build so that double-clicking on
+MAME brings up the new game selection interface. [Aaron Giles]
+
+Removed the NOT_A_DRIVER flag which was overloaded to mean two 
+different things. There are now two new flags: GAME_IS_BIOS_ROOT
+indicates that a particular driver represents a BIOS rather than
+a full game. And GAME_NO_STANDALONE indicates that the given driver
+should not be listed or permitted to execute on its own. For MAME,
+most BIOSes are executable on their own, so they have the
+GAME_IS_BIOS_ROOT flag set but not the GAME_NO_STANDALONE flag.
+[Aaron Giles]
+
+Added new routines mame_openpath(), mame_readpath(), and 
+mame_closepath() for iterating over all files in a path specification,
+including support for multiple paths. [Aaron Giles]
+
+Changed audit interfaces to take a game_driver * instead of a game
+index. [Aaron Giles]
+
+Changed driver_get_approx_matches() and driver_get_count() APIs to
+work on arbitrary driver lists rather than being hard-coded to the
+static driver list. Renamed the functions from driver_get_* to
+driver_list_get_* [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Sliver [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Space Dragon (Moon Cresta bootleg) [David Haywood]
+Battle Garegga - Type 2 (Europe / USA / Japan / Asia) [Alex Jackson]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gals Panic (US, EXPRO-02 PCB) [David Haywood]
+Balloon & Balloon [Tomasz Slanina]

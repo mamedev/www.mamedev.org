@@ -1,0 +1,84 @@
+0.103u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+xevious083gre [MASH]
+
+
+
+Source Changes
+--------------
+Intel i386/i486/Pentium update: [Nathan Woods]
+ - Fixed A20 mask implementation
+ - Added A20 mask to debugger translate callback
+ - Implemented Pentium opcode CMPXCHG8B
+ - Fixed XADD, and added support for the 8 and 16 bit variants
+
+Fixed Top Shooter sprites. Game still not playable. [Tomasz Slanina]
+
+Changed debug view property code to pass property values as unions rather 
+than void pointers, in order to appease compilers that whine about strict 
+aliasing. [Nathan Woods]
+
+Fixed resource allocation issue with bitmaps in the Windows code and
+MESS. [Nathan Woods]
+
+Removed a number of unnecessary video_stop and machine_stop routines.
+[Atari Ace]
+
+Converted a few more exit() calls to osd_die(). [Oliver Stoneberg]
+
+Fixed inputs on Ninja Spirit and the Sega System 16b driver to match the
+JAMMA button ordering. [Corrado Tomaselli]
+
+Fixes to the Hyperstone core: [Pierpaolo Prazzoli]
+ - Removed nested delays
+ - Don't allow software opcodes to be executed in a delay slot
+
+Added/changed the following discrete modules: [Derrick Renaud]
+ - DISCRETE_WAVELOG - easy way to log discrete nodes as a .wav file to 
+    compare against scope waveforms.
+ - DISCRETE_OUTPUT - added a final gain parameter to get it to 16 bit 
+    wav level.  (The old VOL setting was disabled after the last sound 
+    re-write.)
+
+Fixed graphics banking in 8751-based Altered Beast sets. [David Haywood]
+
+Fixed some bad gfx in kdynastg when levels start. [Pierpaolo Prazzoli]
+
+Decrypted graphics in Darkmist and Panic Road. [Nicola Salmoria]
+
+Added stream_set_sample_rate() call, and converted the TMS5110, TMS5220, 
+ES5505/6, BSMT2000, AY8910, POKEY, TIA, Sega PCM/Multi-PCM, SN76496, 
+OKIM6295, and YMZ280B sound cores to output at their native sample rates, 
+allowing the core sound system to perform over/re-sampling to the output 
+rate. [Aaron Giles]
+
+Moved CHD file access routines to fileio.c. [Aaron Giles]
+
+Added assert macro to mamecore.h. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Laser Battle/Lazarian [Pierpaolo Prazzoli]
+Cat and Mouse [Pierpaolo Prazzoli]
+KlonDike+ [Pierpaolo Prazzoli]
+Alien Arena
+Crowns Golf in Hawaii [Aaron Giles]
+
+
+
+New clones added
+----------------
+Joust (Solid Green Label) [Reznor007]
+Space Intruder (Japan) [Tomasz Slanina, Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Galaxia [David Haywood]

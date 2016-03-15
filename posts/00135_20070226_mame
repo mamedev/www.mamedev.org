@@ -1,0 +1,43 @@
+MAME 0.112u3
+
+<p>
+A third update to MAME 0.112 is now available on the <a href="http://mamedev.org/release.html">Latest 
+Release page</a>. The biggest change in this release is a significant 
+change to the way sound is generated. The previous implementation allowed 
+the OS-specific code to control the sound, which ended up having subtle 
+impacts on the consistency of the emulation. For example, a user running 
+with one sample rate might get different results from a user running at 
+a different sample rate. As of this release, the OS-specific code is no 
+longer in control of sound generation at all. Instead, the core emulator 
+decides how much sound to generate and hands it over 50 times/second to 
+the OS layer. As a result, this change impacts not only the internals of 
+the sound system, but also requires us to change the way we stream sound 
+in the Windows-specific code (and the SDL code will need to be updated 
+as well).
+</p>
+
+<p>
+A side-effect of this change is that it is now very important for the frame 
+rate to be as accurate as possible. This means that the behavior of the 
+code which throttles MAME down to the proper frame rate is very important. 
+Thus, several changes to the way MAME throttles its speed have been implemented. 
+Hopefully this will produce more regular frame rates and fewer sound glitches. 
+As usual, report any problems to <a href="http://mametesters.org" 
+target="_blank">MAME Testers</a>.
+</p>
+
+<p>
+In addition to the sound changes, Derrick Renaud has made some changes 
+to the way analog inputs are handled. This is all to the good and improves 
+the accuracy of the controls, but may introduce a bit of confusion. Be 
+sure to read the <a href="http://mamedev.org/updates/whatsnew_0112u3.txt">whatsnew.txt</a> 
+file and the updated windows.txt file to see how things work in the new 
+world.
+</p>
+
+<p>
+Finally, we have some nice additions to the Konami System 573 driver from 
+smf, discrete sound in Amazing Maze thanks again to Derrick, and some nice 
+Eolith driver improvements. All in all, a nice release, but not for the 
+faint of heart if big changes make you nervous!
+</p>

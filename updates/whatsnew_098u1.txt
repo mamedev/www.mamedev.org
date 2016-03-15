@@ -1,0 +1,108 @@
+0.98u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+slither094u1red [Aaron Giles, with a hint from MASH]
+sf2accp2070u5red [Aaron Giles]
+nemesis097u1gre1 [Mamesick]
+nemesis097u1gre2 [Mamesick]
+karatblz137b4gre [Pierpaolo Prazzoli]
+mystwarr098gre [Mamesick]
+esckids076yel [David Haywood]
+spyhunt097gre1 [Aaron Giles]
+spyhunt097gre2 [Aaron Giles]
+turbotag097u3gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Changed how perodic timers are defined. Previously, you would specify a
+number which was interpreted either as Hz (if less than 50000) or as
+nanoseconds (if greater than 50000). Now, the time is specified as a period
+and you use the standard TIME_IN_HZ or TIME_IN_NS macros. [Aaron Giles]
+
+Turned on address error checking in the 68000 core. This slows things down a
+bit but is more accurate and allows correct behavior of a couple of badly-
+programmed games. [Aaron Giles]
+
+Fixed several issues with address error checking in the 68000 core.
+[Aaron Giles]
+
+Fixed 68000 bug that treated 8-bit branches with $FF offsets as illegal,
+rather than allowing them and generating an address error. [Aaron Giles]
+
+Created a new header file mamecore.h, which contains the core common useful
+macros and typedefs that were scattered throughout the header files. Also
+added endian swapping macros from MESS. [Aaron Giles]
+
+Fully deprecated the use of cpu_setbank(), which was long ago replaced with
+memory_set_bankptr(). [Aaron Giles]
+
+Did some major cleanup on the MCR drivers [Aaron Giles]
+- Implemented Super Sound I/O interrupts properly.
+- Filled out all memory maps according to schematics.
+- Fixed sound sync with various sound boards, allowing for kludges to be
+  removed from Power Drive and Star Guards.
+- Re-verified all connections from wiring diagrams.
+- Documented various lamp and driver boards from the games.
+
+Some makefile tweaks to hopefully catch variable declaration problems that
+kept creeping into builds. Switched gcc compiler standard to gnu89.
+[Atari Ace]
+
+Removed usage of dirent.h APIs on Windows builds. [Atari Ace]
+
+Corrected resolution to 256x256 in Stagger I, Red Hawk, Sen Jin - Guardian 
+Storm. All other games still have old visible area that is correct for them.
+[Mamesick]
+
+Fixed crash in Volfied and Operation Wolf due to improper timer usage.
+[Nicola Salmoria]
+
+Fixed one of the TC360 sprite blending modes (used in Pulirula round 2 and 
+Liquids Kids attract mode). [Bryan McPhail]
+
+Fixed sprite/tilemap placement in Legend of Kage. [Phil Stroffolino]
+
+PowerPC core update: [Nathan Woods]
+- Added infrastructure to generate DSI and ISI exceptions
+- Made the lbz/lbzu/lbzux/lbzx instructions properly clear out the 
+  high 24 bits in the results
+- Added SRR0 and SRR1 to the debug view
+
+Did some cleanups in the vamphalf.c driver. [Pierpaolo Prazzoli]
+
+Fixed speedbal again, after breaking it in the last update. 
+[Pierpaolo Prazzoli]
+
+Changed Nitro Ball to use the new deco16_tilemap_34_combine_draw function 
+Bryan added some time ago. [Pierpaolo Prazzoli]
+
+Added a sprite wrap around needed in Riot level 2. [Pierpaolo Prazzoli]
+
+Added sound to Dragon Bowl. [Pierpaolo Prazzoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Born To Fight [Luca Elia]
+Lethal Enforcers [David Haywood]
+Koro Koro Quest (Japan) [Luca Elia]
+
+
+
+New clones added
+----------------
+Night Slashers (Japan) [Corrado Tomaselli]
+Crush Roller (Kural TWT) [Pierpaolo Prazzoli]
+Sand Scorpion (set 2) [Aaron Giles]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Wink [Pierpaolo Prazzoli]

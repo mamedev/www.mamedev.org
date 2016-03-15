@@ -1,0 +1,62 @@
+0.21
+
+Program:
+- I'd like to say I'v finished, but Nicola is too fast as always! ;)
+  So thanks to Nicola we have GALAGA!!  And very special thanks to Martin
+  Scragg that provided us crucial information on custon I/O chips.
+
+- Thanks to Dark Schneider (DS wanted to be anonymous, so I'll call him
+  this way) that provided 6809 support and the first driver working on this
+  CPU: Super Pac Man.  The driver is based on the super-detailed KEG file
+  of Replay emulator by Kevin Brisley (kevin@isgtec.com).
+  Thanks to everyone.
+
+- Ville Laitinen provided a driver for Kangaroo, based on the Arabian
+  hardware.  I'v also adjusted the number of frames per second to 60
+  to the two drivers.  Sync with sound should be better, though.
+
+- Thank to Virtu-Al (Alan J McCormick (gonzothegreat@JUNO.COM)) Amidar
+  and Turtles now have 100% correct colors.
+
+- Arabian has correct colors now.
+
+- Fixed a bug in all games with starbackground:  using a frameskip > 0
+  introduced slowdowns.  Now the speed remains unchanged.
+
+- Fixed tempo speed in 1942.  It was playing at half speed. Should be
+  correct now.  Also fixed a bug in noise volume of PSG.  Noise was
+  playing at half volume.
+
+- Added support for Donkey Kong japanese version
+
+- Minor adjustment to Space Invaders color strips
+
+- Mad Planets doesn't crash anymore with the new samples (shorter!)
+
+- Added colors to Warp Warp.  Thanks again Chris.
+
+- Fixed Dipswitch in Elevator Action.  YOU'LL HAVE TO DELETE THE PREVIOUS
+  DSW FILE IN "ELEVATOB" DIRECTORY IN ORDER TO GET IT RUN CORRECTLY.
+
+Sources:
+- Added M6809 CPU support.  Changes in CPUIntrf.c and Driver.h to accomodate
+  the new CPU.
+
+- Nicola introduced changes to the Z80 emulator code that intercept some
+  sorts of tight loop used during an interrupt waitstate.  Normal games
+  should not be affected, while Galaga and 1942 are now very fast!!
+
+- Added MasterVolume in MSDOS.C, and changed MAME.C to support this feature.
+  You can change the volume thru various volume percentage [100,75,50,25,0]
+  pressing F9.
+
+- Sound is freezed now during GFXView, Pause and DipSwitch settings.[Ahhh! ;)]
+
+- I'v added redefinable keys in MAME.  A new structure cointains which
+  input ports and bits have a certain meaning.  The KEY settings will be
+  saved in a .KEY file, in the game directory.
+
+- Changes in COMMON.H for the sample structure.  Now it has infos on
+  replayrate, resolution and volume of the sample to be played.
+  BE SURE TO DOWNLOAD THE NEW SET OF SAMPLES, OR THE "MAMESAM" CONVERTER
+  OR YOU WILL GET NO SOUND FOR SAMPLE BASED GAMES!!

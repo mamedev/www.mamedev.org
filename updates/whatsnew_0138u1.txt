@@ -1,0 +1,206 @@
+0.138u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00948: [Graphics] batsugun: The ending and credits text is in gibberish 
+         language. (David Haywood)
+- 03832: [Sound] monymony, jackrabt: Missing speech (couriersud)
+- 00946: [Graphics] batsugun, batsuguna, batsugunsp: Some graphics garbage 
+         at level one start and first boss. (David Haywood)
+- 03445: [Crash/Freeze] znpwfv: Segmentation Fault (Angelo Salese)
+- 02642: [Crash/Freeze] myfairld: [possible] Black screen in Virtual 
+         Mahjong 2 MFL (Angelo Salese)
+- 01009: [Crash/Freeze] grdforce: Test mode doesn't work. (Angelo Salese)
+- 03710: [Crash/Freeze] sokyugrt: Game crash after player select 
+         (Angelo Salese)
+- 02567: [Color/Palette] All Sets in zaccaria.c: Minor color issues (hap)
+- 00799: [Graphics] monymony: Sprite priority is incorrect when the player 
+         is pulled underwater. (hap)
+- 03474: [Sound] wilytowr: Background music is very low. (hap)
+- 03853: [Graphics] ssriders and clones: Sprites stuck error. (hap)
+- 03817: [Graphics] popflame + clones: Color regression (Angelo Salese)
+- 03816: [Crash/Freeze] popflame: The game resets after the third round. 
+         (Angelo Salese)
+- 03852: [Gameplay] 20pacgal, 20pacgala: Severe slowdown after initials 
+         are entered. (couriersud)
+- 03476: [Crash/Freeze] quartet, quarteta, dumpmtmt: Games do not start. 
+         (Alex Jackson)
+
+
+
+Source Changes
+--------------
+Remove all references to the nonexistent "premov" instruction from the
+NEC-V core.  [Alex Jackson]
+
+Corrected stack walk by using UNICODE_POSTFIX.  Fixed some incorrect
+function declarations in winmain.c.  [Oliver Stoneberg]
+
+cps2: Made ssf2t a parent set [Alex Jackson]
+
+New driver: sigmab98.c [Luca Elia]
+
+astrocorp.c: Added PCB layout for Astro M1.1 & M1.2 PCBs [Brian Troha]
+
+Documented an energy bar debug switch in aladbl, disabled by default
+[Angelo Salese]
+
+Fixed crashes when you fall into pitfalls in aladbl [Angelo Salese]
+
+Improved Z180 timer and HALT processing. This fixes MT03852.
+[Couriersud]
+
+Konami devices: Fixed sprite Z code rejection regression [hap]
+
+Basic hook-ups of the Nintendo Super System BIOS [Angelo Salese]
+
+namcos2: Optimized pixmap rotation, improving performance of Assault
+and other games that use it [Bryan Ischo]
+
+tecmo.c: Included Rygar PCB documentation [Guru]
+
+Documented and worked around a long standing level 3 protection fault
+in Pop Flamer [Angelo Salese]
+
+Rewritten palette initialization in Naughty Boy HW by using the RESNET
+[Angelo Salese]
+
+Rewrote Z180 cycle accounting to create a basis for more exact
+internal I/O and timer operations as well as implementing interrupt
+priorities. Removed unused BIG_SWITCH code as well. [Couriersud]
+
+MPU4 Updates [James Wallace]:
+ * Added trackball support
+ * Fixed quiz game controls
+ * Restructured AWP games' characteriser handling
+
+Added photo y2k2 decryption table [iq132]
+
+Improved Z180 interrupt and timer handling. Added some missing save
+state entries and fixed HALT. [Couriersud]
+
+Rewrote rom/ram banking. 20pacgal now supports save state.
+[Couriersud]
+
+Added DIP LOCATIONS to Pengo, Jr. Pac-Man and clones.  [Tafoid]
+
+zaccaria.c: Improved sprite drawing, added DIP locations [hap]
+
+Ported Super Famicom Box from MESS to MAME [Angelo Salese] 
+
+Modified the naomi clipping a bit to avoid so many black lines 
+at the bottom [David Haywood]
+
+New Super 3D Golf Simulation - Waialae No Kiseki / Super Mahjong 2
+(Super Famicom Box) [Angelo Salese]
+
+Removed Groove on Fight boot hack, not anymore needed [Angelo Salese]
+
+Added x/y boundary checking to ST-V bitmaps [Angelo Salese]
+
+atarigx2.c: More rom name corrections as verified against a Moto
+Frenzy Mini Deluxe PCB. Added ROM for the "Clarn" game link sub PCB.
+[Charles MacDonald, P. Sealy, Smitdogg, The Dumping Union]
+
+Added lfsr-driven starfield to 20pacgal. The general principle is
+understood now but star set selection and the star drawing condition
+are guesses. [Couriersud]
+
+Moved global and static variables in driver galaga into a machine
+class. Renamed some variables, e.g. galaga_videoram and bosco_videoram
+to just videoram. [Couriersud]
+
+Added new DECO Cassette bios set and updated rom names/locations/types
+to be more accurate. [Lord Nightmare, The Dumping Union]
+
+micro3d.c : Added some PLD dumps to botssa [Phil Bennett, Smitdogg]
+
+Removed unneeded danchih title screen hack [Angelo Salese]
+
+Reverified TMS5200 clock and measured Vsync clocks from Zaccaria
+hardware [Corrado Tomaselli]
+
+Added debug_global_input_code_pressed_once() function to input.c
+[Angelo Salese]
+
+Added a readyq callback to the TMS5220 interface. This is needed to
+solve MT #3832. In zaccaria games, the intq and readyq are connected
+to pia 6821 lines ca2 and cb1 which are edge driven. Just reading
+readyq would miss to detect a state change if between reads readyq
+went 0-1-0. Updated zaccaria.c and looping.c. Fixes MT #3832.
+[Couriersud]
+
+Reworked rendering in toaplan2 to render tilemaps / sprites in a
+single pass, should be more accurate to hardware. Note, this further
+breaks the mixing in Batsugun and Dogyuun because the previous hacks
+can no longer work with the new rendering code. These games have been
+demoted to NOT_WORKING status until a better solution is found; they
+never worked properly anyway due to the extent of the video hacks
+needed to support them [David Haywood]
+
+documentation: Cleaned up company names [hap]
+
+Added NSC800 CPU emulation to the Z80 core [Sandro Ronco]
+
+Updated Legendary Wings with actual PCB speed readings.
+[Corrado Tomaselli]
+
+Update decocass comments/bios names with more info from D.Widel's
+page. [Lord Nightmare, David Widel]
+
+toaplan2: fixed sprite-sprite priorities in batsugun and dogyuun
+[robiza]
+
+Added bare-bones work around for the Network board in Super GT 24h and
+Over Rev, they now enters into attract mode [Angelo Salese]
+
+Revision 9295 by rbelmont
+SDL: fix compilation for GTK+ 2.20 and later [R. Belmont, Wingman]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+GeGeGe no Kitarou Youkai Slot
+  [A. Hoekman, ranger_lennier, Smitdogg, The Dumping Union, Luca Elia]
+Video Carnival / Super Royal Card [f205v, Angelo Salese]
+Mouse Attack [Phil Bennett, Smitdogg]
+Super Game III [Mariusz Wojcieszek, Guru]
+
+
+
+New clones added
+----------------
+Golden Tee 2K (v1.00) (alt protection) [Guru, Brian Troha]
+1943 (Euro) [Stefan Lindberg]
+Fantasy Zone (NEC 0317-5000 encrypted Z80)
+  [Cools, Andrew Welburn, The Dumping Union]
+X-Men Vs. Street Fighter (Asia 960910) [ANY, The Dumping Union]
+X Multiply (Japan, M81) [hap, porchy]
+The Crystal Maze (2 sets) [James Wallace]
+The Crystsl Maze Team Challenge (2 sets) [James Wallace]
+The New Crystal Maze Featuring Ocean Zone (2 sets) [James Wallace]
+Road Riot's Revenge (prototype, set 3) [Siftware]
+Indoor Soccer (set 2) [Siftware]
+Ms. Pacman Champion Edition / Zola-Puc Gal
+  [Andrew Welburn, The Dumping Union]
+Heavyweight Champ (Japan, FD1094) [Team Japump, Dumping Union]
+Super Draw Poker (bootleg) [f205v]
+Ms. Pac-Man/Galaga - 20 Year Reunion (2 sets) 
+  [Brian Troha, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Win Win Bingo (2 sets) [f205v, Filippo Tarderia]
+Zoo [Brian Troha, The Dumping Union]
+X Five Jokers [f205v]
+Magic Number (Italian Gambling Game) [f205v]
+Magic Class [f205v]
+Abacus [f205v]
+Euro Class [f205v]
+Book Theatre [f205v]
+Super Famicom Box BIOS [Angelo Salese]

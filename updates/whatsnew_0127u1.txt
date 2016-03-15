@@ -1,0 +1,306 @@
+0.127u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00228: [Graphics] sgladiat: Emulation is missing some enemy sprites
+         that are present on the pcb. (Nicola Salmoria)
+- 02147: [Interface] Annoying behaviour of highlighted entries in 
+         minimal UI (Aaron Giles)
+- 02159: [Crash/Freeze] cubeqst: Cubequest crashes on ATI hardware 
+         w/ prescale > 1 (Aaron Giles)
+- 02035: [DIP/Input] gwarb: Guerrilla War bootleg doesn't need a 
+         rotary joy (Nicola Salmoria)
+- 00650: [DIP/Input] stv.c games: P1 and P2 Button 4 are duplicated.
+         (Fabio Priuli)
+- 02154: [DIP/Input] ckongg: Coinage settings are wrong. 
+         (Fabio Priuli)
+- 02143: [Graphics] ozmawars, ozmawar2, solfight, spaceph: Streaks 
+         and dashes appear on screen after playing awhile 
+         (Fabio Priuli)
+- 02142: [Sound] centipdb, magworm, millpac: No Sound (couriersud)
+- 02150: [DIP/Input] spacegun: Missing crosshairs (Nicola Salmoria)
+- 02144: [DIP/Input] ozmawars, ozmawar2, solfight, spaceph: DIP 
+         settings for coinage are incorrect (Fabio Priuli)
+- 02126: [Core] corrupt CHDs are reported as missing (Aaron Giles)
+- 02133: [Misc.] chindrah: The title of Zhong Guo Long?(Hong Kong,
+         V011H) is Dong Fang Zhi Zhu(Hong Kong, V011H) (Aaron Giles)
+- 02139: [Misc.] In audio/system16.c, there is a reference to 
+         REGION_SOUND1 (Aaron Giles)
+- 02138: [Cheat System] flamegun: Debugger/Cheat System upper case 
+         cpu tag of MAIN doesn't work (Aaron Giles)
+- 02110: [Side-by-side] All sets in cps3.c: video from a DV cam 
+         proves the refresh rate of CPS3 in MAME is wrong (Aaron Giles)
+- 02127: [Documentation] xymg: The game name should be Xing Yun Man 
+         Guan and "Pin Yin:"should be omitted (Aaron Giles)
+- 02136: [Interface] cubeqst: from minimal UI cubeqst requires the 
+         optional CHD (Aaron Giles)
+- 00869: [Graphics] ikari: The title screen and high score screen do 
+         not have a black background, as MAME displays. 
+         (Nicola Salmoria)
+- 02135: [DIP/Input] rtypej: DIP Switch "Demo Sounds" is wrong 
+         (Fabio Priuli)
+- 00429: [Gameplay] fastlane: the random function of this doesn't work 
+         well and always gives a "no bonus"... (ShimaPong)
+
+
+
+Source Changes
+--------------
+Changed DIRECTINPUT & DIRECT3D handling, so they can be overridden by 
+environment variables. [smf]
+
+Readded generic calls to install memory handlers that were in long 
+before 0.126u5 - these are useful on the MESS side for things like 
+the PC driver. [Nathan Woods]
+
+HD63484 improvements: [robiza]
+ * fixed cpx and cpy when a ptn or a agcpy command is executed
+ * fixed for PTN command: copy direction and dot color
+ * first implementation of PAINT command (for now only 4bpp and 8bpp 
+    supported and the pattern is not supported)
+
+Cleaned up the discrete code and fixed discrete logging. 
+[Derrick Renaud]
+
+Fixed handling of a number of static variables to avoid multisession
+issues. [Atari Ace]
+
+Moved FD1089 decryption keys to external files. [Atari Ace]
+
+Changed 68000 IRQ support so that the IRQ lines explicitly simulate
+a standard demux chip connected to the IRQ lines. This means that the
+sequence:
+
+      cpunum_set_input_line(5, ASSERT_LINE);
+      cpunum_set_input_line(3, ASSERT_LINE);
+      cpunum_set_input_line(3, CLEAR_LINE);
+
+now works as expected. This required fixes to several Atari and other
+drivers. [Olivier Galibert]
+
+Input port cleanup pass over drivers from N-V, leveraging
+AM_READ_PORT, converting to full 32-bit inputs where suitable, using
+CUSTOM_PORTs for EEPROM bits, etc. [Fabio Priuli]
+
+Additional input port cleanups in the cps1, deco, pgm, psikyo, nbmj,
+and jaleco drivers. [Fabio Priuli]
+
+snk.c rewrite: [Nicola Salmoria]
+ - fixed sprite-sprite priorities
+ - TNK3, Athena, Fighting Golf, Country Club
+    - converted to tilemaps
+    - removed hacks
+    - proper memory maps
+    - screen flip / cocktail mode support
+    - DIP locations
+    - better implementation of sound CPU communication
+    - hooked sound CPU interrupts to YM chips
+    - fitegolf hax 1xYM3812, not 2xYM3526
+ - Ikari Warriors, Victory Road
+    - removed ROM patches
+    - simulated "hard flags" behaviour
+    - proper memory maps
+    - fixed ikarijp color test
+    - renamed dogosokj to dogosokb and loaded the correct palette PROMs
+    - inputs, dip locations, etc.
+    - removed NO_COCKTAIL flag since these games don't have a flip 
+       screen dip switch
+ - Guerrilla War, Psycho Soldier, Chopper I, TouchDown Fever / 
+   Fighting Soccer
+    - tilemaps
+    - proper memory map
+    - input, dip locations, etc.
+ - Bermuda Triangle / World Wars
+    - removed ROM patches
+    - simulated "turbo front" check
+    - renamed bermudao->bermudaj
+    - clarified the relationship between the four sets
+    - made World Wars a main set instead of a clone of Bermuda Triangle
+    - tliemaps, proper memory maps, inputs, etc.
+ - ASO 
+    - moved from hal21.c to snk.c
+    - removed hacks, fixed bg color
+ - Gladiator
+    - moved from sgladiat.c to snk.c
+    - fixed shadows, visible area, tilemaps, inputs, etc.
+ - Jumping Cross
+    - moved from jcross.c to snk.c
+    - fixed fg layer and visible area
+    - the game seems to be ok now? is there still something wrong?
+
+Added 8303 ROM to the games using it and updated MCU simulation to 
+match the new findings. [Nicola Salmoria]
+
+Removed duplicate buttons in sf2hack. Promoted sf2m2 clone to
+working. [robiza]
+
+Added helper function devtag_get_device(machine, type, tag) to 
+retrieve the device_config for (type, tag). [couriersud]
+
+Hooked up sound CPU comms in Power Instinct 2. This enables 
+synchronized dancing for the background characters. [ShimaPong]
+
+Fixed bug when writing AVI files with more than one RIFF chunk.
+Added missing chdman error messages when extracting to an AVI file.
+[Aaron Giles]
+
+Derived CPS2/CPS3 video timing based on measurements. These are 
+educated guesses. The logic behind the derivations is shown in the 
+source. [Aaron Giles]
+
+Game-A-Tron gambling hardware updates: [Roberto Fresca]
+ - Added sound support to "Poker 4-1" and "Pull Tabs".
+ - Figured out the output ports. Documented each bit accessed.
+ - Added button lamps support. Created layouts for both games.
+ - Switched the 8255 port C to be used as output port.
+ - Adjusted the coin pulse timing.
+ - Updated technical notes.
+ - Splitted the driver to driver + video.
+ - Final clean-up.
+
+Fixed problem that would cause the "Return To Prior Menu" menu item to 
+not stick if one is calling ui_menu_reset() with 
+UI_MENU_RESET_REMEMBER_POSITION, and that menu item is selected.
+[Nathan Woods]
+
+Added PR-8210 support to the ldplayer. Fixed step forward command on 
+the PR-8210. [Aaron Giles]
+
+Changed Journey and Domino Man to 4-way joysticks. [John Rieman]
+
+Added Discrete Sound for Starship 1. Still need to properly emulate 
+the MC3340. [Derrick Renaud]
+
+Changed some decryptions in igs_blit.c to use program roms loaded 
+byteswapped. Decrypted Mahjong Man Guan Cai Shen, Mahjong Long 
+Hu Zheng Ba 2, Mahjong Shuang Long Qiang Zhu 2, and Mahjong Super 
+Da Man Guan 2. [Pierpaolo Prazzoli]
+
+Added save state for discrete node->output to ensure that input nodes
+save states. [couriersud]
+
+Added a new generic latch device. Generic emulation of 74LS174/175, 
+74LS259 and other latches. Apart from providing synched latch 
+operation, these latches can be configured to read their input 
+bitwise from other devices as well and individual bits can be 
+connected to discrete nodes. Please see audio/dkong.c for examples.
+[couriersud]
+
+dkong & friends: Use new latch device [couriersud]
+ * adds new latch device where appropriate
+ * increased accuracy since now all main/sound cpu communications 
+    are properly latched
+ * removed quite some code as a consequence
+ * minor cosmetic edits
+
+Updated adp memory map. [robiza]
+
+m4510 core fixes: [robiza]
+ - banking in read and write operations
+ - jsr and jsrx instruction
+ - fixed TSY instruction
+
+Optimized ycc_to_rgb conversion code. [couriersud]
+
+Added readme for The Simpsons. [Guru]
+
+zn.c improvements: [smf]
+ - Improved dip switch emulation, ram hacks to get games booting are 
+    no longer required.
+ - Added gun emulation for judge dredd.
+ - Fixed judge dredd ide emulation when building with visual studio.
+ - Mapped primal rage 2 inputs
+ - Mapped player 3 & 4 inputs for 1 on 1 government, these are now 
+    the default with the 6 button inputs only mapped for games that 
+    need them.
+ - Converted AT28C16 to a device.
+ - Added preliminary support for devices to load/save nvram.
+
+Added some initial logic to boot and run the PR-8210 ROM (i8049)
+in ldplayer.c. Currently this is disabled behind a compile-time
+switch. Once this is working, the plan is to incorporate this into
+the existing PR-8210 emulation, but we're not there yet. [Aaron Giles]
+
+Changed Trivia Quest clocks based on some really old information.
+[Pierpaolo Prazzoli]
+
+Added new function tilemap_set_pen_data_offset(). While this isn't 
+'free' as tilemap_set_palette_offset() is (when the offset changes, 
+the pixmap cache needs to be invalidated), it helps removing some 
+redundant code from drivers. Updated snk.c and snk68.c to take 
+advantage of the new function. [Nicola Salmoria]
+
+Significant cleanup/rewrite of the MCS-48 CPU core:
+ * renamed from i8039 to mcs48
+ * changed to use data address space for internal RAM
+ * added internal memory maps for variants with internal RAM/ROM
+ * added a number of variants from documentation
+ * removed redundant and unused definitions from header file
+ * renamed constants and functions to be MCS48* prefixed
+ * re-verified all opcode behaviors and timing
+ * changed illegal opcodes to count 1 cycle to avoid infinite loops
+ * changed EA behavior so that it is a push from the driver instead of a pull on each opcode fetch 
+    (this may change further in the future). 
+ * reimplemented IRQ generation and timer behavior according to documentation
+ * updated all drivers accordingly
+ * fixed several uses of PULSE_LINE, which no longer works
+
+SH4, Naomi, and Hikaru updates [Samuele Zannoli]
+ - Fixed SH-4 core to support multiple SH-4s
+ - Fixed LDCSR instruction
+ - Fixed SH-4 I/O ports
+ - Skeleton Hikaru driver with memory maps and both SH-4s
+ - Fixed JVS/Maple translation so Naomi 2 BIOS runs
+
+Fixed Dip Switches and Inputs for 'jcross' and 'sgladiat'. [stephh]
+
+Changed slider controls into a menu. For now, removed the old direct 
+access mechanism; instead, you must access the sliders via the main 
+menu. While in the menu, you can use the ~ key to turn off the menu 
+display and leave only the bar display, in order to see more of the 
+screen. [Aaron Giles]
+
+Namco NB 1/2 work: [Olivier Galibert]
+ - Shares the memory with the c75.
+ - Renames the c75 region to c7x from user4.
+ - Implements the c75 reset/halt control.
+ - Implements the irqs more correctly.
+
+Small optimization to memory handling for 68000 core. 
+[Christophe Jaillet]
+
+Fixed input port confusion in the 8080bw driver. Connected AVGDVG
+status bits via PORT_CUSTOM. [Fabio Priuli]
+
+Updated stepper motor code to use a MAME-style config interface, 
+rather than a load of setting functions. Changed optic functions to 
+use clearly defined start and end points. Added standard layout for 
+Starpoint units used in many machines. Updated all affected drivers.
+[James Wallace]
+
+Removed useless backslashes lurking throughout the code. [Atari Ace]
+
+Improvements to magic10.c driver: [Roberto Fresca]
+ - Added Magic's 10 version 16.15
+ - Remapped all inputs to match other poker games.
+ - Added a missing input to Magic's 10 games.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Aero Fighters Special (Tiawan) [smf]
+Super Football Champ [smf]
+Magical Date / Magical Date - dokidoki kokuhaku daisakusen [smf]
+Fighters' Impact [smf]
+Judge Dredd [smf]
+
+
+
+New clones added
+----------------
+Top Skater (USA) [Gerald (COY)]
+Ikari Warriors (US) [Corrado Tomaselli]
+Magic's 10 (ver. 16.15) [Roberto Fresca]

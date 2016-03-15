@@ -1,0 +1,59 @@
+0.100u3
+-------
+
+
+Source Changes
+--------------
+More Sega C2/Genesis-based games cleanup: [Aaron Giles]
+ * fixed crashes introduced in last version
+ * centralized interrupt generation for all Genesis-based games
+ * implemented protection correctly for Puyo Puyo 2
+
+Changed validity checks to use hashes for speed. Also changed them to only
+run on the drivers in the source file of the current game, rather than on all
+games, in non-debug builds. And fixed the coinage sorting check so that it
+doesn't depend on the linker to order the strings in a particular way.
+[Paul Priest]
+
+Removed -skip_validitychecks option now that the time to execute the checks
+is not as bad. [Aaron Giles]
+
+Improved speed in Top Gunner by pre-decoding the vector processor microcode.
+Also added a shift register to produce the LCD-like look of the score and
+other numbers. [Mathis Rosenhauer]
+
+Nintendo Super System sound update: [R. Belmont]
+ * Fixed bugs in SPC700 ADC, SBC, ADDW, SUBW, MUL, DIV, & CLRV opcodes
+ * Fixed several APU hardware/timer issues
+ * Added accurate sound DSP emulation from the latest OpenSPC
+ * Fixed some timing issues that prevented ActRaiser from syncing up
+Result: generally accurate sound in the working NSS games, and in many 
+SNES games over in MESS as well.
+
+Added missing vertical movement to Gatsbee. [Pierpaolo Prazzoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Laser Battle [Pierpaolo Prazzoli]
+Water Balls [David Haywood]
+Pop's Pop's [David Haywood]
+Egg Hunt [David Haywood]
+Zip & Zip [David Haywood]
+Power Balls [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Escape Kids (Asia, 4 Players) [David Haywood]
+Gigandes (Japan) [Chack'n]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+NFL Football [Aaron Giles]
+Cat'N Mouse [Pierpaolo Prazzoli]
+Metal Saver [David Haywood]

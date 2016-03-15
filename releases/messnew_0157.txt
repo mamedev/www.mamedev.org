@@ -1,0 +1,175 @@
+0.157
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05795: [Misc.] (ampro.c) ampro: Does not want to start! (Robbbert)
+
+
+New System Drivers Supported:
+-----------------------------
+-Gamate [PeT]
+-Excalibur 64 [Robbbert]
+-BBN BitGraph terminal [Sergey Svishchev]
+-V-Smile (France) [segher]
+-Amaze-A-Tron [hap, Sean Riddle]
+-Comp IV [hap, Sean Riddle]
+-Code Name: Sector [hap, Sean Riddle]
+-Star Wars - Electronic Battle Command [hap, Kevin Horton]
+-Mathemagician [hap, Kevin Horton, incog]
+-Tandy-12: Computerized Arcade [hap, Kevin Horton]
+-TI TMS1xxx-based calculators [hap, Sean Riddle]
+-Speak & Spell hardware
+    [hap, Lord Nightmare, Kevin Horton, Sean Riddle]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+-Stop Thief (Electronic Crime Scanner) [hap, Sean Riddle]
+
+Skeleton drivers:
+-----------------
+-HP9000 Series 300 [R. Belmont, Al Kossow]
+-unknown TMS1100 electronic game [hap, Kevin Horton]
+
+Software Lists:
+---------------
+-vsmile_cart.xml: new dumps added. [TeamEurope]
+
+-m5_cass: dumped Solar System Forces tapes [Ola Andersson]
+
+-added software lists for Altos 5 floppies and Memotech MTX
+ tapes. [Riley110]
+
+-softlist: added new list for Patisonic Aleste floppies and
+ added more images to Tatung Einstein list. [Riley110]
+
+-added softlist for Archimedes disks. [Riley110, Fabio Priuli]
+
+-adam: added info and some images from sacnews website.
+ [Riley110]
+
+-softlist: added apollo_ctape softlist [Riley110]
+
+-Leapster dumps [Team Europe]
+
+-softlist: added new lists for mc1000 tapes and tvc floppies.
+ also added info to osborne1.xml. [Riley110]
+
+-vsmile.xml: two new dumps added. [TeamEurope]
+
+-psx.xml: added info to all the remaining images. [AntoPisa]
+
+-pico.xml: new dumps added from Jpn and Korea [TeamEurope]
+
+-vsmile_cart.xml: new dumps added [FatArnold, TeamEurope]
+
+-tutor.xml: added some new dumps [ssj, TeamEurope] 
+ 
+-vc4000.xml: added some new dumps [ssj, TeamEurope]
+
+-channelf.xml: added dump of Werbetextcassette [Fredric QJ Blaholtz, ranger_lennier] 
+
+-svision.xml: added dumps of Mahjang Leitai and Journey to the West [PeT, ranger_lennier]
+
+Source Changes
+--------------
+-cbm8296: Added mysterious "GV" ROM set. [Mike Naberezny]
+
+-intvkbd - intv.c:  Added keyboard proms and readme information
+ from initial rom package.  [Tafoid]
+
+-Rewrote TMS1xxx MCU core and added support for a couple of
+ classic Texas Instruments handheld calculators. [hap, Sean Riddle]
+
+-apollo: made possible to load cartridge tapes from softlist, by
+ dealing with these images like it's done for cassettes and floppies.
+ [Fabio Priuli]
+
+-maria.c:  Implemented "colorburst kill" bit of the MARIA CTRL
+ register.  [Mike Saarna, Robert Tuccitto]
+
+-megacd: verified and better documented bios of Japanese Rev.E [ShouTime]
+
+-gamate bios and cartridges [Peter Wilhelmsen,Morten Shearman Kirkegaard]
+
+-Fixed writing to disk with the Commodore 2040/3040/4040 and
+ 1541/1551/1570/1571 drives. [Curt Coder]
+
+-fdc_pll: Added write_next_bit_prev_cell() that writes a bit at the
+ position the previous bit was read from. This is needed for FDC's that
+ read and write on the same clock cycle, e.g. the Commodore 8050 and
+ Victor 9000. [Curt Coder]
+
+-apple2e: fix LC save states and don't enter double modes if
+ 80COL isn't set. [R. Belmont, Peter Ferrie]
+
+-apple2: disable orange/blue in hires if dhires set but not
+ 80col. [R. Belmont, Peter Ferrie]
+
+-Update Victor 9000 keyboard diagram [Lord Nightmare]
+
+-pc98: added preliminary support for disks in DCP, DCU, DIP and
+ NFD formats. [Fabio Priuli]
+
+-Victor 9000 keyboard: added layout and documentation of what
+ capacitive switch pads correspond to what key [Lord Nightmare]
+
+-Victor 9000 Keyboard: add more diagrams and connection lists
+ for the various IC and cable connections [Lord Nightmare]
+
+-Victor 9000 Keyboard: Add the keyboard matrix table.
+ [Lord Nightmare]
+
+-Victor 9000 Keyboard: Document the RJ-45 Keyboard cable
+ connector pinout. [Lord Nightmare]
+
+-pc98: added support for disks in .fdd format. [Fabio Priuli]
+
+-Victor 9000 Keyboard: Hook the keys to the keyboard matrix. [Lord Nightmare]
+
+-hp16500b: Fix the display ram test [O. Galibert]
+
+-MZ-2500: Fixed floppy drive reverse behaviour, allows Laydock to get
+ farther [Takeda Toshiya, Angelo Salese]
+
+-Fix VSM rom read through the tms51xx, and add tms6100 hookup to
+ tispeak.c, fixing speech in speak and spell and speak and math. The
+ drivers are usable but no display yet. Fixed speak and spell clock
+ speed (it is 1/2 the clock input of the tms51xx chip) [Lord Nightmare]
+
+-gamate :added bankswitched cartridges support, basic scrolling
+ support [PeT]
+
+-Intellivison: fix loading of very large .rom carts like D2K
+ Arcade. [R. Belmont]
+
+-gamegear: moved GG-SMS scaling from VDP file to the machine
+ file; undone the specific X-Scroll timing introduced to fix Chicago
+ Syndicate, for Game Gear, because it causes problems with the games
+ Sonic Drift 1 and 2; reduced the amount of duplicated code in the VDP
+ file. [Enik Land]
+
+-gamate - multi cartridge support [Peter Trauner]
+
+-vc4000: properly supported 4K carts with no RAM. [Fabio Priuli]
+
+-tutor.c: added correct mapping for 32K carts, promoting recent
+ Baseball dump to working state. [Fabio Priuli]
+
+-sms: added support for Hi-Com multigame carts, recently dumped
+ by smspower guys. Korean or Japanese consoles are suggested for these
+ carts. [Fabio Priuli]
+
+-gamegear: fixed detection of SMS games (via adapter) and added
+ support for connecting a SMS pad to the unit (via Gear2Gear port +
+ adapter) to play 2players games. [Enik Land]
+
+-Add a TEA1002 color encoder device and use it for the Aquarius. It
+ might make sense to make this a direct descendent of the
+ palette_device instead.
+ Color information based on TEA1002 datasheet. 
+ [Dirk Best, nitrofurano, Bruce Abbott]
+
+-Fixed save state regressions in the following drivers [Osso]:
+ plus4.c, micromik.c, pt68k4.c, apple2gs.c, ng_aes.c and snes.c.

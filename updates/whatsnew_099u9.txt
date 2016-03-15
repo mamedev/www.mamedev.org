@@ -1,0 +1,40 @@
+0.99u9
+------
+
+
+Source Changes
+--------------
+Removed tilemap_dispose call and fixed the two drivers that were using it.
+This fixes improper save state registrations in megasys1 and ygv608 games.
+[Aaron Giles]
+
+Fixed bug that caused the sound cores to keep running while paused. 
+[Aaron Giles]
+
+Added discrete emulation of the background music for Indian Battle.
+[Derrick Renaud]
+
+Fixed tilemap priorities in Magic Bubble. [Pierpaolo Prazzoli]
+
+Cleaned up MESS hooks into the input port system. [Nathan Woods]
+
+Major Namco sound improvements: [R. Belmont]
+ * C352 now sets output pitch correctly by input clock
+ * Added emulated sound and music to all NB-1, NB-2,
+    and System 11 games, using Prop Cycle's BIOS as a
+    substitute until the original can be trojaned or
+    otherwise obtained
+ * Hooked it up for plain System 22 games as well, but
+    they're not interested in passing down proper commands
+    for some reason
+ * Speed-cheated all instances of the M37710/C352 sound
+    system so CPU requirements don't go up much.  This
+    also helped back off the requirements a hair for Prop
+    Cycle and Time Crisis
+
+
+
+New clones added
+----------------
+Magic Bubble (Adult version) [David Haywood]
+Dynamite Dux (set 1, 8751 317-0095) [Arzeno Fabrice, David Haywood]

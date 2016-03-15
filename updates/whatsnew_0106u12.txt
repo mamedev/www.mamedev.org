@@ -1,0 +1,95 @@
+0.106u12
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gaelco20106u1ora [David Haywood]
+
+
+
+Source Changes
+--------------
+Added a large number of previously-dumped PALs to various games
+across the whole source base. [MASH]
+
+Some graphics improvements to the Magic Fly driver. [Roberto Fresca]
+
+Fixed the fire button INPUT_PORT of player2 in Lethal Enforcers.
+[Cananas]
+
+Changed the coordinates where for offscreen lightgun reloading, moving
+it from the upper-left to the upper-right for better compatibility.
+[Cananas]
+
+Fixed interrupt clearing function in 6840 module. [El Condor]
+
+Added multiple input controls in -listxml output for games with more 
+than one type. Added pedal control type. Added more info on analog 
+controls as defined in the driver: minimum, maximum, sensitivity, 
+keydelta, and reverse. This required the 'control' attribute in the 
+XML to be moved into an element. There can now be more than one
+'control' element in the input secction. [uRebelScum]
+
+Improved the description of screens in -listxml. Multiple screens
+are now listed, each with their own attributes. Rotation is now fully
+specified (rather than just vertical/horizontal). The width and 
+height now describe the raw game screen before any rotation.
+[Krick]
+
+Fixed bug that caused the UI to be impacted by command-line 
+brightness, contrast, gamma controls. [Aaron Giles]
+
+Fixed bug that prevented the contrast from pushing vector games to
+their maximum brightness. [Aaron Giles]
+
+Rewrote Crystal Castles driver from the schematics: [Aaron Giles]
+ * corrected clock speeds and frame rates
+ * reimplemented video system to use mixer PROM
+ * now using sync PROM to generate interrupts at correct times
+ * sync PROM is also used to determine proper visible area and
+    VBLANK timings
+ * implemented the VRAM write protection by using the WP PROM
+ * hooked up second player trackball properly
+ * fixed coin counters
+ * now computing palette based on resistor weights
+ * watchdog is now set for 8 VBLANKs to match the schematics
+ * added save state support
+ * mapped complete memory space according to schematics
+
+Fixed bug in JED parsing code that would checksum fuses beyond the
+number explicitly specified. Some programs write extra fuse data
+beyond the end and this should not be part of the checksum. Also made
+the checksum parsing more flexible to handle JED files with extra 0
+digits in the file checksum. [Aaron Giles]
+
+Removed xml2info utility. The -listinfo format was retired over 2 
+years ago. It is time to move on. [Aaron Giles]
+
+Changed the core makefile to put back specific rules for building
+EXEs to promote more commonality with platforms that don't put an
+extension on executable files. [Aaron Giles]
+
+Added gapless variants to the dual and triple screen layouts.
+[Aaron Giles]
+
+Removed 1 pixel border now that the Direct3D code is properly setting
+texture clamping. This should get rid of the gaps in the Darius
+layout, which were caused by bilinear filtering the last pixel on the
+screen with the black pixel border. [Aaron Giles]
+
+Fixed -effect none to longer produce an error message. [Aaron Giles]
+
+Removed the VIDEO_PIXEL_ASPECT_RATIO_* flags for drivers. These flags
+were used inconsistently, and can be effectively computed if 
+necessary from the screen width/height and orientation. [Aaron Giles]
+
+Changed the on screen display so that pressing ENTER resets a value
+to its default. [Aaron Giles]
+
+Moved all options to a single central location in windows/config.c.
+Cleaned up and reordered the options more logically. [Aaron Giles]
+
+Rewrote windows.txt to reflect all of the new options and to update
+the behavior of existing options to match the current implementation.
+[Aaron Giles]

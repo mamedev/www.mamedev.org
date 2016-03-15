@@ -1,0 +1,75 @@
+0.101u1
+-------
+
+WARNING: There is a significant change to the memory system in this version.
+It is likely that a number of games are broken. Please report these games
+to http://www.mametesters.org.
+
+
+MAMETesters Bugs Fixed
+----------------------
+galpanic0100u4yel [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Integrated 53C810 into the SCSI framework. [Tomas Karlsson]
+
+Balanced the sound in Final Tetris, Boogie Wings, B.C. Story, Metal Saver.
+[sonikos]
+
+Fixed Q*Bert knocker connection. [Kevin Jonas]
+
+Some improvements to M37710, C352 and NamcoNA sound. [cync]
+
+Corrected CPS1 frequencies based on measurements from a real PCB.
+[Philip Bennett]
+
+Significant change to the memory system. RAM areas are now no longer 
+allocated out of the memory_region for a given CPU. This means that drivers
+which assume that RAM is located at some offset to the base of the memory
+region will be broken. [Aaron Giles]
+
+Added save state information for streams so that dynamic volume changes
+get properly restored. Unfortunately this breaks all existing save states.
+[Aaron Giles]
+
+Added save state support to the HC55516 sound chip. Added save state support
+to the Williams sound boards. Added save state support to games in the
+mcr3.c and mcr68.c drivers, marking them as GAME_SUPPORTS_SAVE. [Aaron Giles]
+
+Changed timer_alloc_ptr-style timers so that the pointer parameter is
+supplied at allocation time and is not changeable. This makes these timers
+more easily supported in save states. [Aaron Giles]
+
+Fixed missing save state registrations in the m6809 CPU core. [Aaron Giles]
+
+Deferred state loading until all anonymous timers have cleared. This fixes
+issues where the timers would fire after the load and would clobber data 
+that was just loaded. [Aaron Giles]
+
+Cleaned up and fully mapped the Williams sound boards. Also added save state
+support to them. [Aaron Giles]
+
+Added save state support to the classic Williams drivers, marking them as
+GAME_SUPPORTS_SAVE. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Chewing Gum [f205v]
+
+
+
+New clones added
+----------------
+Puzz Loop (Korea) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Get Bass [Ville Linde, Guru]
+Scud Race Plus [Ville Linde, Guru]

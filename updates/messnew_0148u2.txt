@@ -1,0 +1,240 @@
+0.148u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05153: [Gameplay] (megadriv.c) genesis, megadriv, pico: Crash 
+  when loading a cart (Wilbert Pol)
+- 05140: [Crash/Freeze] (prof180x.c) prof180x, prof181x: Access 
+  Violation (Firewave)
+- 05156: [Crash/Freeze] (a6809.c) a6809: Access Violation with 
+  -debug (Firewave)
+- 05109: [Crash/Freeze] (amstrad.c) cpc464p, cpc6128p, gx4000: 
+  Crash with "-cart barb2" (Firewave)
+- 05116: [Misc.] Sets using MC6847: Invalid read of size 1 (Firewave)
+- 05111: [Crash/Freeze] (ti99_4x.c) ti99_4ae, ti99_4a, ti99_4ev,
+  ti99_4e, ti99_4: Crash with "-cart invaders" (mizapf)
+- 05154: [DIP/Input] (supercon.c) supercon: Mouse doesn't move pieces
+- 05152: [Interface] (gb.c) all gameboy.c sets: Crashes on exit
+  when no cart was successfully loaded (Firewave)
+- 05070: [Crash/Freeze] (n64.c) n64dd: [debug] Crash after OK (Firewave)
+
+New System Drivers Supported:
+-----------------------------
+- Magnavox Odyssey 3 / Command Center (prototype) [René van den Enden]
+- Samsung Samtron 88S [Kaylee]
+- Yeno - MisterX [Team Europe]
+- PV-16 [plgDavid]
+- Besta-88 [shattered]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+
+Software Lists:
+----------------
+-snes.xml: Added 51 cartridges [ReadOnly]
+
+-ibm5170.xml: Added 2 ipf cross-platform sets (they are
+ compatible with both Amiga and PC) [Kaylee] 
+
+-ibm5150.xml: Added VisiCalc & StretchCalc [Kaylee]
+
+-socrates.xml: added CAD Professor Maus dump [TeamEurope]
+
+-megadriv.xml: added original uncracked dump of Tiny Toon
+ Adventures 3 [Barver, Azathoth] 
+
+-Added software list for Sega Visual Memory Unit. [LoganB]
+
+-a2600.xml: some additions of new dumps and info [Kaylee]
+
+-pico.xml: added new Japanese dumps. [TeamEurope]
+
+-socrates.xml: added Game Wizard / Magische Spiele dump.
+ [Team Europe]
+
+-snes.xml: added a few pirate multigame carts. Most of these are
+ incomplete dumps, so redumps are needed to promote them to working
+ state, but their existence is now at least documented. [Fabio Priuli]
+
+-megadriv.xml: Added dump of Japanese Marble Madness [ElBarto]
+
+-megadriv.xml: Added documentation for a few carts [ElBarto]
+
+-megadriv.xml: Added documentation for more than 300 carts [Sunbeam/Digital 
+ Corruption]
+
+-Added software list for RM Nimbus. [Robbbert, Fabio Priuli]
+
+Source Changes
+--------------
+-cat.c (Canon Cat): Fixed the v2.40 bioses thinking the phone is
+ constantly ringing; Documented what all the DUART IO pins are
+ connected to, and correctly hooked DUART IP2 up to invert when the 6ms
+ timer expires, removing the previous hack (and fixing the ringing
+ bug). [Lord Nightmare]
+
+-c64: Fixed MACH 5 cartridge C128 mode. [Curt Coder]
+
+-c64: Added support for the standard MIDI cartridges:
+ Passport/Syntech, Siel/JMS/DATEL, Sequential, Namesoft, and Maplin.
+ [Curt Coder]
+
+-Apple II: Allow Super Serial Card to connect to MESS's serial
+ terminal and null modem devices. [R. Belmont]
+
+-fmtowns: Preliminary implementation of the CD-ROM controller's
+ software mode.  Enough to get the CD-ROM working under Win95.
+ [Barry Rodewald]
+
+-vic20/c64: Added VIC-1011A/B RS-232C adapter emulation. [Curt Coder] 
+
+-Added hook-up for CD Block command 0x64 (Put Sector Data) [Angelo Salese]
+
+-megadriv.c: emulated protection in mulan, pokemon 2 (previously patched 
+ out) and in the real ttoon3 dump. [Fabio Priuli]
+
+-ColecoVision: controller has a * key, not a . key [Nick3092]
+
+-Apple II: Added support for Street Electronics Echo Plus and
+ Zip Technologies ZipDrive cards [R. Belmont, Lord Nightmare]
+
+-dectalk.c: renamed dectalk roms to match the DEC 23-xxxLn standard and
+ noted what their actual paper labels were (these paper labels will
+ differ on different dectalk units depending on exactly when they were
+ made, though the ROM contents are exactly the same! The derivable
+ 23-xxxLn part number will not change, though.). Added more comments.
+ [Lord Nightmare]
+
+-supercon: Fix regressions [Ralf Schäfer]
+
+-odyssey2.c: Further palette improvements.  [Dr. Venom]
+
+-cbm8096: Emulated the 64KB memory expansion card, and promoted
+ driver to working. [Curt Coder]
+
+-cat.c: (Canon Cat) Fixed a mistake in the memory map mirroring due to
+ an error during testing; added proper readback of the floppy control
+ register, and corrected the floppy status readback so it thinks that
+ no floppy is inserted. [Lord Nightmare]
+
+-gameboy.c: fixed cart type for MBC1 collection games, promoting
+ Bomberman Collection, Genjin Collection, Momotarou Collection, Mortal
+ Kombat I & II and Super Chinese Land 1.2.3 to working state
+ [Fabio Priuli]
+
+-gbcolor.c: added support for Sintax mapper, promoting a dozen of
+ pirate games to working state [taizou, Fabio Priuli]
+
+-PlayStation: Fix CD-ROM regression [R. Belmont]
+
+-isa_ide: correctly mapped alternate port [Miodrag Milanovic]
+
+-megadriv.c: emulated protection in pirate Super Mario World 64,
+ based on research by Eke and andlabs [Fabio Priuli]
+
+-gb.c: attempt in emulating protection for Chong Wu Xiao Jing
+ Ling/Pokemon Pikecho. [Fabio Priuli]
+
+-megadriv.c: added support for Legend of Wukong [Fabio Priuli]
+
+-aes: Added UniBios versions to Neo Geo home console  [Kaylee]
+
+-a7800.c: Fixed color clip in $1 & $F  [Robert Tuccitto]
+
+-Reimplemented the NCR5380 SCSI controller using nscsi. [R. Belmont]
+
+-Apple II: Preliminary support for the Apple II Rev. C SCSI
+ Card. [R. Belmont]
+
+-a7800.c:  [Robert Tuccitto] Improved and corrected NTSC (a7800) and
+ PAL (a7800p) palettes
+ * Palette rebuild due to misaligned data references
+ * Corrected PAL color sequence order
+
+-gameboy: added emulation of Rockman 8 pirate cart by Yong Yong.
+ [Fabio Priuli]
+
+-gameboy: added correct handling of Echo RAM, needed by Rockman 8. 
+ [Fabio Priuli]
+
+-profweis: added another bios version. [Team Europe]
+
+-snes.c: several updates to cart handling [Fabio Priuli]
+ * moved Sufami Turbo and BSX carts to separate lists
+ * added emulation for DSP1/4, ST-010/011, S-DD1, SPC7110, SuperFX,
+    BS-X and Sufami Turbo as slot devices
+ * added emulation for the protection device used in some pirate carts
+   
+-Fix AES cart swap sound crash. [R. Belmont]
+
+-vk100.c (DEC GIGI/VK100): Hooked up the direction prom to the
+ vector generator rather than using a hack. Still a lot of work to go,
+ but the test mode looks like it at least starts off running more
+ correctly before it fails. [Lord Nightmare]
+
+-Modernized vc4000 device.  [Andrew Gardner]
+
+-snes.c: updated the driver to only save the real amount of SRAM
+ present on the cart. This means that old .nv files won't be directly
+ compatible with newer exe, but you shall be able to keep your saves by
+ backing them up and taking the first block of the correct size (e.g.
+ if you take the first 8KB block of your old .nv for Super Metroid it
+ should work fine with the new exe). At the same time, MESS should be
+ now compatible with saves taken in other emulators. [Fabio Priuli]
+
+-cat.c (Canon Cat): Got rid of the keyboard interrupt timer and
+ hooked the keyboard interrupt to the 6ms timer instead, which is
+ closer to hardware. The cursor blinks at a more correct but not
+ completely correct rate now. The duart (the REAL source of the
+ interrupts, which should fire with the transitions of the 12ms period
+ squarewave) still does not work for interrupts properly, it needs its
+ innards fixed. [Lord Nightmare]
+
+-Modernized wswan, special, and svision devices. [Andrew Gardner]
+
+-sms.c:  [Enik Land]
+ * Fixed master clock speed for PAL machines.
+ * Improved hcount handling resulting in better results from Flubba's
+    VDP timing checks.
+
+-snes.c: misc work on pirate carts.  [Fabio Priuli]
+ * added support for Korean Super 20 Collection multigame cart, even
+    if a few games still have glitches.
+ * added support for bankswitch mechanism used in a few pirate
+    multigame carts.
+ * added support for protection used by Tekken 2 and Street Fighter
+    Alpha EX, based on notes by d4s and nocash.
+
+-3c505: fix typo that broke TCP [Hans Ostermeyer]
+
+-snes.c: major overhaul of cart and add-on handling [Fabio Priuli]
+ * updated carts to be slot devices
+ * simplified loading and bankswitch mechanism
+ * removed drivers snessfx and snespsfx: SuperFX/GSU games can now be
+    loaded in snes and snespal
+ * removed drivers snesdsp and snespdsp: NEC DSPx games can now be
+    loaded in snes and snespal from softlist
+ * removed drivers snesst10 and snesst11: Seta DSP games can now be
+    loaded in snes and snespal from softlist
+ * removed driver snesst: when you load Sufami Turbo, two more cart
+    slots (-cart2 and -cart3) become available to load ST carts
+ * added preliminary support for games with BS-X slots: when you load
+    one of these, a -cart2 slot becomes available to load a 8MB memory
+    pack (only a few of these work at the moment, e.g. Same Game)
+ * added support for loading DSPx games with DSP dump appended at the
+    end of the .sfc file
+
+-snes.c: added support in snes and snespal for loading from
+ fullpath DSPx and ST01x games missing the DSP data, i.e. the commonly
+ available dumps, without using clone systems (softlists had no
+ problems with these games because the DSP data come from the softlist
+ romset) [Fabio Priuli]
+
+-megadriv.c: emulated reset-based Codemaster 2-in-1 carts (2psymmac). 
+ [Fabio Priuli]

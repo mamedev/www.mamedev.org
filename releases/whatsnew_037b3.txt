@@ -1,0 +1,111 @@
+0.37 BETA 3
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed colors in Joyful Road. [Phil Stroffolino]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Sound in Jumping. [Jarek Burczynski]
+
+
+Other drivers changes:
+----------------------
+
+- Lots of fixes to the 8080bw games. [Zsolt Vasvari]
+
+- Fixed dipswitches in many games. [Gerardo Oporto]
+
+- Alternate control system in Assault, only available when cheats are enabled.
+  [Maurizio Zanello]
+
+
+Source:
+-------
+
+- Lots of changes to some CPU cores (mostly i86). I186 support. [Peter Trauner,
+  Juergen Buchmueller, Aaron Giles]
+
+- Preliminary MIPS CPU emulation. [smf]
+
+- New makefile, easier to port, split into multiple files. [Juergen Buchmueller]
+
+- New modes for drawgfx(): TRANSPARENCY_NONE_RAW, TRANSPARENCY_PEN_RAW,
+  TRANSPARENCY_PENS_RAW, TRANSPARENCY_THROUGH_RAW. The purpose of these is to
+  allow you to work in "raw" colorspace (that is, unremapped pens) and then
+  perform the palette lookup at the end. This is useful for a number of games
+  that do collision detection or foreground/background blends (e.g., the palette
+  index is ((fgpen << 4) | bgpen)).
+  When you use these modes, the "color" parameter doesn't refer to the palette
+  any longer. Instead, it is just a value that is added to the raw pen value
+  of the graphics you are drawing. That way, if your background layer uses
+  pens 0-63 and your foreground layer uses pens 64-127, you can pass in a
+  color of 0 when drawing the background layer and 64 when drawing the
+  foreground.
+  Also added copybitmap_remap() and copyscrollbitmap_remap(). These take the
+  same parameters as the originals, but don't make the assumption that
+  TRANSPARENCY_NONE means TRANSPARENCY_NONE_RAW (which, if you think about it,
+  is the way they work).
+  This means that you can do all your work with raw palette indexes until the
+  very end, and then do a copybitmap_remap(TRANSPARENCY_NONE) to copy the
+  result and do the remap step in the end.
+  Finally, there's a new pair of modes that are only supported in
+  copybitmap(): TRANSPARENCY_BLEND and TRANSPARENCY_BLEND_RAW. For these
+  modes, the source bitmap is shifted left by the "color" parameter and then
+  ORed into the destination bitmap. This lets you compute the palette indexes
+  (and optionally do the lookup) for games that look up the palette by
+  combining forground and background pen indices. [Aaron Giles]
+
+- Moved logerror() from mame.c to the OS dependant code, and removed errorlog
+  from the GameOptions structure.
+
+- Major redesign of the artwork support. All the drivers need to do is call
+  overlay_create() or overlay_load() and the rest is handled by the core.
+  Opacity/translucency support in 16-bit mode.  Check out Space Invaders for
+  example, the colored strips that make up the overlay is faintly visible
+  under the black areas. [Mathis Rosenhauer, Zsolt Vasvari]
+
+- Fixed YM2608 adpcm support. [Aaron Giles]
+
+
+New games supported:
+--------------------
+
+Oh My God! [Nicola Salmoria]
+Power Instinct [Luca Elia]
+Magix [Luca Elia]
+Hatris [Aaron Giles]
+Cerberus [Aaron Giles, Paul Leaman]
+Mayhem 2002 [Aaron Giles, Paul Leaman]
+World Series: The Season [Aaron Giles, Paul Leaman]
+Alley Master [Aaron Giles, Paul Leaman]
+Danger Zone [Aaron Giles, Paul Leaman]
+Baseball The Season II [Aaron Giles, Paul Leaman]
+Super Baseball Double Play Home Run Derby [Aaron Giles, Paul Leaman]
+Strike Zone [Aaron Giles, Paul Leaman]
+Redline Racer (2 players) [Aaron Giles, Paul Leaman]
+Quarterback [Aaron Giles, Paul Leaman]
+Viper [Aaron Giles, Paul Leaman]
+John Elway's Team Quarterback [Aaron Giles, Paul Leaman]
+All American Football (rev E) [Aaron Giles, Paul Leaman]
+Ironman Stewart's Super Off-Road [Aaron Giles, Paul Leaman]
+Ironman Stewart's Super Off-Road Track Pack [Aaron Giles, Paul Leaman]
+Pigout [Aaron Giles, Paul Leaman]
+Ataxx (set 1) [Aaron Giles, Paul Leaman]
+World Soccer Finals [Aaron Giles, Paul Leaman]
+Danny Sullivan's Indy Heat [Aaron Giles, Paul Leaman]
+Nastar / Rastan Saga 2 [Jarek Burczynski]
+Crime City [Jarek Burczynski]
+Ashura Blaster [Jarek Burczynski]
+Safari Rally [Zsolt Vasvari]
+
+
+New clones supported:
+---------------------
+
+Pac & Pal (older)
+Tetris (B-Ssytem)

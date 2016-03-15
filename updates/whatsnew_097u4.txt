@@ -1,0 +1,96 @@
+0.97u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+getstarb093u3gra [Mamesick]
+wintbob079u1gre [Mamesick]
+htchctch096u1gre [Mamesick]
+blswhstl36b16gre [Mamesick]
+offtwall097u3red [David Haywood]
+ppc096u1red [Ville Linde]
+akiss077u3 [Aaron Giles]
+gfxviewer097u1ora [Aaron Giles]
+gtmr097u3yel [Aaron Giles]
+mkla1097u1ora [Aaron Giles]
+okscreen097u2yel [Aaron Giles]
+topspeed097gre [Aaron Giles]
+yamato097u1gra [ShimaPong]
+
+
+
+Source Changes
+--------------
+Fixed v60 SBR handling to ignore the low 12 bits. This allows the hack in
+tp2m32 to be removed. [Aaron Giles]
+
+Adjusted volume balance in ddragon3, ctribe, mugsmash. [Mamesick]
+
+Added correct sound ROMs to World Class Bowling Tournament and Deluxe.
+[Brian Troha]
+
+Replaced old Outrun bootleg with a new dump that passes the ROM test and has
+proper ROM names. [David Haywood]
+
+More PowerPC improvements: [Nathan Woods]
+- Fixed exception handling; previously the MSR register was stored 
+  in EDX, and EDX is not preserved across the call to ppc_set_msr()
+- Implemented recompile_fcmpo()
+- Fixed certain rules in rules.mak (some said drc_ops.h instead of 
+  drc_ops.c)
+- Commented the MSR_* values
+- Moved BAT registers into their own structure
+- Added DSI and ISI exceptions (non-DRC core only for now)
+- Moved READ*/WRITE* functions into ppc_mem.c
+- Changed memory handling so that reading and writing are done 
+  through function pointers that can be changed at runtime (which would 
+  be useful if, say a MMU was implemented in the future :-))
+
+PSX/Namco System 12 improvements: [smf]
+- Added Tenkomori Shooting
+- Updated board notes from Guru.
+- Removed rom patches from the namco system 12 driver
+- Renamed sound program roms.
+- Added support for dma'ing incomplete blocks from MDEC
+- Added sprites x & y flipping
+- Caches the decoded tpage fields.
+- mask setting & dma setup updates status fields correctly.
+- reverse flag only has an effect on original GPU's.
+
+Yet another fix to the PowerPC counters, reimplementing them from scratch.
+[Ville Linde]
+
+Some improvements to the Model 2 driver: [Ville Linde]
+- Added the second SHARC
+- Fixed all the problems caused by the previous update
+
+Fixed incorrect test in sauro.c video system. [Pierpaolo Prazzoli]
+
+Improved Lethal Enforces sprites, allowing 2 sprite chips to be created.
+[David Haywood]
+
+Rewrote the System 32 mixer to support accurate implementation of the alpha
+blending modes. Sprite shadows and several other effects are still not yet
+implemented. And it's much slower than before. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Slipstream [Aaron Giles]
+Tenkomori Shooting [smf]
+
+
+
+New clones added
+----------------
+Gaiapolis (Europe ver EAF) [Brian Troha]
+Raiden DX (Metrotainment license) [Corrado Tomaselli]
+Mechanized Attack (US) [Highwayman]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+<unknown> Meyco game [Pierpaolo Prazzoli]

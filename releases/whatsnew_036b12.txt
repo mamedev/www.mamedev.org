@@ -1,0 +1,82 @@
+0.36 BETA 12
+
+To all people that submitted high score save updates: high score save is on
+hold. No additions will be made for the time being. In the near future, high
+score support will be removed from the executable to an external file, much
+like the cheat.dat one. We are looking for a volunteer to maintain that file.
+
+
+New games supported:
+--------------------
+
+HAL21 [Phil Stroffolino]
+Pinbo [Scott Kelley]
+
+
+New clones supported:
+---------------------
+
+Arch Rivals (revision 2)
+Finalizer (bootleg)
+Mad Gear (Japan)
+Paint Roller (= Crush Roller)
+Raiden (2 new sets)
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- 8039 in Finalizer. [Nicola Salmoria]
+
+- Fixed hanging music in Raiden. [Bryan McPhail]
+
+- Fixed missing sounds in roishtar. [CAB]
+
+
+Other drivers changes:
+----------------------
+
+- Bypassed the protection in Exerion. [Zsolt Vasvari]
+
+- The hangs in Tempest caused by the Pokey protection should now be fixed once
+  and for all. [Juergen Buchmueller]
+
+- Fixed hangs in roishtar. [E. Watanabe, Takahiro Nogi]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Artwork files can be stored in a .zip file. That way you can have eg.
+  both spacewr1.png and spacewr2.png in one file spacewar.zip.
+  [Juergen Buchmueller]
+
+- Added the possibility to use a multiple keys or joysticks sequence to drive
+  a generic action. This can be handy with consoles or cabinets with a limited
+  number of buttons, to reuse all buttons with only one extra button, like a
+  shift key. For example the COIN1 action can be mapped to the "Player 1 Fire"
+  plus the "Extra Shift Button". It can also be used to map Q*Bert movements to
+  joystick diagonals (since the orginal used a joystick rotate 45 degrees).
+  [Andrea Mazzoleni]
+
+- Added cpu overclocking control to the on screen display. [Juergen Buchmueller]
+
+
+Source:
+-------
+
+- PORTERS BEWARE: the OS dependant code is now required to support a palettized
+  16-bit display, where osd_modify_pen() can be called and the palette lookup
+  is done during the final blit. A non palettized display can still optionally
+  be used in special cases, see the comment about osd_allocate_colors() in
+  osdepend.h. Also note that osd_allocate_colors() now can fail and returns a
+  value; and the special case for 32768 pens has been removed, a valid palette
+  is always passed to the function.
+
+- Fixed OPN and OPM output level. Unfortunately this means that all games using
+  YM2203, YM2151 etc. need to be rebalanced. [Tatsuyuki Satoh]
+
+- Removed memory_region from struct MachineCPU, now this information is stored
+  directly in the ROM list using the REGION_CPUx attributes.
+  Also remember that now you must never use Machine->memory_region[], always
+  use memory_region() (and the same for memory_region_length).

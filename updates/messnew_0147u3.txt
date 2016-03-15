@@ -1,0 +1,101 @@
+0.147u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+New System Drivers Supported:
+-----------------------------
+-Parker Bros. Merlin. [Wilbert Pol, kevtris]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+-Altos 5-15 [Al Kossow]
+-Televideo TS802 [Al Kossow, Robbbert]
+-NEC APC [Al Kossow, Angelo Salese]
+
+System Driver Changes:
+----------------------
+-craft.c: Added port D readback, fixes on-screen VU level. [MooglyGuy]
+  * Sync video with Vsync output, fixes rolling image.
+  * Fixed visible area and promoted to working.
+
+-supercon: Fixed inputs, now playable [Ralf Schäfer]
+
+-m20: Improve video rendering [Christian Grössler]
+
+-Improved the inputs in CD32 (by adding a mirror of the first
+ button where the regular Amiga reads it) this allows the majority of
+ the booting CD32 games to actually be started.  [David Haywood]
+
+-adam: Added floppy controller ROMs. [Geoff Oltmans]
+
+-craft.c: Converted to use new AVR8 core [MooglyGuy]
+
+-adam: Created an ADAMnet slot interface and separated the
+ADAMnet devices from the driver. [Curt Coder]
+
+-adam: Added all 3 expansion slot interfaces, and the 64K RAM
+ expansion card. [Curt Coder]
+
+-vic20: The main cpu is a 6502, not a 6510 [O. Galibert]
+
+-mmodular: ASSERT then immediate CLEAR does not work on level
+ irqs [O. Galibert]
+
+-adam: Added floppy controller ROMs. [John Turner]
+
+-Worked around irq triggering in NEC PC-100 driver, and improved video
+ timings. Now the BIOS moans about 'reading DOS' [Angelo Salese, Carl]
+
+-Fixed 3 degree hue begin point miscalculation of NTSC color
+ palette for Atari 7800.  [Robert Tuccitto]
+
+-bw2: Added expansion slot interface and RAMCARD expansion
+ device. [Curt Coder]
+
+-bw2: Modernized floppy handling and cleaned up driver.
+ [Curt Coder]
+
+-neocd: giving it the right amount of RAM [David Haywood]
+
+Software Lists:
+----------------
+-Expanded cd32.xml softlist entries to highlight more future
+ test cases.  [David Haywood]
+
+-pico.xml: added new dump [TeamEurope]
+
+-crvision.xml: added earlier revision of Police Jump [Luca Antignano]
+
+-snes.xml:
+ * Added 99 US cartridges [ReadOnly]
+ * Added all known NTT cartridges, they are not supported as they use
+    a specific modem [ReadOnly]
+ * Started the CIC lockout chips documentation [ReadOnly]
+ * New prototype from Nintendo Player [Mike]
+
+Source Changes
+--------------
+-Added EPSON SIO port emulation as used by the HX-20, PX-8 and PX-4.
+ Updated PF-10 and TF-20 floppy devices to a new style device and use
+ the SIO implementation. Updated PX-4 driver to use the new emulation. [Dirk Best]
+
+-upd765: Try yet another hypothesis on the IRQ behaviour [O. Galibert]
+
+-Add a generic wd format [O. Galibert]
+
+-isa_ide_cd: initialize ide registers [Carl]
+
+-floppy: Add IMD support [O. Galibert]
+
+-upd765: Add read fm sector support [O. Galibert]
+
+-wd1772: Added WD2797 variant, side select output, and immediate
+ interrupt command (0xd8). [Curt Coder]
+

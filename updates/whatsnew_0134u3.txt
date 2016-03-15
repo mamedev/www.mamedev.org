@@ -1,0 +1,136 @@
+0.134u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03470: [Crash/Freeze] backfirea: Game mode setting error on startup 
+         (Fabio Priuli)
+- 03465: [Crash/Freeze] batrid, bgaregga, bkraidu and clones: Reset after 
+         rom check (R. Belmont)
+- 03463: [DIP/Input] kingball, kingballj: Wrong coinage DIP options. 
+         (Tafoid)
+
+
+
+Source Changes
+--------------
+Multifish driver update [MetalliC]
+ - Hooked up RTC (real time clock)
+ - Added documentation about backdoor / bootleg / hacks
+
+Space Encounter - fixed enemy shot sound. [Derrick Renaud]
+
+Space Walk - started Springboard Miss sound. [Derrick Renaud]
+
+Added color prom to Omega. [Andy Welburn]
+
+m68k updates: [R. Belmont]
+ - throw F-line trap correctly when PMMU instructions are hit on 
+    non-equipped CPUs.
+ - Added working PMMU address translation (not feature complete, but 
+    sufficient to boot several 68030 Macs in MESS)
+ - Fixed up disassembly of some PMMU instructions
+ - Added "68020 with 68851" CPU type
+
+Added correct 64Mb CROM dumps to spikeout. [Phil Bennett]
+
+Added EXPECTED macro to complement the already existing UNEXPECTED
+macro. [couriersud]
+
+Discrete update [couriersud]
+ - fix some "const" weirdness I introduced
+ - fix VREF in CRFILTER_VREF and RCFILTER_VREF. VREF never got used 
+    since it was only a static parameter.
+ - Removed enable from CR_FILTER* and RC_FILTER*
+ - Updated drivers accordingly.
+ - Use EXPECTED/UNEXPECTED to help the compiler
+
+DISCRETE_CRFILTER, DISCRETE_RCFILTER updates: [Derrick Renaud]
+ - revert vref change from rev 6979.
+ - added capability for all values to be nodes.
+
+Starship 1 - fixed motor sounds. [Derrick Renaud]
+
+Shuffleboard - started discrete sounds. [Derrick Renaud]
+
+Fixed DMA write mask register in 8237dma. [Mariusz Wojcieszek]
+
+Blue Shark - added octopus sound. [Derrick Renaud]
+
+Corrected rom names for Frogger (Sega set 2) [Derrick Renaud]
+
+Adds PCB layout for Igrosoft's Gambling hardware in the multfish.c 
+driver. [Brian Troha]
+
+Removed some old and duplicate code for genesis/megadrive from MAME.
+Also, moved some megaplay/megatech constant to a struct and 
+refactored some code (work in progress). Updated bootlegs to use 
+latest genesis code and finally removed src/mame/drivers/genesis.c!
+[Fabio Priuli]
+
+Asserted copyright ownership of core library and OSD files, and 
+relicensed them under the standard BSD license, with permission of the
+original authors. The files in question all live under src/lib/util 
+and src/osd. [Aaron Giles]
+
+Device memory spaces are now visible in the debugger. [Aaron Giles]
+
+Better task processing for discrete sounds: [couriersud]
+ - tasks are now processed according to their dependency lists. Tasks
+    can now start early and will only process samples which are 
+    already available. This has most impact on drivers which have
+    significant variance in the run-time of individual tasks.
+ - tasks now process samples in slices, currently max 240 samples / 
+    slice. 
+ - TASK_GROUP is now obsolete - Will update drivers at a later stage.
+ - step function pointer now back in node, modules may register 
+    optimized step functions.
+ - profiling code now always compiled, introduced static int 
+    profiling = ... 
+ - some more EXPECTED/UNEXPECTED usage.
+
+Fixed Dip Switches for 'attckufo'. [stephh]
+
+Improvements to Noraut poker driver... [Roberto Fresca]
+ * Added Draw Poker Hi-Lo hardware support, based on 8080A CPU.
+ * Mirrored the PPI's offsets to simplify/merge the hardware emulation.
+ * Added hardware documentation and PCB layouts from both DPHL sets.
+ * Added DPHL discrete sound circuitry scheme/documentation.
+ * Added Turbo Poker 2 from Micro Manufacturing.
+ * Added PMA poker.
+ * Documented the Turbo Poker 2 hardware.
+ * Added Turbo Poker 2 PCB layout from hi-res picture.
+ * Switched to the new PPI core.
+ * Commented out the 3rd PPI device till handshaked strobe lines can 
+    be properly emulated. For now, all VRAM access is through direct 
+    handlers. This allow to remove the hacks per set needed to boot 
+    the games.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pirate 2 (061005) [Metallic]
+Phoenix Part 2 [Andy Welburn, Dumping Union]
+Block 2 (Arkanoid bootleg) [Andy Welburn, stephh]
+Danchi de Quiz [Guru]
+Go For The Gold (Japan) [Darran]
+
+
+
+New clones added
+----------------
+Pirate (060803) [MetalliC]
+Battle of Atlantis (bootleg) [David Heywood, Dumping Union]
+Multi Fish (031124) [MetalliC]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Bingo Roll / Bell Star V3 [Roberto Fresca, Team Europe]
+Draw Poker Hi-Lo (M.Kramer) [Roberto Fresca]
+Draw Poker Hi-Lo (alt) [Roberto Fresca, Alan Griffin]
+PMA Poker [Roberto Fresca, Siftware]
+Turbo Poker 2 [Roberto Fresca, Siftware]

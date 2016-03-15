@@ -1,0 +1,92 @@
+0.37 BETA 6
+
+
+Other drivers changes:
+----------------------
+
+- Several fixes and improvements to the Taito L games (sound, priorities,
+  speed). [Nicola Salmoria, Jarek Burczynski]
+
+- I hope you didn't throw away unused PROMs from your archives.
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Instead of the internal game name, you can use on the command line
+  the .zip file name, it can also include path, so for example
+  MAME G:\MyBoards\pacman.zip
+  will be equivalent to
+  MAME pacman -rompath G:\MyBoards
+  [David Widel]
+
+
+Source:
+-------
+
+- [DOS] The makefile now uses rm instead of deltree. If you don't have rm you
+  can find it here: http://www.simtel.net/pub/simtelnet/gnu/gnuish/gnufut21.zip
+
+- TMS5110 emulator, used by Bagman. [Jarek Burczynski]
+
+- Several changes to have the debugger run in the game screen under DOS.
+  The debugger display is now entirely rendered in the core using a standard
+  bitmap, instead of relying on the OS dependant code to simulate a character
+  mapped display.
+  Changes affecting porters are:
+  osd_set_display() removed
+  osd_set_screen_size() removed
+  osd_screen_update() removed
+  osd_wait_keypress() removed
+  osd_debugger_focus() added
+  osd_dbg.h removed
+  osd_update_video_and_audio() has extra debug_bitmap argument
+  osd_allocate_colors() has parameters for the debugger palette
+  mamedbg.c no longer requires clock_t and clock()
+  It's entirely up to the OS dependant code what to do with the game and debug
+  bitmaps. They can be shown one at a time (giving the user a means to switch
+  between them), or in two separate windows. osd_debugger_focus() is used to
+  request that one of the two bitmaps be made visible to the user.
+  Under DOS, you can switch at any time between the game and debugger display
+  by pressing F5.
+  [Juergen Buchmueller]
+
+- Removed osd_poll_joysticks(). Ports requiring polling of the joystick can do
+  so in osd_update_video_and_audio().
+
+- True HD6309 emulation (instead of using the M6809). [Tim Lindner].
+
+
+New games supported:
+--------------------
+
+Mega Blast [Brad Oliver]
+Metal Black [David Graves]
+Big Karnak [Manuel Abadia]
+Biomechanical Toy [Manuel Abadia]
+Back Street Soccer [Luca Elia]
+Sky Fox / Exerizer [Luca Elia]
+Space Beam [Peter Trauner]
+Kuri Kinton [Nicola Salmoria]
+Play Girls [Nicola Salmoria]
+Play Girls 2 [Nicola Salmoria]
+Karian Cross [Nicola Salmoria]
+Logic Pro [Nicola Salmoria]
+Logic Pro 2 [Nicola Salmoria]
+The Last Day [Nicola Salmoria]
+Pollux [Nicola Salmoria]
+Blue Hawk [Nicola Salmoria]
+Primella [Nicola Salmoria]
+R-Shark [Nicola Salmoria]
+Gals Pinball [Nicola Salmoria]
+Video Pinball [Sebastien Monassa]
+Truxton II / Tatsujin II / Tatsujin Oh [Yochizo]
+
+
+New clones supported:
+---------------------
+
+Knights of the Round (US)
+Slam Masters (US)
+Batsugun (Special version)
+Pipi & Bibis (bootleg?)

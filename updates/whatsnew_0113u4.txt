@@ -1,0 +1,111 @@
+0.113u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+sega0113u3red [Aaron Giles]
+diehard0113u3red [R. Belmont]
+
+
+
+Source Changes
+--------------
+Improved the K001604 ROZ layer emulation. [Ville Linde]
+
+Added the timing parameters for the Exidy 6502 driver from the 
+schematics, and updated a number of other drivers to use the newer
+timing routines. [Zsolt Vasvari]
+
+Exidy 440 driver update: [Zsolt Vasvari]
+ * added video timing from schematics
+ * added the 9 timing PROMs to the ROMsets
+ * all the games appear to use the same timing PROMs with the 
+    exception of Top Secret, which sets the VBLANK 4 pixels earlier.
+    This fixes the game graphics, but cuts of the very bottom row of 
+    the year display on the title screen. It's most likely a real
+    issue in the game, as tweaking the behavior adds garbage pixels
+    to all the other games
+
+Updated the itech32 driver to configure video timing dynamically
+according to how the chip is programmed. [Zsolt Vasvari]
+
+Hooked up the new TGP core to the Model 2 driver, mapped the TGP
+data ROMs properly, and updated the TGP core to the latest information.
+[Ville Linde, Ernesto Corvi, ElSemi]
+
+Fixed irobot crash introduced in last timing update. [Zsolt Vasvari]
+
+ES5503 updates: [R. Belmont]
+ - Major fixes to IRQ semantics and end-of-sample handling
+ - Sample memory now configurable
+ - Added state save support
+ - Calculates output rate properly based on the input clock
+ - Hooked up properly to mquake
+
+Added analog controls for GTI Club. [Ville Linde]
+
+Fixed crashes in some games using the SCSP. [R. Belmont]
+
+Now enabling all CPUs by default, which helps ensure that even unused
+CPUs get updated with core changes, etc. [David Haywood]
+
+Optimized the options code and memory pool code to use hashes for
+faster searching. [Nathan Woods]
+
+Cleaned up and more heavily documented the tumbleb driver.
+[Brian Troha]
+
+G65816/M37710 CPU core updates: [R. Belmont]
+ - Fixed a race condition in the WAI instruction where the CPU could 
+    get stuck. (MESS bug #661, may have caused intermittent issues 
+    with Namco games in MAME too).
+ - Fixed block transfer instructions when the accumulator is in short 
+    mode. (Fixes some SNES games not booting, notably Final Fantasy 
+    Mystic Quest).
+
+Corrected dip and added dip locations to Pettan Pyuu / Banbam, the 
+markham driver, and Calorie Kun vs Moguranian.
+[Brian Troha]
+
+Updated the Leland driver to the new video timing routines, as well
+as the remaining drivers. Removed now-obsolete old timing routines
+from cpuexec. [Zsolt Vasvari]
+
+Added more recently discovered opcodes to the MB86233 core and
+disassembler. [Ernesto Corvi, ElSemi]
+
+Created WINOPTIONS_* constants for Windows OSD options. [Nathan Woods]
+
+Updated the World Cup 90 DIP switches corrected from manual. Also 
+added diplocations. [Roberto Fresca]
+
+Changed CDP1869 to use proper write handlers for MESS. [Curt Coder]
+
+Added v60_stall mechanism to allow for synchronization between the
+V60 core and an external CPU. [Ernesto Corvi]
+
+Changed behavior of extra one-pixel border on Direct3D textures so
+that the edge pixel is smeared into the border rather than leaving
+the border black. This should eliminate a few oddities at the edges
+of texture rendering. [Aaron Giles]
+
+Updated video code to double buffer texture objects to reduce
+contention of render primitive lists. Also changed rendering code to
+explicitly alternate between primitive lists to prevent throwing away
+old lists prematurely. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wonder League Star (Korea) [David Haywood]
+Spotty [David Haywood]
+Astra SuperStars [Mariusz Wojcieszek]
+
+
+
+New clones added
+----------------
+Crazy Kong (galaxian) [Colin]
+Super High Impact (prototype, rev 4.0) [Brian Troha]

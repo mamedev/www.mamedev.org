@@ -1,0 +1,125 @@
+0.36 BETA 2
+
+New games supported:
+--------------------
+
+Mad Crasher [Phil Stroffolino]
+Vanguard II [Phil Stroffolino]
+Missing in Action [Nicola Salmoria]
+Lightning Fighters [Nicola Salmoria]
+X-Men [Nicola Salmoria]
+Sunset Riders (partially playable due to protection) [Oliver Stabel, Nicola Salmoria]
+TMNT 2 (some gfx problems due to protection) [Oliver Stabel, Nicola Salmoria]
+Ajax (preliminary) [Manuel Abadia]
+Crime Fighters [Manuel Abadia]
+Aliens [Manuel Abadia]
+The Simpsons [Ernesto Corvi]
+Gyrodine [Ernesto Corvi]
+Son of Phoenix [Ernesto Corvi]
+SRD Mission [Ernesto Corvi]
+Haunted Castle [Bryan McPhail]
+Garyo Retsuden [Bryan McPhail]
+Crude Buster [Bryan McPhail]
+Stadium Hero [Bryan McPhail]
+Bomb Jack Twin [Mirko Buffoni]
+Aztarac [Mathis Rosenhauer]
+Bay Route [Andrew Prime]
+Outrun [Andrew Prime]
+Space Harrier [Andrew Prime]
+Super Hangon [Andrew Prime]
+ThunderJaws [Aaron Giles]
+Batman [Aaron Giles]
+Relief Pitcher [Aaron Giles]
+Ginga NinkyouDen [Luca Elia]
+Street Fight [Mark McDougall]
+
+
+New clones supported:
+---------------------
+
+Rush & Crash (= Speed Rumbler)
+Devastators (version Z) [Nicola Salmoria]
+a lot of working and non working clones of System 16 games [Andrew Prime]
+Hydra (prototype) [Aaron Giles]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed sprites in Contra. [Phil Stroffolino]
+
+- Accurate colors in Darwin 4078.
+
+- Fixed sprite colors in Xybots. [Aaron Giles]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- 053260 emulation in Punk Shot. [Ernesto Corvi]
+
+- Most System 16 games have sound. [Andrew Prime]
+
+- Support for new samples in Q*Bert and Reactor. [Fabrice Frances]
+
+
+Other drivers changes:
+----------------------
+
+- Hacked protection in Wild Western, fixed bonus game, added second button
+  to jump onto the train. [Zsolt Vasvari]
+
+- Sea Fighter Poseidon should be working now.
+
+- Various fixes to System 16 games. [Andrew Prime]
+
+
+Changes to the main program:
+----------------------------
+
+- Further improved the YM3812 emulator, especially the rhythm section (check
+  Snow Bros!). [Tatsuyuki Satoh]
+
+- [DOS] -noym3812opl is now the default (this won't have effect unless you
+  delete mame.cfg). [Nicola Salmoria]
+
+- Fixed a bug in the T-11 emulation which caused APB not to work and the end
+  of race results in Super Sprint to contain garbage. [Aaron Giles]
+
+
+Source:
+-------
+
+- Rewritten the OS dependant joystick interface, it's like the keyboard
+  interface now. Also a few function renames, and osd_wait_keypress() must
+  now return a keycode. [Nicola Salmoria]
+
+- [DOS] The above should remove all limitations on number of axis and buttons,
+  so e.g. joypads with multiple sticks should work. Changes to the analog
+  devices handling will follow. [Nicola Salmoria]
+
+- Konami 052001/053248 CPU emulation, used by many games. [Ernesto Corvi,
+  Manuel Abadia]
+
+- Konami 053260 sound chip emulation. [Ernesto Corvi]
+
+- Sega PCM and RFC68 sound emulators, used by System 16. [Hiromitsu Shioya]
+
+- Moved the profiler into the core. The OS dependant code need only provide a
+  osd_cycles() inline function/macro in osinline.h, returning a counter. The
+  function must be as low overhead as possible since it is called thousands
+  of times per second when the profiler is active. The counter should be as
+  precise as possible, to provide accurate measurements; the ideal unit is the
+  number of CPU cycles, e.g. as returned by the Pentium instruction RDTSC.
+  The profiler display is handled by the core, so the OS code only has to make
+  the usual profiler_mark() calls to profile different sections of the code
+  (PROFILER_BLIT, PROFILER_SOUND and so on).
+  Note: to avoid conflicts, the OS code must do the check for the "show fps"
+  key this way, otherwise input will be lost:
+	if (!keyboard_pressed(KEYCODE_LSHIFT) && !keyboard_pressed(KEYCODE_RSHIFT)
+		&& !keyboard_pressed(KEYCODE_LCONTROL) && !keyboard_pressed(KEYCODE_RCONTROL)
+		&& input_ui_pressed(IPT_UI_SHOW_FPS))
+  [Nicola Salmoria]
+
+- [DOS] The -profiler switch is no longer needed to enable the profiler, it is
+  automatically turned on and off when you hit Shift+F11. [Nicola Salmoria]

@@ -1,0 +1,62 @@
+[note: only important changes are listed]
+
+0.16
+----
+
+Program:
+- Support for Green Beret, with partial sound (probably inaccurate).
+  Colors are terrible. If you can see what you are doing, it's playable (but
+  should it be this fast? I find it very hard)
+
+- Richard Davies and Brad Oliver provided drivers for the so-called "Sega"
+  version of Jump Bug (it's actually a bootleg with the protection checks
+  removed). The driver supports sound.
+
+- Added joystick support to Vanguard.
+
+- Support for Fantasy on the Nibbler driver. There are several problems, it's
+  not playable.
+
+- Thanks to Mike Coates and Peter Clare, Carnival now has colors.
+
+- Stefano Mozzi provided a much better palette for Mario Bros.
+
+- Matthew Hillmer submitted a new palette for Donkey Kong 3. It is not
+  intended to be correct, but at least it gets rid of the annoying
+  checkerboard effect.
+
+- Tormod Tjaberg provided updated Space Invaders (+clones) drivers which
+  support sound. They use samples, derived from Michael Strutts' emulator.
+
+- Support for Fantazia (bootleg version of Moon Cresta)
+
+- Fixed a couple of remaining graphic glitches in the Wizard of Wor driver.
+
+- Various fixes to Burger Time:
+  - Fixed CPU clock speed to avoid slowdowns on fourth level.
+  - It's much faster on a 486.
+  - Sprites no longer "stick" on the screen on a level change.
+  - Fixed a bug in high score save.
+  DELETE BTIME\BTIME.HI, OTHERWISE THE HIGH SCORE TABLE WILL BE CORRUPTED
+
+- Marc Lafontaine provided a Venture driver. It is partially playable,
+  sprites are wrong.
+  On startup, keep 1 or 2 pressed to proceed.
+
+Source:
+- I wrote some general purpose routines to simplify interface with the AY8910.
+  They are in 8910intf.c. See the existing drivers for usage examples.
+
+- To solve the problem with garbled text messages in Time Pilot, modified the
+  GameDriver structure replacing letters_start and numbers_start with the
+  array charset[36].
+
+- I finally took the time to change Z80.h/M6502.h to make them work together.
+  This allowed me to remove some kludges in cpuintrf.c. I also added some new
+  functions, which can be used regardless of the CPU type: cpu_getpc(),
+  cpu_geticount(), cpu_seticount().
+
+- Fixed a couple of bugs in M6502 BCD arithmetic. One of them was causing the
+  pepper counter in Burger Time to behave strangely.
+
+- Brad Oliver modified pokey.c and pokey.h to make them more portable.

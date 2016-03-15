@@ -1,0 +1,105 @@
+0.122u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+pestplce0122red [couriersud]
+hunchbkd0122red [couriersud]
+radarscp0122yel [couriersud]
+mwalk0122red [couriersud]
+qtheater0122u1ora [Philip Bennett]
+
+
+
+Source Changes
+--------------
+Fixed M65C02 optimization. [Peter Trauner]
+
+TMS51xx and M58817 speech updates: [couriersud]
+ - radarsc1 uses tms5110 speech synth
+ - cvs games: according to PCBInfos speech chip is TMS5100.
+    Changed driver to use TMS5100 and "game system operational" now 
+    sounds more natural
+ - removed sound/m58817.*
+ - added support for multiple coefficients maps to tms5110.*
+ - added coefficient maps for TMS5100 and M58817 from documented 
+    sources to tms5110r.c
+ - fixed interpolation factors (see tms5110r.c for reason)
+ - made lattice calculation precision 9bit
+ - added support for READBIT and LOADADDRESS commands to tms5110.c
+ - more changes in line with various patents
+ - documented TRS-02, TKG-02/03 "voice" interface
+
+Completed the addition of static qualifiers to all MAME symbols that 
+aren't explicitly exported. [Atari Ace]
+
+Named the input_seq_type enumeration and used it explicitly in several
+places. [Nathan Woods]
+
+Corrected tx1 and tx1a coinage DSW assignments. Reversed buggyboy/
+buggybjr 'Game Time' settings. [Philip Bennett]
+
+TMS3203x core updates: [Aaron Giles]
+ * fixed interrupt handling
+ * added support for edge-triggered interrupts on '32
+ * expanded interrupt support for the '32
+ * updated drivers using TMS3203x core to deassert interrupts
+ * added externally accessible functions for converting '3x floating point 
+    format
+ * updated gaelco3d driver to use new functions
+
+Zeus2 (+related) updates: [Aaron Giles]
+ * fixed save states for DCS games
+ * cleaned up Zeus2 waveram handling
+ * added Zeus2 save state support
+ * added preliminary model and quad rendering support for Zeus2
+ * added support to timekpr for the ZPRAM used on Zeus2
+ * hooked up ZPRAM in Zeus2 games
+ * hooked up controls in Zeus2 games
+ * updated poly.c to ensure it is idle before saving state
+ * Added artifical Z offset of -2 to make the full screen show in crusnexo
+
+Replaced tekken2/tekken2a/tekken2b 'tes1wave.8k' ROM with the 
+correct, non-byte-swapped dump. [Philip Bennett]
+
+Added discrete 74LS624(56789) implementation [couriersud]
+ - DISCRETE_74LS624 is a VCO needed for dkongjr
+ - Supports Logic, Energy and Count outputs
+
+dkong updates: [couriersud]
+ - Added dkongjr discrete sound
+ - Proper interface Z80 - I8035 for dkongjr
+ - Changed discrete sound output factors
+ - removed samples support for dkongjr
+ - Cosmetic changes
+ - Fixed regression in radarscp sound
+ - Added dipswitch locations to dkong3b
+
+Documentation and clock frequency improvements for seta.c: [Brian Troha]
+ - Added the Guru's readme info for Thundercade
+ - Corrected rom name for Thundercade
+ - changed clocks to OSC by divider IE: 16000000/2 /* 8MHz */
+ - Changed Orbs clock to 16MHz with note about 14.xx MHz
+ - Changed Meta Fox's x0-006 (65c02) to same as Thundercade
+ - Changed the YM3438 in Ultra Toukond Densetsu from 6MHz to 1600000/4 
+    /* 4MHz */ as there is no mention of 6MHz OSC on PCB
+
+Verified a number of clock frequencies from real PCBs.
+[Corrado Tomaselli, Zsolt Vasvari]
+
+Fixed several memory leaks related to SCSI CD emulation.
+[Oliver Stoneberg]
+
+Removed the increasing of the R register from each IX/IY related 
+(FD xx or DD xx) instruction on the Z80. According to documentation
+and the behavior of the Amstrad CPC driver, this is incorrect.
+[Barry Rodewald]
+
+Added initial FPU support to the SH4 core. [Samuele Zannoli]
+
+Adjusted most conditional logging in MAME to use the idiom 
+"do { if (VERBOSE) logerror x; } while (0)". This has the benefit that 
+the compiler checks the syntax of the logging even in the case it will 
+be eliminated, and in fact a number of cases here needed adjustments 
+to compile because of this. [Atari Ace]

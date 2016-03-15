@@ -1,0 +1,138 @@
+0.33 BETA 4
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Paperboy [Aaron Giles]
+Super Sprint [Aaron Giles]
+Championship Sprint [Aaron Giles]
+720 Degrees [Aaron Giles]
+APB (preliminary, and bad ROMs) [Aaron Giles]
+Zyyzzyxx [Brad Oliver]
+Eyes [Zsolt Vasvari]
+Space Seeker [Nicola Salmoria]
+Ponpoko [Zsolt Vasvari]
+Head On [Al Kossow]
+Invinco / Deep Scan [Al Kossow]
+Tranquilizer Gun [Al Kossow]
+Space Trek [Al Kossow]
+Money Money [Nicola Salmoria]
+Jack Rabbit [Nicola Salmoria]
+Blasteroids [Aaron Giles]
+Xybots [Aaron Giles]
+Escape from the Planet of Robot Monsters [Aaron Giles]
+Ghouls 'n Ghosts (new, complete set) (preliminary) [Paul Leaman]
+Xenophobe (preliminary) [Bryan McPhail]
+Super Space Invaders '91 (preliminary) [Howie Cohen]
+Crazy Balloon (preliminary) [Nicola Salmoria]
+MotoRace USA [Nicola Salmoria]
+1943 (Japanese) [Nicola Salmoria]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Accurate colors:
+  Zoar [Zsolt Vasvari]
+  Warp Warp [Nicola Salmoria]
+  Wonder Boy Deluxe, Up'n Down, Pitfall II [Nicola Salmoria]
+  Eggs [Gerald Vanderick]
+
+- Some fixes to the System 16 games. [Phil Stroffolino]
+
+- Fixed colors in Paperboy. [Aaron Giles]
+
+- Some fiddling with the Atari vector games frame rates. [Nicola Salmoria]
+
+- Slightly reduced the visible area of the Williams games, I'm not sure which
+  would be the correct setting though. [Nicola Salmoria]
+
+- Better colors in Red Alert. [Mike Balfour]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Sped up music tempo in Gun Dealer.
+
+- Wizard of Wor supports word samples. Only 30% of the needed samples are
+  available, however. [Alex Judd]
+
+- Fixed D-Day. [Zsolt Vasvari]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Fixed Black Tiger, Bank Panic and The End. [Nicola Salmoria]
+
+- World Cup '90 [Juan Carlos Lorente]
+
+
+Other drivers changes:
+----------------------
+
+- Support for the complete Curveball set. This also fixes the crash.
+
+- Many improvements to the DECO games, especially Heavy Barrel. [Bryan McPhail]
+
+- Sped up Route 16. [Zsolt Vasvari]
+
+- Lots of clean up, consolidation, dip switches additions, color fixes to the
+  Carnival driver (which is now called vicdual.c, since Carnival is just one of
+  the many games which run on that hardware). [Marco Cassili]
+
+- Slowed down a little the Sega raster games.
+
+- You can assign a joystick button to the gear shift in Spy Hunter.
+
+- Red Alert accepts coins. [Mike Balfour]
+
+
+Changes to the main program:
+----------------------------
+
+- Increased the default gamma correction for the DOS version to 1.2. This will
+  not have effect unless you change it in MAME.CFG (or just delete the file).
+
+- Set back the default vgafreq to -1 (=auto). This is necessary for -vsync to
+  pick the correct freq (most of the time) when used with tweaked VGA modes.
+  This will not have effect unless you change it in MAME.CFG (or just delete
+  the file).
+
+- Fixed crash in -verifyroms which occurred in beta 3.
+
+- Fixed -ror and -rol with ORIENTATION_SWAP_XY games (e.g. Kick) and
+  ORIENTATION_FLIP_X games (e.g. Discs of Tron). [Nicola Salmoria]
+
+- In the DOS version, -vsync is supported for games running at 57fps (e.g.
+  Moon Patrol). However, due to the sync rate being different, the game
+  runs 6% faster than it should. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- The DOS version is now compiled with GCC 2.8.1.
+
+- T11 CPU emulator. This is used by the Atari System 2 drivers. [Aaron Giles]
+
+- I8085 emulator. [Juergen Buchmueller]
+
+- The 68000 memory handlers can again be word-aligned instead of
+  longword-aligned. [Aaron Giles]
+
+- Dynamic palette support for games with >256 colors, not complete yet but
+  good for many cases. Drivers who want to use it must first of all set up like
+  the static palette ones (put the real number of colors in MachineDriver->
+  total_colors, etc.), and call palette_recalc() in vh_screenrefresh() before
+  drawing anything. A color uage table must be passed to palette_recalc() so
+  that the function knows which colors are needed.
+  Drivers which use the new system, and therefore no longer run in 16-bit video
+  modes: Black Tiger, City Connection, Gun Dealer, Ninja Gai Den.
+  [Nicola Salmoria]
+
+- Color PROMs no longer have to be included in the source. They can be loaded
+  from disk just like the other ROMs. You just have to replace the color_prom
+  pointer with the PROM_MEMORY_REGION() macro, to tell the core where the PROMs
+  have been loaded. Example driver: Karnov/Chelnov. [Nicola Salmoria]

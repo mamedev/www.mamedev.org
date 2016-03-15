@@ -1,0 +1,139 @@
+0.58
+
+
+Other drivers changes:
+----------------------
+
+- Fixed (?) collision detection in Thunder Cross. [Eddie Edwards]
+
+- Fixed the VLM5030 emulation (Punch Out, Track & Field, Yie-Ar Kung Fu etc.).
+  [Tatsuyuki Satoj]
+
+
+Changes to the main program:
+----------------------------
+
+- [windows] New blitting effect "-effect sharp". This gives a sharper image
+  than the default. [Aaron Giles]
+
+
+Source:
+-------
+
+- New macros have been added to declare common callback functions and enforce
+  naming conventions. All drivers have been converted to the new macros:
+
+      void init_drivername()            -> DRIVER_INIT( name )
+      int generate_int()                -> INTERRUPT_GEN( func )
+      void name_init_machine()          -> MACHINE_INIT( name )
+      void nvram_handler()              -> NVRAM_HANDLER( name )
+      void name_vh_convert_color_prom() -> PALETTE_INIT( name )
+      int name_vh_start()               -> VIDEO_START( name )
+      void name_vh_stop()               -> VIDEO_STOP( name )
+      void name_vh_eof()                -> VIDEO_EOF( name )
+      void name_vh_screenrefresh()      -> VIDEO_UPDATE( name )
+
+- Major change to the way machine drivers are set up. A series of macros is
+  now available (defined in driver.h) to "build up" a machine driver. The
+  ordering of items in the machine driver is arbitrary, apart from CPU-specific
+  data, which is tied to the most-recently referenced CPU. With this new format,
+  machine drivers can now be built by modifying another machine driver,
+  providing a primitive inheritance mechanism. See any driver for an example
+  of the new format. See mcr.c for a more complex example of inheritance.
+
+- New functions auto_bitmap_alloc() and auto_bitmap_alloc_depth() are now
+  available to create automatically managed bitmaps. Combined with auto_malloc(),
+  there is no need for a video_stop function in most cases. All existing
+  drivers have been modified to take advantage of these features.
+
+- The old interrupt system has now been made officially obsolete. This means
+  that the function cpu_cause_interrupt() is no longer available; you must use
+  cpu_set_irq_line() or cpu_set_irq_line_and_vector() instead. It also means
+  that a number of old/conflicting constants have been removed. In addition,
+  interrupt generation callbacks for CPUs no longer return an IRQ line or
+  vector. Instead, the interrupt callback must actively cause the interrupt
+  via cpu_set_irq_line(). All existing drivers have been updated to these
+  changes.
+
+- New interrupt callback functions: nmi_line_pulse(), nmi_line_assert(),
+  irqn_line_hold(), irqn_line_pulse(), irqn_line_assert(). These functions
+  replace the old interrupt() and nmi_interrupt() callbacks and can be used
+  directly as interrupt callbacks.
+
+- The function tilemap_set_clip() has been removed. In its place, there is a
+  new 'cliprect' parameter to tilemap_draw(). All existing drivers have been
+  updated to support this change.
+
+- In preparation for partial updating support, the parameters to video_update
+  have changed. A new parameter 'cliprect' has been added, which should be
+  honored. In the future, the parameter will contain the subset of the screen
+  to render; for now, it just contains Machine->visible_area. In addition,
+  the 'full_refresh' parameter is gone; update functions must always redraw
+  the requested portion of the bitmap. Some drivers have been updated to fully
+  support the cliprect; others still need to be updated.
+
+- Two new functions have been added to the timer system. timer_create() creates
+  a new "permanent" timer, and timer_adjust() adjusts the scheduling of that
+  timer. This is now the only way to dynamically manipulate a timer. The old
+  functions timer_set() and timer_pulse() are still around, but they no longer
+  return a handle to the timer they create. Timers created with timer_create()
+  should be created at initialization time, not dynamically. Timers also now
+  participate in the automatic resource tracking, so there is no need to
+  explicitly dispose of them. All existing drivers have been updated with the
+  necessary changes.
+
+- Basic generic NVRAM handlers have been added. For a number of games, it is
+  sufficient to point the global variables 'generic_nvram' and
+  'generic_nvram_size' to the location and size of the NVRAM area. In the
+  machine driver, you can now specify 'generic_0fill' or 'generic_1fill' to
+  request a generic NVRAM handler. The 0fill and 1fill refer to how the memory
+  is initialized in the absence of an .nv file.
+
+- The following old functions and macros have now been fully deprecated:
+
+     cpu_get_pc()           -> activecpu_get_pc()
+     cpu_get_sp()           -> activecpu_get_sp()
+     cpu_getpreviouspc()    -> activecpu_get_previouspc()
+     cpu_get_reg()          -> activecpu_get_reg()
+     cpu_set_reg()          -> activecpu_set_reg()
+     cpu_set_op_base()      -> activecpu_set_op_base()
+     cpu_get_pc_byte()      -> activecpu_get_pc_byte()
+     READ_WORD              -> (no equivalent)
+     WRITE_WORD             -> (no equivalent)
+
+- New function force_partial_update(), call this to force a partial update to
+  occur up to and including the specified scanline. [Aaron Giles]
+
+- ARM CPU emulation [Bryan McPhail, Phil Stroffolino]
+
+
+MAME Testers bugs fixed (there are probably more)
+-----------------------
+
+rampart057yel
+artwork057gre
+mrgoemon36b16gre
+pigout37b4gre
+
+
+New games supported:
+--------------------
+
+Gun Force 2 [Chris Hardy]
+Angel Kids [David Haywood]
+Noboranka [Stephane Humbert]
+Steel Force [David Haywood, Stephan Humbert]
+Mug Smashers [David Haywood, Stephan Humbert]
+Captain America [Bryan McPhail]
+Lemmings [Bryan McPhail]
+Flyball [Stefan Jokisch]
+Grand Cross [David Graves]
+
+
+New clones supported:
+---------------------
+
+Mayday (set 3)
+Alpha One (prototype of Major Havoc)
+Blaster (kit)
+Buck Rogers (encrypted)

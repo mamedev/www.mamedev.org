@@ -1,0 +1,102 @@
+0.102u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+taotaida088u4gra [RansAckeR]
+tempest095u5gre [RansAckeR]
+
+
+
+Source Changes
+--------------
+Aquarium update: [Pierpaolo Prazzoli]
+ * Fixed tilemaps - sprites priority
+ * Added sprites wrap around y
+ * Added tiles flipx and flipy
+
+Fixed several bugs in the SPC700 core: [R. Belmont]
+ * Fixed carry usage in ADC/SBC
+ * Fixed overflow flag in ADDW/SUBW (I think)
+ * BRK now modifies the status register properly
+ * Fixed DAA/DAS edge case
+
+Updated driver.c with more consistent and updated info. [Brian Troha]
+
+NSS/SNES updates from latest MESS: [R. Belmont]
+ * Improved memory mapping
+ * Improved raster timing
+ * Added HIRQ support and better VIRQ support
+ * Improved joypad support
+ * DSP-1 support (including all subtypes)
+ * Counter latching support
+ * Fixed OAM read/write
+ * Fixed stereo sound
+
+Added a MESS specific ROM entry type, and changed ROM entry processing code 
+to ignore any unrecognized ROM entry types. [Nathan Woods]
+
+Merged in recent changes to the PC share code from MESS. [Nathan Woods]
+
+Removed several obsolete files: machine\s16math.h, vidhrdw\medlanes.h,
+windows\dirty.h, windows\snprintf.c. [Giuseppe Gorgoglione]
+
+Fixed a couple of minor compatibility exposed by VC2005.
+[Giuseppe Gorgoglione]
+
+Fixed the ADC and SBC opcodes in G65816 (for BCD math). [Rob Bohms]
+
+Fixed $4014 sprite DMA in NES PPU. [Rob Bohms]
+
+Updated the H8/3002 emulation: [R. Belmont]
+ * Added more bXXX.b #imm, (@)Rn instructions
+ * Added subtract with carry instructions
+
+Implemented some N2A03 undocumented opcodes. [Rob Bohms]
+
+Major update to Namco System 22: [Phil Stroffolino]
+ * depth cueing support (fog); some open issues remain
+ * depth bias improvements
+ * zbuffer has been replaced with back-to-front rendering
+ * sprite and text translucency
+ * direct access to rendering device (used by video tests)
+ * preliminary support for spotlight feature
+ * support for sprite bottom-alignment
+ * support for sprite, polygon priority over text
+
+More Voodoo updates: [Aaron Giles]
+ * Added support for CLUT/gamma ramps; enables fade in/out effects
+ * Changed stall callback to notify both start and end of stalling
+ * Decreased bilinear resolution to 4 bits for Voodoo 1
+ * Fixed statistics and added some new ones
+ * Now properly masking off unsupported bits for earlier chipsets
+ * Fixed NOP command so it doesn't always reset statistics
+ * Fixed bug that caused the refresh rate to never be updated
+ * Fixed 16-bit writes to the frame buffer
+ * Fixed crashing bug after resetting the chip
+ * Added support for Voodoo 2's new fog, colorpath, and chromaRange modes
+ * Added correct wrapping for ARGB, W and Z values
+ * Fixed bug where depth was written to the Z buffer without bias
+ * Now aggregates shorter commands to reduce the number of context switches
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magic Stick [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Progressive Music Trivia (Question set 3) [Pierpaolo Prazzoli]
+Super Puzzle Fighter II Turbo (Asia 960529) [Razoola]
+Funky Jet (Japan) [Guru]
+Kid Niki - Radical Ninja (World) [Stefan Lindberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Fortress 2 Blue Arcade [Guru]

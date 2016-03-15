@@ -1,0 +1,80 @@
+0.116u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+shanghai0116red [Aaron Giles]
+bldwolf061gre [Robiza]
+superx0116gre [Robiza]
+matchit2_0116ora [Robiza]
+qix0116yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed scanline address reporting in the qix driver. [Zsolt Vasvari]
+
+Rewrote Neo-Geo driver again based on information from Charles
+MacDonald. This update fixes a number of issues with the previous
+attempt. [Zsolt Vasvari]
+
+Added support for multiple keyboards: [Andrew Kuruhin]
+ - added multikeyboard input support through RAWINPUT mechanism 
+    (up to 8 simultaneous keyboard inputs
+ - fixed RAWINPUT device registry enumeration bugs
+
+Fixed the reset mode in CDP1802. [Curt Coder]
+
+Fixed a number of errors and simplified the code significantly in the
+ptm6840 code. [Atari Ace]
+
+Fixed offset for sprite and layers in fcrash driver. [Robiza]
+
+SH4 CPU core improvements: [Samuele Zannoli]
+ - corrected opcode decoding and decodes all opcodes of sh4
+ - corrected disassembly and added support for all instruction of 
+    sh4 not in sh2
+ - now disassembles all fpu instructions
+ - changed cpu to little-endian (sh4 can be either big or little)
+ - corrected which data is read and written from memory 
+ - added registers fpul and dbr
+ - added (non-fpu) instructions of sh4 non present in sh2
+ - added four fpu instructions
+ - modified memory-mapped internal register management so that all 
+    internal registers can be actually used
+ - added file sh4regs.h with defines for all sh7750 internal registers
+ - implemented internal registers for memory refresh
+ - removed some internal registers of sh2 not present in sh4
+ - added preliminary support for internal cache used as ram
+
+Updated CPS2 decryption bit order to match what is likely the original
+order. [Nicola Salmoria]
+
+Fixed a few warnings that show up with -Wextra.
+[Atari Ace, Zsolt Vasvari]
+
+Fixed toaplan2.c so that OKI6295 sample ROM bankswitching via one
+of the spare data lines on the coin mechanism port is only hooked up 
+in the one game that's actually wired this way (shippumd). [AWJ]
+
+Updated the scrambls protection implementation to use equations based
+on the implementation from fpgaarcade.com. [Mark McDougall]
+
+Improved GCD computations in the rendlay.c code. [Christophe Jaillet]
+
+Fixed numerous regressions in the 0.116 release.
+[Zsolt Vasvari, Aaron Giles]
+
+Switched driver code to exclusively using mame_rand() instead of
+rand(), to improve consistency of results. [Aaron Giles]
+
+Improved MCU timing and communication in the qix driver. Still a few
+issues remain. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Match It II [Robiza]

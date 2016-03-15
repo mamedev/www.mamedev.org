@@ -1,0 +1,115 @@
+0.110u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+vulcan137b1gre [robiza, Mamesick]
+mario0110u1gre [Derrick Renaud]
+
+
+
+Source Changes
+--------------
+Fixed flags access in the i286 core. [Barry Rodewald]
+
+Updated MC146818 module to use new core date/time routines.
+[Nathan Woods]
+
+Cleaned up disassemblers to remove stubs and ensure the disassemblers
+are not referenced except in debug builds. [Nathan Woods]
+
+Added support for using CHDs to decrypt CPS2 games. This code is
+disabled for the moment, but will be enabled in the future. Only a 
+handful of games have complete tables so far. These tables are huge 
+(~4GB) and uncompressable until the encryption algorithm is 
+understood. [David Haywood]
+
+Fixed bug in the debugger that caused watchpoints to not be active
+until the next context switch. [smf]
+
+Cleaned up the input definitions for n-way joysticks so they are
+more explicit. Added concept of a "16-way" joystick, which is a
+joystick that doesn't prevent simultaneous opposing directions from
+bring reported. [smf]
+
+Major System 573 update: [smf]
+ * fixed PSX SIO control register behavior
+ * implemented several SCSI CD commands: START/STOP UNIT, PAUSE/
+    RESUME, READ SUB-CHANNEL, READ TOC
+ * added uPD4701 emulation
+ * fixed ATAPI reset, PIO, and command IDENTIFY PACKET DEVICE 
+ * hooked up controls for fishing, DRR, and Guitar Freaks games
+ * hooked up CDDA audio
+ * removed some unused bytes from the Konami 80's security chips
+
+Fixed upside down service mode in the commando.c driver. [Canim]
+
+Added support for the Triple Hunt 8-track audio. [Derrick Renaud]
+
+Galaxian/Scramble driver reorganization: [Atari Ace]
+ * machine/scramble.c is broken up into two files, 
+    machine/galaxian.c and machine/scramble.c
+ * drivers/amidar.c, drivers/frogger.c, drivers/scobra.c get copies 
+    of some of the data structures they shared from other drivers 
+ * galaxian_base is made static and uses outside of the main driver
+    were rewritten
+ * cclimber_decode code from drivers/cclimber.c was separated into 
+    its own machine/cclimber.c file to allow mshuttle to share it 
+    without taking on other dependencies
+
+Added missing x-flipping support in Major Havoc. [Mathis Rosenhauer]
+
+Made some improvements to trivia madness driver. There still is 
+something wrong in the question roms banking. [Pierpaolo Prazzoli]
+
+More updates to the ST-V driver: [Mariusz Wojcieszek]
+ * vdp1: added shading for sprites (used by znpwfv, cotton, others)
+ * vdp1: fixed sprite clipping (fixes incorrect sprites in znpwfv)
+ * vdp1: fixed transparency on colour lookup table sprites (fixes bad
+          sprites in znpwfv)
+ * vdp2: fixed caching of RGB layer (fixes bad backgrounds on bosses 
+          in rsgun)
+ * vdp2: added additive blending for tilemaps and sprites (rsgun)
+ * vdp2: added vertical line scroll and linezoom (fixes diehard logo)
+ * stv:  improved speedups for diehard
+ * stv:  fixed speedups for znpwfv
+ * stv:  added preliminary save state support
+
+Significant cleanup of chd.c: [Aaron Giles]
+ * got rid of the horrible last_error concept; now all routines 
+    return an error directly
+ * fixed several issues in managing metadata 
+ * changed compression and verification routines to be client-driven 
+    rather than monolithic
+ * changed internal codec usage to be more flexible
+ * altered chdman and MAME to use the new interfaces
+ * added new -createraw command for creating raw data CHDs
+
+Fixed crash bug in romcmp when comparing ZIP files. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fisherman's Bait * A Bass Challenge / Bass Angler [smf]
+Fisherman's Bait 2 * A Bass Challenge [smf]
+Fisherman's Bait * Marlin Challenge [smf]
+Dancing Stage / Dance Dance Revolution [smf]
+Guitar Freaks [smf]
+Dance Dance Revolution 2nd Mix [smf]
+Dance Dance Revolution 2nd Mix Link [smf]
+
+
+
+New clones added
+----------------
+Hellfire (2P Ver., first edition) [Tirino73]
+Konami 80's AC Special (3 versions) [smf]
+Stratovox (bootleg) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Jyangokushi: Haoh no Saihai (Japan) [David Haywood]

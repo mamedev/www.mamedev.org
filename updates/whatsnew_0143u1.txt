@@ -1,0 +1,188 @@
+0.143u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00335: [DIP/Input] quasar: 3 players start mapped even though it is
+         a 2 player game. (Tafoid)
+- 00042: [DIP/Input] oigas: Problem with keyboard control. (Tafoid)
+- 04412: [Documentation] dynabb: Year should be 1997.
+- 04387: [Sound] All sets in renegade.c: Missing ADPCM audio (hap)
+- 04380: [Crash/Freeze] sfish2, sfish2j: Crash after OK (R. Belmont)
+- 04409: [Documentation] motoraid: Name isn't spelled correctly and
+         year is wrong.
+- 04248: [Crash/Freeze] All sets in naomi.c: Hang/Black Screen
+         attempting to enter Service Mode. (Olivier Galibert)
+- 04407: [Crash/Freeze] jdredd, jdreddb: After splash screens, the
+         game goes to black screen (micko)
+- 04402: [Sound] Drivers using BSMT2000 Sound: Sound is missing or
+         corrupt (micko)
+
+Source Changes
+--------------
+Fixed COSMAC CPU debugger PC. [Curt Coder]
+
+CP1610 - maskable interrupts do not latch [H@P]
+ * maskable interrupts that trigger while interrupts are disabled are
+    not latched.
+* fixes Activision's Dreadnaught Factor. (intv driver in MESS)
+
+Removed deprecat.h usage in the following drivers: [Angelo Salese]
+ * megaplay.c
+ * olibochu.c
+ * panicr.c
+ * paradise.c
+ * psychic5.c
+ * pturn.c
+ * rabbit.c
+ * subs.c
+ * tmmjprd.c
+ * tunhunt.c
+ * vulgus.c
+ * xmen.c
+ * xorworld.c
+
+Improved oldsplus protection simulation [Creamy Mami]
+
+Improved video timings in The Crystal Maze: Team Challenge games, this
+fixes most bad palette bugs in it [J. Wallace]
+
+Various Neo-Geo changes: [Johnboy]
+ * janshin - Replaced p1, old was bad dump
+ * Tagged / Retagged several sets MVS/AES version
+ * Begin to document used pcb's for cartridges
+ * More removal of .bin extension in favour of chiplabel.socketlabel
+    naming convention
+
+Naomi: hooked up M4 live decryption [R. Belmont, Deunan Knute, Andreas
+Naive]
+
+vigilant.c: Added support for Coin Modes 1 & 2 for Vigilante & Kickle
+Cubele sets.  Added Dip locations for Buccaneers, Kickle Cubele &
+Vigilante sets [Brian Troha]
+
+zaxxon.c: Added Dip locations to Future Spy [Brian Troha]
+
+xxmissio.c: Added Dip locations to XX Mission [Brian Troha]
+
+wwfsstar.c: Added Dip locations to WWF Superstars [Brian Troha]
+
+wallc.c: Added Dip locations to Wall Crash [Brian Troha]
+
+vulgus.c: Added Dip locations to the Vulgus sets [Brian Troha]
+
+vball.c: Added Dip locations to the U.S. Championship V'ball sets
+[Brian Troha]
+
+Update NEC DSP core to correctly generate the ov1 and s1 alu flags
+(and hence, SGN register contents).
+[Lord Nightmare, Segher, byuu, Cydrak]
+
+idectrl - Implemented command 0x70 (SEEK) makes jdredd and jdreddb
+boot again [Miodrag Milanovic]
+
+Naomi updates [R. Belmont, Angelo Salese]
+ * Fixed BIOS order so rev H is default
+ * Fixed rotation settings for Illvelo and Shooting Love 2007
+ * Fixed a minor BIOS H compatibility issue and added idle skip for
+    BIOS H
+
+Documentation cleanups/updates for Naomi/Triforce/Chihiro
+[f205v, R. Belmont]
+
+addrmap: Allow adding device-sourced memory maps in the main map.
+[O. Galibert]
+
+naomi: Use a device map for maple-dc. [O. Galibert]
+
+addrmap: Add a useful error detection [O. Galibert]
+
+Idle skipped Naomi 2 BIOS [Angelo Salese]
+
+Hooked up idle skip for HOTD2 [Angelo Salese]
+
+Implemented lightgun inputs to The House of the Dead 2, game is now
+playable with several gfx issues (due of the different PVR used)
+[Angelo Salese, O. Galibert]
+
+Hooked up proper inputs to Crazy Taxi, Dynamite Baseball Naomi
+Zombie Revenge, Jambo Safari, 18th Wheeler, Airline Pilots,
+Confidential Mission, Monkey Ball, The Maze of Kings, 
+Shakatto Tambourine [Angelo Salese, O. Galibert]
+
+Added 0555 KRGB TA to FB conversion, used by Ring Out 4x4
+[Angelo Salese]
+
+Further upd7725 fixes, new code might actually work properly now,
+fixed uninitialized variables. [Lord Nightmare, Wilbert Pol]
+
+i386: Various fixes. [Barry Rodewald]
+ * Load LDT before segment registers when switching tasks,
+ * Set IF after the instruction following STI,
+ * Reset IF after MOV SS or POP SS for one instruction,
+- Fixed LSL instruction when modrm < 0xc0.
+
+nvram - in case of multiple bioses, system nvram will be saved in 
+form systemname_biosnum.nv in cases when non-default bios is used. 
+For default bios selection all stay the same.[Miodrag Milanovic] 
+
+Various rom name fixes [Kevin Eshbach]:
+ * Corrects Super Zaxxon rom names
+ * Updates the name of the Bally Sente sound board rom and adds the
+    date code
+ * Updates the Name That Tune set 2 rom names
+ * Updates the Stompin’ rom names, updates the undumped pal, updates
+    the cartridge type and adds the date code
+ * Updates the Rescue Raider (first set) rom names, updates the
+    undumped pals, marked as non-cartridge and adds the date code
+ * Adds the date code to Gimme a Break
+ * Adds the date code to one of the Trivia Pursuit (Genus I) sets
+
+Added reasonably accurate layout code to Crystal Maze games that
+should finally leave them playable [J. Wallace]
+
+Corrected syntax in some inline assembly [Balrog]
+
+Implemented halt instruction in the NEC CPU core
+[Wilbert Pol, Alex Jackson]
+
+Provided EPROM dump for the i/o gunboard on HOTD2 PCB [Guru]
+
+Preliminary work for ATV Track, in order to get the second SH-4 into
+business [Samuele Zannoli]
+
+Added support for dma transfers between the processor and external
+devices in SH-4 CPU core [Samuele Zannoli]
+
+Modified naomibd device so that it allocates the memory for the gdrom
+data on startup based on a parameter that specifies the size in
+megabytes. [Samuele Zannoli]
+
+Added two new commands to the unidasm utility [Samuele Zannoli]
+ * skip <n> allows to skip the first <n> bytes from the file
+ * count <n> specify that only <n> bytes from the file must be
+    disassembled
+    
+More Neo-Geo work for ROM naming conventions and documentation of used
+PCBs for cartridges [Johnboy]
+
+
+New clones added
+----------------
+Pit Boss Megatouch II (9255-10-01 ROD, Standard version)
+  [Brian Troha, The Dumping Union]
+Galivan - Cosmo Police (12/26/1985)
+  [Stefan Lindberg, The Dumping Union]
+Missile Command (rev 3) [Joe Barbara]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tap-a-Tune [Mariusz Wojcieszek, Phil Bennett, R. Belmont]
+Asian Dynamite (Dynamite Deka EX) [The Dumping Union]
+Shooting Love 2007 [The Dumping Union]
+Akatsuki Blitzkampf Ausf Achse [The Dumping Union]
+Illvelo (Illmatic Envelope) [The Dumping Union]
+Pokasuka Ghost [The Dumping Union]
+Bubble System BIOS [Guru, Angelo Salese]

@@ -1,0 +1,120 @@
+0.119u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+model2c_crx0119u1red [R. Belmont]
+
+
+
+Source Changes
+--------------
+Changed gfx_decode structures so that they are defined abstractly
+by macros rather than directly specifying the structures. Added
+new macros GFXDECODE_START/GFXDECODE_ENTRY/GFXDECODE_END to
+describe the gfx_decode information. Converted all drivers over to
+using the new macros. [Atari Ace]
+
+Fixed NMI handling in h6280 CPU core. [Wilbert Pol]
+
+Fixed vaportra to use an ASSERT/CLEAR mechanism instead of PULSE_LINE
+for interrupt signally. [Wilbert Pol]
+
+Cleaned up input ports in sg1000a.c. Added DIP switch for the coins 
+in dokidoki and service switch. Added DIP switch for flip screen in
+psychic5. [sonikos]
+
+Cleans up the input port for macrossp.c driver and adds dip 
+locations. [Brian Troha]
+
+Adds dip locations and changes the Japanese inputs into 
+PORT_INCLUDE and PORT_MODIFY. [Brian Troha]
+
+Added macros to clean up definitions of the discrete sound 
+interfaces. At the same time, made them all const. [Atari Ace]
+
+Some miscellaneous changes to the megatech driver. [David Haywood]
+
+More srmp6 improvements. [686]
+
+Two small Model 2 fixes: [Ernesto Corvi]
+ - fixed triangle parser; all objects should be structurally 
+    correct now
+ - fixed normal transform to not use the translation vectors
+
+Cleaned up code to make code and data static where possible and
+remove some dead code. [Atari Ace]
+
+SCSP improvements: [R. Belmont, ElSemi]
+ - fixed issue with changing the pitch of an active voice set to 
+    backwards or bidirectional loop
+ - removed fake reverb
+ - fixed internal DSP to operate properly 
+ - rewrote timers and interrupt handling
+ - fixed operation when 2 SCSPs are present
+
+Fixed sound in almost all SCSP-equipped Model 2 games. [R. Belmont]
+
+Added sound hardware and fixed sound ROM loading in Model 3 games.
+[R. Belmont]
+
+Created an options_output_diff_ini_file() API, which is similar to 
+options_output_ini_file(), but only outputs the options which are 
+different than a base core_options. Changed INI outputting (and 
+hence the -cc option) to omit headers that do not contain any 
+options. [Nathan Woods]
+
+Hooked up sound in discoboy. [Tomasz Slanina]
+
+Renamed old gfx_decode structure to gfx_decode_entry in order to
+catch remaining/new drivers that aren't using the new macros.
+[Aaron Giles]
+
+Changed profiler so that it is independently selected versus the
+debug build. Built with MAME_PROFILER=1 to enable the profiler on
+a non-debug build. [Aaron Giles]
+
+Fixed MIPS3 disassembly of j/jal instructions. [Aaron Giles]
+
+Switched MIPS3 64-bit DRC over to new system that is more aggressive
+about register allocation and mapping. Sadly, there is little to no
+obvious performance benefit, but the resulting code is better
+organized. [Aaron Giles]
+
+Fixed nasty x86emit bug involving 16-bit opcodes on 64-bit systems.
+[Aaron Giles]
+
+Created new generic x86/x64 logging system x86log, and updated both
+MIPS3 DRC cores to use it. [Aaron Giles]
+
+Created new generic DRC frontend management. Future work involves
+retooling the MIPS3 frontend around this new architecture. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Loverboy [David Haywood]
+Mahjong Shinkirou Deja Vu (Japan) [Luca Elia]
+Final Godori (Korea, version 2.20.5915) [Pierpaolo Prazzoli]
+Jibun wo Migaku cultures School Mahjon Hen [Pierpaolo Prazzoli]
+Mahjong Fantastic Love (Japan) [Luca Elia]
+Domino Block [Tomasz Slanina, David Haywood]
+
+
+
+New clones added
+----------------
+Fighter's History (Japan ver 42-03) [Team Japump!]
+Janyou Part II (ver 7.03, July 1 1983) [Team Japump!]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Jan Oh [Luca Elia]
+Mahjong Vegas (Japan) [Luca Elia]
+Esh's Aurunmilla [Andrew Gardner]
+Mirage Youjuu Mahjongden (Japan) [Team Japump!]

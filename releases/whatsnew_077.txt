@@ -1,0 +1,517 @@
+0.77
+
+General Source Changes
+----------------------
+
+Fix to allow a driver to have MSM6295s and plain ADPCM voices coexist
+(required for gcpinbal).  [R.Belmont]
+	src/sound/adpcm.c
+
+Full Sound / Music in Grand Cross [R.Belmont]
+	src/drivers/gcpinbal.c
+
+
+Improved Bishi Bashi colours [Angelo Salese]
+	src/drivers/bishi.c
+	src/palette.c
+	src/palette.h
+
+Fixed ckongs sprites [Pierpaolo Prazzoli]
+
+Updated Double Dragon Driver [Bryan McPhail]
+	- Correct video & interrupt timing derived from Xain schematics
+	and confirmed on real DD board.
+
+	- Corrected interrupt handling, epecially to MCU (but one
+	semi-hack remains).
+
+	- TStrike now boots but sprites don't appear (I had them working
+	at one point, can't remember what broke them again).
+
+	- Dangerous Dungeons fixed.
+
+	- World version of Double Dragon added (actually same roms as
+	the bootleg, but confirmed from real board)
+
+	- Removed stereo audio flag (still on Toffy - does it have it?)
+
+	src/drivers/ddragon.c
+
+Various ST-V improvements [Angelo Salese]
+	src/drivers/stv.c
+
+Twin16/TMNT fixes [Curt Coder]
+	drivers/twin16.c
+
+	- Fixed cuebrick NVRAM handler
+	- Added watchdog reset
+
+	drivers/tmnt.c
+
+	- Fixed mia/mia2 inputs/dips
+	- Fixed visible area in cuebrckj/mia/mia2
+	- Changed cuebrckj to "Cue Brick (World version D)", since text
+	  is in English)
+
+TMS32031 Fixes [Aaron Giles]
+	many fixes to the TMS32031 core; Offroad Challenge is almost playable as a
+	result, minus the fact that the clipping plane seems to like clipping out
+	the cars during the race. But the terrain problems are fixed at least.
+
+Memory Annoyance Fix [Aaron Giles]
+	Unmapped memory accesses always reported the raw byte address, not the
+	CPU-level address. This is annoying for chips like the TMS34010 or the
+	TMS32031, so now the effecitve offset is logged instead, taking into account
+	the address shift.
+
+Some Input Port Corrections [Robin Merrill, fixed by Bryan McPhail]
+
+OSD Fix [Aaron Giles]
+	This is a minor fix to enable the OSD for non-debug builds regardless of
+	the -debug flag
+
+Misc Fixes [Nathan Woods]
+	src/usrintrf.c:
+	- Adds a handful of comments to uifontdata[]
+	- Changes character 14 to a solid circle; previously this
+	character was blank and unused
+	- Miscellaneous changes within #ifdef MESS
+
+Various Atari Improvements
+	* CAGE works
+	* motion object checksums work for growth games
+	* sprite/playfield priorities work for growth games
+	* no more 6502 speedups
+
+
+	drivers/atarig1.c:
+	* added support for the MO command register -- MO checksums now work
+	* added missing SHA1 values and marked some ROMs as NO_DUMP
+	* removed 6502 speedups
+
+	drivers/atarig42.c:
+	vidhrdw/atarig42.c:
+	* added support for the MO command register -- MO checksums now work
+	* added SLOOP emulation for Guardians of the Hood, which is fully playable
+	* added missing SHA1 values
+	* removed 6502 speedups
+	* documented color MUXing
+	* removed old orientation code
+	* added MO/playfield priorities
+
+	drivers/atarigt.c:
+	vidhrdw/atarigt.c:
+	* added support for the MO command register -- MO checksums now work
+	* hooked up CAGE audio
+	* added missing SHA1 values
+	* documented the overly complicated color MUXing
+	* added MO/playfield priorities
+
+	drivers/atarigx2.c:
+	* added support for the MO command register -- MO checksums now work
+	* added missing SHA1 values
+	* added another Road Riot's Revenge variant
+	* some input port tweaks
+	* removed 6502 speedups
+
+	machine/asic65.c:
+	* improved logic for Road Riot 4WD -- almost playable
+	* added support for Guardians of the Hood
+
+	machine/atarigen.c:
+	* fixed bad handling of EEPROM data in 32-bit mode
+
+	sndhrdw/cage.c:
+	* fixed frequency computation -- it now works ok!
+	* added speedup mechanism
+	* fixed positioning of the 4 voices
+
+	vidhrdw/atarirle.c:
+	* implemented the MO command register and checksumming
+
+Improved Z80 DAA emulation allowing removal of look-up table [Sean Young / Stefano]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Seattle Hardware [Aaron Giles]
+	Mace - The Dark Age
+	Blitz '99
+	CarnEvil
+	Wayne Gretzky's 3D Hockey
+
+	src/drivers/seattle.c
+	src/vidhrdw/voodoo.c
+	+many others
+
+Dangerous Dungeons [Bryan McPhail]
+	src/drivers/ddragon.c
+
+Goal '92 (bootleg of Seibu Cup Soccer) [Pierpaolo Prazzoli]
+	src/drivers/goal92.c
+	src/vidhrdw/goal92.c
+
+T-Mek (prototype) [Aaron Giles]
+	bad sound
+
+Guardians of the Hood [Aaron Giles]
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Double Dragon (World) [Bryan McPhail]
+
+The Simpsons (2 player, alt) [R.Belmont]
+
+Martial Champion [EAA] [R.Belmont]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Namco System 12 [smf]
+	(sets include tekken3, soulclbr, ehrgeiz, mdhorse, fgtlayer,
+         pacapp, sws99, tekkentt, mrdrillr, aquarush, golgo13)
+	src/drivers/namcos12.c
+
+Godzilla [Pierpaolo Prazzoli]
+Bonk's Adventure [Pierpaolo Prazzoli]
+Seibu Cup Soccer [Pierpaolo Prazzoli]
+	protection issues
+	src/drivers/leigonna.c
+
+SF Rush [Aaron Giles]
+California Speed [Aaron Giles]
+	src/drivers/seattle.c
+
+Sports Fishing 2 (stv) [ANY]
+	incomplete dump / no way to support CD and MPEG decoder
+	src/drivers/stv.c
+	src/machine/stvcd.c
+
+0.76u2
+
+General Source Changes
+----------------------
+
+Rewrote rf5c68 sound core [Olivier Galibert]
+	src/sound/rf5c68.c
+	src/sound/rf5c68.h
+
+Misc Changes [Nathan Woods]
+	src/fileio.c:
+	- Integrates some MESS specific fileio functionality (within
+	#ifdef MESS)
+
+	src/sndintrf.c:
+	- Removing the update procedure in a MESS specific sound core
+
+Some Hyperstone Fixes / Improvements [Mooglyguy, Pierpaolo Prazzoli]
+	src/cpu/e132xs/32xsdasm.c
+	src/cpu/e132xs/e132xs.c
+	src/cpu/e132xs/e132xs.h
+	src/drivers/vamphalf.c
+
+Fixed SCSP crash with -nosound [R.Belmont]
+	src/sound/scsp.c
+
+Attempted to fix some hangs in the Soul Edge clones [smf]
+	src/machine/psx.c
+
+Added new function: activecpu_eat_cycles(cycles), needed for idle skipping in
+certain situations [Aaron Giles]
+	src/cpuexec.c
+	src/cpuexec.h
+
+Midway V-Unit Update [Aaron Giles]
+	* WarGods sound is 100% now
+	* added some pre-initialization of the WarGods NVRAM
+	* added speedup handlers for all games (it makes a little difference)
+	* revamped the DCS2 handling to support stereo output
+	* fixed a number of synchronization issues in the DCS2 handling
+	* implemented a few missing features in the Midway I/O ASIC
+	src/sound/dcs.c
+	src/sound/dcs.h
+	src/drivers/midvunit.c
+	src/machine/midwayic.c
+	src/machine/midwayic.h
+
+Cpu Fixes / Tweaks [Aaron Giles]
+	ADSP2100:
+	* fixed loading of 0 counters so they don't execute infinitely
+	* fixed initial state of the SSTAT register
+
+	MIPS3 (R4000/R5000):
+	* fixed timer handling so we don't set a timer too far in advance
+	* changed timer handling so that the default Compare value doesn't trigger
+	timers
+	* fixed cycle chomping to make sure we don't go over an interrupt boundary
+	* added correct cycle times for MULT/DIV instructions
+	* fixed display of the Count reigster in the debugger
+
+	MIPS3DRC:
+	* same fixes as above, plus:
+	* fixed FP rounding glitches
+	* now actually respecting the global FP rounding mode
+
+	R3000:
+	* fixed instruction timings for MULT/DIV
+
+	X86DRC:
+	* added better support for tweaking the FP rounding modes
+
+	src/cpu/adsp2100/2100ops.c
+	src/cpu/adsp2100/adsp2100.c
+	src/cpu/mips/mips3.c
+	src/cpu/mips/mips3drc.c
+	src/cpu/mips/r3000.c
+	src/x86drc.c
+	src/x86drc.h
+
+MagMax sound improvements (Emulated some op.amps and RC filter circuits giving
+more exact results) [Jarek Burczynski]
+	src/drivers/magmax.c
+
+Fixes to the ymdeltat module. Generally - even more flags work correctly now. These changes are
+necessary for the msx sound emulation (Y8950) and were tested in nlmsx emulator by Frits
+Hilderink. [Jarek Burczynski]
+	Look at the top of each *.c file for a detailed list of changes.
+	src/sound/fm.c
+	src/sound/fm.h
+	src/sound/fmopl.c
+	src/sound/fmopl.h
+	src/sound/ymdeltat.c
+	src/sound/ymdeltat.h
+
+Improved Sound in Cabal / Dead Angle by adding ADPCM sounds [R.Belmont, Jarek Burczynski]
+	src/drivers/cabal.c
+	src/drivers/deadang.c
+	src/sndhrdw/seibu.c
+	src/sndhrdw/seibu.h
+
+Added OKI6295 sounds in Grand Cross [R.Belmont]
+	src/drivers/gcpinbal.c
+
+Asterock Dipswitches [Pierpaolo Prazzoli]
+	src/drivers/asteroid.c
+
+Fixed Aspect Ratio calculationbug on some rotated games
+	(galspnbl for example) [Sébastien Volpe]
+	src/common.c
+	src/windows/wind3d.c
+	src/windows/winddraw.c
+	src/windows/window.c
+
+Added Sample SUpport rto Armor Attack and Sundance [Tim Cottrill]
+	src/drivers/cinemat.c
+	src/sndhrdw/sinemat.c
+	src/includes/cinemat.h
+
+Decoded BG graphics in Thunder Ceptor II but BG's still aren't hooked up yet,
+improved existing graphics a bit
+	[David Haywood, BUT]
+	src/drivers/tceptor.c
+	src/vidhrdw/tceptor.c
+
+Fixed Dragon Unit Dipswitches [Iñigo Luja]
+	src/drivers/seta.c
+
+Some twin16.c / tmnt.c cleanups, fg layer converted to tilemaps [Curt Coder]
+
+Some input fixes [HowardC]
+	atetris.c
+	neogeo.c
+	+others
+
+Fixed Xain'd Sleena hang? [David Haywood]
+	src/drivers/xain.c
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Several ST-V games are probably now playable, however be warned many are very very
+slow, this is not a bug, sound is still poor or non-existant in most titles, these
+haven't been tested for long so could easily fail at later levels.  Games which
+were marked as working in previous updates are also improved (shienryu etc.)
+	[David Haywood, Angelo Salese, Olivier Galibert]
+
+	Puyo Puyo Sun - some priority glitches, otherwise looks good
+	Mausuke Ojama the World - mostly ok
+	Ejihon Tantei Jimusyo - missing alpha effect on lens
+	Virtua Fighter Kids - bad sprite colours, missing ground effects
+	Columns 97 - miscoloured sprites, background not correctly scaled
+	Cotton 2 - missing ground in places
+	Cotton Boomerang - missing ground in places
+	Die Hard Arcade / Dynamite Deka - missing floors / ceilings
+
+	there might be others too, a few can certainly be watched.  this driver still
+	needs a lot of work, I don't expect it to be completed soon due to the
+	incredible complexity of this hardware.
+
+Sega Dual Space Attack / Head On Dual board [Stefan Jokisch]
+	src/drivers/vicdual.c
+
+
+New Non-Working games / clones supported
+----------------------------------------
+	
+Quiz Panicuru Fantasy [David Haywood]
+	haven't found any time for this in the last 6 months so included it anyway
+	so it doesn't get lost, if anybody wants to finish it they're welcome
+	src/drivers/quizpani.c
+
+0.76u1
+
+General Source Changes
+----------------------
+
+Ported ElSemi's SCSP Core, this gives preliminary sound in the ST-V games, however at
+the moment most of them play static, Shienryu is mostly correct [R.Belmont]
+	src/sound/scsp.c
+	src/sound/scsp.h
+	src/sound/scsplfo.c
+	src/drivers/stv.c
+
+More ST-V Improvements, fixing various graphical issues (Shienryu Sprite Colours) and
+general other bits and pieces.  More games are 'watchable' now, for example Cotton 2,
+Cotton Boomerang, Puyo Puyo Sun, Columns 97 however they lack controls [David Haywood]
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+
+Some Atari improvements with the new sets (old speed hacks removed that aren't really
+needed anymore, both screens being displayed in Cyberball) [Aaron Giles]
+	src/ -various, too many to list
+
+Misc Changes [Nathan Woods]
+	src/sndintrf.c:
+	- Removed wave_sh_stop() call from the MESS specific WAVE sound
+	interface (it is extraneous now)
+
+	src/x86drc.c:
+	src/x86drc.h:
+	- Added a few macros for other miscellaneous X86 opcodes
+	- Added a drc_dasm() call, a debug call that uses MAME's I386
+	disassembler to disassemble DRC'd code
+	(didn't compile, commented out until fixed)
+
+	src/mame.h:
+	src/windows/config.c:
+	- Added 'GAMENOUN' and 'GAMESNOUN' macros; defined to be the
+	human readable text for the words 'game' and 'games' respectively (this
+	is so MESS can use the nouns 'system' and 'systems')
+
+v60 Improvements (LDTASK, STTASK, ABSF and some missing \n.) [Olivier Galibert]
+	src/cpu/v60/*
+
+Added Sound and Improved Background emulation in HeliFire [Jarek Burczynski]
+	src/drivers/8080bw.c
+	src/sndhrdw/8080bw.c
+	src/vidhrdw/8080bw.c
+
+Misc Windows OSD updates and D3D fixes [Leon van Rooij]
+	makefile:
+	windows\windows.mak:
+	 Added CFLAGSOSDEPEND variable. It is used when compiling osd code only
+	(e.g. DirectX needs -Wno-strict-aliasing).
+	 COMPILESYSTEM_CYGWIN determines if nasm or nasmw is used (the cygwin
+	version of nasm is called nasm)
+
+	windows\fileio.c:
+	 Quick fix for some #defines in that don't work with win32api 2.4
+
+	windows\snprintf.c:
+	 Changed a variable name that conflicts with a gcc built-in
+
+	windows\blit.c:
+	windows\wind3d.c:
+	 Fixed a bug that affected stv games when flipping/rotating the image
+
+	windows\wind3d.c:
+	windows\window.c:
+	windows\window.h:
+ 	window size/prescale/rgb-auto effect can now change when the image size is
+	changed by the game driver
+
+SegaPCM fixes [Olivier Galibert]
+	Fixes the pitch (the 15800Hz value was wrong, it should have been the
+	main 4Mhz clock divived by 256) and also makes the code ultra-paranoid
+	when it comes to out-of-range accesses in the sample roms.  Power
+	Drift's sound code sometimes puts semirandom values for the first
+	handful of keyons on song transitions.
+	src/sound/segapcm.c
+
+Added Proper Inits to term2la1 [Brian Troha]
+
+Merged Zaxxon and Congo drivesr [CUrt Coder]
+
+Reversed harddisk.c back to 0.73 status
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Baku Baku Animal [David Haywood]
+	still a few gfx glitches and no sound
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+
+Tekken [smf]
+Tekken 2 [smf]
+Soul Edge [smf]
+	(Soul Edge Ver II. doesn't work)
+Xevious 3D/G (XV31/VER.A) [smf]
+Prime Goal EX (PG1/VER.A) [smf]
+	none of the above 5 have sound
+	src/drivers/namcos11.c
+	+ various PSX support files
+
+Super Speed Race [Stefan Jokisch]
+	no sound
+	src/drivers/sspeedr.c
+	src/vidhrdw/sspeedr.c
+
+Cosmo [Jarek Burczynski]
+	no sound
+	src/drivers/8080bw.c
+	src/vidhrdw/8080bw.c
+
+Thunder Ceptor II [BUT]
+	missing backgrounds
+	src/drivers/tceptor.c
+	src/vidhrdw/tceptor.c
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+100 Atari clones [Aaron Giles]
+	* 2 new Road Runner variants
+	* 8 new Road Blasters variants
+	* 2 new Paperboy variants
+	* 5 new 720' variants
+	* 6 new Super Sprint variants
+	* 7 new Championship Sprint variants
+	* 7 new APB variants
+	* 2 new Blasteroids sets
+	* 1 new Cyberball set
+	* 3 new 2-player Cyberball 2072 sets
+	* 1 new Tournament Cyberball 2072 set
+	* 3 new Skull & Crossbones sets
+	* 3 new Toobin' sets
+	* 6 new Vindicators sets
+	* 4 new Xybots sets
+	* 10 new Hard Drivin' versions
+	* 3 new Hard Drivin' Compact versions
+	* 9 new STUN Runner versions
+	* 9 new Race Drivin' versions
+	* 7 new Race Drivin' Compact versions
+	* 2 new Steel Talons versions
+
+Superior Soliders (US) (parent of psoldier) [Chris Hardy]
+	src/drivers/m92.c
+
+Asterock (Sidam bootleg of asteroid) [Pierpaolo Prazzoli]
+	src/drivers/asteroid.c
+
+Sky Raiders (bootleg of uniwars) [Pierpaolo Prazzoli]
+	src/drivers/galaxian.c

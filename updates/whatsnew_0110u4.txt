@@ -1,0 +1,61 @@
+0.110u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+raiga0104u4yel [Mamesick]
+
+
+
+Source Changes
+--------------
+SCSI CD emulation improvements: [Ville Linde]
+ - Added Play Audio (12) command
+ - Fixed track number and added MSF support to Read Sub-Channel 
+    command
+
+Added workaround for broken MediaGX driver. [Ville Linde]
+
+Reworked the SNES raster timing to use MDRV_SCREEN_RAW_PARAMS() and 
+friends. All but one of the "electronics tests" in the SNES 
+diagnostics cart now pass with flying colors. [R. Belmont]
+
+Fixed Super Breakout layout. [Mr. Do]
+
+CPS2 updates: [David Haywood]
+ - Added table for Jyangoku (from Guru). Note that GFX/Sound roms 
+    aren't dumped on this one.
+ - Removed old 'handcrafted' xors for games which we have CHDs for 
+    and replaced them with xors generated from MAME using the CHD.  
+    This means anyone with the CHD can easily generate the xors 
+    (using the code I've left in there) if they need to be able to 
+    run the games with a shorter startup time.
+ - Disabled the loading of the xors by default for all sets with a 
+    CHD. Now only the CHD is loaded, unless the #define is changed 
+    at the top in which case only the xors generated from the CHD 
+    are loaded.
+
+Added support for more than 4 mouse buttons on versions of Windows 
+that support it. Win98/Me with DX7+ or XP. It defaults to regular 4 
+buttons if not supported. [Derrick Renaud]
+
+Fixed the crosshairs in the PlayChoice-10 gun games that got 
+buggered in the conversion to multi-monitor support. [Derrick Renaud]
+
+Rewrote the Dragon's Lair driver from the schematics. Added new
+module machine/laserdsc.c which has laserdisc emulation for the
+PR-7280 and LD-V1000 laserdisc players. Full emulation of the
+laserdisc is pending support for CHD audio/video and high quality 
+rips, but you can operate the game and see the frame numbers that
+would be displayed. Added built-in layout to display the scores, 
+lives, and credit information. [Aaron Giles]
+
+Added some hacks to windows.mak to allow limping compilation under
+Windows Vista. To make these work set an environment variable called
+VISTA_MINGW_ROOT equal to the base of your mingw directory, and add
+%VISTA_MINGW_ROOT%\libexec\gcc\mingw32\3.4.2 to your PATH environment.
+There are still a few issues, but this will let you build with MSVC,
+and will compile most of the code with gcc (minus a couple of Windows
+OSD files). Hopefully the mingw folks will resolve these issues.
+[Aaron Giles]

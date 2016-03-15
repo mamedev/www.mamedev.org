@@ -1,0 +1,106 @@
+0.37 BETA 8
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed scrolling in Major Title and priority in Hammerin' Harry.
+  [Nicola Salmoria]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Preliminary sound in Blade Master, Gunforce, UUCops and Lethal Thunder.
+  [Bryan McPhail]
+
+
+Source:
+-------
+
+- Major changes to the memory interface.
+  Drivers must use the new MEMORY_READ_START etc. macros, and for 16-bit CPUs
+  the API is completely changed: the new READ16_HANDLER, WRITE16_HANDLER
+  function types must be used for memory handlers. The macros READ_WORD(),
+  WRITE_WORD() etc. are obsolete: handlers must directly access 16-bit wide
+  arrays (use data16_t * instead of the old unsigned char *); always use the
+  new macro COMBINE_DATA() to store data in the arrays correctlyhandling 8-bit
+  wide memory accesses. Use ACCESSING_MSB and ACCESSING_LSB to know if the
+  specified byte is being accessed (necessary for 8-bit wide external hardware).
+  You no longer have to use MRA_BANKx for sparse RAM areas, you can use MRA_RAM
+  just like with the 8-bit games.
+
+  A handful of drivers haven't beenconverted to the new API yet, and therefore
+  don't work. On startup, they will give the error
+  cpu # uses wrong data width memory handlers!
+  and refuse to start.
+
+  The cheat system might be broken for 16-bit CPUs (untested).
+  [Juergen Buchmueller]
+
+- Changes to the tilemap API:
+  - tilemap_render() is obsolete
+  - struct tilemap is private - can't be accessed directly
+  - tilemap_set_transparent_pen() and tilemap_set_transmask() replace direct
+    poking in the tilemap
+  - tilemap_mark_all_pixels_dirty() is obsolete (replaced by
+    tilemap_dirty_palette() which is automatically called by palette_recalc())
+  - additional parameter to tilemap_draw() to specify the priority mask to be
+    stored in the priority buffer
+  [Phil Stroffolino]
+
+- Removed palette_transparent_color which is no longer needed by any driver.
+  [Nicola Salmoria]
+
+- Removed the "ui" parameter from osd_mark_dirty(). [Nicola Salmoria]
+
+- Removed osd_clearbitmap(). The correct way to black the screen in drivers
+  is, and has always been, fillbitmap(). osd_alloc_bitmap() no longer has to
+  clear the bitmap (it isn't necessary since it's cleared by the drivers
+  anyway).
+  extern int need_to_clear_bitmap removed as well; use schedule_full_refresh()
+  instead (clearing the bitmap is not necessary because drivers are required to
+  redraw the whole screen when full_refresh is 1). [Nicola Salmoria]
+
+- Rewritten the Nec CPU core, with correct timing and support for encryption.
+  [Bryan McPhail]
+
+- Preliminary Irem GA20 sound emulation. [Bryan McPhail]
+
+- The profiler also watches memory read and write handlers. They were
+  previously cumulated with the CPU emulation.
+  Also, the profiler is now disabled in non-debug builds because the
+  performance hit is quite noticeable. [Nicola Salmoria]
+
+- The x86 asm 68000 core now has limited 68020 support and runs the Psikyo
+  games, so is reenabled by default. [Darren Olafson]
+
+
+New games supported:
+--------------------
+
+dozens of Nichibutsu mahjong and quiz games [Takahiro Nogi]
+Super Dodge Ball [Paul Hampson, Nicola Salmoria]
+Macross [Mirko Buffoni]
+Macross II [Nicola Salmoria]
+Nouryoku Koujou Iinkai [Nicola Salmoria]
+Strahl [Bryan McPhail]
+Pushman [Bryan McPhail]
+Bomberman [Bryan McPhail]
+Bomberman World [Bryan McPhail]
+Donpachi [Luca Elia]
+Blaze On [Luca Elia]
+Beezer [Mathis Rosenhauer]
+Sel Feena [Jarek Burczynski]
+Libble Rabble [Edgardo E. Contini Salvan]
+
+
+New clones supported:
+---------------------
+
+Hissatsu Buraiken (= Avengers)
+Sky Adventure (Japan)
+Gunforce (Japan)
+Daiku no Gensan (Japan, M72)
+Warriors of Fate (US)
+Street Fighter II (US revision I)

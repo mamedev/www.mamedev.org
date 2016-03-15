@@ -1,0 +1,218 @@
+0.146u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04957: [DIP/Input] (fantland.c) galaxygn: life dipswitch is broken. 
+  there's only 1 life (David Haywood)
+- 04953: [Misc.] pnchmna, hypbbc2p, jingystm, jojobar1: disks need to 
+  be set to baddump [R. Belmont, Firewave, Roman]
+- 04404: [Misc.] (tnzs.c) tnzs: Significant negative performance spike 
+  after intro sequence (David Haywood)
+- 04485: [Misc.] (wardner.c) All sets in wardner.c: Slowdown due to memory 
+  mapping changes (David Haywood)
+- 04714: [Documentation] (micro3d.c) botss, botssa: Clone set is newest 
+  revision
+- 04844: [Crash/Freeze] (jaguar.c) fishfren: black screen after 
+  EEPROM initialize (micko)
+
+Source Changes
+--------------
+- vsnes.c: Corrected dipswitch settings for Vs. Wrecking Crew and Vs.
+  Balloon Fight. [Brian Troha]
+
+- pacman.c: Give Birdiy it's own and correct dipswitch settings.
+  [Brian Troha]
+
+- decocass.c: Add correct dipswitch setting for Fishing (DECO Cassette).
+  [Brian Troha]
+
+- gcpinbal.c: Added dipswitch locations to Grand Cross Pinball.
+  [Brian Troha]
+
+- gunpey.c: Added dipswitch locations to Gunpey. [Brian Troha]
+
+- seta.c: Added dipswitch locations to Masked Riders Club Battle Race.
+  [Brian Troha]
+
+- metro.c: Corrected and explained the dipswitches in Dharma Doujou.
+  [Brian Troha]
+
+- galdrvr.c: fixed fantastc colors with a redumped prom
+  [Marcello Mancini]
+
+- aristmk6.c:  Cleaned up ROM names and corrected spelling of Crystal
+  Springs. 50 Lions parent/clone swapped (Australian set is now parent).
+  [Heihachi_73]
+
+- Improved Last Bank driver, added bare-bones graphics and inputs
+  [Angelo Salese]
+
+- Makyosen was redumped with corrected rom names which are now
+  documented in driver.  [Yohji, Smitdogg, The Dumping Union]
+
+- Dumped missing u11 gfx rom in Last Bank [Smitdogg, The Dumping Union]
+
+- Basic device-ization of the TC0091LVC [Angelo Salese]
+
+- PALs for Vigilante have been added, but not hooked up yet.  The old
+  PAL(4m) has been determined to be bad.  [Corrado Tomaselli]
+
+- dsp32c changes: [Phil Bennett]
+ * Set the PCR to 1 on reset
+ * Update the PDF/PIF output pin states only when reading/writing the
+   PDR/PIR registers.
+ * Implemented the goto_pde, goto_pdf, goto_pif and goto_pdf
+   instructions
+
+- harddriv updates: [Phil Bennett]
+ * Implemented diagnostic jumper and DIP switches for all games
+ * Added a workaround to prevent racedrivb1 and racedrivg1 from
+    crashing on boot
+ * Use the common 68681 DUART implementation
+ * Use XTAL values for CPU clocks
+
+- legionna.c: Added priority BPROM to the Heated Barrel sets. Corrected
+  rom names and added PCB locations. [Smitdogg, The Dumping Union]
+
+- PORT_ADJUSTER now accepts PORT_MINMAX as well. [Couriersud]
+
+- Implemented a generic implementation to model discrete net lists.
+  [Couriersud]
+ * Based on timeslot modelling, the implementation models gate delays
+    in logic chips.
+ * Design ready to be split into a generic and a MAME implementation
+    part.
+ * Design prepared to merge in discrete components from discrete.*
+ * Supports code based as well as external net list parsing.
+   Ultimately, net lists and discrete emulation should share one code
+   base. The class design was set up to accomplish this. There is no
+   point in having multiple 555, 7474 implementations around. Most of the
+   code will be moved to lib/netlist going forward to allow usage in
+   other projects.
+
+- Pong now uses netlist.h. This implementation reproduces all gate
+  timing and 555 related effects as described by Dr. H. Holden in his
+  2012 publication "ATARI PONG E CIRCUIT ANALYSIS & LAWN TENNIS".
+  [Couriersud]
+
+- cshooter.c: Added dipswitch locations to the Air Raid & Cross Shooter
+  sets. [Brian Troha]
+
+- tlcs900: Added support for TMP95C063. [Ville Linde]
+
+- taitotz.c: Major driver update. [Ville Linde]
+ * Modernized address maps
+ * Improved 2D rendering
+ * Hooked up IO CPU comms
+ * Hooked up IDE controller
+ * Basic 3D graphics emulation
+
+- metro.c: Corrected OKI6295 Pin 7 assignment for the Last Fort & Sky Alert 
+  sets as listed in the driver. Also verified the Pin 7 assignment where 
+  listed in the driver. [Brian Troha]
+
+- Hooked up TC0091LVC device to Fruit Dream [Angelo Salese]
+
+- midwunit.c: Corrected the rom labels for Open Ice and added notes
+  about the specific "L" revision of the roms. [Brian Troha]
+
+- Enable support building the bundled 7z library with a C++ compiler. 
+  [Markus Rathgeb]
+
+- Did a first-pass clone creation/set split for the acesp.c driver.  As
+  a result, another 500 or so sets have been added to the gamelist. 
+  [David Haywood]
+
+- Converted Taito JC 3D renderer to use polynew.h. [Ville Linde]
+
+- SDL: Use XInput to allow multiple lightguns on Linux/*BSD targets.
+  [Markus Rathgeb, based on a patch by SpritesMods.com]
+
+- sfbonus.c: Corrected dipswitches for the driver and added dipswitch
+  locations. [Brian Troha]
+
+- pokechmp.c:  [David Haywood]
+ * Finally figured out the 8bpp BG tile plane order, a bit odd, guess
+   there are swapped lines
+ * Hooked up OKI sound banking
+ * Fixed sprite attributes
+ * Simplified CPU banking
+ * Use generic palette functions
+
+- Added sound ROM bankswitch in Combat School bootleg. [Angelo Salese]
+
+- Added some new ROMs Twister Sound [Guitar]
+
+- Removed a sound kludge to Combat School [Angelo Salese]
+
+- Fixed gameplay inputs in Cyber Tank [Angelo Salese]
+
+- Cleaned up I/Os in Cyber Tank [Angelo Salese]
+
+- cybertnk.c:  [David Haywood]
+ * hooked up tilemaps as tilemaps, with scrolling
+ * hooked up palette select on road drawing (road now appears to
+   'move')
+ * did some priority related bits, which may or may not be correct
+
+- updated expat to 2.1.0 [Oliver Stöneberg]
+
+- updated zlib to 1.2.7 / renamed zconf.in.h to zconf.h.in
+  [Oliver Stöneberg]
+
+- esd16.c: Move Jumping Pop from tumbleb.c to esd16.c and clean up said
+  driver. [David Haywood]
+
+- Fixed AMD/ASD opcodes in the F8 CPU core. Status flags are set before
+  the decimal correction factor is added, so only the carry flag is
+  significant after a decimal addition opcode. [Sean Riddle]
+
+- cobra.c: Converted the 3D renderer to use polynew.h. [Ville Linde]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Last Bank [Angelo Salese, David Haywood, Smitdogg, The Dumping Union]
+Hard Drivin' (cockpit, rev 1) [philipbe]
+Race Drivin' (cockpit, rev 1) [philipbe]
+Race Drivin' (cockpit, rev 2) [philipbe]
+Race Drivin' (cockpit, rev 3) [philipbe]
+Race Drivin' (cockpit, British, rev 1) [philipbe]
+Race Drivin' (cockpit, German, rev 2) [philipbe]
+The Big Game (Barcrest) (MPU 3), [James Wallace]
+Bank Raid (Jpm) (MPS) [C J Wren/MPU Mecca]
+Lucky Arrows (Jpm) (MPS) [C J Wren/MPU Mecca]
+Solid Gold (Jpm) (MPS) [C J Wren/MPU Mecca]
+Fruit Dream [Angelo Salese]
+Get Rich [Sara S.]
+
+
+New clones added
+----------------
+Dynamite Duke (Europe set 1) [Arzeno Fabrice]
+Ninja Baseball Bat Man (World) [Arzeno Fabrice]
+Cops 'n' Robbers (Bellfruit) (set 1) (Scorpion 1)", [James Wallace]
+Cops 'n' Robbers (Bellfruit) (set 2) (Scorpion 1)", [James Wallace]
+Last Fortress - Toride (Erotic, Rev A)
+  [Brian Troha, The Dumping Union]
+Note Exchange (Set 2) (Jpm) (MPS) [C J Wren/MPU Mecca]
+Note Exchange (Set 3) (Jpm) (MPS) [C J Wren/MPU Mecca]
+Nudge Bonanza Deluxe (Set 2) (Jpm) (MPS) [C J Wren/MPU Mecca]
+Trick or Treat (Proconn) [Captain Haddock]
+Action Bank (set 2) (Barcrest) [jameswal]
+Special Effects V2 (Maygay V1) [jameswal]
+Jumping Pop (set 2) [Brian Troha, David Haywood, The Dumping Union]
+Mortal Kombat II (rev L2.0) [ebo0763]
+Drift Out (Europe) [Hammy]
+Pipi & Bibis / Whoopee!! (Prototype) [Antonio Gonzalez Jr.]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Royal Ascot 2  [ShinobiZ]
+Sky Destroyer
+  [Gnoppi, P. Vining, C. Bristow, gatt9, Phil Bennett, Tormod, 
+   Andrew Welburn, Smitdogg, The Dumping Union, Angelo Salese]
+Pop Shot (prototype) [Antonio Gonzalez Jr.]

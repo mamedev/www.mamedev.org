@@ -1,0 +1,77 @@
+0.114u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+segas32pedal0114gra [Derrick Renaud]
+klaxp1_0114red [Couriersud]
+savestate0114gre [Couriersud]
+exerion0114yel [Aaron Giles]
+arcadecl0114red [Aaron Giles]
+apb0114gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added actual emulation of the microcontroller used for the Namco 50xx
+chip as found in Bosconian and Xevious. [Nicola Salmoria]
+
+In the COp420 core, fixed the XABR opcode, added LBI skip for 
+extended opcodes, and fixed the CPU name in save states. Added 
+GAME_SUPPORTS_SAVE flag to the Cidelsa games. Draco still has no 
+sound though. [Curt Coder]
+
+Fixed crash in playch10 driver when run standalone. [Curt Coder]
+
+Added skeleton driver for Konami Viper system. [Ville Linde]
+
+Added skeleton driver for Dreamcast-based systems.
+
+Added very preliminary SH4 CPU core. [R. Belmont]
+
+Added DIP locations to the mario, mrdo, sheriff, and spacefb drivers.
+[Justin Szczap]
+
+Added debug attribute to the XML output. [Firewave]
+
+Got the Hang Pilot driver working. The analog controls are still 
+missing, however, so it's still marked as non-working. [Ville Linde]
+
+Fixed crash with multithreaded rendering and the graphics viewer.
+[Couriersud]
+
+Improved the NWK-TR driver to get Thrill Drive mostly working.
+[Ville Linde]
+
+Fixed bug that caused video glitches when frameskipping due to using
+out of sync textures. [Nathan Woods]
+
+Updated video timing in the Sega System 16, Hang On, Out Run, and
+X-Board games according to measurements from the boards. [Aaron Giles]
+
+Substantially changed the TMS340x0 interfaces to allow the CPU
+emulator to directly manage the video screen. Glitches in several 
+games are now fixed as a result (for example the flashing screens in 
+NBA Jam are now gone at last). [Aaron Giles]
+
+Fixed internal timer counting in the TMS32025 core. This makes the
+music in Cool Pool and 9 Ball Shootout bearable. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Combat Hawk [David Haywood, stephh]
+Koi Koi Shimasho [Tomasz Slanina]
+Hanafuda Hana Ginga [Luca Elia]
+Mahjong The Mysterious Orient [Luca Elia]
+Mahjong The Mysterious Universe [Luca Elia]
+Mahjong Dunhuang [Luca Elia]
+
+
+
+New clones added
+----------------
+Mahjong The Mysterious World (set 2) [Luca Elia]

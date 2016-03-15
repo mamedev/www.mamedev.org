@@ -1,0 +1,164 @@
+0.147u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05030: [DIP/Input] (coco3.c) coco3: Hi-Res joystick does not work for Tandy or CocoMax (sronco)
+- 04878: [Crash/Freeze] (mac.c) macii and clones: Crash before OK with nb9 slot (R. Belmont)
+
+New System Drivers Supported:
+-----------------------------
+(none)
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+- Macintosh LC [R. Belmont]
+- Macintosh IIsi [R. Belmont]
+- Macintosh LC II [R. Belmont]
+- Macintosh Classic II [R. Belmont]
+- Macintosh LC III [R. Belmont]
+- Macintosh IIvx [R. Belmont]
+- Macintosh IIvi [R. Belmont]
+
+Skeleton drivers:
+-----------------
+(none)
+
+System Driver Changes:
+----------------------
+-snes.c: fixed Dezaemon SRAM mappings. [Fabio Priuli]
+
+-gameboy.c: Added support for the mapper used by Sonic 3D Blast
+ 5 pirate.  [Wilbert Pol]
+
+-samcoupe.c: modified the driver to not install / uninstall bank
+ handlers, greatly improving performaces (e.g. Manic Miner demo went
+ from 20% to 380% ingame). Plus added some very preliminary softlists.
+ [David Haywood]
+
+-mac updates: [R. Belmont]
+ * Line-level ADB comms for machines using the Egret ADB MCU,
+    including standard transactions and SRQ
+ * Built-in video support for all modes on machines with the V8 and
+    Sonora ASICs
+ * Corrected some minor bugs in the ADB protocol spoken by the
+    keyboard simulation
+
+-c128: Rewrote the driver using the PLA for address decoding.
+ [Curt Coder]
+
+-gameboy.c: Partially implemented banking for Story of La Sa Ma.
+[Wilbert Pol]
+
+-mac: Support original Macintosh II Video Card
+ [R. Belmont, Sharkpuncher]
+
+-hp9k: made drive go into boot process [Gabriele D'Antona]
+
+-craft: added basic Timer 1 support to Craft driver and hooked up the DAC,
+ currently plays only a buzzing noise due to lacking EEPROM support
+ [MooglyGuy]
+
+-mac: Convert 343-004x RTC/PRAM chip into modern RTC device
+ [R. Belmont]
+
+-mac: Support headless operation [R. Belmont]
+
+-mac updates: [R. Belmont]
+ * Fixed some glitches with the SE/30's built-in video
+ * Added preliminary infrastructure for LC and '030-type
+    processor-direct slots
+ * Support for SE/30 processor-direct slot version of RasterOps
+    Colorboard 264
+
+-mac: Add support for Lapis ProColor Server 8*16 PDS video card
+ [R. Belmont, Sharkpuncher]
+
+-mac: Add support for PDS Sigma Designs L-View card
+ [R. Belmont, Sharkpuncher]
+
+-a2600: Reimplemented the a2600 controllers as vcs controller
+ devices. Switched the a2600 drivers to use slot devices for choosing
+ controllers.  [Wilbert Pol]
+
+-craft.c: Fixed DAC bit order, audio now plays but is 40% too slow
+ [Mooglyguy]
+
+-craft.c: Preliminary video support, bad vsync and colors still.
+ [MooglyGuy]
+
+-mac: Preliminary support for Micron XCEED 30HR and MacroColor
+ 30 PDS cards [R. Belmont, Sharkpuncher, Balrog]
+
+-a7800: NTSC Color Generator utilized for color palette with 
+ hue shift/start based on observation of several systems across 
+ multiple displays [Robert Tuccitto]
+ 
+Software Lists:
+----------------
+-32x: added region compatibility filters to the software list
+ [Fabio Priuli, Tafoid, Bobz]
+
+-spectrum_cass.xml: added very preliminary softlist containing
+ some interesting test case for emulation. [David Haywood]
+
+-pcw16.xml: added softlist for available disk images [remax]
+
+-snes.xml: added region compatibility filters to the software list
+ [Fabio Priuli, Tafoid, Bobz]
+
+-amiga.xml: added placeholder lists for system disks. [David Haywood]
+
+-amiga: added very preliminary softlist for game disks
+ [David Haywood]
+
+-ibm5150.xml: updated with recent dumps. [Kaylee]
+
+Source Changes
+--------------
+-floppy: Random fixes/logging [O. Galibert]
+
+-upd765: Modernize [O. Galibert]
+
+ Remaining TODO list:
+ * take WP into account
+ * test the amstrad, implement its observational format (edsk) using
+    pasti as a start.  Or find the legendary amstrad IPFs.  Or both.
+ * correct read track, the implementation is completely wrong.  See
+    previous for testing, it's only used in protections the check the
+    inter-sector gaps.
+ * shake and bake on the amstrad, protections are the best to find
+    bugs in a fdc
+ * add the scan id commands, but nothing seems to use them
+ * debug the 2.88M formatting which is unreliable.  Fix its IDAM/DAM
+    gap size on formatting too (but that's not what's making it
+    unreliable)
+ * test all the systems that were hit, and fix what needs to be fixed.
+    Beware that multiple problems may happen:
+ * upd765 may be wrong
+ * the driver may not be working
+ * the hookup may be wrong/incomplete (bitrate selection and floppy
+    rpm in particular)
+ * the driver may be too limited for the new implementation (the x68k
+    dma device does not handle non-instant dma yet for instance)
+ * report invalid command when appropriate depending on the actual
+    chip emulated
+ * add the russian clones with their real names
+
+-d88: Reduce the gap3 size from the standard value when the data
+ otherwise won't fit [O. Galibert]
+
+-upd765: Implement LOCK [O. Galibert]
+
+-upd765: Fix busy status when seeking [O. Galibert]
+
+-upd765: Fix MSR DIO in EXEC phase [O. Galibert]
+
+-add innovation ssi-2001 sid-on-isa device [Carl]
+
+-upd765: Fix the dump regs command, don't exit on unknown
+ commands and add dsr reset [O. Galibert]
+
+-added basic support for the loop flags in tzx [David Haywood]
+

@@ -1,0 +1,288 @@
+0.124u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01650: [Gameplay] ridgerac: Unstable Freezes that ends with Crash 
+  and needs totally reboot under XP (Aaron Giles)
+01542: [Graphics] 3wonders, 3wonderu, wonder3: Wrong colour of 
+  background in game selection and start screens (Nicola Salmoria)
+00403: [Graphics] 3wonders: Points are displayed between lives of 
+  first player and the word INSERT COIN: (Nicola Salmoria)
+00410: [Graphics] xmcota: After a couple passes through the demo 
+  mode, the background on the qsound screen will go to a shade of 
+  green. (Nicola Salmoria)
+01519: [Graphics] msh: After beating the game, the screen turns 
+  different colors for the endings and everything (Nicola Salmoria)
+01468: [Graphics] ldrun2: Priority problem at titlescreen 
+  (Nicola Salmoria)
+01469: [Graphics] ldrun2: Compared to the PCB does MAME show less 
+  graphic at the bottom of the screen. (Nicola Salmoria)
+01661: [Graphics] rougien: sprite disappear (Robiza)
+01613: [Graphics] swcourt, swcourtj: Strange sprites cutting on the 
+  edge of screen (Pierpaolo Prazzoli)
+01622: [Core] -refreshspeed has no effect (Aaron Giles)
+01629: [Graphics] raiga, stratof: broken colors on sprites 
+  (Aaron Giles) 
+01630: [Graphics] fstarfrc, ginkun, riot: broken colors on sprites 
+  (Aaron Giles)
+01627: [Misc.] spbactn, spbactnj: Crashes with Access Violation 
+  (Aaron Giles)
+01598: [Graphics] 4in1, gmgalax, pacmanbl: Sprites are cut off on 
+  the top row (Aaron Giles)
+01563: [DIP/Input] gmgalax: Duplicated Inputs (Aaron Giles)
+00300: [Graphics] zigzag: in cocktail mode player 2 screen is shift 
+  over to the right. (Aaron Giles)
+01623: [DIP/Input] ssprint and clones: Coins don't seem to match 
+  machine order. (RansAckeR)
+01454: [Graphics] mshuttle, mshuttlj, mshutlj2: The display of the 
+  screen is shifted. (Aaron Giles)
+01473: [Graphics] orbitron: Orbitron graphics not correctly 
+  displayed (Aaron Giles)
+01600: [Graphics] pacmanbl, batman2: The background is shifted to 
+  the right and cut off on the right side. (Aaron Giles)
+01602: [Misc.] luctoday: Messed up graphics. (Screen Offset) 
+  (Aaron Giles)
+01599: [Graphics] omega: Screen is vertically offset. (Aaron Giles)
+01605: [Graphics] gteikokb, gteikob2: Wrong screen offset 
+  (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Renamed galaxian.c -> galaxold.c. Updated all drivers accordingly.
+[Aaron Giles]
+
+Cidelsa driver updates: [Curt Coder]
+ - de-deprecated the timer callbacks
+ - moved PCB RAM to the heap and fixed index overflow
+ - converted CDP1869 to the new device system
+ - refactored to represent how the hardware actually works
+ - added PMA latching on OUT5
+ - separated Cidelsa video to its own file
+
+COP CPU updates: [Curt Coder]
+ - implemented interrupt
+ - implemented serial input/output
+ - fixed XAD/LDD, XIS1, RMB3 opcodes
+ - fixed clock divider
+ - fixed internal memory map size
+ - added some cpu variants
+ - fixed serial timer
+ - fixed clocks
+ - fixed COP410 RMB3, XAD instructions
+ - general cleanup
+
+Fix cfg file corruption if joystick is not connected; itemclass now 
+part of token if item is not found. Settings for joysticks which use 
+a custom item id will still be lost. A fallback has to be provided 
+here since those will use a token generated from the input item name.
+[couriersud]
+
+Memory system changes: [smf]
+ * Now passing mem_mask to the read and write debug hooks. This 
+    allows the address & size of the memory access to be correctly 
+    calculated when using a memory call that takes a mem_mask.
+ * New macros added for checking mem_mask. ACCESSING_BITS_m_n, 
+    These check for any access within the bounds between bit 'm' and bit
+    'n' (counting bit 0 as the least significant bit). Currently the 
+    pattern for checking whether both bytes of a word is written is to 
+    make two byte checks.
+ * All occurrences of ACCESSING_LSB, ACCESSING_MSB, ACCESSING_LSB16, 
+    ACCESSING_MSB16, ACCESSING_LSB32, ACCESSING_MSB32, 
+    ACCESSING_LSW32, ACCESSING_MSW32 & simple mem_mask checks have 
+    been replaced with the new macros.
+
+Added fatal error if AM_READ_PORT() references a non-existent port.
+[Aaron Giles]
+
+Converted special-case DIP switches (service, unknown, unused) into 
+their own token type rather than expanding into other tokens. The 
+reduces the number of redundant strings and data. [Aaron Giles]
+
+Galaxian rewrite. Ultimately will combine the existing drivers
+for galaxian, scramble, frogger, scobra, amidar, and dambustr.
+For the moment, only a subset of games are implemented in the
+new system; the remainder are running on the old code. Main features 
+are accurate video timing, correct stars implementation, better 
+organization, simplified input ports, and many other smaller fixes.
+[Aaron Giles, stephh]
+
+Minor cleanup and simplification in the video and palette code. 
+Removed palette_config(). [Aaron Giles]
+
+Fixed interrupt handling and 16-bit memory accessors in 6840ptm.c.
+Also cleaned up code for the sake of readability. [Philip Bennett]
+
+Added multiplier (same as wecleman) to Flak Attack. Info provided by 
+VU801qCf. [Yasuhiro Ogawa]
+
+Namco NA1 improvement: [Pierpaolo Prazzoli]
+ * Fixed sprites shadow in namcona1 driver and removed Emeraldia hack.
+ * Added tilemaps and sprites 4bpp mode
+ * Added preliminary ROZ implementation (disabled until the enable / 
+    disable register is found)
+ * Changed background pen to fix emeralda demo
+
+Discrete sound system improvements: [couriersud]
+ * Added DISCRETE_RCFILTER_SW to discrete sound. This implements 
+    multiple RC networks with CD4066 switches to connect/disconnect 
+    capacitor.
+ * Implemented discrete mixing in circusc using DISCRETE_RCFILTER_SW
+    and sound routing to route 76416 output to discrete logic. 
+ * Added discrete filtering and mixing to galaxian.c games using 
+    konami_sound.
+ * Fixed timing of stream_update in discrete_sound_w. All sound 
+    cores update before processing changed data.
+ * Added streeam_update to discrete_sound_r
+ * Now supports multiple output nodes per module. 
+    In this case, NODE_XXX is the default output. Alternative outputs 
+    may be accessed by using NODE_XXX_YY where 00<Y<08.
+  
+    You may also access nodes with macros:
+  
+      NODE_XXX = NODE_SUB(XXX, 0)
+      NODE_XXX = NODE(XXX)
+      NODE_XXX_YY = NODE_SUB(XXX, YY) with YY != 00 
+      
+    This should e.g. make discrete sound emulation easier when dealing 
+    with e.g. flip flops (Q & QQ) and binary counters.
+ * Added sanity checks to check consistency issues introduced by this 
+    change
+ * Modules specify number of outputs ==> Certain special modules 
+    (WAVELOG) may no longer be used as input nodes
+ * Removed explicit (NODE_XX + expr) from a couple of drivers
+
+Fixed encoding/decoding of negative denormal floats in the AICA/SCSP
+DSP. Shouldn't actually affect any games. [kingshriek, Deunan Knute]
+
+Changed Seibu sound CPU to use AM_READ_PORT("COIN") instead of 
+input_port_0_r. [stephh]
+
+bloodbro.c driver improvements to DIP locations and coin modes.
+Added notes for 'bloodbra'. [RansAckeR, stephh]
+
+Add input ITEM_IDs for additional axes and switches. Also added 
+ITEM_IDs for up to 4 hats/POVs. [couriersud]
+
+Merged memory maps for half of the W drivers. Also made a couple of 
+random touchups for X, Y, and Z drivers. [Andrew Gardner]
+
+Added a little magic to make the Atomiswave BIOS try to be more 
+verbose, but our video emulation isn't good enough to cooperate.
+[R. Belmont, ElSemi]
+
+Added bootleg of badlands - heavily modified, not working.
+[David Haywood]
+
+Fixed DS2401 state loading now that the digital i/o board's serial 
+number has been changed to a const by not saving it. As the serial 
+number cannot be changed at run time it was rather pointless. [smf]
+
+BFCobra improvements: [Anonymous]
+ * Added plane priority to blitter, fixing Treble Top signature 
+    writing
+ * Video output now supports all modes - lores, hires, mixedres, 
+    8/7/4/3 bits/pixel, fixing Every Second Counts colour problems
+ * Added line draw, fixing missing stuff from Question Of Sport
+ * Change blitter loop type control - there are 4 types of loop.
+ * Corrected video frame rate to 50Hz.
+ * Corrected Z80 speed to 5.91mhz
+ * Accounted for Z80 cycles stolen during a blit operation. Improves 
+    gfx/sound sync and seems to fix the final round lockup in Every 
+    Second Counts.
+
+Various SCSI devices register state items by their disk ID, which are 
+not unique across device types. Introduced a device-type offset for 
+CD-ROMs so their registrations don't clash with harddisks. 
+[R. Belmont]
+
+Fixed tilemap viewer to draw the whole tilemap when categories are 
+used. Added new option TILEMAP_DRAW_ALL_CATEGORIES to do this
+efficiently. Updated several drivers to use this instead of rendering
+each category independently where appropriate. [Nicola Salmoria]
+
+Added DIP locations to blueprnt.c [RansAckeR]
+
+Fixed ledutil.c so it compiles cleanly under MSVC. [Mike Haaland]
+
+Astrocade update: [Dirk Best]
+ - Update src/mame/includes/astrocde.h to use an XTAL value
+ - Clear interrupts if they are no longer valid
+ - Add the knob inputs
+
+Added new makefile flag VERBOSE which enables gcc's verbose output
+during compile. [Marc Sandusky]
+
+Corrected clocks on Rygar. [Corrado Tomaselli]
+
+Changed "Machine" to "machine" in a number of places when the 
+running machine parameter is already available. In some cases this
+also allowed for the removal of deprecat.h. [Oliver Stoenberg]
+
+Did some major cleanup and gutting of pcshare.c. [Wilbert Pol]
+
+Created a built-in overlay for Armor Attack using just rectangles.
+[Mr. Do!]
+
+Added dynamic control of RX and TX pins to 6850 ACIA emulation - this 
+is needed for correct operation of the MPU4 Video communications 
+system, and may be handy for some MESS systems. To use, set the rx 
+and tx clocks to 0 in the acia interface, then use acia_tx_clock_in() 
+and acia_rx_clock_in() respectively. [James Wallace]
+
+Added proper implentation of hardware collision in mermaid. This 
+fixes mermaid (when the player is in the water with the sharks) and 
+rougien. Also fixed priorities in mermaid and rougien and a sprite 
+wrapping bug. [Robiza]
+
+Fixed CPS1 background color. This fixes 3 wonder (game start) and 
+mtwins (explosion during attract). It seems to break Varth, however, 
+and has dubious effects on the boot sscreens of avsp, sfa3 and 
+possibly other CPS2 games. [Nicola Salmoria]
+
+Added discrete filtering and mixing to ironhors. One driver less 
+using FILTER_RC. [couriersud]
+
+Fixes for aerfboot (bootleg of aerofgt): [Robiza]
+ - fixes spriteram3 (previous value was too high and in the "city" 
+    level some build disappear
+ - sprite gfx bank (previously some sprite appear right and some 
+    sprite was wrong)
+ - fixed perfectly the sprite zoom
+ - removed multisprite support; in the bootleg aren't present
+
+Converted the pit8253 implementation into a device. To make it  
+easier to use I've also created a src/emu/devconv.h in the same style
+as src/emu/memconv.h. [Wilbert Pol]
+
+Replaced anonymous timer in tx1 with an allocated one to make state
+saving closer to reality. [Hugh Allen]
+
+Changed winwork.c from using hand-built scalable locks to using
+standard Windows CriticalSections for now, to hopefully address
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Multi Game III [Mariusz Wojcieszek]
+
+
+
+New clones added
+----------------
+Off Road Challenge (2 sets) [Guru]
+Deer Hunting USA V2 [Brian Troha]
+Super Bishi Bashi Champ (Korea) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Give us a Break [Philip Bennett]
+Ten Up [Philip Bennett]
+Beeline [Philip Bennett]
+Chase Bombers [Bryan McPhail]

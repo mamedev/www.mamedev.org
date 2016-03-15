@@ -1,0 +1,279 @@
+0.134u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02565: [Sound] All Sets in zaccaria.c: TMS5200 hookup is currently 
+         kludged to work. (couriersud)
+- 03443: [Sound] brapboys, brapboysj: Music samples looping 
+         incorrectly / ending too soon (hap)
+- 03439: [Sound] chinagat and clones: OKI6295 sound pitch is too high.
+         (sasuke)
+- 03435: [Compiling] gcc warning for src/emu/sound/ymf271.c with 
+         OPTIMIZE=3 on openSUSE 11.1 x86 (hap)
+
+
+
+Source Changes
+--------------
+Added CDP1863/CDP1864 sound devices for MESS. [Curt Coder]
+
+Noraut discrete sound system: Changed C1 value (from PPI-1 PC6 line 
+and Darlington array) to match the real value, as seen on the pcb. 
+This should reproduce the 555 output accurately. [Roberto Fresca]
+
+Remove Enable input from a number of discrete sound modules.
+[couriersud, Derrick Renaud]
+
+Reverted driftout workaround, see latest comments here for reason: 
+http://www.mametesters.org/view.php?id=3356. [hap]
+
+Naomi/AW updates:
+ * Hooked up protection for Power Stone 2 and Toy Fighter 
+    [R. Belmont, Guru, Cah4e3]
+ * Redumped bad rom in Heavy Metal Geomatrix [Guru]
+ * Redumped bad roms in Virtua Fighter 4 (cartridge version) [Guru] 
+ * Redumped Club Kart: European Session [Guru]
+ * Updated Atomiswave hardware documentation [Guru]
+
+Verified CPU clocks for Atomic Point [Stefan Lindberg]
+
+New driver for Amatic encryped gambling hardware. This system is based 
+on a custom CPU. Graphics are decoded but only 2 bitplanes hooked. All 
+the needed devices are in the driver, but commented out till can 
+properly decrypt the program ROMs and identify the CPU. About the 
+encryption scheme, see the driver notes about my findings. 
+[Roberto Fresca]
+
+Added device_find_child_by_tag helper function. [Curt Coder]
+
+i386: improved handling of override prefixes after a rep instruction 
+[Gabriele Gorla]
+
+Corrected Mirax clock frequencies [Stefan Lindberg]
+
+lr35902 cpu core changes: [Wilbert Pol]
+ - Improved handling of the DI+HALT bug.
+ - Do not clear the interrupt flag when the cpu is halted and no 
+    interrupt is taken.
+
+m68k: don't save signal contexts on *BSD and Mac OS X.
+  [scarlet, R. Belmont]
+
+Correct bprom name in Hellfire sets and added documentation of the 
+type of bprom used. [Brian Troha]
+
+Added deletion of MSVC specific files to clean task. [Curt Coder]
+
+z80dma improvements: [Angelo Salese]
+ - Added Initiate read sequence command and hooked up basic status 
+    reading
+ - Added continue and reset port A/B timing commands
+ - Added enable/disable irq, force ready and reinitialize status byte 
+    commands
+ - Fixed Initiate read command
+ - Implemented reset command
+ - Implemented fixed port transfer behaviour
+ - Added decrement step mode and fixed a conceptual bug with portA 
+    writes
+ - Added preliminary search mode support and fixed a bug with WR3 
+    mask byte
+ - Fixed ready flag when the DMA disabled/enabled commands are used
+
+"=A" inline assembly seems to be only supported on 32bit gcc. Provide 
+a 64bit safe version of _get_profile_ticks. [couriersud]
+
+Ported Capcom CX4 implementation over from bsnes (original code by 
+zsKnight, anomie and Nach). Mega Man X2 and X3 are now playable in 
+MESS, with bugs. [Harmony]
+
+Partially implemented TMS5110_CMD_TEST_TALK: [couriersud]
+ - according to the documentation, this needs to be issued to read 
+    status on CTL1
+ - cvs driver needs this
+
+[SNES] Fixed a bug in our DSP1 emulation. Super Mario Kart can be 
+played again in MESS. [Fabio Priuli]
+
+CVS improvements: [couriersud]
+ - hook up speech cpu
+ - get rid of "temporary" code which hardwire ctl & pdc writes
+ - use tms rom clock as sense input for the s2650. darkwar now speaks 
+    again on startup.
+ - only one latch used for sound & speech.
+ - hooked up 393Hz signal to "dac3"
+ - pcb pictures indicate discrete logic on the sound board. Marked 
+    all games as GAME_IMPERFECT_SOUND since we seem to miss some sounds
+ - 4bit dac remains mysterious
+
+tms5110 improvements: [couriersud] 
+ - Implement ctl port input/output for status reads.
+ - Input/output is switched by clocking pdc after a TALK STATUS 
+    command.
+ - update drivers to support new tms5110_ctl_r 
+ - now exhibits Rom Clock signal
+
+ym2612/3834: updates to track latest knowledge [Eke-Eke, Nemesis]
+ - Moved LFO vars inside the chip struct
+ - Changed SSG-EG to update before channel calcs
+
+Fixed various issues with the dsp56156 disassembler.  [Andrew Gardner]
+
+Updated nova2001 driver to use DIP LOCATIONS.  Clarified and verified 
+switch behavior, comparing to manuals where available. [Fujix, Tafoid]
+
+Fixed disassembly of NEG Rd,Rs instruction in ARM7TDMI Thumb mode.
+[Harmony]
+
+Fixed S-DD1 support in SNES driver; Street Fighter Alpha 2 is 
+playable, Star Ocean shows decompressed graphics before hanging.
+[Harmony]
+
+S2650 improvements: [couriersud]
+ - Added S2650_FO_PORT fake port for flag output line.
+ - Made CHECK_IRQ_LINE an inline
+ - Verified irq handling (with help from Quench)
+
+Complete dump of Planet Harriers. [Guru]
+
+Ported SPC7110 support from bsnes. [Harmony]
+
+Ported ST010 support from bsnes. [Fabio Priuli]
+
+Fixes an issue where running ST010 games would hang MESS. [Harmony]
+
+Some progress with protection emulation for herbiedk and 8ballact.
+No more game specific program counter checks. [couriersud]
+
+Support external baud rates in the MC68681 DUART. [R. Belmont]
+
+Implemented a RS and WS line interface for tms5220: [couriersud]
+ - this emulates the RS/WS and READY handshaking according
+    to the tms5220 manual. Drivers reading the ready line
+    should most probably use it. 
+ - Note: For cases where the READY handshake is done by the cpu
+     sufficient cycles have to be burnt to simulate that the
+    cpu waited. This yet has to be implemented.
+
+zaccaria.c updates: [couriersud]
+ - Remove tms5220 kludge
+ - hooked up new RS/WS/READY tms5220 interface
+ - removed dac1 as well. Replaced it by attenuation control for ay2, 
+    channel B
+
+Made INI file order explicit via priorities. [Rene Single]
+
+Fixed F6 cheat toggle behavior. [Pugsy]
+
+Corrected clocks for V-five pcb. [Corrado Tomaselli]
+
+Added byte swap to the cheat search. [Sandro Ronco]
+
+Now allow for banks to take up half of the available slots. Explicit 
+banks now work up to bank 64. [Aaron Giles]
+
+Changed all tms5220 lines to (READ|WRITE)_LINE_DEVICE_HANDLER:
+[couriersud]
+ - Added q suffix to denote active low lines
+ - Updated all drivers accordingly.
+ - Removed some trampoline functions
+
+Added TMS5220C variant to tms5220.c [Lord Nightmare]
+ - implemented reset for TMS5220C if /RS and /WS are pulled down 
+    together
+ - Inserted LNs email and corrections as comment into source
+ - Created a TODO section.
+
+Updated gauntlet and firefox to use "new" tms5220 interface.
+[couriersud]
+
+Discrete Updates: [Derrick Renaud]
+ - Added DISCRETE_LOGIC_SHIFT - generic shift register
+ - Fixed DISCRETE_BIT_DECODE to apply proper voltage instead of 
+    clipping to INT.
+
+Sky Raider - Partial discrete sound. [Derrick Renaud]
+
+SNES: Fixed CG ram reading address. [Angelo Salese]
+
+Converted 6532riot to devcb interfaces: [couriersud]
+ - updated all drivers
+ - converted drivers to RS/WS tms5220 interface where appropriate
+ - removed quite some trampoline functions
+
+Corrected incorrect XTAL value for XTAL_32_768kHz [ArcadeNUT]
+
+Optimized DISCRETE_74LS624 making dkongjr and mario faster.
+[Derrick Renaud]
+
+SNES: Fixed an incorrectly setted DMA register read, fixes DMA Memory 
+tin the test cartridge. [Angelo Salese]
+
+Further simplifications to Atomiswave's keys. [Andreas Naive]
+
+i8085: [Curt Coder]
+ - RIM instruction now shows the current status of RST5.5 and RST6.5 
+    pins.
+
+dkongjr now uses parallel discrete tasks. [couriersud]
+
+Removed a number of #ifdef LSB_FIRST in favor of macros that do the
+equivalent. [Atari Ace]
+
+Neo Geo updates: [JohnBoy]
+ - Renamed sets based on them being used for the initial AES 
+    production runs
+      Renamed tophuntra to tophuntrh, added correct s1
+      Renamed kof97a to kof97h
+      Renamed bstars to bstarsh
+ - Added correct c1 to neocup98
+ - Added correct m1 and v1 to androdun (MVS version layout)
+ - Tagged lastbld2 as newer revision
+ - Identified pbobblena as bootleg, renamed to pbobblenb, renamed roms
+    to 'correct' chip label
+ - Renamed p1 in mslug4, see notes
+
+Added dipswitches for the photon2 coins, you can now select between 1 
+and 6 minutes per coin. Also added information about the original 
+games that these have been bootlegged from. [David Haywood]
+
+listxml changes: [Oliver Stoeneberg]
+ - adds an "optional" flag for rom/disk entries to -listxml output
+ - removed the obsolete "dispose" flag from the DTD in the -listxml
+    output
+
+Minor optimization/cleanup of Neo Geo rendering. [Christophe Jaillet]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Target Panic [Phil Bennett, Tormod, The Dumping Union]
+
+
+
+New clones added
+----------------
+Battle Garegga (Taiwan / Germany) (Thu Feb 1 1996) 
+  [Tormod, The Dumping Union]
+Undercover Cops (US) [Corrado Tomaselli]
+X-Men (2 Players ver EAA) [Corrado Tomaselli]
+Mirax (set 2) [Stefan Lindberg]
+Hellfire (1P Ver., alt) [Stefan Lindberg]
+Country Girl (Japan set 2 with Nichibutsu copyright) [Siftware]
+Vulcan Venture (Older Ver.) [Brian Troha, Dumping Union]
+Mortal Kombat II (rev L3.0) [bulldawg, Smitdogg, Dumping Union]
+Exzisus (Japan, dedicated) [Stefan Lindberg, Phil Bennett]
+Baseball Stars Professional (set 1) [JohnBoy]
+Metal Slug 4 (set 2) [JohnBoy]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Net Select Keiba Victory Furlong [Guru]
+Salary Man Kintarou [Guru]
+Amatic Unknown Slots Game [Roberto Fresca, Team Europe]
+Multi Game I (V.Ger 2.4) [Roberto Fresca, Team Europe]
+Multi Game III (V.Ger 3.5) [Roberto Fresca, Team Europe]

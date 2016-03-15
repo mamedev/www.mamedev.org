@@ -1,0 +1,135 @@
+0.99u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+hanagumi082red [Mariusz Wojcieszek]
+rtypeleo062gre [Pierpaolo Prazzoli]
+labyrunr080u1gre [Pierpaolo Prazzoli]
+tricktrp061gre [Pierpaolo Prazzoli]
+gng37b4gre [Pierpaolo Prazzoli]
+battlane076u2gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Updates to the ST-V driver: [Mariusz Wojcieszek]
+ - vdp2: added rotation in RBG0 layer (improves diehard, vfkids,
+         vfremix, thunt, sassisu backgrounds)
+ - vdp2: added 15bit RGB tilemaps (used by thunt)
+ - vdp2: added opaque alpha blended bitmaps (fixes missing gfx in
+         shienryu intro)
+ - vdp2: added enable bit for RGB sprites (fixes some bad sprites in
+         vfremix)
+ - vdp2: added alpha blending for RGB sprites
+ - vdp1: fixed polygon drawing
+ - vdp1: added line drawing
+ - sh2:  fixed bug in division unit
+ - sh2:  added callback called when cpu reads FTCSR register (intended
+         for idle loop skipping for slave sh2 in stv)
+ - stv:  added idle loop skipping for several games
+ - dsp:  fixed dma (fixes some bad gfx in thunt)
+
+Added dsp56k CPU core and hooked it up to the Polygonet Commanders
+driver. [Andrew Gardner]
+
+SCSI hard disk updates: [R. Belmont]
+ - Added FORMAT UNIT, READ (6 byte), WRITE (6 byte), READ (12 byte), 
+    MODE SENSE, and READ CAPACITY commands.
+ - Changed INQUIRY to ID as a real Seagate model, which makes MacOS 
+    much happier than a manufacturer code of "MAME".
+ - Some MESS-specific tweeks to initialization.
+
+Fixed all the volume table calculations in the YMF271 core. [Ville Linde]
+
+SPI Improvements: [Ville Linde, Pierpaolo Prazzoli]
+ - Added real coin inputs. The previously used coin input was service coin
+ - Hooked up eeprom in rdft2us, rfjetus and rdft22kc
+
+Fixed recent LSI53C810 update which caused the Model 3 games to crash.
+[Ville Linde]
+
+Fixed PowerPC recompiler so that Scud Race works again. [Ville Linde]
+
+Significant overhaul of the user interface infrastructure: [Aaron Giles]
+ - All user interface rendering is now cached until the end and rendered 
+    in one pass.
+ - A large number of extraneous and redundant functions have been removed 
+    and replaced with a smaller set of more flexible APIs.
+ - Global access to the UI fonts and colortables is now gone, they are 
+    private to the user interface code.
+ - All global user interface function names have been normalized. Most
+    importantly, usrintf_showmessage is now ui_popup.
+ - Pause behavior has been redefined; instead of sitting in a tight loop,
+    the code proceeds normally, but the CPU execution system does not
+    advance time.
+ - Code for the menus has been reworked; some menus are temporarily not
+    available (cheats, memory cards).
+
+Removed the internal display of history.dat. Cramming this kind of data
+into MAME's limited UI is not really useful, and viewing the history.dat
+information is supported by many frontends and websites. [Aaron Giles]
+
+Removed the following obsolete and/or redundant command line options from 
+the Windows build: [Aaron Giles]
+ -wrongorientation
+ -wrongfps
+ -gamelist
+ -list
+ -listgames
+ -listdetails
+ -listwrongmerge
+ -listcpu
+ -listcpuclass
+ -listgamespersourcefile
+ -listnosound
+ -listnvram
+ -listpalettesize
+ -listromdistribution
+ -listromnumber
+ -listsound
+ -listdupcrc
+ -listsamdir
+ -listmd5
+ -listsha1
+ -verifysets
+ -vset
+ -vsam
+ -sortname
+ -sortdriver
+ -[no]clones
+ -crconly
+ -maxlogsize
+ -resamplefilter
+ -debug_resolution
+ -history_file
+ -mameinfo_file
+
+Removed the "Press any key" prompts when displaying ROM warnings. Instead,
+a warning about bad/missing ROMs is now displayed on the warnings screen.
+Details of the bad/missing ROMs are still printed to the console.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Taisen Tanto-R Sashissu!! (J 980216 V1.000) [Mariusz Wojcieszek]
+Tetris (Japan, System E) [David Haywood]
+
+
+
+New clones added
+----------------
+GTI Club (ver JAA) [Arzeno Fabrice]
+Master of Weapon (US) [Arzeno Fabrice]
+Sunset Riders (4 Players ver EAA) [Johan Samuelsson]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Forte Card [David Haywood]
+Jackpot Pool (Italy, bootleg) [David Haywood]

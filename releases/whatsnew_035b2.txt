@@ -1,0 +1,188 @@
+Note: the CPU cores are still in a state of flux. Most of the problems in 35b1
+have been fixed, however some still remain (e.g. Gauntlet doesn't accept
+coins and Exterminator crashes).
+
+0.35 BETA 2
+
+New games supported:
+--------------------
+
+Radical Radial [Nicola Salmoria]
+Cosmic Guerilla [Mike Coates]
+Pig Newton [Mike Balfour]
+Head On 2 [Nicola Salmoria]
+Canyon Bomber [Brad Oliver]
+Sky Diver [Brad Oliver]
+Gals Panic [Nicola Salmoria]
+Super Real Darwin (not working) [Bryan McPhail]
+Lode Runner II (also renamed ldrun2p -> ldrun4) [Nicola Salmoria]
+Lode Runner III [Nicola Salmoria]
+Aero Fighters [Nicola Salmoria]
+Three Wonders (preliminary) [Paul Leaman]
+Street Fighter II' Champion Edition [Paul Leaman]
+Street Fighter II' Hyper Fighting [Paul Leaman]
+Lot Lot [Nicola Salmoria]
+Atari Baseball [Brad Oliver]
+Ikari Warriors [Jarek Parchanski]
+Victory Road [Jarek Parchanski]
+
+
+New clones supported:
+---------------------
+
+Circus Charlie (Centuri) [Valerio Verrando]
+The King of the Dragons (Japan) [Nathan Barber]
+Knights of the Round (Japan) [Nathan Barber]
+Captain Commando (USA) [Nicola Salmoria]
+Captain Commando (Japan) [Nathan Barber]
+Final Fight (USA) [Nicola Salmoria]
+Street Fighter 2 (US rev A) [Paul Leaman]
+Street Fighter 2 (US rev B) [Paul Leaman]
+Street Fighter 2 (US rev E) [Paul Leaman]
+Varth (Japan) [Nicola Salmoria]
+Top Secret (= Bionic Commando) [Maurizio Clementini]
+Ghost Busters (3 players) [Bryan McPhail]
+Gravitar (version 3) [Nicola Salmoria]
+Space Firebird (Gremlin) [Thierry Lescot]
+Space Bird (= Space Firebird) [Thierry Lescot]
+Space Demon [Zsolt Vasvari]
+Popeye (set 2) (not working due to encryption) [Nicola Salmoria]
+Capcom Bowling (set 2) [Nicola Salmoria]
+Centipede (bootleg with AY8910 instead of Pokey) [Zsolt Vasvari]
+Alien Invaders 2 [Lee Taylor]
+Space Invaders (TV Version) [Lee Taylor]
+Space Invaders Colour (CV Version) [Lee Taylor]
+Space Invaders (SV Version) [Lee Taylor]
+Solar Fight (= Ozma Wars) [Nicola Salmoria]
+The Main Event (version F) [Nicola Salmoria]
+Break Thru (Japan) [Bryan McPhail]
+Jack the Giant Killer (set 1) [Brad Oliver]
+Defender (Green label) [Nicola Salmoria]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed the sprite/playfield and playfield/playfield priorities in Bad Dudes /
+  Dragon Ninja and Sly Spy. [Bryan McPhail]
+
+- Fixed the title screen in P.O.W. [Bryan McPhail]
+
+- Fixed gaps in the start/finish line in Neo Drift Out. [Nicola Salmoria]
+
+- Attempt at emulating some raster effects in the NeoGeo games. The IRQ2
+  handling is still 99% unknown, however you can see the field in Super
+  Sidekicks 3 and 4. This is largely unaccurate, and VERY slow. Hit F1 to
+  toggle the emulation on or off (by default it's on). [Nicola Salmoria]
+
+- Almost accurate colors in Galivan. [Nicola Salmoria]
+
+- Improved row scrolling in Street Fighter 2, plus several other fixes to the
+  CPS1 games. [Paul Leaman]
+
+- Fixed sprite colors in Euro League. [Nicola Salmoria]
+
+- Fixed sprites disappearing abruptly in TMNT end of game credits. [Nicola
+  Salmoria]
+
+- Fixed the green and white flags in Championship Sprint / Super Sprint, and
+  maybe other Atari System 2 sprites as well. [Nicola Salmoria]
+
+- Fixed sprite flipping in Jack the Giant Killer end sequence. [Brad Oliver]
+
+- Fixed (?) the title in Galaxian Part X. [Nicola Salmoria]
+
+- Accurate colors in Mariner. [Gerald Coy]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Added support for the 7751 sound chip in Monster Bash. Two samples are still
+  needed (discrete circuits). [Mike Balfour]
+
+- Good progress in sound emulation of the Exidy games (Venture, Pepper 2, etc.)
+  [Dan Boris]
+
+- Fixed the YM2203 in Ghost Busters. [Bryan McPhail]
+
+- Speech in TMNT. Sound should now be 100% complete. [Howie Cohen]
+
+- uPD7759 support in Golden Axe, Shinobi, Passshtb, Alien Syndrome,
+  Altered Beast. [Howie Cohen]
+
+- Emulated speech in Sinistar. Samples are no longer used. [Alex Pasadyn]
+
+- Sound in The Main Event. [Nicola Salmoria]
+
+- Sound fade timer ports in the CPS1 games (see Willow's Test mode for an
+  example). [Paul Leaman]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Side Pocket, Rolling Thunder. [Dave W.]
+
+
+Other drivers changes:
+----------------------
+
+- Emulated the protection in Seicross, Radical Radial, Frisky Tom. However
+  Frisky Tom is still not playable (hangs when you fall). [Nicola Salmoria]
+
+- The hang in Tapper should REALLY be fixed this time. [Juergen Buchmueller]
+
+- Emulated the protection in Knights of the Round and Carrier Air Wing.
+  [Paul Leaman]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] The key to change frameskip is now F9 instead of F8. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- New 68000 C core. For testing purposes, this is also being used in the DOS
+  version instead of the asm core. [Karl Stenerud]
+  Differences:
+
+  1. Faster.  This code is, barring ram fetch time, almost twice as fast as the
+     existing C core in MAME.  I've done extensive speed profiling on both
+     engines.  The only problem now is the slow memory access in MAME due to
+     bankswitching et al.
+
+  2. Emulation more correct.  I found many bugs in the MAME engine (and many,
+     many more in mine for that matter) when I pitted them head-to-head.
+     I have run random instructions from each opcode class at least 10 million
+     times, comparing the resultant CPU states, and have left it running random
+     instructions for 1 billion iterations.  In every case, I have adhered to
+     the specs defined in M68000PM/AD REV. 1.
+
+  3. Disassembler is correct.  The current M68000 disassembler in mame has a
+     tendency to disassemble instructions that have an invalid EA mode.
+
+  4. Cycle counting is 99.9% correct.  The only instructions which don't have
+     correct cycle counts are divs, divu, muls, mulu, and they're not worth
+     counting correctly. (I'm not about to waste emulation time counting 0-1 and
+     1-0 sequences).
+
+  5. > 32 bit friendly.  I've taken care to ensure maximum portability without
+     sacrificing speed.  The result is conditional compiling dependant on your
+     architecture.  I've also implemented and tested a compatible solution for
+     architectures that lack 8, 16, or 32 bit signed storage types.
+
+  6. The code is carefully laid out to be readable. (I beg to differ - NS)
+
+- Fixed some bugs in the I8039 emulation. [Brian Stern]
+
+- Z8000 emulator. [Juergen Buchmueller]
+
+- NEC uPD7759 emulation. This is used by TMNT, System 16, and others.
+  [Juergen Buchmueller, Mike Balfour, Howie Cohen]
+
+- CVSD emulation, used for speech in Sinistar and in the 34010 games (Smash TV
+  etc.). [Larry Bank, Alex Pasadyn]

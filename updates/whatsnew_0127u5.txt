@@ -1,0 +1,129 @@
+0.127u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01187: [Graphics] gseeker: In attract mode, there is a priority 
+         error where a stealth bomber is coming out of a hanger. 
+         (couriersud)
+- 02381: [DIP/Input] peke1012: Lightpen not mapped in option 
+         (Fabio Priuli)
+- 02191: [Sound] wseries, basebal2, dblplay, strkzone: Speech quality 
+         regression (couriersud)
+- 02322: [Core] All Drivers using 8080 CPU: 8080 Core problem with 
+         score/credit counts and other variables (Miodrag Milanovic)
+- 02254: [DIP/Input] All Sets in namcond1.c: Unable to coin/start 
+         game properly (Fabio Priuli)
+- 02156: [Color/Palette] naughtyb: Wrong RESNET calculation of the 
+         green component. (couriersud)
+- 02280: [Misc.] any set with multiple CPUs: Disassembler freezes when 
+         doing a Run on any CPU other than CPU 0 (Aaron Giles)
+- 02259: [Misc.] tinklpit: Debug messages displayed on exit 
+         (Phil Bennett)
+- 02258: [Crash/Freeze] srmp6: Game displays black screen, plays two 
+         NiLe samples every three seconds over and over again
+         (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+Added newest Naomi 2 BIOS. [Brian Troha]
+
+Correct NeoGeo M1 decryption for all CMC50 sets [Andreas Naive]
+
+Rewrite of the Motorola DSP56k disassembler. [Andrew Gardner]
+ * Removes arbitrary opcode groupings in favor of flat decode model.
+ * Fixes a number of small issues with unknown opcodes.
+ * Added the final ALU parallel move ops.
+ * Fixes branch relative offset decoding.
+
+NB1/NB2: fix default dips, added diplocations, used latest idioms.  
+IMPORTANT: you must delete all cfg and nv files for these games! 
+[R. Belmont]
+
+Removed sprite to tile priority in firefox, it doesn't exist. [smf]
+
+System 23 updates: [R. Belmont]
+ * Fixed text layer to show (colors are wrong)
+ * Added very preliminary support for Gorgon h/w
+ * Added Rapid River readme
+ * Adjusted Gorgon h/w MIPS clock to 133 MHz based on readme
+ * Renamed GP500 to 500GP, which is it's correct name
+ * Fixed sound CPU shared RAM. Comms not yet correct.
+
+65816/377xx: fix disassembly of BRL [ShimaPong]
+
+Fixed AF calculation in mcs48. [Aaron Giles]
+
+Fixed Leland ay8910/12 output combining. [couriersud]
+
+rescale_notifier() changed to always allow rescaling for screenless 
+drivers. [Wilbert Pol]
+
+Added 22VP931 emulation, which is mostly working. Communication works
+fine and basic searching/playback/skipping is functional. Still a bit
+glitchy. [Aaron Giles]
+
+Firefox improvements: [Aaron Giles]
+ - memory map is complete from schematics
+ - gutted laserdisc hacks in favor of actual laserdisc implementation
+ - fixed all CPU and sound clocks
+ - removed need for deprecat.h
+
+Added generic timer devices, which simply allocate a timer but don't
+prime it. This is the preferred method for allocating timers, and may 
+eventually be the only mechanism for doing so in the future. 
+[Aaron Giles]
+
+Fixed copy + paste error in geebeeg romset. [David Haywood]
+
+Move dkong memory_region calls into initialization routines. 
+[couriersud]
+
+Fixed -listroms to know about device-specific ROMs. [Aaron Giles]
+
+Another pass to make static functions static, almost entirely
+affecting code added in the last few months to MAME.  The fixes are
+the usual lot, changing enum definitions so they aren't declared,
+decorating dead code/declarations with #if...#endif, and of course,
+adding static where appropriate.  In addition, I fixed a bunch of
+UNUSED_FUNCTON symbols to be spelled correctly (I didn't introduce
+this). [Atari Ace]
+
+More system1.c input cleanups. [Sonikos]
+
+Naomi update: [Samuele Zannoli]
+ * now show the contents of the framebuffer if the 3d accelerator is 
+    not used so that now the atomiswave logo and messages are shown 
+    (if you wait enough).
+ * removed a maple bug (no more strange messages in cvs2gd). 
+ * improveed documentation of the communication registers with the 
+    dimm board
+ * if DEBUG_VERTICES is defined as 1 the vertices sent to the tile 
+    accelerator are collected and then drawn connected by a segment to 
+    give a wireframe-like view of the scene.
+
+Minor optimization to fillbitmap when non-zero fills are done.
+[Christophe Jaillet]
+
+Moved memory_region() call (which is slow) out of core sprite loop in
+the neogeo renderer, giving a dramatic speed boost. 
+[Christophe Jaillet]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+TX-1 (Atari/Namco/Taito license) [Phil Bennett, Guru]
+Chanbara [Tomasz Slanina, David Haywood]
+Paradise Deluxe 2 [Chris Hardy]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Rapid River (RD3 Ver. C) [Guru, R. Belmont]
+Time Crisis 2 (TSS2 Ver. B) [Guru]
+GameCristal (version 2.613) [ANY, f205v]

@@ -1,0 +1,208 @@
+0.127u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02482: [Graphics] bubblemj: Demonstration screen trouble 
+         (Couriersud)
+- 02483: [Graphics] gunlock, rayforcj: Title screen trouble 
+         (Couriersud)
+- 02498: [Graphics] lightbr: Trouble of title screen (Couriersud)
+- 02221: [Sound] blzntrnd: Sound is almost completely broken 
+         (Aaron Giles)
+- 02467: [Crash/Freeze] qsww: Game Crashes (Olivier Galibert)
+- 02479: [Misc.] Various: Memory leak (Aaron Giles)
+- 02266: [Multisession] tceptor: Thunder Ceptor crashes out when run 
+         as the second game. (Aaron Giles)
+- 02439: [Multisession] tx1: TX1 quits out on second launch. 
+         (Aaron Giles)
+- 02488: [Multisession] All sets with using 2+ monitors: Crash to 
+         desktop on second play. (Aaron Giles)
+- 02321: [Crash/Freeze] mpu4utst, mpu4tst2, mpu4met0: Screenless 
+         systems crash due to problems in some display core functions 
+         (Aaron Giles)
+- 02476: [Misc.] some neodrvr.c sets: Memory leak
+- 02324: [Gameplay] dokyusei, dokyusp, gakusai, gakusai2: Game doesn't 
+         start (Aaron Giles)
+- 02292: [Crash/Freeze] dcclubfd, gground, ggroundj, roughrac, 
+         sgmastc, sgmastj : Game doesn't start (Olivier Galibert)
+- 02480: [Crash/Freeze] Various: CPU x: PULSE_LINE used with level-
+         detected IRQ y (Aaron Giles)
+- 02489: [Color/Palette] All Sets in namcos22.c: Garbled colours and 
+         graphics (Aaron Giles)
+- 02470: [Crash/Freeze] Various: Access Violation (Aaron Giles)
+- 02475: [Crash/Freeze] kf10thep: Access Violation  (Johnboy)
+- 02502: [Crash/Freeze] fax, hardhat, mtrap, pepper2, teetert, 
+         venture and clones: Accessing a certain portion of memory in 
+         the debugger causes crash. (Aaron Giles)
+- 00998: [Crash/Freeze] dcclubfd: Hangs during playing with an access 
+         violation error. (Olivier Galibert)
+- 02460: [DIP/Input] qrouka: Coin 1+2 no longer work. (David Haywood)
+- 00081: [Crash/Freeze] dcclub: Game crash and freeze. 
+         (Olivier Galibert)
+- 00989: [Graphics] qgh: If you do a metamorphose, the screen turns 
+         black without displaying words/pictures. (David Haywood)
+- 02458: [Color/Palette] enforce: Road layer colors are wrong. 
+         (M.A.S.H., Phil Bennett)
+- 02469: [Graphics] geebee and clones: Appears to be missing its 
+         middle swinging gate (Couriersud)
+- 02477: [DIP/Input] most merit.c sets: Unable to locate input port 
+         'IN3'
+- 02468: [Compiling] 64 bit build fails (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Removed unneeded UI keys by removing the constants. Readded 
+UI_ON_SCREEN_DISPLAY to be changed again in the "Inputs" menu. 
+[stephh]
+
+Added missing support of normal joystick for player 2 in 'gwarb'.
+[stephh]
+
+Fixed a number of regressions due to recent 68000 IRQ changes.
+[Aaron Giles]
+
+Added new functions for building device-relative tags. Changed machine
+configuration builder to use these functions. Also changed the 
+laserdisc player devices to use them. Updated Z80 CTC/SIO code to 
+assume that the CPU provided for the clock is relative to the device 
+that the CTC/SIO belong to. Updated memory code to assume that regions 
+and devices referenced by the memory map are relative to the device 
+the associated CPU belongs to. [Aaron Giles]
+
+Neo-Geo cleanups (still in progress): [Johnboy]
+ - Sorted OEM / Bootleg sets
+ - Renamed roms on non OEM / Bootleg sets to ONE naming sheme
+ - Renamed functions
+ - Added some comments
+
+System 24 cleanups: [Aaron Giles, Olivier Galibert]
+ * correct memory map for both CPUs
+ * reduced RAM size to 256k
+ * correct video timings
+ * renamed regions
+ * proper interrupt handling
+ * fixed dcclub magic latch
+
+Checked, via Z80 code analysis, inputs and Dip Switches for the 
+following games in snk.c driver: [stephh]
+ - ikari, ikaria, ikarinc, ikarijp, ikarijpb
+ - victroad, dogosoke, dogosokb
+ - bermudat, bermudaj
+ - worldwar, bermudaa
+ - psychos, psychosj
+
+Added correct overlay positioning, font, and behavior to PR-8210 
+emulation. [Aaron Giles, Warren Ondras]
+
+Sonic Blast Man 2 Special Turbo (SNES bootleg) changes:
+[Andreas Naive, Tomasz Slanina]
+ - added rom decryption
+ - patched protection checks
+ - mapped extra inputs
+
+Fixed timers in i8051 core. [Grull Osgo]
+
+Fixed the i8051 AJMP opcode to take 2 bytes instead of 3. [Grull Osgo]
+
+Improved the button-lamps layout to all games in ampoker2.c driver. 
+Now buttons are more realistic. Also improved the Lucky 74 button-
+lamps layout to be more realistic.[Roberto Fresca]
+
+Improvements to InterFlip / Recreativos Franco driver: [Grull Osgo, Roberto Fresca]
+ - Added Baby Poker Game.
+ - Added sound support to Baby Poker Game.
+ - Reworked the color routines.
+ - Added Baby Dado Game.
+ - Added new color routines for Baby Games.
+ - Redumped the videocba color PROM.
+ - Added color switch. (It changes background color in some games).
+ - Added "hopper full" switch support (for diverter function).
+ - Added diverter function decoder.
+ - Added full functional mechanical counters decoding.
+ - Added 7 Segment decoder and 7 Digit Counter functions.
+ - Added button-lamps layout & mechanical counters simulation on 
+   layout. Mechanical counters to layout: Coin-In, Coin-Out and Coin 
+   to Drop.
+ - Added NVRAM support to mechanical counters.
+ - Mapped "Hand Pay" button for Baby Games.
+ - Added decoder to Jackpot mechanical counter.
+ - Added tower lamps to Baby Games layouts.
+ - Reworked layouts for Baby Games.
+
+Fixed old regression bug in Sengoku Mahjong that made the controls 
+not work when the V30 CPU core was converted to 16-bit. Specifically,
+the game accesses the multiplexer with a word write instead of a byte 
+write. [Angelo Salese]
+
+Checked, via Z80 code analysis, inputs and Dip Switches for the 
+following games in snk.c driver: [stephh]
+ - gwar, gwarj, gwara, gwarb
+ - chopper, choppera, chopperb, legofair
+ - tdfever, tdfeverj, tdfever2
+ - fsoccer, fsoccerj, fsoccerb
+
+MCU protection now working for lohtb2 (m72.c) [Couriersud]
+ * Hooked up 6751
+ * Synchronized protection ram writes with timer callbacks
+ * Removed speed hack from NEC CPU emulation, which breaks the 
+    protection code
+
+snes.c - Fixed problem with OAM address reset at start of vblank.
+[Tomasz Slanina]
+
+Made the Z80 daisy chain aware of referencing device-specific devices.
+[Aaron Giles]
+
+Added preliminary LD-V1000 emulation. Not fully working yet, but 
+mostly there. [Aaron Giles]
+
+Cleaned up and normalized the three existing laserdisc emulations.
+Removed obsolete code from the laserdisc core. [Aaron Giles]
+
+Optimized st0016 RAM tile behavior to lazy decode the graphics, 
+giving a big speed boost to some of the mahjong games. [Aaron Giles]
+
+Space Duel: Added the P10/11 dip switch (only 4 switches instead of 
+the standard 8) [Franklin Bowen]
+
+Improvements to Sandii' games (snookr10, apple10 & tenballs): 
+[Roberto Fresca]
+ - Reworked the button-lamps matrix system.
+ - Documented both output ports.
+ - Connected coin in, key in and payout counters.
+ - Improved the lamps layout to be more realistic.
+ - Updated technical notes.
+
+Minor optimization to the Neo-Geo sprite clearing code. 
+[Christophe Jaillet]
+
+Added emulation for snes special chips DSP-2 & OBC-1. 
+[Fabio Priuli, byuu]
+ - added sources snesdsp2.c & snesobc1.c
+ - removed special chips detection from MAME
+ - modified memory handlers to account for the new chips
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Megatouch 5 (9255-60-07 RON, New Jersey version) [Brian Troha]
+Astropal (Sidam?) [Couriersud]
+Baby Poker [Grull Osgo, Roberto Fresca]
+Baby Dado [Grull Osgo, Roberto Fresca]
+Sonic Blast Man 2 Special Turbo (SNES bootleg) 
+  [Andreas Naive, Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Megatouch III (9255-20-07 ROG, New Jersey version) [Brian Troha]
+Super Megatouch IV (9255-41-07 ROG, New Jersey version) [Brian Troha] (Not Working)
+Armored Warriors (US 940920) [Razoola]
+Mortal Kombat 3 (rev 1 chip label p4.0) [Andrea Turci]
+Decathlete V1.001 [Andrea Turci]

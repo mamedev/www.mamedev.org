@@ -1,0 +1,349 @@
+0.73
+
+Sorry, this list of changes isn't complete due to hardware problems I'm having.
+
+General Source Changes
+----------------------
+
+Many Improvements to the ST-V emulation, resulting in Hanagumi Columns being
+playable and other games on the driver starting to show some
+graphics [Angelo Salese, David Haywood]
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+
+Continued MegaPlay Improvements (still none fulyl working yet but more of the
+bios menu tests pass now) [Barry Rodewald]
+	src/drivers/segac2.c
+
+Some System GX Improvements, mainly to the not yet working games [R.Belmont]
+	src/drivers/konamigx.c
+	src/vidhrdw/konamigx.c
+
+Attempted to Improve Super Dodge Ball MCU Simulation [Acho A. Tang]
+	src/drivers/sdodgeb.c
+	src/vidhrdw/sdodgeb.c
+
+Various Changes to keep the code inline with MESS [Nathan Woods]
+
+Added 8 Player Support to the Core [Stefan Jokisch]
+
+New games supported:
+--------------------
+
+Hanagumi Taisen Columns - Sakura Wars  [Angelo Salese, David Haywood]
+	This the first st-v game to be supported by MAME, please note that due
+	to the complexity of the system emulation is still preliminary and there
+	are still various issues that will need ironing out, there is currently
+	no sound.
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+
+Ultra X Weapons [Tomasz Slanina]
+	some gfx offset problems / alignment (sprite handle can move?)
+	src/drivers/ssv.c
+
+Twin Eagle 2 [Tomasz Slanina]
+	src/drivers/ssv.c
+	Twin Eagle 2 DOES NOT WORK due to protection involving the directions
+	in which objects travel, and as a side-effect collisions don't work
+	correctly either, if somebody fixes this then itmight be fine apart
+	from a few offset problems.
+
+Super Trivia Master [Pierpaolo Prazzoli]
+	wrong colours
+	src/drivers/strvmstr.c
+
+Sprint 8 [Stefan Jokisch]
+	src/drivers/sprint8.c
+	src/vidhrdw/sprint8.c
+
+New Clones supported:
+--------------------
+
+Lady Bug (bootleg on Galaxian Hardware) [Mike Coates]
+	input ports incomplete
+	src/drivers/galaxian.c
+	src/includes/galaxian.h
+	src/machine/scramble.c
+
+Video Pool (Moon Cresta hardware) (bootleg of Video Hustler) [Mike Coates]
+	dipswitches incomplete
+	src/drivers/galaxian.c
+
+0.72u2
+
+General Source Changes
+----------------------
+
+Improved Megaplay a bit, the bios screens now show however the games still don't
+work [Barry Rodewald]
+	src/drivers/segac2.c
+	src/includes/segac2.h
+	src/vidhrdw/segac2.c
+
+Various ST-V improvements, Hanagumi Columns shows a partial title screen (still
+disabled so you'll have to enable it yourself if you want to see)
+	[Angelo Salese]
+	src/drivers/stv.c
+
+Removed DCS Speed-Ups
+	src/sndhrdw/dcs.c
+
+Fixed a bug in the C 68000 core with the SBCD Opcode [Acho A/ Tang]
+	States of the sign(N) and overflow(V) flags after SBCD,
+	ABCD and NBCD operations are "undefined" according to Motorola.
+	The C core randomizes the V flag and sets the N flag like signed
+	operations.
+
+	Viofight expects determinant results of the two flags from SBCD
+	or it gets stuck in a math loop. The V flag now returns zero and
+	the N flag mirrors carry exactly like what the ASM core does.
+	src/cpu/m68000/m68k_in.c
+
+Fixed Mustache Boy Continue Screen and attempted to improve speed [Tomasz Slanina]
+	src/drivers/mustache.c
+
+Misc Konami Fixes [Acho A. Tang]
+	tmnt.c:
+	- qgakumon resetting and screen darkening
+	- tmnt2 load-save states(not good enough yet)
+	- ssriders diagonal jittering(needs testing)
+
+	konamiic.c:
+	- boundary conditions and kludge removal in K007420
+
+	rockrage.c:
+	- rogue sprites
+
+	kncljoe.c:
+	- bad scrolling, clipping, rogue sprites
+
+Couple of Improvements to the Fuuki games (Priority, BG Colours) [Paul Priest]
+	src/drivers/fuukifg2.c
+	src/vidhrdw/fuukifg2.c
+	src/drivers/fuukifg3.c
+	src/vidhrdw/fuukifg3.c
+
+Guard against OP_ROM/OP_RAM overflows [Nathan Woods]
+	This patch adds an optional facility to guard against OP_ROM/OP_RAM
+	overflows.  This is implemented by adding new variables OP_MEM_MIN and
+	OP_MEM_MAX that track the minimum and maximum address ranges for which
+	using OP_ROM/OP_RAM is valid.
+
+	Support for this feature is enabled via conditional compilation in
+	memory.h.  There are three possible modes:
+
+	CPUREADOP_SAFETY_NONE   - The status quo; no range checking at
+	all
+	CPUREADOP_SAFETY_PARTIAL  - Range checking only against the
+	maximum address
+	CPUREADOP_SAFETY_FULL     - Range checking against both the
+	minimum and the maximum
+
+	This patch has MAME using CPUREADOP_SAFETY_NONE, unless MAME_DEBUG is
+	defined in which case CPUREADOP_SAFETY_FULL is set.  Thus as is, this
+	patch should have zero effect on release versions of MAME.
+	Additionally, being able to safely disassemble code near bank boundaries
+	when using the MAME debugger is extremely useful.
+
+	There is a slight performance hit when this is enabled.
+
+Dipswitch Fixes:
+	1st dipswitch of 3rd bank in 1941 [Fabrizio Pedrazzini]
+	src/drivers/cps1.c
+
+	Tetris Plus 2 (MS32 version) [Sonikos]
+	src/drivers/ms32.c
+
+	and a few others ...
+
+Changed nkdodgeb to use proms from another Japan bootleg set, maybe this fixes
+some problems with the colours.
+	src/drivers/nkdodgeb.c
+
+Included 8080 core updates from MESS
+	src/cpu/i8085/*
+
+Preliminary Hyperstone Core, not yet working well enough to run anything [Pierpaolo Prazzoli]
+
+Now using correct Dragon Blaze sound ROM
+	src/drivers/psikyosh.c
+
+New Clones supported:
+--------------------
+
+Hard Dunk (World)
+	src/drivers/multi32.c
+
+Super Bike (DK Conversion) [Pierpaolo Prazzoli]
+	src/drivers/dkong.c
+
+Some CPS clones [Razoola]
+	src/drivers/cps2.c
+
+New games supported:
+--------------------
+
+Mogura Desse (Cabinet Test Board) [David Haywood]
+	no sound (discrete)
+	src/drivers/mogura.c
+
+Speed Attack [Angelo Salese, Pierpaolo Prazzoli]
+	wrong colours
+	src/drivers/speedatk.c
+	src/vidhrdw/speedatk.c
+
+Some New MegaTech Sets (mostly not working yet)
+	src/drivers/segac2.c
+
+0.72u1
+
+General Source Changes
+----------------------
+
+Changed Fuuki 16-bit driver to use Partial Updates for Raster Effects and enabled
+them [David Haywood, Paul Priest]
+	src/drivers/fuukifg2.c
+	src/vidhrdw/fuukifg2.c
+
+Temporary Fixes to a few of the System 16 driver problems (sound banking for
+example)  Note, the driver is still being rewritten these are only minor 'fixes'
+to improve things a bit until the rewrite is complete [Acho A. Tang]
+	src/drivers/sysetm16.c
+	src/vidhrdw/system16.c
+	src/vidhrdw/sys16spr.c
+
+Change so DIP menu isn't displayed if no Dipswitches are defined in the driver
+instead of flashing a blank mneu when you try and enter it [Paul Priest]
+	src/usrintrf.c
+
+Various Changes [Nathan Woods]
+	src/cpu/jaguar/jaguar.c:
+	- Fixed a bug in the NORMI opcode
+
+	src/cpu/mips/mips.c:
+	- Removed use of the GCC specific varargs on macros feature
+
+	src/sndhrdw/jaguar.c:
+	- Changed around one of the #include paths (due to
+	ProjectBuilder on Mac issues)
+
+	src/sound/tms5220.c:
+	src/sound/tms5220.h:
+	- Added support for the TMS0285 variant (an old variant of the
+	TMS5220)
+
+	src/vidhrdw/jagblit.c:
+	src/vidhrdw/jaguar.c:
+	- Added support for the SRCSHADE and DSTA2 command bits to the
+	Jaguar blitter.
+	- Added some miscellaneous logging code
+	- Changed around one of the #include paths (due to
+	ProjectBuilder on Mac issues)
+
+	src/vidhrdw/jagobj.c:
+	- Added support for objects with pitch != 1 for objects with 1-2
+	bits per pixels
+
+	src/harddisk.c:
+	src/harddisk.h:
+	- Added a function to retrieve the interface
+
+	src/ui_text.c:
+	src/ui_text.h:
+	- Added a MESS specific UI string (within #ifdef MESS of course)
+
+	src/usrintrf.c:
+	- Parameterized the setdipswitches() call; so that a menu that
+	looks like the DIP switch menu can easily be made with different IPT_*
+	values (MESS has a configuration menu that functions a lot like the DIP
+	switch menu)
+
+	src/artwork.c:
+	- Small fix to allow the UI to be drawn if the artwork system is
+	active but no artwork is present (not an issue for MAME)
+
+	src/mamedbg.c:
+	- Cleanup and fix of set_ea_info() so that negative offsets of 8
+	or 16 bits do not have extraneous FF's in front of them.
+	- More proper fix to the scanline display bug that prevented
+	registers from being edited when the scanline display was on.
+
+	src/cpu/hd6309/6309dasm.c:
+	- Better message for when invalid opcodes are disassembled
+
+	src/artwork.c
+	src/artwork.h
+	- Fixed crashing bug with clones
+
+	src/inptport.c:
+	- Adds some MESS specific IPT defaults (within #ifdef MESS)
+	- Modified input_port_allocate() so that PORT_BITX declarations
+	that specify JOYCODE_a_BUTTONb for their default codes will also get
+	JOYCODE_MOUSE_a_BUTTONb or'd in.
+
+	src/input.c:
+	src/input.h:
+	- Added seq_set_4() and seq_set_5()
+
+	src/windows/video.c:
+	- Changed render_frame() so that throttle_speed() will also be
+	called when game_is_paused is set.  This prevents MAME from busy looping
+	when paused.
+
+Fixed Remaining Protection problems in TMNT2 and Sunset Riders, Fixed Combat School
+Trackball sets from Crashing, Fixed Escape Kids Spries, Fixed Sticky Sprites in
+Detana! Twinbee, Fixed Sprite Lag in some games [Acho A. Tang]
+	src/drivers/combatsc.c
+	src/vidhrdw/konamiic.c
+	src/vidhrdw/konamiic.h
+	src/palette.c
+	src/palette.h
+	src/drivers/tmnt.c
+	src/vidhrdw/tmnt.c
+
+Misc Improvements / Cleanups / Fixes [Acho A. Tang]
+	src/drivers/aeroboto.c
+	src/vidhrdw/aeroboto.c
+	src/drivers/bwing.c
+	src/vidhrdw/bwing.c
+	src/drivers/equites.c
+	src/vidhrdw/equites.c
+	src/machine/equites.c
+	src/drivers/halleys.c
+	src/drivers/sgladiat.c
+	src/drivers/sidearms.c
+	src/vidhrdw/sidearms.c
+	src/vidhrdw/spdodgeb.c
+	src/drivers/wecleman.c
+	src/vidhrdw/wecleman.c
+	src/drivers/wiz.c
+
+Fixed Background Graphics in Trackball version of WC90 [Angelo Salese]
+	src/drivers/wc90.c
+	src/vidhrdw/wc90.c
+	
+Fixed sound in Super Doubles Tennis [Pierpaolo Prazzoli]
+	src/drivers/btime.c
+
+New games supported:
+--------------------
+
+Asura Blade [Paul Priest]
+	missing sound, some priority errors
+	src/drivers/fuukifg3.c
+	src/vidhrdw/fuukifg3.c
+
+Gaia Crusaders [Paul Priest]
+	src/drivers/cave.c
+
+Street Heat [Dave Widel]
+	src/drivers/dkong.c
+
+New Clones supported:
+--------------------
+
+8 Ball Action (DkJr Kit) [Pierpaolo Prazzoli]
+	src/drivers/dkong.c

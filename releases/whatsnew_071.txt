@@ -1,0 +1,476 @@
+0.71
+
+Everything from 0.70u1 - u5 (see details below) as well as
+
+General Source Changes
+----------------------
+
+Fixed MultiPCM banking for Stadium Cross [R.Belmont]
+	src/drivers/multi32.c
+	src/sound/multipcm.c
+	src/sound/multipcm.h
+
+Improved Ay8910 Noise Generator [Jarek Burczynski]
+	src/sound/ay8910.c
+
+Corrected some filenames for Ajax [Brian A. Troha]
+	src/drivers/ajax.c
+
+Improved Graphics in Strato Fighter and Super Pinball Action [Leon van Rooij]
+	src/drivers/raiga.c
+	src/vidhrdw/raiga.c
+	src/drivers/spbactn.c
+	src/vidhrdw/spbactn.c
+	src/drawgfx.c
+
+Converted a bunch of drivers to tilemaps, fixed dipswitches etc. [Curt Coder]
+
+New games supported:
+--------------------
+
+Boxer (prototype) [Stefan Jokisch]
+	src/drivers/boxer.c
+	src/vidhrdw/boxer.c
+
+Star Sweep [smf, MooglyGuy]
+	src/drivers/namcos11.c
+	src/drivers/psx.c
+	src/vidhrdw/psx.c
+	+ various other source files
+
+Magical Spot [Pierpaolo Prazzoli]
+	src/drivers/cosmic.c
+
+New clones supported
+--------------------
+
+Sengekis Striker (Asia) [Brian A. Troha, David Haywood]
+	src/drivers/suprnova.c
+	src/vidhrdw/suprnova.c
+
+Maximum Force (v1.05) [Brian A. Troha]
+	note: there seems to be a problem with the way mame handles chd filenames for clones
+	src/drivers/cojag.c
+
+Space Invasion (Europe Original?) [Brian A. Troha]
+	src/drivers/commando.c
+
+Underfire (US and Japan) [Brian A. Troha]
+	src/drivers/undrfire.c
+
+Puzzle Bobble (NeoGeo) (set 2) [Razoola]
+	src/drivers/neogeo.c
+
+
+New TESTDRIVERS in source
+-------------------------
+
+Various ZN based systems [smf, MooglyGuy]
+
+Rougien [..]
+	video hardware emulation needs finishing
+	src/drivers/mermaid.c
+
+0.70u5
+
+Please, if you submit dipswitch changes to me make sure they've been tested with a DEBUG compile, fixing
+'fixed' dipswitches is time consuming, there are extra warnings when you attempt to run Mame in a DEBUG
+compile.
+
+General Source Changes
+----------------------
+
+Some Dipswitch Fixes [Iñigo Luja]
+	src/drivers/gameplan.c
+	src/drivers/cps1.c (kodj064gra)
+	src/drivers/ms32.c
+	src/drivers/freekick.c
+	src/drivers/wwfwfest.c (wwfwfest055gra partial?)
+	src/drivers/exidy.c (venture37b8gra)
+	src/drivers/suprnova.c
+	src/drivers/seta.c
+	src/drivers/system16.c
+
+Improvements and Fixes to Strato Fighter / Raiga [David Haywood, TheGuru, Leon van Rooij]
+	there are still some graphics problems (priority, incomplete alpha blending effects, bad tiles)
+	src/drivers/gaiden.c
+	src/vidhrdw/gaiden.c
+
+Fixed some Misplaced Sprites in Tricky Doc [Pierpaolo Prazzoli]
+	src/vidhrdw/sauro.c
+
+Changed drivers to use mame_rand for random numbers [Barry Rodewald]
+	src/drivers/artmagic.c
+	src/drivers/centiped.c
+	src/drivers/namcona1.c
+	src/drivers/namconb1.c
+	src/machine/namcos1.c
+
+A Few Namco Fixes for things broken in u4 [Phil Stroffolino]
+	src/vidhrdw/namcos2.c
+	src/machine/namcos2.c
+
+Changed Steel Gunner to use Correct Rom [Bryan McPhail]
+	src/drivers/namcos2.c
+
+Improved ncv1 filenames [TheGuru]
+	src/drivers/namcond1.c
+
+Fixed Sprites in simpsons [Acho A Tang]
+	src/drivers/simpsons.c
+	src/machine/simpsons.c
+	src/vidhrdw/simpsons.c
+	src/vidhrdw/konamiic.c
+	src/vidhrdw/konamiic.h
+
+Various Changes [Nathan Woods]
+	src/fileio.c:
+	- Introduced a "debug cookie"; when in debug mode, puts a cookie
+	value in the mame_file structure to prevent files from being closed
+	twice without an assertion
+
+	src/windows/window.c:
+	- Fixes a bug in visible area changing in windowed, non-stretch
+	mode.  Previously, when the visible area changed, the code would simply
+	change the visible area, and look at the resulting window size and tweak
+	it accordingly with win_adjust_window().  The problem with this is that
+	if you have a sequence where the visible area is made larger, then
+	smaller again, what would happen is you wouldn't get the original window
+	size; you would simply get the enlarged window with a bunch of buffer
+	area.  Now instead of calling win_adjust_window(), I added code that
+	preserves the "scale" factors, and the space between the emulation
+	rectangle and the window client area.
+
+	src/windows/winddraw.h:
+	src/windows/winddraw.c:
+	src/windows/wind3d.c:
+	- Added a call win_ddraw_fullscreen_margins() that given the
+	dwWidth and dwHeight parameters of a DirectDraw surface, comes up with a
+	RECT that represents the margins.  For MAME, this is a very simple
+	operation (a rectangle from (0,0)-(dwWidth,dwHeight)) (and the
+	implementation that I've submitted is corrspondingly simple), but in
+	MESS the window can have a menu bar so this operation works differently.
+	I've also modified winddraw.c and wind3d.c to use this call.
+
+	src/timer.c:
+	src/timer.h:
+	- Changes timers so that they are now 'mame_timer *' instead of
+	'void *'.  mame_timer is an opaque structure, similar to mame_file in
+	fileio.h.  I didn't update any code using timers yet; it doesn't seem to
+	me that there isn't a rush and since they used 'void *' before,
+	everything compiles just fine.  I hope noone objects to this one.
+
+	src/vidhrdw/jaguar.c:
+	- Fixes a potential crash in jaguar_tom_regs_w() (while this
+	crash doesn't occur under normal execution of the cojag games though, it
+	can occur if modified ROMs are being used).
+
+	src/sound/fmopl.c:
+	Added #if/#endif pair
+
+Changed message for Double Clicking on EXE slightly [Leon van Rooij]
+	src/windows/winmain.c
+
+
+New games supported:
+--------------------
+
+Stadium Cross [Jason Lo]
+	there seem to be some sound problems
+	src/drivers/multi32.c
+	src/drivers/system32.c
+	src/vidhrdw/system32.c
+
+R2D Tank [Pierpaolo Prazzoli]
+	src/drivers/r2dtank.c
+
+New TESTDRIVERS in source
+-------------------------
+
+Counter Run (bootleg)
+	encrypted?
+	src/drivers/freekick.c
+
+New clones supported
+--------------------
+
+Some namco ones that were forgotten last time
+
+
+0.70u4
+
+General Source Changes
+----------------------
+
+Tilemap viewer now displays a more logical ordering for "tilemap#1", "tilemap#2", etc. [Phil Stroffolino]
+Broadened support for palette_offset, and made it work in tilemap viewer [Phil Stroffolino]
+	src/tilemap.c
+
+Various Namco Improvements [Phil Stroffolino]
+	- Improved Namco road emulation
+	- Speedup when ROZ layer rapidly switches palettes (Metal Hawk 2nd stage)
+	- Window registers in namconb1 sprite drawing (fixes the "Tank" stage of Point Blank
+	- lots of consolidation/cleanup in vidhdrw/namcos2.c
+	
+	src/drivers/namcoic.c
+	src/includes/namcoic.h
+	src/drivers/namconb1.c
+	src/vidhrdw/namconb1.c
+	src/includes/namconb1.h
+	src/drivers/namcos2.c
+	src/vidhrdw/namcos2.c
+	src/machine/namcos2.c
+	src/includes/namcos2.h
+	src/drivers/namcos21.c
+	src/vidhrdw/namcos21.c
+	src/drivers/namcos22.c
+	src/vidhrdw/namcos22.c
+	src/includes/namcos22.h
+	src/vidhrdw/namcos3d.c
+	src/includes/namcos3d.h
+
+Silent Dragon Dipswitch Fixes [Brian A. Troha]
+	src/drivers/taito_b.c
+
+A Few Data East Rom Name Fixes / Board Info [Brian A. Troha]
+	src/drivers/deco32.c
+	src/vidhrdw/deco16ic.c
+
+
+New games supported:
+--------------------
+
+Final Lap [Phil Stroffolino]
+Suzuka 8 Hours 2 [Phil Stroffolino]
+Four Trax [Phil Stroffolino]
+	some gfx / sound problems but mostly working
+	src/drivers/namcos2.c
+	+ the other namco files listed above
+
+Final Lap 2 [Phil Stroffolino]
+Suzuka 8 Hours [Phil Stroffolino]
+	not working due to bad / missing roms and / or incomplete emulation but enabled anyway
+	src/drivers/namcos2.c
+	+ the other namco files listed above
+
+
+Final Lap 3 [Phil Stroffolino]
+	not working due to incomplete emulation but enabled anyway
+	src/drivers/namcos2.c
+	+ the other namco files listed above
+
+New TESTDRIVERS in source
+-------------------------
+
+Cyber Commando [Phil Stroffolino]
+Air Combat 22 [Phil Stroffolino]
+Cyber Cycles [Phil Stroffolino]
+Time Crisis [Phil Stroffolino]
+	very preliminary
+	src/drivers/namcos22.c
+	+ the other namco files listed above
+
+R2D Tank [Pierpaolo Prazzoli]
+	still being worked on
+	src/drivers/r2dtank.c
+
+
+
+0.70u3
+
+General Source Changes
+----------------------
+
+Allowed Region to be selected via Dipswitch on Banpresto games in cave.c [David Haywood]
+	src/drivers/cave.c
+
+Message Box prompting the user to read windows.txt if MAME.EXE is double clicked on instead of being run
+from the command line [Leon van Rooij]
+	note, this still needs testing on Win9x, it works as expected on 2000/XP, if it creates new
+	problems it might not be included.  Seems to work on 98
+	src/windows/winmain.c
+
+Fixed Colours in Mustache Boy with new Proms [Tomasz Slanina]
+	src/drivers/mustache.c
+	src/vidhrdw/mustache.c
+
+Fixed Colours in Tricky Doc with new Proms [David Haywood]
+	src/drivers/sauro.c
+
+Added Colour Map to Enigma 2, swapped sets around, used a more sensible cpu freq [Tomasz Slanina]
+	src/drivers/enigma2.c
+
+Fixed Trackball controls in Country Club [Tomasz Slanina]
+	src/drivers/snk.c
+
+New games supported:
+--------------------
+
+Battle Cry [Tomasz Slanina]
+	some tiny gfx glitches
+	src/drivers/homedata.c
+	src/vidhrdw/homedata.c
+	src/includes/homedata.h
+
+New clones supported
+--------------------
+
+Dock Man (parent of portman) [TheGuru]
+	src/drivers/thepit.c
+
+
+0.70u2
+
+General Source Changes
+----------------------
+
+Fixed a few minor problems in the Wolf Pack Driver [Stefan Jokisch]
+	src/drivers/wolfpack.c
+	src/vidhrdw/wolfpack.c
+
+Fixed ports in some TESTDRIVERS so there are no complaints with the Sanity Checks [smf]
+	src/drivers/coolpool.c
+	src/drivers/taitoair.c
+	src/cpu/yms32025/tms32025.h
+	
+Various Sound Improvements to YM2610, YM2608, Y8950 [Jarek Burczynski]
+	Inspired by Frits Hilderink (NLMSX emulator author) I attempted to:
+	- improve support of the ymdeltat module for the status registers (YM2610,YM2608,Y8950),
+	- implement x1bit/x8bit DRAM usage for the ADPCM samples,
+	- implement memory read/write via deltat (Y8950 and YM2608)
+	- ADPCM synthesis in 'slave' mode (CPU controlled, instead of memory based).
+
+	I made some tests but the changes are quite big so please test them before including. I'm sure the
+	Y8950 will be tested by NLMSX authors too.
+
+	src/sound/ymdelta.c
+	src/sound/ymdelta.h
+	src/sound/fmopl.c
+	src/sound/fmopl.h
+	src/sound/fm.c
+	src/sound/3812intf.c
+	src/sound/3812intf.h
+	
+Some Dipswitch / Input Fixes [Curt Coder]
+	src/drivers/twin16.c
+	src/drivers/sega.c
+	src/drivers/safarir.c
+	src/drivers/playch10.c
+	src/drivers/nmk16.c
+	
+Some Dipswitch / Input Fixes [El Condor]
+	src/drivers/crimfght.c
+	src/drivers/cps1.c
+	src/drivers/contra.c
+	src/drivers/astrocde.c
+	src/drivers/8080bw.c
+	
+Some Dipswitch Fixes [Iñigo Luja]
+	src/drivers/toaplan2.c
+	src/drivers/taito_b.c
+	src/drivers/deniam.c
+	src/drivers/sg1000a.c
+	
+Fixed i86 DAA opcodes + more [Nathan Woods]
+	src/usrintrf.c:
+	src/usrintrf.h:
+	- Renames display_fps() to ui_display_fps() and makes it
+	non-static
+	
+	src/windows/fileio.c:
+	- In osd_fopen(), if a file is opened with mode "r",
+	FILE_SHARE_READ will be passed to the dwShareMode parameter of
+	CreateFile().  This allows other programs to read any files that MAME
+	opens for read only.
+
+	src/cpu/i86/instr86.c
+	src/cpu/nec/nec.h
+	- i86 DAA fixes
+
+Corrected Green Beret Rom Names [Gérald]
+	src/drivers/gberet.c
+
+Preliminary MCU simulation for Paddle 2 [Angelo Salese]
+	src/drivers/arkanoid.c
+	
+Fixed Audit with Optional Roms [Nathan Woods]
+	src\audit.c
+	src\audit.h
+	
+New games supported:
+--------------------
+
+Enigma 2 [Pierpaolo Prazzoli, Tomasz Slanina]
+	No Sound (bad rom?) could be merged with 8080bw?
+	src/drivers/enigma2.c
+
+
+0.70u1
+
+General Source Changes
+----------------------
+
+Fixed Night Striker dips [Brian A. Troha]
+	src/drivers\taito_z.c
+	
+This fixes the data size parameter of the DUMP command in the debugger [smf]
+This fixes the bug where SAVE only worked on 8bit cpus in the debugger [smf]
+Made dbg_show_scanline the default [Bryan McPhail]
+	src/mamedbg.c
+
+Changed a few MAME core files for MESS (shouldn't change Mame behavior) [Nathan Woods]
+	src/usrintrf.h:
+	src/usrintrf.c:
+	- Adds four new calls to control showing the fps count and the
+	profiler:
+	void ui_show_fps_set(int show);
+	int ui_show_fps_get(void);
+	void ui_show_profiler_set(int show);
+	int ui_show_profiler_get(void);
+	
+	src/common.h:
+	- Adds ROM_LOAD32_DWORD
+	
+	src/machine/idectrl.c:
+	src/machine/idectrl.h:
+	src/harddisk.c:
+	src/harddisk.h:
+	src/hdcomp.c:
+	- Enhances the hard disk code to support sector sizes other than
+	512 bytes (a non-IDE harddisk in MESS for one of the TI systems uses
+	this).  src/machine/idectrl.c has been modified to take this into
+	account; it requires that HD images be 512 bytes.  The new code is fully
+	backwards compatible with old CHDs that do not have a sector size within
+	them.  
+
+Tiny changes to enable easy compiling under VC6/7 & older non-c99 compilers [Bryan McPhail]
+	src/drivers/konamigx.c
+	src/drivers/mystwarr.c
+	src/hdcomp.c
+	src/windows/fileio.c
+	src/windows/wind3d.c
+	
+Konami Updates and Fixes (including fix for dbz / moo / simpsons crashes in 0.70) [Acho A. Tang]
+	src/drivers/moo.c
+	src/vidhrdw/moo.c
+	src/drivers/xexex.c
+	src/vidhrdw/xexex.c
+	src/vidhrdw/konamiic.c
+	src/vidhrdw/konamiic.h
+	
+Fixed some problems with the new alt. bios code [Chris Kirmse, Paul Priest]
+	src/common.c
+	src/info.c
+	
+Rewrote Wolf Pack driver based on schematics [Stefan Jokisch]
+	src/drivers/wolfpack.c
+	src/vidhrdw/wolfpack.c
+
+D3D Code fixes / Improvements [Leon van Rooij]
+	src/windows/wind3d.c
+
+New games supported:
+--------------------
+
+Grand Tour [Tomasz Slanina]
+	src/drivers/iqblock.c

@@ -1,0 +1,96 @@
+0.103u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+upsidedown0103yel [Mamesick]
+
+
+
+Source Changes
+--------------
+Major cleanup/rewrite of the Berzerk driver: [smf]
+ * merged memory & io read/write maps.
+ * video ram & magic ram share the same memory.
+ * hooked up nvram in frenzy memory map.
+ * emulates magic ram shifter/flopper with 9 74LS153's as per the 
+    schematics.
+ * emulates magic ram alu with 2 74LS181's hardwired to logic mode as 
+    per the schematics.
+ * 74LS181 emulation based on the logic diagram from the datasheet, 
+    supporting logic mode & arithmetic mode
+
+Fixed Thunderstrike interrupts, visible area, and raster updates. 
+[Bryan McPhail]
+
+Updates for the ARM core: [Bryan McPhail]
+ * Fixed software interrupts.
+ * Fixed several mode change bugs.
+ * Preliminary coprocessor support.
+
+Deco fixes: [Bryan McPhail, Pierpaolo Prazzoli] 
+ * Deco MLC video hardware near perfect for the most part, however no game 
+    works properly because of an unemulated math coprocessor attached to 
+    the DE156 chip.
+ * Deco 32: Night Slashers pretty much perfect apart from lack of sound.  
+ * Deco 32: Some graphics fixes for Tattoo Assassins.
+ * Deco 156: Heavy Smash pretty much perfect.
+
+Tagged a number of constant arrays in the source as static. [Atari Ace]
+
+Many H6280/PCE fixes: [Rob Bohms, Charles MacDonald]
+ - fixed cases where sprites could render outside of the buffer
+ - added VRAM to VRAM DMA (Charles)
+ - multiple h6280 fixes (Charles)
+ - provided functions to correctly handle VRAM accesses for the entire 
+    128K range (Charles)
+ - added some of the I/O buffer bits from the hardware page
+ - fixed h6280 IRQ ranges to support proper mirroring
+ - hooked up h6280 IRQs to the PC Engine
+ - corrected sprite-to-sprite rendering priorities.
+ - partially enforce 16 sprite limit
+
+Added new debugger command traceflush. [Nathan Woods]
+
+Fixed out-of-bounds array writes in the v810 core. [Atari Ace]
+
+Moved several BCD and date-related functions into mamecore.h. [Nathan woods]
+
+Hooked up sound effects in Triple Hunt. [Derrick Renaud, Stefan Jokisch]
+
+Fixed OKI frequency in Super Model. [Sonikos]
+
+Added PowerPC MMU code, but enabled only for MESS due to breakage of the
+Model 3 games. [Nathan Woods]
+
+Fixed graphics layer priority in Grand Tour. [Tomasz Slanina, Guru]
+
+Rewrote the Star Wars mathbox multiplier from the schematics.
+[Mathis Rosenhauer]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Night Slashers [Bryan McPhail]
+Heavy Smash [Bryan McPhail]
+Avengers In Galactic Storm [Bryan McPhail]
+Power Instinct Legends [Brian Troha, Pierpaolo Prazzoli, Guru]
+Shuttle Invader [Tomasz Slanina]
+Mahjong The Dai Chuuka Ken [Luca Elia, Guru, bnathan]
+
+
+
+New clones added
+----------------
+Pasha Pasha Champ Mini Game Festival [Pierpaolo Prazzoli]
+Thunder Strike (Newer) [Bryan McPhail]
+Super Star Battle [Pierpaolo Prazzoli]
+Quiz (Revision 2.1) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mirax [Tomasz Slanina]

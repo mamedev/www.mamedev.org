@@ -1,0 +1,107 @@
+0.114u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+revx060gre [Aaron Giles]
+totcarn063gre1 [Aaron Giles]
+term20104u2gre [Aaron Giles]
+term20103u4gre [Aaron Giles]
+openice093u2gre [Aaron Giles]
+mk095gre [Aaron Giles]
+rmpgwt060gre [Aaron Giles]
+psyforce0105u5red [couriersud]
+raystorm0111u1red [couriersud]
+sfex20103red [couriersud]
+pkscram0111u4red [couriersud]
+looping0111u3yel [couriersud]
+cpsgfxpage4_0111red [couriersud]
+rfjetus0101u5red [couriersud]
+policetr059yel [couriersud]
+
+
+
+Source Changes
+--------------
+Fixed cdp1802 DMA emulation. [Curt Coder]
+
+More Konami updates: [Ville Linde]
+ - Hooked up vblank interrupt to Voodoo in all Voodoo-based games
+ - Fixed a rom loading issue in Silent Scope
+ - Added ADC1213x A/D converter emulation (machine/adc1213x)
+ - Hooked up analog controls in NWK-TR games
+
+MPU4 improvements: [James Wallace]
+ - Added NMI pulsing so Deal 'Em at least starts to boot.
+ - Decommissioned machine/mpu4.c, as the 6850acia code from Phil 
+    does the same job, making one less thing to maintain.
+
+Moved frontend commands and command-line handling into a central,
+core-managed location clifront.c. This eliminates the need for
+windows/fronthlp.c and windows/config.c and should make creating
+command-line based ports much easier in the future. [Aaron Giles]
+
+Fixed many of the remaining polygon glitches in GTI Club / Solar 
+Assault / Operation Thunder Hurricane. [Ville Linde]
+
+Added save state support to the pkscram driver. [couriersud]
+
+Removed all the timing kludges from machine/konppc.c. GTI Club is 
+kind of playable now. You can finish a lap or two, but eventually it 
+will hang on network error. [Ville Linde]
+
+Fixed the SUBTARGET=tiny build and removed some duplicate entries in 
+mame.mak. [Atari Ace]
+
+Added full discrete emulation of Space Invaders. I think people are 
+going to be too used to the current samples and their relative 
+levels. The new relative levels are determined by the mixing 
+resistors. There are all different versions of the sound board, that 
+all have slightly different sounds/components. This should be the 
+proper Midway sounds. [Derrick Renaud]
+
+Updated stvcd to be working enough that most Saturn games at least 
+die for some other reason, and a few actually do useful things.
+Also included a small update to the core cdrom code so you can fetch 
+a sector without knowing in advance what format it is. [R. Belmont]
+
+Added a concept of a "crosshair screen mask" internal to video.c and 
+created a static call to retrieve the mask. [Nathan Woods]
+
+Converted Roller Aces to stereo sound like the real hardware. Fixed
+the clocks and NMI rates to match the PCB. [Corrado Tomaselli]
+
+Added save state support to the Midway Y, T, X and Wolf Unit games.
+[Aaron Giles]
+
+Added preliminary 64-bit disassembly support to i386dasm.c.
+[Aaron Giles]
+
+Cleaned up internal interrupt handling in the TMS34010 core.
+[Aaron Giles]
+
+Added more accurate video timing to most of the Atari 68000-era
+games. [Aaron Giles, couriersud]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Quiz Olympic [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Cameltry (World, YM2203 + M6295) [David Haywood]
+Lightning Fighters (Asia) [David Haywood]
+Street Fighter EX (EURO 961219) [Guru]
+Tekken 3 (TET3/VER.A) [Guru]
+Soul Calibur (SOC13/VER.B) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Filetto (v1.05 901009) [Angelo Salese, Chris Hardy]

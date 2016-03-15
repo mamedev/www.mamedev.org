@@ -1,0 +1,230 @@
+0.142u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01994: [Crash/Freeze] birdtry: Birdie Try - Game locks up after
+         first hole. (Angelo Salese)
+
+Source Changes
+--------------
+Added screen raw params and irq ack to the dec0 driver, fixing hole 1
+hang in Birdie Try and improving fade in/out effects for Boulder Dash
+[Angelo Salese]
+
+Funworld driver updates: [Roberto Fresca]
+ * Complete support for Witch Royal, from Video Klein.
+ * Reworked the button-lamps layout to get the hold buttons more
+    centered.
+
+Eliminates the extern variables from atarimo video core, in order to
+remove a significant source of AM_BASE macros. [Atari Ace]
+
+Converted astrocde/kaneko16/namcos23/suprnova to driver_device
+[Atari Ace]
+
+Converted Taito F3 video chip (TC0630FDP) to have a parallelism of
+16-bit [Angelo Salese]
+
+Converted 2 Minutes Drill driver to use Taito F3 video chip, this
+hugely improves graphics in it [Angelo Salese]
+
+Added irq ack and fixed sound chip type to be YM2610B for 2 Minutes
+Drill [Angelo Salese]
+
+Dumped the DVD image for bikiniko [alien_mame, The Dumping Union]
+
+Added work-around for crowd gfxs in Taito F3 football games (Taito Cup
+Finals, International Cup '94, Taito Power Goal and clones), until a
+better information is found about it [David Haywood]
+
+softlist: moved software list handling (in the Internal UI) to a
+separate source, and made the code more similar to the File Manager
+handling code. [Fabio Priuli]
+
+CPS-3 update [Team CPS-1]:
+ * Added Street Fighter III: New Generation Hispanic BIOS rom CD
+    version
+ * Added a detailed table of all known releases until now with usefull
+    notes to identify new Cart Regions/CD Revisions
+ * Renamed some CHDs to use the new Catalog # standard
+
+uiswlist.c: added a switch to choose between shortname order or
+description order for softlist entries (in the Internal UI), and
+adapted the char input code to match shortnames or descriptions
+accordingly [Fabio Priuli]
+
+sc61860 cpu - fix for crash and cleanup, replace for internal ram
+accesses with function calls to help further debug the core in the
+future [Atari Ace]
+
+cartslot.c/chd_cd.c: added support for a callback function to test
+softlist sharedfeat (e.g. 'compatibility') and display a warning
+message accordingly. updated cdi.c as an example [Fabio Priuli]
+
+Decrypted 3 Super 8 program ROM [Lord Nightmare, Kevtris]
+
+cassette.c/flopdrv.c: added support for a display info callback
+function [Miodrag Milanovic]
+
+corona/galaxian/namcos21/namcos22/namcos23/psikyosh/quizo/sigmab98 to
+driver_device.  [Atari Ace]
+
+Convert scramble/galaxold to driver_device  [Atari Ace]
+
+Audio device additions:  [Atari Ace]
+ * exidy440/m72/segasnd are converted to legacy devices.
+ * cage/dcs/williams variables are restructured internally to resemble
+    a device, simplifying a future device conversion.  Some AM_BASE
+    macros are eliminated as well.
+ * taito_en has minor changes to eliminate an AM_BASE macro.
+
+Heavily improved 3 Super 8 emulation, and implemented NMI acknowledge
+mechanism into the Super Poker driver [Angelo Salese]
+
+i286 - Fixed protected mode boundary check [Miodrag Milanovic]
+
+naomibd: Fix collision with system macro on NetBSD [Thomas Klausner]
+
+Implemented PAL-like prom read-back in 4 En Raya [Angelo Salese]
+
+Fixed Pururun's audio pitch/speed to match that of a reference video. 
+[Tafoid]
+
+tms5220.c: updates to comments and nonstandard feature defines.
+[Lord Nightmare]
+
+8237dma - Added cascade mode support [Wilbert Pol]
+
+pic8259 - Added support for cascade mode, updated interface in all
+drivers [Miodrag Milanovic]
+
+upd7725.c: Implementation of the p0 and p1 output bits as device
+lines; preliminary implementation of INT input line. [Lord Nightmare]
+
+Replaced mamedriv.c with a new driver list mechanism that is generated
+by the build tools. The emulator core now expects the presence of a
+file called src/$(TARGET)/$(SUBTARGET).lst which is just a raw list of
+driver names, one per line. C and C++ comments are still permitted.
+This file is parsed by a new build tool makelist which extracts the
+driver names, sorts them, and generates a file called drivlist.c,
+which is consumed by the core. [Aaron Giles]
+
+Added new osdcore function osd_malloc_array() which is identical to
+osd_malloc() but obviously hints that the underlying allocation is for
+an array. Updated all callers to use the appropriate form. Modified
+the Windows allocator to only use guard pages for array-style
+allocations, allowing us to enable them once again in debug builds.
+[Aaron Giles]
+
+Created new static class driver_list to wrap accesses to the list of
+available drivers. Improved speed of driver lookups by relying on the
+presorting done by makelist. [Aaron Giles]
+
+Created helper class driver_enumerator as a helper for iterating
+through the list of drivers. This class supports basic filtering and
+iteration, and also serves as a temporary cache of machine_configs.
+[Aaron Giles]
+
+Created cli_frontend object to wrap all the CLI handling code in
+clifront.c. Updated/simplified all the code to take advantage of the
+driver_enumerator. [Aaron Giles]
+
+Created media_auditor object to wrap all the auditing functions in
+audit.c. Updated all users to the new interface. Note that the new
+auditing mechanism is slightly out of sync with the romload code in
+terms of finding ROMs owned by devices, so it may mis-report some
+issues until the new ROM loading code is in. [Aaron Giles]
+
+Added concept of a per-device searchpath. For most devices, their
+searchpath is just the short name of the device. For driver_devices,
+the searchpath is driver[;parent[;bios]]. This searchpath will
+eventually be used by the rom loader to find ROMs. For now it is used
+by the media auditor only. [Aaron Giles]
+
+Created info_xml_creator object to wrap all the info generation
+functions in info.c. Converted the file to C++ and cleaned up the
+input processing code. [Aaron Giles]
+
+model2.c: Corrected the revision level for Top Skater (USA) set
+[The Dumping Union]
+
+Various improvements to the Konami Viper driver [Ville Linde]
+
+midqslvr: Add some hardware information [O. Galibert]
+
+Added reverse-spin support to the stepper motor simulator
+[James Wallace]
+
+mpu4.c: Documented MOD 4 OKI program card ROM banking and improved the
+BwB characteriser emulation. [James Wallace]
+
+Fixed the I/O address in Intel 8257 DMA operations. [Curt Coder]
+
+Fixes for non-native SDL builds on OS X [Paulo Cabral]
+
+Added "Mandatory artwork is missing" error [Oliver Stöneberg]
+
+Implemented 16-bit device callbacks. [Curt Coder]
+
+Fix loading fonts on MacOSX. [Couriersud]
+
+Delegates 2.0 implementation. Resdesigned how delegates work to make
+them more flexible and simpler to use. Got rid of the proto_delegates
+altogether in favor of supporting delegates that are bound to NULL
+objects. Added a front-end template that supports "natural" syntax
+favored by libraries like boost. Added support for static functions
+that take reference parameters instead of pointer parameters for the
+object type. Updated all delegate users in the system to the new
+syntax. [Aaron Giles]
+
+Changed the DIRECT_UPDATE_HANDLER to take a machine reference like
+everything else in the system. Updated all users. [Aaron Giles]
+
+Changed the FUNC() macro to automatically put an & in front of the
+item passed. In general this works transparently, however it does have
+the nice side-effect of catching situations where a variable is passed
+instead of a function name. Fixed those cases to push the naming
+upstream so that the name is now provided properly. Also added a
+FUNC_NULL macro since FUNC(NULL) no longer works. [Aaron Giles]
+
+tms5220.c: partially fixed perfect interpolation hack, disabled by
+default. [Lord Nightmare]
+
+segas24: Start untangling the Vogon poetry Atari Ace left is his wake.
+Apply the new timing implementation per cgfm's analysis. Gain ground
+is going to be stuck in free play mode. [O. Galibert]
+
+tms5220.c: fixed perfect interpolation hack the rest of the way, now
+it works as it did before 0.140 or so. [Lord Nightmare]
+
+tms5220.c: improve perfect interpolation hack slightly, should be less
+noisy after inhibit frames. [Lord Nightmare]
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Major Poker (v2.0) [Roberto Fresca, Tomasz Slanina, Rob Ragon]
+Witch Royal (Export version 2.1) [Roberto Fresca, Team Europe]
+Water-Nymph (Ver. 1.4) [Team Europe, Luca Elia]
+
+
+New clones added
+----------------
+Silent Scope (ver xxC, Ver 1.30)  (not working) [Alex Romero]
+Street Fighter III: New Generation (Hispanic 970204) 
+ [Bill D., The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Racing Jam: Chapter 2 (EAE) [RetroRepair]
+Thrill Drive (EAA) [RetroRepair]
+Alien: The Arcade Medal Edition
+  [Yohji, Tormod, Smitdogg, The Dumping Union]
+Home Run Classic [Mariusz Wojcieszek]
+Country Club Classic [Mariusz Wojcieszek]
+Trap Shoot Classic [Mariusz Wojcieszek]
+Nintendo FamicomBox  [Kevin Horton]
+MPU3 Unit Test (Program 5) [James Wallace]
+Hyper Viper [James Wallace]

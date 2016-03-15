@@ -1,0 +1,158 @@
+0.128u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01722: [Crash/Freeze] sokonuke: Game hangs after you choose stage. 
+         (Aaron Giles)
+- 00468: [DIP/Input] gogomile, gogomilj: Inserting coins or pressing 
+         start has no effect at the continue screen. (Phil Bennett)
+- 00436: [Sound] kyukaidk: Some of sound effects are wrong. Umpire's 
+         voice is most notable. Also, music is not correct. 
+         (Phil Bennett)
+- 01702: [Gameplay] cloak + clones: Can´t pick up items (Phil Bennett)
+- 02140: [Save/Restore] cubeqst: cube quest crashes mame when saving 
+         state (Phil Bennett)
+- 02577: [DIP/Input] crush and clones: Broken Dips (Fabio Priuli)
+- 00359: [Sound] blocken: Some of the enemy voices are totally wrong 
+         (Phil Bennett)
+
+
+
+Source Changes
+--------------
+MC6845 changes: [Curt Coder]
+ - added cursor and display enable skewing
+ - added preliminary support for SY6545-1's transparent addressing mode
+ - Hsync should be pulsed even when vsync is active.
+
+Removed per-game hacks from CPS3 (moved to DMA callback in SH2 core).
+Removed Speedups from CPS3 / PsikyoSH, while they do still give a 
+decent speed boost they're not really needed with the DRC and just 
+clutter the code. [David Haywood]
+
+Minor NeoGeo cleanups [JohnBoy]
+
+Rewrite of the Motorola DSP56k CPU core. [Andrew Gardner]
+ * Complete rewrite focusing on legibility and extensibility.
+ * 27/121 opcodes (mostly) implemented.
+ * Bugfix for reset status of interrupt priority bits.
+ * Bugfix for disassembly of register-to-register parallel data move.
+ * Added additional branch, move and bitfield ops.
+ * Plygonet now passes its memory test and uploads a new program.
+ * Implemented tst, or, jsr, rti, tst2, and 2 new movec ops.
+ * Added opbase handler to plygonet.c
+
+Increase cubeqst interleave factor to eliminate LDP timeout countdown 
+flicker. [Philip Bennett]
+
+Added redumped B-Rap Boys sample ROMs. [Guru]
+
+Cleaned up STV rom loading a bit. [David Haywood]
+
+NamcoNBx: fixed C75 BIOS loading for big-endian targets. [R. Belmont]
+
+Updated tnzs.c driver: [stephh]
+  - renamed sets :
+      * 'tnzsjn'   -> 'tnzsj'
+      * 'tnzsj'    -> 'tnzsjo'
+      * 'kagekia'  -> 'kagekih'
+  - fixed Dip Switches for all games (2 remaining unknown Dips in 
+    'plumppop' and 'jpopnics' though)
+  - added many notes
+
+Small cleanups to the ST-V driver. Make some work for magzun, still 
+not working. [Angelo Salese]
+
+AICA: fix sample addressing for the full 8 MB [kingshriek].
+
+Fixed bnstars1 screens. [David Haywood]
+
+MCS51/I8051 overhaul, micro3d improvements and full m72 protection 
+emulation for lohtb2: [couriersud, Jim Stolis]
+ * improved serial port timing
+ * better infrastructure for adding more variants like DS5002
+ * Fixed port reading
+ * Rewrote Macros for better readibility
+ * Fixed and rewrote Interrupt handling
+ * Now returns INTERNAL_DIVIDER, adjusted cycle counts
+ * Remove unnecessary and duplicated code
+ * Remove unnecessary functions
+ * Rewrite to have sfr-registers stored in int_ram. 
+ * Debugger may now watch sfr-registers as well.
+ * implemented interrupt callbacks (HOLD_LINE now supported)
+ * Runtime switch for processor type - remove ifdefs
+ * internal memory maps for internal rom versions (internal ram now 
+    displayed in debugger)
+ * more timer cleanups from manual
+ * fix timer 2 interrupts
+ * implement serial mode 2/3 rx and tx clock handling
+ * Remaining games checked and adapted to changes in cpu core 
+ * Cardline still broken. I need the exact and complete cpu name.
+ * Added more variants 803X, 80CXX, AT89C4051
+ * Fix segas18.c (segaic16.c) mcu maps. 
+ * Fix sslam.c 
+ * Fix limenko.c videopkr.c : Issue with core allocation of ram (duplicate savestate)
+
+micro3d improvements: [couriersud]
+ * serial port communication between main cpu and sound board works
+ * sound board now works
+ 
+m72 - lohtb2 improvements: [couriersud]
+ * full emulation of protection device
+ * Samples are now piped through the mcu
+
+Added sound and corrected wrong DIP-SW in the Double Dealer driver.
+Completed protection vectors, fixed video emulation and added coin 
+setting simulation. [Angelo Salese]
+
+Fixed recently regressed raster interrupt issues in fuukifg*
+drivers. [Philip Bennett]
+
+Added flip screen / cocktail support to yumefude driver. Completed 
+DIP-Switches (manual-wise) and made better comments. [Angelo Salese]
+
+Separated umk3 and breakrev from their parents. [David Haywood]
+
+Some reorganization in megadriv.c, porting over some code to attempt 
+to get it working again, bit by bit. [David Haywood]
+
+Improved dakkochn gfx; the priority are ok but there are various 
+offset so i marked also the game as "inperfect gfx". [Sonikos]
+
+Fixed a subtle bug in the 65c02 emulation where the result of the BIT 
+instruction differs on the 65c02 (from the 6502), when executed
+in immediate mode. [Phill Harvey-Smith]
+
+Added samples suppor to Cosmic Alien. [T. Bellm]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+(Medal) Yumefuda [Bet] [Angelo Salese]
+Grudge Match (Yankee Game Technology) [Aaron Giles]
+Double Dealer [Angelo Salese, David Haywood]
+Super Megatouch IV (9255-41-07 ROG, New Jersey version) 
+  [Mariusz Wojcieszek]
+Mirage Youjuu Mahjongden [Angelo Salese]
+
+
+
+New clones added
+----------------
+The King of Fighters 2002 (bootleg) [Kawaks]
+Police Trainer (v1.3B Newer) [Brian Troha]
+Egg Venture (Release 8) [Brian Troha]
+Kick for the Goal [Brian Troha] (Not Working)
+Fire Shark (Korea, set 1, easier) [Guru]
+Fire Shark (Korea, set 2, harder) [Guru]
+Seibu Cup Soccer (set 2) [Chris Hardy] (NOT WORKING)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+P's Attack [Guru]
+Magic the Gathering: Armageddon [David Haywood]

@@ -1,0 +1,164 @@
+0.126u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01448: [DIP/Input] twotiger: If you have your controller centered, 
+         it is in fact tilted slightly to the right. (Aaron Giles)
+- 00595: [DIP/Input] playch10.c games: Button 1 and 2 are reversed 
+         with respect to all other standard mapping. (Fabio Priuli)
+- 02007: [Misc.] avengrgs: SH2 Recompiler Bug: Avenrgs crash 
+         (R. Belmont)
+- 01892: [Sound] calspeed: Refreshspeed causes horrible screetching 
+         in some games [Calspeed used for example]. (Aaron Giles)
+- 01472: [DIP/Input] flower: Starting a game doesn't always register. 
+         (David Haywood)
+- 02029: [DIP/Input] aurail and clones: Coinage Dip Switches ignored
+         (Fabio Priuli)
+- 01902: [Core] galpani3: crash at start (Fabio Priuli)
+- 01718: [DIP/Input] bishi: Coin 1 and Service 1 mapped twice. 
+         (Fabio Priuli)
+- 01572: [DIP/Input] hypreact: Kan, Pon, Chi, Reach, Ron are mapped 
+         twice. (Fabio Priuli)
+- 01568: [DIP/Input] gstrik2: Service mode is mapped twice. 
+         (Fabio Priuli)
+- 02019: [Core] vfkids: Logging for the SH-2 has been left on. 
+         (R. Belmont)
+- 01113: [Speed] btlkroad: [possible] This game runs like slow-motion 
+         during gameplay, with 60/60 on fps. (Nicola Salmoria)
+- 00479: [DIP/Input] livegal: P1 Start start a P2 game (and some 
+         inputs are misread in Test Mode) (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+Robustified key behavior when the debugger is visible. Should now
+properly ignore the "break into debugger" keypress and not allow
+related characters to filter through. Removed some hacks related to
+making that work in the past. [Aaron Giles]
+
+Changed osd_wait_for_debugger() to take a machine parameter and a
+"firsttime" parameter, which is set to 1 the first time the function
+is called after a break. The Windows debugger uses this to ensure
+that the debugger has focus when you break into it. [Aaron Giles]
+
+Changed short names for STV BIOS back to single words. [Brian Troha]
+
+Added information on how to toggle the built-in speedup in Ms Pacman 
+or the fast shot in Galaga in 20pacgal. [Brian Troha]
+
+Removed MDRV_SOUND_ADD. Renamed MDRV_SOUND_ADD_TAG to MDRV_SOUND_ADD. 
+All sound chips must now include a tag. Changed all existing drivers 
+to define a unique tag for each sound chip. [Aaron Giles]
+
+Fixed incorrect i960 behavior when generating interrupts. [ElSemi]
+
+Changed -listxml to now output the tag names for CPUs and sound chips.
+[Aaron Giles]
+
+Added validity checks to ensure no duplicate sound or CPU tags.
+Fixed several duplicates. [Aaron Giles]
+
+Changed MDRV_CPU_ADD to require a tag. Removed MDRV_CPU_ADD_TAG.
+Tagged all CPUs. [Aaron Giles]
+
+TGP / Model 2 fixes [ElSemi]
+ - TGP now correctly uses table roms (model1/2 updated accordingly)
+ - removed FIFO hack on srallyc (game now runs)
+ - added analog ports reading for model 2A/B/C
+ - fixed some loading instructions in the TGP. that fixes srallyc 
+    automatic transmission bug
+
+Merged CPU0 and 1 memory maps in flower, improved interrupt generation
+[David Haywood]
+
+Dsp56156 Disassembler rewrite. [Andrew Gardner]
+ - Rearranged decoding behavior.
+ - Updated code style to MAME standards.
+ - Tested each single-word opcode with custom ROMs.
+
+Laserdiscs are now devices. Updated all drivers accordingly.
+[Aaron Giles]
+
+Merged memory maps in battlnts, bbusters, bigevglf, bigstrkb, and
+bionicc. [Aaron Giles]
+
+Added new functions attotime_to_ticks() and ticks_to_attotime() to
+convert between attotimes and a clock tick at an integral frequency.
+[Aaron Giles]
+
+Changed the 6532 RIOT device into a proper device. Rewrote the
+logic to be simpler and leverage the new attotime functions. Changed
+the I/O port setters to specify a mask, and changed the I/O port
+callbacks to pass in the previous value. Updated tourtabl and
+gameplan drivers to use the new device interface. [Aaron Giles]
+
+Converted audio/starwars.c, audio/exidy.c, and audio/gottlieb.c to 
+use the new RIOT implementation instead of rolling their own.
+[Aaron Giles]
+
+Began gottlieb.c cleanup. Converted palette calculations to resistor
+weights. Corrected video timing. Reduced the number of separate
+machine drivers. Fixed incorrect spriteram sizes. Populated full
+memory maps for the main CPU and the rev 1 sound board. More to
+come. [Aaron Giles]
+
+Fixed 8257 DMA terminal count stop for autoload mode and added 
+callback function existance check. [Miodrag Milanovic]
+
+Completed removal of all explicit calls to input_port_read_indexed().
+[Fabio Priuli]
+
+Converted tinklpit keycus implementation from a table to a LFSR.
+[Olivier Galibert]
+
+Removed unnecessary ROM shuffling code in namconb2. [Olivier Galibert]
+
+Made the initialization of various Konami PPC drivers consistent 
+from run to run, hopefully fixing most multisession issues. Also moved
+some allocations from static to dynamic storage. [Atari Ace]
+
+Made input_port_read_indexed() private to machine/generic.c. 
+Eventually it will probably disappear altogether. Fixed the two 
+remaining instances. [Aaron Giles]
+
+Converted a number of drivers from A-C to using tagged input ports,
+and AM_PORT_READ in the address maps. [Fabio Priuli]
+
+Added DIP locations to a large number of drivers: bwidow.c, bzone.c,
+bestleag, blackt96, bogeyman, bombjack, boogwing, bottom9, brkthru, 
+darwin, buggychl, squaitsa, btime, bnj, lnc, zoar, disco, cabal, 
+canyon, cbuster, cclimber, swimmer and guzzler. [Fabio Priuli]
+
+Made DIP switch renderings consistent regardless of UI aspect.
+[Aaron Giles]
+
+Moved more items out of .data by either applying const, removing the 
+non-zero initializer (if its overwritten by init/reset) or by adding 
+appropriate initialization code. [Atari Ace]
+
+Removed conditional logging code in favor of allowing the compiler to
+optimize it out. This prevents bitrot of #ifdef'ed code. [Atari Ace]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Shinobi III (Mega Play) [Tomasz Slanina, Kowal]
+Player's Edge Plus (X002069P) Double Double Bonus Poker [Hammer300]
+
+
+
+New clones added
+----------------
+Major Title (World) [Tirino73 / MAME Italia]
+Winding Heat (EAA, Euro v1.11) [Highwayman]
+Demon's World / Horror Story (set 5) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Rail Chase 2 [AndyGeezer]

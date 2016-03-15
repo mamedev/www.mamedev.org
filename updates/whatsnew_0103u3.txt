@@ -1,0 +1,116 @@
+0.103u3
+-------
+
+
+Source Changes
+--------------
+
+H8/Last Fight update: [R. Belmont]
+ * (H8) Limited vector reads to 24 bits
+ * (H8) Added SHLL.W, EXTU.L, SUBS.L #2, and SUBS.L #4 opcodes
+ * Includes Guru's readme
+ * Loads all ROMs
+ * Maps RAM for the stack
+
+Converted wcvol95 and hvysmash to use the 16-bit deco tilemap functions.
+[David Haywood]
+
+Added BCD multiply to ARM coprocessor to fix wcvol95. [David Haywood]
+
+Cleaned up the Neo Geo mess from 0.103u2. [David Haywood, Razoola]
+
+Added support for >4GB CHD files to chdman for non-Windows systems.
+[Lawrence Gold]
+
+Fixed leapyear calculation. [William Krick]
+
+Converted Super Burger Time, Vapor Trail, and Crude Buster to use the 
+deco tilemap functions. [David Haywood]
+
+Rewrote Neo-Geo video system, removing distinction between raster and
+non-raster games and cleaning up the code significantly. [David Haywood]
+
+Improved DIP switches for clowns, clowns1, and bowler. [Bob Seidel]
+
+Added CPUINFO_PTR_DEBUG_SETUP_COMMANDS: a callback that is invoked to 
+tell CPU cores to set up commands specific to a CPU core. [Nathan Woods]
+
+Added SegBase() and SegLimit() functions to the i386 core debugger.
+[Nathan Woods]
+
+Improved sound balance in Night Slashers. [MAME Italia]
+
+Improvements to the Deco MLC games (added sprite buffering, fixed tile 
+banking, fixed clear colour, added sprite clipping & ARM interrupt bug 
+fix). The only thing left for this driver is really raster support for 
+the pitch in Stadium Hero. [Bryan McPhail]
+
+Fixed Hang On stereo sound routine. [Mamesick]
+
+Cleaned up PC keyboard code. [Nathan Woods]
+
+Added memory_install_* calls that are not specific to specific bus 
+widths (only for static handlers, not for function pointers). [Nathan Woods]
+
+Added sound to Ping Pong Masters '93. [Tomasz Slanina]
+
+Converted Crazy Balloon sound to use the discrete system. [Derrick Renaud]
+
+Major Namco System 22 update: [Phil Stroffolino]
+ * Hooked up the real master DSP BIOS.  Many games are now working or
+    displaying graphics that were having problems before; removed many
+    hacks as a result.
+ * Hooked up the runtime-configurable interrupt handlers, removing more
+    game-specific hacks.
+ * Some improvements and additional documentation of video hardware.
+ * Emulated Alpine Surfer protection and fixed bogus loading of Point
+    ROMs, though the game still has problems.
+
+Fixed the Wild Western bonus screen, where the horse would not scroll 
+into view. [Nicola Salmoria]
+
+Cleaned up inputs in the bfm_sc2 driver. [El Condor]
+
+Fixed in the old debugger the display of opcodes for word-addressed CPUs 
+like the TMS32010, which was completely broken before. [Alex Jackson]
+
+Separated debugger break key from OSD display. They can now be programmed
+differently. Also fixed behavior in the new debugger when using the break so
+that text doesn't get entered onto the command line. [Aaron Giles]
+
+Fixed the handling of address masking and display within the debugger.
+[Aaron Giles, Nathan Woods]
+
+Fixed order of operations in the expression engine if functions were used.
+[Aaron Giles]
+
+Added timer support to the ADSP cores and hooked it up for the DCS games.
+[Aaron Giles]
+
+Many Voodoo updates to add Voodoo Banshee and Voodoo 3 support. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Backfire! [David Haywood]
+Skull Fang [Bryan McPhail]
+Thunder Hoop [Pierpaolo Prazzoli, Mike Coates, Brian Troha]
+X-Files [Pierpaolo Prazzoli]
+King of Dynast Gear [Pierpaolo Prazzoli, Guru]
+Meijinsen [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Demon's World / Horror Story (first edition) [Corrado Tomaselli]
+The Couples (Set 3) [f205v]
+Dragon World (World, V0300) [f205v]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Poizone [Chris Hardy, David Haywood]
+

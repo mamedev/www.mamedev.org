@@ -1,0 +1,585 @@
+0.90
+------
+
+General Improvements
+--------------------
+
+Fixed sound in Desert Breaker with new roms [Aaron Giles, Gerald, Thierry]
+
+Fixed dip-switches to nmk16 driver [Brian Troha]
+
+New Discrete Sound Functionality [Derrick Renaud, Frank Palazzolo]
+ DISCRETE_OP_AMP_FILTER - properly emulated DISC_OP_AMP_FILTER_IS_BAND_PASS_1M type filter. Used by many games.
+ see: http://home.cogeco.ca/~derrickmame/galaga/Galaga_filters.html
+ * atafifb, abaseb - Re-wrote to use component value only code and use new filter.
+
+Fixed crash in i8x41 cpu core reading uninitialized internal RAM [Juergen Buchmueller]
+
+Super Qix driver update [Nicola Salmoria]
+ - manually repaired the ROM code and added support for the I8751 MCU,
+   so the two original sets work.
+ - swapped sqix and sqixa, because the the former was dumped from a bootleg board
+   (though there's no reason to believe the ROMs were modified, so I didn't mark it as bootleg)
+ - merged with pbillian
+ - fixed pbillian/hotsmash sample playback
+ - fixed pbillian MCU simulation and inputs
+ - improved hotsmash MCU simulation, the game is playable now though still incomplete.
+
+Bubble Bobble driver update [Nicola Salmoria]
+ - removed the 68705 CPU emulation, since that's not what the original used
+ - simulated the 68701 MCU
+ - enemy movement should now be correct (bublbobl36rc2yel)
+ - fixed clock item behaviour. Now enemies start moving again after 10 seconds (bublbobl36b3yel)
+ - supported coin lockout
+ - emulated the boblbobl protection device, getting rid of the ROM patches.
+ - adjusted PSG volume in tokio (tokiob067gre)
+
+Fixed gaplus driver to use its samples [Brian Troha]
+
+Fixes the undocumented bit test opcodes in hd6309 cpu core [Nathan Woods]
+
+Some i386 cpu core fixes [Nathan Woods]
+ - Fixed algorithm for identifying 32-bit segments
+ - Near branches now won't force a segment reload
+ - Implemented RET imm16 under 16-bit mode
+ - Fixed SBB instruction (the borrow was deducted from the second operand, not the result)
+ - Fixed LDS, LSS, LES, LFS, LGS under 32-bit mode
+ - Partially implemented LLDT, LTR, CLTS, WAIT and MOV dr instructions
+
+Some C89 compilers fixes [Lawrence Gold]
+
+Renamed arcadia machine/vidhrdw/include files from arcadia.* to amiga.* [Nathan Woods]
+
+Fixed Vs. Stroke & Match Golf name [chaneman]
+
+Fixed oisipuzl inputs [Pierpaolo Prazzoli]
+
+Fixed Rainbow Islands visible area [Nicola Salmoria]
+
+ST-V fixes [Angelo Salese]
+- Fixed various DMA bugs, including a missing save/update mode in indirect mode and 
+  added a default add value for the A-Bus transfer, to avoid strange uploads.
+- Further improved the SCU emulation, added two unemulated irqs (PAD and SCSP), 
+  improved the "illegal" DMA operations and started to work out with the games headers.
+
+Fixed a disassembler bug with the Nec cpu core [Angelo Salese]
+
+Fixed player 2 and 3 inputs in xenophob [Hans Andersson]
+
+Fixed sound banking in taito_f3 driver [Nicola Salmoria]
+
+Fixed memory leaking and added a check in debug builds [Nicola Salmoria]
+
+Hyperstone cpu core fixes
+ - Added and fixed the timer and removed the hack [Pierpaolo Prazzoli]
+ - Fixed delayed branching for delay instructions longer than 2 bytes [Tomasz Slanina]
+
+Fixed colors and Cocktail support in Enigma 2 [chaneman, Pierpaolo Prazzoli]
+
+Added SE3208 cpu core emulation [ElSemi]
+
+Fixed model1 driver compiling problem with OpenVMS [Robert Alan Byer]
+
+Fixed itech32 driver crash on AMD64 cpus [R. Belmont]
+
+Fixed namco54 sound driver compiling in VisualC++ [Kenneth Miller]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Evolution Soccer [ElSemi]
+
+Kabuki-Z (Japan) [Pierpaolo Prazzoli]
+
+Karaoke Quiz Intro Don Don [Angelo Salese]
+
+Riot (Japan) [Pierpaolo Prazzoli]
+
+Super Qix (set 1 & 2) [Nicola Salmoria]
+
+The Crystal of Kings [ElSemi]
+
+Virtual Mahjong [Angelo Salese]
+
+
+Clones
+------
+
+Astro Battle [HIGHWAYMAN, Pierpaolo Prazzoli]
+
+Astro Fire [Pierpaolo Prazzoli]
+
+Bay Route (Japan, FD1094 317-0115) [Chris Hardy]
+
+Cotton (US, FD1094 317-0180) [Gerald]
+
+Great Gurianos (Japan?) [Nicola Salmoria]
+
+Rad Mobile (World) [Chris Hardy]
+
+Ultimate Mortal Kombat 3 (rev 1.0) [Brian Troha]
+
+
+New Non-Working
+---------------
+
+Arrow Flash (Mega-Tech) [Gerald, Thierry]
+
+Buccaneers [Tomasz Slanina]
+   missing one program rom
+
+
+0.89u6
+------
+
+General Improvements
+--------------------
+
+MC8193 update [Nicola Salmoria]
+	- expanded the decryption tables, they change when bit 15 of the address is 
+	  set
+	- table for 317-0066 (Altered Beast) almost complete, but there are still 
+	  some uncertain values for opcodes above 8000 (not actually needed)
+	- incomplete table for 317-0054 (Shinobi). Still not enough to decrypt the 
+	  program.
+	- tables for 317-0043 (wbml) and ninjakd2 derived by comparison of the 
+	  original with the decrypted bootleg. They are incomplete but enough to fully 
+	  decrypt the program. Unfortunately Block Gal and Perfect Billiards cannot be 
+	  done in the same way because encrypted and decrypted programs are different 
+	  versions.
+
+i386 fixes [Nathan Woods]
+	src/cpu/i386/i386dasm.c:
+   	- disassembler will now list segment prefixes when appropriate
+
+	src/cpu/i386/i386op16.c:
+	- fixed LMSW opcode
+
+New Sega X-Board driver [Aaron Giles]
+	many improvements over the old driver
+	
+	-- improved sprites (see thunderblade)
+	-- improved road layer (see abcop, thunderblade)
+	-- guns in line of fire (but it hangs at the end of the level)
+	-- better tilemap support (from 16b)
+	
+	-- gprider no longer boots (nested interrupts)
+	
+Removed a rom patch in Exzisus [Nicola Salmoria]
+
+Rearranged TNZS sets based on new information [Nicola Salmoria]
+
+Cleaned up Return of Invaders driver [Nicola Salmoria]
+
+nmk16 video update [Pierpaolo Prazzoli]
+	- Added sprites priorities (still few problems with priority = 0) 
+	- Fixed raphero and mmacros2 background
+	- Fixed manybloc (added scrolls, fixed background gfx)
+	- Added background banking in acrobatm
+
+updated S2650 CPU core to count more accurate clock cycle counts [Juergen Buchmueller]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Thunder Blade [Aaron Giles]
+
+New Non-working
+---------------
+
+Megatech: Alien Storm [DangSpot]
+	genesis i/o problems
+
+
+0.89u5
+------
+
+General Improvements
+--------------------
+
+
+Adjusted NamcoS2 sound balance
+
+Solar Warrior driver update [Bryan McPhail]
+	Fixed NMI & FIRQ handling according to schematics.
+	Fixed clock speeds.
+	Implemented GFX priority register/priority PROM
+
+IremGA20 64-bit crash fix [Stephen Behling]
+
+Misc updates [Nathan Woods]
+	src/cpu/i86/i86.c:
+	src/cpu/i86/i286.c:
+	- Fixed disassembler calls, so that instructions are not falsely 
+	disassembled as 32-bit
+
+	src/cpu/i386/i386op16.c:
+	- Implemented SMSW instruction
+    
+	src/cpu/i386/i386dasm.c:
+	- Marked retf instruction as DASMFLAG_STEP_OUT
+	
+	src/x86drc.h:
+	- Added macros for pushfd() and popfd()
+
+Added 'TRACEOVER' support to debugger (see help) [Nathan Woods]
+
+New Debugger Commands [Aaron Giles]
+	- snap [<filename>] - takes a snapshot and saves it to the given <filename>; 
+	if <filename> is omitted, this is equivalent to hitting F12
+	- gi[int] [<irqline>] - executes until the current CPU takes the interrupt 
+	line specified by <irqline>; if <irqline> is omitted, executes until any IRQ 
+	is taken on the current CPU. This has been mapped to F7 as well.
+	- gv[blank] - executes until the next VBLANK; this is useful for stepping 
+	frame-by-frame from within the debugger. This has been mapped to F8.
+
+Various Improvements [Sebastien Volpe]
+
+	galpani3:
+	- palette, inputs, sound hooked up, backgounds 'decoded' (RLE)
+
+	jchan:
+	- slight cleanup, sound hooked up, tile area identified
+	- jchan2 now passes initial checks
+
+	kaneko16 (bonkadv):
+	- priorities corrected according Luca's scheme
+	- sound 'improvements' (both banking and rom loading)
+	- game name updated
+	- interrupts scheduling change (not correct, but somewhat improved, see 
+	comment) and as a consequence, fake region dsw is removed.
+
+	srmp6: new driver, Seta System 12 ?
+	- many things todo, gfx decoding would be nice!
+
+	toki:
+	- correct frequencies
+	
+Started minor cleanup of System 32 driver (some things are probably broken for
+now) [David Haywood]
+
+hypereac2 sound fix, sh2 bounds overflow fix, atarijsa memcpy fix [Mame32Plus]
+
+Improvements to Namco 54xx Noise Generator [Jarek Burczynski]
+	Type A, and B emulated, type C algo still unknown 
+
+Minor Sega Update [Aaron Giles]
+	- renamed dbrkr to desertbr
+	- cleaned up the math chip emulation, should be much closer now
+	- fixed off-by-1 column scroll in wrestwra
+	- fixed shadows in S18 so they don't affect any VDP-drawn pixels
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Wrestle War (Japan) [Gerald]
+Flying Ball (Deco Cassette) [Juergen Buchmueller]
+SportTime Bowling (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Leader Board Golf (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Ninja Mission (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Road Wars (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Shinobi (set 4, System 16B, unprotected) [Aaron Giles]
+
+New Non-working
+---------------
+
+Astro Battle (Sidam) [Highwayman, Pierpaolo Prazzoli]
+Super Real Mahjong Part 6 [Sebastien Volpe]
+Magic Johnson's Fast Break (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Xenon (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+SportTime Table Hockey (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+World Darts (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Sidewinder (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+Space Ranger (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+7-up Spot (Arcadia) [Mariusz Wojcieszek, Ernesto Corvi]
+
+
+0.89u4
+------
+
+General Improvements
+--------------------
+
+Added MVP dips [Brian Troha]
+
+Fixed Reset crash in decocass driver [Juergen Buchmueller]
+
+Added support for alt bios set and changed games to use generic unknown
+dips in decocass driver [David Haywood]
+
+Cleaned up z80 core, removing the optional inexact emulation mode and
+the leading underscores from macro names to comply with C99 naming
+conventions [Juergen Buchmueller]
+
+Additional 64-bit integer related cleanups in model3/ppc [Lawrence Gold]
+
+Fixed a history list overrun in New Debugger when the down arrow key is
+pressed when the history list is empty [Nathan Woods]
+
+Added support for DASMFLAG_STEP_OVER and DASMFLAG_STEP_OUT flags in i386
+core [Nathan Woods]
+
+Fixed memory.c MAX BANKS problem [Nathan Woods]
+
+Added difficulty dips in Scorpion [Chaneman]
+
+artwork070u4 fix [BUT]
+
+074u1ora.diff fix [Rene Single]
+
+Cleanup of Jackal and Mikie driver [Curt Coder]
+
+Fixed missing sprites in Steel Gunner [Phil Stroffolino]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Desert Breaker (FD1094 317-0196) [Gerald, David Haywood]
+
+Clones
+------
+
+Alien Storm (US, 3 Players, FD1094 317-0147) [Gerald]
+Tetris (Japan, System 16A, FD1094 317-0093a) [Thierry]
+Shinobi (set 3, System 16A, unprotected) [Gerald, Thierry]
+Wrestle War (FD1094, 317-0102) [Andy Conroy]
+Greyhound Trivia (alt questions) [Pierpaolo Prazzoli]
+Jump Coaster (Taito) [Thierry, Gerald]
+
+New Non-working
+---------------
+
+Jackie Chan in Fists of Fire
+	protection issues
+
+
+0.89u3
+------
+
+General Improvements
+--------------------
+
+Model 3 Cleanups [R.Belmont]
+	- Added init for mpc105 bridge
+	- Synchronized VS2 CROMs
+	- Fixed missing VROMs in Sega Rally 2 and Virtual On 2
+	- Added VS2 '99 set, fixed incorrect ROMs in vs2v991
+	- Added Virtual On 2 v5.4g, Daytona USA 2, and Dirt Devils sets
+
+Model 3 / PPC updates [Ville Linde]
+	- Major bugfixes to the PPC603 emulation, especially the FPU
+	- Improved MPC105 emulation
+	- Preliminary 53c810 SCSI emulation.  Lost World now
+	  tries to download everything necessary to the Real3D stuff
+	- Added export version of Scud Race
+
+
+Sega System16 updates [Aaron Giles]
+	* hooked up sound in atomicp (tempo is just a guess right now)
+	* created new machine/segaic16.c to hold non-video common hardware
+	* preliminary multiply/compare implementation moved there
+	* updated some game info against Thierry's spreadsheet; altbeast needs an 
+	encrypted Z80 for sound now
+	* included eswatj update from Thierry
+	* fixed reset bug when running 16B/18 games
+	* changed segaic_init_palette to take a number of palette entries
+
+Decryption of MC-8123B 317-0066 encrypted z80 used by altbeas2 [Nicola Salmoria, Dave Widel]
+
+Hooked up controls in some Sega X-Board games [David Haywood]
+	smgp, rachero, abcop
+
+Added coin counters to prehisle driver [Pierpaolo Prazzoli]
+
+Fixed remaining GFX issues in flower [Bryan McPhail]
+
+Fixed GFX problem in Superman [Bryan McPhail]
+
+Fixed? overdraw in atomic robokid [Pierpaolo Prazzoli]
+
+Fixed some compiler related issues with >32-bit integers in PPC / Model 3 [Lawrence Gold]
+
+Attempted to make Pokey random number generator work better with recordings (not verified
+to improve things yet) [Juergen Buchmueller]
+
+Trace in debugger now defaults to current active CPU if non specified [Nathan Woods]
+
+Naughtyb / Popflame cocktail support [HobbesAtPlay]
+
+Moved jrpacmbl to jrpacman driver [MASH]
+	
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Progressive Music Trivia [Pierpaolo Prazzoli]
+Trivia Master [Pierpaolo Prazzoli]
+Racing Hero [Gerald, David Haywood]
+
+(AB Cop and SMGP are also now 'working' but still have some fairly serious issues)
+
+Clones
+------
+
+Blood Brothers (set 2)
+E-swat (Japan) [Thierry]
+
+New Non-working
+---------------
+
+Line of Fire (Japan) [Charles Macdonald, bmoto]
+	no controls, xboard emulation problems
+	
+
+0.89u2
+------
+
+General Improvements
+--------------------
+
+Sega Improvements [Aaron Giles]
+	many s18, s16a priority bugs fixed
+	fixed s16a end-of-spritelist marker
+	8751 simulation improved
+	backup ram hooked up
+	dipswitch fixes
+	cleanups
+	etc.
+
+Fixed sound issue when in debugger [Aaron Giles]
+
+Misc driver cleanups [Curt Coder]
+
+Update to frogs to allow discrete sound to be used for tongue with samples
+for non-simulated sounds [Derrick Renaud]
+
+Improvements to Renegade driver based on data from real MCU [BUT]
+
+VC compiler fix [René Single]
+
+Removed some obsolete Mess code [Nathan Woods]
+	
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Poker Dice [Aaron Giles]
+
+Clones
+------
+Lucky and Wild (Japan) [BUT]
+Steel Gunner (Japan) [BUT]
+Metal Hawk (Japan) [BUT]
+Ordyne (Japan, English) [Chris Hardy]
+Scorpion (Zaccaria Original) [Pierpaolo Prazzoli]
+Hunchback Olympics (Scramble hardware) [Pierpaolo Prazzoli]
+Arabian Fight (Japan) [Brian Troha]
+
+
+0.89u1
+------
+
+General Improvements
+--------------------
+
+Sega Improvements [Aaron Giles]
+
+	Sega System 16A:
+	* included detailed readme in the driver file
+	* hooked up column/row scroll (see quartet title screen) -- don't know if 
+	it's really right yet
+	* reintroduced tilemap/text priorities
+	* corrected Z80 clock speed
+	* incorporated Brian Troha's updated DIPs
+	* minor cleanups
+	
+	Sega System 16B:
+	* fixed ROM bank mapping so it doesn't fall through to unmapped handlers
+	* incorporatedBrian Troha's updated DIPs
+	* minor cleanups
+	* fixed column scroll after talking to Charles about how it 
+	works
+	
+	Sega System 18:
+	* fixed ROM bank mapping so it doesn't fall through to unmapped handlers
+	  (fixes Shadow Dancer crash)
+	* expanded memory mapping code so it works from the 8751 as well as the 
+	68000
+	* hooked up the 8751 in mwalk/mwalka/mwalkb -- these all work now
+	* removed coin lockouts as they were breaking several games' coin inputs
+	* hooked up Laser Ghost controls and added crosshair drawing (not 100% yet, 
+	feel free to tweak)
+	* hooked up Where's Wally controls
+	* fixed astorm's Player 3 controls
+	* cleaned up ddcrew's inputs
+	* fixed sound ROM loading in astorma/astorm2p/mwalk*
+	* incorporated Brian Troha's updated DIPs
+	* minor cleanups
+	* added sprite masking effect used by Where's Wally
+	* fixed column scroll after talking to Charles about how it 
+	works (ddcrew attract mode scrolls properly now)
+	* went through and fixed VDP priorities in all S18 games; everything should 
+	be correct now, let me know if you find anything not right
+	
+Fixed i8051 cpu core bugs [Aaron Giles]
+	uses correct read/write memory routines for external accesses
+	support for external IRQs
+
+Fixed an rf5c68 memory access bug [Aaron Giles]
+
+Improvements to Hyper Crash [Angelo Salese]
+	now mostly working apart from controls and a gfx glitch on the player car
+	
+More Taito F2 Blending Improvements [Bryan McPhail]
+	Added the TC0360PRI blending modes to the games with rotation layers.  This
+	includes Pulirula & Liquid Kids.  One of the blending modes is new to these
+	games (not used in Gun Frontier) and I have no way to verify it's actually
+	correct - someone with a working board will need to verify (Liquid Kids -fish
+	going in water in attract mode, Pulirula - crystals on level 2).
+	
+Fixed colours in Flower [Bryan McPhail]
+
+Modified Frogs driver to only use samples when actually needed [Derrick Renaud]
+
+Misc Compiler Patches [Lawrence Gold]
+
+Workaround for excessive RAM use in Hyperstone based games [Pierpaolo Prazzoli]
+
+Fixed small problem in CHDCD [R.Belmont]
+
+Fixed stereo sound in Jaleco MegaSystem1 games [R.Belmont]
+
+Several fd1094 games now run with new keys [Thierry, Gerald]
+
+PPC Core improvements (603 support) for Sega Model 3 [Ville Linde]
+
+Temporarily disabled ym2151 save states until we work out why its crashing in
+debug/symbol/map builds
+
+Various cleanups [Atari Ace]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Passing Shot (World, 2 Player) [Gerald]
+Where's Wally [Thierry, Aaron Giles]
+Ryu Kyu [Thierry]
+Bloxeed (Japan) [Thierry]
+DD Crew (World, 4 Players) [Thierry]
+Bayroute (World) [Thierry]
+Alien Storm (World, 3 Players) [Thierry]
+Shinobi (System 16A) [Thierry]
+Moonwalker (3 original sets) [Aaron Giles]
+Laser Ghost [Aaron Giles]
+
+(note: Line of Fire does not work yet)
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Super Monaco GP (another set) [Gerald]
+
+Sega Model 3 preliminary driver [Ville Linde, Andrew Gardiner, R. Belmont]
+	some basic 2d hooked up, nothing more
+	
+Deadeye [R.Belmont]
+	CD-Rom emulation problems

@@ -1,0 +1,65 @@
+[note: only important changes are listed]
+
+0.13
+----
+
+Program:
+- Added the most frequently asked feature: high score saving. Check the
+  table at the beginning of readme.txt to see which games already support
+  it.
+  High scores are also reset-proof: you can reset the game by pressing F3
+  without losing them. To reset the high scores to their default, just
+  delete xxx\xxx.hi where xxx is the game name.
+  Note that hi score saving will NOT work if the default hi scores have been
+  modified in the ROMs. Use the original ROMs.
+
+- Fixed all of the problems in Burger Time related to ROM encryption. Slices
+  fall more than one level when an enemy is on them, no more crashes when a
+  bonus life is earned, the high screen table works, two players mode works,
+  and other things.
+
+- Support for an alternate ROM set for Burger Time, which is likely an
+  earlier version.
+
+- Millipede's dip switches now work.
+  DELETE MILLIPED\MILLIPED.DSW, OTHERWISE THE GAME WILL NOT WORK CORRECTLY.
+
+- Marc Lafontaine submitted a new palette for Zaxxon.
+
+- Richard Davies provided a new Phoenix/Pleiads driver with partial sound
+  support.
+
+- Fixed "froggers" (I broke it while adding sound to Scramble).
+  It now also uses the correct palette. Yes, I know that it is completely
+  different from the real Frogger. This is a bootleg version, remember.
+
+- As promised, I modified the 8910 emulator to set the clock frequency at run
+  time, so sound in Crazy Climber and Crazy Kong is now back as normal.
+
+- ue303ey@sunmail.lrz-muenchen.de reports that changing the horizontal total
+  register of the custom video modes (0x3d4, 0x00) from 0x5f to 0x61 makes
+  them work on his monitor. I experimentally made the change.
+  IF THE CUSTOM MODES WORKED FOR YOU IN VERSION 0.12 AND THEY DON'T WORK ANY
+  MORE, PLEASE NOTIFY ME AND I WILL REVERT TO THE PREVIOUS SETTING.
+
+- Keith Smethers suggested to add -vgafreq n command line parameters,
+  to select the VGA clock frequency. This may reduce flicker, especially in
+  the 224x288noscanlines mode.
+  WARNING: THE FREQUENCIES USED MIGHT BE WAY OUTSIDE OF YOUR MONITOR RANGE,
+  AND COULD EVEN DAMAGE IT. USE THESE OPTIONS AT YOUR OWN RISK.
+
+- I began working on Moon Patrol's background. It's quite messed up now.
+
+- Fixed a couple of minor bugs in Bomb Jack background colors.
+
+Source:
+- Use latest version of Marat's 6502 engine.
+
+- Changes to struct GameDriver to accomodate the high score saving functions.
+  I also moved the decryption pointers at the end, so it is not necessary to
+  explicitly define them as 0 when they are not needed.
+  Check driver.c to see how high score handlers should be written.
+  hiscore_load() is called every vblank until it returns nonzero; this allows
+  it to wait for the hi score table to be fully initialized before replacing
+  it. To avoid saving an incomplete table, hiscore_save() is called only
+  if hiscore_load() previously returned nonzero.

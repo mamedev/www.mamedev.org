@@ -1,0 +1,92 @@
+0.33 BETA 5
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Nemesis [Allard van der Bas]
+Konami GT (preliminary) [Allard van der Bas]
+Depth Charge [Al Kossow]
+Cosmic Alien [Lee Taylor]
+Spiders [Keith Wilkins]
+Exerion (bootleg?) [Nicola Salmoria]
+Last Duel (preliminary; the ROM set is incomplete) [Bryan McPhail]
+Mad Gear (preliminary; the ROM set is incomplete) [Bryan McPhail]
+Cobra Command [Bryan McPhail]
+Bowl-O-Rama [Zsolt Vasvari]
+1941 [Darren Olafson]
+Nemo [Darren Olafson]
+Sinistar (allegedly from a prototype machine that was displayed at the 1982
+  AMOA show in Las Vegas) [Brian Deuel]
+Moon Alien Part 2 [Al Kossow]
+Masao [Hugh McLenaghan]
+Satan of Saturn [Nicola Salmoria]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Zaxxon supports rotation (albeit slow). [John Butler]
+
+- Added the missing scrolling layer to Ghouls 'n Ghosts. [Paul Leaman]
+
+- Games which use the dynamic palette system and no longer need 16-bit modes:
+  Section Z, Legendary Wings, Trojan, Speed Rumbler, Rygar, Silkworm,
+  Gemini Wing, Tiger Road.
+  The new code is also used by these drivers which were previously doing the
+  palette reduction by themselves, but couldn't handle well color cycling and
+  fades: Bad Dudes, Robocop, Hippodrome, Heavy Barrel, Sly Spy,
+  Midnight Resistance. [Nicola Salmoria]
+
+- The Atari System 2 games automatically pick the 512x384 VESA resolution,
+  instead of going for 1024x768 with pixel doubling. IMPORTANT: if your card
+  doesn't support 512x384, they will not work. You'll have to specify
+  -640x480 or -1024x768. [Nicola Salmoria]
+
+- Fixed colors in Space Firebird. [Chris Hardy]
+
+- Fixed sprite/background priority in Gemini Wing. [Nicola Salmoria]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Sound in Space Firebird. [Dan Boris]
+
+- Fixed bug in ADPCM sample playback. Many games are affected, e.g. Robocop,
+  Bad Dudes. [Nicola Salmoria]
+
+- Attempt at making the main Galaxian / Moon Cresta sound channel more
+  accurate. [Nicola Salmoria]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Challenger, MegaTack, Killer Comet. [Santeri Saarimaa]
+
+
+Other drivers changes:
+----------------------
+
+- Mapped the unknown dip switch in Wonder Boy Deluxe. [David Calandra]
+
+- Added collision detection to Crazy Balloon. [Mike Balfour]
+
+- Fixes to the Gameplan games. [Santeri Saarimaa]
+
+- Us vs Them is playable, though of course you can't see the backgrounds which
+  were stored on the laser disc. MACH 3 still doesn't work.
+
+
+Source:
+-------
+
+- New flag IPF_RESETCPU for input ports. When this flag is set, CPU #0 is
+  reset when the key is pressed. This cleaned up the vicdual driver.
+  [Nicola Salmoria]
+
+- IMPORTANT: drawgfx(...,TRANSPARENCY_THROUGH) now requires the caller to
+  do the mapping with Machine->pens[]. This was necessary to allow for
+  TRANSPARENCY_THROUGH, palette_transparent_color in dynamic palette games.
+
+- Several fixes to improve Unix portability. [Hans de Goede]

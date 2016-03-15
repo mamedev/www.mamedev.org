@@ -1,0 +1,90 @@
+0.122u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+ym2610_0119u2gre [Philip Bennett]
+
+
+
+Source Changes
+--------------
+Zeus updates: [Aaron Giles]
+ * Figured out data format of 2 matrix form.
+ * Extracted data for lights.
+ * Added backface culling which mostly works but fails sometimes, so 
+    it is disabled.
+ * Started on some initial lighting calculations.
+ * Cleaned up zeus wave RAM accessors.
+ * Changed rendering code to allow for greater parallelism on multicore
+    systems.
+ * Removed some vestigial zeus 2 hacks.
+ * Reduced visible area to remove artifacts.
+ * Made right/bottom vertices inclusive to fix some gapping issues.
+ * Fixed invasn lightgun offset.
+
+Zeus 2 hardware:
+ * Fixed ROM loading, added banking support.
+ * Separated zeus 2 video implementation from zeus implementation.
+ * Implemented direct pixel accesses; enough to get startup screens 
+    to show.
+ * Hooked up ZPRAM.
+ * Fixed digital inputs for crusnexo.
+ * Fixed default screen parameters to match the games.
+
+Afega/nmk16 cleanups: [David Haywood, Tomasz Slanina]
+ * Merged afega.c and nmk16.c drivers
+ * Removed many hacks from both.
+ * Fixed a number of games
+
+Fixed C219 sample read order and implemented sign+magnitude format.
+Removed GAME_IMPERFECT_SOUND flag from all Namco NA-1 games.
+[Philip Bennett]
+
+Fixed ROM-based DCS2 system to ignore HLE transfers. (Fixes broken 
+sound in invasn.) Properly reduced internal memory on the ADSP-2104 
+variants. [Aaron Giles]
+
+Fixed bug that would cause events to leak through to the game when the 
+debugger was up. [Aaron Giles]
+
+Verified some cpu clocks of original boards using a frequency counter:
+[Corrado Tomaselli]
+ * Changed Success Joe Ym2203 clock from 3mhz to 4mhz
+ * Changed Pang M6295 clock from 990khz to 1Mhz
+ * Changed Halley Comet main cpu clock to 1.664mhz (it's not a 
+    mistake, the clock is very low)
+ * Besides confirming clocks on some games, I modified:
+ * Aerofighters and Turbo Force sound z80 to 5mhz
+ * Midnight Resitance 68k cpu to 10mhz (20mhz crystal) and modified 
+    m6295 clock to 1mhz. Also confirmed pin 7 is high.
+    (Midnight resistance has a lot of slow downs on the pcb too)
+
+Minor "code quality" improvements: [Atari Ace]
+ * fixed some remaining static/const qualifier missed cases
+ * fixed some missing #include "foo.h"
+ * a few global names were modified to make them less generic/more 
+    consistent (voodoo.c, vrender0.c, lethal.c, rungun.c, zac2650.c)
+ * some dead/useless code was removed (i8051.c,model1.c,romcmp.c)
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Invasion [Aaron Giles]
+Buggy Boy Junior/Speed Buggy (Upright) [Philip Bennett]
+Task Force Harrier [David Haywood, Tomasz Slanina]
+US AAF Mustang [David Haywood, Tomasz Slanina]
+Black Heart [David Haywood, Tomasz Slanina]
+Red Hawk [David Haywood, Tomasz Slanina]
+Stagger I [David Haywood, Tomasz Slanina]
+Sen Jin - Guardian Storm [David Haywood, Tomasz Slanina]
+Spectrum 2000 [David Haywood, Tomasz Slanina]
+Fire Hawk [David Haywood, Tomasz Slanina]
+
+
+
+New clones added
+----------------
+World Class Bowling (v1.3) [Brian Troha]

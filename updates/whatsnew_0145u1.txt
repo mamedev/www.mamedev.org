@@ -1,0 +1,296 @@
+0.145u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04668: [Interface] megatech, stvbios: Crash After Cartridge Selected
+         in File Manager Menu (Softlist) (Miodrag Milanovic)
+- 04689: [Documentation] ep_pkni: The correct description is "Phoenix
+         Knights (The) (Global) (EPOCH)".
+- 04688: [Documentation] sc2rock: The correct description is "How
+         Big's Your Rock? (Global) (Scorpion 2/3)".
+- 04687: [Documentation] ep_milhr: The correct description is "Who
+         Wants To Be A Millionhare? (Global) (EPOCH)".
+- 04683: [Documentation] hb_mrmon: The correct description is "Mr.
+         Money (Qps)".
+- 04682: [Documentation] hb_ydd: The correct description is "Yabba-
+         Dabba-Dough (Qps)".
+- 04680: [Documentation] sc4qmodo and clones: Missing an apostrophe.
+         The correct description is "Quazzi Mo' Dough (Qps) (Scorpion 4) (set
+         1)".
+- 04690: [Documentation] ep_beavr and clone: The correct description
+         is "Casino Beaver Las Vegas! (Global) (EPOCH, set 1)".
+- 04685: [DIP/Input] yosakdon, yosakdona: Unable to control players
+         (Tafoid)
+- 04675: [DIP/Input] steeltal and clones: Control Issues and Resets
+         (Phil Bennett)
+- 04672: [Sound] radrad: [possible] Broken shot sound (DAC) (hap)
+- 04673: [Color/Palette] springer: Rabbit has wrong colors. (M.A.S.H.)
+- 04666: [Sound] spacelnc: Missing one DAC sound. (hap)
+- 02580: [Crash/Freeze] dirtfoxj: Game freezes immediately after the
+         race start countdown. (Phil Bennett)
+- 04655: [Graphics] All sets in stv.c: Graphic corruption (hap)
+
+
+
+Source Changes
+--------------
+Minor improvements to the Cool Riders text layer. [Andrew Gardner]
+
+m68k: 68040 MMU improvements [O. Galibert]
+
+i386: Fixes for DOS4GW 1.97 [Carl]
+
+i386: Trap flag support [Carl]
+
+New modern object-oriented bus-signals-available SCSI implementation
+[O. Galibert]
+
+IDE controller now support two slots, currently used devices are made
+as slot devices [Miodrag Milanovic]
+
+Namco System 21/2 changes: [Phil Bennett]
+ * Writing a C148 IRQ priority register now clears the prior interrupt
+    state (required by dirtfoxj and winrun)
+ * Changed 'Winning Run Suzuka Grand Prix (Japan)' setname to winrungp
+ * Promoted winrungp and winrun91 to working.
+
+tsamurai.c: Fixed clocks and audio pitch. [Takahiro Nogi]
+
+Added polynew.h multithreaded-render support to N64 RDP emulation.
+Speedup ratios of 1.6x to 2.8x observed. [Ryan Holtz]
+
+Redone 30test layout, resembling the cabinet more [hap]
+
+Add LZMA codec and .7z container support [David Haywood, R. Belmont]
+
+updated sdl os-core to compile against stock SDL-2.0 [couriersud]
+ * The SDL team has moved from 1.3 to 2.0. At the same time, changes
+    were made to allow SDL1.2 and SDL2.0 to coexist. All SDL2.0
+    include files are now in /usr/include/SDL2.
+ * Added sdlinc.h to avoid having tons of #ifdef .. #include in the
+    code.
+ * Scalemode is no longer a per-window setting
+ * Fixed a bug in YUV rendering.
+ * Use SDL_GetClipboard (SDL2.0)
+ * Updated README_SDL20.txt
+Currently, SDL 2.0 is only supported on *nix. Volunteers welcome.
+
+Various N64 stability fixes. [Ryan Holtz]
+
+Steel Talons: Fixed controls and removed the MSP speedup hack which
+was causing the game to reset at certain points. [Phil Bennett]
+
+NMK16 priority fixes [Raiden II Project Team]
+
+N64: Partially fix PIF access, several more games recognize cart
+SRAM, cart FlashROM, cart EEPROM, and controller paks [Ryan Holtz]
+
+68040: Fix for fsave opcode [O. Galibert]
+
+Added support for (track)balls to osd/sdl. [Couriersud]
+
+Fixed testkeys to work with SDL2.0. Keymaps can now contain SDL1.3 and
+SDL2.0 mappings. Updated km-de.txt as an example. [Couriersud]
+
+Major CHD/chdman update: [Aaron Giles]
+ The CHD version number has been increased from 4 to 5. This means any
+ diff CHDs will no longer work. If you absolutely need to keep the
+ data for any existing ones you have, find both the diff CHD and the
+ original CHD for the game in question and upgrade using these
+ commands:
+
+ rename diff\game.dif diff\game-old.dif chdman copy -i
+ diff\game-old.dif -ip roms\game.chd -o diff\game.dif -op roms\game.chd
+ -c none
+
+ Specifics regarding this change:
+
+ Defined a new CHD version 5. New features/behaviors of this version:
+  * support for up to 4 codecs; each block can use 1 of the 4
+  * new LZMA codec, which tends to do better than zlib overall
+  * new FLAC codec, primarily used for CDs (but can be applied
+     anywhere)
+  * upgraded AVHuff codec now uses FLAC for encoding audio
+  * new Huffman codec, used to catch more nearly-uncompressable blocks
+  * compressed CHDs now use a compressed map for significant savings
+  * CHDs now are aware of a "unit" size; each hunk holds 1 or more
+     units (in general units map to sectors for hard disks/CDs)
+  * diff'ing against a parent now diffs at the unit level, greatly
+    improving compression
+
+ Rewrote and modernized chd.c. CHD versions prior to 3 are
+ unsupported, and version 3/4 CHDs are only supported for reading.
+ Creating a new CHD now leaves the file open.  Added methods to read
+ and write at the unit and byte level, removing the need to handle
+ this manually. Added metadata access methods that pass astrings and
+ dynamic_buffers to simplify the interfaces. A companion class
+ chd_compressor now implements full multithreaded compression,
+ analyzing and compressing multiple hunks independently in parallel.
+ Split the codec implementations out into a separate file chdcodec.*
+
+ Updated harddisk.c and cdrom.c to rely on the caching/byte-level
+ read/ write capabilities of the chd_file class. cdrom.c (and chdman)
+ now also pad CDs to 4-frame boundaries instead of hunk boundaries,
+ ensuring that the same SHA1 hashes are produced regardless of the
+ hunk size.
+
+ Rewrote chdman.exe entirely, switching from positional parameters to
+ proper options. Use "chdman help" to get a list of commands, and
+ "chdman help <command>" to get help for any particular command. Many
+ redundant commands were removed now that additional flexibility is
+ available. Some basic mappings:
+
+ Old: chdman -createblankhd <out.chd> <cyls> <heads> <secs> New: chdman
+ createhd -o <out.chd> -chs <cyls>,<heads>,<secs>
+
+ Old: chdman -createuncomphd <in.raw> <out.chd> .... New: chdman
+ createhd -i <in.raw> -o <out.chd> -c none ....
+
+ Old: chdman -verifyfix <in.chd> New: chdman verify -i <in.chd> -f
+
+ Old: chdman -merge <parent.chd> <diff.chd> <out.chd> New: chdman copy
+ -i <diff.chd> -ip <parent.chd> -o <out.chd>
+
+ Old: chdman -diff <parent.chd> <compare.chd> <diff.chd> New: chdman
+ copy -i <compare.chd> -o <diff.chd> -op <parent.chd>
+
+ Old: chdman -update <in.chd> <out.chd> New: chdman copy -i <in.chd> 
+ -o <out.chd>
+
+ Added new core file coretmpl.h to hold core template classes. For now
+ just one class, dynamic_array<> is defined, which acts like an array
+ of a given object but which can be appended to and/or resized. Also
+ defines dynamic_buffer as dynamic_array<UINT8> for holding an
+ arbitrary buffer of bytes. Expect to see these used a lot.
+
+ Added new core helper hashing.c/.h which defines classes for each of
+ the common hashing methods and creator classes to wrap the
+ computation of these hashes. A future work item is to reimplement the
+ core emulator hashing code using these.
+
+ Split bit buffer helpers out into C++ classes and into their own
+ public header in bitstream.h.
+
+ Updated huffman.c/.h to C++, and changed the interface to make it
+ more flexible to use in nonstandard ways. Also added huffman
+ compression of the static tree for slightly better compression rates.
+
+ Created flac.c/.h as simplified C++ wrappers around the FLAC
+ interface. A future work item is to convert the samples sound device
+ to a modern device and leverage this for reading FLAC files.
+
+ Renamed avcomp.* to avhuff.*, updated to C++, and added support for
+ FLAC as the audio encoding mechanism. The old huffman audio is still
+ supported for decode only.
+
+ Added a variant of core_fload that loads to a dynamic_buffer.
+
+ Tweaked winwork.c a bit to not limit the maximum number of processors
+ unless the work queue was created with the WORK_QUEUE_FLAG_HIGH_FREQ
+ option. Further adjustments here are likely going to be necessary.
+
+ Fixed bug in aviio.c which caused errors when reading some AVI files.
+
+Fixed an issue with text being missing in some Aleck 64 games. [Ryan
+Holtz]
+
+Reduced memory usage in the N64 driver. [Ryan Holtz]
+Hook up 64DD RTC and interrupts in the N64 code. [Ryan Holtz, kammedo]
+
+Added warm reset support to N64 hardware [Ryan Holtz]
+
+Fix -romident to work with .7z archives [David Haywood]
+
+Added new CHD codec: CD-FLAC which knows how to shuffle CD data to
+more optimally use FLAC. Updated flac wrapper to implement a tell
+callback so FLAC can tell us how much we've decoded. Updated chdman to
+use CD-FLAC codec in preference over the existing codecs for CDs by
+default. [David Haywood]
+
+Fail initializing the CD-FLAC codec if the hunk size is not
+CD-compatible. [Aaron Giles]
+
+Centralize detection of existing output files. Add detection (require
+--force) for extracted files as well. Move checks outside of try/catch
+so that the files are not subsequently deleted. [Aaron Giles]
+
+Move all-0 detection to the write path. Use hunk_info on the
+compression path to detect whether the write went through. [Aaron Giles]
+
+Changed sample pack names for alphamc07 -> equites and aristmk4 ->
+3bagflvt to match up sample to an actual setname.  [Tafoid]
+
+dma8237: fix uninitialized variable [Hans Ostermeyer]
+
+mc146818: remove previous Apollo hack, fix 32768 Hz. updates
+[Hans Ostermeyer]
+
+m68k: fix FSGLMUL/FSGLDIV plus some minor MMU improvements
+[Hans Ostermeyer]
+
+m68k: slightly less stubby CINV [Hans Ostermeyer]
+
+namcos23: documentation update [Guru]
+
+vamphalf.c: Added correct speed up to Diet Family [Dave Haywood]
+
+Assorted N64 SP/DP/CPU comms accuracy fixes. [Ryan Holtz]
+
+Rewrote SAMPLES as a modern device. Updated all callers. FLAC reading
+is now done using the FLAC wrapper. There is now a samples_iterator
+class to centralize the logic for handling the sample list walking.
+[Aaron Giles]
+
+Redid the cheesy half-baked votrax device since it relied on some
+old samples-based handling. Until we have a real implementation, it
+would be good to route the various clients through the current one to
+at least wire it up properly, even if it just plays samples in the
+end. Will look into that shortly. [Aaron Giles]
+
+Added windows implementation of pseudo tty access functions over pipes
+[Carl]
+
+Fixed N64 RDP to not try to render a triangle with no spans.
+[Ryan Holtz]
+
+Sega Model 2 update: [Brian Troha]
+* Dumped and hooked up Dynamite Baseball
+* Dynamite Baseball 97 renamed as dynabb97
+* Properly renamed 4 MASK ROMs in dynabb97 to match pcb manual
+* Minor cleanups and fixes 
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Winning Run [gamerfan, Smitdogg, The Dumping Union]
+Oozumou - The Grand Sumo (DECO Cassette)
+  [Charles MacDonald, Dr. Spankenstein, Kevin Eshbach, T. Huff,
+  SteveS, E. Page-Hanify, Hikari, ArcadeDude, F. Bukor, N. Francfort,
+  jmurjr, arcade-history.com, ThumB, Hurray Banana, Paratech, Xiaou2,
+  Cornishdavey, A. Costin, M. Ponweiser, Tormod, Rambo, Smitdogg, The
+  Dumping Union]
+Diet Family [Dr. Spankenstein, Paratech, joe35car, tormod, M. Hoenig,
+  Mosquito2001, M. Ponweiser, M. Viste, Phil Bennett, N. Francfort, A.
+  Costin, J. Finney, gamerfan, Smitdogg, The Dumping Union]
+Kung-Fu Roushi [hap]
+Winning Run Suzuka Grand Prix [Phil Bennett]
+Winning Run 91 [Phil Bennett]
+
+New clones added
+----------------
+Space Invaders Part II (Brazil) [Marcello Mancini]
+Print Club 2 Earth Limited Kobe (Print Club Custom) (J 970808 V1.000)
+  [f205v, ranger_lennier, dopefishjustin, Yohji, Smitdogg, The Dumping Union]
+Eyes (bootleg set) [f205v, Antro]
+JoJo's Bizarre Adventure (990927) [Layne, Smitdogg, The Dumping Union]
+Wyvern Wings (alt) [RetroRepair]
+Dynamite Baseball [Layne, Yohji, hap, Smitdogg, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Soul Surfer (Rev A) [f205v. The Dumping Union]
+Initial D Arcade Stage Ver. 3 (Export) [f205v, The Dumping Union]

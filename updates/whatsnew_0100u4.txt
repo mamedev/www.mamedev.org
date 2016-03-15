@@ -1,0 +1,124 @@
+0.100u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+acrobatm0100u3gra [Mamesick]
+
+
+
+Source Changes
+--------------
+More NSS updates. This is mostly for MESS's benefit but nss_ncaa improves 
+from it too. [R. Belmont]
+ * SPC700: Fixed operand order for SBC to memory
+ * SNESHW: Implemented unknown DMA & HDMA modes
+ * SNESHW: Fixed SRAM sizing (used as protection in some games)
+ * SNESHW: Boosted interleave
+ * Fixed scroll registers to work like real hardware
+ * Fixed timing of OAM address reset and range/time over reset to better 
+    match real hardware
+ * Fixed missing "break" for HDMA mode 5
+ * Fixed behavior of OLDJOYx registers when auto-read is enabled
+
+Added filters back into the Scramble driver. [Hans Andersson]
+
+Changed break/watchpoints in the new debugger to display in hex.
+[Anonymous]
+
+Updated usrintrf.c to work better with MESS. [Nathan Woods]
+
+Merged ctribe machine driver with ddragon3. [Mamesick]
+
+Improved Zip & Zap DIP switches. [Brian Troha]
+
+Improved Egg Hunt DIP switches. [Brian Troha]
+
+Fixed flipscreen in TC0100, which improves Liquid Kids. [Bryan McPhail]
+
+Improved Metal Saver DIP switches. [Brian Troha]
+
+Cleaned up merging of Jolly Card sets. [Roberta Fresca]
+
+Updated 65816 and 37710 cores: [R. Belmont]
+ * Fixed both CPUs to set the data bank register to the destination on 
+    an MVN/MVP
+ * Some minor tweeks so the debugger works properly when the 65816 is 
+    executing out of a read handler (as it always is for the SNES)
+
+Filled in missing asteroids DIP switches. [Kevin Jonas]
+
+Updates to the I386 core: [Ville Linde]
+ * Added i486, Pentium and Cyrix MediaGX CPUs
+ * Replaced the opcode tables with a dynamically built one
+ * Rewrote the cycle counting to support different CPUs
+ * Added page translation
+ * Tons of bugfixes
+Also updated the SPI driver to work with these changes.
+
+Cleaned up the taito_f2 driver: [Brian Troha]
+ * Converted what I could to port_include and port_modify
+ * Fixed a few rom names and standardized names add a PCB layout.
+ * Changed the sound CPU to 240000/6 and the YM2610 to 240000/3 as there 
+    is no 16MHz OSC on the PCB.  Only a 26.686 & 24.000 MHz chips.
+
+Fixed inputs in vliner: [Mamesick]
+
+Added some basic zooming support to the gstriker/twcup94 driver.
+[David Haywood]
+
+Improved accuracy of joystick types reported in -listxml. [Buddabing]
+
+Added "Uptime" to the bookkeeping info displayed in the UI. [Aaron Giles]
+
+Added new driver flag: GAME_SUPPORTS_SAVE, to indicate drivers which have
+save state support that is supposed to work. Attempting to save state on
+a game without this flag will give a warning. Save state-related bugs may be 
+filed against drivers with this flag set. [Aaron Giles]
+
+Removed the GAMEX and GAMEBX macros. The flags parameter has been moved into
+the GAME and GAMEB macros and these are used for all games. [Aaron Giles]
+
+Converted a few more drivers over to using the new memory_configure_bank
+calls. [Aaron Giles]
+
+Added save state support to the Cinematronics vector sound hardware and to
+the Z80 CTC system. Also fixed QB3 banking when used with save states.
+Marked all the games in cinemat.c with GAME_SUPPORTS_SAVE.
+[Aaron Giles]
+
+Added save state support to the TMS5220 chip. Added missing registers to
+the 6800 core's save state. Cleaned up 6821 PIA initialization and save
+state registration. Marked all the games in mcr.c with GAME_SUPPORTS_SAVE.
+[Aaron Giles]
+
+Changed ui_popup to display longer by default for longer messages.
+[Aaron Giles]
+
+Added new option -autosave which automatically loads a game at startup and
+saves it at exit time for any game which is explicitly marked with
+GAME_SUPPORTS_SAVE. For other games, this option has no effect. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magic's 10 [Pierpaolo Prazzoli]
+Alpine Racer 2 (Ver. 97/01/10 17:10:59) [R. Belmont]
+Dark Edge [Anonymous]
+Metal Saver [David Haywood, Corrado Tomaselli]
+
+
+
+New clones added
+----------------
+Bonanza Bros (Japan, Floppy) [David Haywood, Team Japump]
+Scramble Spirits (Japan, Floppy) [David Haywood, Team Japump]
+Ninja Kids (US) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Magic's 10 2 [Pierpaolo Prazzoli]

@@ -1,0 +1,138 @@
+0.143u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02448: [Graphics] lethalen: External' rowscroll not hooked up
+         correctly (1st attract level, highscores). (Roberto Zandona')
+- 04471: [Crash/Freeze] Many sets using m68000-family CPU: Access
+         Violation (Sandro Ronco)
+- 04345: [Sound] nbbatman, ssoldier and clones: Sounds freezes or
+         halts after a time (Mamesick)
+- 04386: [Graphics] timecris and clones: Specific room with incorrect
+         lighting on Stage 2 (hap)
+- 04495: [Crash/Freeze] All sets in cd32.c: All games fail to boot
+         properly (mariuszw, R. Belmont)
+- 00258: [Graphics] blswhstl: Graphic glitch on the final boss.
+         (robiza)
+- 00373: [Graphics] butasan: There are missing background tiles and
+         wrong colours. (robiza)
+- 00172: [Graphics] butasan: The top status area (where the score and
+         time info is) is missing text and has wrong colors. (robiza)
+
+
+Source Changes
+--------------
+Major rewrite of umipoker and saiyukip input system. Added missing
+inputs, fixing structure. Added button- lamps support and layout to
+saiyukip, coin counters and complete documented outputs to both games.
+Also reworked the DIP switches structure to match what the test mode
+shows, with their respective DIP locations [Roberto Fresca]
+
+Complete DIP switches & DIP locations for Umi de Poker and Slot Poker
+Saiyuki [Roberto Fresca]
+
+Added Cherry Master '97 PCB layout. [Roberto Fresca, Team Europe]
+
+Fix for systems where getc() is a #define rather than a function
+[ElBarto]
+
+neogeo: Fixed game saving [ElBarto]
+
+butasan: fixed text ram banking [Roberto Zandona']
+
+blswhstl: fixed screen size and zoom [Roberto Zandona']
+
+Exposed the Z80 DART interrupt vector to non-Z80 users. [Curt Coder]
+
+Improved inputs and added some TLB notes in the Aleck64 driver
+[Peter Sealy]
+
+m68000 - Fix for MINGW compiler optimization [Sandro Ronco]
+
+Big10: Fixed default DIP switches and DIP locations. [Roberto Fresca]
+
+Fixed all HLSL stability issues except visible crease. [Ryan Holtz,
+    Bat Country Entertainment]
+
+Fixed Z80DART FIFO starting index. [Curt Coder]
+
+m68k: Activate trace emulation and fixed it [O. Galibert]
+
+m68000: Avoid a case when dropping the irq mask just after taking a
+auto-acked interrupt would cause a spurious irq [O. Galibert]
+
+m68000: Reset the double-bus/address-error flag where appropriate to
+avoid halting on consecutive but not linked exceptions [O. Galibert]
+
+m68k: preliminary support for ColdFire family and MCF5206E [R. Belmont]
+
+namcos22.c: Fixed or improved polygon fade, high priority polygons,
+texture c-mode, sprite seaming, textlayer alpha/shadow, DSP external
+memory addressmask, and some other smaller issues. [hap]
+
+sh3/4: fixed big-endian mode [R. Belmont]
+
+Hooked up touch screen to Odeon Twister 2 [Mariusz Wojcieszek]
+
+Fix incorrect masking of register writes on ay-3-8914, fixes wrong
+envelope amplitude on games which use hardware enveloping on
+Intellivision (Thunder Castle, etc) [Huygens]
+
+Added complete dump for sfish2 [Guru]
+
+namcos22.c: Fixed or improved tokyowar sprite garbage, sprites in
+alpinesa alpinr2a/b and cybrcycc, sprite x/y flipping, sprite delta
+x/y, texture c-mode (again), and some z priority issues. [hap]
+
+tms9928a.c: Fixed colission detection regression.  [Wilbert Pol]
+
+m68k: preliminary 68040 MMU implementation [R. Belmont]
+
+Figured out the sound system of Muroge Monaco and clones. It's a
+Delta-Sigma DAC (1-bit/Bitstream), driven by the bit 3 of the output
+port 0x7000. [Roberto Fresca]
+
+Fixed the graphics decode of Las Vegas. [Roberto Fresca]
+
+Added correct P1 and M1 for Neo Mr. Do and made some documentation
+updates in the Neo-Geo driver [Johnboy]
+
+Updated intelfsh.c in order to support AMD 29F080 chip [Sandro Ronco]
+
+namcos23.c: added gun input to Time Crisis 2 [hap]
+
+Further major organization, documentation and reordering of numerous
+(about 2500) gambling / Fruit machine titles covering multiple
+systems.  [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+PEPSI Man [Luca Elia, Yasuhiro Ogawa]
+Uchuu Tokkyuu Medalian [Luca Elia, Yasuhiro Ogawa]
+Funcube 3 [Luca Elia, Yasuhiro Ogawa]
+FamicomBox [Mariusz Wojcieszek]
+
+
+New clones added
+----------------
+Jungle King (alternate sound)  [Andrew Welburn]
+Zero Gunner (Japan, Model 2A) [Tormod, Brian Troha, The Dumping Union]
+Last Bronx (USA, Revision A) [R. Mucciarelli, The Dumping Union]
+Viper Phase 1 (USA, New Version, set 2) [Arzeno Fabrice]
+Vigilante (US) - Rev. G  [Corrado Tomaselli]
+Cruis'n Exotica v1.0 [Brian Troha, The Dumping Union]
+NBA Jam T.E. Nani Edition (rev 5.2 8/11/95) [TerryMasters]
+Muroge Monaco (set 3) [Roberto Fresca, EMMA Italian Dumping Team]
+Butasan - Pig's & Bomber's (Japan, English) [Bensonrad]
+Aqua Jack (US) [ShouTime]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cherry Master '97 [Roberto Fresca, Team Europe, FatArnold]
+Metalman [PinMAME]
+Pimbal (Pinball 3000) [PinMAME]

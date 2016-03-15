@@ -1,0 +1,65 @@
+[ Sorry to be late, but this is my birthday MAME release and I wanted it to
+  be as good as possible.  Enjoy, and send a postcard if you like ;)  NdMix ]
+
+0.22
+
+Program:
+- Nicola added COMMANDO!!  Another of my favourite games back to life ;)
+  High score supported as well.  Original Sound is done by YM2203
+  (FM synthesis) while now is done by 8910 (no FM).
+  So music is not present.
+
+- And here it is:  thanks to Roberto Ventura's superdetailed documentation
+  I'v added Ghost 'n Goblin support.  I lost one week because of a bug in
+  the new 6809 emulator, so I switch back to the previous one.  Big thanks
+  to Nicola that fixed some stupid bugs in color palette generation. ;)
+  We need a skilled player.  READ THE README.TXT FILE!
+
+- Another one added:  based on GnG hardware I'v added Diamond Run support.
+  Don't know if the banks mode switch is right, it's too slow for me
+  to go further the first level!
+
+- Added Vulgus support.  Colors are wrong unless I find the color proms.
+  High score save supported.  I played around with Dip Switches: they are
+  almost right, though, but there should be also a sound toggle while in
+  attract mode.
+
+- Rick Wirch (wirch@execpc.com) proposed a better optimization to Cpu_readmem
+  and Cpu_writemem.  Speed results are good under DOS and Windows.
+
+- Brad Oliver provided me a lot of suggestions to improve portability and
+  fixed a lot of bugs.
+
+- Paul Berberich fixed some colors of Congo Bongo.  They are not right but
+  a lot better of the previous.  Screenshots could be useful.
+
+- I have fixed colors in Centipede.  Thanks to Ivan Mackintosh for sending
+  me the info.
+
+- Nicola added cars in radar update of RallyX and improved color palette
+  emulation in Bombjack which has now perfect colors.
+
+- Fixed credit bugs in Elevator Action and Turtles.  REMEMBER TO DELETE
+  THE PREVIOUS .DSW FILES OTHERWISE THE GAMES WON'T WORK PROPERLY!
+
+- Added preliminary sound support to Elevator Action and Jungle King.
+  Tarzan yell scream sample missing.
+
+- Time pilot has now 100% correct colors (thanks Virtu-Al!).
+
+- Some fixes to sprite priority in Frogger.
+
+- Added high score support to Amidar, Frogger.
+
+- Added Phoenix Amstar (clone) support, Pac Man Plus (clone) and fixed
+  all Invader's clones bugs.  Also fixed charset of all Invader's clones.
+
+Sources:
+- Changed CPUIntrf regarding readmem/writemem optimizations
+
+- Minor fixes to some drivers
+
+- Bernd Wiebelt provided modifications to MSDOS.C for Vesa 2.0 linear
+  and banked extensions.  Also inline assembly double pixeling provided
+  a faster approach on slower videocards.  Check the readme.txt file for
+  new video options.

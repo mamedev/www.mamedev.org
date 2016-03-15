@@ -1,0 +1,75 @@
+0.107u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+savestate0104u7ora [Adam Bousley]
+ripoff097gre [Adam Bousley]
+cuebrckj0104u2gra_fix [Canim]
+
+
+
+Source Changes
+--------------
+Massive cleanup/fixing of 16-bit Sega drivers: [AWJ]
+ * many corrections to descriptive set names, adding revision letters,
+    cabinet types, etc.
+ * fixed many DIP switches and added PORT_DIPLOCATION support
+ * adjusted min/max values for analog controls to improve response
+ * fixed button ordering between System 16A/B
+ * cleaned up a number of ROM names and fixed some incorrect guesses
+ * some cleanup of turbo.c as well
+ * fixed visible area in Hang-On hardware
+ * actually disabling 8751 in games that have a fake replacement
+ * hooked up 8255 PPI correctly now that it has mode 2 support
+ * fixed behavior of NMI line in later sega sound boards
+ * fixed addressing in the SegaPCM sound system
+ * some hardware/documentation cleanup
+
+Some cleanups in the new UI/video code to make MESS happy.
+[Nathan Woods]
+
+Added macros to prevent use of strcasecmp and strncasecmp for
+better cross-platform compatibility. [Nathan Woods]
+
+Connected unimplemented opcode $01 on the 6809 core. [Antoine Mine]
+
+Implemented CNT pin and some serial features of the 6526 CIA chip.
+[Nathan Woods]
+
+Mapped service button in slammast. [Canim]
+
+Fixed bug in 8039 CPU handling of A11 latch. [Aaron Giles]
+
+Rewrote Zaxxon driver from the schematics. This is still a WIP (not
+finished yet): [Aaron Giles]
+ * correct clock speeds and video timing
+ * complete memory maps
+ * connected universal sound board to Ixion and Razmataz
+ * simplified video code and merged common cases together
+ * palette derived from resistor weights
+ * background positioning still a little off
+
+Added service_coin_lockout_w() to lockout service coins. [Aaron Giles]
+
+Added MDRV_SCREEN_RAW_PARAMS() which lets you specify a pixel clock,
+horizontal, and vertical video timing values in place of the usual
+screen size, visible area, refresh rate, and VBLANK timing values.
+[Aaron Giles]
+
+Fixed bug that prevented save/restore from working in the UI.
+[Aaron Giles]
+
+Changed mode selection logic so that refresh is weighted more strongly
+when picking a mode. This allows you to specify -resolution 0x0@60 to
+force MAME to pick a 60Hz screen refresh while allowing it to choose
+the best resolution. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Viper Phase 1 (World, New Version) [Corrado Tomaselli]
+Wonder Boy in Monster Land (Galaxy Electronics English bootleg)
+Gals Panic II (Asia) [Patrik Styrnell]

@@ -1,0 +1,240 @@
+0.147u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05057: [Crash/Freeze] (harddriv.c) racedriv1: mame crash after 
+  starting game (hap)
+- 04478: [Crash/Freeze] (nbmj8891.c) nbmj8688.c, nbmj8891.c, 
+  nbmj8900.c (hyhoo, hyhoo2, gionbana, mjsikaku, ohpaipee, 
+  club90s etc.): The game breaks by soft resetting. 
+  Stuck at the initialization screen. (Angelo Salese)
+- 05054: [Crash/Freeze] (namcos12.c) tekken3, tektagt and 
+  clones : Black screen (smf)
+- 05053: [Compiling] subtarget=TINY missing dependancies
+
+Source Changes
+--------------
+-avr8.c: Added FMUL, FMULS, and FMULSU opcodes. [MooglyGuy]
+ * Fixed incorrect N flag calculation in ROR opcode. 
+ * Fixed incorrect bit testing in SBIC/SBIS opcodes.
+
+-Fixed nested NMI behaviour on soft resets in Nichibutsu mahjong
+ drivers (hyhoo.c, nbmj8688.c, nbmj8891.c, nbmj8991.c, pastelg.c)
+ [Angelo Salese, Takahiro Nogi]
+
+-avr8.c: Converted to modern CPU device. [MooglyGuy]
+
+-New driver for Super Card. Encrypted custom Fun World CPU based on Z80
+ family, plus 2x 8255 PPI, and YM3812 / Y3014 for sound. The status is
+ still preliminary. [Roberto Fresca]
+
+-fixed cd & root counter irq's [smf]
+
+-z8000: Fixed implementation of trdb, trdrb, trib, trirb, trtdb,
+ trtdrb, trtib, trtirb instructions. [Christian Grössler]
+
+-suprloco.c: Made Rev A the parent set. Added dipswitch locations to
+ the Super Locomotive sets. Added minor documentation about basic PCB
+ parts. [Brian Troha]
+
+-Decrypted graphics in "Saint Dragon (set 2)" [Luca Elia]
+
+-cpu.mak: Allow overriding tmsmake/m68kmake for easier
+ cross-compilation and testing of alternatives [Robert Muth]
+
+-netlist: Symbols starting with _ are reserved in many BSD-derived
+ environments. [Robert Muth]
+
+-itech32.c: Major ROM renaming to get away from the DOS 8.3 convention 
+ to accurately reflect what's on the labels. [Brian Troha]
+
+-Normalize some include paths to always include video/ or machine/ as
+ necessary [Robert Muth]
+
+-konicdev: Fix weird do-nothing lines that cause Clang warnings
+ [Robert Muth]
+
+-Mega Lines: Added PCB, bipolar PROMs circuitry and DIP switches
+ layouts. Also added some technical notes and cleaned up a bit the
+ code... [Roberto Fresca, Team Europe]
+
+-Added tile flipping, dips, cleaned up a few bits for Planet Probe. 
+ Now marked as working.  Old pprobe.c driver no longer needed. 
+ [David Haywood]
+
+-Added Dip Locations to vastar.c driver  [Tafoid]
+
+-6502: Rewrite modern, cycle-exact and interruptible [O. Galibert]
+
+-m6800.c: Workaround for Coleco Adam not booting. The free-running
+ counter values are unacceptable, so let it read from the output
+ compare register instead. To be fixed properly later. [Curt Coder]
+
+-m6502: IRQ fixes [O. Galibert]
+
+-avr8.c: Renamed io map to data map, routed ports through io map 
+ * Implemented ST Z+ and SBIW opcodes [MooglyGuy]
+
+-m6502: More interrupt fixing [O. Galibert]
+
+-btime: Implement the Deco CPU-7 and C10707 [O. Galibert]
+
+-deco16: Vectors are non-standard, *duh* [O. Galibert]
+
+-FLAC encoder did not use FIR Linear prediction (regressed in r18882)
+ [William Coolay]
+
+-cosmac: Added missing IRQ acknowledges. [Curt Coder]
+
+-65c02: Fix the bitwise ops and their disassembly [O. Galibert]
+
+-funworld: That driver wants the bitwise ops [O. Galibert]
+
+-n2a03: Put a second irq line logically-ored with the normal one
+ [O. Galibert]
+
+-Converted jedtest script to Python [Andrew Gardner]
+
+-quiz18k hack removed [David Haywood]
+
+-Dino 4 encrypted hardware: Added PCB layout and technical notes.
+ [Roberto Fresca, Team Europe]
+
+-Improvements to Pool 10 in Dino 4 hardware [Roberto Fresca]
+ * Added PCB layout and technical notes.
+ * Decrypted the program ROM data & address.
+ * Decrypted the graphics ROMs.
+ * Added a default NVRAM.
+ * Added button-lamps layout.
+ * Promoted to working state.
+ * Improved the PCB layout.
+ * Added some encryption notes.
+
+-Added proper PLD dumps to Bonus Card and Power Card. [Team Europe]
+
+-m6509: "normal" read/writes happen in the fetch bank [O. Galibert]
+
+-hcastle.c - Corrected program ROM locations and renamed set names
+ [Phil Bennett]
+
+-replaced usage of psx_sio_install_handler & psx_sio_input with
+ devices. [smf]
+
+-m107.c: Correct ROM names for Dream Soccer '94 on the IREM M107 PCB.
+ [Brian Troha, Andrew Welburn, The Dumping Union]
+
+-Decrypted code in "Harem" [Luca Elia]
+
+-tms5220&friends: Change chirp waveform to match the chip more closely,
+ acoustically. This will require completion of a pending decap to
+ verify as correct, but it certainly sounds better. [Lord Nightmare]
+
+-tms5220.c: Got rid of most of the excitation (voicing) hacks. The rest
+ is mostly making the space/tabs for comments more consistent and
+ fixing a couple of spelling errors in the comments. Minor bugfix
+ regarding the time_to_ready code. [Lord Nightmare]
+
+-ballbomb : added music [Robbbert]
+
+-lupin3a : added music [Robbbert]
+
+-i386: add debugger helper for converting virtual to physical addresses [Carl] 
+
+-Added more comment to lessen confusion regarding
+ sound_stream::generate_resampled_data (emu/sound.c)  [Anders Hallstrom]
+
+-Added two missing undumped GAL’s to Badlands and updated documentation
+ regarding missing checksums.  [Kevin Eshbach]
+
+-Fixed ROMs labels, locations and pcb infos of mbomberj, mbombrd,
+ mbombrdj sets, all confirmed and verified on real hw.  [Team CPS-1]
+
+-Added a Jolly Card set from an unknown encrypted PCB 'alla TAB blue
+ board. Graphics are decrypted. Program needs decryption work.
+ [Roberto Fresca]
+
+-Jolly Card Spanish encrypted set improvements [Roberto Fresca]
+ * Decrypted the program ROM.
+ * Added button-lamps layout.
+ * Added a default NVRAM.
+ * Promoted to working state.
+
+-rollingc :  Added sound to the 'Moon Base' portion of this game
+ [Robbbert]
+
+-darthvdr : added 'invaders' sound [Robbbert]
+
+-darthvdr : added dipswitches [Robbbert]
+
+-Various clean-ups of dec8 HW, added irq ack mechanism to Shackled,
+ Last Mission and Captain Silver (they were commented out before) and
+ hooked up SCREEN_RAW_PARAMS to all games in the driver [Angelo Salese]
+
+-Rewritten DECO222 encryption for ghostb, oscar and srdarwin to use the
+ new model [Olivier Galibert]
+
+-scsicd: Add STOP command [PKGINKO]
+
+-firebeat: Some additional ATAPI support [PKGINKGO]
+
+-v9938.c: Removed the "ignore-sprite-limit" hack entirely. 
+ [Wilbert Pol]
+
+-rtc65271: some minor fixes so Firebeat's RTC check passes [R. Belmont]
+
+-firebeat: fix flash readback through the YMZ.  All PPP-type games now
+ can be initialized and booted. [R. Belmont]
+
+-porter : fixed graphics [Robbbert]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Planet Probe [Alberto Grego, Corrado Tomaselli, f205v, David Haywood]
+Harem [Dave Hollister, hap, Luca Elia]
+Kkot Bi Nyo Special (Korea) [gp-lee, Guru, Luca Elia]
+
+
+New clones added
+----------------
+Super Ranger (NOVA) [ShouTime]
+Magix / Rock (bootleg) [Darran]
+Jet Wave (JAB, Japan v1.04) [ShouTime, The Dumping Union]
+Golden Tee Diamond Edition Tournament (v3.05T ELC)
+  [Brian Troha, Andrew Welburn, The Dumping Union]
+Western Express (Japan, rev 4) [ShouTime, The Dumping Union]
+Sunset Riders (4 Players ver UAB) [Dave F]
+Kkot Bi Nyo (Korea) [gp-lee, Guru, Luca Elia ]
+World Class Bowling v1.1 [Brian Troha, The Dumping Union]
+Haunted Castle (version E) [Andrew Welburn]
+Jolly Card (Spanish, blue TAB board, encrypted) [Roberto Fresca]
+Triple Punch (set 2) [Siftware]
+Street Fighter 2 Accelerator! (set 2) [Smitdogg, Dumping Union]
+Gun Survivor 2 Biohazard: Code Veronica (BHF2 Ver. E) [ShouTime]
+Radirgy (Rev A) (GDL-0032A) [ShouTime]
+Ninja Assault (NJA4 Ver. A) [The Dumping Union]
+Street Fighter II': Champion Edition (Alpha Magic-F, bootleg) (not working)
+  [Darran, Smitdogg, The Dumping Union, ReadOnly]
+Street Fighter II: The World Warrior (TAB Austria, bootleg) (set 2) (not working)
+  [Darran, Smitdogg, The Dumping Union, ReadOnly]
+Street Fighter II: The World Warrior (unknown bootleg) (not working)
+  [Darran, Smitdogg, The Dumping Union, ReadOnly]
+Winding Heat (AAA, Asia v2.11) [any, The Dumping Union]
+Ultra Invaders [Andy Welburn, MisfitMAME]
+Marvel Vs. Capcom: Clash of Super Heroes (Japan 980123) (Single PCB)
+  [ranger_lennier, Yohji, Tormod, Smitdogg, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Super Card (encrypted) [Roberto Fresca, Team Europe]
+Mega Lines [Roberto Fresca]
+Pool 10 (Italian, encrypted) [Roberto Fresca, Team Europe]
+Fearless Pinocchio 
+  [letoram, Kevin Eshbach, Smitdogg, The Dumping Union]
+Jolly Card (unknown, encrypted) [robertof]
+ParaParaParadise 1st Mix Plus [PKGINKO, R. Belmont]
+Stone Age (Astro, Ver. ENG.03.A) [any, The Dumping Union]

@@ -1,0 +1,52 @@
+0.95u4
+------
+
+Changes from Aaron Giles
+------------------------
+* removed CPU_16BIT_PORT hack; this means that all Z80 drivers must explicitly
+  clamp their I/O space address space to 8-bits via ADDRESS_MAP_FLAGS(AMEF_ABITS(8))
+* removed CPU_AUDIO_CPU; it was no longer having any effect, and it was a poor
+  substitution for documentation since it wasn't used consistently across all games
+* added 'emulator' target to the makefile to make it easier to build just mame.exe
+* removed obsolete targets from the main makefile
+* added Pentium-M optimization target to the makefile
+
+
+
+Other changes
+-------------
+Fixed gsword descriptions and added documentation on the 8741s. [Nicola Salmoria]
+
+Fixed C140 sound routing in the Namco games. [Mamesick]
+
+Added proper sprite ROMs to G-Loc. [Mike Coates]
+
+Fixed game logic bug in mslider. [Phil B, Dox, David Haywood]
+
+Added hack to v60 for srmp7, though this needs a real fix eventually. [David Haywood]
+
+Fixed DIP switches in Survival Arts and Dyna Gear. [Brian Troha]
+
+Added several TMS9900 enhancements and variants from MESS. [Raphael Nabet]
+
+Fixed backgrounds in Nitro Ball/Gun Ball. [Pierpaolo Prazzoli]
+
+Added preliminary decryption to Deco 102 games. [Nicola Salmoria]
+
+Fixed DIP switches in Pocket Gal DX and Captain and the Advengers. [Brian Troha]
+
+Added better protection against crashing in the debugger. [Nathan Woods]
+
+
+
+New clones added
+----------------
+Space Invaders (Model Racing) [David Haywood]
+Pocket Gal Deluxe (Euro v3.00) (not working) [Corrado Tomaselli]
+Tecmo World Cup '94 (set 2) (not working) [Corrado Tomaselli]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Dream World [David Haywood]
+Choky Choky [David Haywood]

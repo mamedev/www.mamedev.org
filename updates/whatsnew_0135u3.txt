@@ -1,0 +1,300 @@
+0.135u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03565: [Color/Palette] astrof, astrof2, astrof3: blue background is 
+         supposed to be black (David Haywood)
+- 03557: [Sound] All sets in namcos12.c: Music is slower than 
+         original (Phil Bennett)
+- 03561: [Crash/Freeze] robokid, robokidj, robokidj2: Segmentation 
+         Fault after OK (Fabio Priuli)
+- 03562: [Crash/Freeze] fcombat: Segmentation Fault after OK 
+         (Fabio Priuli)
+- 03560: [Crash/Freeze] missb2, saiyugoub1, saiyugoub2: Driver Data 
+         Struct Issues (Fabio Priuli)
+- 03559: [Crash/Freeze] All sets in viper.c, subsino.c and coolridr.c: 
+         Segmentation Fault before OK (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+Kusayakyu improvements [Angelo Salese]
+ - fixed color prom hook-up, tilemap color offsets and tilemap 
+    flipping
+ - fixed sound and tweaked the frequencies in the driver
+
+Tron: Hooked up cocktail (P2) fire button so that it can be used 
+in-game and in test mode. [Tafoid]
+
+Added driver data struct and save states to: [Fabio Priuli]
+ - gberet.c, ddrible.c, gaelco.c, trackfld.c, hyperspt.c, yiear.c
+ - hnayayoi.c, hanaawas.c, higemaru.c, himesiki.c and sonson.c
+ - galspnbl.c, gcpinbal.c, ginganin.c, go2000.c, goal92.c, goindol.c,
+    good.c, gotcha.c, gotya.c, gstream.c, gumbo.c, gundealr.c, 
+    hitme.c, holeland.c & homerun.c
+ - glass.c & homedata.c
+ - fromance.c, fromanc2.c, ikki.c, imolagp.c, inufuku.c
+ - jack.c
+ - jangou.c, jantotsu.c, jollyjgr.c and jongkyo.c
+ - kangaroo.c, karnov.c, kchamp.c, kickgoal.c, kingobox.c, 
+    kncljoe.c, koikoi.c, kopunch.c, ksayakyu.c and kyugo.c
+ - ladybug.c, ladyfrog.c, lastduel.c, lwings.c, redclash.c and 
+    yunsung8.c
+ - laserbas.c, laserbat.c, lastfght.c, lazercmd.c and lemmings.c
+
+Added driver data struct to: [Fabio Priuli]
+ - galivan.c, jailbrek.c, sbasketb.c
+ - alpha68k.c, amspdwy.c, gng.c, gunsmoke.c, hotblock.c
+ - aerofgt.c and gyruss.c
+ - hyprduel.c
+ - pipedrm.c
+ - ironhors.c
+ - jackal.c
+ - lasso.c
+
+Changed CDP1869 PAL/NTSC signal to use devcb. [Curt Coder]
+
+Converted cabal, mappy, toypop and zaxxon to use driver_data 
+structure [Atari Ace]
+
+Fixed CP1610 disassembler. [Robbbert]
+
+Cool Riders improvements: [Angelo Salese, David Haywood]
+ - fixed regression
+ - hooked up what it looks like a ROM->to->VRAM transfer...
+ - slightly improved booting
+ - some hooks to allow FBI logo drawing
+ - basic DMA hooked up
+ - fixed program ROM memory map loading as per the service mode item
+ - allow it to draw RAM-based chars, starts to show correct gfxs
+ - fixed paletteram and implemented basic inputs
+ - implemented DMA vram transfers
+ - added Guru readme
+ - hooked up videoram reading in drawing functions
+ - some hook-ups for the text blitter
+
+Wink: Fixed colors [Angelo Salese]
+
+Mostly resolved mix of intel and motorola notation in tms32025 
+disassembler [Lord Nightmare]
+
+Cosmic: fixed cosmica2 romset rom split and names to match romset as 
+described in mameinfo, which it matches (except for one rom which 
+mameinfo is probably wrong about). The romset uses a different rom 
+daughterboard to the other cosmica romsets, and different sized roms.
+[Lord Nightmare]
+
+Added shared driver data struct to 40love.c, bking.c, buggychl.c and 
+msisaac.c (they use the same mcu emulation) [Fabio Priuli]
+
+Added preliminary HNG64 additive tilemap blending [David Haywood]
+
+Fixed srcclean handling of embedded comments within strings 
+[Atari Ace]
+
+PCB documentation updates: [Kevin Eshbach]
+ * Added the board xtal's for Battlantis, Contra and Pandora's Palace
+ * Corrected the MCU dump for Pandora's Palace
+ * Added indication of an undumped PAL for Contra/Gryzor
+ * Added PAL dumps for Cruis'n USA - rev L4.1
+ * Added information on the PROM from the 2 Board version of Congo 
+    Bongo
+
+Noraut Poker driver improvements: [Roberto Fresca]
+ * Added new technical notes.
+ * Added Kimble Z80 hardware support.
+ * Added Prologic-Noraut hardware support.
+ * Added proper discrete sound support to Kimble games,
+   and Prologic-Noraut Joker Poker.
+ * Slightly adjusted the visual area.
+   This can be wrong and must be rechecked.
+ * Relocated the hardware notes and layouts to ROM_LOAD section,
+   so can be seen/maintained in a cleaner way.
+ * Fixed the default lamps state.
+
+Cleaned-up several drivers; added missing prototypes and removed dead 
+ones, marked non-exported functions as static and removed cases of 
+#include "deprecat.h" [Atari Ace]
+
+Aleck 64: Implemented player 2 inputs [Angelo Salese]
+
+Added a PCB layout for M.Kramer's Black Jack Poker, based on a hi-res 
+pic. Also added undumped devices as NO_DUMP. [Roberto Fresca]
+
+Added common driver data struct to timeplt.c, tutankhm.c, junofrst.c, 
+pooyan.c, rallyx.c and rocnrope.c (these drivers all use 
+audio/timeplt.c). As a side effect, we now have save states in 
+junofrst.c and rallyx.c. [Fabio Priuli]
+
+Converted atari drivers over to using driver_data for the most
+part. Some shared systems still exist with globals, but this
+tackles the atarigen module and the variables local to each
+driver. [Aaron Giles]
+
+Added validity check that AM_BASE_MEMBER and AM_SIZE_MEMBER items 
+point within the bounds of the driver_data structure. [Aaron Giles]
+
+Fixed DMADAC wrapping behavior. [Tim Schuerewegen]
+
+Added Driver Configuration to astrof.c to emulate common wire hack 
+which causes black background [David Haywood]
+
+Aleck 64: Worked around hard-locks at start-up. [Angelo Salese]
+
+Identified Semicom's Dream World hardware as a copy of Psikyo's 
+68020 hardware (it was already known that their older platforms were 
+copied from Snow Bros, and Tumble Pop) [David Haywood]
+
+i386 core improvements: [Barry Rodewald]
+ * Fixed EIP displacement when executing FPU instructions with no 
+    80387 present
+ * Added 32-bit implementations of SLDT and STR
+
+Converted Kaneko Pandora sprite chip to be a MAME device and updated 
+drivers accordingly. [Fabio Priuli]
+
+Added tilemap_create_device() function which lets you create a tilemap
+from within a device, and be passed that device in your callback.
+[Aaron Giles]
+
+Converted Signetics 2636 video chip to be a MAME device and updated 
+drivers using it accordingly. [Fabio Priuli]
+
+Memory system changes: [Aaron Giles]
+ - Memory banks are now referenced by tag rather than index.
+    Changed all memory_bank_* functions to specify a tag.
+    Bulk-converted existing banks to be tagged "bank##" in
+    order to ensure consistency. However, going forward, the
+    tags don't matter, so please name them something useful.
+
+ - Added AM_BANK_READ/AM_BANK_WRITE macros to let you specify
+    bank tags. Also changed AM_ROMBANK and AM_RAMBANK macros to
+    accept tags as well.
+
+ - Added new functions memory_install_read_bank_handler and
+    memory_install_write_bank_handler to install banks by tag
+    name, similar to input ports.
+
+ - Changed internals of memory system to dynamically allocate
+    all banks. The first time a bank with an unknown tag is
+    installed, a new bank object is created and tracked 
+    internally.
+
+ - Removed SMH_* macros entirely. In their place are a series of 
+    expanded macros and new memory installation helpers. Some 
+    mappings below (not all are new):
+
+     AM_READ(SMH_RAM)                       -> AM_READONLY
+     AM_WRITE(SMH_RAM)                      -> AM_WRITEONLY
+     AM_READWRITE(SMH_RAM, SMH_RAM)         -> AM_RAM
+     AM_READ(rhandler) AM_WRITE(SMH_RAM)    -> AM_RAM_READ(rhandler)
+     AM_READ(SMH_RAM) AM_WRITE(whandler)    -> AM_RAM_WRITE(whandler)
+     AM_DEVREAD(tag, rhandler) AM_WRITE(SMH_RAM) 
+                                  -> AM_RAM_DEVREAD(tag, rhandler)
+     AM_READ(SMH_RAM) AM_DEVWRITE(tag, whandler) 
+                                  -> AM_RAM_DEVWRITE(tag, whandler)
+
+     AM_READ(SMH_ROM)                       -> AM_ROM
+     AM_WRITE(SMH_ROM)                      -> (was a no-op)
+
+     AM_READ(SMH_NOP)                       -> AM_READNOP
+     AM_WRITE(SMH_NOP)                      -> AM_WRITENOP
+     AM_READWRITE(SMH_NOP, SMH_NOP)         -> AM_NOP
+
+   For dynamic memory handler installation of the various types,
+   use the new functions:
+
+     memory_unmap_read()
+     memory_unmap_write()
+     memory_unmap_readwrite() -- unmaps a section of address space
+
+     memory_nop_read()
+     memory_nop_write()
+     memory_nop_readwrite() -- nops a section of address space
+
+ - Cleaned up the internals of the address_map_entry structure, and
+    also normalized the way the address map macros work to remove a
+    lot of redundancy.
+
+ - Renamed functions: memory_install_read/write_port_handler to
+    memory_install_read/write_port
+
+ - Memory shares are now specified by tag instead of index.
+    The AM_SHARE() macro now takes a tag parameter. All existing
+    shares have been bulk renamed to "share##". However, the name
+    does not matter, so please use descriptive tags going forward.
+
+ - Added tag validation for bank and share tags.
+
+ - Added flag to tagmap_add functions that optionally will
+    replace existing objects if a duplicate is found.
+
+ - Internal code shuffling. Address maps initialized internally
+    now call the same installation handlers that drivers do for 
+    dynamic installation. Cleaned up some parameter ordering and 
+    error detection.
+
+ - Added new functions:
+
+     memory_install_ram() to assign a un-named bank to a region and 
+       specify a pointer to where the RAM lives. If this is called in 
+       the DRIVER_INIT function or MACHINE/SOUND/VIDEO_START 
+       functions, then it is permissible to specify NULL, in which 
+       case the memory system will allocate memory and register it 
+       for save states.
+
+     memory_install_rom() is like the above except that it only 
+       installs a read handler.
+
+     memory_install_writeonly() is like the above except that it 
+     only installs a write handler.
+
+ - Updated several instances in the code that were assigning banks 
+    to these sorts of static RAM regions and simplified the code.
+
+ - Apply mirrors and global masks at address map detokenizing time 
+    rather than later.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Top Shooter [Mariusz Wojcieszek]
+LA Girl [Tomasz Slanina, Guru]
+Noraut Joker Poker (Prologic HW) [Roberto Fresca, Alan Griffin]
+
+
+
+New clones added
+----------------
+Domino Block ver.2 [Guru]
+Tower of Druaga (Manufactured by Sidam) [Corrado Tomaselli]
+Invasion (4 bootleg sets) [f205v, ANY]
+Head On (Sidam bootleg, set 2) [f205v, ANY]
+Head On 2 (Sidam bootleg) [f205v, ANY]
+Arkanoid (bootleg on Block hardware, set 2) [f205v, ANY]
+Gals Panic (Korea, EXPRO-02 PCB) [Guru]
+Strikers 1945 (Hong Kong, Bootleg) 
+   [David Haywood, Brian Troha, Dumping Union]
+Fighting Fantasy (bootleg with 68705) [f205v] (not working)
+Phantom (Spectar bootleg) [Team Europe & rades]
+Panzar (Spectar bootleg) [f205v]
+Fatsy Gambler (Video Hustler bootleg) [f205v]
+Fitter (bootleg) [f205v]
+Vs. Super Mario Bros. (bootleg with Z80) (2 sets) [f205v, Dante Profeta] (not working)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+White Tiger - 3VXFC5342 (New Zealand) [Heihachi_73]
+Magic Mask (A - 09/05/2000, Export) [Heihachi_73]
+Geisha (A - 05/03/01, New Zealand) [Heihachi_73]
+Kimble Double HI-LO (z80 version) [Roberto Fresca, Alan Griffin]
+Fast Draw (poker conversion kit)? [Roberto Fresca]
+Draw Poker HI-LO (unknown, rev 1) [Roberto Fresca, Dumping Union]
+Draw Poker HI-LO (unknown, rev 2) [Roberto Fresca, Dumping Union]
+Video Stars [Andrew Welburn]

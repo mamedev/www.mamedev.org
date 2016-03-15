@@ -1,0 +1,91 @@
+0.26
+
+- After so much time of hard work the policy of "back to quality" is starting
+  to bring back the efforts.  I'm proud to announce I'v beated Mr Do's Castle.
+  Done one, done all.  So now we have also Mr Do! RunRun and Mr Do! Wild Ride.
+  Thanks to the invaluable help of Nicola, they are also arcade colors perfect,
+  very fast (!) and each game has audio support and hiscore saving! :D
+
+- Me and Aaron Giles (agiles@mail1.sirius.com) have added support for MAPPY!!
+  One of the most requested games.  It was a pleasure working with Aaron!  He
+  also added sound support and very close arcade colors (I think to have found
+  the color_prom... if it's the correct prom it will be added in the next
+  release).  Hiscore saving is supported as well.
+
+- Thanks to the outstanding combined efforts of Brad Oliver, Bernd Wiebelt
+  and Allard Van Der Bas, MAME entered in vectorial emulation world! (YEAH!!!)
+  All in a time, we have support for Asteroids, Asteroids Deluxe, Black Widow
+  Battlezone, Gravitar, Lunar Lander, Red Baron, Spaceduel, Tempest!!!
+
+- Again Aaron Giles added sound support to Super Pac Man!
+
+- Patrick Lawrence (pjl@ns.net) did a great work adding trackball support to
+  the main core system.  Trackball is enable with -trak parameter.  Trackball
+  support has been added to Centipede and Reactor.  Also, Patrick provided
+  a driver for Crystal Castles.  Great Work! ;)
+
+- And three... Aaron added support for Dig Dug!!  Hey man, you'r at a step
+  to become a God of Arcade emulation ;)
+
+- Mike Coates has joined to the "back to quality" team.  He added support for
+  SeaWolf ][, and improved Space Zap and Gorf (which is still unplayable).
+  Also Robby Roto is now fully playable (you'll need a bug free rom set).
+
+- Ray Giarratana (ray@loop.com) added support for Missile Command.  I didn't
+  include modifications for trackball for now.  The code needs to be cleaned
+  a bit, but the game is still playable.
+
+- Enrique Sanchez provided me documentation for Yie Air Kung Fu.  Also,
+  Philip Stroffolino (phil@maya.com) sent me a more complete driver than
+  mine for this game which is now playable.
+
+- Eric Anschuetz fixed a bug in joystick redefinition menu.  Also added the
+  selection support for Any Button ("A" key), and None ("N" key).
+
+- Fabrice Frances added a driver for 3 Stooges.
+
+- Andrew Scott provided a better sound support for Phoenix.  Melody is still
+  missing, because Shaun's board doesn't have it.
+
+- Nicola fixed Jump Bug driver which is now perfect.  Colors are still wrong
+  without proms.
+
+- Morten Eriksen (Morten.Eriksen@due.unit.no) added hiscore saving to
+  Ghosts 'n Goblins.
+
+- Valerio Verrando provided a new tweaked mode 256x232 for Crystal Castles.
+  He also provided a new tweaked video mode to get vsynced 60Hz (perfect
+  speed) with 256x256 games.  It has horizontal clock recover (thus video is
+  less mashed vertically, without having to modify monitor settings, and it
+  doesn't be confused with 224x288 by monitors that remember settings. Really
+  nice on scrolling games:  try it with "-noscanlines -vsync -vgafreq 1"
+
+- Fixed Commando dip switch bonus settings.  Also fixed a setting in Ant
+  Eater dipswitch.
+
+- Fixed a bug that locked your PC if BLASTER variable was not found (thanks
+  to James Oliver for the suggestion).
+
+- Tatsuyuki Satoh fixed sound tempo speed in Elevator Action (tempo speed
+  is 37.5Khz).
+
+- Added support for two versions of Pengo (one with the music of Popcorn
+  and a clone).
+
+Sources:
+- Me, Nicola, Bernd and Patrick have heavily changed the main core set of
+  sources.  Improvements to speed, memory access, drivers structure were
+  done.  We strongly suggest to developers to start their code on a clean
+  0.26 version.
+
+- Opcode decode and graphic decode are now done by a single function in
+  one step.
+
+- Tatsuyuki Satoh (tatuyuki@tky.threewebnet.or.jp) optimized DrawGfx()
+  function in case TRANSPARENCY_PEN and TRANSPARENCY_COLOR without remap,
+  producing a speed increment of 22-25% (try yourself with Elevator Action!)
+
+- Mauro Minenna introduced a new option (-dir4) that simplify the use of
+  the joysticks to be connected on the keyboard.  This modify resolves the
+  problem of diagonal direction in games such as PacMan, Popeye, and Kung Fu
+  Master.

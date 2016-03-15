@@ -1,0 +1,81 @@
+0.144u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04550: [Save/Restore] 20pacgal and clones.: Reset after loading with
+         -autosave enabled. (Tafoid)
+- 00287: [Graphics] ikki: another flicker happens newly in the
+         introduction scene between title and demo-play. 
+         (Angelo Salese)
+- 04554: [DIP/Input] gghost: Player 1 constantly moves right on the
+         screen (hap)
+- 04552: [Graphics] ssf2t and clones: flashing garbage during intro
+         (hap)
+- 04358: [Crash/Freeze] roughrac, sgmast: freezes upon attempting to
+         start a game (Angelo Salese)
+- 04553: [Crash/Freeze] All games in toypop.c: Games freeze with
+         zeroes screen (Angelo Salese)
+- 04551: [Gameplay] mastkin: irq_mask_w should be on 0x10B7 
+         (Angelo Salese)
+- 04548: [Save/Restore] Many games in mappy.c: Games do not load
+         correctly using -autosave. (Angelo Salese)
+- 04549: [Crash/Freeze] All games in toypop.c: Game fails POST - hangs
+         (Angelo Salese)
+- 04547: [Gameplay] digdug, galaga: Dig Dug gameplay is acting very
+         odd. Galaga has sound issues. (Angelo Salese)
+
+
+Source Changes
+--------------
+Added video, sound and basic i/o to the CES Classic driver, games are
+currently sort of playable [Angelo Salese]
+
+Completely removed deprecat.h and partial frame irq hacks from the core.
+Full list of drivers changed by this can be found at
+http://mamedev.emulab.it/kale/fast/files/deprecat_removal.zip
+[Angelo Salese]
+
+Converted Sliver to RAMDAC device [Angelo Salese]
+
+Added ay8910_reset_w() function, used by Joyful Road / Munch Mobile
+for resetting the AYs on-the-fly. Fixes substained sounds in the
+aforementioned game. [Lord Nightmare, Angelo Salese]
+
+Putted an handling error where filenames are too long [Chad]
+
+Fixed IRQ and NMI generation in Joyful Road driver according to
+schematics [Tomasz Slanina]
+
+CPS-1 update [Team CPS-1]:
+ * Added LWCHR.3A, ST22B.1A, STF29.1A, TK22B.1A, VA24B.1A, YI24B.1A
+    PALs
+ * Fixed wofch to use proper EPROM TK2(CH)_07.9A since the previous
+    dump was found to be bad
+ * Fixed wof, wofa, wofj, wofch ROMs labels and locations, added
+    Q-Sound PALs and pcb infos (Kold666)
+ * captcomm and clones: CCPRG.11D marked as NO_DUMP, the one dumped
+    was CCPRG1.11D (Kold666)
+ * Fixed dinoj, punisherj ROMs labels and locations, added Q-Sound
+    PALs
+ * Fixed sfzch, sfzbch GFX and sound ROMs labels and locations
+ * Minor cleanups and fixes
+
+Converted Paint & Puzzle driver to use proper VGA core [Angelo Salese]
+
+Provided PROM dump for Birdiy [f205v, Corrado Tomaselli]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Keith Courage In Alpha Zones [Mariusz Wojcieszek]
+Alien Crush [Mariusz Wojcieszek]
+Pac-Land (United Amusements PC Engine) [Mariusz Wojcieszek]
+
+
+New clones added
+----------------
+Exzisus (TAD License) [f205v, Robotype]
+Guzzler (Swimmer Conversion) [Kevin Eshbach]
+Warriors of Fate 921031 ETC [boredstu]

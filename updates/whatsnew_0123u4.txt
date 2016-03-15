@@ -1,0 +1,248 @@
+0.123u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+00817 [RansAckeR]
+
+
+
+Source Changes
+--------------
+MC6845 updates: [Zsolt Vasvari]
+ * now signalling both 0->1 and 1->0 transitions of synching pins
+ * added mc6845_assert_light_pen_input; uses a timer for latching 
+    the light pen address
+ * added reset device function
+ * implemented VSYNC height computation difference between the 
+    Motorola and the Rockwell devices
+ * since the Commodore 40xx computers program an HSYNC width that 
+    extends past the end of the scanline, I am clamping it in lack 
+    of anything better to do
+ * added support for the Commodore 6545-1 device type
+ * added support for the status register
+ * better variable names
+ * more asserts
+ 
+Updated the "Input (This Game)" menu to support conditional inputs.
+[stephh]
+
+Converted Amiga based games to partial updating and proper scanline 
+based timers. [Zsolt Vasvari]
+
+Beginning of the clean-up of Space Guerilla - fixed rotation, some 
+other stuff. [Zsolt Vasvari]
+
+Removed use of tmpbitmap from some drivers. [Zsolt Vasvari]
+
+Replaced mame_bitmap with direct use of bitmap_t. Removed mame_bitmap
+typedef. [Zsolt Vasvari]
+
+Fixed taitoic regression that caused crashes in several games.
+[Zsolt Vasvari]
+
+Changed the way VBLANK_INTs are handled:
+ - Defined a new MDRV_CPU_VBLANK_INT_HACK() (in deprecat.h) which is 
+    a copy of the current MDRV_CPU_VBLANK_INT()
+ - Found all the places where VBLANK_INT is used with something other 
+    than 1 interrupt per frame and changed it to the new macro
+ - Removed the "# per frame" parameter from MDRV_SCREEN_VBLANK_INT() 
+    and added a screen tag in its place; updated all callers 
+    appropriately.
+ - Added some validation of the interrupt setup to validate.c 
+
+Fixed SH4 refresh ticks value of 0, makes awbios not blow up the 
+timer system. [R. Belmont]
+
+Updated dkong driver to use two discrete structs which were previously
+not being used: [couriersud]
+ * dkong walk using a jump struct 
+ * radarscp using a dkong 555 struct
+
+MACHINE_DRIVER_EXTERN now requires a semicolon. Removed a number of 
+extra semicolons. [couriersud]
+
+In memory.c: removed some code never to be executed: [couriersud]
+ * removed "return 0" from READ* macros since it is unreachable
+ * removed comparisons of type FPTR < 0 and FPTR >= 0
+
+Identified code not used and marked with "#ifdef UNUSED_FUNCTION".
+[couriersud]
+
+Naomi: Use defines instead of magic numbers for IRQ sources, add 
+VBL-out. [R. Belmont]
+
+Improved (not perfect) ACIA slot monitoring. [kingshriek]
+
+Changed parent/clone relationship to separate SSI Poker sets from 
+Jackpot Joker Poker. [Roberto Fresca]
+
+Removed a couple of unused items from the cpuexec_data structure.
+Added validity check that screenless drivers cannot have a VBLANK
+interrupt. [Zsolt Vasvari]
+
+Added macros to define device functions. Updated existing devices
+to use the macros. [Aaron Giles]
+
+Added the concept of device classes. Devices specify their class
+in their get_info function. Classes can be used to walk through
+devices at a more general level than their type. Functions have
+been added to iterate through devices by class just as you can
+by type. [Aaron Giles]
+
+Removed some unused fields from device_config. [Aaron Giles]
+
+Moved all video timing logic from cpuexec.c to video.c. Added a 
+video_screen_register_vbl_cb() function for registering VBLANK 
+callbanks. Changed inptport.c and debugcpu.c to make use the VBLANK 
+callbacks. Added video_screen_get_time_until_vblank_start(). I did 
+some fairly extensive testing, but this is a very signficant internal 
+change, so some things may have broke. [Zsolt Vasvari]
+
+Removed use of cpu_scalebyfcount() from CVS driver. [Zsolt Vasvari]
+
+Changed a number of global functions to being static. [couriersud]
+
+Rewrote some potentially compiler specific code: [couriersud]
+ * added ATTR_FORCE_INLINE to osdcomm.h
+ * added ATTR_NONNULL
+ * moved U64 S64 fram mamecore.h to osdcomm.h
+ * define SETJMP_GNUC_PROTECT() in osdcomm.h for use in ppc602, ppc603
+
+Removed cpu_getcurrentframe() and replaced it with 
+video_screen_get_frame_number(int scrnum). Updated all callers.
+[Zsolt Vasvari]
+
+Moved watchdog processing logic into its own module. [Zsolt Vasvari]
+
+Replaced sprite multiplexing hack in tp84.c with 
+video_screen_update_now() on sprite RAM write. General driver 
+clean-up. [Zsolt Vasvari]
+
+Gyruss: Tilemap conversion, sprite multiplexing done properly, driver 
+clean-up. [Zsolt Vasvari]
+
+Changed z80dma to new device interface, updated mario.c and dkong.c 
+to use new interface. Illustrates how to keep existing memory 
+read/write handlers. This is slower than caching the device interface, 
+but does not have an impact on devices accessed at a low frequency 
+like in this case. [couriersud]
+
+Added video_screen_get_time_until_vblank_end() and
+video_screen_get_time_until_update(). [Aaron Giles]
+
+Fixed CCPU and QB3 to no longer rely on cpu_scalebyfcount(). Fixed 
+busted timing in the CCPU core. Changed watchdog to count internally 
+rather than using external watchdog support. Altered CCPU to accept 
+interrupt signals from the driver. Updated clocks in the cinemat 
+driver to be derived from the clock crystal. [Aaron Giles]
+
+Normalized function pointer typedefs: they are now all
+suffixed with _func. Did this throughout the core and
+drivers I was familiar with. [Aaron Giles]
+
+Added PORT_CHANGED macro which calls a callback if the given port 
+changes. Usage is very similar to PORT_CUSTOM. See the Astro Invader 
+driver for an example. [Zsolt Vasvari]
+
+Removed input_port_set_changed_callback and converted all users to 
+PORT_CHANGED. The only difference between the old callback and the 
+ones supplied by PORT_CHANGED is that values passed by PORT_CHANGED 
+are normalized to start at bit 0, just like PORT_CUSTOM. 
+[Zsolt Vasvari]
+
+Added running_machine* to the CUSTOM_INPUT callback - updated drivers 
+to use it. [Zsolt Vasvari]
+
+Updated brkthru.c, btime.c, exerion.c, fcombat.c, astrof.c, 
+cheekyms.c, cinemat.c to use PORT_CHANGED. Combined memory maps where 
+applicable. Converted cheekyms.c to use tilemaps. [Zsolt Vasvari]
+
+Merged memory maps for drivers X->Z. [Andrew Gardner]
+
+Exidy440: modernized input port handling with CUSTOM_INPUT and 
+INPUT_CHANGED. Cleaned-up special case handling. Created better
+separation between driver and video code. [Zsolt Vasvari]
+
+Verified clocks and oki pin7 for Peek-a-boo. [Mike Ellery]
+
+Untangled the Fire Truck driver. Many uses of PORT_CUSTOM and 
+PORT_CHANGED, including another good use case for the gear shift 
+logic. [Zsolt Vasvari]
+
+Updated ladybug.c, lasso.c, m10.c, madalien.c, maxaflex.c to use
+PORT_CHANGED for coinage. [Zsolt Vasvari]
+
+Added running_machine * parameter to the front of all read/write 
+handlers. Updated all call-through handlers appropriately. Renamed 
+read8_handler to read8_machine_func, replicating this pattern 
+throughout. [Aaron Giles]
+
+Defined new set of memory handler functions which are similar but 
+which pass a const device_config * in place of the running_machine *. 
+These are called read8_device_func, etc. Added macros 
+READ8_DEVICE_HANDLER() for specifying functions of this type.
+[Aaron Giles]
+
+Added running_machine * to the device_config, live while the device
+is live, and NULL otherwise, just like the token. [Aaron Giles]
+
+Meadows driver updates: [Zsolt Vasvari]
+ - Merged memory maps
+ - Uses PORT_CHANGED for coins
+ - Renamed 'Inferno (S2650) to 'Inferno (Meadows)'
+ - Renamed 'Bowling 3D' to '3-D Bowling'
+ - Added NO_DUMP entries for Gypsy Juggler's ball graphics and added GAME_IMPERFECT_GRAPHICS flag
+
+Fixed sprite colors in Exerion. [Zsolt Vasvari]
+
+Added new macros AM_DEVREAD, AM_DEVWRITE, and AM_DEVREADWRITE,
+which specify device read/write handlers in address maps, along
+with the type/tag of the device they reference. [Aaron Giles]
+
+Converted MC6845 read/write handlers to READ/WRITE8_DEVICE_HANDLERs.
+Updated all MC6845-using drivers to use the new macros and call
+the updated functions. Removed the many little helper functions
+that used to do this work. [Aaron Giles]
+
+Added validity checks to ensure that the devices referenced
+actually exist. [Aaron Giles]
+
+Fixed display of screen information so that it shows live information,
+not just the original configurations. [SailorSat]
+
+Improved DIP switch definitions, added DIP locations, and simplified
+input ports in atarisy2.c, atetris.c, avalnche.c, bagman.c, 
+balsente.c, lasso.c, seta.c. [RasnAckeR]
+
+Added DIPs and locations to onetwo.c. [Sonikos]
+
+Corrected some glitches and fixed bank reading in Deal'Em.
+[James Wallace]
+
+Changed/verified clocks on the following pcbs: 1943, Arkanoid, Action 
+Holliwood GalsPanic, Ben Bero Beh, 1000 Miglia, Pit and Run, 
+Prehistoric Isle, Rastan, Hotmind, Hardtimes, Stagger1 and 
+Tiger Road. [Corrado Tomaselli]
+
+Changed/verified Oki pin 7 on the following pcbs: 1000 miglia, 
+Galspanic, Action Holliwood, Hotmind, HardTimes, World Rally, 
+Stagger1. [Corrado Tomaselli]
+
+Added the new display types to the listxml DTD. [Oliver Stoneberg]
+
+Internal address map constructor changes: [couriersud]
+ * pass running_machine parameter to construct_map_##_name
+ * change "Machine->" to "machine->" in AM_BASE_MEMBER, AM_SIZE_MEMBER
+ * pass Machine in construct_address_map
+
+Mysterious Stones gets the "full treatment". [Zsolt Vasvari]
+
+Fix 8085 RST75 not working with PULSE_LINE. According to datasheet, 
+RST7.5 is latched on rising edge, while the other maskable interrupts 
+are sampled. [Nicola Salmoria]
+
+Removed AM_SPACE and matchmask support. Updated relevant drivers
+to use AM_MIRROR() and AM_MASK() to achieve the same thing. 
+[Aaron Giles]

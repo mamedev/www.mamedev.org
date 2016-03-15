@@ -1,0 +1,136 @@
+0.148u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+New System Drivers Supported:
+-----------------------------
+-DAG Z80 Trainer [Robbbert]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+-Ravensburger Selbstbaucomputer [Robbbert]
+
+
+Software Lists:
+----------------
+-softlist: added PCB documentation to gba, gbcolor and n64
+ lists, based on nointro pictures [LoganB]
+
+Source Changes
+--------------
+-XT IDE interface [Phill Harvey-Smith]
+
+-Fix for ROM paging on both the Dragon 64 and Dragon Alpha, which
+ restores the Dragon Alpha to working condition [Phill Harvey-Smith]
+
+-Z800x and M20 improvements to boot CP/M-8000 [Christian Groessler]
+ Z800x: Push the correct word on internal traps.
+ Z800x: Fix FCW handling in system non-segmented mode. 
+ Z800x: Add missing form of ldb reg, #imm. Z800x: Show previous PC, NSPSEG, and
+ PSAPSEG in the debugger. Z800x: Improved flags display in the
+ debugger. Z800x: Add debugger command z8k_disass_mode to toggle
+ segmented/non-segmented.  Default "auto" tracks the current execution
+ state. Z800x: Don't block nested exceptions if the priority and the
+ FCW allows it.
+
+-s3, mach8: Added read/write registers, and implemented read masking in
+ BitBLTs (used by XF86_S3). Made clipping rectangle checks against
+ Destination X/Y when doing BitBLT. [Barry Rodewald]
+
+-merged DAGZ80 into SELZ80 driver. Added a new bios version of
+ SELZ80. [Robbbert]
+
+-cd2650: added correct character generator rom [Robbbert]
+
+-nes.c: major refactoring and improvements of NES/FC cart
+ emulation: [Fabio Priuli]
+ * converted carts, mappers and pcbs to use slot devices
+ * fixed starting of Famicom, Famicom Twin and Dr. PCJr
+ * fixed handling of "no disk" in FDS so that the system displays
+    Mario and Luigi jumping around as expected
+ * added AY8910 sound to Sunsoft-5B (Gimmick JPN sfx)
+ * added YM2413 to VRC-7 (Lagrange Point OST)
+ * added support for recorded samples to Jaleco sport titles and to
+    Bandai Family Trainer Aerobics Studio, thanks to notes by hap and
+    egoh, and recordings by Pongbashi (samples are needed because
+    these games use a currently undumpable speech chip)
+ * added support for NES-EVENT pcb used by Nintendo World Championship
+    1990, including dipswitches
+ * added support for Galoob Game Genie real usage (in addition to the
+    codes which Puggsy added to his cheat collections): when you load
+    ggenie, a second cartslot becomes available to load another game
+    attached to the cheat device (e.g. with "mess.exe nes -cart ggenie
+    -cart2 smb") and you can enter the cheat codes as in a real NES
+ * added support for Nantettatte!! Baseball lock-on mechanism, based
+    on the tests performed by naruko on his carts: when you load
+    nantbb, a second cartslot becomes available to load one of the two
+    update minicarts (91 Hen or OB Hen)
+ * improved emulation of Namcot 163, 175 and 340 boards, based on the
+    tests performed by naruko, lidnariq and bootgod on the real
+    hardware
+ * moved Nantettatte!! Baseball minicarts to a separate list
+    (nes_ntbrom.xml) because they cannot be loaded in the NES
+    directly, but only through the nantbb subslot
+ * emulated bus conflict (CPU/PRG) in PCBs documented as having it
+ * partial emulation of open bus, enough to make working the games
+    using it as a sort of protection
+ * fixed crash when loading files using FFE mappers
+ * fixed mirroring in some boards (Sunsoft DCS and UNL-CC-21) and in
+    some games (e.g. Paris Dakar Rally Special and Escape from
+    Atlantis)
+ * fixed a few bugs in Tengen 800032 emulation (mapper 64), promoting
+    Klax, Xybots and Road Runner to working state
+ * fixed Tengen 800037 emulation (mapper 158), promoting US Alien
+    Syndrome to working state
+ * fixed NINA-001 emulation (mapper 34), promoting Impossible Mission II 
+    to working state
+ * improved Taito LROG017 emulation (mapper 77), promoting Napoleon Senki
+    to working state
+ * added emulation of the Sachen SA-9602B pcb used by Mei Shao Nv 
+    Meng Gong Chang, a chinese port of Princess Maker by Sachen, based 
+    on the great work done by Cah4e3 in FCEUMM
+ * added working emulation of many bootleg pcbs used for pirate
+    conversions from FDS (Ai Senshi Nicol, Doki Doki Panic, Fuuun
+    Shaolin Kyo, Green Beret, Monty no Doki Doki Daidassou, Tobidase
+    Daisakusen, Super Mario Bros Malee 2 / Genius Merio Bros...)
+ * improved emulation of many pirate pcb (BMC-GOLDENCARD-6IN1,
+    KS7013B, KS7012, BMC-GHOSTBUSTERS63IN1, UNL-MALISB, MAXI15 and
+    more...)
+ * improved RacerMate Challenge II emulation, but the game is still
+    not working due to unemulated bicycle controller
+ * added CPU-based IRQ mode in Tengen 800032 emulation (mapper 64),
+    fixing Skulls & Crossbones gfx (but the game is still not working)
+ * improved IRQ handling fixing a lot of 1-line glitches, fixing gfx
+    corruption in the upper half of Pinbot tables and allowing Sangokushi
+    II - Haou no Tairiku to boot.
+ * fixed many small inaccuracies in the old code, spot during the
+    conversion
+ * added support for most other known pcbs, even if in most cases
+    emulation is only sketchy
+ * reduced the need of fake alt pbcs for boards which only differed by
+    mirroring handling (these are now recognized through the
+    "mirroring" feature)
+ * removed fake wram which was added to a lot of partially documented
+    pcbs and re-added it only where actually present, so to more
+    accurately document what was really in the carts
+
+-atari.c: Correct bit for POK_KEY_BREAK which now allows colon/semi-colon
+ [:;] to work properly on Atari Computers. [Tom Clayton]
+
+-psxcd: Further cdrom work, main functional change is better sector
+ buffer handling [Carl]
+
+-svmu.c: changed input mappings to be more standard [LoganB]
+
+-pc8201: Added Japanese ROM. [noris]
+
+-bbc.c: Fixed cassette loading.  [Wilbert Pol]
+
+-csw_cas.c: Fixed CSW header detection regression.  [Wilbert Pol]

@@ -1,0 +1,177 @@
+0.152
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05296: [Graphics] All sets in a6809.c, apricot.c, bbc.c, 
+  multi16.c, paso1600.c, victor9k.c: Resolution Increase (Robbbert)
+- 05299: [Crash/Freeze] (psx.c) All sets in psx.c: [debug] 
+  Crash during Playstation Logo (smf)
+- 05371: [Core] SNES: SPC-700 sets B flag when pushing PS register 
+  to the stack during execution of the BRK instruction (Alex Jackson)
+
+
+New System Drivers Supported:
+-----------------------------
+-Nichibutsu My Vision (KH-1000) [ranger_lennier, Charles MacDonald, Wilbert Pol]
+-FM Towns II MX [caius, Barry Rodewald]
+-VTech IT Unlimited[TeamE]
+-Cromemco MCB-216 Single Card Computer  [Robbbert]
+-Cromemco CB-308 Single Card Computer  [Robbbert]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+
+
+Skeleton drivers:
+-----------------
+-Ensoniq ASR-10 [R. Belmont]
+-Ensoniq ASR-X [R. Belmont]
+-VTech Genius Leader 2000 [TeamE] 
+-VTech Genius Leader 2000 Plus [TeamE] 
+-VTech Genius Leader Notebook [TeamE]
+-Scientific Micro Systems SMS-1000  [Al Kossow, Robbbert]
+-Multitech Microkit09  [Robbbert]
+-Tavernier CPU09 [Robbbert]
+-Tavernier IVG09 [Robbbert]
+-Robot [Miodrag Milanovic]
+-IQ Unlimited [TeamE] 
+-Genius 3000S [TeamE] 
+-Genius Master Mega Color [TeamE] 
+
+Software Lists:
+----------------
+-v1050_hdd.xml: Added hard disk software list with preformatted
+ 5MB and 10MB CP/M images. [Curt Coder]
+
+-pet_hdd.xml: Added hard disk software list with preformatted
+ images for the Commodore D9060 and D9090 hard drives. [Curt Coder]
+
+-adam_flop.xml: Added disk utilities. [Curt Coder]
+
+-gp32: softlist update [Anna Wu]
+
+
+Source Changes
+--------------
+-southbridge: make at586 fdc work [Carl]
+
+-Apple II: Support for Applied Engineering Super Music
+ Synthesizer [R. Belmont]
+
+-Fix D9060 format. Reads greater than one sector were broken when using
+ bit banging. [smf]
+
+-esqkt: Cleaned up driver and use real es5510 device. [R. Belmont]
+
+-atari400.c - Updated palette incorporating 'CGIA D020577' and
+ 'GTIA C014805' tech doc info, including normalized grayscale with
+ proper color gradient.  Added phase shift values 24.7 thru 27.7
+ degrees in 0.5 degree increments.  Enabled phase shift 26.2 degrees as
+ default.  Note included concerning display type impact on palettes. 
+ [Robert Tuccitto]
+
+-rainbow.c: display blanking implemented.  Documented TURBOW286
+ card and NEC V20 patch details, as well as new W5, W6, W90 jumpers.
+ NVRAM save and recall now plays with DEC-100-B BIOS  [Bavarese]
+
+-abc800: Emulated the ABC 850 (10MB), ABC 852 (20MB), and ABC
+ 856 (60MB) hard disk drives. [Curt Coder]
+
+-abc800: Added slot devices for the ABC 830/832/834/838 floppy
+ disk drives, and the ABC 850/852/856 hard disk drives. [Curt Coder]
+
+-Added nscsi versions of the SCSI callback device and Xebec
+ S1410. [Curt Coder]
+
+-s1410: Return drive not ready error when trying to recalibrate
+ the unsupported drive 1. This fixes the phantom partitions in ABC
+ 850/852. [Curt Coder]
+
+-nes.c: add RP2C33-01 'older' version FDS bios and fix labels of
+ FDS bios roms. [Dead_Body]
+
+-hardbox: Fixed RAM size. [Martin Hoffmann-Vetter, Mike Naberezny]
+
+-abc800: Added support for raw 640KB disk images. [Curt Coder]
+
+-abc800: Added support for raw 1MB 8" disk images. [Curt Coder]
+
+-abc800: Added support for raw 80KB and 160KB disk images.
+ [Curt Coder]
+
+-abc800: Fixed formatting on the ABC 830/832/834/838 floppy
+ drives. [Curt Coder]
+
+-ti99_8: Using a consistent, new ROM dump; partly rewritten
+ [Michael Zapf]
+
+-adam: Added a second floppy drive and verified 160KB floppy
+ image gap sizes. [Curt Coder] 
+
+-next: Enhancements [O. Galibert]
+
+-tiki100: Fixed CPU clock and floppy interface. [Curt Coder]
+
+-tiki100: Added RS-232, Centronics and cassette. [Curt Coder]
+
+-wmbullet: Fixed floppy. [Curt Coder]
+
+-isbc: add isbx-218a floppy controller [Carl]
+
+-Apollo: correct MC146818 clock [Hans Ostermeyer]
+
+-prof80: Added a device for the MMU. [Curt Coder]
+
+-DEC Rainbow updates: [Bavarese]
+ * rainbow.c: wired watchdog (MHFLU) and W18 (DSR). Dangerous W90 (PSU
+    jumper) on PCB documented. Pallette handling changed, moved screen
+    blank routine to vtvideo.c
+ * dec_lk201.c: keyboard matrix from LK-201-AA (VCB02) (original 8051
+    version)
+ * Vtvideo.c: monochrome palette with 4 intensities (instead of 3).
+    Ironed out attribute bugs (-> truth table from VT100).
+    Double-width, double-height corrected
+
+-Added Atari 2600, 5200, and 7800 palette notes.  [Robert Tuccitto]
+
+-myvision.c: Changed inputs to use standard mahjong inputs.  [Vas Crabb]
+
+-itt3030: start adding to the skeleton. [rfka01, R. Belmont]
+
+-itt3030: preliminary bankswitching setup using bankdev [R. Belmont]
+
+-itt3030: preliminary keyboard matrix hookup, fixed text drawing [R. Belmont]
+
+-ti99: Fix problems with BwG disk controller; will now correctly
+ write double density disks. [Michael Zapf]
+
+-ti99_8: Included the Pascal ROM and made the Pascal subsystem
+ work at last. [Michael Zapf]
+
+-ti99: Fixed TI floppy disk controller. [Michael Zapf]
+
+-wicat: Got the main board to start sending data to the terminal board. [Barry Rodewald]
+
+-wicat: Hooked up CRTC and DMA on terminal board.  There is now a basic
+ display. [Barry Rodewald]
+
+-Rainbow 100 updates: [Bavarese]
+ * added DEC-190-B model
+ * preliminary floppy (TD0 / IMG)
+ * corrected LK201 keyboard matrix (C12, Do + cursor keys)
+ * MHFU changes; character display speedups
+ * nicer bezel with 'C' + 'D' drive leds
+
+-mega Soviet clone patch [shattered]
+ * moves ec184*, iskr103* and mc1502 out of pc.c
+ * moves CGA font upload support to a subclass
+ * adds new drivers: poisk1, ec1847, pk88
+ * adds a skeleton of native iskr103* keyboard
+
+-isbc-215g: add intel isbc-215g hdd controller, read only for now [Carl] 
+
+-bbc [Robbbert]
+ * added back the cursor
+ * fixed position of characters in mode 7

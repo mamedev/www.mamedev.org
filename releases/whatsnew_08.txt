@@ -1,0 +1,50 @@
+[note: only important changes are listed]
+
+0.8
+---
+
+Program:
+- Added some support for Carnival - it boots and runs the demo, but the
+  graphics are messed up.
+
+- Fixed graphics in Moon Quasar (yes it does run, but you need the correct
+  ROMs)
+
+- Better error checking in the sound initialization routines. It still sucks,
+  but at least will notify of problems instead of locking up the emulation.
+  The "0. Silence" driver also works.
+
+- Removed the "-nosound" command line switch, replaced it with "-soundcard n"
+  which allows to bypass the audio driver selection menu. Use "-soundcard 0"
+  to turn off sound.
+
+- Some support for Space Invaders (+ some clones) but it doesn't work well.
+
+- Support for Battle of Atlantis (a Scramble hack)
+
+- The ROM copyright notice is displayed in the main emulation screen.
+
+- Maybe I understood how the character colors are selected in Donkey Kong, at
+  least in part, but I'm not sure. Anyway, I started fixing them. I based on
+  the Kong emulator by Gary Shepherdson.
+
+
+  Following changes provided by Mirko Buffoni:
+
+- You can view the game graphics pressing F4. Use cursor keys to change
+  graphics set/color, F4 to return to the game.
+
+- Support for Mario Bros. (wrong colors, no sound) and Zaxxon (doesn't work yet).
+
+- Better colors in Amidar and Frogger.
+
+Source:
+- Added visible_area to the MachineDriver definition. It was used in all video
+  drivers, so it's better to keep it centralized.
+
+- Long-awaited function clearbitmap(), which correctly initializes a bitmap
+  using background_pen. Note for people porting MAME to other systems:
+  osd_create_bitmap() must call this function, the video drivers rely on that.
+
+- I got rid of machine.c and put all into mame.c... when I have time, I'll try
+  to organize the source better.

@@ -1,0 +1,142 @@
+0.112u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+analog0112u1gra [Derrick Renaud]
+UItext0112u1yel [Aaron Giles]
+layout0112u1gre [Aaron Giles]
+pinbo0112u1gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Improved the cidelsa driver: [Curt Coder]
+ - rewrote the cdp1802 cpu emulation as a state machine
+ - fixed Draco dips and inputs (what a strange game!)
+ - added NVRAM to Destroyer/Draco (Altair has no battery on the PCB)
+ - fixed some clocks
+
+Fixed mapping of spaceship controls in spcenctr. [Canim]
+
+Removed the inclusion of unnecessary header files across the project.
+[Atari Ace]
+
+Added discrete filters to the new Namco 54xx sound effects. Also
+implemented filters for the 52xx sound effects in preparation for
+future changes. [Derrick Renaud]
+
+Added pause support to the output system: [Bob Seidel]
+ - added "pause" message through the Output system to let clients 
+    know when MAME is paused
+ - the state of an item is now sent when the item is first created
+ - updated ledutil to use the pause state
+
+Added cocktail mode and DIP locations to the Millipede driver.
+[Mike Haaland]
+
+Many more CPS2 keys added. Removed all XORs and support for them from
+MAME. [Nicola Salmoria, Andreas Naive]
+
+Fixed regression in the ar_xeon driver sprites. [Ernesto Corvi]
+
+Kaneko driver improvements:
+ - bloodwar: [Gary Walkling, Sebastien Volpe]
+    * protection data extracted, still needs to be verified
+    * collision detection simulation thanks to tests on real board
+ - bonkadv: [Guru, Sebastien Volpe]
+    * protection data fully verified: corrects tilemap colors in levels 2 and 3
+    * correct implementation of MCU command 43
+
+Fixed behavior of MOVEC instruction on later 680x0 chips, and in the
+disassembler. [Ernesto Corvi]
+
+Properly idenitified sound ROMs for Altered Beast set 2. [Brian Troha]
+
+Fixed bad bits in a couple of FD1094 keys. [Aaron Giles]
+
+Fixed bug in debugger that caused incorrect end offsets to be 
+computed on CPUs with an address shift. [Ville Linde]
+
+Moved some additional pieces of core functionality in the the core
+utility library. [Nathan Woods]
+
+Added sound to porky. [Tomasz Slanina]
+
+Changed font scaling again. Fonts 24 pixels tall and above are scaled
+the old way. Fonts smaller than that are scaled via integral scale
+factors and adjusted the new way. [Aaron Giles]
+
+Added a small optimization to the FD1094 decoding step. [Aaron Giles]
+
+Added several new modules to the utility library libutil. First is a
+generic huffman encoding module. Second is a module that allows you to
+read/write AVI files in a platform-independent way. And third is a
+lossless A/V compression module. These three pieces together, plus
+some changes in the CHD code, allow for the creation of CHDs with
+compressed audio and video. [Aaron Giles]
+
+Added two new commands to chdman: -createav converts an AVI file in
+uncompressed YUY format or HuffYUV-compressed YUY format with "left"
+prediction into a CHD. And -extractav converts a CHD containing
+compressed audio & video into an uncompressed YUY format AVI file.
+[Aaron Giles]
+
+Finished hooking up laserdisc support to the new audio/video 
+compression. Note that we still do not have canonical CHDs of
+laserdisc data at the moment, but all the support is now present for
+when they start to appear. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Altair [Curt Coder]
+Draco [Curt Coder]
+Wyvern Wings [Pierpaolo Prazzoli]
+Choko [Guru]
+Asura Buster - Eternal Warriors (Japan) [David Haywood, Guru]
+Blood Warrior [Sebastien Volpe]
+Deal 'Em (MPU4 Conversion Kit) [James Wallace]
+Jyangokushi: Haoh no Saihai (Japan) [Guru]
+Dynamite Bomber (Korea) (Rev 1.5) [Guru, Pierpaolo Prazzoli]
+Search Eye 2 Plus V2.0 [Guru, David Haywood]
+
+
+
+New clones added
+----------------
+Dungeons & Dragons: Tower of Doom (Asia 940113) [Nicola Salmoria]
+X-Men: Children of the Atom (Hispanic 950331) [Nicola Salmoria]
+Armored Warriors (Asia 940920) [Nicola Salmoria]
+Street Fighter Zero (4 sets) [Nicola Salmoria]
+Dungeons & Dragons: Shadow over Mystara (Brazil 960223) [Nicola]
+Mega Man 2: The Power Fighters (Asia 960708) [Nicola Salmoria]
+Street Fighter Zero 2 (6 sets) [Nicola Salmoria]
+X-Men Vs. Street Fighter (7 sets) [Nicola Salmoria]
+Battle Circuit (Asia 970319) [Nicola Salmoria]
+Marvel Super Heroes Vs. Street Fighter (2 sets) [Nicola Salmoria]
+Super Gem Fighter: Mini Mix (Hispanic 970904) [Nicola Salmoria]
+Hyper Street Fighter 2 (Japan 031222) [Nicola Salmoria]
+Giga Wing (Asia 990222) [Nicola Salmoria]
+1944: The Loop Master (Japan 000620) [Nicola Salmoria]
+Progear (Asia 010117) [Nicola Salmoria]
+X-Men (4 Players ver JBA) [Brian Troha]
+Garou - Mark of the Wolves (bootleg) [David Haywood, JohnBoy]
+Puzzle Bang Bang (version 2.8 / 990106) [Guru]
+Space Battle Ship Gomorrah [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Candy Puzzle [David Haywood]
+Harem Challenge [David Haywood]
+Laser Quiz [David Haywood]
+Laser Quiz '2' Italy [David Haywood]
+Magic Premium [David Haywood]
+Laser Stixx [David Haywood]
+Koi Koi [David Haywood]
+Ski Champ [R. Belmont]

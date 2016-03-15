@@ -1,0 +1,95 @@
+0.106u2
+-------
+
+
+IMPORTANT NOTE: The video system in this version has been completely
+upended and redesigned. The old video system is still the default;
+however, some features may be broken. These are not bug-worthy
+reports, as the old system will soon be deprecated. The new system
+can be compiled by setting the NEW_RENDER flag on in the makefile.
+
+THE NEW SYSTEM IS STILL WORK-IN-PROGRESS! Apart from video card-
+related issues (like it doesn't work on particular hardware or has
+an incorrect display), bugs are not being tracked at this time.
+There is already a laundry list of things that are broken at the
+top of render.c, and there are many other things that still need
+to be looked at.
+
+In order to run the new video system with hardware acceleration, 
+your machine will require DirectX 8 or later.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+suchipi0106u1gra [Roberto Fresca]
+
+
+
+Source Changes
+--------------
+Added support for circular buffering in the SHARC core, and fixed
+several minor bugs. [Ville Linde]
+
+Added color PROM support for Nintendo's Sheriff driver. 
+[Stefan Jokisch]
+
+Discrete sound updates: [Derrick Renaud]
+ - Typedef'ed external discrete sound structures to follow current 
+     structure use. Statically defined their use in most drivers to 
+     stop name pollution.
+ - Created new DISCRETE_555_VCO1 module.  This is the 555&Op-amp 
+    oscillator circuit used by Borderline.
+
+Added the new video rendering system. A new file render.c contains
+the bulk of the logic. Major changes include: [Aaron Giles]
+ - The OSD layer is now responsible for allocating one or more 
+    render_targets at osd_init time. The old osd_create_display 
+    and osd_close_display calls are not used with the new system, 
+    so initialization must take place at osd_init time.
+ - The old osd_update_video_and_audio call has now been replaced 
+    with a simple osd_update call. This update call passes a 
+    mame_time to the OSD layer, which is the current emulated time. 
+    Throttling and speed calculations should use this time instead
+    of the framerate.
+ - osd_update is responsible for calling the render system to 
+    request a list of primitives to be drawn on each render_target
+    for the current frame. The primitives are simple and include
+    clipping rectangles, lines, and rectilinear quads only.
+ - If it wishes, the OSD layer can call back to a software
+    rasterizer in MAME. The rasterizer code is provided as an
+    include module so it can be tuned and optimized for platform-
+    specific video modes. See windows/rendsoft.c for a usage
+    example.
+ - There is a new layout file format .lay, which is XML-based and
+    which replaces the old .art files. The .lay files describe how
+    to render to a render_target. Each layout file can contain
+    multiple "views", which describe one of many ways the various
+    elements can be drawn. These views can be selected at runtime
+    via the new "Video Options" menu.
+ - The built-in UI font can be overridden with any .BDF font. Simply
+    name the .BDF file "ui.bdf" and place it in the MAME directory.
+    If you run at decent resolutions, you should choose a large 
+    point size for this font so that the scaled results look nice.
+ - The windows implementation uses Direct3D 8 as the preferred
+    mechanism for rendering. By default, it will render at the
+    current resolution, rather than switching resolutions as before.
+    This can be changed by adding -switchres to the command line.
+ - There are still a number of imperfect/incomplete features with
+    the new renderer, which is why it is not on by default. An
+    incomplete list is given in render.c.
+
+
+
+New clones added
+----------------
+WWF: Wrestlemania (rev 1.20 08/02/95) [Corrado Tomaselli]
+Heavy Smash (Asia version -4) [Corrado Tomaselli]
+Mad Alien (Highway Chase) [Stefan Jokisch]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pasha Pasha 2 [Pierpaolo Prazzoli]
+Trivia Madness [Pierpaolo Prazzoli]

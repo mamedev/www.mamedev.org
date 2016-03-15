@@ -1,0 +1,88 @@
+0.114u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cannonb078u6yel [couriersud]
+hatris0111u4gre [couriersud]
+pipedrm0111u4gre [couriersud]
+galaxianc058gre [couriersud]
+ssf2ghw0114u1yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Additional CDP1802 updates, taken from MESS. [Curt Coder]
+
+Fixed colors in One + Two. [Tomasz Slanina]
+
+Made the PowerPC dynarec options runtime configurable. [Ville Linde]
+
+Added save state support to the hatris/pipedrm driver. [couriersud]
+
+Corrected Moustache Boy main cpu interrupt rate, main cpu clock freq, 
+and screen refresh rate according to measurements on a real PCB.
+[Tormod Tjaberg]
+
+Separated the DECO and Mitchell games in the simpl156 driver and added
+more extensive documentation. [Brian Troha]
+
+Fixed analog controls in Solar Assault. [Ville Linde]
+
+Changed the options code so that ranges are specified on the 
+option_entry structure, and enforced when option values are changed.
+[Nathan Woods]
+
+Further improved the ROZ layer emulation in the K001604. [Ville Linde]
+
+Konami ZR107 update: [Ville Linde]
+ - Fixed sound hardware check in Winding Heat
+ - Changed to use the correct tilemap chip type
+ - Hooked up analog controls
+ - Fixed texture rom loading and texture decoding
+ - Improved the 2D tilemaps
+
+Introduced a mame_options_exit() call to complement 
+mame_options_init(). [Nathan Woods]
+
+Added a mame_fopen_options() call, similar to mame_fopen() but with 
+the ability to specify a core_options object to use. [Nathan Woods]
+
+Improved noise emulation in the SN76496 emulator. Added several
+variants which differ based on the noise generator and other
+parameters. [Lord Nightmare]
+
+Changed all plot_pixel and read_pixel calls to BITMAP_ADDRXX macros.
+Removed the now-obsolete functions. [Zsolt Vasvari]
+
+Added support for aliasing sound types. This allows minor variants in
+sound cores to share the same fundamental "type" so that the same
+sndti_* functions can be used regardless of the subtype. [Aaron Giles]
+
+Changed location of save state files. Now they are placed in the
+<savestate>/<gamename> directory. Auto-generated save state files have
+the name "auto.sta". All other save state files are named <slot>.sta.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Midnight Run [Ville Linde]
+Winding Heat [Ville Linde]
+
+
+
+New clones added
+----------------
+Night Warriors: Darkstalkers' Revenge (Euro 950316)
+  [Johan Samuelsson, Nicola Salmoria]
+Terra Force (set 2) [Stefan Lindberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Kokoroji 2 [David Haywood]

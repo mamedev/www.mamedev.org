@@ -1,0 +1,66 @@
+0.109u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+ftroption0109u2ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added missing InitCommonControls(), which caused the debugger UI
+to fail with recent updates. [Nathan Woods]
+
+Fixed dip switches and added second player controls for beaminv
+driver. [stephh]
+
+Major rewrite of the SHARC core: [Ville Linde]
+ - Bit-accurate reciprocals
+ - More accurate pipeline emulation
+ - Fixed the problems with operation latencies
+ - Regression tested a few floating-point operations for bit-accurate 
+    results
+ - Improved DMA emulation
+This update will fix most (but not all) of the clipping problems in 
+Gradius 4 and NBA Play by Play.
+
+Updated cardline driver lamps and layout: [wolf676]
+ - converted hardcoded fake lamps to new artwork system
+ - added button lamps card1-5, collect, bet, start
+ - added simple button lamps artwork "cardline.lay".
+ - re-ordered buttons and added "collect" button
+
+Updated funworld driver lamps and layout: [wolf676]
+ - added external credit in counter (mapped as coin 1 counter)
+ - added external credit out counter (mapped as coin 8 counter)
+ - added button lamps hold1-5, cancel, start
+ - added simple button lamps artwork "funworld.lay".
+
+Added COP420 core for the Altair games. [Curt Coder]
+
+Increased the interleave in Xevious to fix synchronization issues.
+[robiza]
+
+Added new output control system. This system is designed to support
+multiple output streams, and should replace all instances of printf
+in the code. You can now call one of these functions:
+
+  mame_printf_error
+  mame_printf_warning
+  mame_printf_info
+  mame_printf_debug
+
+to output data. By default, these go to the console, but they can be
+overridden by the OSD layer to route wherever is appropriate.
+[Aaron Giles]
+
+Some additional Grand Champion cleanup. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Cuore Uno (Italia) [Roberto Frecsa]
+Elephant Family (Italia) [Roberto Fresca]

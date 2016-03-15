@@ -1,0 +1,233 @@
+0.123u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01520: [DIP/Input] wilytowr, atomboy: dipswitch info
+- 01236: [DIP/Input] psurge: Power Surge isn't coining up.
+- 01521: [Gameplay] ar_sdwr: Game hangs on title screen
+- 01477: [Gameplay] metamrph, metamrpj, metamrpu: Game doesn't start
+- 01452: [Misc.] boobhack: Crashes
+- 01474: [Sound] ninjakd2, ninjak2a, ninjak2b, rdaction: Ninja-Kid II 
+         sound problem
+- 01461: [Misc.] mazinger: reset caused by the watchedog message
+- 01440: [Speed] mazingar, agallet: Terrible slow down in some scenes.
+- 01087: [Misc.] spbactn, spbactnj: Crash in debug build. Corrupted 
+         graphics in normal build.
+- 00223: [Graphics] splndrbt: On the first level when you pass the 
+         asteroid belt the star road should be light blue instead of 
+         black like mam
+- 00220: [Graphics] splndrbt: Concerning the gfx, on the pcb the 
+         background is not linear as shown in mame.
+- 00217: [Graphics] splndrbt: On boot the pcb displays a clean light 
+         blu screen while in mame there is a black road.
+- 01531: [Misc.] polygon-based drivers: winwork.c memory leak
+- 00150: [Misc.] alpinr2b, alpinesa : Assertion with -debug
+- 01462: [Save/Restore] atarimo_render-based drivers: Crash when 
+         loading an autosave save state
+- 01538: [Core] -verifysamples: Inconsistent handling of missing 
+         sample sets
+- 01491: [Interface] switchres causes Exception at EIP=009413BF: 
+         ACCESS VIOLATION
+- 01529: [Misc.] AICA memory leak
+- 01511: [Save/Restore] batman: Fails to load autosave state
+- 01536: [Misc.] uballoon: Access Violation with -debug
+- 01535: [Misc.] usclssic: Access Violation with -debug
+- 01465: [Misc.] topgunnr: Crashes
+- 01534: [Misc.] ajax, ajaxj, typhoon: Access Violation with -debug
+- 01019: [Sound] Various Drivers: List of drivers with sound clipping
+- 01499: [Multisession] Various Drivers: Launching games from in-game 
+         [TAB] menu 2-3 times in a row throws access violation.
+- 01453: [Misc.] troangel, newtangl: Crashes
+- 01463: [Misc.] connect4, mpu4met0, mpu4tst2, mpu4utst, bctvidbs: 
+         Assertion
+- 01475: [Misc.] Screenless systems are broken because of a vblank 
+         callback
+- 01486: [Gameplay] meritm.c: access violation for all games
+- 01530: [Misc.] Various Drivers: bitmap memory leaks
+- 01508: [Misc.] most vector-based drivers: Assertions
+- 01527: [Misc.] all meritm.c drivers: Assertion
+- 01528: [Misc.] pzlestar, sexyboom: Assertion
+- 01522: [Misc.] all ddragon.c drivers: Assertion
+- 01523: [Misc.] nkdodge, nkdodgeb, spdodgeb: Assertion
+- 01524: [Misc.] btoads: Assertion
+- 01526: [Misc.] futflash, laserbas, laserbsa: Assertion
+- 01507: [Misc.] all naomi.c drivers: Assertion
+- 01503: [Misc.] sidearjp, sidearmr, sidearms: Assertion
+- 01509: [Misc.] backfire, backfira: Assertion
+- 01501: [Misc.] all m107.c drivers: assertion
+- 01504: [Misc.] all leland.c drivers: Assertion
+- 01506: [Misc.] all ataxx.c drivers: Assertion
+- 01500: [Misc.] all astrocde.c drivers: assertion
+- 01514: [Misc.] all cyberbal.c drivers: Assertion
+- 01515: [Misc.] all atarig42.c drivers: Assertion
+- 01516: [Misc.] all atarigx2.c drivers: Assertion
+- 01517: [Misc.] all atarigt.c drivers: Assertion
+- 01505: [Misc.] all vicdual.c drivers: Assertion
+- 01512: [Misc.] beathead: Assertion
+- 01496: [Misc.] all segae.c drivers: Crashing with Access Violation
+- 01498: [Gameplay] otwalls: Hangs before the game starts.
+
+
+
+Source Changes
+--------------
+Added a new device type for timers. Where applicable, added a parallel
+set of timer functions that take a device_config instead of an
+emu_timer. Added MDRV_TIMER_* macros to define the timers in the
+machine driver. Implemented both periodic and scanline-based timer
+variants. Modified Space Encounters and Centipede to make use of this 
+feature. Going forward, this is the preferred way of creating periodic 
+timers. [Zsolt Vasvari]
+
+Renamed *_vbl_cb to *_vblank_callback. [Aaron Giles]
+
+Magicfly updates: [Roberto Fresca]
+ - Completed the component list & PCB layout.
+ - Added technical references to register $63 (magicfly).
+ - Switched crystal to new predefined format.
+
+Funworld updates: [Roberto Fresca]
+ - Added proper inputs to jolyc980.
+ - Added temporary patch to allow bypass the "code" screen in jolyc980.
+ - Updated technical notes.
+
+Changed exidy440_sound_command back to "UINT8." Since it's used by 
+both 8-bit and 16-bit systems, the automatic allocation is not worth 
+it if you need an ugly UINT16 ** cast. Removed deprecat.h from some of 
+the exidy files. [Zsolt Vasvari]
+
+Fixed Air Buster bootleg from reseting because of the watchdog.
+[Zsolt Vasvari]
+
+The on-screen "Reset by watchdog" message only appears in debug 
+builds now. [Zsolt Vasvari]
+
+Fixed the top screen in the megatech games. [Zsolt Vasvari]
+
+Added internal artwork for Gorf. [Mr. Do!]
+
+Fixed memory leak in clifront.c. [Zsolt Vasvari]
+
+Added a crosshair_set_screen() to allow drivers to control which 
+screen(s) on which crosshairs are displayed. [Nathan Woods]
+
+Made it a fatalerror to registr save state callbacks at the wrong time
+if the current driver claims to support save states. [Aaron Giles]
+
+Fixed chicken and egg problem with device_start callbacks: 
+[Aaron Giles]
+ 
+ - Added DEVINFO_INT_TOKEN_BYTES, which is queried before device
+   startup. It should return the size of the structure that will
+   be hung off of device->token. It must not return 0.
+
+ - Changed the core device interface to allocate and zero a block
+   of memory the size of DEVINFO_INT_TOKEN_BYTES before calling
+   device_start. The pointer to this memory is already attached
+   to device->token at the time device_start is called.
+
+ - The primary motivation for this is to allow the device_start
+   function to make internal calls and pass the device_config *
+   around as if the object were fully constructed. Since the token
+   is used to indicate whether or not a device is live, this makes
+   the device "live" at the time device_start is called rather
+   than after it completes.
+
+Moved per-screen initialization into DEVICE_START and per-screen 
+cleanup into DEVICE_STOP in the core video implementation. 
+[Aaron Giles]
+
+Fixed render_target_get_minimum_size() to return nominal values
+if no screens are found. [Aaron Giles]
+
+Alpha Denshi major update: [Nicola Salmoria]
+ - Fixed Alpha 8201/830x MCU simulation.
+   - all hacks from the equites driver removed
+   - fixed equites restart position after going underground
+   - fixed hvolume, splndrbt 2 players
+   - removed hacks from exctsccr2
+   - fixed CPU gameplay in shougi
+ - added dump of Alpha 8201 MCU to games that use it 
+   (the ROM isn't used yet, HMCS44 CPU core needs to be written first)
+ - major cleanup of the mess in equites.c:
+   - many thanks to Corrado Tomaselli for precious hardware info.
+   - implemented bg perspective scrolling using PROMs
+   - fixed sprite flip & disable
+   - fixed bg color
+   - converted bg to tilemaps
+   - fixed fg banking
+   - fixed screen flip
+   - removed meaningless banking of player inputs
+   - added UI adjuster for MSM5232 frequency
+   - MSM5232 volume control
+ - fixed MSM5232 noise LFSR formula (done by Jarek Burczynski; 
+    thanks to Corrado Tomaselli for samples)
+ - changed MSM5232 emulator to output channels separately
+ - added output of SOLO channels to MSM5232 emulator.
+ - fixed champbas inputs
+ - merged talbot with champbas, some driver clenaup
+ - fixed shougi inputs
+ - switched exctsccb to use the correct gfx ROMs (matches screenshot 
+    found in 01058 exctsccb: Exciting soccer bootleg should be placed 
+    in champbas.c.)
+ - fixed sprite bpp in exctscrr, removed the horrible hacks that were 
+    used to fix colors and transparency.
+ - fixed sound clipping in exctsccr
+ - added percussions to the equites.c games using samples; sound board 
+    emulation is still not complete. Cymbal hit and hi-hat are 
+    missing; bassline is incorrect, and DAC output should be filtered
+
+Fixed crash in spbactn. [Zsolt Vasvari]
+
+In drawgfx, removed unneeded pen lookups. Did some code formatting 
+clean-up. [Zsolt Vasvari]
+
+Fixed ninjakd2 PCM sample rate to match pcb measurement. 
+[Nicola Salmoria]
+
+Fixed chdman -extract to a physical drive on Windows. [Aaron Giles]
+
+Added return value to video_screen_update_partial() indicating whether
+or not the VIDEO_UPDATE was called as a result. [Aaron Giles]
+
+Fixed typo in pitnrun frequency. [Corrado Tomaselli]
+
+DIP switch improvements: [RansAckeR]
+ 1945kiii.c, 88games.c and 40love.c: Made use of PORT_DIPUNKNOWN_DIPLOC
+ 40love.c: Made use of PORT_INCLUDE
+ 8080bw.c: Added more dip locations; Made use of PORT_INCLUDE
+ wilytowr.c: Added dip locations for atomboy/wilytowr; Fixed coin modes
+ battlane.c, battlera.c, battlnts.c, bbusters.c: added dip locations
+ battlnts.c: made use of PORT_INCLUDE; fixed unknown dip switch
+ bbusters.c: added note regarding correct gun calibration
+ bionicc.c: Added dip locations
+ bladestl.c: Added dip locations, made use of PORT_INCLUDE
+ blockade.c: made use of PORT_INCLUDE
+ beezer.c: Added dip locations
+ bfm_sc2.c: dip switch improvements, made use of PORT_INCLUDE
+
+Conerted the MPU4 driver to use an HD6845, as the Hitachi part was on the
+PCB, while also using it to generate the VBLANK, rather than hardcoding
+a value. Added the pulldown resistor to the network, and added all the
+conditional inputs. Please note that on the later Cabinet Types (Ready
+Steady Go-1 onwards), the 10p slot is locked out (location of the true
+register for this is unknown), but the input setting is correct - you
+have to use Coin 2 or higher to get money in. [James Wallace]
+
+Fixed "garbage" (newlines) in the debugger window when debugging the 
+SH-4 CPU. [Oliver Stoenberg]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Gekisou [Nicola Salmoria]
+Pot Game (italian) [Roberto Fresca]
+
+
+New clones added
+----------------
+Pitfall II (315-5093, Flicky Conversion) [Corrado Tomaselli]
+Thunder Dragon (4th Jun. 1991) [Corrado Tomaselli]

@@ -1,0 +1,189 @@
+0.144u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03685: [Sound] reaktor: No sound (hap)
+- 03568: [Crash/Freeze] lockload, gunhard: Access Violation after OK (hap)
+- 04189: [Gameplay] fireshrk: Inputs aren't read consistently (hap)
+- 04601: [Speed] vimana: game suffers major slowdowns (hap)
+- 04602: [Documentation] pb_l5 and clones: The correct description is
+         "PIN-BOT..." and the exact year of production is 1986.
+- 04600: [Documentation] pfevr_l2, pfevr_p3: The correct descriptions
+         are "Pennant Fever (L-2)" and "Pennant Fever (P-3)".
+- 04599: [Documentation] pz_f4 and clones: The correct description is
+         "The Party Zone...".
+- 02234: [DIP/Input] chboxing: Unable to navigate Test Mode menu (hap)
+
+
+Source Changes
+--------------
+softlist: Fix entry count tracking issue [O. Galibert]
+
+vamphalf.c: Added correct speedup for Toy Land Adventure. Demoted Mr.
+Kicker to not working again. There is a serious bug with the nvram
+handling (possibly due to a core bug) which causes the game to break
+entirely if you get a high score and it rewrites nvram. [Dave Haywood]
+
+i386: Made a start at Virtual 8086 Mode.  Not fully working yet,
+though. Fixed an issue where two address or operand size prefixes
+would cancel each other out. [Barry Rodewald]
+
+Optimized PGM video rendering for a speedup in some video heavy cases
+[David Haywood]
+
+Reinstated the old KOV protection simulation given that the ARM still
+hasn't been dumped [David Haywood]
+
+arm7: some code reorganization, used a jump table for a small speedup
+[David Haywood]
+
+i386: Fixed high bits in eflags register from being changed by POPF,
+and VM and IF flags from changing depending on privilege level. Fixed
+exception error codes in protected mode. Further work on virtual 8086
+mode.  EMM386 will now load, but will still die a few seconds later.
+[Barry Rodewald]
+
+Enabling load of multi part softlist items on all available device
+[Fabio Priuli]
+
+ARM7: Gave ARM mode its own file & cleaned up formatting/indenting
+[David Haywood]
+
+i386: Bit more progress towards getting 386 enhanced mode Windows
+running. [Carl]
+
+beaminv.c: added color overlay [MASH]
+
+Added support for 2 drives on IDE controller [Miodrag Milanovic]
+
+Major bitmap-related changes throughout the system: [Aaron Giles]
+There are almost certainly some regressions lurking. Let me know if
+something seems busted.
+Bitmaps are now strongly typed based on format. bitmap_t still exists
+as an abstract base class, but it is almost never used. Instead,
+format-specific bitmap classes are provided:
+bitmap_ind8 == 8bpp indexed bitmap_ind16 == 16bpp indexed bitmap_ind32
+== 32bpp indexed bitmap_ind64 == 64bpp indexed bitmap_rgb32 == 32bpp
+RGB bitmap_argb32 == 32bpp ARGB bitmap_yuy16 == 16bpp YUY
+For each format, a generic pix() method is provided which references
+pixels of the correct type. The old pix8/pix16/pix32/ pix64 methods
+still exist in the short term, but the only one available is the one
+that matches the bitmap's pixel size. Note also that the old RGB15
+format bitmaps are no longer supported at all.
+Converted model1, megadriv, and stv drivers away from the RGB15 format
+bitmaps.
+New auto_bitmap_<type>_alloc() macros are provided for allocating the
+appropriate type of bitmap.
+Screen update functions now must specify the correct bitmap type as
+their input parameters. For static update functions the SCREEN_UPDATE
+macro is now replaced with SCREEN_UPDATE_RGB32 and SCREEN_UPDATE_IND16
+macros. All existing drivers have been updated to use the correct
+macros.
+Screen update functions are now required for all screens; there is no
+longer any default behavior of copying a "default" bitmap to the
+screen (in fact the default bitmap has been deprecated). Use one of
+the following to specify your screen_update callback:
+MCFG_SCREEN_UPDATE_STATIC(name) - static functions
+MCFG_SCREEN_UPDATE_DRIVER(class, func) - driver members
+MCFG_SCREEN_UPDATE_DEVICE(tag, class, func) - device members
+Because the target bitmap format can now be deduced from the screen
+update function itself, the MCFG_SCREEN_FORMAT macro is no longer
+necessary, and has been removed. If you specify a screen update
+callback that takes a bitmap_ind16, then the screen will be configured
+to use a 16bpp indexed bitmap, and if you specify a callback that
+takes a bitmap_rgb32, then a 32bpp RGB bitmap will be provided.
+Extended the bitmap classes to support wrapping a subregion of another
+bitmap, and cleaner allocation/resetting. The preferred use of bitmaps
+now is to define them directly in drivers/devices and use allocate()
+or wrap() to set them up, rather than allocating them via
+auto_bitmap_*_alloc().
+Several common devices needed overhauls or changes as a result of the
+above changes:
+ * Reorganized the laserdisc base driver and all the laserdisc drivers
+    as modern C++ devices, cleaning the code up considerably. Merged
+    ldsound device into the laserdsc device since modern devices are
+    flexible enough to handle it.
+ * Reorganized the v9938 device as a modern C++ device. Removed
+    v9938mod.c in favor of template functions in v9938.c directly.
+ * Added independent ind16 and rgb32 callbacks for TMS340x0 devices.
+ * All video devices are now hard-coded to either ind16 or rgb32
+    bitmaps. The most notable is the mc6845 which is rgb32, and
+    required changes to a number of consumers.
+ * Added screen_update methods to most video devices so they can be
+    directly called via MCFG_SCREEN_UPDATE_DEVICE instead of creating
+    tons of stub functions.
+Added new template device_delegate which wraps a regular delegate and
+includes a string pointer to a device tag, which can be simply
+resolved later. Converted the screen_update delegates to to be based
+on this. Changed the mechanism by which screen formats are auto-
+deduced. Converted SCREEN_EOF to use these delegates as well, so now
+there is MCFG_SCREEN_EOF_STATIC/ DRIVER/DEVICE just like
+MCFG_SCREEN_UPDATE.
+
+Death to SCREEN_EOF, which was ambiguously called either at the start
+or end of VBLANK depending on the video flag
+VIDEO_UPDATE_AFTER_VBLANK. Replaced with SCREEN_VBLANK callbacks which
+are called both at the start and end of VBLANK, so you can operate
+either way, and be explicit about it. Updated all callers. Also
+updated screen_device to use device timers and some other minor
+cleanups.
+
+Beginning to implement page faults [Carl]
+
+Created new testcpu driver that shows how to develop an empty test
+driver that (ab)uses the core to single step a CPU executing arbitrary
+instructions and capturing before/after state and tracking memory.
+Currently this driver is always compiled, but is not referenced in
+mame.lst. [Aaron Giles]
+
+Cleanup of bitmap classes now that formats and bpp are dictated
+strictly by the type. Also added code to more aggressively align the
+bitmap base and rowbytes, and create a resize method which attempts to
+re-use existing memory rather than always reallocating. [Aaron Giles]
+
+i386: Added I/O permissions. [Carl]
+
+Added new method screen_device::register_screen_bitmap which allocates
+a given bitmap to match the screen size and resizes it as appropriate
+when the screen size changes. Updated all the obvious spots in the
+code where this could be leveraged. [Aaron Giles]
+Move allocate/resize methods in the bitmap classes down into bitmap_t
+because they no longer have any dependency on the bitmap format or
+type.
+Ensured that the bitmap's palette remains set across a resize call (it
+is lost doing an allocate).
+
+[N64] Various changes: [MooglyGuy, Happy]
+ * Converted AI / VI / MI / RI / SI / PI into a modernized device
+ * PI DMA now takes place after an appropriate delay to simulate
+    transfer time
+- SP DMA no longer rejects transfers of 0 bytes (should transfer one
+8-byte word)
+
+x87: fix for single-precision operations [Peter Ferrie]
+
+Capcom ZN-1 update [Team CPS-1]:
+ * Redumped and fixed MASK ROMs in ts2, ts2j to match real pcb
+    (Smitdogg, The Dumping Union)
+ * Minor fixes
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Toy Land Adventure [f205v, The Dumping Union]
+
+
+New clones added
+----------------
+Gals Panic S - Extra Edition (Europe) [Hartenberger, arcadiabay.de]
+Western Gun Part II [Andrew Welburn, Bela Harcsa]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Shin Nihon Pro Wrestling Toukon Retsuden 4 Arcade Edition
+  [f205v, The Dumping Union]
+Touch de Uno! 2 [f205v, The Dumping Union]

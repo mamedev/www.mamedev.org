@@ -1,0 +1,330 @@
+0.92
+----
+
+This release comes prior to some major changes to the sound system from Aaron.
+Once Aaron has submitted his sound system changes 0.93 will be released to
+allow for easy testing of them.
+
+----
+
+Fixed most of the remaining issues with Taito F3 sound [Nicola Salmoria]
+	Sound in Ring Rage and Riding Fight still doesn't work
+	Quiz Theater has a bad sound rom
+	Bust-A-Move Again (US) sound roms need checking again real (non
+	-conversion) cart.
+	
+Improvements in the Microprose 3D driver [Philip J Bennett]
+	games not playable, but still a big improvement over the skeleton
+	driver
+	
+Improvements to MACs driver [Tomasz Slanina]
+	now using ST0016 Video, however emulation is still incomplete so
+	it doesn't do much more yet
+	
+Improvements to Hyperstone based drivers [Tomasz Slanina]
+
+Added missing PROMs to many drivers [HIGHWAYMAN]
+
+Fixed Vs. Goonies Dips [chaneman]
+
+Lethal Enforcers Improvements [R.Belmont]
+	Fixes:
+	- Tilemap colors
+	- Guns hooked up and aligned properly
+	- Tilemap and sprite layers aligned with the guns
+	- Various other cleanups - added a sprite ROM that was missing previously
+
+	To do:
+	- Figure out the correct sprite decode
+	- Sprite/tilemap priorities
+	- "Reload" indicator is funky, probably needs tilemap
+	flip bits.
+	- Fix K056832 external linescroll RAM support (used
+	for high scores, parallax in scrolling stages)
+
+Misc Changes [Nathan Woods]
+	src/cpu/g65816/g65816.h:
+	src/cpu/g65816/g65816.c:
+	src/cpu/g65816/g65816op.h:
+	src/cpu/g65816/g65816cm.h:
+	    - Added a hook that allows a driver to install a custom read handler 
+	for reading interrupt vectors (the 65816 has a signal that is asserted 
+	when reading a vector and certain hardware needs to reroute the read)
+
+	src/memory.c:
+	src/memory.h:
+	    - Created a memory_get_op_ptr() call.  This call is equivalent to 
+	memory_get_read_ptr() in ADDRESS_SPACE_PROGRAM with the exception that it is 
+	aware of the opbase handler. 
+
+	src/debug/debugcmd.c:
+	src/debug/debugvw.c:
+	   - Modified debugger to use memory_get_op_ptr() to determine if opcode 
+	memory is unmapped. 
+		
+Misc compiler fixes [Lawrence Gold]
+
+Taito SJ update [Nicola Salmoria]
+	- added sound CPU -> main CPU communication (fixes Tin Star hangs without 
+	need for a kludge, and makes tunes between levels correctly play until the 
+	end)
+	- added memory map derived from schematics
+	- added DAC volume control (I hear little difference, even if it's used).
+	- coin lockout (important otherwise games could accept more than 9 coins)
+
+Correct Hyperstone Iram mirroring [Pierpaolo Prazzoli]
+
+Added real noise generator to TMS5110 [Jarek Burczynski]
+
+Workaround for Dipswitch problem in Mr Do's Castle [Nicola Salmoria]
+
+Fixed bug in M37710 cpu core [R.Belmont]
+
+More Sega improvements, including lots of set renaming and cleaning up of drivers
+by removing unused code [Aaron Giles]
+
+Updated some mahjong drivers to use the new standard inputs [James Wallace]
+	note, there was a further submission, this will need resyncing and
+	resubmitting
+	
+PSX based driver improvments [smf]
+	- new board notes from Guru
+	- removed 8.3 restrictions on namco system 11 rom names
+	- improved root counter emulation
+	- improved dma acknowledge emulation
+	- changes visible area immediately instead of during video update
+
+hooked up sound cpu in fitfight.c [Tomasz Slanina]
+
+Misc compiler fixes for VC [Bryan McPhail]
+
+Sound in Minesweeper driver [Frank Palazzolo]
+
+... and probably a whole bunch of other bits and pieces I've forgotten to mention
+ (the WIP updates might give a better overview)
+ 
+Anything that is missing will probably need resubmitting after Aaron's changes.
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Golden Tee 3D Golf [Brian Troha, Aaron Giles]
+Golden Tee 97 [Brian Troha, Aaron Giles]
+Golden Tee 98 [Brian Troha, Aaron Giles]
+Golden Tee 99 [Brian Troha, Aaron Giles]
+Golden Tee 2k [Brian Troha, Aaron Giles]
+Golden Tee Classic [Brian Troha, Aaron Giles]
+World Class Bowling Deluxe [Brian Troha, Aaron Giles]
+
+Land Breaker [Tomasz Slanina]
+
+Point Blank II [smf]
+
+Updated some NeoGeo sets to match Kawaks support (not tested) [Kawaks]
+
+Super Trio [David Haywood]
+
+Join 'em [Pierpaolo Prazzoli]
+
+Rack + Roll [Pierpaolo Prazzoli, siftware]
+
+Bronx (Cycle Shooting bootleg) [Tomasz Slanina]
+
+clones
+------
+
+Lightning Fighters (World) [Gerald]
+Wall Crash (alt encryption) [Pierpaolo Prazzoli]
+Egg Venture (ver 7) [Brian Troha]
+Colt (NY Captor bootleg) [Tomasz Slanina]
+Minesweeper (4 player) [Frank Palazzolo]
+Puckman (Falcom bootleg) [smf]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Wild Arrow [Tomasz Slanina]
+	seems to be some kind of gambling machine anyway
+
+Ping Pong King [Tomasz Slanina]
+	missing MCU simulation etc.
+	
+Gunpey [Tomasz Slanina]
+	skeleton driver, does nothing useful yet
+
+Dambusters [Tomasz Slanina]
+	skeleton driver, does nothing useful yet
+
+Championship Bowling [Pierpaolo Prazzoli]
+	sprite glitches, no controls
+
+Trivia Challenge [Pierpaolo Prazzoli]
+	missing question roms
+	
+Space Guerilla [Jarek Burczynski, Tomasz Slanina]
+	graphical problems, no sound
+	
+Laser Base / Future Flash [Tomasz Slanina]
+	unemulated protection
+	
+Kyuukyoku no Othello [Tomasz Slanina]
+	incomplete video emulation
+	
+
+0.91u2
+------
+
+Main purpose of this update is to clean up the compile warnings
+
+--
+
+Warning Cleanups [Nathan Woods, David Haywood]
+
+ST-V update [Angelo Salese]
+	-Added a kludge for Astra Super Stars to let it run past a nasty code,
+	  nasty because I highly suspect it's a sh-2 bug,will be worked out in
+	  the future.
+	-Added some new vdp2 registers,for example the DISP one for avoid
+	 transitions draws.
+	-Re-added the layer disable/enable code that I sent in the past which
+	 was lost,and removed the possibility to disable layers with non-debug
+	 builds
+	-Started to add default eeproms for the various games,for now I've hooked
+	 up the one in Shienryu to let it run already with Vertical Switch.
+	-Added the dynamic clocks,hopefully now 100% working.
+
+TNZS driver update [Nicola Salmoria]
+	- fixed crash due to code execution across bank cboundary (tnzs36b16yel)
+	- removed kludges which were required to run Arkanoid 2 (they were just 
+	mirror addresses)
+	- added sprite banking (same as seta.c). Insecotr X and other were obvoisly 
+	running at 30fps before, now they are ok. Also fixes insectx13b16gre and 
+	insectx236b16gre.
+	- added sprite buffering (not quite the same as seta.c). Fixes kabukiz 
+	sprites and backgrounds, though there might still be a few glitches.
+	- fixed kabukiz sound
+
+Correct NeoGeo Mirroring + additional information on coin counters etc. [Razoola]
+
+Lethal Enforcers updates [Nicola Salmoria, R.Belmont]
+
+uPD7759 rewrite, fixing sound in System 16 games [Aaron Giles]
+
+Small jalmah.c update to fix a crash [Angelo Salese]
+
+Fixed Gunsmoke transparency [Nicola Salmoria]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Kabuki-Z [Nicola Salmoria]
+
+clones
+------
+
+Karate Blazers (Japan) [Gerald]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Super Trio - background emulation not complete (encrypted tiles?)
+             sound emulation not complete
+           
+Join 'Em [David Haywood] - basic driver, not much work done on it yet
+
+The Couples [Angelo Salese] - basic driver, not much work done on it yet
+
+
+
+0.91u1
+------
+
+This has been released quickly after 0.91 due to a bug left in the Memory System.
+I consider core bugs critical and prefer to see them fixed in official updates as
+soon as possible.
+
+--
+
+Compiler Warning fixes for non-GCC compiles [Bryan McPhail]
+	cpuintrf.h			- Duplicate enum
+	cpu/mh68hc11/hc11ops.c		- C99 variable fix & warning fix
+	sound/streams.c			- C99 variable fix
+	vidhrdw/pacman.c		- C99 variable fix
+	vidhrdw/model3.c		- C99 variable fix, unused variable fix
+					- macro redefinition fix
+	vidhrdw/namcona1.c		- Fixed unused variable warning
+	vidhrdw/taitoic.c		- Fixed unused variable warning
+	vidhrdw/wgp.c			- Fixed unused variable warning
+	windows/debugwin.c		- Missing #include
+
+More compiler fixes [Lawrence Gold]
+	src/cpu/arm7/arm7core.h
+	src/cpu/powerpc/ppc.h
+		Trailing comma at the end of an enum.
+	
+	src/cpu/mc68hc11/hc11ops.c
+	src/cpu/mc68hc11/mc68hc11.c
+		ANSI C89 unfortunately doesn't allow unnamed structs or unions, so I 
+		had to uglify this code a bit.  A cleaner solution is welcome.
+	
+	src/drivers/segaorun.c
+		Returning a value from a void function
+
+Even more compiler fixes [Lawrence Gold]
+
+Fixed SFTM on 64-bit builds/systems [R.Belmont]
+
+Changes to Lethal Enforces [R.Belmont]
+	- Implemented 48xx bankswitch region, which can toggle between custom chip
+	  registers and RAM (evil!).
+	- Removed hack to pass POST since we now do it the right way
+	- Corrected 56832 RAM interface, added preliminary support for external
+	  linescroll RAM on the 56832.  This helps with the garbage tilemaps a bit
+	  since linescroll data is no longer getting sprayed all over VRAM.
+	  
+	  (note, with this update the driver was just crashing when I tested it,
+	   so maybe something is wrong)
+
+NEC disassembler update [Bryan McPhail]
+	Added support for encrypted opcodes in i386 disassembler (for Irem games).
+	Added some of the NEC V series instructions into i386 disassembler
+
+Fixed bug in memory system introduced in 0.91, this was breaking at least Kinst,
+the Seattle driver, and wwally. [Aaron Giles]
+
+Qix driver update [Nicola Salmoria]
+	- fixed hang in Electric Yo-Yo attract (elecyoyo055yel)
+	- external volume control and stereo support [Derrick Renaud]
+	- decrypted kram3, which is now working, unfortunately using large tables.
+	
+Fixed missing net in Super Vollyball (svolley37b12yel) [David Haywood]
+
+Fixed garbage around life-bars in rabiolep (rabiolep37b1gre) [David Haywood]
+
+Fixed? blanking out of levels at certain scores in Solomons Key (solomon36b10yel)
+This appears to be some basic protection, needs further investigation [David Haywood] 
+
+Fixed Zero Zone background banking [David Haywood]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Gauntlet Legends [Aaron Giles]
+Tenth Degree [Aaron Giles]
+Kram (encrypted) [Nicola Salmoria]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Monza GP [Phil Stroffolino]
+	doesn't display anything yet
+
+Gauntlet Dark Legacy [Aaron Giles]
+War: The Final Assault [Aaron Giles]
+Road Burners [Aaron Giles]
+NBA Showtime: NBA on NBC [Aaron Giles]
+NBA Showtime / NFL Blitz 2000 [Aaron Giles]
+San Francisco Rush 2049 [Aaron Giles]
+Cart Fury [Aaron Giles]

@@ -1,0 +1,205 @@
+0.144u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04594: [Sound] All sets in wiz.c: Missing Sound and/or Music (Darq)
+- 04590: [Sound] firebarr: Music randomly blocks on the last sound and
+         plays it forever (Alex Jackson)
+- 04589: [Crash/Freeze] mstworld: Access Voilation before OK (hap)
+- 04573: [Gameplay] spangbl: Die too quickly during attract mode
+         (timing) (hap)
+- 04584: [Crash/Freeze] Various sets in namcob1.c: Failure to boot
+         past post or disclaimer screen (hap)
+- 04582: [Gameplay] bkrtmaq quiztou numanath swcourt swcourtj exvania
+         exvaniaj: some games fails to pass selftest or freeze after
+	 copyright information (hap)
+- 04301: [Sound] cobram3: Game plays using Mach 3 sound effects
+         instead of Cobra Command ones. (Mariusz Wojcieszek)
+- 04581: [Gameplay] brapboys: game loops on crc check (hap)
+
+
+Source Changes
+--------------
+Fix for inverted RON / REACH buttons in kiwames [Angelo Salese, Fujix]
+
+Ported PC CGA device emulation from MESS to MAME, and updated Filetto
+and Tetris (KR) to use it accordingly [Angelo Salese]
+
+Added proper background hook-up for Tetris KR [Angelo Salese]
+
+Added preliminary superimposing flag for CGA, and implemented for
+Tetris KR, now it properly mixes between CGA graphics and external
+background [Angelo Salese]
+
+Added 'buzzer' sound to Filetto and Tetris KR [Angelo Salese]
+
+CPS-1 update [Team CPS-1]:
+ * Dumped and added MB63B.1A PAL to slammast and clones (Kold666)
+ * Fixed mbomberj, mbombrd, mbombrdj Q-Sound ROMs labels and
+    locations, added Q-Sound PALs
+
+Worked around 0x3d8 VGA reading, and fixed California Chase in using
+the right VGA card [Angelo Salese]
+
+Hooked up a proper VGA card for Psychic Force 2012 (waiting for
+further info about the VGA card used) [Angelo Salese]
+
+Added Tourvision bios ver. 52 [f205v, Corrado Tomaselli]
+
+Fixed Atari logo bad colors at POST in Area 51:Site 4 [Angelo Salese]
+
+Change 'screen' parameter in SCREEN_UPDATE and SCREEN_EOF callbacks to
+a reference. Remove redundant machine parameter from SCREEN_EOF.
+Remove old vestiges of driver_device video_eof override since it
+wasn't being used. Update all multi-screen games to use separate
+functions for each screen (calling into common code where
+appropriate). [Aaron Giles]
+
+i8251: Implemented transmit and receive data callbacks [Barry
+Rodewald]
+
+arm7: implemented MMU permission faults [Tim Schuerewegen]
+
+arm7: return correct MMU ID Code register values for ARM920T/ARM7500
+[Tim Schuerewegen]
+
+s3c24xx: lots of changes for future Happy Fish 302-in-1 and Palm Z22
+(mess) drivers [Tim Schuerewegen]
+
+chdman: fixed -extractcd of images with postgaps.  CHDs do not need
+reconversion, this was an -extractcd problem only. [R. Belmont]
+
+Implemented every single documented x87 co-processor opcodes in 386+
+CPU cores [Angelo Salese]
+
+Converted bitmap_t and rectangle into proper classes. Replaced
+BITMAP_ADDR* macros with bitmap->pix* functions, and moved
+bitmap_fill() to bitmap->fill() among other similar changes. Bitmap
+fields now only available via accessors. Replaced sect_rect with &=
+and union_rect with |= operators for rectangle classes. Some general
+cleanup as a result of these changes. [Aaron Giles]
+
+Implemented generic functions for RDMSR and WRMSR opcodes in Pentium
+CPU core (i.e. no MSR is actually hooked up so far) [Angelo Salese]
+
+Hooked up device in Savage Quest, dies at floppy error [Angelo Salese]
+
+Hooked up devices for X-Tom 3d, gets to BOOT error if you soft reset
+once [Angelo Salese]
+
+segae.c: Updated driver to use the implementation from
+src/emu/video/315_5124.c and modernized driver.
+[Enik Land, Wilbert Pol]
+
+Bulk converted cliprect * to cliprect & across the system. This makes
+cliprects mandatory everywhere. In general, cliprects were being
+correctly passed through the video side of most drivers already, so it
+is mostly a semantic change. Note that with my previous change,
+bitmaps have cliprects, so if you just want to clip to the bitmap's
+boundaries, pass bitmap->cliprect() instead of NULL (which is no
+longer permitted). [Aaron Giles]
+
+68HC05: CLR instruction should not affect the carry flag.  Verified
+with Freescale programmer's manual. [R. Belmont]
+
+Hooked up basic devices in Queen and Midway Quicksilver HWs [Angelo
+Salese]
+
+mcr.c: added twotiger stereo 8-track tape sample playback
+[italie, Mr. Do, hap]
+
+Bulk conversion of bitmap_t * to bitmap_t & . With this change the
+parameters for the global SCREEN_UPDATE callback match the parameters
+for the driver_device version. Added allocate() and deallocate()
+methods to bitmap_t to permit cleaner handling of bitmaps in drivers
+and modern devices. [Aaron Giles]
+
+m680x0: fix case where the MMU trashed memory [R. Belmont]
+
+Removed machine.generic.tmpbitmap, VIDEO_START(generic_bitmapped), and
+SCREEN_UPDATE(generic_bitmapped). In their place, each screen_device
+now maintains a default bitmap which is automatically copied to the
+screen on each update if no SCREEN_UPDATE function is provided and if
+no driver_device::video_update override is present. This bitmap can be
+found by querying the screen's new default_bitmap() method.
+[Aaron Giles]
+
+Hooked up devices and flash loading for Funky Ball, game currently dies
+at a Voodoo color DAC register check [Angelo Salese]
+
+Removed old C-based interface to astrings. astring exists only as a
+class now. Updated all stragglers (mostly tools) to use the class
+form. [Aaron Giles]
+
+[MCS48] Fixed I8021/I8022 clock divider. [Curt Coder]
+
+CPS-3 update [Team CPS-1]:
+ * Dumped and added Street Fighter III 3rd Strike Euro BIOS, unlocked
+    2 new sets
+ * Reordered all sets per release date
+ * Minor fixes
+
+ARM7: Fixed 39-in-1 booting. [Tim Schuerewegen]
+
+aquarium.c: removed region hack, fixed offtune music, fixed testmode
+[hap]
+
+chdman: don't be case sensitive on the input type extension
+[R. Belmont]
+
+OS/2 updates [KO Myung-Hun]
+
+Fix four spc700 opcodes which didn't disassemble correctly [kevtris]
+
+i386: Moved stack changes to be after protection checks in RETF and
+IRET Made ARPL protected mode only Added protection checks when MOVing
+to a segment register. [Barry Rodewald]
+
+Added delayed interrupts in idectrl to enable booting on some older
+bioses [Carl]
+
+scsihd.c: Get sector size from CHD metadata to support old 256
+bytes/sector SASI drives, and allow hard disk image subdevices.
+[Curt Coder]
+
+started converting steppers to simulate actual behavior in a more
+logical way, rather than using hardcoded tables [J. Wallace]
+
+PGM driver cleanups. [David Haywood]
+
+Rainbow Island driver cleanups + rename to avoid mess conflict
+[David Haywood]
+
+Improved puzzli2 protection simulation [iq132]
+
+uiimage/diimage: Dumbify the menus and add a control layer
+[O. Galibert]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Quizard 1.8 [Klaus Sommer, Team Europe, The Dumping Union]
+Quizard 2.3 [Klaus Sommer, Team Europe, The Dumping Union]
+
+
+New clones added
+----------------
+Rival Schools: United By Fate (Euro 971117)
+  [Corrado Tomaselli, The Dumping Union]
+Street Fighter III 3rd Strike: Fight for the Future (Euro 990608)
+  [Layne, Smitdogg, The Dumping Union]
+Street Fighter III 3rd Strike: Fight for the Future (Euro 990512)
+  [Layne, Smitdogg, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+USA Pro Basketball (Tourvision PCE bootleg) [Clawgrip]
+Thunder Blade (Tourvision PCE bootleg) [Clawgrip]
+Power League IV (Tourvision PCE bootleg) [Clawgrip]
+Rastan Saga II (Tourvision PCE bootleg) [Clawgrip, AUMAP]
+Quizard 3.4 [Klaus Sommer, Team Europe, The Dumping Union]
+Virtuality SU2000 [Phil Bennett, SailorSat]
+7 Smash [Yohji, Smitdogg, Charles MacDonald, The Dumping Union]

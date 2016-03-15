@@ -1,0 +1,74 @@
+0.35 BETA 9
+
+After the problems with the last few betas, this should be a stable release
+again. All games which worked before the core changes should be working again.
+Let us know if you find some still broken.
+
+
+New games supported:
+--------------------
+
+Sindbad Mystery [Nicola Salmoria, Mike Balfour]
+Yamato (preliminary) [Nicola Salmoria]
+Super Burger Time [Bryan McPhail]
+Gaplus [Manuel Abadia, Ernesto Corvi]
+Van Van Car [Allard van der Bas]
+Super Locomotive [Zsolt Vasvari]
+
+
+New clones supported:
+---------------------
+
+Crazy Climber (bootleg set 2) [Zsolt Vasvari]
+Pac Man (modified) [Allard van der Bas]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed background in Pig Newton. [Mike Balfour]
+
+- Fixed the Galaxian-style starfield. Believe it or not, it had been broken
+  since day 1. [Nicola Salmoria]
+
+- Converted the System 16 drivers to use the TileMap system - they are now
+  cleaner, faster, and support screen rotation. [Phil Stroffolino]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed hangs in Super Real Darwin when big bosses come, however the order
+  they appear in is likely wrong (it's a protection issue). If you know the
+  correct order, contact mish@tendril.force9.net. [Bryan McPhail]
+
+- Emulated the protection in Jump Bug (Rock-ola). Some ROM splitup too, and
+  fixed colors. [Zsolt Vasvari]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] New tweaked 256x256 VGA modes (both scanlines and noscanlines)
+  stretched to fill the screen. They are automatically used for horizontal
+  games, and are preferable to the -stretch option since they are faster.
+  You might have to adjust your monitor settings to make them properly
+  centered and fill the screen (use the border displayed on startup as a
+  guideline). [Valerio Verrando]
+
+
+Source:
+-------
+
+- The debugger is almost complete. [Juergen Buchmueller]
+
+- Redesigned the struct InputPort to use less space, and changed how analog
+  inputs are defined. An additional benefit is that the keys for digital
+  emulation of analog inputs are now defined in the Keys for this Game menu,
+  together with all other keys, instead that in the Analog Controls menu.
+  The Analog Controls menu remains to set the other parameters.
+  [Nicola Salmoria]
+
+- Added default strings for dip switches. For example, instead of "Cabinet",
+  use DEF_STR( Cabinet ). The constants are defined in inptport.h.
+  [Nicola Salmoria]

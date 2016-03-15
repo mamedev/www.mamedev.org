@@ -1,0 +1,226 @@
+0.128u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02268: [Graphics] devilw, darkadv, majuu : Sprite-background 
+         priority isn't correct. (Mamesick)
+- 02042: [Color/Palette] jjparad2: Wrong background color (Mamesick)
+- 01679: [Crash/Freeze] kuniokub, kuniokun, renegade: Game freezes 
+         after Title Screen. (Mamesick)
+- 00224: [Sound] macross2: After stage 1, the sound keeps going out 
+         and coming back. (Nicola Salmoria)
+- 02605: [Color/Palette] funnymou, suprmous: Wrong colors in Funny 
+         Mouse and clone. (David Haywood)
+- 02587: [Gameplay] lohtb2: lohtb2 protection emulation is imperfect 
+         (couriersud)
+- 02456: [Core] wrong sector size at CD_TRACK_MODE2 conversion routine
+         (R. Belmont)
+- 02011: [Sound] superchs: ES5505 clockspeed too low (Phil Bennett)
+- 02199: [DIP/Input] banbam, pettanp: The 4th 'Unused' dipswitch is 
+         the 'Freeze' switch. (Angelo Salese)
+- 00893: [Sound] All games in playch10.c, punchout.c, vsnes.c: It 
+         seems that some sound channels are missing. (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Added sound banking to the mirage.c driver. [Angelo Salese]
+
+Removed parent clone relationship from "Street Fighter Zero/Alpha 2" 
+and "Street Fighter Zero 2 Alpha". [David Haywood]
+
+Removed parent clone relationship between missb2 and bublbobl. We 
+don't usually make the 'korean hacks' as clones as they have very 
+little to do with the original releases except for the stolen cpu 
+code. GFX / Sound / Gameplay are completely redesigned. 
+[David Haywood]
+
+Changed VBLANK to irq0_line_assert and added a CLEAR_LINE in the
+peplus driver. This greatly increases speed on all video slots.
+[Jim Stolis]
+
+Cleaned up the sample rom loading in mirage.c. [Angelo Salese]
+
+MCS-51 improvements: [couriersud, Jim Stolis]
+ * Fixed split timer mode
+ * No interrupts for timer 0 modes 0,1,2 while timer 1 in mode 3
+ * mcs51 core now supports 4 interrupt levels depending on cpu type
+ * According to Philips, 80C31 is a 80C52 family member with 128K 
+    internal ram and no rom
+ * Implemented cmos features: powerdown & idle
+ * Added comments about special function registers on Philips 80C52
+ * cleaned up reset routines
+ * Fixed INT0 & INT1 interrupt line handling
+ * Finally move cpu/i8051 to cpu/mcs51, rename files and some 
+    constants
+ * Quotes from the documentation added to the source as well
+ * Started DS5002FP integration
+
+Updated nes pcm dma to read data through the cpu address map.
+[Wilbert Pol]
+
+Fixed Dip Switches for 'ambush' and clones. [stephh]
+
+Improvements to magicfly driver: [Roberto Fresca]
+ - Added sound support to magicfly and 7mezzo.
+ - Hooked coin counters to magicfly and 7mezzo.
+ - Inverted the graphics banks to be straight with the hardware accesses.
+ - Updated the memory map description and technical notes.
+ - Added game notes and documented the test/settings/bookkeeping modes.
+
+Fixed Dip Switches for 'arabian' and clones. [stephh]
+
+Fixed Dip Switches for 'spaceint' and clones. [stephh]
+
+Fixed MSM5205 ADPCM and sound comms in Ashita no Joe/Success Joe.
+[Philip Bennett]
+
+Changed superchs ES5505 clock rate to 15238050Hz. [Philip Bennett]
+
+Fixed Dip Switches for all games in astrof.c driver. [stephh]
+
+Various improvements to the jalmah.c driver: [Angelo Salese]
+ * Fixed tilemaps paging / tilemap positioning;
+ * Fixed a protection issue in Mahjong Daireikai,not giving correct 
+    colors for the girls in-game;
+ * Fixed a rom-loading issue in Mahjong Daireikai;
+ * Fixed 'ZA' sound banking behaviour,this fixes at least the sound 
+    in kakumei2;
+ * Removed VIDEO_EOF and added a TIMER_DEVICE_CALLBACK function for 
+    MCU simulations;
+ * Added WIP code for the priority system;
+ * Added a NO_DUMP for the MCU for all the sets;
+
+Rewrite of the Motorola DSP56k CPU core. [Andrew Gardner]
+ * Partially implemented inc24, asl4, bcc, brkcc, and doForever ops.
+ * Added code for parallel address register update.
+ * Partially implemented tfr op.
+ * Polygonet now allows test mode to be run for a few seconds.  Most 
+    IO is now known, though coin2 is still a mystery.
+ * Partially implemented move, asr4, and mpy ops.
+
+YM2608/2612: applied latest fixes/discoveries. [Eke-Eke, Nemesis]
+
+Added palette fading effect on macrossp.c driver. [Angelo Salese]
+
+Fixed skewing and display area in MC6845. [Curt Coder]
+
+Fixed Dip Switches and inputs for 'dreamwld'. [stephh]
+
+NEC CPU core improvements: [couriersud]
+ * removed another speed hack in the NEC core
+ * renamed "FETCH" to "FETCH()" (macros used as functions should 
+    look like functions)
+ * Preparation for opcode prefetch timing
+ * improved prefetch timing calculation
+ * prefetch timing now also used by V20 and V33
+ * moved some static variables into cpu context
+ * nec_reset now explicitly clears context variables
+ * all cpus now share nec_execute
+
+More Discrete module optimizations. Added optimized custom mixer to 
+Donkey Kong. [Derrick Renaud]
+
+lohtb2: Improved mcu emulation [couriersud]
+ * The whole startup cycle now works. No more timeouts and erratic 
+    behavior.
+ * lohtb2 will however not display the "Warning" screen due to a 
+    priority issue. With color/attribute of 0x80 in videoram at 0xd0000 and 0xd8000, videoram at 0xd80000 will be displayed. Some tilemap guru has to look into this.
+
+Fix GCC 4.3 "array bounds exceeded" error in disc_flt.c. [R. Belmont]
+
+plygonet improvements: [R. Belmont]
+ - Turned off network IRQ.  Game now boots without "network error"
+ - Hooked up palette RAM
+ - Improved text layer emulation (flip bits still missing)
+ - Fixed text layer emulation and visible area. FBI logo and color 
+    test now display properly.
+
+Fixed sound,hooked-up generic inputs and added some notes in Alien 
+Command (not yet working). [Angelo Salese]
+
+Fixed m72 tilemap group 2 priorities. [couriersud]
+
+Fixed Joker's Wild graphics to 2 bits per pixel. [Roberto Fresca]
+
+NeoGeo updates [JohnBoy}
+ * Updated NeoGeo game pcb infos
+ * Renamed p's in kof2000n to correct chip label
+ * Renamed v's in mahretsu to correct chip label, readded 128k m1 
+    from Mame 0.34b6 / s1 from older dump
+ * breakrev: Renamed c's to correct chip label, added correct c5/c6
+ * Marked mslug3h MVS AND AES VERSION
+ * Marked mslug4 2nd revision, added mslug4 1st revision missing set 
+    comment
+ * Marked trally MVS AND AES VERSION
+ * Marked ncombath MVS AND AES VERSION
+ * Marked sengoku MVS VERSION
+ * Marked superspy MVS AND AES VERSION
+ * Marked mutnat MVS AND AES VERSION
+
+Modified src2html to use a template source file instead of hard-coding 
+to the MAME site. Changed from explicit styles to classes. 
+[Aaron Giles]
+
+Changed magictg to use (hopefully correct) roms. [David Haywood]
+
+Naomi / DC improvements [Samuele Zannoli]
+ * cvs2gd stops looping forever. However with no 3d emulation nothing 
+    is shown on the screen.
+ * implemented the naomi RTC and there are a few verbose messages
+    about transfers not implemented yet.
+
+Fixed Dip Switches for 'exprraid' and clones. [stephh]
+
+Improvements to re900.c driver [Roberto Fresca, Grull Osgo]
+ - Reworked inputs to allow 6 players through a selector.
+ - Hooked all lamps (even the ball simulator array).
+ - Added a internal layout and support for external artwork.
+ - Extended the hardware to support Buena Suerte '94.
+ - Cleaned up the driver.
+
+Fixed Dip Switches for 'gyruss' and clones. [stephh]
+
+Fix NES APU to work with high sample rates (don't know the bug #).
+[Aaron Giles]
+
+Synchronized 6502 disassembly with CPU core. [Pugsy]
+
+Added missing const/statics, added/removed entries in header files, 
+and fixed a few potential multisession issues by explicitly adding 
+initializers. asic65.c has significant changes to accomodate using a 
+struct instead of 16 variables, otherwise the changes are modest and 
+obvious. [Atari Ace]
+
+expro02 driver improvements: [Sonikos]
+ - Fixed dips in all galsnew sets and  fantasia.
+ - Added dips location.
+ - A little driver clean up.
+
+Added save state support to the toaplan2 driver. [Atari Ace]
+
+Changed the coinage settings and swapped coin A mech with coin B to
+match the behaviour of Chelnov (world) pcb. [Corrado Tomaselli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Ruleta RE-900 [Grull Osgo]
+Buena Suerte '94 [Grull Osgo, Roberto Fresca]
+Virtual Mahjong 2 - My Fair Lady
+
+
+
+New clones added
+----------------
+Power Instinct (USA) [Jim Hernandez]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Joker's Wild (encrypted) [Roberto Fresca]

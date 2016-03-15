@@ -1,0 +1,201 @@
+0.112u1
+-------
+
+IMPORTANT: This release brings with it a major source code 
+reorganization. Because of this, there is no diff update, since the
+diff would be enormous.
+
+The new layout at a high level looks like this:
+
+makefile
+docs/
+src/
+  emu/        (generic emulation files from the old src/ directory)
+    cpu/      (CPU cores from src/cpu)
+    sound/    (sound cores from src/sound)
+    debug/    (debugger code from src/debug)
+    audio/    (generic audio files from src/sndhrdw)
+    layout/   (generic layout files from src/layout)
+    machine/  (generic machine files from src/machine)
+    video/    (generic video files from src/vidhrdw)
+
+  mame/       (MAME-specific drivers)
+    drivers/  (drivers from src/drivers)
+    includes/ (includes from src/includes)
+    layout/   (majority of files from src/layout)
+    machine/  (majority of files from src/machine)
+    audio/    (majority of files from src/sndhrdw)
+    video/    (majority of files from src/vidhrdw)
+    etc/      (misc files from src/etc)
+
+  lib/        (libraries)
+    util/     (various files with light dependencies from src)
+    zlib/     (zlib library)
+    expat/    (expat library)
+
+  osd/        (OS-dependent code)
+    osdmini/  (mini OS-dependent code)
+    windows/  (Windows OS-dependent code)
+
+  tools/      (misc tools)
+
+Along with these changes come a number of makefile alterations to
+better distribute the build knowledge within each major subdirectory.
+There may be some build issues or other interesting side effects to
+this change. Report them on MAMETesters and future updates will
+include fixes.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+m4_0111u4gra [Mike Ellery]
+mouser0112yel [Mamesick]
+bnj0111u5ora [Canim]
+
+
+
+Source Changes
+--------------
+Improvements to the Cidelsa driver: [Curt Coder]
+ - Fixed the disassembly of cdp1802 opcode LSKP
+ - Changed the cdp1802 opcode OUT to increment R(X) after calling the 
+    write handler
+ - Set cdp1869 display size and visible area according to data sheet
+ - Added cdp1869 CFC emulation (probably never used by anything but 
+   just for completeness' sake)
+ - Cleaned up driver
+
+Improvements to the M2 driver: [Ville Linde]
+ - Added preliminary CD controller emulation
+ - Hooked up some more multi-processor functionality and interrupts
+
+Improvements to C352 sound emulator: [cync, hoot development team]
+ - Rewrote loop and flag handling, added support for global key-on 
+    register
+ - Fixed state saving
+
+Worked around compilation error on MSVC that caused "Calendar error"
+in the Neo Geo games. [Atari Ace]
+
+Rewrote much of the RF5C400 sound emulator to support looping, stereo
+panning, and 8-bit sample support.
+[hoot development team, Ville Linde]
+
+Removed patch from mjleague now that it is not needed. 
+[Arenzo Fabrice]
+
+Fixed bubbletr crosshairs. [Canim]
+
+Cleaned up information in mamedriv.c. [Brian Troha]
+
+Added save state support for all games in gng.c, gunsmoke.c, lasso.c, 
+solomon.c and terracre.c. [Vas Crabb]
+
+Replaced implementation of Namco 54xx sound chip with new MB8844 CPU
+core running the original embedded ROM code. Removed old sound core.
+Pole Position and Bosconian no longer require samples as a result.
+[Nicola Salmora, Ernesto Corvi, Guru]
+
+Added new function driver_get_count() to return the number of drivers.
+[Nathan Woods]
+
+Added a bunch of new protection routines for SD Gundam & Heated 
+Barrel. [Angelo Salese]
+
+Input system changes: [Derrick Renaud]
+ - Added new IPT_POSITIONAL control type. This is for Ikari type 
+    rotary controls and gray-code devices like Seawolf. This makes 
+    rotary and gray-code controls easy to enter without custom 
+    handlers.
+ - Fixed some rounding and min/max errors in the core input code.
+ - Modified crosshair code to be based on real scaling, see Seawolf 
+    for an example. It can now also have multiple crosshairs on one 
+    input port if needed.
+ - Added back in the namcos2 crosshairs. Turns out they are needed 
+    for calibration.
+ - Removed the gwar control hack from the Ikari games that did not 
+    need it. Modified the gwar control hack so it is only used for 1 
+    frame, making it unnoticeable.
+ - Updated boothill, gunfight, seawolf, spcenctr to use the new 
+    PORT_REMAP_TABLE.
+
+Fixed the exidy/stern-sb1000 6840-based sound hardware to use what 
+is believed (based on the schematic) to be the proper LFSR/PRNG 
+waveform for its secondary clock source. [Lord Nightmare]
+
+Updated Dragon Bowl to use HOLD_LINE for sound IRQs. Also did the same
+for the following drivers: afega, ettrivia, funybubl, jack, mustache,
+seta, trvmadns, wink. [Pierpaolo Prazzoli]
+
+Changed 6809/6309 CPU cores to call the MAME debugger when CWAI/SYNC
+is used. [Nathan Woods]
+
+Fixed uninitialized use of video_dma_address to address the rfjet
+crash in 64-bit builds. [Ville Linde]
+
+Added support for the Motorola MPC8240 to the PowerPC core.
+[Ville Linde]
+
+Improved ZIP file searching to look first for name + CRC match, second
+for CRC-only match, and lastly for name-only match. [Ben Rudiak-Gould]
+
+Verified and improved stepper behavior based on comparison with a
+real machine. [James Wallace]
+
+Changed file2str to work for any binary file and output the data as
+an array of bytes rather than a string. [Aaron Giles]
+
+Made UI font size computations more flexible. This ensures that fonts
+are scaled vertically by an integral factor and should produce nice
+proportions for most fonts now. [Aaron Giles]
+
+Added new function sound_find_sndnum_by_tag() to look up a sound
+index by its tag. [Aaron Giles]
+
+Made osd_uchar_from_osdchar a member of the osdcore file library.
+[Aaron Giles]
+
+Created new generic bitmap management code with fewer dependencies on
+the rest of MAME so that it can be used by utility code. Changed 
+bitmap_alloc to always take a format parameter. Deprecated
+bitmap_alloc_format. Updated all drivers to pass an explicit format
+when allocating a bitmap. Changed auto_bitmap_alloc in the same
+fashion. [Aaron Giles]
+
+Split some functionality from fileio.c into new module corefile.c,
+which can be used by utilities to get unicode support and fopen-style
+file I/O built on top of the OSD routines. Rebuilt fileio.c on top of
+the core file code. Added mame_core_file() to get the underlying
+core_file object from a mame_file so it can be used with png and
+xmlfile code. [Aaron Giles]
+
+Changed the way the tiny build works. There is now the concept of a
+SUBTARGET. By default SUBTARGET is set equal to TARGET (which is mame)
+and everything builds as normal. The makefile that is included is now
+src/$(TARGET)/$(SUBTARGET).mak. Thus, to do a tiny build, you now
+have to specify "make SUBTARGET=tiny". This will produce an output 
+executable with a name $(TARGET)$(SUBTARGET) (mametiny in this case).
+[Aaron Giles]
+
+Turned ENABLE_BORDER_PIX back on, since so many people seem to be
+having trouble without it. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Cash Quiz [Pierpaolo Prazzoli]
+Sidewinder [smf]
+
+
+
+New clones added
+----------------
+Power Spikes (China) [Pierpaolo Prazzoli]
+Rastan Saga (Japan Rev 1) [Gerald Coy]
+Eco Fighters (USA 931203) [Nicola Salmoria]
+Ultimate Ecology (Japan 931203) [Nicola Salmoria]
+Eco Fighters (Asia 931203) [Nicola Salmoria]
+Night Warriors: Darkstalkers' Revenge (Hispanic 950403) [Nicola]
+Night Warriors: Darkstalkers' Revenge (Brazil 950403) [Nicola]

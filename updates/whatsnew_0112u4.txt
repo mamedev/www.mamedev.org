@@ -1,0 +1,111 @@
+0.112u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+speakres0112yel [Zsolt Vasvari]
+minigolf0112u2gra [Derrick Renaud]
+empcity36finalyel [Aaron Giles]
+rdtsc0101u5yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Discrete sound for Checkmate: [Derrick Renaud]
+ * new DISCRETE_ADJUSTMENT_TAG module that uses tags instead of port 
+   numbers. Updated all games to use it, because it is now the 
+   preferred method.
+ * added PORT_CROSSHAIRs to triplhnt.
+
+Minor Konami 573 system update: [smf]
+ * marks two games as working which were incorrectly tagged
+ * adds the correct hashes for 845jab02
+ * added NO_DUMP's for all the flash roms
+
+Fixed a number of issues related to the new streaming engine and
+sound code: [Aaron Giles]
+ * fixed crash when restoring from a save state
+ * fixed crash when running with -nosound
+ * fixed loud looping when halted in the debugger
+ * fixed crash when changing sample rates (YM2203 mainly)
+ * fixed crash in k054539 sound core
+
+Added SN76477 noise RNG polynomial. [Zsolt Vasvari, Derrick Renaud, 
+Jarek Burczynski]
+
+Midway 8080 driver updates: [Zsolt Vasvari]
+ * fixed bug where mw8080bw games would freeze after state load.
+ * corrected DIP SW order in M-4
+ * converted Dog Patch to PORT_POSITIONAL
+
+RF5C400 sound core improvements: [hoot development team]
+ * implemented volume envelopes
+ * ccorrected the channel volume calculation
+ * documented registers for reverb, chorus, and per-channel digital 
+    filter (actual effects are not implemented yet)
+
+Fixeed most Dip Switches and Inputs in the galspnbl driver.
+[stephh, Justin Szczap]
+
+Updated a number of drivers to use the new PORT_DIPUNUSED macros.
+[stephh]
+
+Improvements to the memory pool routines: [Nathan Woods]
+ - added a pool_clear() call, to clear out a memory pool without 
+    freeing the pool itself
+ - added support for pool_realloc() with a size of zero, which 
+    effectively frees a pointer within a pool
+ - added testing code to validate pool behavior
+
+Added support for more flexible word wrapping with CJK characters.
+Also added wrapping on hyphens. [MAME Plus! team, Aaron Giles]
+
+Added T5182 support, which gives sound to darkmist, mustache and 
+panicr. Also changed the YM2151 to prevent timer problems, and added
+the missing flip X in Mustache Boy. [Nicola Salmora, Lord Nightmare,
+Ernesto Corvi]
+
+More input fixes and improvements: [Derrick Renaud]
+ * fixed some obscure masking, shifting, overflow, and signed 
+    problems in the input system. Most noticeably this fixes the 
+    analog controls in sfootbal and stops the pedal in redlin2p from 
+    rotating through gas/no gas as the pedal is pressed.
+ * analog ports no longer save and load their default value from the 
+    config file. It should only ever use the value specified in the 
+    driver, and storing it can cause problems the more the game is 
+    restarted and the value starts to change.
+ * added a bunch of validity tests to the analog ports. Some are 
+    commented out until the problems they uncovered are fixed.
+ * analog ports now defalt to a PORT_MINMAX of (0,mask). This means 
+    you no longer have to specify PORT_MINMAX if you are not using 
+    any limits. Removed a bunch of no longer needed PORT_MINMAX 
+    entries.
+
+Bitmaps are now cleared to 0 by default. This fixes a number of random
+crashes in games. [Aaron Giles]
+
+Modified the raster position calculations to round to the nearest
+pixel which produces more consistent results. [Aaron Giles]
+
+Changed most sound cores to generate audio at their internal clock
+rates (or some multiple/divisor of them) rather than at the user
+specified output rate. This completes the second step of decoupling
+audio emulation from the user's sample rate choice. [Aaron Giles]
+
+Removed a big pile of goofiness from the DMA-driven DAC driver now
+that it is no longer necessary. [Aaron Giles]
+
+Removed custom sound code from cchasm and replaced it with a simple
+DAC implementation. [Aaron Giles]
+
+Cleaned up attckufo driver, making it perform like a 1MHz 6502 game
+once again. [Aaron Giles]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tokimeki Memorial Oshiete Your Heart [R. Belmont]
+Tokimeki Memorial Oshiete Your Heart Seal version PLUS [R. Belmont]

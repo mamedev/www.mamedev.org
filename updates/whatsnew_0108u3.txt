@@ -1,0 +1,102 @@
+0.108u3
+-------
+
+
+Source Changes
+--------------
+Improved offsets of the "normal spites" in the SSV games twineag2,
+ultrax, and dynagear. [robzia]
+
+Added missing video change to the lethalen driver. [David Haywood]
+
+Some nice improvements to the debugger: [Andrew Gardner]
+ * added ability to tab between views in the disassembly windows
+ * added a 'cursor' to the dasm view and hooked up navigation keys
+ * added F4 'run to here' key when the disasm view has focus
+ * added F9 'toggle breakpoint' key when the disasm view has focus
+ * enhanced memory view keyboard navigation
+
+Added workaround for crash in the sound code under some edge cases.
+[David Haywood]
+
+Fixed background ROM loading in the new wbmlbg set. [David Haywood]
+
+Overhauled and corrected the DIP switches in the trivia and quiz 
+games in the findout driver. [wolf676]
+
+Added PORT_DIPLOCATION to the airbustr driver. [Roberto Fresca]
+
+TIA-MC1 driver improvements: [Eugene Sandulenko]
+ - fixed documentation
+ - hooked game counter and coin lockout
+ - added save state support
+
+Fixed 6840 counter behavior in continuous mode. [El Condor]
+
+Identified some unknown DIP switches in Robby Roto. [wolf676]
+
+Big update to the arkanoid driver which improves emulation of some 
+bootlegs: [Steph]
+ - Interverted 'arkblock' and 'arkbloc2' sets for better comparaison
+ - Renamed sets :
+    * 'arkbl2' -> 'arkmcubl'
+    * 'arkbl3' -> 'arkgcbl'
+ - Changed some games descriptions
+ - Removed flags from the following sets :
+    * 'arkbloc2' (old 'arkblock')
+    * 'arkgcbl' (old 'arkbl3')
+    * 'paddle2'
+
+Fixed a multithreading race condition at startup. [Nathan Woods]
+
+Added some minimal validation on the sample rate configuration
+parameters. [Firewave]
+
+Fixed a few dips and added diplocation setting for Wonder Stick 
+in the nmg5.c driver. [Brian Troha]
+
+Big update to the MPU4 driver: [El Condor]
+ - added support for reverse clocking in the VFD code. 
+ - changed the 6840 to not run the counter clock if no frequency 
+    is specified
+ - reworked the MPU4 drastically to be more in sync with AGEMAME
+ - MPU4 video should now be working a little better
+ - deprecated 6850acia.c, replacing it with a specialized driver
+
+Updated core.mak to ensure the make clean will remove file2str.exe.
+[Nathan Woods]
+
+Added new ROM loading option, ROM_IGNORE() which works just like
+ROM_CONTINUE() except that you don't need to load the data anywhere.
+It can be used when larger ROMs are present and only a portion of the
+data is used. See solomon.c for an example. [Aaron Giles]
+
+Removed support for the old debugger. [Aaron Giles]
+
+Added driver_data member to the Machine structure, where drivers can
+hang data instead of using global variables. Added MDRV_DRIVER_DATA
+macro so the core can allocate this structure at startup. Added
+AM_BASE_MEMBER and AM_SIZE_MEMBER which are similar to AM_BASE and
+AM_SIZE but let you specify a member of a struct hanging off of 
+driver_data. Updated the Turbo driver to use these new features as an 
+experiment. [Aaron Giles]
+
+More Turbo driver cleanup: [Aaron Giles]
+ * doubled the horizontal resolution to better draw analog sprites
+ * improved Buck Rogers and Subroc video
+
+
+
+New clones added
+----------------
+Solomon's Key (US) [Bobby Conover]
+Commando (bootleg) [ClawGrip]
+Beam Invader (set 2) [Peter Townson]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Connect 4 [El Condor]
+PlayMan Poker (Germany) [Roberto Fresca]
+Big Boy [David Haywood]

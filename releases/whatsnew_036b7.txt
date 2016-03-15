@@ -1,0 +1,109 @@
+0.36 BETA 7
+
+New games supported:
+--------------------
+
+Spiker [Aaron Giles]
+Finalizer - Super Transformation [Nicola Salmoria]
+Crazy Climber 2 [Takahiro Nogi]
+Syusse Oozumou [Takahiro Nogi]
+Mayday [Aaron Giles]
+Chimera Beast [Luca Elia]
+Iga Ninjyutsuden [Luca Elia]
+Plus Alpha [Luca Elia]
+Peek-a-Boo! [Luca Elia]
+Orbitron [Zsolt Vasvari]
+Mystic Riders [Bryan McPhail]
+Herbie at the Olympics [Mike Coates]
+Arcade Classics [Aaron Giles]
+Sparkz [Aaron Giles]
+Battle Chopper [Nao]
+Ninja Spirit [Nao]
+Image Fight [Nao]
+Legend of Hero Tonma [Nao]
+X Multiply [Nao]
+Dragon Breed [Nao]
+
+
+New clones supported:
+---------------------
+
+Snow Bros (set 3)
+Makai Densetsu (= Legend of Makai)
+Growl (US)
+Runark (= Growl)
+Tough Turf (US) [Andrew Prime]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Added raster effects to Neo Turf Masters and Sengoku 2. [Massimo Morra]
+
+- Fixed colors in Wanted, Marine Boy, Changes and Hopper Robo. [Zsolt Vasvari]
+
+- More fixes in the Toaplan games. [Satoshi Suzuki]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed YM2151 sound board support for Joust 2. [Aaron Giles]
+
+- Sound in Blasted and Max RPM. [Aaron Giles]
+
+- Completed samples support in Space Panic. [Mike Coates]
+
+- Samples support in Invinco and Pulsar. [Zsolt Vasvari]
+
+- Fixed coin sound in Naughty Boy. [Sal Bugliarisi]
+
+- Sound in Hot Chase. [CAB]
+
+
+Other drivers changes:
+----------------------
+
+- Improved Battle Lane. [Paul Leaman]
+- Fixed Turkey Shoot. [Aaron Giles]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] The new Allegro library supports the Gravis GrIP devices, use
+  -joy grip or -joy grip4 to enable.
+
+
+Source:
+-------
+
+- [DOS] Now compiled with Allegro 3.9.26 WIP.
+
+- Several improvements to FM sound emulators. This also fixes crashes in some
+  Jaleco Mega System 1 games. [Tatsuyuki Satoh]
+
+- Improvements to the other YM2151 emulator too. [Jarek Burczynski]
+
+- VIDEO_UPDATE_BEFORE_VBLANK is now the default. If you want your driver to
+  redraw the screen after vblank, use VIDEO_UPDATE_AFTER_VBLANK.
+
+- Rewritten the HC55516 CVSD decoder. This affects Sinistar, Joust 2, Arch
+  Rivals, Pigskin, Tri-Sports, Smash TV, Trog, Narc. [Aaron Giles]
+
+- Some improvements to the Z80 emulator. [Juergen Buchmueller]
+
+- Some fixes to HD63701 IRQ handling, and support for ICI (Input Capture
+  Interrupt). [Tatsuyuki Satoh]
+
+- Improvements to the 34010 emulation. [Aaron Giles]
+
+- New function findmemorychunk() that lets you look up a chunk of memory and
+  get its start/end addresses, and its base. This can be used (carefully!) by
+  drivers that wish to access memory directly without going through the
+  readmem/writemem accessors (e.g., blitters). [Aaron Giles]
+
+- Replaced cpu_reset() with cpu_set_reset_line().
+  cpu_set_reset_line(num,PULSE_LINE) is equivalent to the old cpu_reset().
+  ASSERT_LINE resets the cpu and halts it. CLEAR_LINE restarts it.
+  This avoids the need to call cpu_halt() in most cases. [Nicola Salmoria]

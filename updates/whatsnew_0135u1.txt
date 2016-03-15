@@ -1,0 +1,339 @@
+0.135u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03535: [Documentation] 3stooges: P1-P2-P3 button does not match 
+         documentation (input (this game)) (David Haywood)
+- 02734: [Crash/Freeze] videocba, videodad, blckjack: Crash 
+         immediately after OK (Firewave)
+- 00941: [Sound] tp84: The startup 'tune' no longer sounds like the 
+         original game after the fixes to the SN76496 sound core. 
+         (Lord Nightmare)
+- 03494: [Gameplay] batridc, batrid, batridk, batridu: 'Guest 
+         Player', 'Special Course', 'Player Select' dipswitch 
+         settings reversed (Fabio Priuli)
+- 02155: [DIP/Input] mole: Incorrect buttons mapping. (M.A.S.H.)
+- 03498: [Graphics] sengekis, sengekisj: Missing graphic layer in 
+         Stages 3 and 5 (David Haywood)
+- 03509: [Graphics] galpans2, galpans3, panicstr: Input test screen 
+         shows zoomed in text (David Haywood)
+
+
+
+Source Changes
+--------------
+Updated LFO information in YMF271 core. [Brian Troha, Nicola Salmoria]
+
+Fixed parent relationship between sbrkout3 and sbrkout. 
+[Lord Nightmare]
+
+Removed some magic numbers from machine/psx.c, replaced with #defines.
+[Harmony]
+
+Change to consistently use Intel notation for hex values in TMS32010 
+disassembler, rather than a mix of Motorola and Intel notation.
+[Lord Nightmare]
+
+Z80: Check for NOP in interrupt mode 0. This allows code like ei / 
+halt / di to work correctly. A better solution would be to implement 
+full support for arbitrary opcodes in mode 0. [Dirk Best]
+
+igs017.c update [Luca Elia]
+ - Merged in some IGS031 based games (igs_m68.c, tarzan.c)
+ - Implemented tiles flip x and video disable
+ - Added hopper simulation to mgcs
+ - Decrypted mgdh
+
+Almost complete decryption of starzan and tarzana [iq_132]
+
+Documented presence of Namco customs on the Pole Position bootleg 
+(Top Racer) sets. Removed Namco devices from bootlegs which don't 
+have them. [David Haywood]
+
+Added save state support to plygonet.c and the DSP56156 CPU core.
+[Andrew Gardner]
+
+Updated SN76489/A to have correct PRNG waveforms (a 0 bit was missing 
+at the beginning, and beginning of SN76489 waveform was all 1s 
+instead of 0s as measured on hardware). Added SN94624 (same as 
+SN76489). [Lord Nightmare, plgDavid (David Viens)]
+
+IGS blitter based games update [Luca Elia]
+ - Renamed driver to igs011.c and cleaned it up
+ - Renamed some sets according to chinese title
+ - Implemented hopper in lhb, lhb2, wlcc
+ - Decrypted ryukobou
+
+i386 core fixes: [Barry Rodewald]
+ * Added Nested Task flag, and I/O Privilege flags.  They aren't
+    implemented in any way, but can now be set or reset.  Can be used 
+    to detect a 80386 or later CPU.
+ * Implemented ENTER instruction.
+ * Made IRQ vectors treated as 8 bytes when in protected mode, and 
+    made the addresses pushed onto the stack 32-bit if the gate 
+    descriptor used is a 386 interrupt or trap gate (also when in 
+    protected mode, will always be 16-bit if in real mode).
+
+Fixes to default mapping as well as comment/information fixes for 
+Mole Attack [M.A.S.H./Tafoid]
+
+Identify puyoj set as Rev B and correct various rom names.
+[Smitdogg, Dumping Union]
+
+Improved Super Nova sprite shrinking, used by Gals Panic S2 and 
+Sengeki Striker. [David Haywood]
+
+Improved dips in Mahjong Vegas. [nightsoil]
+
+Added emulation of background graphics (blitter), sound and inputs to 
+skimaxx.c [Luca Elia]
+
+Refactored Z80, i8237, and i8257 DMA to use devcb. [Curt Coder]
+
+Fixed RGB555 palette RAM format in Soccer Superstars [Angelo Salese]
+
+Allowed child CPUs to be used in read8/write8 callbacks. [Curt Coder]
+
+Jaleco Mega System 32 update: [David Haywood]
+ * Added correct RAM sizes as per Charles McDonald's notes
+ * Implemented priority in the same manner as tetrisp2
+ * Add shadows via custom mixing (gametngk and tetrisp / tp2m32 are 
+    much improved)
+ * Added the alt tilemap layout used by f1superb for the backgrounds
+ * Added f1superb notes and IRQ generation code from nuapete
+
+Tournament Solitaire (pcat_dyn) improvements [luigi30]:
+ * Added newer version of toursol, renamed existing to toursol1 and 
+    the new one is now toursol
+ * Set toursol date to 1995
+ * Set toursol CPU speed to 40MHz
+
+Many improvements to konamigx rendering, specifically improving 
+Soccer Superstars and Rushing Hero. [David Haywood, Angelo Salese]
+
+Implemented input buffer copy protection in Rushing Heroes, game is 
+now somewhat playable with heavy gfx glitches [Angelo Salese]
+
+Fixed Konami GX type 4 protection seed $d15, used to protect a sprite 
+bank in Run & Gun 2 / Slam Dunk 2 [Angelo Salese]
+
+Fixed sprite ROM loading in Slam Dunk 2 [David Haywood]
+
+Added missing BLTZAL opcode to the RSP core. [angrylion]
+
+Control fix for Strike Gunner S.T.G. to allow a 3rd button mapping 
+for each player - thus allowing for the feature of merging ships in 2 
+player games. [Tafoid]
+
+Marked cosmic alien colors as wrong, added TODO to the driver for 
+fixing colors. Added new XTAL value for cosmic alien and switched 
+driver to use it. [Lord Nightmare]
+
+Fixed colors in Greyhound games [Mariusz Wojcieszek]
+
+Restored Final Gorodi and Wyvern Wings to working. [Brian Troha]
+
+Fixed gfx decoding and hooked up mc6845 in the Forte Card driver 
+[Angelo Salese]
+
+Removed dual layout, added Map base video register and fixed 
+transparent issues in the Jackpot Cards driver [Angelo Salese]
+
+MC680x0 update: [R. Belmont]
+ - Reworked PMMU/core interface so PMMU now sees all cop 0 
+    instructions
+ - Improved disassembly of PMMU instructions
+ - Preliminary 68LC040 support
+ - Fixed disassembly for EC/LC variants of '030/'040
+
+Patched NVRAM check in Jackpot Cards, makes the game playable but you 
+cannot save settings so it's not yet working. [Angelo Salese]
+
+Trashed the old pre-accurate-clocking STEP based sample averaging 
+scheme from sn76489 and friends, vastly simplifying the code. Made 
+the output bipolar rather than only above the 0 line. Added missing 
+statement to the get_safe_token function for the recently added 
+SN94624. [Lord Nightmare]
+
+Many N64 RDP fixes. 
+[angrylion, Ziggy, Gonetz, Orkin, DrgnMndd, Harmony]
+
+Cleaned up toaplan2 V25 support, enabled Batsugun V25 and added 
+decryption table info for the other games [David Haywood]
+
+Improved the V25S memory map in Batsugun, now CPUs starts to 
+communicate properly, needs to find & implement the irq that clears 
+the RAM flag and decrypt the relative opcodes in that. [Angelo Salese]
+
+More Greyhound improvements: [Mariusz Wojcieszek]
+ - added dip switches for Super Poker
+ - improved inputs in Sports Authority
+
+Expanded some sound chip tags to specifically indicate they are sound
+chips (generally, "ay" becomes "aysnd", "fm" becomes "fmsnd", etc)
+[Aaron Giles]
+
+MIPS3 TLB fixes: [Aaron Giles]
+ - now properly generating TLB fill exceptions under correct 
+    circumstances
+ - TLB exceptions no longer trash low 4 bits of Context
+ - exceptions with the EXL bit set always go to vector 0x180
+ - fixed bug in vtlb code that caused us to lose track of previously
+    registered fixed page ranges
+ - fixed MIPS3 behavior that would not clear out invalid page ranges
+    from the VTLB under certain circumstances
+ - added support for TLB sizes less than 48 entries
+ - fix TLBMOD exceptions so they also properly set BadVAddr
+
+Added NCR7496 variant to sn76496.c. Updated comments to show which 
+chips are currently verified. Cleaned up comments. [Lord Nightmare]
+
+Fixed the 64-bit crashing issues in N64 [Harmony]
+
+Fixed out-of-bounds array accesses in the peplus and videopkr drivers 
+[Oliver Stoeneberg]
+
+Merged findout.c and getrivia.c into gei.c [Mariusz Wojcieszek]
+
+Fixed broken DRC logging. [Aaron Giles]
+
+Fix PowerPC 603 translation so it doesn't get stuck in an infinite
+loop after the first fixup. [Aaron Giles]
+
+Added driver data struct and save state support to pandoras.c,
+marineb.c, m10.c, m14.c, m52.c, m57.c, m58.c, m62.c, m63.c, 
+travrusa.c, adp.c, n8080.c, atarifb.c, astinvad.c, avalnche.c,
+battlex.c, carjmbre.c, popper.c, spaceg.c, bankp.c, battlane.c, 
+blockade.c, blueprnt.c, brkthru.c bsktball.c, hexa.c
+[Fabio Priuli]
+
+Added driver data struct to espial.c, zodiack.c, 4enraya.c, 1942.c,
+1943.c, ace.c, albazc.c, arabian.c, aeroboto.c, astrof.c, ambush.c 
+angelkds.c, arkanoid.c. [Fabio Priuli]
+
+Replaced model3.c fatalerror() calls with development-friendly 
+logerror() calls. Also allows dayto2pe to boot again. [Phil Bennett]
+
+hng64: Improved the Samurai Shodown 64 2 i/o simulation comms, now 
+inputs works and enters into proper gameplay. [Angelo Salese]
+
+Merged some include files and merged audio/fghtbskt.c in 
+drivers/m63.c. [Fabio Priuli]
+
+Got rid of SN76496's R->OldNoise since it causes problems for 
+gamegear/sms. Changed noise taps accordingly. Redid change to 
+gamegear/sms for XOR vs XNOR, now verified by Justin Kerk. Verified 
+gamegear noise taps thanks to sample provided by Justin Kerk.
+Add stereo sound support to sn76496.c for gamegear. 
+[Lord Nightmare, Justin Kerk]
+
+Added a MDRV_EEPROM_NODEFAULT_ADD macro for drivers which do not need 
+default data size / data. [Fabio Priuli]
+
+Updated 20pacgal to use EEPROM device. Proper save state support still 
+needs some work (to handle the rom banking mechanism). [Fabio Priuli]
+
+Updated galgbios to use EEPROM_NODEFAULT. [Fabio Priuli]
+
+Added PORT_CUSTOM(eepromdev_bit_r) for EEPROM devices. [Fabio Priuli]
+
+Fixed wrong order parameters in memset (spotted by Beledgol).
+[Fabio Priuli]
+
+Verified/changed clocks and vsyncs on the following games: 
+Aerofighters (only vsync), Power Spikes, Turbo Force (only vsync), 
+Guzzler/Swimmer (same pcb), Exerion and Karate Champs Vs. 
+[Corrado Tomaselli]
+
+hng64: rewrote the MCU simulations, basically to be more clean than 
+before [Angelo Salese]
+
+hng64: improved MCU simulation and added inputs in Beast Busters 2nd 
+Nightmare, it can now reach gameplay mode too [Angelo Salese]
+
+hng64: removed Program Counter-based routines in Samurai Shodown 64 
+1/2, this fixes the first episode that can now be coined up, however 
+it hangs soon after that [Angelo Salese]
+
+Renamed drw80pkr to drw80pk2. Appears to be later version and MN 
+jurisdiction specific. [Jim Stolis]
+
+Replaced drw80pkr with older dump from [Team Europe].
+
+Added various graphics improvements and corrected colors to drw80pkr. 
+Game boots much farther and cleaner. Additional graphics/memory 
+cleanup and preliminary input support [Jim Stolis]
+
+hng64: work-around to get to the character screen in Samurai Shodown 
+64, hangs again after it [Angelo Salese]
+
+Added driver_data struct to appoooh.c and boxer.c. Also merged boxer 
+video emulation into drivers/boxer.c. [Fabio Priuli]
+
+Added dual screen output to the Konami GX Type 3/4 games 
+[David Haywood]
+
+Fixed possible NULL pointer dereference in video/dec0.c 
+[Oliver Stoneberg]
+
+Added save states to bionicc.c. [Fabio Priuli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Super Da Man Guan II 
+   [Luca Elia, Pierpaolo Prazzoli, Guru, Xing Xing]
+Mahjong Man Guan Da Heng [Luca Elia, Guru, The Dumping Union]
+Touche Me [David Haywood]
+Skimaxx [Luca Elia, Phil Bennett]
+Dream 9 Final [Angelo Salese, David Haywood]
+Soccer Superstars [David Haywood, Angelo Salese]
+Rushing Heroes [David Haywood, Angelo Salese]
+Run & Gun 2 [David Haywood, Angelo Salese]
+Super Poker [Mariusz Wojcieszek]
+GEI Multi Game [Mariusz Wojcieszek]
+Sport Authority [Mariusz Wojcieszek]
+Oh! Paipee [Takahiro Nogi]
+Tougenkyou [Takahiro Nogi]
+
+
+
+New clones added
+----------------
+Super Street Fighter II: The New Challengers (Hispanic 930911) 
+    [Artemio]
+Silent Scope (JZD) (not working) [Guru}
+Tarzan (V107) (not working) [iq_132]
+Mahjong Ryukobou (Japan, V030J) [Luca Elia, Guru, Dyq, Bnathan]
+Ultimate Tennis (Japan) [David Haywood, Aaron Giles]
+The Big Breakfast (5 sets) [AGEMAME Development]
+Gals Panic S - Extra Edition (Korea) [Choi Sung Ho]
+Light Bringer (Ver 2.20 1994/04/08) [Choi Sung Ho]
+Mad Crusher (Japan) [David Haywood, Andrew Welburn]
+Cosmic Alien (first version) [Andrew Welburn, Lord Nightmare]
+Dungeons & Dragons: Shadow over Mystara (Hispanic 960223) 
+   [Artemio Urbina, David Haywood]
+Mega Man 2: The Power Fighters (Hispanic 960712) 
+   [Artemio Urbina, David Haywood]
+Last Duel (Japan) [Chack'n, Team Japump!!!]
+Joker Poker (Version 16.04BI 10-19-88, Joker Poker ICB 9-30-86) 
+   [Mariusz Wojcieszek]
+Joker Poker (Version 16.03BI 5-10-85, Poker No Raise ICB 9-30-86) 
+   [Mariusz Wojcieszek]
+Amuse (Version 30.08 IBA) [Mariusz Wojcieszek]
+R-Type II (Japan, revision C) [Andrew Welburn]
+Popeye Man (hack) [Team Japump!!!]
+Steraranger (Moon Cresta bootleg) [Siftware]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mega Man 2: The Power Fighters (Hispanic 960712) [Artemio]
+Super Tarzan [f205v, Mirko Buffoni, iq_132]
+Mahjong Nenrikishu SP [Guru, Dyq, Bnathan]
+Print Club 2 (U 970921 V1.000) [Guru, Angelo Salese]
+Print Club 2 Vol. 3 (U 990310 V1.000) [Guru, Angelo Salese]

@@ -1,0 +1,197 @@
+0.131u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03173: [Sound] Many sets using atarijsa.c: Audio samples are 
+         incorrectly pitched (Phil Bennett)
+- 03171: [Crash/Freeze] pang, spang, pompingw, pkladies: Ram error 
+         during the boot checking of the games. (Pierpaolo Prazzoli)
+- 03170: [Sound] mtrap and clones: Sound effects cycle constantly 
+         while playing (Fabio Priuli)
+- 03169: [Crash/Freeze] All sets in hvyunit.c: Access Violation 
+         (Angelo Salese)
+- 03168: [Sound] All sets in halleys.c: Audio is missing completely 
+         (Fabio Priuli)
+- 03167: [Color/Palette] fromancr, fromanc4: Second screen has 
+         incorrect palette/colors (Fabio Priuli)
+- 03166: [Graphics] tattass, tattassa: Missing Graphics (Fabio Priuli)
+- 03153: [Crash/Freeze] penbros: Access Violation (Mamesick)
+- 03163: [Graphics] sailormn, sailormo: Playfield Graphics regression 
+         (Mamesick)
+- 03150: [Crash/Freeze] metmqstr, nmaster: Access Violation (Mamesick)
+- 03162: [Sound] baddudes, hbarrel, birdtry, robocop, hippodrm, 
+         ffantasa : Game has no sound at all (Angelo Salese)
+- 03147: [Misc.] shtngmst, shtngmst1: wrong sha1 values for shooting 
+         master ic74 (Nicola Salmoria)
+- 03160: [Crash/Freeze] tubepb: Access Violation (Fabio Priuli)
+- 03152: [Crash/Freeze] All Sets in nss.c: Access Violation 
+         (Fabio Priuli)
+- 03151: [Crash/Freeze] jajamaru, mightybj, topgun, vsgshoe: Access 
+         Violation (Fabio Priuli)
+- 03154: [Crash/Freeze] All sets in pooyan.c: Access Violation
+         (Fabio Priuli)
+- 03157: [Crash/Freeze] All Sets in policetr.c: Access Violation 
+         (Fabio Priuli)
+- 03159: [Crash/Freeze] superchs: Access Violation (Fabio Priuli)
+- 03148: [Crash/Freeze] All sets in konamigx.c: Access Violation
+         (Fabio Priuli)
+- 03146: [Compiling] cpu\vtlb.c 64 bit warning: 64bit vs compile 
+         warnings (smf)
+
+
+
+Source Changes
+--------------
+Added notes to several drivers indicating specifically that an MCU
+is needed for decapping. [Angelo Salese]
+
+Naomi renderer: add all 64 blending modes, and made it anal-retentive 
+where it comes to position precision. [Olivier Galibert]
+
+Converted Irem M14 HW to tilemaps and cleaned-up the driver.
+[Angelo Salese]
+
+Renamed yumefuda.c/hanaroku.c drivers to albazg.c/albazc.c (like they 
+should be properly named). [Angelo Salese]
+
+Added MCU no dumps for the Grand Striker driver. [Angelo Salese]
+
+Fixed background colors in Alien Command. [Angelo Salese]
+
+Added profile markers to naomi, to see what % of cpu time things are 
+using. [David Haywood]
+
+Lowered the AY-8910 volumes in the adp driver. [Angelo Salese]
+
+Some Maple fixes, now Street Fighter Zero 3 Upper should be fully 
+playable. [Angelo Salese]
+
+Added cart info documentation update for the two resent Mega-Tech cart 
+dumps: Shadow Dancer & Streets of Rage. [Brian Troha]
+
+Merged memory maps in the following remaining drivers and cleaned up 
+some comments: homedata.c, intrscti.c, inufuku.c, irobot.c, jack.c, 
+kaneko16.c, naughtyb.c, scobra.c, scramble.c, slapfght.c, spaceg.c.
+[MooglyGuy]
+
+Fixed Naomi bug in computedilated, was causing bad portraits in 
+shikgam2. [David Haywood]
+
+Removed second parameter from MDRV_CPU_PROGRAM_MAP, MDRV_CPU_DATA_MAP,
+and MDRV_CPU_IO_MAP. For the remaining drivers that used multiple
+address maps, converted them to use AM_IMPORT_FROM to import the base
+map. [Aaron Giles]
+
+Added bilinear filtering to Naomi video emulation. Textures are still 
+a bit crawly since we're always using the lowest MIP level. 
+[MooglyGuy, Aaron Giles]
+
+Short-circuit the naomi rendering in non-textured cases, prevents a 
+lot of bad graphics. [David Haywood]
+
+Fixed tubepb regression. [Fabio Priuli]
+
+Added MC-8123 key for Gigas. Of course the game still doesn't work 
+because the program ROM is missing. [Nicola Salmoria]
+
+Applied some of the Naomi exclusive texture mode rules. 
+[David Haywood]
+
+Added a work-around for the UART FIFO read only status register on the 
+SH-4 to make Tetris Kiwamemichi happy to boot. It crashes shortly 
+after that like La Keyboard though (jumps to an unmapped address).
+[Angelo Salese]
+
+Hacked the Naomi YUV interrupt to fire when the base register is 
+written.  (Currently looking at implementing properly, but this 
+prevents KuruCham and SS2005 from hanging). [David Haywood]
+
+Converted namcos2.c, niyanpai.c and nbmj9195.c to use AM_IMPORT_FROM
+instead of macros. [Angelo Salese]
+
+Fixed regression for mitchell.c games. [Pierpaolo Prazzoli]
+
+Added MCU no-dump to Air Buster. [Angelo Salese]
+
+Commented out the ACIA irq, was causing missing bgms in Street 
+Fighter Zero 3 Upper. [Angelo Salese]
+
+Improved the debugging on the Naomi Wave DMA handler. [Angelo Salese]
+
+Converted DJ Boy memory maps to current standards. [Angelo Salese]
+
+Fixed pipedrm tag problem. [Fabio Priuli]
+
+Fixed ninjakd2 DIPSW and notes. [kanikani]
+
+Fixed a couple of bugs in cave.c and seta2.c introduced with the
+memory map merges. [Fabio Priuli]
+
+MCS-51 fixes: [Aaron Giles]
+ * jb int0,<self> loops are now broken out of if int0 comes and is 
+    taken
+ * externally-clocked counters only count when enabled
+ * internal RAM no longer wraps when accessed out of bounds
+
+System 1 changes: [Aaron Giles]
+ * hooked up 8751 properly
+ * removed old 8751 hacks
+ * shuffled Shooting Master sets
+
+Fixed tattass regression from map merging. [Fabio Priuli]
+
+Fixed P2 palette write handlers for fromancr and fromanc4. 
+[Fabio Priuli]
+
+Fixed halleys.c sound: ay8910 write handlers work on two bytes.
+[Fabio Priuli]
+
+Marked polystar, hellngt and totlvice CHDs as bad. Will be replaced 
+soon. [Guru]
+
+Added missing YMZ280B ROM to evilngt/hellngt. [Guru]
+
+Fixed regression on homedata.c driver. [Angelo Salese]
+
+Fixed Legend of Makai regression. [Angelo Salese]
+
+Removed "BAD_DUMP" from the Red Baron AVG bprom, it has been verified 
+correct (contents and label) by the Dumping Union. [Smitdogg]
+
+Improved the single board 4p mode in Kick N Run / Mexico 86. It 
+basically works but 2p mode is broken so I still keep it as disabled 
+by default. [Angelo Salese]
+
+Fixed Kiki Kai Kai exception. [Angelo Salese]
+
+Dumped io board rom to Dynamic Golf. [Guru]
+
+Fixed King Derby sprites wrap-around and flip x positioning.
+[Angelo Salese]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+PT Reach Mahjong [Angelo Salese]
+Otenami Haiken (V2.04J) [Joerg Hartenberger, Guru]
+Shanghai Sangokuhai Tougi (Ver 2.01J) [Joerg Hartenberger, Guru]
+Choplifter (8751 315-5151) [The Decapping Project, Aaron Giles]
+Shooting Master (EVG, 8751 315-5159a) 
+  [The Decapping Project, Aaron Giles]
+Noboranka [The Decapping Project, Aaron Giles]
+
+
+
+New clones added
+----------------
+Samurai Nihon-ichi (set 3, harder) [f205v]
+Hatris (US) [Andrew Welburn]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+IQ Pipe [SoftwareThis]

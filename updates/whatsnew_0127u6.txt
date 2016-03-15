@@ -1,0 +1,251 @@
+0.127u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02323: [DIP/Input] geebeeb: Unable to coin - Always coin lockout 
+         (stephh)
+- 01090: [Crash/Freeze] invadpt2, sicv: Watchdog reset. (couriersud)
+- 02440: [Crash/Freeze] abcop, gprider1, rachero: abcop just shows a 
+         black flickering screen, rachero gives an error and crashes 
+         on exit (couriersud)
+- 02442: [Core] -aviwrite produces faulty files (Aaron Giles)
+- 02441: [Crash/Freeze] rdft22kc: rdft22kc just shows a black screen 
+         and fails to boot (couriersud)
+- 02194: [Misc.] All Sets in othunder.c: Black screen, game does not 
+         start (couriersud)
+- 02410: [Misc.] -aviwrite: files over 2 gigs sometimes get cut off 
+         (Aaron Giles)
+- 02024: [Color/Palette] pbobble3, pbobble4, ringrage and clones: 
+         Color Regression (Nicola Salmoria)
+
+
+
+Source Changes
+--------------
+NeoGeo Update:  [Johnboy]
+ * Updated Neo-Geo game pcb infos
+ * 2020bba: Marked MVS and AES version
+ * sonicwi2: Added correct sized v2
+ * kof95 / kof95a:
+	. Renamed kof95 to kof95h
+	. Renamed p1 to correct chip label
+	. Added note
+	. Renamed kof95a to kof95
+	. Renamed p1
+ * samsho3 / samsho3a:
+	. Renamed samsho3a to samsho3
+	. Renamed samsho3 to samsho3h
+	. Renamed p1 to correct chip label
+	. Marked AES version
+ * kof98 / kof98n:
+	. Renamed m1 in kof98 to correct chip label
+	. Renamed m1 in kof98n to correct chip label
+	  (kof98n should be latest revision, cart had very high SN 
+	   1xx.xxx)
+ * kof97: Marked MVS version
+ * samsho5 / samsho5h:
+	. Correct text layer size
+	. Marked samsho5h AES version
+ * neogeo:
+	. Updated system set to what is found on NEO-MVH MV1FS
+	. Added note
+ * ms5pcb:
+	. Hooked up bios dip
+	. Renamed bios to correct chip label
+	. Renamed p1 / p2 to correct chip label, marked NO_DUMP
+	. Added note
+
+Added pen_mask tile attribute to the tilemap system. Implemented 
+dynamic tile & sprite bit depth in the Taito F3 driver. 
+[Nicola Salmoria]
+
+Changed MAKE_RGB macro to set the alpha to 255 instead of 0. Updated
+palette.c to preserve the alpha when transforming palette values.
+These changes should be transparent to almost all drivers and 
+rendering (ha-ha), but there may be an occasional instance where a 
+driver relied on the alpha being 0 in the system palette. This also 
+means that the palette_set_color() function preserves any alpha value 
+that is set. [Aaron Giles]
+
+Changed Firefox to RGB32 to allow for mid-screen palette changes. 
+Because of the above change, the hacky alpha manipulation that was 
+previously required is no longer necessary; the alpha is set directly 
+in the palette entry. [Aaron Giles]
+
+Removed render_container_set_palette_alpha() hack. Now the alpha value
+can be set directly in the palette entry and will be respected for
+laserdisc overlays. [Aaron Giles]
+
+Minor NSS/SNES cleanups [Fabio Priuli]
+
+Updated warpwarp.c driver: [stephh]
+ - reworked 'geebee', 'navarone' and 'warpwarp' INPUT_PORTS 
+   definitions by using conditional Dip Switches.
+ - added 'geebeeb' INPUT_PORTS definition (this game has specific 
+   "Replay" settings).
+
+Removed unneeded keys: [stephh]
+  - UI_ON_SCREEN_DISPLAY (there is now a "Slider Controls" menu)
+  - UI_ADD_CHEAT, UI_DELETE_CHEAT, UI_SAVE_CHEAT, UI_WATCH_VALUE, 
+    UI_EDIT_CHEAT, UI_RELOAD_CHEAT (these keys belonged to the old 
+    cheat engine)
+
+Converted the z80pio implementation into a device. [Wilbert Pol]
+
+Verified watchdog behaviour in schematics for 8080bw.c. [couriersud]
+
+ldverify improvements: [Aaron Giles]
+ - uses back-end decoding for CHDs directly to bitmaps
+ - changed min/max detection to only check 0/255
+ - fixed off-by-one bug in min/max computation
+ - separated white code detection from frame number detection
+ - track cadence with frame numbers as well as white codes
+ - use vbiparse.h constants where appropriate
+
+Plumbed machine parameters through the renderer. Removed need for
+deprecat.h. [Aaron Giles]
+
+Changed render_texture_set_bitmap() to accept a palette object 
+instead of a palette index. The renderer remains optimized for the 
+system palette but will work if objects have their own palette as 
+well. [Aaron Giles]
+
+Changed renderer to permit palettes for RGB and YUY textures. If
+specified, these palettes specify a 32-entry (RGB15) or 256-entry
+(others) lookup for applying additional brightness/contrast/gamma
+on a per-texture basis. [Aaron Giles]
+
+Removed rescale notification. It never really worked that well and 
+violated proper layering. [Aaron Giles]
+
+Renamed palette_set_brightness() to palette_set_pen_contrast() for 
+clarity. [Aaron Giles]
+
+Changed palette objects to support global brightness/contrast/gamma
+in addition to per-group and per-entry controls. [Aaron Giles]
+
+Simplified core deinterlacing logic based on availability of pre-
+decoded VBI data. Added plumbing for allowing for overall brightness/
+contrast/gamma corrections on laserdisc video. Fixed bug when 
+combining brightness values in the palette logic. [Aaron Giles]
+
+Converted Z80 CTC to a proper device. Updated all drivers. Added new 
+item to the interface which is the tag of a CPU to take the base clock 
+from. [Aaron Giles]
+
+Changed Z80 daisy chain interface to simply be a list of devices in 
+the chain. Interrupt callback functions are now fetched via the 
+standard device interface and referenced by the daisy chain code.
+[Aaron Giles]
+
+Changed Z80 PIO interrupt callback to pass a device instead of the 
+machine. All device callbacks should provide the device. [Aaron Giles]
+
+merit.c: [couriersud]
+ * Implemented palette & colour decoding from crt 200 schematics.
+ * Hooked up 6845
+ * Hooked up lscnblk line
+ * Fixed Phraze Craze gfx rom ordering
+ * Clocks from schematics
+ * Ram palette moved to static var. This should not be in RAM.
+ * Added save state support
+
+expro02.c: [DITraI4D0]
+ - fixed DIPSW
+ - added graphics decode routine (probably it can be simpler)
+
+video/kaneko16.c [DITraI4D0]
+ - tilemap scroll position is different for expro02, so added new
+   function (is it better to fix current one?)
+
+Converted Z80 SIO to device. Updated drivers accordingly. 
+[Aaron Giles]
+
+Added additional Motorola DSP56k reset behavior. [Andrew Gardner]
+
+Added mechanism to generically specify input port tags in place of
+machine/device handlers. Unfortunately, the implementation relies on
+sentinel values to distinguish a port tag versus a pointer to function
+code. However, since this is a very common situation, it will 
+hopefully be worth the slight grossness. New macros are defined in 
+inptport.h:
+
+   DEVICE8_PORT(name) - use this to specify the name of a port to read
+     wherever a read8_device_func would normally be used
+
+   MACHINE8_PORT(name) - same as DEVICE8_PORT except it can be used
+     wherever a read8_machine_func would normally be used
+
+   IS_HANDLER_PORT(ptr) - accepts a read8_device_func or 
+     read8_machine_func and determines if it is an actual function or 
+     a reference to a port; intended for use by devices that accept 
+     DEVICE8_PORT-style functions
+
+   CALL_DEVICE8_READ(ptr,device,offset) - either calls through the 
+     given read8_device_func, or calls input_port_read with the 
+     appropriate tag, depending on the result of IS_HANDLER_PORT; 
+     intended for use by devices that accept DEVICE8_PORT-style 
+     functions
+
+   CALL_MACHINE8_READ(ptr,machine,offset) - same as CALL_DEVICE8_READ
+     except for read8_machine_func
+
+Note that in order for these to be useful, the consumer of the 
+function pointer must be enhanced to use the CALL_* macros above 
+instead of directly calling through the function. So far, only the 
+8255 PPI is set up to do this, as part of the cleanup below. Also 
+note that the sentinel value is currently 4 consecutive 0 bytes; this 
+may need to change in the future, in either length or value, so it is 
+important to stick to the macros above. [Aaron Giles]
+
+8255 PPI interface cleanup: [Aaron Giles]
+ - added MDRV_PPI8255_ADD, MDRV_PPI8255_RECONFIG and
+    MDRV_PPI8255_REMOVE macros; updated all drivers to use them
+ - changed callbacks to device read/write handlers intead of
+    machine read/write handlers; updated all drivers accordingly
+ - normalized function and variable names to be lower_under
+ - removed a number of redundant interfaces from the galaxian/
+    scamble line of games
+
+LD-V1000: added some (compile-time removed) information about the
+ROM and memory map [Aaron Giles]
+
+Changed 68000 interrupts to only trigger during execution. This
+means that multiple changes without any execution will be seen as
+atomic. It also means that PULSE_LINE no longer works for signalling
+IRQs. [Aaron Giles]
+
+Added checks in the debug build to catch people who try to use
+PULSE_LINE for non-NMI and non-RESET input lines on CPUs that no
+longer support direct interrupt generation. Over time expect this
+list to increase. [Aaron Giles]
+
+Fixed edge case bug in the Cube Quest line CPU involving adding with
+carry. [Matt Ownby]
+
+Fixed sbasketb DIP switch reading. [Fabio Priuli]
+
+Continued work on System1 inputs: [Sonikos]
+ - Added dips location in all game
+ - Moved in generic Cabinet dip for eliminate the redundancy
+ - Better implementation of generic input
+
+Changed the NSS/SNES loading code to support more cart/memory layouts
+and generally be more in line with the MESS way of handling SNES
+cartridges. [Fabio Priuli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Gals Panic (US, EXPRO-02 PCB)
+Pit Boss [Couriersud]
+
+
+
+New clones added
+----------------
+20 Year Reunion (V1.04) [Johan Samuelsson]
+Capcom Sports Club (EURO 971017) [Corrado Tomaselli]

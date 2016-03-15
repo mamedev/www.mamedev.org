@@ -1,0 +1,58 @@
+[note: only important changes are listed]
+
+0.14
+----
+
+Program:
+- Fixed bug in Mario Bros. high score loading: it was recovering the high
+  score table, but the high score at the top of the screen was not set
+  accordingly.
+
+- Mario Bros. and Donkey Kong 3 now also preserve the score distributions
+  (use F1 to see them)
+
+- High score support in Galaxian, Time Pilot, Centipede and Millipede.
+  However, high scores don't seem to work in Millipede (you are not asked
+  to enter your name).
+
+- Fixed bug which sometimes caused 6502 games not to run (actually they did
+  run, but interrupts didn't happen).
+
+- Since the US version is better, I renamed amidar to amidarjp, and
+  amidarus to amidar.
+
+- Renamed pleiades to pleiads.
+
+- The change in video modes suggested by ue303ey@sunmail.lrz-muenchen.de
+  didn't work on some systems, so I reverted to the previous one.
+
+- Ron Fries provided a new version of his Pokey emulator which fixes problems
+  in the interface with the SEAL audio library (signed vs. unsigned samples).
+
+- Ron Fries also added preliminary sound support to Donkey Kong! It uses some
+  very bad samples for now. The samples are distributed in a separate archive
+  - put them in the dkong subdirectory.
+
+- Richard Davies updated the audio routines in Phoenix, sound is now closer
+  to the original and noise is emulated.
+
+- Brad Oliver and Mirko Buffoni provided a driver for Vanguard, based on Brian
+  Levine's Vanguard emulator.
+
+Source:
+- driver.c was getting much too large and confused. I moved the GameDriver
+  structures inside the single driver/xxxx.c files. This has the additional
+  benefit that people sending me drivers will not forget to include the ROM
+  loading addresses ;-)
+
+- I also changed the GameDriver structure, moving there fields from the
+  MachineDrivers structure. The idea is that MachineDriver should describe
+  the hardware, while GameDriver the software. Therefore things like colors
+  (which are usually stored in a PROM) and dip switch settings go into
+  GameDriver; decode_color_prom, on the other hand, goes into MachineDriver
+  because it is an hardware function.
+  It could be argued that input_ports belong to the hardware; but sometimes
+  we have keys tied to dip switches (test switches and so on) whose function
+  is determined by the software. Moreover input_ports contains the default
+  values for all ports, including dip switches, and those are definitely
+  software related.

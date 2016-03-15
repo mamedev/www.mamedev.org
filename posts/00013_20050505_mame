@@ -1,0 +1,44 @@
+About the Code Cleanup
+
+<p>
+For the MAME 0.96 release, I added a step to the build process which runs 
+a little tool over all the source code to ensure some consistency. A lot 
+of people are freaking out about this in ways that are really unwarranted. 
+You have to keep in mind that code is submitted from many people running 
+on various platforms, and certain things like line-endings are not necessarily 
+consistent between platforms.
+</p>
+
+<p>
+For example, the file drivers/laserbas.c has had screwed up line endings 
+for who knows how long. Diff is not the most robust tool when creating 
+diffs against files with inconsistent line endings. When I tried to create 
+a diff against this particular file, diff freaked, and I had to hand-modify 
+the final patch to make it work. This was the impetus to writing the tool.
+</p>
+
+<p>
+Since there seems to be a lot of paranoia about what this tool does, let 
+me make it 100% perfectly clear. The tool does three things and only three 
+things:
+</p>
+
+<p>
+1. It makes sure all line endings are DOS/Windows standard CR/LF.<br/>
+2. It removes any extra spaces/tabs at the end of each source line.<br/>
+3. It converts tabs to spaces (assumes 4-character tabs) within comments. 
+It leaves all other tabs alone.
+</p>
+
+<p>
+That's it. The tool is also smart enough not to touch the file if nothing 
+needs to be changed so that the datestamps remain consistent.
+</p>
+
+<p>
+Since all the files in MAME 0.96 were updated with this tool, they will 
+all pass unscathed when I run it before releasing 0.96u1. Which means this 
+is really the only time you will see a significant number of changes resulting 
+from the use of the tool. Going forward into the future, you probably won't 
+even notice.
+</p>

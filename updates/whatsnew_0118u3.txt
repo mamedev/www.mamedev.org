@@ -1,0 +1,96 @@
+0.118u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+qbert0118u2gra [Aaron Giles]
+zoom909_0118u2ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Updated dacholer.c driver with now all known Dip Switches. [stephh]
+
+Changed MDRV_VBLANK_DURATION macro to accept subseconds directly
+instead of converting from double. Added new macro USEC_TO_SUBSECONDS
+to assist in this. Converted all drivers over to using it. 
+[Atari Ace]
+
+Improved/fixed validation of memory maps to match current logic in
+memory.c. Fixed a few problems that were identified this way.
+Also removed construct_map_0 and isolated map construction to a 
+single function. [Atari Ace]
+
+Added new AM_READ_PORT() macro which lets you define an input port
+read callback based on a port tag. This is now preferred over the
+previous technique of calling port_tag_to_handler() within an
+AM_READ() macro. Updated all drivers that were using the latter
+pattern to the new system. [Atari Ace]
+
+Fixed subtle monymony regression from 0.36b10(!) [Atari Ace]
+
+Fixed F8 CPU core to not clobbert the irq_callback on a reset.
+[Wilbert Pol]
+
+Amiga system updates: [Ernesto Corvi]
+ - Implemented the ECS-only BLTSIZV and BLTSIZH custom registers, 
+    and modified BLTSIZE and the blitter to use them.
+ - Properly implemented the bit in VPOSR that indicates if we're 
+    running on a PAL or NTSC Amiga.
+ - Fixed the PAL clock on the Pictomatic driver in alg.c
+
+Added counter emulation to the COP420 CPU core. Hooked it up to
+Thayer's Quest and added an alternate set. [Andrew Gardner]
+
+Added missing PROMs to the Status Trivia driver. [Brian Troha]
+
+Cleaned up several Taito drivers (opwolf.c, othunder.c, topspeed.c,
+warriorb.c, wgp.c, rastan.c, rainbow.c, volfied.c) to use common 
+input port macros. Fixed the Dip Switches for all games (a few still 
+remain unknown though) and added many notes. Also fixed a couple of 
+things which were wrong in ninjaw.c driver. Improved the C-chip 
+emulation for "Operation Wolf" and its clones so it can now handle 
+multiple coinage settings. [stephh]
+
+Improved the MCU simulation for aladbl so now the game handles coins 
+correctly. Fixed the Inputs to match an arcade cabinet and added 
+Dip Switches according to the game M68000 code. [stephh]
+
+Added build tool to extract version information and add it to the
+Windows version resource. [Nathan Woods]
+
+Added a fairly complete WD33C93 SCSI controller emulation, and also 
+updated the cps3.c driver to use it. [Ernesto Corvi]
+
+Hooked up lamps in Chase HQ. [R. Belmont, couriersud]
+
+Changed NEC V30 CPU core to use a 16-bit data bus. Updated affected
+drivers: raiden, raiden2, m72, m90, m92, m107, segas32, hng64,
+deadang, dynduke, sengokmj, shanghai, lockon, tatsumi, fantland,
+twins, gunpey, ttchamp. Separated V-series disassembler from the
+i386 disassembler and updated it to use proper register and
+opcode terminology. [Aaron Giles, Philip Bennett, Pierpaolo Prazzoli]
+
+Changed I8086 CPU core to use a 16-bit data bus. Updated affected
+drivers: gottlieb, leland, tx1, fantland, tetriunk. Cleaned up 
+naming of CPUs (i86 -> i8086, etc.) [Aaron Giles]
+
+Added 16-bit handlers to a number of the shared PC components. 
+[Nathan Woods]
+
+Consolidated common code between drc and non-drc MIPS cores.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Aladdin (bootleg of Japanese Megadrive version) [stephh]
+
+
+
+New clones added
+----------------
+Raiden Fighters (Italy) [Corrado Tomaselli]

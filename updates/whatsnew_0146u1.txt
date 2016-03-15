@@ -1,0 +1,251 @@
+0.146u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02339: [Flip Screen/Cocktail] (metro.c) mouja: Flip screen doesn't work 
+  correctly in Mouja due to asymmetrical visible area. (hap)
+- 03990: [Save/Restore] (bfm_sc2.c) sc2drwho + clones: Reload of state 
+  causes momentary loss of LCD (JWallace)
+- 04893: [Sound] ym2413.c - A block that is never executed :-D
+- 04890: [Crash/Freeze] (nemesis.c) rf2: Hang after countdown (hap)
+- 04884: [Crash/Freeze] (ms32.c) tp2m32: unhandled priority type e0 (hap)
+- 04882: [Graphics] (rabbit.c) rabbit: Health bars are black (hap)
+- 04561: [Graphics] (metro.c) Most games in metro.c: Offset screens 
+  and/or misplaced graphics (hap)
+- 04703: [DIP/Input] (metro.c) karatour: Start buttons don't work (hap)
+- 04770: [Crash/Freeze] (metro.c) 3kokushi, karatour, ladykill, moegonta: 
+  Black/blank screen (hap)
+- 04862: [Crash/Freeze] (midyunit.c) smashtv, strkforc, trog and clones: 
+  Crashes while a game begins (Phil Bennett)
+- 04861: [Crash/Freeze] (taitojc.c) dendego, dendegoox, dendego2, 
+  dendego23k: Crash after initial checks (hap)
+- 04873: [Graphics] (mitchell.c) mgakuen2: Graphic glitch (M.A.S.H.)
+- 00653: [DIP/Input] (topspeed.c) topspeed: Turning left doesn't work 
+  in analog input mode. (hap)
+- 04871: [DIP/Input] (topspeed.c) topspeed: Missing PORT_TOGGLE and 
+  wrong built-in layout (M.A.S.H.)
+- 04591: [Interface] GUI dipswitch menu shows an empty box 
+  underneath. (Fabio Priuli)
+- 04854: [Speed] (turbo.c) All sets in turbo.c: Slowdown (hap)
+- 04870: [Crash/Freeze] (centiped.c) caterplr, magworm: Crash 
+  before OK (couriersud)
+- 04868: [Crash/Freeze] (williams.c) joust2: Crash after OK (M.A.S.H.)
+- 04866: [Crash/Freeze] (nova2001.c) raiders5: Fails the RAM test (M.A.S.H.)
+- 04863: [Graphics] (tehkanwc.c) gridiron: Wrong aspect ratio (hap)
+- 04864: [Misc.] CHDMAN fails to convert v4 to v5
+- 04853: [Sound] (bzone.c) redbaron: POKEY background noise are 
+  too loud (couriersud)
+- 04855: [Sound] (scramble.c) 800fath, knockout, mariner, triplep: 
+  No sound (hap)
+
+Source Changes
+--------------
+- Naomi/Chihiro documentation update [f205v]
+
+- seta.c: Added PCB layout & dipswitch locations for Magic Speed.
+  [Brian Troha]
+
+- Placed some handlers for the DM01 board into bfm_sc4 - once we can
+  confirm more games are on the hardware, this can move into the main
+  driver.  [James Wallace)
+
+- CPS-1 update [Team CPS-1]:
+  * Dumped and added CA22B.1A PAL to cawingj (Kold666)
+
+- Hooked up inputs in DS Telejan [Angelo Salese]
+
+- xain.c: Corrected rom labels for Solar Warrior / Xain'd Sleena.
+  [Smitdogg, The Dumping Union]
+
+- Found more games that use the DMD01, hooked those up, and cleaned up
+  the interface hooks.  Cleaned up Scorpion 4 sets.  [David Haywood]
+
+- z800x: Handle vectored interrupts correctly. [Christian Grössler]
+
+- m72.c: Hooked up mcu to imgfightj. [David Haywood]
+
+- 04862: smashtv and clones: Smash T.V. crashes while a game begins.
+  [Phil Bennett]
+
+- fixed memory leak in libflac/libflac/md5.c (fixes memory issues with
+  chdman) [Oliver Stöneberg]
+
+- Added cycle exact potentiometer and keyboard support to pokey device
+  [Couriersud].
+
+- Fixed sprite colors in Bikkuri Card and Chance Kun
+  [Smitdogg, Angelo Salese]
+
+- megatech.c:  added a new revision of the bios [iGREKKESS, ElBarto]
+
+- Added some bits to get the V53 (V33 core) running at least some sane
+  sound code for hng64.c  There is no sound yet tho, and the banking
+  mechanism will need hooking up but the initial banks should be
+  correct.  [David Haywood]
+
+- vsnes.c: Documentation update and corrects several roms names. Added
+  set information to game names where possible. Tried to correction
+  region information by copyright.
+  [Mark F., Brian Troha, The Dumping Union]
+
+- yiear.c: Correct rom labels [Smitdogg, The Dumping Union]
+
+- flipjack.c: Documented dipswitch settings & pinout for Flipper Jack as
+  per manual. [Brian Troha]
+
+- mediagx.c: Added additional documentation specifying revision and
+  build dates for the Area 51: Site 4 sets. [Troy Gratton]
+
+- SDL: fix for OS/2 compile [K.O. Myung-Hun]
+
+- ssv.c: Added dip locations to Mobil Suit Gundam Final Shooting.
+  [Brian Troha]
+
+- bzone.c: Documentation update including information about the -01 revision 
+  vector gen board and associated proms. Corrected and added PCB locations 
+  to Red Barron's roms. Added revision to the names of the 2 Battle Zone 
+  sets and made the parent the most current set (rev 2).
+  [Andrew Welburn, Brian Troha]
+
+- shootout.c: Added dipswitch locations to the Shootout sets.
+  [Brian Troha]
+
+- es5505/6: actually use the ADC port read callback [R. Belmont]
+
+- topspeed.c update:
+   * Added pinout documentation and dipswitch locations. [kanikani]
+   * Fixed issues with analog controls. [hap]
+   * Added second ADPCM chip and started to make sense on how these are
+     hooked up. [hap]
+
+- "Analog" Pokey Update [Couriersud]
+  * Derived internal resistance calculation from Pokey documentation.
+    This is a 4-bit parallel resistor (High-Z mos "devices") network
+    to ground. The result is a non-linear resistance function.
+  * Added low-pass filter support and opamp/resistor stages to the
+    pokey driver. This is not as good as complete discrete emulation,
+    but a lot better than the linear approximation we had before.
+  * Changed a couple of drivers to use the new output volume
+    calculation.
+  * Added device configuration macros. Made all drivers use them.
+
+- Modernized i8008 CPU core [Lukasz Markowski]
+
+- Added POKEY filter stages to a couple of more games. [Couriersud]
+
+- SDL: Preliminary Haiku OS support [PulkoMandy]
+
+- Added POKEY filter stage to Tunnel Hunt. [Couriersud]
+
+- More Z8001 improvements. [Christian Grössler]
+
+- Added complete discrete filtering to quantum driver. [Couriersud]
+
+- Improved reel motor and optical alignment for reels as related to the
+  layout interface.  [James Wallace]
+
+- segas32.c: Documentation update. Updated Sega game ID codes & PCB #'s,
+  for Alien 3: The Gun, F1 Exhaust Note, Outrunners, Rad Mobile and Rad
+  Rally. Documented known Rad Mobile Upright versions listed from
+  manuals currently not dumped. [Brian Troha]
+
+- SDL: More OS/2 fixes [K.O. Myung-Hun]
+
+- Removed duplicate code which necessitated separate samples for War of
+  the Worlds (color) [wotwc].  Both display types now only need the one
+  sample set (wotw).  [Tafoid]
+
+- Added discrete sound to bwidow and gravitar. [Couriersud]
+ * Minor changes to ccastles (volume level) and centiped (low pass
+    filtering)
+ * removed class members no longer needed from pokey.c
+
+- 68681.c: Fixed counter/timer implementation [Phil Bennett]
+
+- taito_en.c improvements [Phil Bennett]:
+  * Use the common 68681 DUART implementation
+  * Implemented the MB87078 volume control
+
+- model3.c: Documentation update. Added known Sega ID# for Game, rom
+  board & security board for several games. Noted which Scud Racer sets
+  were Twin or Deluxe and included information about the undumped
+  Australian DX version. [Brian Troha]
+
+- Input work done on Dai-Dai-Kakumei - clearing unknown bits and adding
+  confirmed settings.  [Tafoid]
+
+- eolith.c: Added dipswitch locations to all games in the driver.
+  Cleaned up the input port defs. Added speed-up for Linky Pipe and a
+  note as to where the game seems to hang. [Brian Troha]
+
+- taito_z.c updates [hap]
+  * removed fake digital steering wheel hack
+  * improved analog controls for chasehq and contcirc
+  * fixed some racingb issues, it's playable now
+
+- Added an ASCII PCB layout, more findings and technical notes to
+  lucky 74 driver. [Roberto Fresca]
+
+- Experimental, and somewhat gross, fix for the MIE issues [O. Galibert]
+
+- New TMS9900 and TMS9995 implementation with proper control line
+  handling and wait state generation. Previous implementation has been
+  renamed to
+   * l.{c,h} and drivers point to the old implementation until they are
+     adapted to the new version. [Michael Zapf]
+
+- Implemented buzzer sound in Destiny - The Fortuneteller [Angelo
+  Salese]
+
+- bzone.c: Add the Address Decode prom to Red Baron. Currently not used
+  in emulation but we archive it anyways. [The Dumping Union]
+
+- Improved clocks in bankp.c and gyruss.c [Corrado Tomaselli]
+
+- Enable proper save stating for bfm_bd1 machine which should fix MT
+  bug#03990 as well.  [James Wallace]
+
+- naomi: Make illvelo boot, probably others too [O. Galibert]
+
+- model2.c: Updated several sets with Sega's game and / or ROM board
+  ID#. Corrected the sound CPU & sample roms for the Manx TT set (as
+  verified by manual) and documented the undumped Manx TT Deluxe set.
+  [Brian Troha]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magical Speed [NoVArcade]
+Dragon World 2001 [David Haywood, Smitdogg]
+Dragon World Pretty Chance [David Haywood, Smitdogg]
+Funcube [Guru, Yasuhiro Ogawa, Luca Elia]
+Linky Pipe [Gerald (COY), The Dumping Union]
+Racing Beat [hap]
+
+New clones added
+----------------
+Space Ranger [Marcello Mancini]
+Express Raider (Italy) [Tirino73]
+Dynamite Duke (Euro) [Tirino73]
+Battlantis (program code F) [Paul Canham]
+Virtua Striker 2 (Step 1.5, older)
+  [Mr. CAST, Yohji, Smitdogg, The Dumping Union]
+Nagano Winter Olympics '98 (GX720 JAA)
+  [Yohji, Mr. CAST, Smitdogg, The Dumping Union, smf]
+Crisis Zone (CSZO3 Ver. A) [Mr. CAST, Smitdogg, The Dumping Union]
+Red Barron [Andrew Welburn, The Dumping Union]
+Bulls Eye Darts (Galaxian conversion) [Mariusz Wojcieszek, Paul Swan]
+Over Rev (Model 2B, Revision B) [Brian Troha, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Flipper Jack
+  [Yohji, Mr. CAST, Smitdogg, The Dumping Union, hap, Angelo Salese]
+Konami Test Board GX800
+  [Yohji, Tormod, Smitdogg, The Dumping Union, Angelo Salese]
+Exciting Black Jack
+  [Mr.CAST, Smitdogg, The Dumping Union, Roberto Fresca]
+Pong (Rev E)	        [Couriersud]

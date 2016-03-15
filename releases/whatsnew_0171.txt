@@ -1,0 +1,332 @@
+0.171
+-------
+
+MAMETesters Bugs Fixed
+----------------------
+- 06137: [Crash/Freeze] (maygay1bsw.c) Many sets in maygay1bsw.cpp: Several games
+  are crashing while "initializing.." (Osso)
+- 06135: [Interface] ROM-less games cannot be started from internal UI
+- 02327: [Graphics] (megasys1.c) chimerab: Priorty PROM is missing. (David Haywood)
+- 06134: [Misc.] all games with LED outputs: ledutil no longer works (micko)
+- 06139: [Color/Palette] (x68k.c) x68k [akumajo]: Some elements turn blue (crazyc)
+
+Source Changes
+--------------
+-New video chip support : Thomson EF9364 / Sescosem SFF96364 [Jean-Francois DEL NERO]
+
+-Pyon Pyon Jump:  [Roberto Fresca]
+	Create derivative machine driver.
+	Hooked the V9938 Yamaha VDP.
+	Added the DIP switches bank #1
+	Hooked the system input ports.
+	Added support for Yamaha YM2149.
+	Decoupled the YM2149 data read.
+	Correct bankswitching.
+	Added sound latch & output port.
+	Version added to the game description.
+	Proper inputs + DIP switches support.
+	Second CPU IRQ ack. Promoted to working.
+	OKI M5205 ADPCM samples support.
+
+-pulsarlb: Added extra bios [Robbbert]
+
+-Modernized sound volume setting code in various Atari drivers [AJR]
+
+-Fixed F3 soft-reset on Arkanoid sets with MCU [Lord Nightmare]
+
+-osdmini: Fixes build issues [Stuart Carnie]
+
+-Replaced osd_lock with std::mutex [Miodrag Milanovic]
+
+-Software list entries can now supply slot option defaults [AJR]
+
+-i8271: Unload head after programmed revolutions [Nigel Barnes]
+
+-apple2: Fix parallel card ACK handling, Print Shop almost works with
+ the lx810l now. [R. Belmont]
+
+-Nibble driver: Rewrote the whole driver. Added video hardware,
+ preliminary machine driver and memory map. Decoded the graphics.
+ [Roberto Fresca]
+
+-Made anonymous timer non-anonymous in arkanoid.cpp, fixes savestates
+ for the sets using the original Taito MCU code [Lord Nightmare]
+
+-Allow load/saved state slots to be bound to joystick buttons [Victor Vasiliev]
+
+-Dumped "Dead or Alive 2 (Rev A)", match existent set, fix game and EPRROM names 
+ [Smitdogg, The Dumping Union] 
+
+-Dumped "King of Fighters XI" EN, match JP one, add notes [Brizzo]
+
+-Substantial improvements to Web Audio sound backend for Emscripten
+ port.  [Grant Galitz]
+
+-disound: Don't crash on state load when the mixer is disabled by lack
+ of inputs (misconfiguration or missing samples) [O. Galibert]
+
+-Initial import of MEWUI to MAME [Maurizio Petrarota]
+
+-External DATs grouped into a single view. [Maurizio Petrarota]
+
+-New video chip support: Thomson EF9364 / Sescosem SFF96364 [Jean-Francois DEL NERO]
+
+-z80.cpp: Added a debug mechanism for /WAIT pin assertion mechanism
+ (enable with STALLS_ON_WAIT_ASSERT in CPU core), and hooked it up to
+ Night Gal driver as a quick example. [Angelo Salese]
+
+-Make octal flag part of address_space/address_space_config [AJR]
+
+-Added unknown NAOMI development(?) board BOOT ROM [coolmod]
+
+-Initial support for BGFX [Ryan Holtz, Dario Manesku, Branimir Karadic, Miodrag Milanovic]
+
+-Significant speed improvements to the BGFX renderer. [Ryan Holtz]
+
+-Added basic JSON-based single-pass shader effect support to BGFX renderer. [Ryan Holtz]
+
+-Added hat trick hero 93 PALs [Alex Cmaylo]
+
+-catnmous: graphical improvements [Vernimark, Vas Crabb]
+   * Redumped Cat and Mouse colour sprite ROM as the correct size
+   * Implement sprite ROM banking
+   * Improve colour palette using resistor values from board photographs
+
+-laserbat: fix inadvertently swapped TMS organ chip clocks (fixes music) [Vas Crabb]
+
+-Make Zaccaria 1B11107 and 1B11142 boards devices and share common parts [Vas Crabb]
+
+-apple1: Completely rewrote the driver in modern idioms. All
+ functionality should be the same. [R. Belmont]
+
+-Descrambled the ROM on the Xerox NoteTaker, and mapped it in the
+ correct areas to make it start to boot. [Lord Nightmare]
+
+-Xerox NoteTaker: Corrected CPU Clock speed, and map at least some of RAM
+ [Lord Nightmare]
+
+-electron: Added cassette softlist and implemented BREAK key [Nigel Barnes]
+
+-Xerox NoteTaker: Corrected RAM amount.  Attached the pic8259 interrupt
+ controller, though no interrupts are attached to that yet. Added
+ documentation of i/o writes during the boot process. [Lord Nightmare]
+
+-vigilant.cpp: Added video timing PROM. [Pasky, caius]
+
+-Videosnaps patch (additional file to write: gamename.inp.timecode) [Michele Fochi]
+  Added new options: 
+   * [no]exit_after_playback (default=no)
+   * [no]record_input (default=no) Added new UI shortcut to save current
+      timecode (default F12) Translated variable names and comments to
+      english language
+
+-Sord m5 driver update [Ales Dlabac]
+ added support for RAM expansions EM-5,64KBI,64KBF,64KRX 
+ added m5p_brno mod Sord m5+1024kB 
+ ramdisk+cp/m 2 cart slots
+
+-Moon Light (Set 2): Fix the program ROM addressing. This fix the
+ corrupt graphics in the double-Up feature. [Roberto Fresca]
+
+-Moved JANGOU_BLITTER into a device [Angelo Salese]
+
+-NCS8105 ADCX opcode is actually an ADDX, fixes gfx garbage in
+ nightgal.cpp [Angelo Salese]
+
+-Corrected ROM labels and removed endian-swap during descramble for
+ notetaker in favor of loading ROMs the other way round. Add ROM
+ locations. [Lord Nightmare]
+
+-Xerox NoteTaker: Implement ROM/RAM overlay as per schematics.
+ Documented Address map and part of I/O map. [Lord Nightmare]
+
+-Note that one of the buccaneers proms matches the vigilante video sync
+ prom [caius, David Haywood]
+
+-Moon Light: Rearranged and split by program. This generated new sets
+ due to the hidden extra programs in the program ROMs. [Roberto Fresca]
+
+-Xerox NoteTaker: Added the IO Processor firmware v1.50 as an alt bios
+ after typing it from the assembly source listing on bitsavers. Added
+ two PROMs as NO_DUMP. Updated comments and history a bit, but needs
+ further improvement. [Lord Nightmare]
+
+-Updated Xerox NoteTaker documentation and history section, with cited
+ sources. [Lord Nightmare]
+
+-Cherry Master v1.10: Fixed inputs / DIP switches. [Roberto Fresca]
+
+-Xerox NoteTaker: Finished documenting the I/O CPU's I/O ports, updated
+ history documentation a bit more [Lord Nightmare]
+
+-Figured out algorithm and replaced SnowBoard Championship lookup
+ table with proper emulation of device [Samuel Neves & Peter
+ Wilhelmsen]
+
+-chihiro.c: Redumped "Sega Network Taisen Mahjong MJ 2 (Rev G)" [ANY]
+ Re-parented set
+
+-mitchell.cpp: Dumped a blockjoy board and noted a rom label difference
+ [Andrea Palazzetti]
+
+-snotec.xml: Added 3 new cart dumps. [TeamEurope]
+
+-Extended LUA API [Jeffrey Clark]
+
+-Support for the AMPAL18P8 to the jedutil tool. [Kevin Eshbach]
+
+-Improved cross compile support [Jeffrey Clark]
+
+-Hp9845: Added tape driver [F. Ulivi]
+
+-r9751: Add more DMA registers for serial and floppy [Brandon Munger]
+
+-slapstic: One small step toward slapstic modernization [AJR]
+   * Make chip number part of device configuration, not init param
+   * Correct mainpcb slapstic number in racedrivpan
+   * Remove many unused slapstics
+
+-c64_cart.xml, c128_cart.xml: Added some diagnostic carts.
+ [World of Jani]
+
+-COM5016/COM8116 Baud Generator: Added a bunch more divisor tables and
+ notes [Lord Nightmare]
+
+-Apollo changes: [Hans Ostermeyer]
+ * Unified logging format in associated devices
+ * Use correct raw video modes
+ 
+-Xerox NoteTaker: Finished IOCPU memory map documentation. Hooked up the two
+UARTS. Begin hookup of the screen/CRTC. Fixed an issue with writes to
+ROM-mapped areas shadowing to RAM. Added 960KHz xtal for the keyboard UART.
+[Lord Nightmare]
+
+-AY-3-1015 UART: Fixed two swapped pin functions. [Lord Nightmare]
+
+-Added multi-language support for MAME [Miodrag Milanovic]
+
+-sq1: Much-improved LCD and front panel button support.
+ [Parduz, R. Belmont]
+
+-weddingr: better input port descriptions [Vas Crabb]
+
+-Added Chinese Simplified and Chinese Traditional translation [YuiFAN]
+
+-Added German translation [Raf Tacker]
+
+-Added Japanese translation [Fujix]
+
+-Added Italian translation [Angelo Salese,Antonio Paradossi,Fabio Priuli]
+
+-Added Portuguese (Brazil) translation [Ashura-X]
+
+-pacman.cpp, meadwttl.cpp: small fix of game years for Novomatic's Cannon
+ Ball and Meadows' Meadows 4 in 1, respectively, to synchronize with
+ history.dat [Antonio Paradossi]
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Pyon Pyon Jump (V1.40, Japan) [Roberto Fresca]
+Carnival King [Ted Green]
+Fidelity Chess Challenger 10 [hap, Berger] 
+Fidelity Sensory Chess Challenger 12-B [hap, Berger] 
+Fidelity Voice Chess Challenger [hap] 
+Fidelity Voice Sensory Chess Challenger [hap] 
+Fidelity Champion Sensory Chess Challenger [hap]
+Fidelity Chess Challenger 7 [hap, Berger]
+Fidelity Excellence [hap, plgDavid]
+Fidelity Voice Excellence [hap, plgDavid]
+SMT Goupil G1 [Jean-Francois DEL NERO]
+Michigan Super Draw (2131-16, U5-2)
+  [Charles MacDonald, Brian Troha, David Haywood, The Dumping Union]
+'96 Flag Rally [Nosunosu, ShouTime, David Haywood]
+Apple IIe (Spanish) [robcfg, R. Belmont]
+Super Cherry Master (v1.0) [Roberto Fresca, Ioannis Bampoulas]
+Fidelity Elite Avant Garde (model 6114) [hap, Micha]
+Coleco Electronic Quarterback [hap, Sean Riddle]
+Fidelity Elite Avant Garde (model 6117-7) [hap, Micha]
+Fidelity Elite Avant Garde (V10/V11) [hap, Micha]
+Parker Brothers Lost Treasure [hap, Sean Riddle]
+Coleco Zodiac [hap, Sean Riddle]
+Conic Electronic Football II [hap, Sean Riddle]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Touche Me (set 2, harder) [system11]
+Speak & Math (1980 version) [Sean Riddle, plgDavid] 
+La Dictee Magique (French Speak & Spell) [Sean Riddle, plgDavid] 
+Grillo Parlante (Italian Speak & Spell) [Sean Riddle, plgDavid]
+1000 Miglia: Great 1000 Miles Rally (94/05/10) [Corrado Tomaselli]
+Multi Champ (World, older) [f205v]
+1000 Miglia: Great 1000 Miles Rally (94/05/26) [caius]
+NBA Jam (rev 1.00 02/1/93 [Alex Meijer, Bernard Tack]
+Raiden Fighters 2 - Operation Hell Dive (Italy) [Corrado Tomaselli]
+64th. Street - A Detective Story (Japan, set 2) [Corrado Tomaselli]
+World Rally (Version 1.0, Checksum 8AA2) [Artemio Urbina]
+Fighting Golf (US, Ver 2)
+  [Ryan Holtz, Shoutime, Smitdogg, The Dumping Union]
+World Cup Volley '95 Extra Version (Asia v2.0B) [Kevin Eshbach]
+Moon Light (bootleg of Golden Star, set 2) [f205v, Roberto Fresca]
+Frogger (Sega set 3) [Team Europe]
+Moon Light (v.0629, high program) [Roberto Fresca, f205v]
+Moon Light (v.02L0A, low program) [Roberto Fresca, f205v]
+Moon Light (v.02L0A, high program, alt gfx) [Roberto Fresca, f205v]
+Cherry Gold I (set 2, encrypted bootleg) [Roberto Fresca, f205v]
+Cherry Master I (ver.1.01, set 8, V4-B-) [Roberto Fresca, f205v]
+Cherry Master I (ver.1.10) [Roberto Fresca, Ioannis Bampoulas]
+Super Bobble Bobble (bootleg, set 4) [Jose Jorge Fuentes]
+1943: Midway Kaisen (bootleg)  [Andrea Palazzetti]
+Space Rocks (Spanish clone of Asteroids) [pako ikarihardmods]
+Block Block (World 911219 Joystick) [caius, The Dumping Union]
+Royal Poker '96 (set 4, C3 board) [Roberto Fresca, Ioannis Bampoulas]
+New Cherry '96 (bootleg of New Fruit Bonus?) [Roberto Fresca, Ioannis Bampoulas]
+
+New machines marked as NOT_WORKING
+----------------------------------
+Argox Rabbit Printer (model OS-214) [Felipe Sanches]
+Xerox NoteTaker [Lord Nightmare, bitsavers]
+Unknown Nibble game
+  [Team Europe, Marcus Jendroska, Y~K, Smitdogg, Roberto Fresca, The Dumping Union]
+Name Club Ver.2 (J 960315 V1.000) [TeamEurope, Ryan Holtz]
+Cross Puzzle [Ryan Holtz, Smitdogg, The Dumping Union]
+Print Club LoveLove (J 970421 V1.000) [TeamEurope, Ryan Holtz]
+Print Club Yoshimoto V2 (J 970422 V1.100) [TeamEurope, Ryan Holtz]
+Print Club 2 Vol. 7 Spring (J 970313 V1.100)  [TeamEurope, Ryan Holtz]
+Print Club 2 Puffy (Japan)  [TeamEurope, Ryan Holtz]
+Print Club 2 Pepsiman (J 970618 V1.100) [Team Europe, Ryan Holtz]
+Print Club 2 Vol. 6 Winter (J 961210 V1.000)  [Team Europe, Ryan Holtz]
+Print Club 2 Warner Bros (J 970228 V1.000) [Team Europe, Ryan Holtz] 
+Print Club 2 '97 Winter Ver (J 971017 V1.100, set 2) [Team Europe, Ryan Holtz] 
+Print Club 2 '98 Summer Ver (J 980603 V1.100) [Team Europe, Ryan Holtz] 
+Print Club LoveLove Ver 2 (J 970825 V1.000) [TeamEurope, Ryan Holtz]
+Name Club (J 960315 V1.000)  [Team Europe, Ryan Holtz]
+Dragon Treasure 2 (Rev A) (GDS-0037A)
+  [Jorge Valero, rtw, The Dumping Union]
+Tiger K28/Coleco Talking Teacher
+  [hap, Jonathan Gevaryahu, Sean Riddle, plgDavid, Kevin Horton]
+Mattel Computer Gin [hap, Kevin Horton]
+Tiger K28 (model 7-230) [hap, Kevin Horton]
+Coleco Head to Head Basketball (COP420L) [Sean Riddle]
+Wangan Midnight R (WMR1 Ver. A) [Darksoft, Guru, R. Belmont]
+IGT Multistar 7 2c [Miodrag Milanovic]
+
+
+New clones marked as NOT_WORKING
+--------------------------------
+Jurassic Park 3 (ver UA)  [ShouTime]
+Police 24/7 (ver EAA, alt) [Guru]
+Thrill Drive 2  (ver EAA, 2 alt versions) [Guru]
+Tsurugi (ver EAB, alt) [Guru]
+World Combat  (ver AAD, alt) [Guru]
+The Rumble Fish (prototype) [Brizzo, MetalliC, Arzeno Fabrice]
+NeoGeo Battle Coliseum (World) [Brizzo, MetalliC, Arzeno Fabrice]
+
+New WORKING software list additions
+-----------------------------------
+Fidelity Chess CB16 [anonymous]
+
+
+New NOT_WORKING software list additions
+---------------------------------------
+

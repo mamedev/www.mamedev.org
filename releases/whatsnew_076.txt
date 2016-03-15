@@ -1,0 +1,94 @@
+0.76
+
+It appears no new timer system related bugs were found with 0.75u1 so *hopefully* this
+release will be better than the last, 0.75 ended up not being not too great due to the
+problems with the YM2151 sound etc.
+
+General Source Changes
+----------------------
+
+Various ST-V and SH-2 improvements, shienryu is improved as are many other games but
+no more are really playable yet (although I have changed Shienryu to IMPERFECT_GFX
+instead of NOT_WORKING as it seems ok, just the sprites are black)
+	[David Haywood, Olivier Galibert, sthief, Angelo Salese]
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+	src/cpu/sh2/sh2.c
+
+Added Insector sound rom loading [Fabrice Frances]
+	src/drivers/gottlieb.c
+
+Changed Jumping Cross default dipswitches
+Fixed invalid dipswitch in Big Event Golf
+Readded a bit of code that was removed from blockage driver when it was converted to
+use tilemap (blasto needed it)
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+VS. Super Xevious [Pierpaolo Prazzoli]
+VS. Freedom Force [Pierpaolo Prazzoli]
+	src/drivers/vsnes.c
+	src/machine/vsnes.c
+
+Bishi Bashi Championship Mini Game Senshuken [R. Belmont]
+	some gfx problems
+	src/drivers/bishi.c
+	src/vidhrdw/bishi.c
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Street Fighter II CE bootlegs (sf2yyc, sf2koryu, sf2m4 - sf2m7) [Barry Harris]
+	src/drivers/cps1.c
+	src/vidhrdw/cps1.c
+
+A couple of Gauntlet, Gauntlet 2 and Vindicators Pt 2 clones [Aaron Giles]
+	src/drivers/gauntlet.c
+
+Q*Bert (early test) [Peter Rittwage]
+Mad Planets (UK Taitel license) [Tom McClintock]
+	src/drivers/gottlieb.c
+
+0.75u1
+
+Please TEST this release, I had hoped 0.75 would be the end of the timer related bugs
+for good but it wasn't so if this tests out as ok then I'll probably release 0.76
+within a fairly short period of time, if sound has vanished on any games, or anything
+that booted in .75 no longer boots let us know, the sooner the better.
+
+
+General Source Changes
+----------------------
+
+Attempted to fix remaining timer system related bugs [Aaron Giles]
+	src/timer.c
+
+Cleaned up SH-2 core a bit and added a possible kludge for Sol Divide's
+Music [Olivier Galibert]
+	src/cpu/sh2/sh2.c
+
+Sound in Mogura Desse [Jarek Burczynski]
+	src/drivers/mogura.c
+
+Fixed default.cfg saving [BUT]
+
+Dips in dbz and lethalj drivers [El Condor]
+
+Fixed Speedup for r3000 version of Area 51 / Max. Force Duo [Aaron Giles]
+	src/drivers/cojag.c
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Gorkans [Tomasz Slanina]
+	correct gfx roms are now loaded
+	src/drivers/pacman.c
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+TryOut [Pierpaolo Prazzoli]
+	src/drivers/tryout.c

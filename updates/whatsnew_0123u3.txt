@@ -1,0 +1,200 @@
+0.123u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+connect4_0123u2red [Aaron Giles]
+multiscreeninfo0123u2gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Corrected clock speeds for the megasys1.c boards. Yes, the games
+actually ran _THAT_ slow! [Brian Troha]
+
+Makefile & build system update: [couriersud]
+ * verinfo: New syntax. verinfo now uses the following syntax: 
+     verinfo.exe -b windows|winui|mess. 
+   Does not depend on compile time defines any longer.
+ * makefile will include src/osd/$(CROSS_BUILD_OSD)/build.mak if it 
+   exists. This was necessary to enable cross builds for winui. 
+
+Cloak & Dagger video code cleanup: [Zsolt Vasvari]
+ - resnet conversion - colors are now signficantly less saturated 
+    because of the 1K pull-ups. This is noticable in the agent's coat 
+    and the sky color, for example.
+ - Added bitmap palette selection based on the 128H line. Not sure 
+    where this is actually used in the game.
+
+Removed unnecessary machine->pens[] lookups in a large number of
+drivers. [Zsolt Vasvari]
+
+Added built-in layout to Space Tactics. Cleaned up and reorganized the
+driver. [Mr. Do!, Zsolt Vasvari]
+
+Switched the funworld color decoding routines to use resnet code.
+[Roberto Fresca]
+
+Fixed namcos2, namcos21 crashes due to nvram allocation in 
+MACHINE_RESET. Created MACHINE_START and move allocation there.
+[couriersud]
+
+Updated info.c to output raw video parameters (pixclock, htotal, 
+hbend, hbstart, vtotal, vbend, vbstart) via -listxml if they have 
+been given. [couriersud]
+
+Removed some deprecat.h includes from osd layer: [couriersud]
+ * add machine as parameter to osd_update and osd_update_audio_stream
+ * change Machine to machine and remove include deprecat.h
+
+Added a rule in vconv.c to make VS2008 compile seamlessly. 
+[Aaron Giles]
+
+bionicc.c: [couriersud]
+ * Added cpu clocks from schematics
+ * Comment about z80 nmi generation
+
+Fixed the DAC sound in X The Ball. [Zsolt Vasvari, Mamesick]
+
+Removed the confirmed bad dump of Virtua striker 2 2000. [Brian Troha]
+
+Fixes crash in Raiga. [Zsolt Vasvari, David Haywood]
+
+drawgfx.c improvments: [Zsolt Vasvari]
+ - Added some asserts to drawgfx and drawgfxzoom
+ - Moved some variable declarations so that they are only visible 
+    where they are actually used
+
+Removed 8bpp bitmap support from drawgfx. [Zsolt Vasvari]
+
+Removed MDRV_PALETTE_LENGTH from vector games, which would trigger 
+an assert in emupal.c (debug build) [couriersud]
+
+Added new module: tokenize.h. This centralizes the behavior of
+tokenizing data structures, as currently used by the input port 
+system. Redid the input port tokenization to be more compact and make 
+use of the new macros. Added support for designated initializers in
+C99 and GCC builds to enforce type safety. [Aaron Giles]
+
+Removed bogus DIPs from the NSS driver. [R. Belmont]
+
+Improved the global "flip_screen" macros and variables: [couriersud]
+ * fix issues related to flip_screen being a define
+ * add "int flip_screen_get(void)"
+ * clean up drivers with collisions 
+ * remove flip_screen macro
+ * flip_screen_x and flip_screen_y made static
+ * add flip_screen_x_get() and flip_screen_y_get()
+ * change writes to flip_screen_x to flip_screen_set_no_update()
+ * added save state calls for flip_screen_x and flip_screen_y
+
+Converted MACHINE_DRIVER definitions from function constructors to 
+tokenized lists. For the most part this is a non-invasive change, 
+except for those drivers using MDRV_WATCHDOG_TIME_INIT. In order to 
+allow for tokenization of attotimes, a set of new macros is provided 
+called UINT64_ATTOTIME_IN_x() which follows the same pattern as 
+ATTOTIME_IN_x() but packs the attotime down into a single 64-bit 
+value for easier tokenization. Fixed several errors in the machine 
+drivers which were caught by the additional checks now done in the 
+machine config detokenization code. [Aaron Giles]
+
+Separated MDRV_DEVICE_CONFIG_DATA into 32-bit and 64-bit versions. 
+Added floating-point versions with configurable resolutions. 
+[Aaron Giles]
+
+Converted speakers into devices. Machine->config no longer houses 
+an array of speakers; instead they are iterated through using the 
+new macros (defined in sound.h) speaker_output_first() and 
+speaker_output_next(). Updated all relevant code to do this.
+[Aaron Giles]
+
+Added typedefs for all the machine config callback functions at the 
+top of driver.h. [Aaron Giles]
+
+Big changes to Cal Omega driver: [Roberto Fresca]
+ - Renamed the driver to calomega.c.
+ - Extended the driver to support all the other Cal Omega systems.
+ - Switched to XTAL def.
+ - Fixed CPU & sound clocks based on official diagrams.
+ - Replaced the AY-8910 with AY-8912 to match the real hardware.
+ - Unified some memory maps.
+ - Splitted machine in sys903 and sys905.
+ - Fixed memory map offsets for sys905.
+ - Added a list of official/unofficial games, and their states.
+ - Fixed a bug introduced when extended the color PROM region to 
+    eliminate colortable length.
+ - Updated technical notes.
+
+Merged memory maps for a number of drivers beginning with a digit or
+the letter 'a'. [Aaron Giles]
+
+Cleaned up the Crazy Climber video driver, mainly via tilemap 
+conversion. This fixes the ape sprite positioning in Crazy Kong - no 
+more gap between feet and platform. Merged Yamato driver with Crazy 
+Climber. [Zsolt Vasvari]
+
+Converted XX Mission to tilemaps. [Zsolt Vasvari]
+
+Removed VIDEO_START(generic) - no longer used. [Zsolt Vasvari]
+
+Added PGM.c EEPROM/hiscore saving. [Creamymami]
+
+Added support for original Omega Race state PROM. [Mathis Rosenhauer]
+
+Added support in the MC6845 emulation for cursors. All 4 blinking 
+modes are supported. [Zsolt Vasvari]
+
+Added a stub implementation of the Rockwell 6545. [Nathan Woods]
+
+Added basic support for the NEC uPD7801, uPD78C05, and uPD78C06 CPUs 
+to the uPD7810 cpu core. [Wilbert Pol]
+
+Some improvements to the 6850 ACIA CTS pin checking logic and the MPU4
+ACIA clock logic. [James Wallace]
+
+Another Risky Challenge opcode to fix a sprite bug and a general 
+clean up of the remarks in the driver. [robiza]
+
+Added dip locations to astinvad, bonzeadv, cadash, asuka, mofflott, 
+galmedes, atarifb, atarifb4, abaseb, soccer. Added DIP locations and 
+improved DIP switches in seawolf2, wow, gorf, robby, profpac. 
+[RansAckeR]
+
+One-line fix for the z80pio. At the moment when the interrupt control 
+word is sent (with interrupts enabled), an interrupt occurs. In 
+reality, interrupts are disabled until the interrupt mask byte is 
+sent. [Robert]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Jolly Joker [Roberto Fresca]
+Cal Omega - Game 7.6 (Arcade Poker) [Roberto Fresca]
+Cal Omega - Game 7.9 (Arcade Poker) [Roberto Fresca]
+Cal Omega - Game 12.8 (Arcade Game) [Roberto Fresca]
+Cal Omega - Game 17.51 (Gaming Draw Poker) [Roberto Fresca]
+Cal Omega - Game 23.9 (Gaming Draw Poker) [Roberto Fresca]
+El Grande - 5 Card Draw (New) [Roberto Fresca]
+Jackpot Joker Poker (5 sets) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Cosmic Smash (JPN, USA, EXP, KOR, AUS) (original) [icronnya77]
+Jolly Card (Evona Electronic) [Roberto Fresca]
+Jolly Card (croatian, set 2) [Roberto Fresca]
+Super Joly 2000 - 3x [Roberto Fresca]
+Royal Vegas Joker Card (fast deal, english gfx) [Roberto Fresca]
+Dungeons and Dragons Tower of Doom (Japan 940412) [Razoola]
+Real Bout Fatal Fury (bug fix revision) [Razoola]
+Metal Slug 5 (AES Cart) [Razoola]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+A large number of Cal Omega games [Roberto Fresca]

@@ -1,0 +1,201 @@
+0.142u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04377: [Graphics] All sets in fuukifg2.c: Missing graphics layer
+          (Tafoid)
+- 04376: [Misc.] Typo in lib/util/opresolv.c
+- 04375: [Graphics] ojankohs: Junk appears in tile shadows during
+          gameplay (Angelo Salese)
+- 00765: [Crash/Freeze] tekken3aa, tekken3ua: Games hangs with blue
+          screen after attraction mode. (The Dumping Union)
+- 04373: [Sound] All sets in polepos.c: Sounds like a clock ticking as
+          you play (Alex Jackson)
+- 04298: [Interface] mame -h points to incorrect usage file (Tafoid)
+- 04329: [Documentation] mexico: Wrong description. (Tafoid)
+
+Source Changes
+--------------
+chdman: fix GCC 4.6 build [R. Belmont]
+
+HLSL Updates: [Ryan Holtz, Bat Country Entertainment, austere]
+ * Reworked default shadow mask settings, eliminating rainbow banding
+    and matching reference shots more closely
+ * Moved color power to occur after shadow mask, as it is intended to
+    simulate nonlinear phosphor response
+- Added a variable-width notch filter to the Y channel in NTSC
+  post-processing, eliminating luma banding on e.g. CoCo 2 and Apple II
+
+i286 - Fix for Phar Lap and Borland 16-bit DPMI servers. [Carl]
+
+Many Sega ST-V / Saturn HW changes [Angelo Salese] 
+
+286 - fixes the DOS/16M dos extender that comes with Lotus 123r3
+[Carl]
+
+Added image devices support to debugger [Miodrag Milanovic]
+
+Added image devices menu to debugger (windows only for now)
+[Miodrag Milanovic]
+
+sdlsocket: workaround for a problem in the detection of tcp/ip socket
+address [Michael Zapf]
+
+goldstar: fixed romanization from Korean for Kkot No Li [30yr]
+
+info.c: added basic display of slot info in -lx [Fabio Priuli]
+
+inptport: Disable the default sequence recognition for now.
+[O. Galibert]
+
+memory: Stop being stupid and call the extremely well written
+populate_range_mirrored code through map_range when appropriate, which
+is most of the time.  [O. Galibert]
+
+polepos.c: Convert to MCFG_SCREEN_RAW_PARAMS and scanline-based IRQ
+timing [Alex Jackson, O. Galibert]
+
+ins8250 - Fix enabling better mouse support in pc driver [Carl]
+
+i286 - limit check of SS in push and pop instructions [Carl]
+
+TMS5220: Force OLDP and OLDE to be updated only on the A subcycle of
+IP=0 PC=0; this has no effect whatsoever on the output, it is merely
+to better document how the chip works. [Lord Nightmare] TMS5220:
+Emulate circuit 412 from the patent, which should prevent spurious
+clicks on interpolation-inhibited frame transitions; This may improve
+the tie fighter sounds in starwars, and some clicking in eprom/eproma.
+[Lord Nightmare]
+
+naomi/jvs: add coin add/sub commands (sub is used by crazy taxi)
+[O. Galibert]
+
+Warp Speed update [Mariusz Wojcieszek]
+ * fixed vblank interrupt and removed rom patches
+ * added coin input
+- added preliminary starfield emulation
+
+HLSL Updates: [Ryan Holtz, Bat Country Entertainment]
+ * MAME will now save an HLSL INI file on the first run of a game that
+    doesn't already have an INI file.
+ * HLSL INI files must have their parameters left in the order in
+    which they are saved out.
+ * Fixed a diagonal 'crease' visible on the screen in HLSL mode.
+
+Some improvements to the compressed texture protection for Decathlete.
+[David Haywood]
+
+Refactored the INS8250 interrupt line to use devcb. [Curt Coder]
+
+memory.c: Fixed display of physical addresses in the debug memory
+viewer.  [Wilbert Pol]
+
+Added support for starting softlist item directly without marking
+image device to be mounted on. If soft item is found it will be loaded
+on first image device that have needed interface defined
+[Miodrag Milanovic]
+
+Fixed Aristocrat MK5 screen offset. [Palindrome]
+
+Added SRAM support for dmdtouch and geishanz. [Palindrome]
+
+Various aristmk4.c changes [Heihachi_73]
+ * Added button panel artwork and renamed/remapped inputs for all
+    games.
+ * Changed cgold2's PROM to a more compatible version.
+Various aristmk5.c changes [Heihachi_73]
+ * Changed parent/clone relationship for Dolphin Treasure (later
+    version is now parent).
+ * Added a US clear chip to the set chip ROMs.
+ * Removed the set chip loading from all games which don't use them.
+ * Cleaned up ROM name descriptions to match the aristmk4.c format.
+
+Added proper channel 2 support, and logging capabilities to OKIM6376.
+[J.Wallace]
+
+Corrected divider behaviour of OKIM6376 - needs ROM analysis to be
+complete, but all supported programs only use the default mode.
+[J.Wallace]
+
+Changed clock frequencies in High Video games to match what should be
+the correct OKI chip frequencies - those familiar with the boards may
+wish to confirm this is correct, as I couldn't find the clock signal
+for the chip on the PCB scans I've seen. [J.Wallace]
+
+Added MPU4 sampled sound hardware, an MSM6376, PIA and PTM combined to
+give dynamic pitch shifting for looping ADPCM samples. [J.Wallace]
+
+Removed duplicated includes from INCPATH.  [Oliver Stoneberg]
+
+Fixed some potential memory leaks and NULL pointer deferences as well
+as removing some redundant checks.  [Oliver Stoneberg]
+
+i286 - Fix bunch of fault restarts [Carl]
+
+A fix for -listclones displaying parents as clones when it uses a
+BIOS.  [Tafoid]
+
+i386: Implemented task gates, call gates, and task state segments
+(both 286 and 386).  Also inplmented triple fault CPU resets (used by
+OS/2). x87: Basic implementation of FSTENV (used by OS/2). 
+[Barry Rodewald]
+
+Added code to manage NAOMI's M4 decryption. [Andreas Naive]
+
+Midway Zeus improvements [Phil Bennett]:
+ * Added some alternate FIFO commands used by mk4b.
+ * Hooked up the short-format draw command (used to draw life bars and
+    shadows in mk4).
+ * Added support for alternate 4/8 bit texture formats (used by mk4).
+
+
+dec8.c: Corrected the rom names for the Ghost Busters sets and added
+PCB locations [The Dumping Union]
+
+Fixed NAR timing in OKIM6376 to match datasheet figures. [J. Wallace]
+
+Fixed behaviour for OKIM6376 samples latched while their respective
+channel is playing (fixes missing audio in New Magic Card 'Skill Game'
+when won on first loop), and MPU4 sound test [J. Wallace]
+
+Audio interface fix for MPU4. [J. Wallace]
+
+Lamping fixes for MPU4 small extender. [J. Wallace]
+
+Added support for access of separate LED segments in MPU4. (indexed as
+'mpu4ledXXX', where the first display unit takes 0-7, the second 8-15
+and so on). [J. Wallace]
+
+Various updates on the AWP drivers for JPM IMPACT and Maygay M1
+[J. Wallace]
+
+Various changes for letting Mating Game boot and run, but there are
+still issues with timing. [J. Wallace]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mortal Kombat 4 (version 1.0) [Phil Bennett]
+
+
+New clones added
+----------------
+Heated Barrel (Electronic Devices license)
+  [Hurray Banana, Tormod, hotaru, Dna Disturber, F. Marsaud, 
+   N. Francfort, Smitdogg, The Dumping Union]
+Albatross (US clone of Super Crowns Golf)
+  [Antonio Gonzalez Jr., Smitdogg, The Dumping Union] (not working)
+Tekken 3 (Japan, TET1/VER.A) [Yohji, Smitdogg, The Dumping Union]
+Tekken 3 (Asia, TET2/VER.E1) [Tormod, Smitdogg, The Dumping Union]
+The Real Ghostbusters (US 2 Players, revision 2)
+  [JF, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Special Forces Elite Training [Guru, R. Belmont]
+Donggul Donggul Haerong [Guru]
+Warp Speed (prototype) [TrevEB, Siftware, Mariusz Wojcieszek]

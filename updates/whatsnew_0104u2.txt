@@ -1,0 +1,102 @@
+0.104u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+zwackery0104u1gre [Aaron Giles]
+typo0104ora [Aaron Giles]
+x86compile0104u1ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Hooked up MCU ROM properly in the System 23 games. [R. Belmont]
+
+Fixed tilemap sizes in Nitroball. [Bryan McPhail]
+
+Fixed Panic Road color PROMs. [Nicola Salmoria]
+
+Added save state support to Night Driver (still needs save state
+support in the discrete core to be 100%). [Oshah]
+
+Miscellaneous cleanups to the 8255 PPI code; changed some 'int' types 
+to 'offs_t' and 'UINT8'. Added ppi8255_get_portA/B/C() functions. 
+Also fixed some formatting problems. [Nathan Woods]
+
+Updates to the M37710 core: [R. Belmont]
+ - Fixed LDM behavior when executing outside of bank 0
+ - Fixed various global bugs when executing outside of bank 0
+ - Fixed so top 8 bits of X & Y are preserved when in 8-bit index mode
+ - Fixed some disassembly errors
+ - Added save state support
+ - Added M37702 alias for documentation purposes
+
+Updates to the Namco System 22 driver: [R. Belmont]
+ - Necessary changes to System 22 games to use the real C74 BIOS for 
+    music/sound
+ - Added system controller register to boot the C74
+ - Speedup cheat for the CPU board C74
+ - Promoted Ace Driver from NO_SOUND to IMPERFECT_SOUND
+
+Made declarations and variables in a number of drivers static and 
+const to reduce global namespace pollution. Fixed a number of 
+multiply-defined global variables. [Atari Ace]
+
+Added state save support to the Jaleco MegaSystem 32 and YMF271
+sound core. [Nathan Woods]
+
+Fixed Windows rendering code bug where -waitvsync had no effect when 
+using -nohws -nod3d -notb. [Derrick Renaud]
+
+Hooked up preliminary support for the text layer and palette in the
+Namco System 23 driver. [R. Belmont]
+
+Deprecated the use of multimon.h in the Windows build, which is only
+necessary for producing Windows 95 and NT 4.0 compatible binaries.
+Windows 98 is now the minimum version of Windows supported for MAME.
+[Aaron Giles]
+
+Made a few minor tweaks to the Windows sources to support the latest
+build tools. See http://mamedev.org/tools if your tools are out of
+date. [Aaron Giles]
+
+Added assert_always macro which asserts even in a release build, and
+requires a friendly message. [Aaron Giles]
+
+Added new function xml_read_string, which allows for parsing of
+internal strings into XML trees. [Aaron Giles]
+
+Removed artificial gamma correction in nemesis driver. [Aaron Giles]
+
+Removed scrbitmap and memory_region from the global Machine structure.
+There is no need for non-core systems to access these directly.
+[Aaron Giles]
+
+Removed a ton of hacks that were checking for Machine->sample_rate==0,
+which is now guaranteed to never be true. [Aaron Giles]
+
+Split out ROM management from common.c and moved to a new file
+romload.c. [Aaron Giles]
+
+Added save state support to the POKEY emulator. [Aaron Giles]
+
+Cleaned up structs/unions in the debugger and Windows code to match 
+the new core conventions. [Aaron Giles]
+
+Added new function state_save_register_bitmap to simplify bitmap
+saving. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+The Lost Castle In Darkmist [Tomasz Slanina, Nicola Salmoria]
+
+
+
+New clones added
+----------------
+Super Glob (Pac-Man hardware) German [Chaneman, David Widel]
+Burning Force (Japan old version) [Team Japump]

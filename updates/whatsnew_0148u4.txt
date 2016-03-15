@@ -1,0 +1,159 @@
+0.148u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+
+Source Changes
+--------------
+-tms5110r.c: Verified TMS5200 LPC rom as correct from decap.
+ [digshadow, Lord Nightmare]
+
+-tms5110r.c: Corrected and verified TMS5100 LPC table against the
+ decap. [digshadow, Lord Nightmare]
+
+-tms5220.c: updated many comments, changed a variable name, and made
+ some minor fixes to the 'circuit 412' to better reflect the patent.
+ [Lord Nightmare]
+
+-m6502: Undocumented instruction 0x80 is a 2-byte nop, not a 1-byte one
+ [O. Galibert]
+
+-SDL: Fix symlink handling by internal file manager. [qmc2]
+
+-naomi: Redumped GD-ROMs for cvs2gd, senkoo, and ss2005. [f205v]
+
+-braveff: Added dump of mask ROMs [Guru, R. Belmont]
+
+-netlist.h: Fix for GCC prior to 4.3 [Federico Schwindt]
+
+-naomi: GD-ROM redumps for confmiss, sprtjam, vstrik3, dygolf [f205v]
+
+-Adds simple_set data structure and hooked it up to the debugger
+ comment system. [Andrew Gardner]
+
+-naomi: Redumped mok, shaktamb, vtennis2, ngdup23a, vf4evo, initdexp,
+ initdv3j, senkosp and initdv3e. [f205v]
+
+-hikaru: Redumped bad ROMs in braveff and sgnascar as per the test mode
+ checksum tables. [Guru]
+
+-suna16.c: Added board documentation, added PCB layouts for both styles
+ of Back Street Soccer and Ultra Balloon. Added dipswitch locations to
+ Back Street Soccer, Ultra Balloon and Best of Best. Changed CPU clocks
+ to actual OSC based timing. [Brian Troha]
+
+-tms5220.c: Based on decap analysis, both the TMS5220 and TMS5220C use
+ identical LPC tables; get rid of the unnecessary extra table.
+ [Lord Nightmare, digshadow]
+
+-PSX GTE: Improved FLAG calculation in NCDS, CDP, NCDT, NCCS, CC, NCS, 
+ NCT & NCCT by checking for overflow after each addition. [smf]
+
+-Detailed differences in Fighting Golf (US) from parent based on
+ observation and "SNK Program Update" notice which was found which
+ includes a DIPSWITCH change.  [Tafoid, Shane Chaneman]
+
+-primrag2: PCB readme shows 8MB RAM, make it so. [R. Belmont]
+
+-fixed MVMVA flag calculation & replicate the bugs when mx is set to 3
+ or cv is set to 2. [smf]
+
+-esripsys.c - Fix regression caused by cycle-exact 6809 core
+ [Phil Bennett]
+
+-PSX GTE: fixed RTPS flags and calculation [smf]
+
+-QT Debugger: Adds trackpc command, allowing for a visual display of
+ where the program counter has visited in the dasm windows. Run "help
+ trackpc" in the debugger to see the options. [Andrew Gardner]
+
+-PSX GTE: fixed RTPT flags calculation & added a new divide implementation that
+ uses a much smaller table [smf]
+
+-Partial support for 1f801060 for setting the RAM size, if the size is
+ set larger than the actual memory then RAM is repeated. As a result
+ the RAM is no longer included in the drivers memory map, you have to
+ specify the size in the machine. [smf]
+
+-Fruit: fix VGA BIOS mirror, RAM amount, and HDD writability
+ [Carl, R. Belmont]
+
+-superchs.c: Corrected main CPU clock, corrected some rom labels. Added 
+ plds to the Super Chase - Criminal Termination sets. [Porchy, 
+ Brian Troha, The Dumping Union]
+
+-6850acia.c: Improved DCD signal handling.  [Wilbert Pol]
+
+-arcadia.c: Added the SEC-SCPA pal dump used on Magic Johnson's Fast
+ Break and Leader Board. [Kevin Eshbach]
+
+-PSX CPU creates a ram device, this has exposed a problem with not
+ removing the child devices from the hash map when removing replacing
+ devices. At the moment I have changed device.c so that when any device
+ is removed the hash maps are reset. [smf]
+
+-segas18.c: added ddcrewj 317-0185 decryption key
+ [Porchy, Charles MacDonald]
+
+-QT Debugger: Now saves all settings for all open windows - including
+ docks in the main debug window. Also fixes bug where closing the main
+ window with the X in the corner didn't save settings properly. 
+ [Andrew Gardner]
+
+-taitotz.c: added romdumps from pwrshovl additional I/O PCB [Tormod]
+
+-iteagle: Updated documentation [Guru, Brian Troha]
+
+-OS X: Support for both OS X native and Unix-style multiuser installs.
+ [R. Belmont, Nick Boos]
+
+-iteagle: add 1.02 bootrom, FPGA config ROMs, and PALs. [Brian Troha]
+
+-SDL: Don't double-shutdown the font cache on *IX when exiting with the
+ debugger enabled. [R. Belmont]
+
+-pacman.c: Verified original puckman roms and made that set the parent.
+ [Andy Welburn]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Spooky Night 2nd Edition (Version 2.0.4) [Sara S.]
+Spooky Night (Version 1.0.1) [Sara S.]
+Good Luck II [Roberto Fresca, f205v]
+
+
+New clones added
+----------------
+Wing Shooting Championship V1.00 [Brian Troha, The Dumping Union]
+D. D. Crew (Japan, 4 Players, FD1094 317-0185)
+  [Porchy, The Dumping Union]
+Se Gye Hweng Dan Ultra Champion (Hong Kong)
+  [Brian Troha, Smitdogg, The Dumping Union]
+Back Street Soccer (larger ROMs)
+  [Brian Troha, Smitdogg, The Dumping Union]
+Knuckle Heads (Japan, Prototype?) [Arzeno Fabrice, The Dumping Union]
+Oriental Legend Special / Xi You Shi E Zhuan Super (ver. 103, China, Tencent) (unprotected)
+  [XingXing]
+DoDonPachi II - Bee Storm (various sets)
+  [Mr. CAST, Smitdogg, Tormod, The Dumping Union]
+Super Chase - Criminal Termination (World) [Porchy, The Dumping Union]
+Arkanoid Returns (Ver 2.02O 1997/02/10)
+  [Sonic, Smitdogg, The Dumping Union]
+Ball Boy [The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+GTI Poker? (SMS hardware) [Kevin Eshbach, Roberto Fresca]
+Shakatto Tambourine 2K1 SPR (GDR-0013)
+  [gamerfan, CaH4e3, Smitdogg, The Dumping Union, R. Belmont]
+Fruit [Any, R. Belmont]
+Pinball 2000: Star Wars Episode 1 [R. Belmont, José Renato Castro Milanez]
+Pinball 2000: Revenge From Mars (rev. 1) [R. Belmont, José Renato Castro Milanez]
+Pinball 2000: Revenge From Mars (rev. 2) [José Renato Castro Milanez]
+Golden Tee Fore! 2004 [R. Belmont, Brian Troha, uncletom]
+Golden Tee Fore! 2005 [R. Belmont, Brian Troha, uncletom]

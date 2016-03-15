@@ -1,0 +1,169 @@
+0.119u3
+-------
+
+IMPORTANT NOTE FOR OSD PORTERS: This build requires a pair of new
+primitives in the OSD synchronization module, as well as some extended
+functionality in the work item management. See below for details.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+cabal0119u2ora [David Haywood]
+
+
+
+Source Changes
+--------------
+Fixed Cabal (joystick) submission from previous release. 
+[David Haywood]
+
+Made a few improvements to dealem (well you can see the game now..)
+[David Haywood]
+
+Fixed broken SCSP from last update. [R. Belmont]
+
+Changed parameters to read/write handlers from "address" to an 
+unmodified "original_address" parameter (having the passed parameter 
+being unmodified makes it easier to determine the original value while
+debugging). [Nathan Woods]
+
+Fixed colors in dynduke. [David Haywood]
+
+Changed the following x86 instructions to read/write an entire word 
+rather than two separate bytes: [Philip Bennett]
+ - mov_axdisp
+ - mov_dispax
+ - stosw (8086 only)
+ - rep stosw (8086 only)
+Also tweaked handling of x86 WAIT instruction.
+
+Several more opcode fixes for Risky Challenge. [robiza]
+
+Cleaned up the include file usage in the code: [Atari Ace]
+ - Removed dead prototypes
+ - Added missing self-#includes
+ - Added missing source comments in mame/includes
+ - Migrated the few #include "driver.h" lines from driver header
+    files to source files (which is the common idiom).
+ - Eliminated #include "mame.h", "osdcore.h" et cetera from driver
+    files where #include "driver.h" would suffice.
+ - Removed unused srmp6.h and 9900stat.h
+
+Added the rom loading for the various 5*XX roms, which are dumped but
+not yet hooked up. [David Haywood]
+
+Fixed error messages output from option.c. [Christophe Jaillet]
+
+gstream driver update: [Pierpaolo Prazzoli]
+ - Changed to use a default nvram handler
+ - Checked the inputs
+ - Aligned the sprites
+ - Added some comments about oki banking
+ 
+Major Sega Model 2 rewrite: [Ernesto Corvi]
+ - Decoupled the geometry engine code from the hardware rasterizer.
+    At this point, we could add emulation of the geometry DSPs for 
+    the 2B and 2C models, and hook them directly to the rasterizer. 
+    For the original and 2A models, an HLE geometry engine is provided 
+    (currently in use for all models).
+ - Full Geometry Engine simulation, including support for specular, 
+    multiple centers and dual polygon RAM.
+ - Support for all textured/transparent/checkered rendering modes.
+ - Improved texel/luma modulation
+ - Improved viewport clipping
+ - Improved z clipping
+ - Extensive notes and documentation.
+ - Greatly improved near Z-Clipping, still not perfect though.
+ - Improved perspective-correct texturing for large textures.
+ - Improved Z-Sorting
+ 
+Changed Machine to machine in several places where feasible.
+[Atari Ace]
+
+Added decryption of Jongkyo. [Nicola Salmoria]
+
+The OSD layer is now required to supply to additional synchronization
+primitives: osd_compare_exchange32() and osd_compare_exchange64().
+These primitives should implement an atomic compare and exchange of
+32-bit and 64-bit values, respectively. Added implementations of these
+functions to the Windows OSD layer. [Aaron Giles]
+
+Defined two new inline functions that are built on the new OSD
+primitives: osd_compare_exchange_ptr(), which performs an atomic 
+compare/exchange on a pointer of the appropriate size, and
+osd_sync_add() which atomically adds a value to a location in memory.
+[Aaron Giles]
+
+Changed implementation of OSD work queues that are created with the
+WORK_QUEUE_FLAG_MULTI hint. Such queues now create n-1 threads, where
+n in the number of logical processors in the system. This allows the
+main thread to continue accomplishing things while other threads 
+process the work. If the main thread subsequently calls
+osd_work_queue_wait(), it will then dynamically "jump in" and help
+the other threads complete all the work items. [Aaron Giles]
+
+Added new work item flag WORK_ITEM_FLAG_SHARED. When specified on a
+work item that is queued to a work queue created with the
+WORK_QUEUE_FLAG_MULTI hint, it means that all threads will be 
+dispatched to process the one work item, instead of the first thread
+removing it. These "shared" work items are only considered complete
+when all processing threads have returned. [Aaron Giles]
+
+Added support for controlling multithreading behavior through an
+environment variable OSDPROCESSORS. To override the default behavior,
+set OSDPROCESSORS equal to the number of logical processors you wish
+the OSD layer to pretend you have. [Aaron Giles]
+
+Changed the 3dfx Voodoo emulation code to take advantage of the new
+threading mechanisms above. It now creates a work queue with the
+WORK_QUEUE_FLAG_MULTI flag set, and uses shared work items to spread
+rasterization work across multiple processors. Note that this support
+should be considered experimental; under some circumstances it is
+known to deadlock. If you encounter problems, set OSDPROCESSORS to 1
+to effectively produce the previous behavior. [Aaron Giles]
+
+Added "top 20" dedicated rasterizers for all the Seattle games and
+Gauntlet Legends/Dark Legacy. These improve rasterization performance
+by another 10-20%. [Aaron Giles]
+
+Fixed several more bugs in the 64-bit MIPS recompiler. It is now
+capable of running the Seattle games and the 3D Gauntlets. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Hana Paradise [Luca Elia]
+Hanafuda Hana Gokou [Luca Elia]
+Mahjong Tian Jiang Shen Bing [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Nekketsu Koukou Dodgeball Bu (Japan) [David Haywood, Team Japump!]
+Puzzle Game Rong Rong (Japan) [Luca Elia]
+Legend of Hero Tonma (Japan) [David Haywood]
+Legend of Hero Tonma (bootleg, set 2) [David Haywood]
+IQ-Block (V127M, V113FR) [Pierpaolo Prazzoli]
+Cabal (Alpha Trading) [David Haywood]
+Puzzle & Action: Tant-R (Japan) (bootleg set 3) [David Haywood]
+Shinobi (Datsu bootleg) [David Haywood]
+Shinobi (Star bootleg, System 16A) [David Haywood]
+Crack Down (World, FD1094 317-0058-04c) [Arzeno Fabrice, Chris Hardy]
+Super Pang (World 900914, bootleg) [David Haywood]
+Pang (bootleg, set 2) [David Haywood]
+Tehkan World Cup (set 2, bootleg?) [David Haywood]
+DJ Boy (set 2) [David Haywood]
+Hunchback (set 2) [David Haywood]
+Double Dragon (bootleg with M6803) [David Haywood]
+Cannon Ball (Pacman Hardware) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Jongkyo [David Haywood, Nicola Salmoria]
+Vs. Janshi Brandnew Stars [David Haywood]

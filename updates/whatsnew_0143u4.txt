@@ -1,0 +1,168 @@
+0.143u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02084: [DIP/Input] sokyugrt: Emulation starts with 1 or more credit
+         inserted (Angelo Salese)
+- 04366: [DIP/Input] shanhigw: The game starts with 2 credits inserted
+         (Angelo Salese)
+- 04470: [DIP/Input] roundup5, sci, chasehq, contcirc, dblaxle:
+         Missing PORT_TOGGLE (M.A.S.H.)
+- 04396: [Interface] all games and drivers: Refreshspeed activating
+         when not needed (hap)
+- 04453: [Graphics] shackled: Garbled sprites (David Haywood)
+
+Source Changes
+--------------
+driver.h: fixed handling of compatible systems for MESS [Fabio Priuli]
+
+tbowl.c: Corrected some dipswitches and settings. Added dipswitch
+locations to the Tecmo Bowl sets. [Brian Troha]
+
+Added correct sprite rom for "Mahjong Tian Jiang Shen Bing" [Guru]
+
+Decrypted sprites and palette in "Mahjong Tian Jiang Shen Bing", added
+inputs, sidestepped protection [Luca Elia]
+
+z80dma: Added an alternative way of register read-back that directly
+change the read mask without passing from the init read sequence
+command, also moved around DMA counters incrementing [Angelo Salese]
+
+tecmo.c: Added proper region to Gemini and Silk Worm sets. Added
+dipswitch locations to Rygar sets, Gemini, Silk Worm and Back Fire
+(Tecmo, bootleg). [Brian Troha]
+
+Removed support for PORT_CATEGORY from the core, since PORT_CONDITION
+is enough to deal with removable controllers in MESS [Fabio Priuli]
+
+ioport.c: during emulation, detect keyboard only when enabled
+[Fabio Priuli]
+
+Various Neo-Geo changes: [Jackc, Johnboy]
+ * Continued to document used pcb's for cartridges
+ * More removal of .bin extension in favour of chiplabel.socketlabel
+    naming convention
+ * Cleaned up fightfev: Removed duplicate p2, marked p1 bad dump
+ * Cleaned up fatfury2
+
+Fixed independent channel volumes in Okim6376 sound chip, used by the
+games from the Road Hog era of MPU4 [J. Wallace]
+
+Moved ST-V game-specific overrides from saturn.c/stvinit.c to stv.c,
+makes games to correctly return stv.c instead of saturn.c if you use
+-listsource [Angelo Salese]
+
+Moved change clock inside a timer and worked on NMI generation for
+SMPC, fixes most instances of 2 credits at start-up for ST-V games
+[Angelo Salese]
+
+General portability fixes [Robert Muth, R. Belmont]
+
+Rewritten ST-V IOGA system from scratch [Angelo Salese]
+
+ymz280b.c: several minor fixes, including the issue that caused
+glitched sfx in tecmosys.c tkdensho and deroon [hap]
+
+Fixed mahjong panel input quirks for Virtual Mahjong and My Fair Lady
+[Angelo Salese]
+
+Provided some cheesy hacks to allow Magical Zunou Power to boot
+[Angelo Salese]
+
+Converted VDP2 registers into proper 16-bits parallelism
+[Angelo Salese]
+
+chdman - supported full/relative paths when creating cd rom image,
+also added support for GDI with files containing space char
+[Miodrag Milanovic]
+
+Added support for loading other image types to cdrom device, with use
+of chdman part of code [Miodrag Milanovic]
+
+floppy: Add generic track data descriptors [O. Galibert]
+
+Added MVOL to the SCSP core, used for sound fade in/out
+effects [Angelo Salese]
+
+Various fixes to the Taito JC system [Angelo Salese]:
+ * implemented preliminary object RAM bankswitch, fixes Densha de Go
+    garbage video objects if you coin up during attract mode
+ * improved inputs in Densha de Go, promoted game to working state;
+ * fixes analog inputs in Landing Gear;
+ * work around for DSP reset line in Dangerous Curves, allows it to reach
+   title screen (no 3d yet due of other problems);
+ * Implemented 4bpp mode for object RAM, used by Densha de Go 2 credit
+   display;
+ * Fixed IRQ6 triggering in  (it's a signal that's sent from DSP
+   to Main to communicate that job is done);
+ * Faked the Mascon via an analog port, that fixes a bunch of issues
+   with undefined input state for Densha de Go 1 and 2
+ * Fixed ROM loading in Densya de Go 2 Kousoku-hen, fixes booting in it;
+ * Fixed Densha de Go 2 crash when entering into gameplay, game is
+   now playable;
+ * Implemented gouraud shaded triangles, fixes Landing Gear messed up 
+   3D;
+ * Fixed credit display in Densha de Go;
+ * Preliminary implementation of object RAM screen masking, used to cover
+   left-right sides of the screen;
+ * Added DSP idle skips, mostly noticeable during POST screens;
+
+Provided odometer and break table conversion for Densha de Go 
+[O. Galibert]
+
+naomi: Split the rom boards into a collection of devices. 
+[O. Galibert]
+
+williams.c: added second sound board to blaster/blaster30 [hap]
+
+Fixed TMS32051 debug memory viewer [Angelo Salese]
+
+williams.c update 2 [hap]
+ * fixed screen garbage when frameskipping
+ * fixed blaster background color (eg. screen flashes when hit)
+
+Work-around for TMS32051 crash on Taito JC system soft reset [Angelo Salese]
+
+Fixed a debugger crash if you try to view data memory in TMS32051
+[Angelo Salese]
+
+Add preliminary support for big-endian SH-3/SH-4 CPUs. [R. Belmont]
+
+m68k: improved disassembly of CINV and CPUSH [R. Belmont]
+
+Moved 3d drawing functions outside of the screen updating function in
+Taito Air System driver, this should help in preparation of properly
+fixing the 3d graphics in it [Angelo Salese]
+
+Further major organization, documentation and addition of numerous
+(over 800) gambling / Fruit machine titles covering multiple
+systems.  [David Haywood]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Tian Jiang Shen Bing (V137C) [Guru, bnathan, Dyq, Luca Elia]
+Densha de GO! [Angelo Salese, R. Belmont]
+Densha de GO! 2 [Angelo Salese, R. Belmont]
+Landing Gear [Angelo Salese, R. Belmont]
+Penky [Kevin Eshbach, ranger_lennier, B. Munger, bodger319, Brian
+       Troha, The Dumping Union]
+
+New clones added
+----------------
+Phoenix (Irecsa / G.G.I Corp - set 2) [f205v, robotype]
+Rescue (bootleg) (not working) [f205v, robotype]
+The End (bootleg) (not working) [f205v, robotype]
+Missile Combat (Sidam bootleg) (not working) [f205v, robotype]
+Biomechanical Toy (Ver. 1.0.1884) [Tirino73]
+Shocking (Korea) [Mark F., Smitdogg, The Dumping Union]
+Puzz Loop (Europe, v0.94) [Joerg Hartenberger]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Animal Basket [Yohji, Cah4e3, The Dumping Union]
+Alien Front [Mark F., The Dumping Union, R. Belmont]
+S-Plus (SS4240) Coral Reef [agemame]

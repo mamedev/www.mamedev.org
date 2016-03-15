@@ -1,0 +1,550 @@
+0.72
+
+FAQ about new drivers added since 0.71
+--------------------------------------
+
+for Run and Gun you must hold down F2 and press F3 to init the Eeprom otherwise
+the game won't boot, the rungunu set doesn't work correctly.
+
+Megatech / Megaplay / NSS are preliminary, since the menu system doesn't yet work
+perfectly on Megatech I've marked all the games as non-working, Megaplay still
+doesn't boot so those are marked as Non-working, and the NSS menu isn't emulated
+at all yet so I also consider that to be Non-working, I've enabled these anyway
+as it may encourage others to help with the development, Mame is NOT turning into
+an emulator for Consoles, these are Arcade systems much like PlayChoice-10.
+
+Outrunners is currently still broken due to problems with the V60 and recent timer
+updates, sorry.
+
+The games using the sp0250 sound for speech still need samples for the sound
+effects, however samples for the speech are no longer needed with this update.
+
+General Source Changes
+----------------------
+
+Work Around for Genix Protection + tilemap scroll making it playable [Paul Priest]
+	src/drivers/pirates.c
+	src/vidhrdw/pirates.c
+
+Various Conversions to Tilemaps [Curt Coder]
+	some were left out as they need checking, or devs didn't like them
+
+Various Dipswitch Fixes [Iñigo Luja]
+
+Cleanups to Darius Video [Acho A. Tang]
+	src/vidhrdw/warriorb.c
+	src/vidhrdw/taitoic.c
+	src/vidhrdw/taitoic.h
+	src/vidhrdw/ninjaw.c
+	src/vidhrdw/darius.c
+
+6821 PIA fixes [Martin Adrian]
+	src/machine/6821pia.c
+	src/machine/6821pia.h
+
+Kludge for Combat School Music [Acho A. Tang]
+	might be an fm.c bug, being investigated by Jarek
+
+Some Cleanups in itech32.c, dogfgt.c [Brian Troha]
+
+New Clones supported:
+--------------------
+
+Zero Point (alt) [Brian Troha]
+	src/drivers/unico.c
+
+
+0.71u3p
+
+
+General Source Changes
+----------------------
+
+Cleaned up tmnt.c cuebrick addition, added SSriders bootleg (not working) [R.Belmont]
+	src/drivers/tmnt.c
+	src/vidhrdw/tmnt.c
+
+Added some Slapstics used in Europe / Japan [Aaron Giles]
+	src/machine/slapstic.c
+
+This patch adds some minor callbacks to the artwork system in order to
+enable some MESS specific functionality without polluting artwork.c with
+a bunch of ugly #ifdef MESS's. [Nathan Woords]
+	src/drivers/artwork.c
+	src/drivers/artwork.h
+	src/mame.c
+
+Fixed Tile flip in mermaid driver [Pierpaolo Prazzoli]
+	src/vidhrdw/mermaid.c
+
+NSS Fixes [Pierpaolo Prazzoli]
+	src/cpu/g65816/g65816.c
+	src/drivers/nss.c
+	src/machine/snes.c
+
+Vector Cleanups / Improvements [Frank Palazzolo]
+	- Removed VEC_SHIFT and "magic numbers" stuff from all drivers, 
+	vector.c: all fixed point stuff is now always 16.16.
+	- Removed "bad trench vectors hack" from Star Wars which I created in 
+	1997.  Appears not to be necessary any more :)
+	- Moved flipping and swapping API stuff from vector.c to avgdvg.c, 
+	this is specific to tempest and quantum only.
+	- Added clipping to Sega games per the schematics
+	- Using floating point in vector.c to do scaling.
+	- Removed dead code using Machine->orientation from vector.c
+	- Added capability to register an external vector renderer.
+	src/drivers/quantum.c
+	src/drivers/tempest.c
+	src/machine/starwars.c
+	src/vidhrdw/avgdvg.c
+	src/vidhrdw/avgdvg.h
+	src/vidhrdw/aztarac.c
+	src/vidhrdw/cchasm.c
+	src/vidhrdw/cinemat.c
+	src/vidhrdw/sega.c
+	src/vidhrdw/vector.c
+	src/vidhrdw/vector.h
+
+Fixed compile problems [Brad Oliver]
+	src/vidhrdw/bigevglf.c
+	src/vidhrdw/segaic24.c
+
+re-written and merged the drivers for Sprint 1/2 and Dominos [Stefan Jokisch]
+	src/drivers/sprint2.c
+	src/vidhrdw/sprint2.c
+
+Fixed some problems with Vector Patch [Frank Palazzolo]
+	src/drivers/quantum.c
+	src/drivers/tempest.c
+	src/vidhrdw/sega.c
+	src/vidhrdw/avgdvg.c
+
+Various Fixes [Nathan Woods]
+	src/fileio.c:
+	- Fixes a bug in mame_fgetc() when reading characters between
+	0x80 and 0xFF
+
+	src/hash.c:
+	src/hash.h:
+	- Adds a new function, hash_verify_string(), that takes a string
+	and checks to see if it is a valid hash string
+
+	src/mame.c:
+	- Added a consistency check that uses hash_verify_string() to
+	make sure all of the hash strings are valid
+
+Tiger Heli MCU simulation improvements [Angelo Salese]
+	src/drivers/slapfght.c
+	src/machine/slapfght.c
+
+Coverted Text Layer of Act Fancer to Tilemaps [Angelo Salese]
+	src/vidhrdw/actfancr.c
+
+Fix drawgfx 1:1 optimization [Olivier Galibert]
+	src/drawgfx.c
+
+Fixed i803x jumps [Olivier Galibert]
+	src/cpu/i8039/8039dasm.c
+	src/cpu/i8039/i8039.c
+
+sp0250 sound / g80 speech board emulation [Olivier Galibert]
+	src/drivers/sega.c
+	src/drivers/segar.c
+	src/includes/sega.h
+	src/mame.mak
+	src/rules.mak
+	src/sndhrdw/sega.c
+	src/sndhrdw/segar.c
+	src/sndintrf.c
+	src/sndintrf.h
+	src/sndhrdw/segasnd.c
+	src/sndhrdw/segasnd.h
+	src/sound/sp0250.c
+	src/sound/sp0250.h
+
+Fixed Power Instinct Dips [Brian Troha]
+	src/drivers/powerins.c
+
+Improved Risky Challenge decryption [Angelo Salese]
+	src/machine/irem_cpu.c
+
+Misc Patches [Nathan Woods]
+	src/inptport.c:
+	src/inptport.h:
+	- Raises the maximum number of ports to thirty
+	- Adds a few MESS specific IPT_* types (within #ifdef MESS)
+
+	src/cpu/i86/i86.c:
+	src/cpu/i86/i286.c:
+	- Adds state save support
+
+	src/includes/snes.h:
+	src/machine/snes.c:
+	- Update from Anthony Kruize (MESS SNES driver author)
+
+Starsweep GFX improvements [smf]
+	src/cpu/mips/mips.c
+	src/cpu/mips/mipsdasm.c
+	src/driver.c
+	src/drivers/namcos11.c
+	src/drivers/zn.c
+	src/includes/psx.h
+	src/vidhrdw/psx.c
+
+Fixed register editing when Scanline display is enabled in debugger [Nathan Woods]
+	src/mamedbg.c
+
+Fixed the BCD conversion when using the Decimal Flag in ADC and SBC opcodes
+in the G65816 CPU core.This fixes at least the Act Raiser timer/score bugs. [Angelo Salese]
+	src/cpu/g65816/g65816.c
+	src/cpu/g65816/g65816cm.h
+	src/cpu/g65816/g65816op.h
+
+Added correct roms to Genix but it still doesn't work due to protection [David Haywood]
+	src/drivers/pirates.c
+
+Improvements to Megatech emulation, although its still far from being correct and still
+under development, will be split from segac2.c once finished [Barry Rodewald, David Haywood]
+	src/drivers/segac2.c
+	src/vidhrdw/segac2.c
+
+New games supported:
+--------------------
+
+Power Instinct 2 [Olivier Galibert, ShiRiRu]
+	todo: figure out why we need a rom patch to avoid an ingame problem
+	src/drivers/cave.c
+	src/vidhrdw/cave.c
+
+Sprint 4 [Stefan Jokisch]
+	src/drivers/sprint4.c
+	src/vidhrdw/sprint4.c
+
+Pit 'n' Run [fTomasz Slanina, Pierpaolo Prazzoli]
+	missing analog sounds
+	src/drivers/pitnrun.c
+	src/machine/pitnrun.c
+	src/vidhrdw/pitnrun.c
+
+Special Forces [Pierpaolo Prazzoli]
+	no sound, missing rom?
+Eight Ball Action [Pierpaolo Prazzoli]
+	bad colours, missing proms
+	src/drivers/dkong.c
+	src/vidhrdw/dkong.c
+
+Imago [Pierpaolo Prazzoli]
+	gfx problems, bad colours due to missing proms
+	src/drivers/fastfred.c
+	src/vidhrdw/fastfred.c
+	src/includes/fastfred.h
+
+Sengoku Mahjong [Angelo Salese]
+	src/drivers/sengokmj.c
+	src/vidhrdw/sengokmj.c
+
+New Clones supported:
+--------------------
+
+Shuffle Shot 1.37 [Brian Troha]
+WC Bowling 1.61 [Brian Troha]
+	src/drivers/itech32.c
+
+Sprint 2 (set 2) [Stefan Jokisch]
+	src/drivers/sprint2.c
+
+Parodius (World) [Brian Troha]
+	src/drivers/parodius.c
+
+Acrobatic Dog Fight [Brian Troha]
+	src/drivers/dogfgt.c
+
+Sunset Riders (bootleg) [R.Belmont]
+	doesn't work
+	src/drivers/tmnt.c
+
+Pit Fighter (Japan) [Aaron Giles]
+	src/drivers/atarig1.c
+
+Various CPS2 clones [Razoola]
+	src/drivers/cps2.c
+	src/vidhrdw/cps1.c
+	
+0.71u2
+
+General Source Changes
+----------------------
+
+Some progress on MegaTech emulation [David Haywood]
+	menu is now displayed, but carts not recognised, display currently controllled
+	by a dipswitch, will be changed later, enabled the other games on the driver
+	while work is done, these might be disabled for 0.72
+	src/drivers/segasyse.c
+	src/vidhrdw/segasyse.c
+	src/drivers/segac2.c
+	src/vidhrdw/segac2.c
+	src/includes/segac2.h
+
+Fixes to some NeoGeo sets [Razoola]
+	98e -> 98, -98a 99 <-> 99a 
+	src/drivers/neogeo.c
+
+Fixed Sound Chips in lsasquad [Jarek Burczynski]
+	src/drivers/lsasquad.c
+
+Fixed Loading of Landmaker (prototype) [David Haywood]
+	src/drivers/taito_f3.c
+
+Converted Some Drivers to Tilemaps [Curt Coder]
+	src/drivers/bogeyman.c
+	src/vidhrdw/bogeyman.c
+	src/drivers/funkybee.c
+	src/vidhrdw/funkybee.c
+	+ more
+
+Cleaned Up some Konami GX rom loading [R.Belmont]
+	src/drivers/konamigx.c
+
+Various Changes [Nathan Woods]
+	src/cpu/jaguar/jaguar.c
+	src/includes/jaguar.h
+	src/vidhrdw/jaguar.c
+	src/vidhrdw/jagobj.c
+	- Adds save state support to Cojag
+	- Disables certain error logging and speedup hacks under MESS
+	- get_jaguar_memory() now based on memory_get_read_ptr()
+	- Jaguar blitter won't crash if it is instructed to blit to a
+	  weird address
+
+	src/windows/winmain.c
+	- Moved helpfile name into a constant
+
+	src/mame.c
+	- Minor tweaks in #ifdef MESS, and #ifndef MESS'ed a consistency
+	  check inapprpriate for MESS
+
+	src/inptport.c
+	src/inptport.h
+	- Added very small hooks for MESS
+
+	src/input.c
+	- Changed seq_name() so that instead of saying "<KEY> or n/a",
+	  it will say "<KEY>"
+
+Cpu Interrupt Improvements fixing the Exidy 440 games (Chiller etc.), Ultimate
+Tennnis, and the Seibu Sound System [Aaron Giles]
+	src/cpuint.c
+	src/sndhrdw/seibu.c
+
+Fixed Reset in robokid when time runs out (robokid37b15red) [Tomasz Slanina]
+	src/drivers/omegaf.c
+
+Stopped Nova2001 from resetting when a coin is inserted [Tomasz Slanina]
+	if you insert coins too quickly the game still resets, its probably
+	just the way it was, the code for this part was changed in the clone
+	src/drivers/nova2001.c
+
+Some Dipswitch Fixes [Iñigo Luja]
+	src/drivers/rohga.c
+	src/drivers/deadang.c
+
+Changed way Snapshot code works [Nathan Woods]
+
+Huge Improvements in Prop Cycle (Namco System 22) [Phil Stroffolino]
+	Changes include:
+	- pulled out matrix3d to its own module
+	- near plane clipping
+	- perspective correct textures
+	- preliminary lighting (all or nothing)
+	- gamma correction
+	- preliminary fader support
+	- per polygon and per object depth bias
+	- sprite-polygon priority
+	- two-sided polygon flag
+	- tile flip attributes
+	- tilemap color bank
+	- improved steering responsiveness
+	- camera zoom and pan feature
+	- fixes to display list parsing
+	- corrected rotation mappings for System22/21
+	src/drivers/namcos22.c
+	src/vidhrdw/namcos22.c
+	src/includes/namcos22.h
+	src/vidhrdw/namcos21.c
+	src/vidhrdw/namcos3d.c
+	src/includes/namcos3d.h
+	src/vidhrdw/matrix3d.c
+	src/vidhrdw/matrix3d.h
+
+Stopped Sprites being hidden by track in fourtrax [Phil Stroffolino]
+	src/vidhrdw/namcos2.c
+
+Fixed CPS2 raster effect (xmvsf069agre) [ShiRiRu]
+	src/drivers/cps2.c
+	src/vidhrdw/cps1.c
+
+Added Missing Resources
+	src/info.c
+	
+	
+
+New games supported:
+--------------------
+
+Xor World (prototype) [Manuel Abadia]
+	src/drivers/xorworld.c
+	src/vidhrdw/xorworld.c
+	src/sound/saa1099.c
+	src/sound/saa1099.h
+
+Big Event Golf [Tomasz Slanina, Jarek Burczynski]
+	src/drivers/bigevglf.c
+	src/vidhrdw/bigevglf.c
+	src/machine/bigevglf.c
+
+Strike Bowling [Tomasz Slanina, Jarek Burczynski]
+	lacks analog sounds, in progress
+	src/drivers/sbowling.c
+
+Super Speed Race Junior [Tomasz Slanina]
+	bad colours due to missing proms
+	src/drivers/ssrj.c
+	src/vidhrdw/ssrj.c
+
+Great Guns [Jarek Burczynski]
+	graphics leave trails
+	src/drivers/mazerbla.c
+
+Taisen Hot Gimmick 3 Digital Surfing [David Haywood]
+	src/drivers/psikyo4.c
+
+Actraiser (Nintendo Super System) [MESS, Pierpaolo Prazzoli, David Haywood]
+	just to show the current status, has no menu system emulated, still being
+	worked on, no sound, everything else on the system has been left as 
+	testdrivers
+	src/drivers/nss.c
+	src/vidhrdw/snes.c
+	src/machine/snes.c
+	src/sndhrdw/snes.c
+	src/includes/snes.h
+
+Genix [David Haywood]
+	missing gfx / sound roms, might work with them
+	src/drivers/pirates.c
+
+New clones supported
+--------------------
+
+Cowbows of Moo Mesa (bootleg) [R.Belmont]
+	no sprites yet
+	src/drivers/moo.c
+
+Cue Brick (Japan Ver. D) [R.Belmont]
+	I suspect its not Japan
+	src/drivers/tmnt.c
+	src/vidhrdw/tmnt.c
+
+Pest Place (Mario Bros bootleg) [Pierpaolo Prazzoli]
+	bad colours, some bad gfx etc.
+	src/drivers/dkong.c
+	src/vidhrdw/dkong.c
+
+Area 51 / Maximum Force Duo (R3000) [Brian A Troha]
+	speed hack needs doing
+	src/drivers/cojag.c
+
+New TESTDRIVERS in source
+-------------------------
+
+Little Casino [Pierpaolo Prazzoli, David Haywood]
+	inputs, video etc. needs finishing
+	src/drivers/ltcasino.c
+
+Super Draw Poker [Pierpaolo Prazzoli]
+	needs inputs finishing, need to work out if its a gambling game, if so it will
+	be removed
+	src/drivers/supdrapo.c
+	
+
+0.71u1
+
+General Source Changes
+----------------------
+
+Cleaned Up and Fixed filenames in Namco System 11 driver [smf]
+	src/drivers/namcos11.c
+
+Added Cocktail Mode to Mole Attack [Pierpaolo Prazzoli]
+	src/drivers/mole.c
+
+Fixed Mame not looking in Parent directory for Hard Drive Images [Stefan Jokisch]
+	src/mame.c
+	src/audit.c
+
+Converted Drivers to use Tilemaps [Curt Coder]
+	src/drivers/rocnrope.c
+	src/vidhrdw/rocnrope.c
+	src/drivers/nova2001.c
+	src/vidhrdw/nova2001.c
+	src/drivers/hanaawas.c
+	src/vidhrdw/hanaawas.c
+
+Improved Genesis Emulation a bit in preparation for MegaTech / MegaPlay,
+sound code based on MESS [David Haywood]
+	src/drivers/segac2.c
+	src/vidhrdw/segac2.c
+
+Improvements to GI Joe [Acho A. Tang]
+	tilemap.h,tilemap.c
+	 - added tilemap_get_transparency_data() for transparency cache
+	   manipulation
+
+	vidhrdw\konamiic.c
+	 - added preliminary K056832 tilemap<->linemap switching and tileline
+	   code
+
+	drivers\gijoe.c
+	 - updated video settings, memory map and irq handler
+	 - added object blitter
+
+	vidhrdw\gijoe.c
+	 - completed K054157 to K056832 migration
+	 - added ground scroll emulation
+	 - fixed sprite and BG priority
+	 - improved shadows and layer alignment
+
+Improvements to Run and Gun making it playable (single screen game only) [Acho A. Tang]
+	drivers\rungun.c (this file)
+	 - mem maps, device settings, component communications, I/O's, sound...etc.
+
+	vidhrdw\rungun.c
+	 - general clean-up, clipping, alignment
+
+	vidhrdw\konamiic.c
+	 - missing sprites and priority
+
+Added missing rowselect effect to toaplan2 driver (bbakraid, batrider) [David Haywood]
+	src/vidhrdw/toaplan2.c
+
+Compiler Fixes [Bryan McPhail]
+	src/vidhrdw/raiga.c
+
+Compiler Fixes [Brad Oliver]
+	src/drivers/system24.c
+	src/vidhrdw/system24.c
+
+New games supported:
+--------------------
+
+Sonic (MegaTech, MegaPlay) [David Haywood]
+	just to show the current status, megatech has no menu system emulated, megaplay doesn't boot,
+        everything else on the systems has been left as testdrivers
+	src/drivers/segac2.c
+	src/vidhrdw/segac2.c
+
+
+New clones supported
+--------------------
+
+Landmaker (World prototype) [Bryan Mcphail]
+	src/drivers/taito_f3.c

@@ -1,0 +1,81 @@
+0.101u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+vf097u2gre [R. Belmont]
+daytona099u4gre [R. Belmont]
+memoryupdate0101u1red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added a FIFO for the sound commands in Sega Model 1 driver so they no longer
+get lost at startup. Fixed the CPU speed of the 68000. [R. Belmont]
+
+Several fixes and improvements to the C352 sound emulator.
+[hoot development team]
+
+Implemented several missing features in the Namco NA sound emulator. [cync]
+
+Added conditional dip switches and a missing dip switch to excelsr.
+[Pierpaolo Prazzoli]
+
+Fixed J. League protection workarounds so they work for 2 player games as
+well. Also fixed sonic so it works as well as the prototype version (still
+major graphics issues). [Anonymous]
+
+Marked several large arrays properly as const. [Atari Ace]
+
+Fixed 6805 core so that CLRA does not modify the carry flag. [Ernesto Corvi]
+
+Fixed sprites wrap around in st0016 (needed in nratechu). 
+[Pierpaolo Prazzoli]
+
+Model 3 update: [Ville Linde]
+ * Added Daytona USA 2 Power Edition
+ * Huge update to the video hardware, including:
+    - Transparency support (polygons and textures)
+    - Nearly perfect rendering order (something we never got right in 
+      Supermodel :-)
+    - Parallel lighting
+    - Texture coordinate mirroring
+
+Added very experimental rasterizer generator for the Voodoo emulator, which
+generates X86 assembly blitters optimized for each case. Unfortunately, it
+doesn't help performance much and they are still too buggy so they are
+disabled for now. Enable them in the makefile. [Aaron Giles]
+
+Made some of the hack optimizations runtime enableable in the Voodoo
+emulator, and added a frameskipper. Use Ctrl+1-6 to control frameskipping,
+Ctrl+F/H/Q to run at full/half/quarter resolution. [Aaron Giles]
+
+Rewrote most of the validity checks so the full set now completes in well
+under 1 second, minus I/O time from paging in data. Also added region
+size checking versus memory maps to the validity checks. Moved all validity
+checks to a new file validity.c. [Aaron Giles]
+
+Changed the AM_REGION() macro to store region/offset information instead of
+a pointer to simplify some of the region valdation code. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wonder Stick [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Atomic Robo-kid (Japan, Set 2) [Brian Troha]
+Raimais (Japan) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Ping Pong Car [David Haywood, Guru]
+Daytona USA 2 Power Edition [Ville Linde]

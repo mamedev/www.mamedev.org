@@ -1,0 +1,114 @@
+0.142u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03552: [Documentation] kodure: Kodure Ookami vs. Kozure Ookami
+         naming conventions (Angelo Salese)
+- 04314: [Documentation] lca, lca2: Wrong description.
+- 04191: [Sound] dynablstb: No audio (Alex Jackson)
+- 02087: [Sound] qbert, qbertqub and clones: "Hello. I'm turned on."
+         ... missing, again. (Robbbert)
+- 04307: [Documentation] jokrz_l6, jokrz_l3: Wrong description.
+- 02072: [Graphics] mooncmw, spcdraga, mooncrgx: Corrupt graphics on
+         3rd and 4th stages (Robbbert)
+
+Source Changes
+--------------
+Implemented irq ack mechanism to Armed Formation HW games [Angelo
+Salese]
+
+Hand-fixed bit-rot bit in Terra Force bootleg, fixing the attract mode
+crash [Angelo Salese]
+
+Fixed emulation of the extra z80 in Terra Force bootleg set (used as a
+replacement for the protection), promoting it to working [Angelo
+Salese]
+
+Implemented MCU simulation to terrafu / terrafa [Angelo Salese]
+
+Hooked up text protection simulation to Kozure Ookami, allowing it to
+display scoring during gameplay and copyright screens [Angelo Salese]
+
+Implemented proper FG scroll latching in Kozure Ookami, fixing an
+offsetted layer at the gameplay intro screen [Angelo Salese]
+
+taito_b.c - Added PLD dumps for qzshowby.  [Tafoid]
+
+Hooked up 1414M4 emulation to Legion [Angelo Salese]
+
+Hooked up the 1414M4 chip emulation for Crazy Climber 2 [Angelo
+Salese]
+
+Created device_rtc_interface which can be used to initialize RTC's to
+a certain date/time at driver startup, useful for regression testing.
+Implemented the interface in most of the modern RTC devices. Note:
+this is not yet plumbed down to the command line. [Curt Coder]
+
+renamed Namco System 11 clones based on country code & version. [smf]
+
+SDL: fix backwards texture rectangle option [AWJ]
+
+Hooked up NB1414M4 priority bit, fixing video text priority in all the
+games in the Armed F driver [Angelo Salese]
+
+Merged 86 Lions inside Aristocrat Mk-4 driver [Angelo Salese]
+
+Various improvements to m90 driver [AWJ]: 
+ * Fixed MT bug 4191 (dynablstb: No audio) 
+ * Hooked up sample playback in bbmanw and clones and removed
+   GAME_IMPERFECT_SOUND flag (actually, bbmanwj had working samples
+   already and never should have been flagged in the first place)
+ * Use generic_pulse_irq_line() to generate interrupts on the V35,
+   instead of the completely silly and deprecat.h thing I was doing
+   before. 
+ * Made the same fix to cb2001.c while I was at it.
+ * Fixed some spelling mistakes in the inputs. 
+ * Converted quizf1 to modern bankswitching with configured banks. 
+ * Made quizf1 and bomblord endian-safe, with assistance from 
+   R.Belmont.
+ * Added save state support.
+
+Removed deprecat.h usage in m90 driver [Angelo Salese]
+
+Implemented RAM-based sprite clut in Armed F driver, used for color
+cycling effects in all games of this HW [Angelo Salese]
+
+Provided a compact flash dump for Alien - The Arcade Medal Edition
+[Smitdogg, The Dumping Union]
+
+Fixed various things in Buster, allowing it to boot into gameplay
+[Angelo Salese]
+
+Merged Tatakae Big Fighter into Armed F driver [Angelo Salese]
+
+Redumped terrafb bitrotted rom [Bill D., The Dumping Union]
+
+astring: Fix build on NetBSD and other systems where toupper() is a
+macro [Thomas Klausner]
+
+Implemented irq ack mechanism and fixed CPU clock speeds in Cop 01 and
+Mighty Guy, this fixes last boss crashes in Mighty Guy [Angelo Salese]
+
+es5503: Properly mask oscillator enable bits when setting. 
+[R.Belmont]
+
+Hand-tuned sound frequencies in Cop 01 based off an audio reference
+[Tafoid]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mighty Guy [Angelo Salese]
+
+
+New clones added
+----------------
+Tekken 2 (TES3 VER.D) [atchoo, Smitdogg, The Dumping Union, smf]
+Soul Edge (SO2/VER.A) [f205v, Smitdogg, The Dumping Union, smf]
+Soul Calibur (SOC13 VER.C) [f205v, Smitdogg, The Dumping Union, smf]
+Tekken Tag (TEG2 VER.C1) [f205v, Smitdogg, The Dumping Union, smf]
+Libero Grande (LG1 VER.A)
+  [B. Munger, S. Ruiz, Smitdogg, The Dumping Union] (not working)
+Saint Dragon (set 2) [Tirino73] (not working)

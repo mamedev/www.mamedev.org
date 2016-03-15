@@ -1,0 +1,153 @@
+0.120u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gradius4_0120u3yel [Aaron Giles]
+vegas.c0120u3yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Made some minor changes in the inline code. The result of 
+atomic_add32 isn't used a lot of the time, so the final addition was
+brought out to allow it to be optimized away. Removed the unnecessary 
+delta argument from atomic_increment32 and atomic_decrement32 in 
+eminline.h, and added implementations.  Changed the condition for 
+using rgbsse.h to include 32-bit platforms with SSE enabled.
+[Vas Crabb]
+
+Did a major clean-up of the input ports in ssv.c. Brought out the 
+common joystick, mahjong and quiz input setups, and then used  
+PORT_INCLUDE to pull them in when needed. Also brought out the  
+common coinage settings, to avoid needless repetition. [Vas Crabb]
+
+Analyzed all driver interfaces (DRIVER_INIT, READ8_HANDLER, etc.) to
+determine which ones should be made static and properly tagged them
+all to reduce global namespace pollution. Some cases turned out to be
+dead code, which was also properly tagged. [Atari Ace]
+
+Updated the Tube Panic driver, fixing the background scroll-in (it's 
+smooth again now). The problem was caused by wrong synchronization 
+between main and slave CPUs. Also modified the video driver to be 
+scanline accurate and implemented more accurate interrupt handling.
+[Jarek Burczynski]
+
+Altered TTL low high levels in res_net.c. This will broaden the color 
+range a bit. Since the results are normalized, there is only a limited 
+effect visible. [couriersud]
+
+Cleaned up inputs and added dip locations in ms32.c. Also fixed dips 
+in "47pie2" and "akiss". [Sonikos]
+
+Fixed bug that caused incorrect input to be read if multiple inputs
+were mapped to the same mouse input under Windows. [Nathan Woods]
+
+Fixed a bug in the i8051 core that improperly fired the Timer2 
+interrupt when it wasn't enabled. [Jim Stolis]
+
+Updates to the peplus driver: [Jim Stolis]
+ * Added lightpen support
+ * Added PE+ Superboard support
+ * Added ABC coin optics support
+ * Added full I2C eeprom support
+ * Added NVRAM support
+ * Corrected door closure issues
+ * Removed most memory hacks
+ * Consolidated machines and inputs
+ * New layout for pepp0158
+
+Split up the MPU4 driver into a core and driver set up a la NeoGeo.
+Also made some timer fixes, and added some new ROMs added.
+[James Wallace]
+
+Fixed problems introduced when the junofrst blitter code was
+simplified. [Chris Hardy]
+
+American Poker II major rewrite: [Roberto Fresca]
+ - Properly dervied clocks from crystals
+ - Reworked TILE_GET_INFO to handle the proper tiles/color codes.
+ - Fixed interrupts (NMI).
+ - Corrected AY8910 frequency to 1.5 MHz to match the real thing.
+ - Arranged the AY8910 volume in all games avoiding clips.
+ - Corrected the screen visible area.
+ - Added NVRAM support.
+ - Reworked the memory map, mapping all the hardware I/O ports.
+ - Reworked the Inputs for all sets.
+ - Added implementation of Operator and Supervisor Keys.
+ - Fixed some timing troubles.
+ - Added partial DIP switch support with diplocations to all sets.
+ - Removed the hack in DRIVER_INIT.
+ - Hooked write handlers for output ports.
+ - Added watchdog routines.
+ - Dumped, hooked, wired and decoded the color PROM in all sets.
+ - Modified the refresh rate according to hardware measurements.
+ - Wired the lamps for all sets. Created their respective layouts.
+ - Splitted the driver to driver/video.
+ - Other minor fixes.
+
+SCSP fixes: [kingshriek]
+ * Fixed DECAY1 envelope state to not exit immediately
+ * Improved support for LPSLNK and SBCTL
+ * Fixed panning calculation bug
+ * Fixed case where key-rate scaling is off
+
+Added support for indicating that DIP switches are reversed in the
+DIP locations view. [Vas Crabb]
+
+Added DIP locations for Midway Tron and the Nintendo Donkey Kong 
+series (dkong.c). [Vas Crabb]
+
+Added an Altivec/VMX implementation of the RGB utilities for our 
+friends with G4, G5 and POWER5 CPUs (rgbvmx.h) and added
+rgbint_bilinear_filter and rgbaint_bilinear_filter to rgbsse.h (based  
+on rgb_bilinear_filter/rgba_bilinear_filter) for completeness, as  
+these functions exist in rgbgen.h. [Vas Crabb]
+
+Updated model2.c, taitojc.c, and gticlub.c to use the new polygon 
+routines. Deprecated the old poly.c and renamed polynew.* to poly.*.
+[Aaron Giles]
+
+Unified poly.c callbacks so that tri and quad callbacks work the
+same way. [Aaron Giles]
+
+Fixed display of floating point TMS32031 registers in the debugger.
+[Aaron Giles]
+
+Fixed TMS32031 ABSF opcode to work as documented and not produce a
+proper negative. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Player's Edge Plus (PP0516) Double Bonus Poker [Jim Stolis]
+Player's Edge Plus (PP0158) 4 of a Kind Bonus Poker [Jim Stolis]
+Player's Edge Plus (PP0188) Standard Draw Poker [Jim Stolis]
+Player's Edge Plus (Set038) Set Chip [Jim Stolis]
+Player's Edge Plus (BE0014) Blackjack [Jim Stolis]
+Player's Edge Plus (KE1012) Keno [Jim Stolis]
+Player's Edge Plus (PS0615) Video Slots [Jim Stolis]
+Player's Edge Plus (PS0716) Video Slots [Jim Stolis]
+Player's Edge Plus (XP000019) Deuces Wild Poker [Jim Stolis]
+Player's Edge Plus (XS000006) Triple Triple Diamond Slots [Jim Stolis]
+MPU4 Unit Test [James Wallace]
+Sigma Poker [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Slipstream (950515 HISPANIC) [Guru]
+Kick and Run (US) [Brian Troha]
+American Poker 95 [Roberto Fresca]
+Poker De Win [Roberto Fresca]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Vegas Poker (Prototype) [James Wallace]
+Sigma Poker 2000 [Roberto Fresca]

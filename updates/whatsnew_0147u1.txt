@@ -1,0 +1,158 @@
+0.147u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04717: [Documentation] (vicdual.c) nsub: Coinage dipswitch settings (hap)
+- 05015: [Graphics] (segaxbd.c) Most sets in segaxbd.c: Sprites glitching 
+  or disappearing (hap)
+- 03831: [Gameplay] (vicdual.c) carnivalh, carnivalha: Gameplay is 
+  unusually fast. (hap)
+- 05022: [Color/Palette] (segaybd.c) gloc, strkfgtr, rchase, pdrift: 
+  Incorrect colors on some text, HUD, outer view of aircraft. (hap)
+- 05017: [Sound] (poo.c) unclepoo: Sounds incomplete/slow or misplayed (hap)
+- 03464: [Debugger] (seattle.c) All sets in seattle.c: MAME crash when 
+  try to read the voodoo region (Firewave)
+- 05020: [Documentation] (royalmah.c) janputer: This game is a hack/copy 
+  of "Janputer", named "New Double Bet Mahjong".
+- 04719: [Documentation] (vicdual.c) invho2: Dipswitch settings from manual
+- 04718: [Documentation] (vicdual.c) invds: Dipswitch settings from manual
+- 03751: [Crash/Freeze] (gunpey.c) gunpey: [debug] Assert in debug build (Phil Bennett)
+- 05012: [Documentation] Typos in internal MAME list
+- 05007: [Crash/Freeze] All sets in midtunit.c, midwunit.c, midxunit.c: Corrupted 
+  graphics, quickly crashes when starting (Firewave)
+- 05008: [Core] CHDMAN: Error creating CHD file (new.chd): file not writeable (smf)
+
+Source Changes
+--------------
+-Memory handler normalization, part 1. READ/WRITE_DEVICE*_HANDLERs are
+ now passed an address_space &, and the 8-bit variants get a mem_mask
+ as well. This means they are now directly compatible with the member
+ function delegates. Added a generic address space to the driver_device
+ that can be used when no specific address space is available. Also
+ added DECLARE_READ/WRITE_DEVICE*_HANDLER macros to declare device
+ callbacks with default mem_mask parameters. [Aaron Giles]
+
+-Memory handler normalization, part 2. Change legacy read/write
+ handlers to take an address_space & instead of an address_space *.
+ Also update pretty much all other functions to take a reference where
+ appropriate. [Aaron Giles]
+
+-Memory handler cleanup 3. Add mem_mask parameter to 8-bit handlers to
+ match the others. To ease pain, added DECLARE_READ/WRITE_HANDLER
+ macros that set up a default parameter. Also updated devcb so that the
+ handlers can be called with or without the mem_mask. [Aaron Giles]
+
+-Seibu COP: Added 0x1c param to 0x0205 command, fixes at least sprite
+ positioning during intros of Raiden 2 and Zero Team (but breaks
+ gameplay in Zero Team, needs investigation) [Angelo Salese, Smitdogg]
+
+-Seibu COP: Made 0x42c2 command more accurate, makes Legionnaire
+ enemies to behave properly and match finally starts in Seibu Cup
+ Soccer [Angelo Salese, Smitdogg]
+
+-gunpey.c - Corrected OKI M6925 frequency [Phil Bennett]
+
+-fix for "file note writeable" when creating, plus consolidated some
+ duplicate/redundant code. [smf]
+
+-Seibu COP: Added 0xe38e command, used by Seibu Cup Soccer to follow
+ the ball [Angelo Salese]
+
+-Since nobody checks for NULLs anyway, make
+ device_memory_interface::space() assert against NULL and return a
+ reference, and pushed references throughout all address space usage in
+ the system. Added a has_space() method to check for those rare case
+ when it is ambiguous. [Aaron Giles]
+
+-Added -verifysoftware command.  [Wilbert Pol]
+
+-Changed CPS-1 video timings to SCREEN_RAW_PARAMS [Angelo Salese]
+
+-Added generic set of pinball mechanical sounds [Robbbert]
+
+-lib7z: fix portability problems that resulted in memory trashing in
+ some configurations. [R. Belmont]
+
+-Better simulation of Metal Slug X's protection device.  [IQ_132]
+ Made Epson R4543 RTC a proper RTC device, eliminates duplicated code
+ in Namco Systems 12 and 23 [R. Belmont]
+
+-rotation - Added motor simulation; added nvram; added mechanical
+ sounds; added notes [Robbbert]
+
+-tms99x8: Converted to using RGB32 bitmap so chips can coexist with
+ other video screens [R. Belmont]
+
+-fixed MT03464: fixed potential out of array access in
+ src/emu/video/voodoo.c logerror() [Oliver Stöneberg]
+
+-m6509: Fixed EA zero page indirect + Y (post indexed). [Curt Coder]
+
+-Implemented DS75160A/DS75161A IEEE-488 GPIB Transceivers. [Curt Coder]
+
+-spectra - added remaining sounds, game marked as WORKING [Robbbert]
+
+-Ported Palette brightness effects to Raiden 2 HW, used by Zero Team
+ and X Se Dae [Angelo Salese]
+
+-mcr68.c: Add dipswitch locations to all sets in the driver.
+ [Brian Troha]
+
+-aftor - fixed display, marked as WORKING [Robbbert]
+
+-Added irq ack to Shanghai 3 HW [Angelo Salese]
+
+-Fixed M68K and hooked up SCREEN_RAW_PARAMS for Blocken. Game was
+ definitely running at erratic speeds before [Angelo Salese, Tafoid]
+
+-mos6526: Implemented a nearly cycle-exact "old" CIA, which passes most
+ of the Lorenz/VICE CIA tests. Refactored the c64/c128/vic10/cbm2
+ drivers and the 1571/1581 floppy drives to use the new implementation.
+ [Curt Coder]
+
+-6532riot.c: Internal timer is always running. Fixes several a2600
+ regressions.  (Wilbert Pol)
+
+-Moved scsi protocol code from scsibus_device to scsihle_device, leaving 
+ scsibus_device to calculate the current bus contents and distribute it
+ to each of the scsidev_device. [smf]
+
+-suna8.c: fixed sound samples width, improves speech
+ in e.g. rranger [Luca Elia]
+ 
+-Promoted starfigh to playable state [Luca Elia]
+ * Address line scrambling of data ROMs
+ * ROM bank latching and mirroring
+ * Sound latch and NMI disable
+ * Patched some further protection
+ * Added graphics banking
+
+-Emulated Lord of Gun's protection rather than patching it out [iq_132]
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Claybuster [Any, hap]
+Gun Champ [hap]
+Star Fighter (v1) [Luca Elia]
+ 
+New clones added
+----------------
+Asterock (Videotron bootleg) [Any]
+Jurassic Park (Japan) [ShouTime]
+Dodge City (2131-82, U5-0D)
+  [Brian Troha, The Dumping Union] (not working)
+Enforce (World) [ShouTime, The Dumping Union]
+Sega Bass Fishing Deluxe (Japan)
+  [Tormod, Yohji, Smitdogg, The Dumping Union] (not working)
+Cruis'n Exotica (version 1.3)
+  [Brian Troha, Smitdogg, The Dumping Union] (not working)
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Blankity Bank (PCP) (SYSTEM80) [TTX]
+VLC Nevada [Yves]
+Game Magic [Grull Osgo]
+99 Bottles of Beer [Grull Osgo]

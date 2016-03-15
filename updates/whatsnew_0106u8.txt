@@ -1,0 +1,131 @@
+0.106u8
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+listxmlvaridation0106u7ora [Aaron Giles, VGR]
+screenshot0106u5ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Changed -listxml to accept a wildcard gamename like most other
+frontend options to limit which games are output.
+[Aaron Giles, Buddabing]
+
+More generic 6840 module improvements. [El Condor]
+
+Moved MESS-specific Atari FDC code into a MESS specific file, in 
+addition to fixing bugs. [Nathan Woods]
+
+Updated the Psikyo4 and Backfire drivers to support multiple 
+screens. [David Haywood]
+
+Moved some common code into taito_en.c (taito ensoniq sound system).
+[David Haywood]
+
+Added 16-bit color support for the DirectDraw renderer (only used if
+switchres is off or in a window). Fixed 16-bit line rendering in the
+software rasterizer. [Aaron Giles]
+
+Fixed ddraw bug where switching views sometimes didn't clear out the
+edges of the screen. [Aaron Giles]
+
+The UI is now limited to a single screen. [Aaron Giles]
+
+Reimplemented the palette/graphics/tilemap viewer. It is still 
+connected to F4, but works differently. To switch between modes,
+press the ENTER key. Here are the new keys in each mode:
+
+ * Palette/colortable mode:
+    [ ] - switch between palette and colortable modes
+    up/down - scroll up/down one line at a time
+    pgup/pgdn - scroll up/down one page at a time
+    home/end - move to top/bottom of list
+    enter - switch to graphics viewer
+
+ * Graphics mode:
+    [ ] - switch between different graphics sets
+    up/down - scroll up/down one line at a time
+    pgup/pgdn - scroll up/down one page at a time
+    home/end - move to top/bottom of list
+    left/right - change color displayed
+    r - rotate tiles 90 degrees clockwise
+    - + - increase/decrease the number of tiles displayed per row
+    enter - switch to tilemap viewer
+
+ * Tilemap mode:
+    [ ] - switch between different tilemaps
+    up/down/left/right - scroll 8 pixels at a time
+    shift+up/down/left/right - scroll 1 pixel at a time
+    control+up/down/left/right - scroll 64 pixels at a time
+    r - rotate tilemap view 90 degrees clockwise
+    - + - increase/decrease the zoom factor
+    enter - switch to palette/colortable mode
+
+Note that both graphics and tilemap modes only display data at an
+integral scale factor so you are limited based on the resolution of
+your render target. For -video ddraw, you can get more pixels by
+using -prescale to scale the screen. For -video d3d, the render
+target is at your screen's native resolution already. [Aaron Giles]    
+
+Improved scaling calculations when running with -video ddraw and no
+hardware stretch to better approximate the real aspect ratio.
+[Aaron Giles]
+
+Added more internal texture reference tracking to ensure that stale
+data is not being referenced if the OSD layer holds onto a render
+list. [Aaron Giles]
+
+Moved cygwin-specific compiler options to windows.mak. [Aaron Giles]
+
+Removed screen aspect ratio specification from the machine driver.
+This information is now provided by the render/view system. Games
+with odd aspect ratios should include a game-specific layout to
+position the screens. [Aaron Giles]
+
+Screenshots are now properly rotated again. Also, MAME now saves one
+screenshot per visible screen for multi-screen games (i.e., cyberbal 
+will write two PNGs per snapshot taken if both screens are visible).
+[Aaron Giles]
+
+Changed the way built-in layouts are handled. There is now a new
+layout directory in the source which contains actual .lay files.
+These are converted at compile time into .lh files which are 
+#included by various drivers and then referenced. The built-in set
+of horizontal, vertical, and dual screen layouts are also handled
+this way now instead of being dynamically generated. In order to
+support things like "native" aspect ratios, a limited form of 
+variable substitution is now done on most of the XML attributes when
+they are read. [Aaron Giles]
+
+Improved default layout selection. For multiscreen games on a single
+monitor, the default layout will show all screens at the same time.
+For multiscreen games on multiple monitors, the default layouts will
+select one screen per game. [Aaron Giles]
+
+Converted the punchout driver to a proper dual screen game. Rewrote
+the video portion to use tilemaps. [Aaron Giles]
+
+Added dual screen support to the PlayChoice 10 and vsnes drivers.
+[Aaron Giles]
+
+Added MDRV_DEFAULT_LAYOUT to specify a default layout at the machine
+driver level. [Aaron Giles]
+
+Added triple screen support to the Darius and Ninja Warriors drivers,
+and dual screen support to the Warrior Blade driver. [Aaron Giles]
+
+Fixed palette for games which were using palette_set_brightness.
+[Aaron Giles]
+
+Changed logic so that trying to run more screens than you physically
+have in full screen mode will just display as many as will fit rather
+than fighting to put multiple full screen displays on a single
+monitor. [Aaron Giles]
+
+Added optimizations to figure out the minimal set of screen areas
+to clear, even with complicated views and multiple screens. 
+[Aaron Giles]

@@ -1,0 +1,211 @@
+0.138u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02813: [Sound] amerdart, amerdart2: No sound due to missing ROM 
+         (Quench)
+- 03606: [Multisession] altbeast, aliensyn3: Graphic corruption on 
+         multiple segas16b.c launches in single session. (Atari Ace)
+- 03536: [Misc.] PowerPC core: Overlapping data buffers (Atari Ace)
+- 03943: [Graphics] tknight, wildfang: The screen shaking effect is 
+         missing in MAME. (hap)
+- 00790: [Documentation] armwrest: DIP switch inspection. (hap)
+- 03938: [Crash/Freeze] torus: Crash after completing Level 1 
+         (Fabio Priuli)
+- 03928: [Crash/Freeze] Many sets: Out of memory crash using -cheat 
+         (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Fix SH-2 interpreter [Atari Ace]
+
+fix xmcotah/xmcotahr1 ROMs [Razoola]
+
+turned i2cmem into a c++ device & ditched the unused legacy device.
+[smf]
+
+Added per-device image softlist loading routine [Miodrag Milanovic]
+
+Renamed feof to image_feof (in device_image_interface) in order to
+compile on FreeBSD [El Barto]
+
+Removed devtag_get_device(); use machine->device() instead.
+[Aaron Giles]
+
+Removed the global clock accessors and cpu_* aliases: [Aaron Giles]
+
+   cpu_get_clock == device->unscaled_clock
+   cpu_set_clock == device->set_unscaled_clock
+   cpu_get_clockscale == device->get_clock_scale 
+   cpu_set_clockscale == device->set_clock_scale
+
+Fix bad loop condition that shows up with -cheat enabled. [Aaron Giles]
+
+Adding ability to support other types of software lists, so floppies,
+cassettes, cd-roms are now possible to be used [Miodrag Milanovic]
+
+MAMEdev kant spel (Ubuntu/Canonical cares about this) [wallyweek]
+
+Add *IX man pages for MAME and utils [wallyweek]
+
+Clean up some files without a newline at the end for GCC [wallyweek]
+
+Added second button (Hyper Jump) to be used after cued via speech to
+allow jumping to other phases without finishing the current mission. 
+Volume adjusted to better levels (AY was way too low in comparison to
+speech)  [gravilidavide, Tafoid]
+
+snowbros.c: Add Dipswitch locations to Puzzle King, Hyper Pacman,
+Cookie & Bibi 2, Cookie & Bibi 3, More More.  Filled in dips with
+Dipswitch locations for Puzzle Break. [Brian Troha]
+
+Load (but don't yet use) the decapped MCUs for several sets
+[Dr. Decapitator]
+ * kyros
+ * kyros (alt, original MCU dump?)
+ * arkanoid (I think the supported MCUs are bootlegs..)
+ * blackt96
+ * amerdarts
+ * cshooter
+ * josvolly (there are other chips still need decapping)
+ * invasnab (i'm not convinced this one is good)
+ * pasha2
+ * empcity
+ * topshoot
+ * topbladv (no CPU core for this yet)
+ * officeye (no CPU core for this yet)
+ * revx
+
+Added the proms to Magical Odds [Smitdogg, The Dumping Union]
+
+converted at28c16 to a c++ device. [smf]
+
+arkanoid.c: Added or corrected the PCB location for the genuine
+Arkanoid rom sets and documented the MCU Taito ID number [Brian Troha]
+
+Replaced the old MCU dump with the decapped version for Kick Start
+Wheelie King [Dr. Decapitator]
+
+Replaced the old MCU dump with the decapped version for Pipeline
+[Dr. Decapitator]
+
+[cb2001] new opcodes [robiza]
+
+Fixed image unload and creation [Sandro Ronco, Miodrag Milanovic]
+
+cb2001: hooked up reels [David Haywood]
+
+Rewrite of 'Wheels & Fire' driver [Tomasz Slanina]
+ * new rendering code
+ * preliminary zooming (based on lookup table)
+ * preliminary communication between main and sound cpu
+ * scanline interrupts and scroll
+
+segas16b.c: Removed 2 obsolete "USER2 Work space" and changed
+remaining USER2 to MCU to maintain consistence throughout the driver.
+[Brian Troha]
+
+Added information on the Naomi 171-8346C cartridge type [f205v]
+
+'Massive' Neo Geo documentation update [Johnboy]:
+ * Added official SNK Playmore title catalogue
+ * Identified and tagged all MVS sets which were not officially
+    released for the AES system (according to official SNK Playmore
+    title catalogue and Neo-Geo Masterlist)
+ * Several sets have been identified (AES / MVS VERSION) and tagged
+    properly
+ * Documented MULTI PLAY MODE (unemulated); Missing MCU
+ * Updated game PCB information
+ * Renamed kof99n to kof99k (KOREAN VERSION)
+ * Renamed P's in mslug3 to correct chip label, added SMA comment
+ * Renamed ROMs in jockeygp according to original cart, added some
+    comments
+ * Renamed ROMs in vliner/vlinero according to original cart, added
+    some comments
+ * neodrvr.c cleanup
+
+Fixed some bugs in the MB88xx CPU core [Alex Jackson]
+
+Various improvements to polepos.c [Alex Jackson]:
+ * Corrected the way the steering wheel is hooked up, fixing the
+    jittery steering in the sets with MCUs.
+ * Added a new layout file for the bootleg sets without MCUs
+    (topracern and polepos2bi).
+ * Converted clock frequencies to crystal values from xtal.c.
+ * Added correct ROM names for the Namco-manufactured sets (polepos
+    and polepos2).
+ * Completely removed the unused global variable polepos_gear_bit.
+ * Fixed a couple of bootleg ROMs that were very likely bit-rotted.
+
+Added some missing makefile dependencies [Atari Ace]
+
+Allow the non-DRC RSP core to build again (controlled by a #define
+like the SH-2 core) [Atari Ace]
+
+segas16b.c: Corrected the rom names for the FD1094 317-0120 Golden Axe
+set and verified the dump as good. [Brian Troha]
+
+lr35902.c: Added the speed register to the register list to allow it
+to be changed and retrieved again. [Sandro Ronco]
+
+converted mb3773 from a legacy device to a c++ device. tidied up
+comments in at28c16 [smf]
+
+djboy.c: Added unverified Beast MCU internal ROM image
+[Dr Decapitator, Tomasz Slanina, Lord Nightmare, Phil Bennett]
+
+sfbonus.c: Added the Amcoe "Classic Edition Compact Format" PCB
+layout. [Brian Troha]
+
+Added TMS32015 and TMS32016 CPU variants to the TMS32010 core. Fixed
+LST instruction which was sometimes adjusting internal RAM banking
+incorrectly.  [Quench]
+
+Added Ameri Darts internal DSP dump and TMS32015 support to the
+Amerdart driver. Also added savestate support to the game.
+[Dr Decapitator, Quench]
+
+RSP: Fix sign issue in VCL opcode [angrylion]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Puzzle Break [David Haywood, Smitdogg, The Dumping Union]
+
+
+
+New clones added
+----------------
+Mystic Riders (bootleg?)  [David Raingeard]
+Magical Odds (set 2) [W. Herve, Smitdogg, The Dumping Union]
+Raiden Fighters Jet - 2000 (China) [Brian Troha, Guru]
+Wonder Boy III - Monster Lair (set 6, System 16A, FD1089A 317-xxxx) (better dump?)
+  [Team Europe]
+Street Fighter Zero (Hispanic 950718)
+  [Layne, N. Francfort, R. Mucciarelli, Smitdogg, The Dumping Union]
+Captain Commando (World 911202) [Stefan Lindberg, The Dumping Union]
+Space Ship [f4brice]
+Juuouki (set 5, Japan, FD1094 317-0069, not working)
+  [Stefan Lindberg, The Dumping Union]
+Wild Fang [Stefan Lindberg, The Dumping Union]
+Fruit Bonus '06 - 10th anniversary (Version 1.3R CGA)
+  [Brian Troha, The Dumping Union]
+Terminator 2 - Judgment Day (rev LA4 08/03/92)
+  [Gor, Smitdogg, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gundam Battle Operating Simulator (GDX-0013)
+  [Team Europe, Joerg Hartenberger]
+Sega Club Golf 2006 Next Tours (Rev A) (GDX-0018A)
+  [Team Europe, Joerg Hartenberger]
+Ollie King (GDX-0007) [Team Europe, Joerg Hartenberger]
+Tokio/Scramble Formation (japanese?, newer)
+  [Guru, Roger Coltrane, Smitdogg, The Dumping Union]

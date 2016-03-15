@@ -1,0 +1,475 @@
+0.129u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02731: [Sound] various: List of games that have OKI6295 volume 
+         messages appear. (Phil Bennett)
+- 00976: [Crash/Freeze] vaportrx: Crashes during the results section 
+         immediately after the race. (Aaron Giles)
+- 02823: [Misc.] astorm, shdancer and clones: Error Messages 
+         (Aaron Giles)
+- 02824: [Save/Restore] deadlock when using -state with -mngwrite/
+         -aviwrite (Aaron Giles)
+- 02820: [Graphics] sf2ue: Scrambled graphics in Street Fighter II 
+         set: sf2ue (Phil Bennett)
+- 02805: [Graphics] turbosub, turbosba: Dropped lines in video output 
+         rendering (Phil Bennett)
+- 02371: [Misc.] All Sets in namcos12.c: day, date, and year from the 
+         RTC appear to be ignored. (R. Belmont)
+- 02802: [Gameplay] parodius, parodisj: ram rom check fails 
+         (R. Belmont)
+- 02815: [Crash/Freeze] zaryavos: Game never reaches title screen. 
+         (Angelo Salese)
+- 02787: [Original Reference] nratechu: DIP switch settings from 
+         manual. (Tafoid)
+
+
+
+Source Changes
+--------------
+cb2001 improvements: [robiza]
+ - Decoded "gfx" rom region
+ 
+Added a validity check to the 6526 CIA emulation. [Nathan Woods]
+
+Added savestate support to the games in 8080bw.c, ace.c, actfancr.c, 
+aerofgt.c, airbustr.c, ajax.c and alpha68k.c: [MooglyGuy]
+ - sitv, sicv, sisv, sisv2, galxwars, galxwar2, galxwart, starw, 
+   lrescue, mlander, lrescuem, grescue, dsterth, invadpt2, invaddlx, 
+   cosmo, schaser, schasrcv, sflush, lupin3, polaris, polarisa, 
+   ballbomb, indianbt, searthin, searthia, invadrmr, spaceatt, 
+   spaceat2, sinvzen, sinvemag, tst_invd, alieninv, spceking, spcewars, 
+   astropal, spacewr3, invaderl, invader4, jspecter, jspectr2, 
+   cosmicmo, cosmicm2, superinv, invasion, darthvdr, moonbase, 
+   invrvnge, invrvnga, spclaser, laser, spcewarl, rollingc, ozmawars, 
+   ozmawar2, solfight, spaceph, yosakdon, yosakdoa, shuttlei, ace, 
+   actfancr, actfanc1, actfancj, triothep, triothej, spinlbrk, 
+   spinlbru, spinlbrj, pspikes, pspikesk, svolly91, pspikesb, 
+   spikes91, pspikesc, karatblz, karatblu, karatblj, turbofrc, 
+   aerofgt, aerofgtb, aerofgtc, sonicwi, aerfboot, aerfboo2, wbbc97, 
+   airbustr, airbustj, airbusb, ajax, typhoon, ajaxj, sstingry, kyros, 
+   kyrosj, jongbou, paddlema, timesold, timesol1, btlfield, btlfildb, 
+   skysoldr, goldmedl, goldmeda, goldmedb, skyadvnt, skyadvnu, 
+   skyadvnj, gangwars, gangwarb, sbasebal, tnexspce
+
+Fixed multisession bug in the Jaguar implementation. [Nathan Woods]
+
+Added savestate support to the games in ambush.c and ampoker2.c:
+[MooglyGuy]
+ - ambush, ambushv, ambusht, ampoker2, ampkr2b1, ampkr2b2, ampkr2b3, 
+   ampkr95, pkrdewin, videomat, sigmapkr, sigma2k
+
+Added check to debug_cpu_set_dasm_override(), because callers do not 
+know if we are in debug mode or not. [Nathan Woods]
+
+goldstar improvements: [Roberto Fresca]
+ - Added Kkuj Nol-i / Kkoj Noli (better romanization). It runs on a 
+    reduced/modified version of lucky8 hardware.
+ - Added proper memory map, machine driver, PPI interfaces and inputs.
+ - Added placeholder for the 4 undumped cmast91's PLD's 
+ - Removed the imperfect colors flag from lucky8 sets (colors look a 
+    bit dark, but seems properly decoded).
+ - Added full inputs / DIP switches to the Cherry Master II sets.
+ - Started a tedious clean-up to all driver inputs.
+ - Added a new set based on Cherry Master V4. The game is supposed to 
+    boot as a Tetris game (there are Tetris graphics inside), and can 
+    be turned into Cherry Master (probably designed for countries 
+    where gambling games are/were illegal). The game is booting into 
+    Cherry Master and is working properly. Still flagged as 
+    GAME_NOT_WORKING till can figure out how to switch games.
+ - Added notes about the Tetris/Cmaster game.
+ - fixed some default DIP switches.
+ - Splitted the cmaster gfxdecode to cover different sets.
+ - Created a new machine driver for sets without the extra bitmap.
+ - Renamed the old sets cm2v841 and cm2841a to cmasterb and cmasterc 
+    respectively, since they are in fact different sets of Cherry 
+    Master I (ver.1.01).
+ - Promoted cmasterb & cmasterc to working state. The last one was 
+    flagged as GAME_IMPERFECT_GRAPHICS, since reels graphics have a 
+    different decode, or simply are bad dumps.
+ - Reparented some sets.
+ - Switched to use pre-defined clocks (CPU, PSG, AY and OKI) for all 
+    machine drivers.
+ - Changed all z80's CPU frequency to 3 MHz (Xtal/4).
+
+Decoded the extra bitmap for Cherry Master I and V4 sets. Still 
+need to figure out how is called. [David Haywood]
+
+Fixed sloppy rendering in CDP1869 that caused occasional crashes.
+[Curt Coder]
+
+Improvements to Cherry 10: [Roberto Fresca]
+ - Decrypted the program ROM.
+ - Bypassed the PIC protection.
+ - Hooked proper inputs & DIP switches.
+ - Promoted to working state.
+
+Changes to peplus driver: [Jim Stolis]
+ - Added wingboard (5-n-1 daughterboard) support
+ - Added E16/E17 jumper support
+ - Sound clock changed to global
+ - Removed graphics layout and replaced with generic gfx_8x8x4_planar
+ - Increased palette lengths
+ - Adjusted incorrect ROM_REGION sizes
+ - Correct color prom length definitions
+
+Renamed filetto.c to pcxt.c and made several improvements to the 
+driver [Angelo Salese]
+ * Merged tetriunk.c and filetto.c, and renamed tetriunk set to 
+    tetriskr;
+ * Fixed inputs & gameplay quirks in tetriskr,so it's now playable;
+ * Added preliminary external graphics emulation hook-up for the 
+    backgrounds in tetriskr;
+ * Rearranged & cleaned up the palette initialization, now 0x000-0x1ff 
+    offsets are for the char modes and 0x200-0x2ff are for the bitmap 
+    modes;
+ * Fixed color attributes bits;
+ * Cleaned up and fixed colors in CGA bitmap mode for Filetto;
+
+Fixed most graphic banking bugs & colors in the coinmaster driver.
+[David Haywood] 
+
+Converted the CDP1802 cpu core to use a state table. [Curt Coder]
+
+Cherry Master '91: [Roberto Fresca]
+ - Fixed memory map.
+ - Added proper PPI 8255 devices.
+ - Worked inputs / DIP switches from the scratch.
+ - Fixed reels tilemaps visible area.
+ - Fixed reels colors.
+ - Removed all the flags and promoted to working status.
+
+Fixed 64-bit issue in the k053260 emulation. [R. Belmont]
+
+Introduced a parallel 6821 PIA implementation, as a MAME device 
+(6821new.c). Ported the Williams drivers over to use this new PIA 
+implementation. [Nathan Woods]
+
+Fixed clock used in Namco systems 12 & 23. [R. Belmont]
+
+Added savestate support to the games in amspdwy.c, angelkds.c, 
+appoooh.c, aquarium.c, arabian.c, and arcadecl.c: [MooglyGuy]
+ - amspdwy, amspdwya, angelkds, spcpostn, appoooh, robowres, robowrb, 
+   aquarium, arabian, arabiana, arcadecl, sparkz
+
+Improved the rom loading in tenkai and clones. [Luca Elia]
+
+Various improvements to the Jackpool driver [Angelo Salese]
+ * Added a second screen for some extra gfxs that are displayed on it;
+ * Fixed colors;
+ * Preliminary implementation of the transparency pens for the 
+    graphics, might not be correct;
+ * Added inputs;
+ * Cleaned-up the driver;
+
+Added save state support to the turbosub driver. [Phil Bennett]
+
+Improvements to coinmastr.c driver: [David Haywood, Roberto Fresca]
+ - Added maximum intensity to the color decode.
+ - Switched pokeroul to use global memory map and eliminated the 
+    redundant one.
+ - Eliminated the GAME_WRONG_COLORS flag to all games.
+ - Some clean-ups.
+
+Added OKIM6376 emulation ADPCM Speech Synthesizer.
+[Mirko Buffoni, Phil Bennett]
+
+Added OKIM6376 sound emulation to High Video games [Mirko Buffoni]
+ * Removed GAME_NO_SOUND from newmcard, brasil and fashion
+ * Sound frequency may be incorrect
+
+Major drawgfx cleanup, global removal, and feature enhancements:
+[Aaron Giles]
+
+ - Added built-in dirty tile tracking to the gfx_element. This removes
+    the need for all drivers that had dynamically populated graphics
+    to do their own dirty tracking. Tiles are marked dirty via the
+    new function gfx_element_mark_dirty(). Any driver that needs 
+    access to the decoded data must call gfx_element_get_data() in 
+    order to ensure that the referenced tile is clean before 
+    proceeding.
+    
+ - In order to support dirty tracking, the gfx_element was enhanced to
+    keep track of the original source pointer, so that it can go back
+    and regenerate tiles on demand. For systems that set NULL for the
+    region in the gfxdecode, they must use gfx_element_set_source()
+    to specify a pointer to the raw data before drawing anything.
+ 
+ - Changed allocgfx() to gfx_element_alloc(), and added parameters to
+    specify the source data pointer, base color index, and total 
+    colors. Many drivers had to whack these values in after the fact,
+    so this allowed for some minor additional cleanup.
+ 
+ - Added a dirtyseq member to the gfx_element struct. This is 
+    incremented on each tile dirty, and can be used to sniff if 
+    something has changed.
+ 
+ - Added logic in the tilemap engine to track which gfx_elements are
+    used for a given tilemap, and automatically detect changes to the
+    tiles so that drivers no longer have to explicitly invalidate the
+    tilemap when tiles change. In the future, this may grow smarter to
+    only invalidate the affected tiles, but for now it invalidates the
+    entire tilemap.
+ 
+ - Updated a number of drivers to remove their own dirty handling and
+    leverage the new internal dirty marking.
+
+ - Because the source data must always be present, updated the 
+    atarigen zwackery and mystwarr graphics handing code to support 
+    this.
+
+ - Thanks to the dirty tracking, this actually allows all gfx decoding
+    to happen on the fly instead of all at once up front. Since there 
+    was some concern that this would cause undesirable behavior due to 
+    decoding lots of tiles on the fly, it is controlled with a 
+    compile-time constant in mame.h (PREDECODE_GFX). Set this to 1 to 
+    get the old behavior back.
+    
+ - Moved decodechar() and decodegfx() to deprecat.h. All drivers in 
+    MAME have been updated to simply mark tiles dirty and let the 
+    rendering system decode them as needed, so these functions may go 
+    away in the future.
+
+ - Rewrote entirely the rendering code in drawgfx. This code 
+    previously used extensive recursive #includes and tricks to build, 
+    and was very difficult to understand. The new code is based off of 
+    a set of macros defined in drawgfxm.h. These new macros separate 
+    the core rendering logic from the per-pixel operation, allowing 
+    the operation to be easily "plugged" into any of the renderers. 
+    These macros are also available to any driver that wants custom 
+    rendering behavior that is similar to existing core behavior, 
+    without needing to populate the core with esoteric one-off 
+    rendering behaviors.
+ 
+ - Added a set of new functions for [p]drawgfx[zoom], one for each
+    transparency type. The old [p]drawgfx[zoom] functions are still
+    present, but now switch off the transparency type and call through
+    to one of these new transparency-specific functions. The old
+    functions are also now reduced to only supporting 
+    TRANSPARENCY_NONE, TRANSPARENCY_PEN, and TRANSPARENCY_PENS. All 
+    other rendering types must use the new functions.
+ 
+ - All new rendering functions have extensive asserts to catch 
+    improper clipping rectangles and other common errors.
+    
+ - All new rendering functions automatically downgrade to optimized
+    versions where appropriate. For example, calling drawgfx_transpen
+    with an out-of-range pen automatically falls back to 
+    drawgfx_opaque. And drawgfxzoom_* with xscale=yscale=1.0 
+    automatically falls back to drawgfx_*. And many other examples. 
+    In general, this relieves drivers from needing to make these 
+    sorts of decisions.
+ 
+ - All new rendering functions have a consistent parameter order that
+    is a bit different from the existing functions. The cliprect
+    parameter is now specified immediately after the destination 
+    bitmap, to match the convention used throughout the rest of the 
+    system. The core parameters are followed by the scale parameters 
+    (for the zoom functions), and then followed by the priority 
+    parameters (for the pdrawgfx* functions), finally followed by any 
+    PIXEL_OP*-specific parameters (such as transparent pen, alpha, 
+    drawing tables, etc.)
+  
+ - Removed drawgfx_alpha_cache, alpha_set_level(), and the inline 
+    functions alpha_blend16() and alpha_blend32(). To render graphics 
+    with alpha, use the new [p]drawgfx[zoom]_alpha functions, which 
+    take an explicit alpha value. To render tilemaps with alpha, the 
+    TILEMAP_DRAW_ALPHA option now takes an explicit alpha parameter. 
+    And to do you own alpha blending, use the alpha_blend_r16() and
+    alpha_blend_r32() functions, which take an explicit alpha.
+  
+ - Updated a number of drivers as a result of removing the implicit
+    alpha in the drawgfx_alpha_cache. 
+
+ - Removed drawgfx_pen_table and TRANSPARENCY_PEN_TABLE. To achieve 
+    the same effect, build your own table and pass it to 
+    [p]drawgfx[zoom]_transtable, along with a pointer to the 
+    machine->shadow_table to use for shadows. Eventually 
+    machine->shadow_table is likely to go away, and drivers will need 
+    to fetch the shadow table from the palette directly.
+    
+ - Updated a number of drivers to remove use of drawgfx_pen_table.
+ 
+ - Removed TRANSPARENCY_ALPHARANGE; it was only used by the psikyosh
+    driver, so it is now moved locally into that driver and built
+    using the macros in drawgfxm.h.
+ 
+ - Removed TRANSPARENCY_PEN_RAW; to achieve the same effect, call the
+    new [p]drawgfx[zoom]_transpen_raw() functions. Updated drivers to
+    make this change.
+ 
+ - Removed the unused mdrawgfx* functions entirely.
+ 
+ - Added new function gfx_element_set_source_clip() to specify a
+    source clipping rectangle for any element. This replaces the nasty 
+    hacks that were being used in bnstars, ms32, namcos86, and namcos1
+    to achieve similar behaviors.
+    
+ - Added new function gfx_element_build_temporary() to safely build a 
+    temporary gfx_element. Updated the drivers that did this to use 
+    the new function.
+
+ - Simplified the copyrozbitmap() functions to match the copybitmap()
+    functions in having separate opaque and transparent versions. Also
+    removed the 'priority' parameter which was only used by one driver,
+    and moved that logic into a custom renderer built using macros in
+    drawgfxm.h. Updated copyrozbitmap* to use the destbitmap, cliprect
+    parameter ordering convention as well.
+ 
+ - Simplified the draw_scanline*() functions to always render opaque.
+    Only one driver was doing otherwise, and it now does its work
+    internally (draw_scanline is dead-simple ever since we moved 
+    rotation to the OSD code; I almost just removed it entirely).
+ 
+Added a cliprect to the bitmap_t type, which describes the full 
+bitmap. [Aaron Giles]
+    
+Removed tilemap_set_pen_data_offset; unfortunately, this adds a
+random tile offset behind the scenes and goes against the dirty
+tile detection and invalidation. Updated the mainsnk, snk, and 
+snk68 drivers to use old fashioned tile banking. [Aaron Giles]
+ 
+Changed zac2650 gfxdecode to use scale factors. [Aaron Giles]
+
+Added function video_assert_out_of_range_pixels() to help find
+the source of invalid pixels (generally out-of-range palette
+entries due to invalid data or sloppy calculations). Place this
+after each step in your rendering in a debug build to discover
+which code is generating improper pixels. [Aaron Giles]
+
+COP400 cpu core refactoring: [Curt Coder]
+ - added state table for the debugger
+ - grouped all cpu types under a single makefile entry
+ - removed duplicate code
+
+CDP1802 cpu core: [Curt Coder]
+ - improved register layout
+ - randomized register contents on initialization
+
+Made the treatment of SOUND_xxx the same as that of CPU_xxx. That is, 
+they are function pointers to the SND_GET_INFO routine for the sound.
+[Atari Ace]
+
+Made direct (opcode) access more robust. Direct access now crawls the
+memory table to find its ranges, and caches them for fast access in
+the future. It invalidates intersecting regions when new ones are
+installed, and now properly handles mirrored ranges. [Aaron Giles]
+
+Changed the disassembly view to call the decrypted read routines
+for each opcode byte/word instead of fetching from a pointer, which
+prevented opcodes that crossed range boundaries from working correctly,
+even though they would execute correctly. [Aaron Giles]
+
+Improvements to skylncr.c driver. [Roberto Fresca]
+ - Hooked all the PPI 8255 devices.
+ - Reworked the inputs based on them.
+ - Fixed the reels visible area.
+ - Reorganized and cleaned-up the driver.
+    (only remains to split in driver + video)
+
+Added ROM_DEFAULT_BIOS to diehard, critcrsh, and smleague. 
+[Aaron Giles]
+
+Removed extraneous bitmap clear in the deco32 driver. 
+[Christophe Jaillet]
+
+Added static/const where appropriate, updated out-of-sync header
+files, and fixed some minor source confusion/abuse: [Atari Ace]
+ - arm7core.[ch],segas24.[ch]: Rewrote some abuses of the HANDLER
+    macros to use _func types instead.
+ - m37710: Removed some long dead state save functions.
+ - spc700: Removed the interface declarations and functions.  Most of
+    it is handled by CPU_GET_INFO, some of it was no longer 
+    implemented, and since pointerization it wasn't possible to call 
+    it externally anyhow.
+ - segac2: removed the palette variables aliasing the megadrive ones
+    and just used the megadrive ones directly.
+ - snes: All the obc1_, DSP1_, DSP2_ exports were made static.
+
+Added DIPs for Naratte Chu. Added DIP locations for all games in the
+st0016 driver. [Tafoid]
+
+Removed the sndindex parameter from SND_START, in favor of using the
+device pointer or tag as appropriate. [Atari Ace]
+
+Removed several useless occurrences of "#define INLINE" in CPU and 
+sound cores. [Dirk Best]
+
+Hooked up the preliminary decryption code for Tarzan, but it is not
+complete. [David Haywood]
+
+Added digitalker speech emulation. [Olivier Galibert]
+
+Added digitalker support to scorpion driver. [Olivier Galibert]
+
+Cleaned up a bunch of unreachable bits of code. [Oliver Stoeneberg]
+
+Fixed the 3rd graphics bank decode of cmast91. [David Haywood]
+
+Pre-Seibu CRTC update: [Angelo Salese]
+ * Fixed gfx banking in goodejan/totmejan;
+ * Fixed vertical scrolling in Sengoku Mahjong (check title screen);
+ * Made some clean-ups in either drivers;
+
+Updated OKIM6295 volume table to reflect actual chip behaviour.
+Removed "contact MAMEDEV" message. [Phil Bennett]
+
+Virtual Combat driver improvements: [Jason Eckhardt, Andrew Gardner]
+ * Graphics decoded, video improved, inputs mapped.
+
+Intel i860 CPU core added. [Jason Eckhardt]
+
+Reorganized and simplified the megasys1.c inputs. [Sonikos]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Lady Liner [Roberto Fresca]
+Kkoj Noli (Kill the Bees) [Roberto Fresca]
+Cherry 10 (bootleg with PIC16F84) 
+   [Roberto Fresca, Andreas Naive, David Haywood]
+Player's Edge Plus (XMP00017) 5-in-1 Wingboard [Jim Stolis]
+Tetris  (bootleg of Mirrorsoft PC-XT Tetris version) [Angelo Salese]
+Cherry Master '91 (ver.1.30) [Roberto Fresca]
+Cherry Master (ver.4, set 2) [Roberto Fresca, Angelo Salese]
+Cherry Master I (ver.1.01, set 2) [Roberto Fresca]
+Cherry Master I (ver.1.01, set 3) [Roberto Fresca]
+Mahjong Tenkaigen (3 sets) [Wei Mingzhi, Luca Elia]
+Tour 4000 [Mirko Buffoni]
+Casino Fever 4.0 [Mirko Buffoni]
+Casino Fever 5.0 [Mirko Buffoni]
+Tour 4010 [Mirko Buffoni]
+Casino Fever 5.1 [Mirko Buffoni]
+Casino Fever 6.1 [Mirko Buffoni]
+Casino Fever 1k [Mirko Buffoni]
+GiroTutto [Mirko Buffoni]
+Trivia Hangup [Mariusz Wojcieszek]
+Sure Shot [Mariusz Wojcieszek, ranger_lennier]
+
+
+
+New clones added
+----------------
+Hit the Ice (Japan) [Phil Bennett]
+New clones: Salamander 2 (ver AAB) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Skill Cherry '98 [David Haywood]
+Skill Cherry '97 [David Haywood]
+Skill Fruit Bonus [David Haywood]
+86 Lions [Chris Hardy, Angelo Salese, Roberto Fresca]
+Lucky Girl [David Haywood]
+Poker Roulette 
+   [Chris Hardy, Angelo Salese, Roberto Fresca, David Haywood]
+Magical Tonic [Roberto Fresca]
+3 Super 8 (Italy) [David Haywood]
+New Champion Skill (v100n) [David Haywood]
+Buster [David Haywood]
+Unknown ACE Fruits Game [David Haywood]
+Spiel Bude (German) [David Haywood, Roberto Fresca]

@@ -1,0 +1,330 @@
+0.147u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05046: [Crash/Freeze] (megatech.c) megatech, all sms-based sets: [debug]
+  Crash after OK (sronco)
+- 05042: [Documentation] (ataxx.c) ataxxj: Missing documentation that 
+  is on the title screen.
+- 04948: [Gameplay] (pgm.c) kov and clones: resets to title screen 
+  stage 6 (winter stage) (iq_132)
+- 00007: [DIP/Input] (8080bw.c) invrvnge: The cocktail DIP has no effect. (hap)
+- 05036: [Gameplay] (ninjakd2.c) omegafs: Failure to finish post + reset (hap)
+- 05028: [Gameplay] (system1.c) shtngmste: The gun crosshair vs gun hit 
+  position offset is wrong (hap)
+
+Source Changes
+--------------
+-Added support for DEVCB_UNMAPPED, that will do the logging on
+ read/write of device callback, preventing a need for making dummy log
+ line handlers [Miodrag Milanovic]
+
+-if the start of a multi-line comment is indented then following
+ comment lines will be indented with tabs up to that point. [smf]
+
+-Information adjustments for naomi.c, chihiro.c, mame.lst reflecting
+ latest discoveries. [f205v]
+
+-New preliminary driver for Webak MPU-12 platform. [Roberto Fresca]
+
+-Refactored the code in jedutil to support the  viewing of a GAL16V8
+ device and added a new command line option of "-viewlist" which will
+ print out a list of all the devices that can be viewed in human
+ readable logic equations. Also updated the jedutil regression test to
+ support passing in an additional argument of "debug" to print out a
+ detailed log.  Also moved the jedutil regression test data into
+ separate directories composed of the device's name to make things more
+ organized. [Kevin Eshbach]
+
+-Removed protection hack patches and emulated protection routines for
+ Caveman Ninja [IQ_132 & JackC]
+
+-Added experimental support for using Berkeley PLA files as input to
+ jedutil. [Curt Coder]
+
+-memory: Fix dynamic recursive device mapping [O. Galibert]
+ Situation:
+	 * you have a device (pc-fdc) with a memory map on it
+	 * you map it dynamically into a cpu (maincpu) address space with
+		install_device (isa-fdc does that)
+	 * the device pc-fdc has a subdevice (upd765)
+	 * the subdevice upd765 has its own memory map
+	 * the pc-fdc memory map includes the upd765 memory map through
+		AM_DEVICE("upd765", ...)
+	Before the fix, the code would search for upd765 as a subdevice of
+	maincpu and not of pc-fdc.
+
+-am9517a: Don't grossly fail on verify [O. Galibert]
+
+-3X3 Puzzle update [David Haywood]
+  * fixed visible area
+  * added the 2nd button
+  * added the Demo Sound dip
+
+-Fixed sound banking in 3X3 Puzzle [Mariusz Wojcieszek]
+
+-Added scrolling to 3X3 Puzzle [Mariusz Wojcieszek]
+
+-SCSI: Uses logical levels rather than voltage levels for control signals,
+ you have to write 0 to the data lines when you're not sending data.
+ Added a kludge to stop the ff from the 6522 from preventing the bus
+ from being read, this may or may not be how the hardware really works.
+ [smf]
+
+-i386dasm.c: [Peter Ferrie]
+  * added numerous opcodes for newer CPUs;
+  * added some undocumented-but-supported opcodes from old CPUs;
+  * corrected naming of two opcodes
+
+-port 0x64 opcode 0xd1 should incur no delay when delivering. This
+ allows, for example, su2000 to start booting to the CMOS setup screen
+ [Peter Ferrie]
+
+-Improved inputs in 3X3 Puzzle [Stephh]
+
+-Aristocrat MK6 base system bios for New South Wales region
+ [Heihachi_73]
+
+-hercules : hooked up mechanical sounds [Robbbert].
+
+-memory: Map from the cpu's owner, not the root device, otherwise
+ siblings of cpus coming from config fragments aren't happy.
+ [O. Galibert]
+
+-clifront.c: Added verifysoftlist command for verifying software
+ availability for separate software lists.  [Wilbert Pol]
+
+-Created a base class delegate_common_base for all delegate 
+ types. Created a binding_type_exception which is thrown when
+ a bind attempt fails due to mismatched types.[Aaron Giles]
+ 
+ Added helper templates to driver_device to wrap legacy
+ device read/write handlers into driver_device member functions.
+ This should help move some things forward until more common
+ code is converted into proper devices.
+ 
+ Introduce new module devcb2 which contains modernized
+ versions of devcb. Compared to previous implementation
+ this one is simpler overall, trampolining calls through
+ a single internal set of adapter functions. The new
+ versions are also designed to be specified in the
+ machine_config rather than in structures, so they are
+ no longer simple POD types. Additional new/changed
+ features:
+ 
+  * reads and writes can map to delegates for line or 8/16/32/64-bit
+  * reads and writes can map to an I/O port
+  * reads can be mapped to a constant value, with or without logging
+  * writes can be mapped to a device's input line
+  * all reads/writes can have a shift, mask, and/or xor applied
+  * devices can opt to make the functions safe-if-NULL when resolving
+  * only member function types are supported
+ 
+ Rewrote the YM2151 interface to be fully modernized, and
+ removed the ym2151_interface struct in favor of inline configs
+ using the new devcb2 mechanism. In many cases, removed
+ no longer needed trampolines, instead taking advantage of
+ direct support for input line writes.
+ 
+-switched SCSICB to use DEVCB2 [smf]
+
+-Optimized the PLA implementation and added simple caching with
+ significant performance increase. [Curt Coder]
+
+-tlcs900.c: Implemented the 4-byte prefetch queue.  [Wilbert Pol]
+
+-t6w28.c: Converted to C++.  [Wilbert Pol]
+
+-suna8.c update [Luca Elia]
+ * Emulated the protection in sparkman
+ * Support for two sprite chips
+ * Support for two sample ROMs
+ * Fixed color cycling in hardhea2
+ * Per-game tile banking
+
+-Added opcodes to Atmel AVR core: OR, SBCI, ORI, ST Y+, ADIW
+ [Mooglyguy]
+
+-Fixed functional issues in Atmel AVR opcodes: COM, NEG, LSR [Mooglyguy]
+
+-Hooked up polepos.c, portrait.c and tomcat.c to use the new tms5220
+ implementation.  [Osso]
+
+-addrmap: Yes, we can have a map for 8bits on 8bits, and that's not the
+ end of the world [O. Galibert]
+
+-addrmap: Avoid a collision between address_map the type and the method
+ of the device_memory_interface class [O. Galibert]
+
+-i386: 486+ WP bit support [Carl]
+
+-Williams system3 : Contact and Disco Fever marked as WORKING. [Robbbert]
+
+-Hot Tip, Lucky Seven : added chimes, now marked as WORKING [Robbbert]
+
+-Moved Phoenix and Pokerino to s3.c and marked as WORKING [Robbbert]
+
+-Don't crash on REP NOP [Carl, Alegend45]
+
+-suna16.c: Emulate protection routines rather than patching them for
+ uballoon [IQ_132 & JackC]
+
+-pgm.c: Fix level 6 crash on kov . [IQ_132]
+
+-megadrvb.c: simplify decode function for srmdb. [IQ_132]
+
+-Cleaned up mustache boy vblank interrupts: Got rid of the nasty
+ long-int hack in mustache boy in favor of the same 'vblank in+vblank
+ out' int scheme the other similar seibu games of this era used
+ (panicrd, darkmist). This seems much more likely to be what the actual
+ pcb used, and works just fine. [Lord Nightmare]
+
+-changed 2 disc hack to use 1 drive [smf]
+
+-SCSICD now has a CDDA sub device [smf]
+
+-avr8: Implemented MULS, ANDI, STD Z+, LD -Z, LD Y+, LD -Y, LD -X,
+ SWAP, ASR, ROR, and SBIS opcodes. [MooglyGuy]
+
+-avr8: Moved Timer 0-2 into the CPU core itself, 30x driver speedup
+ [MooglyGuy]
+
+-Emulate protection in sf2rb, sf2rb2's (cps1.c) and ichirjbl (segac2.c)
+ rather than simply patch it out.  [IQ_132]
+
+-Hooked up PSX IRQ's using DEVCB2 [smf]
+
+-avr8.c: Added LD Rd,Z+q opcode [MooglyGuy]
+
+-avr8.c: Corrected cycle counts for LD and ST opcodes. [MooglyGuy]
+
+-avr8.c: Fixed a bug where a 2-cycle or 3-cycle opcode encountered
+ during a time slice were causing all subsequent 1-cycle opcodes to
+ deduct 2 or 3 cycles for the remainder of the time slice instead.
+ [MooglyGuy]
+
+-cleaned up the ide controller enough to change the irq to a DEVCB2
+ [smf]
+
+-avr8.c: Fixed register indexing for MULSU opcode. [MooglyGuy]
+
+-avr8.c: Fixed register writeback for LD -Z and LD -Y opcodes.
+ [MooglyGuy]
+
+-Bingo Mania: Added PCB layouts and descriptions
+ [Roberto Fresca, Team Europe]
+
+-YM2612: fix LFO AM waveform [Eke-Eke, R. Belmont]
+
+-Fun World driver improvements [Roberto Fresca]
+ * Added 'Bonus Card (Austrian)' from Fun World.
+ * Added PCB layouts.
+ * Set Big Deal sets and Jolly Card hybrid as clones of Bonus Card.
+ * Cleaned up the code.
+ * Changed company name 'Funworld' to 'Fun World'.
+ * Changed Mega Card to Power Card after check the real hardware
+    running.
+ * Fixed Power Card graphics ROM load..
+ * Added technical notes.
+
+-romload: Tell in which zips a missing rom was searched for
+ [O. Galibert]
+
+-Moved jolycdat program to Bonus Card, making it parent. This program
+ is a real original Bonus Card program, and the PCB was populated with
+ common Jolly Card graphics wrongly. The other Bonus Card set was
+ turned as clone, since has a fake copyright string (hack). Also added
+ some technical notes. [Roberto Fresca]
+
+-More Fun World driver improvements... [Roberto Fresca]
+ * Renamed the internal layout artwork: bigdeal --> bonuscrd.
+ * Default Bonus Card & Big Deal DIP switches positions, that allow
+    boot the system without errors.
+
+-Pennant Fever is now WORKING [Robbbert].
+
+-lethalj.c: Added dipswitch locations to the Egg Venture sets.
+ [Brian Troha]
+
+-Improvements to Maygay M1 emulation, most games at least show something
+ now [David Haywood/James Wallace]
+
+-Remove hack patch for tdragonb and emulated protection instead [IQ_132]
+
+-Comet is now WORKING [Robbbert].
+
+Magic Card II improvements: [Roberto Fresca]
+ - Added new Yugoslavian set of Magic Card 2 (Nov/New).
+ - Added default NVRAM, needed to boot properly.
+ - Rearrange the whole Magic Card 2 sets, and improved descriptions.
+ - Added technical notes.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Each Way Shifter (Barcrest?) [Launton/MPU Mecca]
+Lucky Twos [launton/MPU Mecca]
+Scoop (Peter Simper, prototype?) (MPU3) [Superbank/MPU Mecca]
+More Money (VFS) (MPU3) [Fruitsim/MPU Mecca]
+Talk of the Town (MPU3) [Fruitsim/MPU Mecca]
+3X3 Puzzle [Mariusz Wojcieszek, David Haywood, Guru]
+3 On 3 Dunk Madness (US, prototype? 1997/02/04) 
+  [David Haywood, ShouTime, Smitdogg, The Dumping Union]
+Spark Man (v2.0, 2 sets) [Luca Elia, Stefan Lindberg]
+Fighting Fantasy (bootleg with 68705)  [IQ_132]
+Bonus Card (Austrian) [Roberto Fresca, Team Europe]
+
+
+New clones added
+----------------
+Each Way Nudger (Barcrest?, set 3, version 20?) [Launton/MPU Mecca]
+Knights of Valour Super Heroes / Sangoku Senki Super Heroes (ver. 102, CN) 
+  [Joerg Hartenberger, JackC]
+Knights of Valour Super Heroes / Sangoku Senki Super Heroes (ver. 101, CN) 
+  [Joerg Hartenberger, JackC]
+Invader's Revenge (3 sets) [Andrew Welburn]
+Megatouch 5 Tournament Edition (9255-70-01 ROC, Standard version)
+  [Brian Troha, The Dumping Union]
+Phoenix (Irecsa / G.G.I Corp, set 3)  [Any]
+Rallys (alternate bootleg of Spectar) [Any]
+The Billiards (Video Hustler bootleg) - Set 2  [Any] - not working
+Double Axle (US) [ShouTime, The Dumping Union]
+Angler Dangler [Tornadoboy]
+Puzzli 2 (ver 100) [Tormod, Smitdogg, The Dumping Union] (NOT WORKING)
+4-in-1 MAME bootleg (set 1, ver 3.00) [David Haywood]
+4-in-1 MAME bootleg (set 2) [David Haywood]
+19-in-1 MAME bootleg [David Haywood]
+48-in-1 MAME bootleg (set 2, ver 3.09, alt flash) [David Haywood]
+60-in-1 MAME bootleg (ver 3.00) [David Haywood, Andreas Naive]
+Xain'd Sleena (World) [Corrado Tomaselli]
+WEC Le Mans 24 (set 2) [Corrado Tomaselli]
+The Speed Rumbler (set 3) [Corrado Tomaselli]
+Rapid River (prototype) [Italian dumping team]
+Hang Pilot (ver UAA) (not working) [ShouTime]
+Seibu Cup Soccer (set 3) (not working)
+Egg Venture (Release 2) [Brian Troha, The Dumping Union]
+The King of Fighters '97 Oroshi Plus 2003 (bootleg) 
+  [The Dumping Union, Smitdogg, IQ_132]
+Magic Card II (Nov, Yugoslavian hack) [Roberto Fresca]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+3 On 3 Dunk Madness (US, prototype?) 
+  [ShouTime, Smitdogg, The Dumping Union]
+Secret Service (2.6 alternate sound) [PinMAME]
+Odin [PinMAME]
+Gamatron (Sonic) [PinMAME]
+Star Wars (Sonic, alternate set) [PinMAME]
+Nemesis [PinMAME]
+Verne's World [PinMAME]
+Still Crazy [Robbbert]
+Fruit Star Bonus (Ver 8.20PIR) [Roberto Fresca, Team Europe]
+Double Crown [Kevin Eschbach]
+Cops [Mariusz Wojcieszek]
+Bingo Mania (P03-P07-P14) [Team Europe, Angelo Salese, Roberto Fresca]
+Bingo Mania (A03) [Team Europe, Angelo Salese, Roberto Fresca]
+Power Card (Ver 0263, encrypted) [Roberto Fresca, Team Europe]

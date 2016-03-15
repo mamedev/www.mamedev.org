@@ -1,0 +1,511 @@
+0.117
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+gauntleg0116u4red [Zsolt Vasvari, Aaron Giles]
+vlm5030_0116u4gre [Zsolt Vasvari]
+tetrisp2_0116u4red [Zsolt Vasvari]
+primrage0116u3yel [Aaron Giles]
+debuggerandmt_0116u2red [Aaron Giles]
+memleak0116u4ora [Aaron Giles]
+term2_0116u1yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added save state support to bzone.c games. [R. Belmont]
+
+Fixed missing sound in Leprechaun. [Zsolt Vasvari]
+
+Fixed some bugs involving empty or null ROM regions. [Nathan Woods]
+
+Fixed potential crash in speglsht driver. [Atari Ace]
+
+Changed the 6532riot code to split r6532_init into r6532_init and 
+r6532_reset. [Wilbert Pol]
+
+Fixed CPS3 code to be big-endian friendly. [R. Belmont]
+
+Added alpha blending effects to the CPS driver and improved sprite
+positioning. [David Haywood]
+
+Moved "Pandora" sprite chip implementation to its own file. Updated
+Snow Bros, Air Buster, DJ Boy and Heavy Unit to use ths new generic
+implementation. [David Haywood]
+
+Fixed regression in segasyse driver. [Zsolt Vasvari]
+
+Reverted patch to the 6526CIA as it was causing issues with Amiga/
+Arcadia emulation. [Pete Rittwage]
+
+Deduced a few more opcodes for gussun. The game now boots and you
+can coin up. [robiza]
+
+Fixed regression in vmetal and tatsumi drivers. [Zsolt Vasvari]
+
+Fixed Taito version of chinhero. [Zsolt Vasvari]
+
+Simplified code in tms9928 video system. [Zsolt Vasvari]
+
+Fixed ROL opcode in the 68000 emulator. [Zsolt Vasvari]
+
+Cleaned up tiny MAME target. [neoforma]
+
+Fixed regression in Exidy sounds. [Zsolt Vasvari]
+
+Improved accuracy of mame_timer_scale_up. [Aaron Giles]
+
+Rotated the mame_rand() results by 16 bits to reduce periodicity of
+the resuls. [Aaron Giles]
+
+Fixed winalloc.c to be thread-safe. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Taisen Hot Gimmick 4 Ever (Japan) [Guru, David Haywood]
+
+
+
+New clones added
+----------------
+Photo Finish [Tomasz Slanina]
+Golden Poker (no double up) [Roberto Fresca]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+39 in 1 MAME bootleg [R. Belmont, Guru]
+Super Pool (Italy) [Roberto Fresca]
+Guitar Freaks 6th Mix (G*B06 VER. JAA) [smf]
+Guitar Freaks 11th Mix (G*D39 VER. JAA) [smf]
+
+
+
+0.116u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+kinst0116u3gra [Zsolt Vasvari]
+
+
+
+Source Changes
+--------------
+Changed system1 driver back to using SN7489A. [Lord Nightmare]
+
+Fixed the road graphics, fixed the rest of the missing gfx, added 
+collision detection, and added save states to the changela driver.
+Also fixed the colors. [Adam Bousley]
+
+Changed all drivers to use the mame_timer_* calls. Deprecated the
+old double-based timer calls. [Zsolt Vasvari]
+
+Changes the last few instances of rand() to mame_rand() and added a
+#define to prevent it from being used again. [Zsolt Vasvari]
+
+Made many of the static info_list*() functions in clifront.c public.
+[Dave Dribin]
+
+Fixed regression crashes in maxaflex.c, megadriv.c, monzagp.c,
+tetriunk.c, and gticlub.c. [Atari Ace]
+
+Some more TIA graphics and sound improvements: [Wilbert Pol]
+ - INPT4 and INPT5 are now read when needed instead of by a timed
+    function. This removes the need for the tia_init_pal function.
+ - Improved handling of the HMOVE functionality
+ - Added code to reduce the flickering caused by some Atari 2600 games
+ - Improved the sound poly generation.
+ - Improved the handling of POLY5_DIV3 sound mode.
+
+Updated djboy driver: [Phil Stroffolino]
+ - support for djboyj; same MCU, but ROM banking bits need to be XOR'd
+ - fixed state handling for game over/win transitions
+ - fixes for dipswitches
+ - added coinage support
+
+Fixed a few places where driver code was not properly hooked up.
+Most cases were benign, but in a couple of instances, save state
+support was disconnected, and in one case it fixes a potential crash.
+[Atari Ace]
+
+Fixed regression in Space Raider. [Zsolt Vasvari]
+
+Improved frameskip behavior in the Gaelco 3d driver. [couriersud]
+
+Fixed palette regression in warpwarp/geebee. [Atari Ace]
+
+Added support to chdman to cope with toc files created with cue2toc.
+[smf]
+
+CPS3 updates: [David Haywood, ElSemi]
+ - Corrected Clock speed, used idle skipping instead of reducing the 
+    clock speed.
+ - Optimized some GFX functions. It now only decodes RAM based tiles 
+    when it needs to draw them, not every single time the data changes
+ - Added support for CD flashing
+ - Added support for alternate BIOS sets
+ - Changed code to use a custom render function
+
+Found a number of additional encrypted opcodes for gussun. [robiza]
+
+Simplified the internal handling of BIOS sets. Instead of there being
+an extra structure, the BIOS information is now embedded in the ROM
+definition for each BIOS. [Atari Ace]
+
+Fixed 2nd player inputs in Millipede. [Mike Haaland]
+
+Fixed crash in evilngt due to missing CD image. [R. Belmont]
+
+Fixed crash in cfarm/cclown due to out-of-bounds parameter.
+[R. Belmont]
+
+Added stricter checking in cdrom.c to prevent crashes in games when
+no CD-ROM is present. [R. Belmont]
+
+Fixed regressions in dkongjr and pestplce due to incorrect memory map
+and rendering too many sprites. [couriersud]
+
+Fixed SUBTARGET=tiny builds. [neoforma]
+
+Hooked up P1 joystick inputs for P2 in Upright mode in a number of
+black & white 8080 games. Removed cocktail settings for games where
+it is not appropriate. Enabled dual player game in spclaser.
+[Mike Haaland]
+
+x64 compilation fixes: [Oliver Stoneberg]
+ - some VS2005 x64 warning fixes
+ - enables the x64 porting warnings in VS2005
+ - adds win_create_window_ex_utf8() to get rid of some 
+    tstring_from_utf8() usage
+ - removed win_extract_icon_utf8()
+
+Improved color decoding in Irem M62 games. [Zsolt Vasvari]
+
+Synchronized MAME and AGEMAME versions of the MPU4 code. Improved
+Connect4 layout. Simplified much of the code.
+[James Wallace, Atari Ace]
+
+Improved the 6532riot timer implementation. Implemented irq callback 
+support. [Wilbert Pol]
+
+Updates to the minx CPU core: [Wilbert Pol]
+ - Fixed TEST (94,95,96, and 97) instructions. 
+ - Fixed 2 MOV instructions (BE and BF). 
+ - Fixed one AND instruction (DC).
+
+Simplified interrupt handling in the z80gb core. [Wilbert Pol]
+
+Hooked up lamps in Afterburner 2 driver. [Zsolt Vasvari]
+
+Fixed missing sound in PGM games. [Zsolt Vasvari]
+
+Fixed Millipede sprites in cocktail mode. [Mike Haaland]
+
+Fixed behavior of the RC filter in ddrible and ironhors. [couriersud]
+
+Added wrap around x for sprites in the m92 driver. 
+[Pierpaolo Prazzoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Change Lanes [Adam Bousley]
+DJ Boy [Phil Stroffolino]
+
+
+
+New clones added
+----------------
+B.Rap Boys (World) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Final Godori [Pierpaolo Prazzoli]
+
+
+
+0.116u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+
+Source Changes
+--------------
+Simplified CPS3 decryption function. [Nicola Salmoria]
+
+Fixed potential double free in PNG code. [Nathan Woods]
+
+Fixed warnings generated by newer gcc compilers. [R. Belmont]
+
+General driver cleanups: [Zsolt Vasvari]
+ - changed some more global ‘Machine’ to local ‘machine’
+ - standardized on the function name ‘draw_sprites’
+ - removed some antiquated boilerplate comments
+
+Updated FM emulator to use mame_time instead of double. Removed old
+neogeo hack from FM code as it appears to no longer be necessary.
+[Zsolt Vasvari]
+
+Updated all sound cores to use mame_time instead of double.
+[Zsolt Vasvari]
+
+Populated several more Irem CPU opcodes for gussun. [robiza]
+
+Fixed CPS3 code to work on big-endian systems. [R. Belmont]
+
+Fixed code_to_token() to prevent potential buffer overflows.
+[Atari Ace]
+
+Fixed crashes in non-working drivers dynablsb and driveyes.
+[Atari Ace]
+
+Changed all CPU cores’ internal timers to the mame_timer* functions 
+as well as the remaining couple of core files that still used 
+timer_alloc(). After this, none of the emu/* files have any old style 
+timing code left. [Zsolt Vasvari]
+
+Various CPS3 updates as documented on Haze's blog. [David Haywood]
+
+Fixed type in BLENDER2_32 function in the n64 video code.
+[Christophe Jaillet]
+
+Created a new resistor network interface for computing palettes from
+color PROMs and component values on the PCB. Fixed several issues
+with the previous implementation. [couriersud]
+
+Donkey Kong driver update: [couriersud]
+ - added sprite ram bank switching from schematics
+ - combined memory maps
+ - first attempts on decoding m58815
+ - radarsc1 driver for radarscope trs01 hardware
+ - all drivers use VIDEO_RAW now
+ - fixed cocktail issues
+ - combined io and sound memory maps
+ - implemented background handling (disable prom /CS line) in all 
+    dkong drivers
+
+Extended the flt_rc filter to support highpass filtering. Fixed the
+lowpass filter to actually do a lowpass filter. Hooked up the filter
+to King & Balloon and updated several other drivers to the new
+interface. [couriersud]
+
+Added support in the main makefile for profiling. Set PROFILE=1 to
+turn this on. [Christophe Jaillet]
+
+Updated djboy driver to almost fully playable state.
+[Phil Stroffolino]
+
+Temporarily reverted input code back to 0.116 baseline pending deeper
+analysis and upcoming core changes to simplify the OSD layer for input
+management. [Aaron Giles]
+
+Changed a number of stderr fprintf's in the Windows OSD code to
+mame_printf_error and mame_printf_warning calls, as appropriate.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+DaiDaiKakumei (Japan) [Hau, Team Japump!]
+CPS3 games: [David Haywood, Andreas Naive, ElSemi]
+  Street Fighter III: New Generation
+  Street Fighter III 2nd Impact: Giant Attack
+  Street Fighter III 3rd Strike: Fight for the Future
+  JoJo's Venture
+  JoJo's Bizarre Adventure: Heritage for the Future
+  Warzard
+
+
+
+New clones added
+----------------
+The Tin Star (set 2) [David Haywood]
+Car 2 (bootleg of Head On 2) [David Haywood]
+Radar Scope (TRS01) [couriersud]
+Crouching Tiger Hidden Dragon 2003 Super Plus alternate [JohnBoy]
+Pop Flamer (bootleg on Naughty Boy PCB) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Missile Combat (Videotron bootleg) [David Haywood]
+Aladdin (bootleg of Japanese Megadrive version) [David Haywood]
+
+
+
+0.116u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+adk0116yel [Zsolt Vasvari]
+neodrvr0116u1red [Zsolt Vasvari]
+strhoop0116u1red [Zsolt Vasvari]
+wb3_0116u1gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed regressions in Gridlee and Gomoku. [Zsolt Vasvari]
+
+Fixed some unicode build issues in the Windows code.
+[Oliver Stoneberg]
+
+Updated a number of games to correctly use the SN76489 instead of the
+SN76496, which was a later design. [Justin Kerk, Lord Nightmare]
+
+Cleaned up the exports from a number of drivers, adding static
+qualifiers to functions and variables t hat don't need to be exported
+and have generic sounding names. [Atari Ace]
+
+Updated numerous drivers to remove the use of global Machine wherever
+possible. Also reviewed the clipping regions and made changes to
+ensure the passed-in cliprect was honored. [Zsolt Vasvari]
+
+Cleaned up the Dooyong driver: [Vas Crabb]
+ * Consolidated and streamlined tilemap callbacks
+ * Took better advantage of MAME's tilemap caching by building 
+    larger tilemaps so they don't need to be invalidated as often
+ * Interpreted sprite Y position as signed 9-bit value in 
+    rshark/superx (fixes some glitches)
+ * Added more explanatory comments to help others reading the code 
+
+Changed a number of mame timer objects from void * to mame_timer *.
+[Atari Ace]
+
+Fixed a couple more Irem CPU opcodes to improve Match It 2.
+[Robiza]
+
+Fixed collision detection bug in thunderX. [Shimapong]
+
+Initial cut at working CPS3 driver. Basically works but has a lot
+more work to be done to finish it up.
+[David Haywood, Andreas Naive, Tomasz Slanina, ElSemi, Philip Bennett]
+
+Fixed minor cycle timing issue in 6809 CPU core. [Ernesto Corvi]
+
+Neo-Geo updates: [Zsolt Vasvari]
+ * Fixed several regressions from previous update
+ * Added LED outputs
+ * Improved smaller visible area configuration
+
+Fixed some incorrect information in the Neo Geo ROMsets. [JohnBoy]
+ 
+Integrated platform-specific changes into the core makefile, mostly
+taken from the SDLMAME makefile. Changed the MAMEOS configuration
+variable to OSD, indicating which OSD layer is being compiled. Added
+a new configuration variable TARGETOS which specifies the target OS 
+platform. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Punch-Out!! (Italian bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mini Boy 7 [Roberto Fresca]
+
+
+
+0.116u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+shanghai0116red [Aaron Giles]
+bldwolf061gre [Robiza]
+superx0116gre [Robiza]
+matchit2_0116ora [Robiza]
+qix0116yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed scanline address reporting in the qix driver. [Zsolt Vasvari]
+
+Rewrote Neo-Geo driver again based on information from Charles
+MacDonald. This update fixes a number of issues with the previous
+attempt. [Zsolt Vasvari]
+
+Added support for multiple keyboards: [Andrew Kurushin]
+ - added multikeyboard input support through RAWINPUT mechanism 
+    (up to 8 simultaneous keyboard inputs
+ - fixed RAWINPUT device registry enumeration bugs
+
+Fixed the reset mode in CDP1802. [Curt Coder]
+
+Fixed a number of errors and simplified the code significantly in the
+ptm6840 code. [Atari Ace]
+
+Fixed offset for sprite and layers in fcrash driver. [Robiza]
+
+SH4 CPU core improvements: [Samuele Zannoli]
+ - corrected opcode decoding and decodes all opcodes of sh4
+ - corrected disassembly and added support for all instruction of 
+    sh4 not in sh2
+ - now disassembles all fpu instructions
+ - changed cpu to little-endian (sh4 can be either big or little)
+ - corrected which data is read and written from memory 
+ - added registers fpul and dbr
+ - added (non-fpu) instructions of sh4 non present in sh2
+ - added four fpu instructions
+ - modified memory-mapped internal register management so that all 
+    internal registers can be actually used
+ - added file sh4regs.h with defines for all sh7750 internal registers
+ - implemented internal registers for memory refresh
+ - removed some internal registers of sh2 not present in sh4
+ - added preliminary support for internal cache used as ram
+
+Updated CPS2 decryption bit order to match what is likely the original
+order. [Nicola Salmoria]
+
+Fixed a few warnings that show up with -Wextra.
+[Atari Ace, Zsolt Vasvari]
+
+Fixed toaplan2.c so that OKI6295 sample ROM bankswitching via one
+of the spare data lines on the coin mechanism port is only hooked up 
+in the one game that's actually wired this way (shippumd). [AWJ]
+
+Updated the scrambls protection implementation to use equations based
+on the implementation from fpgaarcade.com. [Mark McDougall]
+
+Improved GCD computations in the rendlay.c code. [Christophe Jaillet]
+
+Fixed numerous regressions in the 0.116 release.
+[Zsolt Vasvari, Aaron Giles]
+
+Switched driver code to exclusively using mame_rand() instead of
+rand(), to improve consistency of results. [Aaron Giles]
+
+Improved MCU timing and communication in the qix driver. Still a few
+issues remain. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Match It II [Robiza]

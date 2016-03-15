@@ -1,0 +1,87 @@
+0.36 BETA 10
+
+Important: due to changes in the palette system, there might be games that
+had correct colors before, and wrong now. Please let us know if you find
+any.
+
+
+New games supported:
+--------------------
+
+I, Robot (suggestion: turn off autoframeskip) [Dan Boris, John Dickson]
+Baraduke [Manuel Abadia]
+Metro-Cross [Manuel Abadia]
+Flak Attack [Manuel Abadia]
+D-Con [Bryan McPhail]
+Dr. Toppel Tankentai [Quench]
+Double Dragon 3 [Carlos A. Lozano, Richard Bush, Bryan McPhail]
+Combatribes [Carlos A. Lozano, Richard Bush, Bryan McPhail]
+Dynamite Duke (play it with sound disabled) [Bryan McPhail]
+
+
+New clones supported:
+---------------------
+
+Frogger (Konami)
+Spaltan X (= Kung Fu Master)
+Joyful Road (= Munch Mobile)
+Majuu no Ohkoku (= Devil World)
+Rock 'n Rope (Konami)
+Samurai (set 2)
+Kaiketsu Yanchamaru (= Kid Niki)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed lots of drivers for -depth 16 support. [Zsolt Vasvari]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed music in cworld2j [CAB]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed Go Go Mr. Yamaguchi [Takahiro Nogi]
+
+- Fixed controls in Ikari III level 2. [Nicola Salmoria]
+
+- Fixed hangs in TNZS. [Quench]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Adjusted the autoframeskip code, to make it increase frameskip a little
+  faster, but not as fast as it was before the previous change. Let's see how
+  this performs. [Nicola Salmoria]
+
+- Support for gzipped (NOT zipped) cheat files. Uncompressed files still work.
+  [Mathis Rosenhauer]
+
+
+Source:
+-------
+
+- Merged the flags and orientation fields of struct GameDriver.
+
+- Removed prom_memory_region from struct GameDriver. The PROM memory region is
+  now specified directly in the ROM declaration, with
+  ROM_REGIONX( length, REGION_PROMS )
+  Similarly, REGION_GFX1..8 are defined for gfx decoding, but drivers have not
+  been updated to use them. See drivers/namcos86.c for the only example.
+
+- Removed samplenames from stuct GameDriver. It is now in struct
+  SamplesInterface, and some drivers load the samples directly without using
+  that structure. Due to this change, -listsamples and -verifysamples, and the
+  samples information in -listinfo, are no longer available. Actually, samples
+  might not be working at all - I haven't tested them. [Nicola Salmoria]
+
+- Removed base and size from struct MemoryReadAddress, use MemoryWriteAddress
+  to store the pointers. Several drivers had the bad habit of using
+  MemoryReadAddress to initialize those variables, hopefully I haven't broken
+  any while updating them. [Nicola Salmoria]

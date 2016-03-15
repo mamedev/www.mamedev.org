@@ -1,0 +1,349 @@
+0.129u4
+-------
+
+WARNING: This build has a major change in it (sound chips are now 
+devices) that may lead to some unexpected errors or sound problems. 
+Please report any issues you find over at 
+http://mametesters.org/mantis
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02893: [Crash/Freeze] Most sets in galdrvr.c: Crashes with devcb 
+          dialog. (Aaron Giles)
+- 02890: [Crash/Freeze] pitboss, pitbossa: Pit Boss and clone crashes 
+          with devcb dialog (Roberto Fresca)
+- 00754: [Sound] mikie: Background music problem in the locker room 
+          level. (Nicola Salmoria)
+- 02918: [Graphics] psychosj psychos: Title screen graphic glitch 
+          (Nicola Salmoria)
+- 02907: [Gameplay] spnchout, spnchotj: Time count on insert coin screen 
+          runs out very quickly - Play buttons not working 
+          (Nicola Salmoria)
+- 02917: [Misc.] himesiki: Array index out of bound (Phil Bennett)
+- 02895: [Color/Palette] macrossp: Wrong colors in "area clear" screen 
+          (Angelo Salese)
+- 02860: [Crash/Freeze] mach3, usvsthem: Error at the start (Aaron Giles)
+- 00808: [Graphics] xsleena: There appears to be a small line of 
+          graphics missing on a couple of characters.
+- 02801: [Misc.] cafetime: Clock shows AM instead of PM (couriersud)
+- 01785: [Misc.] mjmyornt and more: AM/PM is ignored when the clock time 
+          is retrieved from RTC (couriersud)
+- 02896: [Misc.] Drivers using MSM6242.h: MSM6242 ignores AM/PM bit 
+          (couriersud)
+- 02897: [Sound] soldivid: Audio regression (Haze)
+
+
+
+Source Changes
+--------------
+Fixed Casino 5 hang on the Horse Racing game [Angelo Salese]
+
+Fixed compile quirk with Funcube2/4 [Angelo Salese]
+
+Added minor additional information and OSC info to volfied driver. 
+Also added two BPROMs not included before. [Brian Troha]
+
+Opcode accesses are now marked debugger_access. This is important 
+with the recent changes to automatically call the read handler if the 
+opcode base cannot be found. Changed logging for non-RAM opcode bases 
+so that it does not output in the case of debugger_access being set.
+[Aaron Giles]
+
+Fixed logic for deriving direct ranges so that it uses the non-
+watchpoint-infected tables for its lookups. [Aaron Giles]
+
+Changed memory_set_direct_region to pass the address returned from 
+the DIRECT_UPDATE_HANDLER back to the memory read function. [smf]
+
+6850acia: Only adjust the rx/tx bit timers on a control write if the 
+divide ratios have changed. [Phil Bennett]
+
+Added the ability to invoke CPU input lines with devcb callbacks.
+Changed sp0256 to use devcb callbacks. Updated sauro driver to use
+this new feature. [Nathan Woods]
+
+Added PCB layout for Funcube and corrected rom names based on a hi-
+res photo of the PCB. [Brian Troha]
+
+Improve disassembly of R3000 code that uses the TLB or FPU. 
+[R. Belmont]
+
+Added new game Number Dieci [Mirko Buffoni]
+ - Seems a IGS poker hack to comply with 2000's Italian law
+ - Sound synthesys have been replaced by OKIM Adpcm samples
+ - Some patched out routines have been recovered to allow test mode 
+    dsw mapping
+ - Mapped Stelle e Cubi to this memory map, something shows but 
+    graphic is from a bad dump
+
+Added new game PK Tetris [Mirko Buffoni]
+ - Strange game with an amusement part (sort of Tetris mixed with 
+    Poker)
+ - Amuse input not mapped, may be necessary for the amusement part 
+    which can be disabled via DSW
+
+Fixed various issues with "Il Pagliaccio" driver: [Angelo Salese]
+ * Fixed rom source reading for the blitter;
+ * Properly use height/width params for the blitter;
+ * Hooked up the backup ram;
+ * Added basic inputs;
+ * Removed deprecat.h dependancy;
+
+Moved over some of the AGEMAME drivers 
+[David Haywood, thanks to James Wallace / ageMAME]
+
+Further fixes with "Il Pagliaccio" blitter: [Angelo Salese]
+ * Fixed Transparency pens;
+ * Fixed color pens for the charset;
+
+Merged Strip Teaser and Il Pagliaccio driver, fixed the layer 
+clearance for both and added a preliminary MCU simulation for the 
+former. [Angelo Salese]
+
+Relaxed 8 letter setname limitation for clone sets - this is designed 
+to make it easier to add simple suffixes to clone names without 
+truncating the original set name, it isn't designed to be abused and 
+used as an alternate description. [Olivier Galibert]
+
+Made the 6522 VIA implementation use devcb. [Nathan Woods]
+
+Changed 6526cia to use devcb. [Nathan Woods]
+
+Added redumped sound CPU rom for Sega Water Ski. [Brian Troha]
+
+Added original Super Poker 115IT [Mirko Buffoni]
+ * Added because 3 Super 8 have SUPER POKER 115IT string inside.
+   3Super8 may be a hack, strings are the same, but code is different
+   though still partially encrypted
+
+Added "global column coloring" for Super Draw Poker, colors are now 
+100% accurate [Angelo Salese]
+
+Fixed disassembler for CPUs with address bus shifts. [Aaron Giles]
+
+TMS57002 preliminary implementation. [Olivier Galibert]
+
+Added digital i/o board layout & initial information on the memory 
+card board to the Konami System 573 driver. [smf]
+
+Added redumped non JEDEC roms to Rock 'n Rage (World). 
+[Corrado Tomaselli]
+
+Added extensive readme doc to the Sega X Board driver. [Guru]
+
+Decrypted a large number of games in goldstar.c and sfbonus.c. 
+[Olivier Galibert]
+
+WIP mario update with some FIXMEs [Couriersud, Smitdogg]
+ - Created custom module for run sounds. Running the discrete sound 
+    system at 480KHz was not really optimal.
+ - Reviewed parts list, schematics and pcb pictures
+ - Brought mario run sound in line with recordings from Smitdogg
+ - VCO voltage needs to be 0V for this to happen. Verification 
+    outstanding
+ - Capacitors needed some ageing applied as well. To be removed once 
+    the VCO issue is clarified.
+
+Refactored the ACIA6850 to use devcb. [Curt Coder]
+
+Added a patch to Jackie driver, game now works [Mirko Buffoni]
+ * Added complete reel emulation (thanks to Luca, Angelo and David 
+    drivers studied to better understand hardware similarities).
+ * Press T to toggle amuse game, used to mask gambling activities.
+
+Added Champion League [Mirko Buffoni]
+ * Same encryption and patches used in Numero10, but on standard IGS 
+    Poker V220I board
+ * Reworked expansion rom memory map handler
+
+Added effect sound banking, coin counters and sprites - sprites 
+priority to silkroad. [Pierpaolo Prazzoli]
+
+Made a bunch of improvements to the goldstar driver now that the sets
+are decrypted. [David Haywood]
+
+Revisited seibu decryption. [Nicola Salmoria]
+
+Converted all sound chips into proper devices. Merged the sound chip 
+interface into the device interface, removing any differences (such 
+as the whole ALIASing concept). [Aaron Giles]
+
+Modified every sound chip in the following ways: [Aaron Giles]
+ * updated to match the device interface
+ * reduced read/write handlers down to the minimal number
+ * added the use of get_safe_token() for ensuring correctness
+ * other minor cleanup
+
+Removed the custom sound device. The additional work to just make
+custom sound cases into full devices is minimal, so I just converted
+them all over to be actual devices. [Aaron Giles]
+
+Vastly simplified the sound interfaces, removing the ghastly
+sndti_* business and moving everyone over to using tags for
+sound identity. sndintrf, like cpuintrf, is now just a header
+file with no implementation. [Aaron Giles]
+
+Modified each and every driver that references a sound chip: 
+[Aaron Giles]
+ * all memory maps explicitly reference the targeted device via
+    AM_DEVREAD/AM_DEVWRITE/AM_DEVREADWRITE
+ * 16-bit and 32-bit accesses to 8-bit chips no longer use
+    trampoline functions but instead use the 8-bit AM_DEVREAD/WRITE
+    macros
+ * all references to sound chips are now done via tags
+ * note that these changes are brute force, not optimal; in many
+    cases drivers should grab pointers to devices in MACHINE_START
+    and stash them away
+
+Fixed a couple of dipswitches for Progress. [Brian Troha]
+
+goldstar improvements: [Roberto Fresca]
+ - Full inputs & DIP switches from the scratch for schery97, schery97a
+    and skill98.
+ - Changed the sets description to match the program version.
+ - Cleaned-up the game driver zone for better organization purposes.
+ - Added GAME_NO_SOUND flag to schery97, schery97a and skill98.
+ - Added some program version notes.
+
+Fixed a contact MAMEDEV message in cps1.c. [Nicola Salmoria]
+
+Changed sfbonus to use tilemaps. [David Haywood]
+
+Added sound and some scrolling registers to the sfbonus driver.
+Added flipx and basic inputs to the sfbonus.c driver. [Angelo Salese]
+
+Updated the wheelfir.c driver with some additional information.
+[Brian Troha]
+
+Correct rom names and PCB locations in the twincobr driver. Corrected 
+and added missing proms for Flying Shark (and clones). 
+[Brian Troha, Stefan Lindberg]
+
+Merged brasil.c and highvdeo.c drivers [Angelo Salese]
+
+Added basic support of RP5C01 to remove (most) protection kludges in 
+Super Punchout. [Nicola Salmoria, Bob Seidel]
+
+Added correct Midnight Run ROM names [Guru]
+
+Added Read Parameter Register support to the hd63484. Moved logging 
+behind a define. [Phil Bennett]
+
+Added PCB layout for Zoar. Corrected AY-3-8910 clocks and added 
+missing PROM. [Guru]
+
+More improvements to goldstar.c: [Roberto Fresca]
+ - Added 3 new machine drivers for the different Amcoe games hardware.
+ - Added OKI M6295 support for speech/sounds to schery97, schery97a, 
+    skill98, pokonl97 and match98.
+ - Fixed sound support to nfb96, nfb96a, nfb96b, nfb96c, nfb96txt, 
+    roypok96, roypok96a, roypok96b, nc96, nc96a, nc96b, nc96c, 
+    nc96txt, nfb96se, nfb96sea, nfb96seb, carb2002 and carb2003.
+ - Full inputs & DIP switches from the scratch for pokonl97, match98, 
+    nfb96, nfb96a, nfb96b, nfb96c, nfb96txt, roypok96, roypok96a, 
+    roypok96b, nc96, nc96a, nc96b, nc96c, nc96txt, nfb96se, nfb96sea, 
+    nfb96seb, carb2002 and carb2003. All these were promoted to 
+    working state.
+ - Fixed size and position of tilemaps visible area to match98.
+ - More driver cleanups.
+
+Cidelsa changes: [Curt Coder]
+ - Combined CDP1869 video and sound parts to one device
+ - Refactored CDP1852 to use devcb
+
+Fixed input in hanaawas (note: for the second playere used mahjong 
+input like A,B,C....), also fixed yes/no button in hanaroku.
+[Sonikos]
+
+Changes safarir CPU to 8085A, the disassembly has 8085A-specific code 
+that an 8080 can't execute. [Luigi30]
+
+Removed some unused code from deco_mlc.c. [Christophe Jaillet]
+
+Added PALs and readme to midxunit.c. [Guru]
+
+Properly added the PPI8255 devices to Pit Boss and reorganized the 
+inputs in these two games. [Angelo Salese]
+
+Corrected memory map for gardiab and promoted it to working. 
+[Angelo Salese]
+
+Added the ability for devices to have their own custom inline config 
+management. This was primarily added to allow for sound routes to be 
+supported in a way that is compatible with the current driver 
+structure. A device can now define a DEVICE_CUSTOM_CONFIG callback 
+which is called whenever one of the 
+MCONFIG_TOKEN_DEVICE_CONFIG_CUSTOM_* tokens is encountered. A special 
+token MCONFIG_TOKEN_DEVICE_CONFIG_CUSTOM_FREE is defined to clean up 
+memory allocated and/or reset the custom configuration, and is called 
+when the device is torn down to allow for memory cleanup. 
+[Aaron Giles]
+
+Various improvements to Far West (Iron Horse bootleg) [Tomasz Slanina]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Monopoly [Phil Bennett]
+Monopoly Classic [Phil Bennett]
+Monopoly Deluxe [Phil Bennett]
+Player's Edge Plus (XMP00024) Multi-Poker [Gyrovision]
+Super Draw Poker [Angelo Salese]
+Squash (Itisa) [Angelo Salese]
+Age Of Heroes - Silkroad 2 (v0.63 - 2001/02/07) [Pierpaolo Prazzoli]
+Fever Soccer [Nicola Salmoria, Angelo Salese]
+Jackie [Mirko Buffoni]
+TomCat (prototype) [Mariusz Wojcieszek]
+Go 2000 [Angelo Salese]
+Dakkochan House [Angelo Salese]
+Skill Cherry '97 (two sets)
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+Skill '98 [Roberto Fresca, Olivier Galibert, David Haywood]
+Poker Only '97 [Roberto Fresca, Olivier Galibert, David Haywood]
+Match '98 [Roberto Fresca, Olivier Galibert, David Haywood]
+New Fruit Bonus '96 Special Edition (5 sets) 
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+Royal Poker '96 (3 sets) 
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+New Cherry '96 Special Edition (5 sets) 
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+New Fruit Bonus '96 Special Edition (bootleg, 3 sets) 
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+Carriage Bonus 2003 (bootleg) 
+  [Roberto Fresca, Olivier Galibert, David Haywood]
+
+
+
+New clones added
+----------------
+Magic Card (set 3) [Chris Hardy]
+Volfied (Japan, older) [Brian Troha]
+Tecmo World Cup '90 (Euro set 2) [Tomasz Slanina]
+Extermination (World) [Stefan Lindberg]
+Pyschic 5 (set 2) [Dazzer]
+Head Panic (15/06/1999) [Corrado Tomaselli] (not working)
+Image Fight (revision A, Japan) [Arzeno Fabrice]
+Skull Fang (World) [Mexa]
+GTI Club (EAA) [Mexa]
+Operation Thunder Hurricane (ver EAA) [Mexa]
+Heavy Smash (Europe version -2) [Mexa]
+Phoenix (Taito Japan Ver.) [Team Japump!!!]
+Virtua Striker 3 (Cart) (USA, EXP, KOR, AUS) [Andrea Turci]
+Raiden Fighters 2 (Japan set 2, SPI) [Corrado Tomaselli]
+Master of Weapon (Japan) [Team Japump!!!]
+Mahjong If...? (2 sets) [Uki]
+Mahjong Shinkirou 2 [Uki]
+Pit Boss (Set 3) [Brian Troha]
+American Poker II (iamp2 v28) [Roberto Fresca]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pachi Fever [Angelo Salese]
+Sweet Hearts II (C - 07/09/95, Venezuela version) [Heihachi_73]
+Margarita Magic (A - 07/07/2000) [Heihachi_73]
+Ciclone [f205v, Mirko Buffoni]

@@ -1,0 +1,135 @@
+0.127u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02210: [Misc.] fieldday, undoukai: Game doesn't start. Source typo in 
+         0.126u2. (MASH)
+- 02240: [Crash/Freeze] All Sets in namcos12.c: Game Freeze (Aaron Giles)
+- 02241: [Sound] kncljoe, kncljoea: Missing AY-3-8910A sound effects. 
+         (Aaron Giles)
+- 02248: [Sound] All sets in m58.c: No sound in game (Aaron Giles)
+- 02239: [Sound] stunrun: No OKI6295 sound. (Aaron Giles)
+- 02249: [Crash/Freeze] All Sets in zn.c: Game Hangs (Aaron Giles)
+- 02233: [Speed] chboxing, chwrestl, dokidoki: Game Speed/Timing issue
+         (Curt Coder)
+- 01897: [Original Reference] birdtry: DIP switch settings from manual.
+         (Tafoid)
+- 02242: [Gameplay] ikarijp, ikarijpb: Test screen now required to be 
+         cycled to enter game. (Nicola Salmoria)
+
+
+
+Source Changes
+--------------
+Added redump of indytemc. There's sprite/playfield flipping issues, 
+hence GAME_IMPERFECT_GRAPHICS. [Dazzer]
+
+Improvements to Funworld driver: [Roberto Fresca]
+ - Added new clone: Pool 10 (italian, set 4).
+ - Improved lamps layout for all games.
+ - Added Pool 10 pinout and DIP switches info.
+ - Updated technical notes.
+
+Continued I/O map merging. [Andrew Gardner]
+
+Changed Namco NB-x to use real C75 BIOS, read controls the real 
+hardware way. [R. Belmont]
+
+Added lamps support + layout to magjoker and galaxi. Magjoker has a 
+good lamps sequence in the attract. [Roberto Fresca]
+
+Fixed crash when hitting watchpoints on static handlers. [Aaron Giles]
+
+Changed Namco NA-2 to use real C70 BIOS. Removed sound and input 
+simulation code. Changed the NA-1/2 MCU type to M37702. [Phil Bennett]
+
+Added correct colour PROMS to arkatour. [Dazzer]
+
+Fixed inputs in Main Event (SNK) based on the info in 
+http://otoya.sheep-cloud.net/dipsw/ma-mo/mainevent.html. [9IEM1smI0]
+
+Jaleco 'Bomb's Away' Improvements [aDG4W+qp0]
+
+Fixed refresh rate and interrupts in sg1000a driver, added 8255PPI and 
+coin counter. [Curt Coder]
+
+Changed requirements for laserdisc CHDs to require a new chunk of
+metadata with pre-decoded frame information. Modified chdman to
+automatically produce this for CHDs that are of the appropriate
+parameters. To fix up existing CHDs, use chdman -fixavdata on the
+CHD. [Aaron Giles]
+
+Modified the laserdisc core to leverage the pre-decoded frame
+metadata, which is now required. This improves seek times when
+searching and allows the player-specific emulation access to the
+VBI data as soon as it would really be available. Changed update
+callback timing to fire just before the first line of VBI data
+would be read; at that point, the frame selection is assumed to
+be committed. [Aaron Giles]
+
+Converted PR-8210 emulation over to using the actual MCU from the
+laserdisc player. This MCU controls low-level functions such as
+slider position and laser on/off, and receives decoded vertical
+blanking data in order to make decisions. Removed old HLE behavior.
+Note that the overlay text is displayed via the UI; this is
+temporary and will be fixed shortly. [Aaron Giles]
+
+Converted Simutrek-hacked laserdisc emulation to using the actual
+MCU from the game, which in turn hands off commands to the PR-8210
+MCU. This is still not 100% but is pretty close at this point and
+achieves the correct behaviors in most cases. [Aaron Giles]
+
+Fixed Cube Quest overlay scaling to cover the whole screen.
+[Aaron Giles]
+
+Changed laserdisc video parameters to position the screen area at
+the bottom rather than the top, since this corresponds more closely
+to standard line numbering. [Aaron Giles]
+
+Extended the vbiparse code to support pack/unpack, and to more
+fully document all the meanings of the VBI codes. [Aaron Giles]
+
+Updated ldplayer to support slow/fast forward movement, frame/chapter
+display, and separate controls for scanning/stepping. [Aaron Giles]
+
+Added new built-in variable "frame" to the debugger. [Aaron Giles]
+
+Fixed device-based ROM loading to support loading ROMs from the
+game's ZIP as well. [Aaron Giles]
+
+CPU-internal regions now have priority again. Fixed mario by installing
+a handler in the SOUND_START function. [Aaron Giles]
+
+Improved DIP switch handling and added DIP locations in epos.c. [Tafoid]
+
+Added DIP locations to the dec0 driver. [Tafoid]
+
+Separate NBA Jam TE from NBA Jam as they are not technically clones of
+each other. [Atari Ace]
+
+Verified cpu clocks and corrected/verified OKI M6295 frequencies and pin
+for Shadow Force. [Corrado Tomaselli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fire Fox (still needs proper laserdisc support) [smf]
+
+
+
+New clones added
+----------------
+Tengai (World) [Jet Black / Tormod]
+Pool 10 (italian, set 4) [Roberto Fresca]
+Hot Mind (adjustable prize) [David Haywood, Roberto Fresca]
+Marvel Vs. Capcom: Clash of Super Heroes (Euro 980123) [bonky_0013]
+Three Wonders (hack?) [EMMA team]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Funny Land de Luxe [Tomasz Slanina]

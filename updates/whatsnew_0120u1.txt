@@ -1,0 +1,115 @@
+0.120u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+ikki0120yel [robiza]
+buckrog0118u2yel [couriersud]
+
+
+
+Source Changes
+--------------
+Documented information about the various Cannonball sets.
+[stephh]
+
+Hooked up the roz layer, fg layer and sprites to f1gpb. Still
+missing some video offsets, oki banking and sprites priority.
+[Pierpaolo Prazzoli]
+
+Updates for the dominob.c driver: [stephh]
+ - fixed dip switches
+ - fixed inputs
+ - added a couple of notes
+
+Updated peplus driver and related components: [Jim Stolis]
+ - added internal layouts for the games
+ - fixed several i8051 issues...
+    * Fixed a bug with some opcodes having the wrong cycle counts
+    * Fixed a bug where determining the proper timer mode
+    * Fixed a bug where determining the proper serial transmit mode
+    * Added support for split timer mode
+
+Improved multiprocessor Voodoo performance by reducing contention
+during rendering. Extended the system to allow for more overlap
+between rendering and emulation. [couriersud, Aaron Giles]
+
+Fixed a crash in the input system when you configure joypads and 
+then unplug them and press Esc on the system info screen.
+[R. Belmont]
+
+Defined strict types for CPU and sound chips. Removed unnecessary
+cpu_ prefix from several structure members. [Atari Ace]
+
+Fixed the m4510 cpu core from not updating the instruction cycle
+counter. [Wilbert Pol]
+
+Fixed memory access for m6509 instructions 91 and b1. [Wilbert Pol]
+
+Changed osdcore.h to include osinline.h and allow for external
+inline definitions of synchronization primitives. Also added a new
+work queue hint WORK_QUEUE_FLAG_HIGH_FREQ which indicates that we
+should spin aggressively waiting for new items. 
+[couriersud, Vas Crabb]
+
+Enabled common linker warnings in the makefile. [Oliver Stoneberg]
+
+Fixed a corner case in the SCSP involving timers which are polled 
+with their IRQ enable shut off. [R. Belmont]
+
+Namco System 21 update: [Phil Stroffolino]
+ - namconb1 sprites no longer broken
+ - fixed missing 3d gfx in Cybersled
+ - gradient colors in starblade
+ - more accurate depth cueing
+ - fixed crash in 2nd stage of Starblade
+ - fixed lockups in Air Combat and Solvalou
+ - fixes to sprite priority (see Solvalou mountain range)
+ - hooked up translucency (palette shift) effect
+
+Changed Model 2 rendering to use pre-clipped Z values for sorting.
+[Aaron Giles]
+
+Properly identified bill inputs in Midway Y-unit driver games.
+[Aaron Giles]
+
+Added more instrumentation and added some extra paranoia to the
+winwork code. [Aaron Giles]
+
+Fixed some incorrect code in the ADSP2100 external flag handling.
+[Aaron Giles]
+
+Created new module polynew.c which combines triangle setup, 
+rasterization, and Voodoo-like multiprocessor support. Coverted
+Gaelco3D, Midway V-Unit, Namco System 22, and Voodoo drivers over 
+to the new system. [Aaron Giles]
+
+Added threadid parameter to work item callbacks. This allows for 
+keeping per-thread information by the callbacks. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Hot Gimmick Integral (Japan) [Guru, David Haywood]
+Tottemo E Jong [David Haywood, Team Japump!]
+Good E Jong -Kachinuki Mahjong Syoukin Oh!!- 
+  [David Haywood, Team Japump!]
+Teraburst [icronnya77, Ville Linde]
+
+
+
+New clones added
+----------------
+Tube Panic (bootleg) [sonikos]
+Player's Edge Plus (PP0188) Standard Draw Poker [Jim Stolis]
+Player's Edge Plus (Set038) Set Chip [Jim Stolis]
+Mortal Kombat 4 (set 2) [icronnya77]
+Meteor [Andreas]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+GameCristal [f205v, R. Belmont]

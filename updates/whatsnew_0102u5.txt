@@ -1,0 +1,139 @@
+0.102u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+dspirit099u2yel [BUT]
+mjkjidai097u2gre [Mamesick]
+suprnova0102u4red [Aaron Giles]
+nbmj8991c095u2yel [Mamesick]
+grchamp055yel [Hans Andersson]
+grchamp137b12gre [Hans Andersson]
+grchamp237b12gre [Hans Andersson]
+vulcan137b1gre (part 2, and maybe parts 4 and 5) [Pierpaolo Prazzoli]
+gunlock097u2yel [Nicola Salmoria]
+gekirido096u3gre [Nicola Salmora]
+ssi061gre [Nicola Salmoria]
+ssi137b2gre [Nicola Salmoria]
+ctribe088u4gra [Mamesick]
+groundfx068gra [Mamesick]
+tengai062gre [AWJ]
+
+
+
+Source Changes
+--------------
+Fixed bug in discrete filtering code. [Frank Palazzolo]
+
+Fixed speedup for znpwfv so that it boots once again. [Mariusz Wojcieszek]
+
+Improvements to cuoreuno and elephfam: [Roberto Fresca]
+ * Corrected videoram and colorram (now can see the nvram initialization).
+ * Corrected the CPU frequency to 2 MHz.
+Still not working...
+
+Fixed Playchoice/VSNES drivers. [Rob Bohms]
+
+Hooked up the same NES APU implementation in both MAME and MESS. Also
+correctd the memory mapping of the APU in the Playchoice 10 driver. 
+[R. Belmont]
+
+Hooked up Psikyo 4 PCM banking. [Anonymous]
+
+Significant improvements to the Grand Champion driver: [Hans Andersson]
+ * Tunnel headlights
+ * Corrected rain effect
+ * Corrected colors
+ * Added speech
+ * Improved collision detection (removed false collision when lightning)
+ * Improved fog effect
+ * Added skeleton code for motor noise
+ * Fixed graphic glitch in bottom row
+ * Corrected CPU speed for Cpu board / Game board
+
+Added simulated version of the N64 PIF boot rom to the Aleck64 driver, so 
+the cartridges now boot properly, though the cartridge CRC check fails on 
+both games. [Ville Linde]
+
+Fixed instruction alignment in the old debugger. Also added support for
+64-bit qword display. [AWJ]
+
+Fixed timing between CPU and MCU in chaknpop. In previous driver, you will 
+notice problems in stages with water and coffee break (not always). New 
+driver fixes it but it is not perfect about timing. [BUT]
+
+Added sound to Honey Doll. [David Haywood]
+
+Changed activecpu_dasm() and activecpu_dasm_new() so that they "function" 
+even if the getinfo handler does not specify CPUINFO_PTR_DISASSEMBLE nor 
+CPUINFO_PTR_DISASSEMBLE_NEW. [Nathan Woods]
+
+Completed the X-Multiply DIP switches. [Roberto Fresca]
+
+Moved m6809, hd6309 and z80 disassemblers to the new interface, and did 
+some cleanups. [Nathan Woods]
+
+Fixed the SUBW H flag in the SPC700 core. [Rob Bohms]
+
+Added missing functionality needed to get rsgun working. [Olivier Galibert]
+
+SP0250 update: [Nicola Salmoria]
+ * Added SP0250 speech chip to 3 Stooges.
+ * Streamlined the SP0250 emulation to avoid timing issues which were 
+    preventing 3 stooges from working.
+ * Fixed glitches in the speech that were caused by not resetting the 
+    filter stages when a speech frame is loaded.
+ * Made the SP0250 support the external clock rate
+ * Changed the playback rate to match the real board by making the clock 
+    divider a reasonable number.
+
+Added new debugger command 'map', which tells logical -> physical mappings
+as well as what read/write handlers are connected to an address. Also added
+'mapd' and 'mapi' for performing the same operation on data and I/O space.
+[Aaron Giles]
+
+More Voodoo updates: [Aaron Giles]
+ * fixed overflow in 1/W calculation that messed up some textures
+ * added missing color combine mode used by Gauntlet Dark Legacy
+
+Fixed subtle bug in the MIPS3 recompiler that prevented Tenth Degree from
+working. [Aaron Giles]
+
+Implemented some more functionality of the ADSP-2181 needed for Road Burners.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mosaic (F2 System) [Pierpaolo Prazzoli]
+Vs. Hot Smash [Nicola Salmoria]
+Noah's Ark [David Widel]
+Top Roller [Tomasz Slanina]
+Squash (Ver. 1.0) [David Haywood, Mike Coates, Nicola Salmoria]
+
+
+
+New clones added
+----------------
+California Speed (Version 2.1a) [Reznor007]
+Gauntlet Dark Legacy (version DL 2.52) [Reznor007]
+Tenkomori Shooting (Japan) [Guru]
+Soul Calibur (SOC11/VER.B) [smf]
+Tekken Tag Tournament (TEG3/VER.C1) [smf]
+Quiz [Pierpaolo Prazzoli]
+King of Gladiator (The King of Fighters '97 bootleg)
+Crouching Tiger Hidden Dragon 2003 (The King of Fighters 2001 bootleg)
+King Of Fighters 10th Anniversary (The King of Fighters 2002 bootleg)
+The King of Fighters Special Edition 2004 (The King of Fighters 2002 bootleg)
+Lansquenet 2004 (Shock Troopers - 2nd Squad bootleg)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Real Battle Mahjong King [Tomasz Slanina, David Haywood]
+Little Robin [David Haywood, Pierpaolo Prazzoli]
+Ghoul Panic (OB2/VER.A) [Guru]
+Knights of Valour 2

@@ -1,0 +1,67 @@
+0.102u4
+-------
+
+
+Source Changes
+--------------
+Corrected some YM2151 frequencies in the dooyong.c driver. [Mamesick]
+
+Major update to the STV driver: [Mariusz Wojcieszek]
+ * sh2: introduced cpu_readop16() for opcode fetching
+ * stv: added idle skip to various games
+ * stv: optimized master/slave sh2 syncing
+ * vdp1: fixed sprite transparency for RGB sprites
+ * vdp2: added linescroll
+ * vdp2: added 16x16 15bit tiles (fixes missing gfx in znpwfv)
+ * vdp2: optimized tilemap scrolling, bitmaps and framebuffer drawing
+ * vdp2: fixed page and map calculation
+ * dsp: fixed some bugs making vfremix run up to the end of second match
+
+Fixed sprite-tilemap collision detection in Taito SJ driver when the screen
+is flipped. [Nicola Salmoria]
+
+Fixed some logical errors in sprite handling and palette reads, DMA timing, 
+and one invalid opcode in the NES drivers. [Rob Bohms]
+
+Cleaned up and standardized usage of M_PI constants in the code.
+[William Krick]
+
+Added external ram read and write handlers and data read port to YMZ280B.
+[Ville Linde]
+
+Fixed sprite priorities in Tang Tang. [Pierpaolo Prazzoli]
+
+Fixed bug in Chack'n Pop that was introduced in the recent memory system
+changes. [Nicola Salmoria]
+
+Fixes branch target address disassembly in the PSX disassembler. [smf]
+
+More Voodoo updates: [Aaron Giles]
+ * fixed bug that trashed fbzMode when the fogMode was changed
+ * added preliminary Voodoo 2 support; Gauntlet Legends works again
+ * changed float-to-int conversion to be done manually
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Flame Gunner [Guru, smf]
+Paca Paca Passion Special [Guru, smf]
+Paca Paca Passion 2 [Guru, smf]
+
+
+
+New clones added
+----------------
+WWF Superstars (US, Newer) [Philip Bennett]
+Time Pilot '84 (set 3) [chaneman]
+Multi Champ Deluxe (ver. 0106) [David Haywood]
+Columns (US, cocktail) [Arzeno Fabrice]
+Mace: The Dark Age (boot ROM 1.0ce) [Brian Troha]
+Arabian Fight (World) [Arzeno Fabrice]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Emergency Call Ambulance [Ville Linde]

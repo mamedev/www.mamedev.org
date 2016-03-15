@@ -1,0 +1,75 @@
+0.109u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+uicrash0108u5red [Nicola Salmoria]
+
+
+
+Source Changes
+--------------
+Fixed subtle bug in the UI menu handler that only manifested on
+mingw-based compiles. [Nicola Salmoria]
+
+Updated CHD locating behavior to accept CHDs referenced by the 
+parent of a clone if the hash matches, even if it has a different
+name. [smf]
+
+Improved flash emulation and added support for Fujitsu flash chips.
+Switches Konami games over to new flash chips. [smf]
+
+Improved behavior of SCSI CD implementation for audio playback and
+TOC reading commands. [R. Belmont]
+
+Fixed priorities and the offset of layer 3 in fcrash. [robiza]
+
+Added save state support to the COP4xx core. [Aaron Giles]
+
+Changed the new disassembler and override callback prototypes to
+take const parameters and to remove the generally unused 'bytes'
+parameter. The disassemblers can now assume that the buffers contain
+enough bytes to hold the maximum instruction length as returned by
+the CPU core get_info callback. [Aaron Giles]
+
+Converted the following disassemblers to the new format, and added
+step in/out support where it was obvious: adsp21xx, alph8201, 
+arm, arm7, asap, ccpu, cdp1802, cop4x0, dsp32c, e132xs, g65816, 
+h6280, h83002, i8x41, i960, i8051, i8085, jaguar, m680x, m6805, 
+m37710, mc68hc11, pic16c5x, rsp, s2650, se3208, sh2, sharc, t11,
+tms32010, tms32025, tms32031, tms34010, upd7810, v60, v810, z180,
+and z8000. [Aaron Giles]
+
+Deprecated the old disassembler interfaces in favor of the new ones.
+[Aaron Giles]
+
+Fixed subtle bug in subtable allocation in the memory system that
+caused the Eolith games to assert with the debugger. [Aaron Giles]
+
+Tweaked the disassembly view to detect if the disassembly for the
+current instruction has changed, and if so, recompute the entire 
+view. This provides more dynamic updating when system states change
+under certain CPUs. [Aaron Giles]
+
+Added new symbol 'curpc' for all CPUs which represents the value of
+the current instruction pointer, to avoid naming conflicts with the
+'pc' register in other contexts. Changed this to be the default
+value for the disassembly window in the Windows version of the
+debugger (OSD ports will need to do likewise). [Aaron Giles]
+
+
+
+New clones added
+----------------
+Trivia (Version 1.01C) [Brian Troha]
+Space Battle (bootleg set 2) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tetris (Unknown Manufacturer) [David Haywood]
+Out Run (Mega-Tech) [Charles MacDonald, Brian Troha]
+Forgotten Worlds (Mega-Tech) [Charles MacDonald, Brian Troha]
+Super Real Basketball (Mega-Tech) [Charles MacDonald, Brian Troha]

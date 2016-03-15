@@ -1,0 +1,306 @@
+0.27
+
+REMEMBER: IF A GAME DOESN'T WORK, TRY DELETING THE .CFG FILE IN ITS DIRECTORY
+
+There has been much talk about the License under which MAME is released. We
+had to drop the GPL because it was not applicable. See readme.txt for the new
+rules.
+
+New games supported in this release (in no particular order):
+Xevious
+Star Wars
+Bubble Bobble
+Exed Exes
+Eliminator
+Space Fury
+Star Trek
+Tac-Scan
+Zektor
+Super Bagman
+Warlords
+10 Yard Fight
+Bosconian
+Dig Dug 2
+Pac & Pal
+Son Son
+Loco-Motion
+Blue Print
+Snap Jack
+Cosmic Avenger
+Eggs
+... plus many alternate versions which are not listed here.
+
+
+Program:
+- The Energy shields in Vanguard now work.
+  Nibbler, Vanguard and Fantasy now run at half their previous speed. Is this
+  the correct one?
+
+- Support for a GnG version with different graphics (cross instead of shield)
+
+- Thanks to the precious information on the Pokey random number generator
+  provided by Eric Smith, Hedley Rainnie and Sean Trowbridge, some problems
+  with Centipede (start with 18 credits) and Tempest (hang after level 13)
+  are now solved.
+
+- Thanks to Virtu-Al and Peter Clare, Carnival now has 100% accurate colors.
+
+- Mirko Buffoni and Tatsuyuki Satoh provided a preliminary Xevious driver.
+
+- Al Kossow and Brad Oliver provided drivers for the Sega vector games
+  (Eliminator, Space Fury, Star Trek, Tac-Scan, Zektor).
+  Partial sound support (speech) is available through samples for some of them.
+
+- Jarek Burczynsky provided better colors for Bagman and also added support
+  for Super Bagman.
+
+- Andrew Scott improved sound in Pleiads.
+
+- Thanks to Virtu-Al, Rescue now has accurate colors.
+
+- Lee Taylor (nxsl2819@defender.demon.co.uk) and John Clegg provided a
+  Warlords driver.
+
+- Andrea Fregoli added a scroll routine used when the keyboard/joystick
+  settings menu doesn't fit on the screen.
+
+- Andrew Scott and Robert R. Anschuetz II improved sound support in Galaxian
+  and clones. The background noise is now emulated, while the shoot noise
+  still requires a sample. These changes also affect other games using
+  the same sound routines.
+
+- Thanks to Brian Levine's freely available Rockulator, Andrew Scott was
+  able to add sound support to Vanguard.
+
+- Mike Coates improved again the Gorf driver. It's now (sort of) playable.
+
+- Lee Taylor and John Clegg provided preliminary 10 Yard Fight support.
+
+- Martin Scragg added Bosconian support.
+
+- Aaron Giles did a major rewrite of his Super Pac man and Mappy drivers:
+  - support for Dig Dug 2 and Pac & Pal
+  - High score save in all games
+  - 100% colors and sound samples (in Super Pac man the siren clicks a bit,
+    but neither I nor jrok can figure it out; the sample data *is* correct)
+  - better sound playback frequency (was missing some high bits!)
+  - arcade accurate frequency calculation (thanks to jrok!)
+  - removed all palette hacks; everything is clean
+  - added loop optimizations for speed
+  - video now properly displayed, including high priority characters
+
+- John Butler and Aaron Giles fixed sound and trackball support in Millipede.
+
+- Steve Baines, with the help of Frank Palazzolo and Brad Oliver, implemented
+  Star Wars. It's playable, but far from perfect. There's even some
+  preliminary sound support (slows the game down a lot).
+
+- Bernd Wiebelt implemented a new option for vector games: "-vg".
+  This adapts the Vector games to a given screen resolution (default 800x600).
+
+- Lot of work on the Atari Vector games (Brad Oliver & Bernd Wiebelt)
+  - Quite a few bugs hunted down.
+  - Thanks to Aaron Giles, the Atari vector games do correct scaling
+    now and we can do cycle counting on the vector CPU.
+    Aaron also fixed the scaling in the Sega vektor games.
+  - Tempest does no longer  crash after level 13, has better colors
+    (colorram emulation) and is overall a bit faster.
+  - Highscore saving for all games except Black Widow and Starwars
+  - Trackball support for Tempest and Red Baron.
+    Red Baron tries to calibrate its analog joystick at the start, so you'll
+    have to move the "joystick" a bit before you can fly in all four
+    directions. Thanks to baloo@kaiwan.com for his suggestions.
+  - Mauro Minenna made Battlezone playable with one joystick.
+  - Changes to game resolutions. On MSDOS, they now use tweaked VGA modes.
+
+  REMEMBER TO DELETE EVERY *.CFG AND .HI FILE FOR VECTOR GAMES, OTHERWISE
+  THE GAMES MIGHT NOT WORK CORRECTLY.
+
+- Mike Coates added partial sound support (thru samples) to the Carnival driver.
+
+- Bubble Bobble support, provided by Chris Moore (chris@aethos.co.uk).
+
+- Son Son support (dedicated to Roberto Ventura! ;)
+
+- Preliminary Exed Exes support, implemented by Richard Davies.
+  Thanks to Paul Swan, it has 100% accurate colors.
+  To do: find where tile ram is located and how it works, and whether banked
+  ROMs contain code or only data. The structure of this game is similar to
+  the other Capcom games.
+
+- Mirko Buffoni and Tatsuyuki Satoh added Starforce sound emulation.
+
+- Mike Coates tidied up the wow drivers, added definable keys to most games,
+  and joystick & 2 player support to Seawolf II.
+
+- Fabrice Frances added hiscore saving support to all Gottlieb drivers.
+
+- Ray Giarratana included trackball support to Missile Command.
+
+- Added support for Mr'Do vs Unicorns (earlier version of Do's Castle).
+  Thanks to Lee Taylor for info)
+
+- Sound support in Tutankham.
+
+- Elevator action sound is perfect now.
+
+- Improvements in Zaxxon colors by Marc Vergoosen.
+
+- Jarek Burczynski changed showcharset() in usrintrf.c. Now you can use PGUP
+  and PGDN to scroll through a charset which doesn't fit in the screen.
+
+Sources:
+- Brad Oliver wrote the new sndhrdw/pokyintf.c file. It handles most of the
+  pokey interface to pokey.c. Rather than call milliped_sh_start() or
+  whatever, call pokeyx_sh_start(), where x is the number of pokeys. It will
+  keep track of the pokey count and use the appropriate clipping. I'm not
+  sure 3 pokeys is a possible combination so there is no such
+  pokey3_sh_start() routine.
+
+- Christopher Kirmse <ckirmse@ricochet.net> ported MAME to Win32.
+  It compiles from the same source tree as the DOS version; to compile using
+  visual c++ 5, just do
+  nmake -fmakefile.w32
+  To build mame32.exe, you also need the SEAL audio library for win32.
+
+- Changes in SN76496 emulation (added SN76496UpdateB function to emulate 2
+  chips on 8 channel PCM sound cards), added Z80PIO and Z80CTC emulator, in
+  COMMON.C, 'TRANSPARENCY_PEN' and 'TRANSPARENCY_COLOR' mode were speeded up
+  (for X/Y dual scroll games). All this was done by Tatsuyuki Satoh.
+
+- Added generic EAROM routinges for the Atari Vector games, they
+  are in src/machine/atari.c and src/machine/atari.h
+
+- Bernd Wiebelt sincerely hopes he fixed the BCD-emulation in the 6502
+  emulation. At least the authentic Tempest feeling (broken X/Y monitor) is
+  gone, since the game now starts without pressing Fire.
+
+
+The following changes were done by Nicola Salmoria:
+
+Program:
+- Crystal Castles now has accurate colors and load/save of high score and
+  settings.
+
+- You can now turn off speed throttling (F10) even on games which use audio
+  streaming (i.e. all the ones with 8910 or Pokey sound chips)
+
+- Loco-Motion support
+
+- Blue Print support
+
+- Thanks to F. Kurokawa, preliminary Snap Jack and Cosmic Avenger support.
+  They run on the Lady Bug driver.
+
+- Fixes to the audio code which should fix crashes on some games and
+  compatibility problems with GUS and AWE 32. However let me stress once
+  again that if you have an AWE 32 you should use the plain SoundBlaster
+  driver. The AWE 32 driver sounds NOTHING like the original (and is slower).
+
+- In Galaga, star scroll speed in levels > 32 should be correct now.
+
+- Pressing ESC in all menus returns to pthe previous menu instead of quitting.
+
+- Changed the 8910 sound chip emulation interface to allow updates more
+  frequent than 60 per second. I also increased the sampling frequency to
+  44.1kHz.
+  These changes provide dramatic improvements in sound quality, which you can
+  appreciate in e.g. Gyruss and Pooyan.
+  The price to pay is slower execution. To make things worse, I had to
+  (hopefully temporarily) remove some optimizations, so the above games will
+  probably not run as well as before on slower systems.
+
+- Donkey Kong has better colors. Are they entirely accurate?
+
+- Preliminary driver for Eggs.
+
+- Popeye runs at the correct speed of 30 fps.
+
+- Increased the maximum number of digital audio channels from 8 to 16, so
+  there are no more missing voices in the Mr. Do! games (Castle, Unicorns,
+  Wild Ride, Run Run, and Kick Rider).
+
+- Thanks to Gary Walton, speed in Pengo should now be closer to the original.
+
+- The unencrypted versions of Penta and "pengopop" are no longer supported
+  because they are just hacks, not coming from a real board.
+  The *original*, *encrypted* versions are now supported instead. They are
+  exactly the same, the only difference is that they are encrypted and come
+  from real boards.
+  The names now are:
+  "pengo"  original Pengo with "PopCorn" music
+  "pengoa" alternate version (earlier) with different music
+           and no slow screen draw
+  "penta"  the bootleg called Penta
+
+- Elevator Action, Jungle King and Wild Western now use the same video hardware
+  driver (taito.c)
+
+- ROMs are checksummed before starting the emulation. If the checksum doesn't
+  match, a warning message is printed on the screen (along with the expected
+  checksums). Execution resumes after pressing Return. 
+  Not all drivers use this feature yet!
+
+- Some alternate ROM sets supported: ckonga, galaganm, gallag, bzone2,
+  asteroi2, panica, pacmanjp.
+
+- Some ROM renaming here and there, just to annoy you ;-)
+
+- Lots of minor fixes and enhancements.
+
+- Exchanged the infamous two sprite banks in Moon Cresta.
+
+Sources:
+- EXTREMELY IMPORTANT:
+  osd_obtain_pen() now doesn't return pens sequentially. This ensures that MSDOS
+  driver writes are aware of the existence of Machine->pens[] and use it
+  appropriately. Drivers which don't do this will have wrong colors.
+
+- modified readinputport() to scan the keyboard only once per frame, and handle
+  everything more efficiently. It is now MUCH faster than before - useful with
+  games which continuously poll a port for VBlank.
+
+- generic_vh_start() now checks that videoram_size has been initialized
+  and fails otherwise.
+
+- When using TRANSPARENCY_COLOR and TRANSPARENCY_THROUGH with drawgfx(), the
+  argument must now be the pen code instead of the remapped pen number, e.g.
+  instead of Machine->background_pen (= machine->pens[0]) you just specify 0.
+  I also removed the background_pen field from Machine: use Machine->pens[0]
+  instead.
+
+- The ROM_LOAD() macro now requires four parameters, the last one being the
+  checksum. To quickly upgrade from previous sources you can be used
+  (temporarily) ROM_OBSOLETELOAD(), however adding the checksum is easy (just
+  do a cut & paste from the warning message) so it's better to put them in
+  as soon as possible.
+
+- New macro ROM_RELOAD(), meaning to reload the previous ROM at a different
+  address (useful with 6502 games which need reset/irq vectors at FFFx).
+
+- In common.c, new function printromlist(), used by loadroms() and mame.c.
+  (-listroms).
+
+- Drivers are now allowed to modify the RAM and ROM pointers to implement
+  bank switching. Bubble Bobble uses this.
+  Be careful: when using this feature, you cannot use the standard MRA_RAM
+  and MWA_RAM memory hooks to access RAM.
+
+- InputPorts now can automatically handle VBlank bits. No more need to write
+  custom code. Lady Bug, Carnival, Mysterious Stones, Naughty Boy and Phoenix
+  use this feature. Many other drivers need to be updated to use it.
+  MAKE SURE TO DELETE LADYBUG\LADYBUG.DSW AND LADYBUG\LADYBUG.CFG, OTHERWISE
+  THE GAME WILL NOT WORK CORRECTLY.
+
+- New support functions in cpuintrf.c:
+  cpu_getfcount(), which returns the number of CPU cycles till the end of the
+    current video frame (as opposed to cpu_geticount(), which  returns the
+    number of CPU cycles till the next call of the interrupt handler)
+  cpu_getiloops(), which returns the number of times the interrupt handler
+    will be called before the end of the video frame (useful in interrupt
+	handlers).
+  cpu_gettotalcycles(), which returns the total number of CPU cycles passed
+    since the CPU was reset.
+  ignore_interrupt(), companion to interrupt() and nmi_interrupt(). This
+    allows interrupt handlers to be cpu-independant, avoiding use of
+	CPU-specific interrupt indetifiers.

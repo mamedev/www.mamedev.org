@@ -1,0 +1,189 @@
+0.37 BETA 9
+
+
+A handful of drivers haven't been converted to the new memory API yet, and therefore
+don't work. On startup, they will give the error
+      cpu # uses wrong data width memory handlers!
+and refuse to start.
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed last two levels in Act Fancer. [Bryan McPhail]
+
+
+Source:
+-------
+
+- Major rewrite of the memory interface.
+  The interface to the system is nearly identical, but the core has been
+  rewritten. Input ports are now handled just like memory accesses. Input ports
+  are also the same width as memory for a given CPU. For example, a 16-bit CPU
+  now needs both 16-bit memory handlers and 16-bit port handlers. Interfaces
+  for 16-bit and 32-bit port handlers have been added.
+
+  New macros exist now for generating and declaring a set of memory handlers.
+  This makes it very easy to add a new address space. The "voodoo constants"
+  ABITS1_xx, ABITS2_xx and ABITSMIN_xx are no longer necessary.
+
+  The number of supported banks has been expanded to 24. The
+  memory_set_bankhandler_* functions now take an additional parameter which
+  serves as an additional offset into the memory space. The namcos1 driver
+  has been modified to take advantage of these features.
+
+  It is now possible to manually limit the number of active address bits by
+  using a special MEMPORT_SET_BITS() macro in the read or write memory
+  definitions. See the rpunch driver for an example (Rabio Lepus only maps
+  the low 20 bits of the 68000's 24-bit address space.)
+
+  A new function cpu_get_pc_byte returns the byte offset of the current CPU's
+  PC, adjusted for Harvard architecture CPUs and CPUs which track the PC at the
+  bit or word level.
+
+  Several functions and macros have been renamed. All drivers have been updated
+  accordingly:
+
+      cpu_setbankhandler_*  -> memory_set_bankhandler_*
+      cpu_setOPbaseoverride -> memory_set_opbase_handler
+      memoryswapcontext     -> memory_set_context
+      cpu_readport          -> cpu_readport16
+      cpu_writeport         -> cpu_writeport16
+      change_pc             -> changepc_16
+
+  [Aaron Giles]
+
+- Major rewrite of the ROM loading interface.
+  The previous ROM loading system was showing its limitations, and was often
+  the source of confusion about byte ordering. The new system attempts to
+  address these concerns. All drivers have been converted to use the new
+  system exclusively; the old macros are deprecated immediately.
+
+  The ROM_REGION macro now takes a third parameter, which holds the various
+  flags for the region. These flags have been expanded to describe the data
+  width and endianness of the region (except for CPU regions, which obtain
+  their width and endianness from the associated CPU). This information is
+  used after the region has been loaded in order to appropriately byte-
+  swap the data for the native endianness of the target platform.
+
+  Additional region flags are now provided: ROMREGION_INVERT performs a
+  logical NOT on all data in the region. And ROMREGION_ERASE can be used to
+  clear the region to a specific byte value before loading ROMs.
+
+  For ROM loading, the old collection of ROM_LOAD_XXX_EVEN/ODD macros is
+  gone. To load a ROM into every other byte in a region, use the new macro
+  ROM_LOAD16_BYTE. All data should now be loaded in the natural alignment and
+  endianness of the region. Only after the ROMs are loaded will the data
+  be modified to correspond to what the CPU needs.
+
+  If you are loading data for a CPU into a non-CPU region (for example, you
+  are loading 68000 code into REGION_USER1), you need to make sure to tag
+  the region the same as the CPU. For a user region containing 68000 code,
+  you should use the ROM_REGION16_BE() macro to declare the region. This
+  isn't necessary for REGION_CPUxx because the ROM loader automatically
+  determines the information it needs from the CPU interface.
+
+  If you have old drivers to convert, these conversions cover 99% of all
+  cases (the (0) or (1) indicates that the offset field should be an even
+  (0) or an odd (1) address):
+
+      ROM_LOAD_EVEN         -> ROM_LOAD16_BYTE(0)
+      ROM_LOAD_ODD          -> ROM_LOAD16_BYTE(1)
+      ROM_LOAD_WIDE         -> ROM_LOAD16_WORD
+      ROM_LOAD_WIDE_SWAP    -> ROM_LOAD16_WORD_SWAP
+
+      ROM_LOAD_GFX_EVEN     -> ROM_LOAD16_BYTE(0)
+      ROM_LOAD_GFX_ODD      -> ROM_LOAD16_BYTE(1)
+      ROM_LOAD_GFX_SWAP     -> ROM_LOAD16_WORD_SWAP
+
+      ROM_LOAD_V20_EVEN     -> ROM_LOAD16_BYTE(1)
+      ROM_LOAD_V20_ODD      -> ROM_LOAD16_BYTE(0)
+      ROM_LOAD_V20_WIDE     -> ROM_LOAD16_WORD
+
+  These new macros are built upon a more flexible collection of ROM-
+  loading operations. ROM data is now loaded in "groups" of 1-16 bytes,
+  with 0-15 bytes of empty space left between each group. The data in
+  each group can be loaded in standard order, or in reversed order. And
+  each byte of data loaded can be masked and shifted to blend with other
+  data that has been previously loaded.
+
+  Furthermore, since almost every ROM_RELOAD and ROM_CONTINUE was used to
+  load the ROM with the exact same parameters, these macros now inherit
+  the behavior of the previous operation. This eliminates the need for
+  ROM_RELOAD_GFX_EVEN and all the other macros that cluttered up the old
+  system. For example, if you use ROM_LOAD16_BYTE to load some data, and
+  follow it with a ROM_CONTINUE to load additional data at a separate
+  offset, the ROM loader will continue loading every other byte.
+
+  Finally, there are two new entries that can be used to help fill in
+  unused or duplicated ROM data:
+
+      ROM_FILL( offset, length, byteval)
+      ROM_COPY( source_region, source_offset, offset, length )
+
+  ROM_FILL simply clears blocks of a region to a specific byte value.
+  ROM_COPY can be used to copy previously-loaded data from the same or
+  another region.
+  [Aaron Giles]
+
+- The 68EC020 core now uses 32-bit memory handlers. The Psikyo driver has been
+  updated to use the new interface. Unfortunately, this support has yet to make
+  it into the x86 asm 68000 core, so it is once again disabled for this build.
+  [Aaron Giles]
+
+- The CCPU and TMS32C010 cores are now full 16-bit cores. Appropriate changes
+  to the drivers that use them have already been made. This fixes the input
+  ports on the Cinematronics games, and gameplay in several Toaplan games.
+  [Aaron Giles]
+
+
+New games supported:
+--------------------
+
+Cavelon [Paul Swan]
+M660 [Paul Swan]
+The FairyLand Story []
+Balloon Brothers [Yochizo]
+Gigandes [Yochizo]
+Daisenpu [Yochizo]
+Battle Garegga [Yochizo]
+Armed Police Batrider [Yochizo]
+After Burner [Phil Stroffolino, Dave]
+After Burner II [Phil Stroffolino, Dave]
+Bloxeed [David Haywood, Aaron Giles]
+Columns [David Haywood, Aaron Giles]
+Columns II - The Voyage Through Time [David Haywood, Aaron Giles]
+Borench [David Haywood, Aaron Giles]
+ThunderForce AC [David Haywood, Aaron Giles]
+Tant-R (Puzzle & Action) [David Haywood, Aaron Giles]
+Puyo Puyo [David Haywood, Aaron Giles]
+Stack Columns [David Haywood, Aaron Giles]
+Poto Poto [David Haywood, Aaron Giles]
+Zunzunkyou No Yabou [David Haywood, Aaron Giles]
+Hard Drivin' [Aaron Giles, Ernesto Corvi]
+Saboten Bombers [Mirko Buffoni]
+Scud Hammer [Luca Elia]
+Thunder & Lightning [Luca Elia]
+Rezon [Luca Elia]
+Athena no Hatena [Luca Elia]
+Oishii Puzzle Ha Irimasenka [Luca Elia]
+Eight Forces [Luca Elia]
+Pro Mahjong Kiwame [Luca Elia]
+Krazy Bowl [Luca Elia]
+Battle K-Road [Luca Elia]
+Naname de Magic! [Nicola Salmoria]
+Asuka & Asuka [David Graves, Brian Troha]
+Maze of Flott [David Graves, Brian Troha]
+Galmedes [David Graves, Brian Troha]
+Earth Joker [David Graves, Brian Troha]
+Kokontouzai Eto Monogatari [David Graves, Brian Troha]
+Cadash [David Graves]
+
+
+New clones supported:
+---------------------
+
+The King of Dragons (US)
+Street Smart (World version 1)
+Two Tigers (dedicated)
+Manhattan 24 Bunsyo (= Jail Break)

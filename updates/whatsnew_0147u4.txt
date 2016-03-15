@@ -1,0 +1,271 @@
+0.147u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03718: [Crash/Freeze] (segas18.c) shdancer: Freeze on stage 2-4 (Phil Bennett)
+- 03461: [DIP/Input] (starfire.c) starfire, starfirea, starfir2: Scratchpad Ram test not available in emulation (hap)
+- 00340: [Flip Screen/Cocktail] (rotaryf.c) rotaryf: Screen is not flipped for the player 2 in cocktail mode. (Robbbert)
+- 02710: [Flip Screen/Cocktail] (astinvad.c) spaceint, spaceintj: Corrupt screen in cocktail mode (Robbbert)
+- 05063: [Sound] (segas16a.c) shinobi, aliensyn2, quartet: Missing speech in sega16a games (Phil Bennett)
+- 05062: [Sound] (segag80r.c) monsterb: Buzzing sound during opening and gameplay. (Phil Bennett)
+
+Source Changes
+--------------
+-Fixed Lethal Enforcers 2 duplicated input. [Tafoid]
+
+-sstarcrs : fixed loading of gfx roms. [Robbbert]
+
+-Added Sanyo LC8670 CPU core. [Sandro Ronco]
+
+-i8243.c: Fixed write handler regression following devcb2 conversion
+ [Phil Bennett]
+
+-Correct DAC frequency in "Hayaoshi Taisen Quiz Hyhoo" [Takahiro Nogi]
+
+-CPS-1 update [Team CPS-1]:
+ * Redumped TN2J_09.12A to match real pcb and added missing
+    documentation to qtono2j.  [Bonky0013, JacKc]
+
+-Firebeat updates: [Anonymous, R. Belmont]
+ * Dumped missing audio CD for ppp
+ * Dumped missing security dongle for popn5
+ * Redumped BAD_DUMP discs for popn7 and verified security dongle
+    against new dump
+ * Redumped BAD_DUMP audio disc for ppd; audio now syncs with graphics
+ * Redumped BAD_DUMP discs for ppp11
+
+-witch.c: Add PCB layout and dipswitch locations to the Witch sets.
+  [Brian Troha]
+
+-Mark the display for screenless systems as changed whenever an output
+ has changed.  [Wilbert Pol]
+
+-Added Neogeo Universal Bios 3.0 [Razoola] 
+
+-es5503: Make the number of output channels configurable [O. Galibert]
+
+-Added internal boot loader programs to the TMS3203x core and support a
+ switch between microcomputer (bootloader) and microprocessor modes via
+ the TMS3203X_MCBL input [Phil Bennett]
+
+-Corrected the rom names and locations of Primal Rage, Jr. Pac-Man and
+ Rampage according to PCB marking.  Also included details on the 23
+ gals which need dumping.  [Kevin Echbach]
+
+-Corrected romname on US BIOS for neogeo.  [Guru]
+
+-CPS-1 update [Team CPS-1]:
+ * Added CCPRG.11D, QAD63B.1A, TN2292.1A PALs
+ * Replaced the old PAL S224B.1A with the one coming from the real
+    dump [Corrado Tomaselli]
+ * Identified and documented qadj as a genuine Japan Resale Ver.
+    board, qadj -> qadjr
+ * Added "Japan Resale Ver." note where needed
+ * Updated and realigned games table in video\cps1.c
+ * Minor fixes
+
+-Changed flash access to use 16 bit handlers [smf]
+
+-rotaryf : Added 'invaders' sounds [Robbbert]
+
+-h8 updates: [R. Belmont]
+ * Preliminary H8S/2655 support
+ * Fixed so RTE doesn't allow the PC to go outside the address space
+ * Supported additional forms of BTST and BSET
+ * Removed incorrect halt on BVC/BVS instructions
+
+-Added some extra dipswitches for sf2amf, added some more (not working)
+ bootlegs and some consistency fixes, many thanks to Jackc for pointing
+ me to all the necessary documentation. [ReadOnly]
+
+-added PCMCIA flash card layout and renamed dumped roms to match new
+ positions [smf]
+
+-Updated PCMCIA card layout and added back, based on pictures from Guru
+ [smf]
+
+-h8: H8S analog I/O is now routed to the driver like in the original
+ H8s [R. Belmont]
+
+-6850acia: bring IRQ line into standard usage (ASSERT_LINE = IRQ
+ active) [R. Belmont]
+
+-Various changes to Nichibutsu Mahjong drivers: [Takahiro Nogi]
+ * drivers/nbmj8688.c: Fixed graphics in orangec,orangeci,vipclub
+    sets, removed GAME_IMPERFECT_GRAPHICS flag for these.
+ * drivers/nbmj8891.c: Added Font Select configuration setting for
+    hanamomo
+ * machine/nb1413m3.c: Added special case for ORANGECI and removed
+    unnecessary information in the file
+
+-CPS-2 update [Team CPS-1]:
+ * Added X-Men: Children of the Atom (Euro 950331), now set as new
+    parent [Bonky0013]
+ * Fixed missing ROMs labels in xmcotah
+ * xmcotad -> xmcotar1d
+
+-xtal.h: fix an error with one of the crystals listed [Lord Nightmare]
+
+-Added the ability to view peel18cv8 jed files to the jedutil.  
+ [Kevin Eshbach]
+
+-Fixed cawingbl [Barry Harris]
+
+-kodb : fixed sound [Barry Harris]
+
+-Added color prom to Taxi Driver, and fixed colors in it
+ [Zab, Angelo Salese]
+
+-Added skeleton driver for Dragon's Lair 2: Time Warp (dlair2.c). 
+ Added some notes to assist initial development.  [Tafoid]
+
+-SDL: Revise *IX man pages [wallyweek]
+
+-sf2mdt : fixed video and sound [Barry Harris]
+ * moved sf2mdt and sf2mdta to fcrash.c (from cps1.c)
+ * emulated the Z80, YM2151 + 2xMSM5205 sound
+ * implemented the correct irq line
+ * hooked up the input and dip switch reads
+ * hooked up the scroll and layer enable register writes
+ * allowed use of separate bootleg sprite ram in the driver
+
+-m6502,tms57002: Snakes in an emulator [Robert Muth, O. Galibert]
+
+-Fixed python to use env variable as described in root makefile; fixes
+ builds on windows with spaces in the path. [Balrog, Lord Nightmare]
+
+-Preliminary support for Test Mode in upd1990a RTC device
+ [Angelo Salese]
+
+-Fixed sf2mdta, inproved sf2mdt [Barry Harris]
+ * removed hack for row scroll table address in sf2mdt (bootleg layer
+    render code doesn't use table, and the game isn't writing the
+    address anywhere, hence the presence of the hack)
+ * aligned scroll 2 layer in sf2mdt
+ * boosted interleave when writing sound command to fix the issue of
+    voice's being dropped
+ * decoded graphics in sf2mdta correctly
+ * hooked up sf2mdta reads and writes the same as sf2mdt with
+    different a layer write layout
+ * hooked up sf2mdta work ram
+
+-kodb : added notes; fixed flashing when hit instead of disappearing
+ [Barry Harris]
+
+-Z8001: Implement separate program/data address spaces
+ [Christian Grössler]
+
+-315_5124.c: Fixed copy/paste error that caused FluBBa's "Offscreen Y,
+ col" test to fail for the game gear vdp.  [Enik Land]
+
+-preliminary DCPL GTE opcode [smf]
+
+-upd7220: tied pixel clock with the refresh rate, updated all drivers
+ to use it [Angelo Salese]
+
+-Add correct ROM locations to Blood Bros sets [Lord_Nightmare, balrog]
+
+-Kuru Kuru Pyon Pyon. Added new documentation about the resonator used
+ for OKI M5205. Also added it through #define [Roberto Fresca,
+ Smitdogg]
+
+-Kuru Kuru Pyon Pyon: Documented the bookkeeping, character names (bets
+ 1-2-3-4-5), and found the port that trigger the M5205 samples
+ [Roberto Fresca]
+
+-Kuru Kuru Pyon Pyon: Added a complete ASCII PCB layout, and documented
+ the DIP switches settings found on the board. [Roberto Fresca]
+
+-naomi: dumped 317-0379-JPN PIC [tak]
+
+-cps2 : Added digital volume control [Barry Harris]
+
+-foodf.c: Correct ROM labels and locations for the Food Fight sets.
+ [Andrew Welburn, Phil B., The Dumping Union]
+
+-fixed or improved cocktail mode / player 2 controls for shuttlei,
+ skylove, rollingc, vortex, invrvnge, schaser, schasercv, polaris,
+ spacecom, darthvdr, invadpt2, lrescue, ballbomb, spacerng [Robbbert]
+
+-Further major organization, documentation, reordering and making of
+ clones causing numerous (nearly 2000) new gambling / Fruit machine sets
+ to be created, covering multiple systems.  [David Haywood]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Jong Yu Ki (Japan) [Takahiro Nogi, Luca Elia]
+Gachaga Champ (GE877 VER. JAA)
+  [smf, Yasuhiro, Tormod, Paratach, M. Healey, Dr. Spankenstein, f205v, T. Bailey, Mr. CAST, J. Finney, M.David, anonymous, Pernod, hap, gatt9, redk9258, L. Genier, Yohji, Smitdogg, The Dumping Union]
+Riviera Hi-Score [Brian Troha, The Dumping Union]
+Kuru Kuru Pyon Pyon (Japan)
+  [Roberto Fresca, hap, Fyrecrypts, anonymous, btribble, Yohji, Smitdogg, The Dumping Union]
+Ganbare Marin-kun (Marine 2K0411 JPN) [robbbert]
+
+New clones added
+----------------
+Moon Crest (bootleg of Moon Cresta) (SG-Florence) [Robbbert, MisfitMAME]
+Se Gye Hweng Dan Ultra Champion (Korea) [gp-lee, Guru, Luca Elia]
+Astrians (clone of Swarm) [Robbbert, MisfitMAME]
+Bomber (clone of Scramble) [Robbbert, MisfitMAME]
+Frogger (Coin Music) (clone of Frogger) [Robbbert, MisfitMAME]
+Ghost Munchers (clone of Pacman) [Robbbert, MisfitMAME]
+Phoenix (GGI Corp, set 4) [Robbbert, MisfitMAME]
+Pleiads (ESG) [Robbbert, MisfitMAME]
+Star Wars (Yamashita, clone of Galaxy Wars) [Robbbert, MisfitMAME]
+Witch [f205v, The Dumping Union]
+Mechanized Attack (US, Single Player) 
+  [A. Costin, GordonJ/RomVault, Smitdogg, The Dumping Union]
+Mystic Marathon (prototype)  [Joe Magiera]
+Royal Casino (D-2608208A1-1, Larger Board)  [Kevin Eshbach]
+Royal Casino (D-2608208A1-1, Smaller Board)  [Kevin Eshbach]
+Street Fighter II': Magic Delta Turbo (bootleg, set 2) (not working)
+  [f205v, ReadOnly]
+Street Fighter II': Champion Edition (M8, bootleg) (not working)
+  [Bonky, ReadOnly]
+Sunset Riders (4 Players ver JAC)  [any]
+Super Earth Invasion (Electrocoin, bootleg) [Andy Welburn, MisfitMAME]
+Dragon 2000 [robcfg]
+Zero Point (Japan) [Takahiro Nogi]
+X-Men: Children of the Atom (Euro 950331) [dhaywood]
+Dragon's Lair 2: Time Warp (Euro v3.19) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (Spanish v3.19) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v3.18) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (Euro v3.16) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v3.15) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (Spanish v3.15) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v3.14) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v3.12) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v3.00) (not working) [tafoid]
+Dragon's Lair 2: Time Warp (US v2.11) (not working) [tafoid]
+Carrier Air Wing (bootleg 2) [Barry Harris, Bonky0013]
+Space Ace (DL2 Conversion) (Euro v1.3) (not working) [tafoid]
+Head On (bootleg on dedicated hardware) [any, hap, The Dumping Union]
+The Punisher (Hispanic 930422) [Artemio Urbina]
+Space Combat [Brendan Schulze, John Glover]
+Scramble (Stern Electronics set 2) [József Bucher]
+Rolling Thunder (rev 2) [Andy Welburn]
+World Class Bowling v1.3J (Japan) [Yohji, Smitdogg, The Dumping Union]
+Space Chaser (set 2) [robbbert]
+Space Chaser (set 3) [robbbert]
+Gun Champ (newer, Super Shot hardware) [any]
+Donkey King [Guru, Tingoes]
+Jr. Pac-Man (speedup hack)
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pop'n Music 4 [Anonymous, R. Belmont]
+Pop'n Music 6 [Anonymous, R. Belmont]
+Pop'n Music 8 [Anonymous, R. Belmont]
+Pop'n Music Animelo 2 [Anonymous, R. Belmont]
+Gachaga Champ (GE877 VER. JAA)
+  [smf, Yasuhiro, Tormod, Paratach, M. Healey, Dr. Spankenstein, f205v, T. Bailey, Mr. CAST, J. Finney, M.David, anonymous, Pernod, hap, gatt9, redk9258, L. Genier, Yohji, Smitdogg, The Dumping Union]
+Dragon's Lair 2: Time Warp (US v3.19) [tafoid]
+Space Ace (DL2 Conversion) (US v1.3) [tafoid]
+Beatmania III Append 7th Mix [Anonymous, R. Belmont]
+Beatmania III The Final [Anonymous, R. Belmont]
+Final Lap 3 (bootleg) [ANY]
+Raizin Ping Pong [Guru]

@@ -1,0 +1,82 @@
+0.110u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+sandscrp0110u1yel [Mamesick]
+
+
+
+Source Changes
+--------------
+Added raw decryption table to choko. Enabled the use of the large
+CHD-based tables by default. [David Haywood]
+
+Changed kram3 decryption to use external tables instead of hard-
+coded ones in the source. [Atari Ace]
+
+Konami driver updates: [Ville Linde]
+ * drivers/gticlub.c:
+   - Moved video hardware to vidhrdw/gticlub.c
+   - Hooked up sound emulation
+   - Added dual-screen support for Hang Pilot
+ * drivers/hornet.c:
+   - Added support for multiple K037122 chips
+   - Added dual-screen support for Silent Scope & Silent Scope 2
+ * drivers/nwk-tr.c:
+   - Added support for multiple K001604 chips
+   - Hooked up sound emulation
+ * vidhrdw/gticlub.c:
+   - Added texture-mapping and z-buffer to K001005 emulation
+ * general:
+   - Consolidated K056800 emulation (machine/konamiic.c)
+   - Improved Hang Pilot/NWK-TR gfx board emulation
+
+STV fixes: [Mariusz Wojcieszek]
+ - vdp2: fixed vertical scrolling for RGB bitmaps (fixes corrupted
+    gfx in batmanfr)
+ - vdp2: fixed vertical line scrolling for zoomed layers (fixes
+    corrupted backgrounds in astrass)
+ - stv:  added speedup for master sh2 in batmanfr
+
+Fixed bug in overflow handling and SUBC emulation in the TMS32010
+core. [Rainer Keuchel]
+
+Reverted Mario Bros. graphics offset since it caused issues 
+elsewhere. [Derrick Renaud]
+
+Enhanced chd.c to support hunk sizes up to 16MB, versus the previous
+64k limit. [Aaron Giles]
+
+Added hooks to chd.c to specify codec-specific configuration info.
+[Aaron Giles]
+
+Removed obsolete timing parameter from stream_update(). [Aaron Giles]
+
+Cleaned up cdrom.c. Removed audio implementation and relocated code
+into sound/cdda.c. Changed metadata format to be textual instead of
+binary (old metadata format is still supported). Removed external
+access to CHD positions; all accesses are now done at the physical
+LBA level and converted internally. [Aaron Giles]
+
+Added support for split CHD files. CHD files can be transparently
+split into multiple pieces and left that way during read access.
+Modifications to split files are always written to the last file.
+A new command chdman -split is now available to split an existing
+CHD file. [Aaron Giles]
+
+Added new option -fontpath to control where the font files are loaded
+from. [Aaron Giles]
+
+Added ability for options_add_entries() to override defaults 
+specified in the core. To do this, simply include an option in the
+list with the same name as the core option and provide a new default.
+This default will override the one specified in the core.
+[Aaron Giles]
+
+
+New clones added
+----------------
+World Rally (set 3 - 930217) [Kevin Eshbach]
+Bionic Commando (Euro) [Stefan Lindberg]

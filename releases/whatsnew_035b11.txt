@@ -1,0 +1,101 @@
+0.35 BETA 11
+
+New games supported:
+--------------------
+
+Prehistoric Isle in 1930 [Bryan McPhail, Carlos A. Lozano]
+Double Dribble [Manuel Abadia]
+Terra Force [Carlos A. Lozano, Phil Stroffolino]
+Armed Formation [Carlos A. Lozano, Phil Stroffolino]
+Wiping [Allard van der Bas]
+Cabal [Carlos A. Lozano, Phil Stroffolino]
+Wonder Momo [Nicola Salmoria, Ernesto Corvi]
+Insector X [Nicola Salmoria]
+Sichuan II (it's 100% emulated, but one ROM is missing so it doesn't work
+  correctly) [Nicola Salmoria]
+Goindol [Jarek Parchanski]
+Vindicators part II [Aaron Giles]
+Ufo Robo Dangar [Carlos A. Lozano]
+
+
+New clones supported:
+---------------------
+
+D-Day (Olympia) [Zsolt Vasvari]
+Zaxxon (set 2) [Marco Cassili]
+Eagle (set 2) [Marco Cassili]
+Do! Run Run (set 2) [Marco Cassili]
+Do! Run Run (Do's Castle hardware) [Nicola Salmoria]
+Intrepid (set 2) [Thierry Lescot]
+Super Mouse (set 2) [Thierry Lescot]
+My Hero (Japan) [Nicola Salmoria]
+Green Beret (bootleg) [Mirko Buffoni]
+Punk Shot (4 players) [Nicola Salmoria]
+Block Out (set 2) [Nicola Salmoria]
+Aero Fighters (Turbo Force hardware set 2) [Nicola Salmoria]
+Spiders (set 1) [Nicola Salmoria]
+Last Duel (US set 2) [Byan McPhail]
+Led Storm [Byan McPhail]
+Bubble Bobble (US) [Brad Oliver]
+Rastan (US) [Nicola Salmoria]
+Stratovox (bootleg) [Nicola Salmoria]
+Pac Gal [Victor Trucco]
+Star Wars (revision 2) [Brad Oliver]
+Indiana Jones (set 2) [Aaron Giles]
+Blasteroids (version 4) [Aaron Giles]
+Escape From the Planet of Robot Monsters (set 2) [Aaron Giles]
+Majestic Twelve [Marco Cassili]
+Cosmo Police Galivan (set 2) [Nicola Salmoria]
+Naughty Boy (Jaleco and bootleg) [Brad Oliver]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Several fixes and improvements to D-Day. [Zsolt Vasvari]
+
+- Fixed foreground transparency in Pac-Land round 19. [Nicola Salmoria]
+
+- Better backdrop for Battle Zone (bzone.png). [Nathan Sturm]
+
+- Fixed background in Street Fighter 1. [Olivier Galibert]
+
+- Fixed sprite glitches in Jail Break and Iron Horse. [Nicola Salmoria]
+
+- Fixed sprites colors in Galivan. [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Support for Eliminator 2/4 player samples and additional sounds for
+  Zektor. [Jim Hernandez]
+
+- Fixed tune in Phoenix. [Richard Davies]
+
+- Added ADPCM samples to Mad Gear. [Bryan McPhail]
+
+
+Changes to the main program:
+----------------------------
+
+- Added support for .wav samples. The custom .sam samples are no longer
+  supported (you can use the sam2wav converter to convert them). [Aaron Giles]
+
+- [DOS] Rough triple buffering support in VESA modes. You can turn it on with
+  the -triplebuffer switch. It is not guaranteed to work well, but if it does,
+  it offers results similar to -waitvsync but without the performance drop.
+  Do NOT use it together with -vsync or -waitvsync. [Nicola Salmoria]
+
+- A missing ROM for which no good dump is known to exist is no longer a fatal
+  error - you can start the emulation even if the file is missing. Its space
+  will be filled with random data. Of course the game will probably
+  malfunction. The output of -verifyroms is slightly changed, it says "NO GOOD
+  DUMP KNOWN" now and doesn't print 00000000 checksums. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- Major overhaul to the Atari games, and fixes to the 68000 and 6502 cores to
+  get them going properly. [Aaron Giles]

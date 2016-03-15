@@ -1,0 +1,102 @@
+0.36 BETA 8
+
+Another clause had to be added to the license. Check it in readme.txt
+(at the end of VII. Derivative Works).
+
+
+New games supported:
+--------------------
+
+Bogey Manor [Bryan McPhail]
+Trio the Punch [Bryan McPhail]
+Chuka Taisen [Quench]
+Assault [Keith Wilkins]
+Ordyne [Keith Wilkins]
+Mirai Ninja [Keith Wilkins]
+Phelios [Keith Wilkins]
+Legend of Walkyrie [Keith Wilkins]
+Finest Hour [Keith Wilkins]
+Burning Force [Keith Wilkins]
+Marvel Land [Keith Wilkins]
+Dragon Saber [Keith Wilkins]
+Rolling Thunder 2 [Keith Wilkins]
+Cosmo Gang [Keith Wilkins]
+The Hustler [Manuel Abadia]
+Vulcan Venture [Phil Stroffolino, Nao, Dave Spicer]
+Devil World [Phil Stroffolino]
+Cue Brick [Phil Stroffolino]
+Hard Puncher [Phil Stroffolino]
+
+
+New clones supported:
+---------------------
+
+R-Type II (Japan)
+Arkanoid 2 (Japan)
+Looper (= Changes)
+The End (Konami)
+Tumble Pop (original) [Bryan McPhail, Chris Hardy]
+Tokushu Butai Jackal
+Out Zone (bootleg)
+Hyper Olympic '84 (= Hyper Sports)
+Guttong Gottong (= Locomotion)
+Strategy X (Konami)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed sprite lag in cps1, bionicc, lastduel. [Bryan McPhail]
+
+- Fixed priorities in wndrmomo and genpeitd. [E. Watanabe]
+
+- Sped up a little the NeoGeo raster effects. Enabled them in Karnov Revenge
+  and Galaxy Fight. Fixed the field in ssideki3 etc. [Massimo Morra]
+
+- Fixed sprite Y offset in the Simpsons dreamland level. Apologies for taking
+  so long, I couldn't find the time to play it that far and hadn't realized I
+  just had to use the attract mode of the Japanese version. [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- CVSD sound in Mouse Trap. [Dan Boris, Aaron Giles]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Changed the autoframeskip code, making it less anxious to increase
+  frameskip as soon as speed drops below 100%. Let's see if this makes things
+  better or worse. [Nicola Salmoria]
+
+- [DOS] The mouse buttons are no longer aliases for joystick buttons, they are
+  independently recognized. They are still considered "joystick" inputs though,
+  so if you want to use them you have to redefine the controls in the Joystick
+  menu. This is a minor annoyance that was needed to allow interfacing a Discs
+  of Tron controller to the mouse port (spinner + up and down switches) while
+  still using joystick buttons 1 and 2 for fire and deflect. [Nicola Salmoria]
+
+- [DOS] Support for ZIPped input files (-playback) and artwork. Well, PNG won't
+  compress very well, but I added it anyway ;) [Juergen Buchmueller]
+
+
+Source:
+-------
+
+- Finally fixed the CMPX instruction in the 680x core. On the 6800 it does
+  not affect the C flag, on the others (6803, 63701) it does.
+  [Tatsuyuki Satoh]
+
+- Fixes to the x86 asm 68k core. [Mike Coates]
+
+- VIDEO_BUFFERS_SPRITERAM. See bionicc, darkseal, lastduel for usage examples.
+  [Bryan McPhail]
+
+- Added vh_eof_callback to the MachineDriver structure. See bionicc, cps1,
+  lastduel for usage examples. [Nicola Salmoria]
+
+- Cleaned up the 6809 and Konami-2 emulations. [Juergen Buchmueller]
+
+- C140 emulation. [Phil Stroffolino]

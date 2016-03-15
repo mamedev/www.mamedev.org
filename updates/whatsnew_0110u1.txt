@@ -1,0 +1,72 @@
+0.110u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+warriorb0109u2gre [Aaron Giles]
+ballbros0109u5gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Numerous improvements to the cheat engine again. [ShimaPong]
+ * Operation
+  - Mounted copy prevous value.
+  - Defined link extension bit in type field.
+  - Improved one shot operation when restore previous value is 
+     available.
+
+ * Menu
+  - Major update for classic search menu.
+  - Arranged the cheat general menu a bit.
+  - Improved item display for selection type code on the code 
+     edit screen.
+  - Added entry index parameter to EditCheatMenu().
+
+ * Watchpoint
+  - Added watchpoint for ROM region.
+  - Improved adding watch from cheat list.
+
+ * Activation key
+  - Added save activation key.
+  - Added 2nd activation key.
+  - Added show activation key message option.
+
+ * Others
+  - Refined command code format.
+
+Added support for Fixed Interval Timer to the PPC403 core.
+[Ville Linde]
+
+Polygonet Commanders update: [Andrew Gardner]
+ * Added more accurate host interface to dsp56k core
+ * Removed a bunch of hacks in plygonet.c
+
+Added new field Machine->basename which is used to describe the path
+used for various file accesses. This is a helper for MESS, and should
+not have any user-visible changes. The file accesses affected are:
+configuration (cfg) files, snapshots, debugger comments, NVRAM,
+and memory cards. [Aaron Giles]
+
+Changed naming of screenshots. They are now created in separate
+folders per game, with numeric names 0000.png, 0001.png, etc.
+[Aaron Giles]
+
+Changed artwork layout loading to load either gamename/gamename.lay
+or gamename/default.lay. The latter is preferred, and allows for
+easier reuse of layouts between games. [Aaron Giles]
+
+Fixed max instruction bytes for 68020+ CPUs to avoid assertion in
+new disassembler. [Aaron Giles]
+
+Added flip screen offsets needed with new video parameters in the
+pacman.c driver. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fishing Frenzy [Aaron Giles]
+Freeze (Atari) [Aaron Giles]

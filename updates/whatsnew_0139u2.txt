@@ -1,0 +1,540 @@
+0.139u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02449: [Graphics] lethalen: Can't find the flip bits used for the 
+         tiles.. (p2 start screen, reload indicator).
+- 04026: [Graphics] combatscb: Experiences various graphics glitches. 
+         (robiza)
+- 01215: [Crash/Freeze] combatscb: Crashes on level 3 and experiences 
+         various graphics glitches.
+- 00229: [Color/Palette] truxton: The background colour on the title 
+         screen of Truxton should be green. (robiza)
+- 00949: [Graphics] outzone: In stage 6 there are two blank box on the 
+         background. (robiza)
+- 03203: [Misc.] All sets in docastle.c and mrdo.c: Unable to enter 
+         Service Mode (Phil Bennett)
+- 04009: [Save/Restore] pacland and clones: Reload of state cause game 
+         issues (Phil Bennett)
+- 03858: [Graphics] batsugun, batsuguna, batsugunsp, dogyuun: tiles/
+         tiles and tiles/sprites priorities problems (David Haywood)
+- 03718: [Crash/Freeze] shdancer: Freeze on stage 2-4 (Phil Bennett)
+- 03881: [Crash/Freeze] minefld, rescue, aponow: Hangs at Post 
+         (Phil Bennett)
+- 03961: [Crash/Freeze] racedriv and clones: Game resets itself before 
+         game start (Phil Bennett)
+- 04006: [Graphics] fixeightb: Graphic glitches (David Haywood)
+- 03755: [Sound] soldivid: No music after loading savestate 
+         (or -autosave) (Phil Bennett)
+- 03820: [Save/Restore] batlbubl, bangball: Using -autosave causes 
+         audio to malfunction (Phil Bennett)
+- 04004: [Graphics] pballoon: Screen is shifted left. (David Haywood)
+- 03986: [DIP/Input] All sets in enigma2.c: Most Dip Switches no longer 
+         function (Phil Bennett)
+- 03730: [Save/Restore] parodius: The game freeze or reboot when using 
+         -autosave/save state (Phil Bennett)
+- 04001: [Save/Restore] All sets in mappy.c: Reload of state causes 
+         audio corruption (Phil Bennett)
+- 03994: [Save/Restore] All sets in dcheese.c: Reload of state causes
+         audio corruption (Phil Bennett)
+- 03992: [Save/Restore] btoads: Reload of state cause major graphic 
+         corruption (Phil Bennett)
+- 03991: [Save/Restore] bigevglf : Reload of state cause audio 
+         corruption (Phil Bennett)
+- 03993: [Save/Restore] All sets in crshrace.c: Reload of state cause 
+         loss of audio (Phil Bennett)
+- 03989: [Save/Restore] asterix and clones: Reload of state causes loss 
+         of audio (Phil Bennett)
+- 03998: [Documentation] bmiidx3: Game name description. (M.A.S.H.)
+- 03978: [DIP/Input] cyclshtg, bronx: Dipswitches are wrong (stephh)
+- 03988: [Save/Restore] ace: Reload of state causes a graphic problem 
+         (hap)
+- 03996: [Crash/Freeze] All games in taito_x.c: Crash before OK 
+         (Atari Ace)
+
+
+
+Source Changes
+--------------
+Added sound support to Signetics S2636 (by using VC4000 sound support
+from MESS). Hooked up sound to Malzak, Galaxia and Astro Wars
+[Mariusz Wojcieszek]
+
+Corrected rom names for Raiden Fighters 2 (Asia, Metrotainment
+License) set based on pcb pictures [Lord Nightmare, Tormod]
+
+Hooked up S2636 sound to zac2650.c [Mariusz Wojcieszek]
+
+seibuspi.c: Fixes the "FIX" graphics load. May require specific ENDIAN
+to work on all platforms. Both new Asian sets now work correctly.
+[Brian Troha]
+
+seibuspi.c: Add default EEPROM to the Raiden Fighters Jet (US, Single
+Board) set so it will boot correctly the first time run. [Brian Troha]
+
+Removed several exported non-const global variables from the core
+[Atari Ace]
+
+nycaptor, colt, cyclshtg, bronx (nycaptor.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+
+Golden Poker driver: Fixed tilemap issues with games using 60Hz/50Hz
+modes, selectable through DIP switches. [Roberto Fresca]
+
+Added support for 'Genie'. An old magic-lamp themed game from Video
+Fun Games Ltd. [Roberto Fresca]
+ * Decoded graphics and colors.
+ * Accurate inputs.
+ * Discrete sound.
+ * Default NVRAM support.
+Xtal, CPU clock, and some discrete components values need to be
+checked from PCB.
+
+Changed Noraut Joker Poker (Prologic HW) manufacturer to Video Fun
+Games Ltd. [Roberto Fresca]
+
+Added save-state support to the K053260 sound core [Phil Bennett]
+
+Added save-state support to the MSM5232 sound core [Phil Bennett]
+
+Converted TLC34076 to a device [Phil Bennett]
+
+Cleaned up toaplan2 driver and converted it to use driver_data
+[Atari Ace]
+
+Merged topshoot into the megadrvb driver (formerly genesisb) [Sonikos]
+
+Hooked up some quick and dirty video routine to Aristocrat Mk-5
+[Angelo Salese]
+
+Acorn Archimedes / Aristocrat MK-5: Added Force IRQ/FIRQ hook-up and
+hooked up an undefined behaviour for a timer check, fixes CPU check
+during POST [Angelo Salese]
+
+Implemented I2C accesses to the Acorn Archimedes / Aristocrat MK-5 HW,
+fixing SRAM check [Angelo Salese]
+
+Added clock read-back register to the I2C device [Angelo Salese]
+
+Fixed the Sound DMA in Acorn Archimedes / Aristocrat MK-5, adding
+sound support to the drivers [Angelo Salese]
+
+Add IC pinout to VLM5030 driver. Still need translation of the
+datasheet for VCU, RST (which does more than just reset) and MTE.
+[Lord Nightmare]
+
+Added sound hook-up to the Erotictac HW, sound doesn't yet work due of
+missing memory management hook-up [Angelo Salese]
+
+Added 2KHz timer to Aristocrat MK-5 HW [Angelo Salese]
+
+Attempt to fix reported GCC 4.5 problems [R. Belmont]
+
+Fixed a fatal bug in MEMC handling and removed the mapping kludge for
+Aristocrat MK-5 [Angelo Salese]
+
+Improved video emulation to the Aristocrat MK-5, added bare-bones VIDC
+DMA transfer and timings, added 8bpp mode [Angelo Salese]
+
+Added save-state support to the YMF278B core [Phil Bennett]
+
+Rewritten I/O device r/w accesses in Acorn Archimedes/Aristocrat MK-5
+[Angelo Salese]
+
+Added missing save-state registration entries to the SH-2 core
+[Phil Bennett]
+
+Converted address_space to a class, and moved most members behind
+accessor methods, apart from space->machine and space->cpu. Removed
+external references to 8le/8be/16le/16be/32le/32be/64le/64be. All
+external access is now done via virtual functions
+read_byte()/read_word()/etc. Moved differentiation between the
+endianness and the bus width internal to memory.c, and also added a
+new axis to support small/large address spaces, which allows for
+faster lookups on spaces smaller than 18 bits. [Aaron Giles]
+
+Provided methods for most global memory operations within the new
+address_space class. Updated callers to use these instead of the
+old global functions. [Aaron Giles]
+
+Created new module delegate.h which implements C++ delegates in a form
+that works for MAME. Details are in the opening comment. Delegates
+allow member functions of certain classes to be used as callbacks,
+which will hopefully be the beginning of the end of fetching the
+driver_data field in most callbacks. All classes that host delegates
+must derive from bindable_object. Today, all devices and driver_data
+do implicitly via their base class. [Aaron Giles]
+
+Added an alternate set of address map macros. Now, if you #define
+ADDRESS_MAP_MODERN prior to #including "emu.h", you will get the new
+macros, which have the following properties: [Aaron Giles]
+ * ADDRESS_MAP_START takes a 4th parameter, which is the name of the
+    driver_data class the other macros will reference
+ * AM_READ/AM_WRITE/etc. all assume you are providing method names off
+    of the driver_data class you originally specified
+ * AM_READ_LEGACY/AM_WRITE_LEGACY macros are provided for calling
+    global static functions of yore
+ * AM_BASE/AM_SIZE all assume you are providing member names off of
+    the driver_Data class
+ * AM_BASE_LEGACY/AM_SIZE_LEGACY are provided to reference globals if
+    necessary
+
+Defined delegates for read/write handlers. The new delegates are
+always passed an address_space reference, along with offset, data, and
+mask. Delegates can refer to methods either in the driver_data class
+or in a device class. To specify a delegate in an address map, you
+must #define ADDRESS_MAP_MODERN before including emu.h, at which
+point the AM_READ/AM_WRITE macros will require member function pointers
+into your driver_data class. Delegates that are specified in an address 
+map are proto-delegates which have no object; they are bound to their 
+object when the corresponding address_space is created. [Aaron Giles]
+
+Added machine->m_nonspecific_space which can be passed as the required
+address_space parameter to the new read/write methods in legacy
+situations where the space is not provided. Eventually this can go
+away but we will need it for a while yet. [Aaron Giles]
+
+Added methods to the new address_space class to dynamically install
+delegates just like you can dynamically install handlers today.
+Delegates installed this way must be pre-bound to their object.
+[Aaron Giles]
+
+Moved beathead's read/write handlers into members of beathead_state as
+an example of using the new delegates. This provides examples of both
+static (via an address_map) and dynamic (via install_handler calls)
+mapping using delegates. [Aaron Giles]
+
+Changed the DIRECT_UPDATE_CALLBACKs into delegates as well. Updated
+all users to the new function format. Added methods on
+direct_read_data for configuring the parameters in a standard way to
+make the implementation clearer. Updated all users. [Aaron Giles]
+
+Created a simple_list template container class for managing the common
+singly-linked lists we use all over in the project. [Aaron Giles]
+
+Replaced "const address_space" with "address_space" throughout the
+system. The purpose of making it const before was to discourage direct
+tampering, but private/protected does a better job of that anyhow,
+and it is annoying now. [Aaron Giles]
+
+neodrvr.c updates: [Johnboy]
+ * Renamed the following sets: sengokh -> sengokuh, fatfursa ->
+    fatfurspa, shocktra -> shocktroa kof99 -> kof99h, kof99a -> kof99
+ * Removed wh2j (only diff. C-ROM arrangement; same data)
+ * Added correct m1 to sengoku3
+ * Corrected ROM_REGION "maincpu" for . twinspri, ghostlop, aof2,
+    aof2a, fightfev, fightfeva
+ * Added correct p1 ROM to irrmaze
+
+Changed GP9001 (toaplan VDP device) to use DEVICE_SELF [David Haywood]
+
+Added 3 Bags Full - 5VXFC790 (Victorian). Set is now parent. Replaced
+the bad dumped GFX from NZ set with the new ones, since they match 4
+of 6 bitplanes. [Roberto Fresca]
+
+Improvements to calomega.c driver [Roberto Fresca]
+ * Added Game 24.0 (Gaming Draw Poker, hold). The game is playable.
+ * Added missing 50/60Hz output frequency selector to systems 903-905.
+    However, I dunno how it looks physically (switch/jumper/bridge?)
+ * Injected missing start and NMI vectors to comg080 (Arcade Black
+    Jack), from an exhaustive program ROM analysis / reverse
+    engineering. The game now starts ok and is triggering proper
+    NMI's.
+ * Inputs from the scratch for comg080 (Arcade Black Jack).
+ * Added workaround to pass the vector-check protection.
+ * Reworked the lamps circuitry by system-basis.
+ * Updated games list and technical notes.
+ * Promoted comg080 (Arcade Black Jack) to working state.
+ * Added support for system 906III:
+ * Accurate memory map, CRTC, and PIAs mapped.
+ * Preliminary PIAs support (no multiplexion yet).
+ * Added proper machine driver, with correct R65C02 CPU.
+ * Documented the hardware specs.
+ * Added Game 51.08 (CEI Video Poker, Jacks or Better), running in CEI
+    906III hardware. The game is not working.
+
+Various sm8500 CPU core fixes [Robbbert]
+
+Improvements to CEI 906 III system. [Roberto Fresca]
+ * Corrected docs about the 906III memory map.
+ * Mapped the AY8912.
+ * Added AY8912 proper interfase. Tied SW2 to AY8912 port.
+ * PIA0, portA is polled constantly. Tied some debug handlers to
+    understand how the input system works.
+ * Added notes about the PIAs R/W.
+
+Clear Z80 DART interrupts at constructor time. [Curt Coder]
+
+Imported the Hitachi HCD62121 CPU core from MESS. [Curt Coder]
+
+crospang, heuksun, bestri (crospang.c) [stephh] :
+ * Improved Dip Switches (after verification of the M68000 code)
+
+Expanded the Z80-DART interface to allow future implementation of
+Z80-SIO features: [Curt Coder]
+ * added separate clock inputs for channel B
+ * added SYNC inputs/outputs for both channels
+
+Toaplan2: Attempted to implement dual VDP mixing with the equations
+provided by Quench, doesn't yet work [David Haywood]
+
+added correct GFX roms for Gang Wars, renamed bootleg set as Euro set
+(and new parent),made note about bootleg GFX roms [David Raingeard]
+
+Documented unemulated protection in Super Champion Baseball, marked
+the game with GAME_UNEMULATED_PROTECTION due of that [Angelo Salese]
+
+segaic16.c: Treat unsupported read and write accesses to defined
+devices/memory as open-bus reads or unmapped writes instead of falling
+through to the memory-mapping registers [Phil Bennett]
+
+Added mask-free versions of read_word/read_dword/read_qword to
+address_space. Also added unaligned variants that can read unaligned
+values. Rewrote the core handler as a template that handles all cases,
+along with a simple unit test to verify that everything is correct.
+[Aaron Giles]
+
+Updated 68k, v60, i86, and nec cores to use unaligned read/ write
+instead of their own stubs for handling misalinged reads. 
+[Aaron Giles]
+
+Fixed memory management of ga2 decryption. [Aaron Giles]
+
+Fixed Toaplan2 VDP mixing in Batsugun [David Haywood]
+
+Toaplan2: Removed tile limit hack, not needed now since VDP is mixed
+properly [David Haywood]
+
+Correct the rom labels for the atari version of Arabian
+[The Dumping Union]
+
+Cleaned up internal profiler code. [Aaron Giles]
+
+All American Football set updates: [Phil Bennett]
+ * aafb: Added missing 03-28008.u93 GFX ROM
+ * aafbb: Marked 24015-02.u59 BAD_DUMP and demoted set to
+    GAME_NOT_WORKING
+
+Declared virtual functions in driver_data_t for:
+ * machine_start, machine_reset
+ * sound_start, sound_reset
+ * palette_init, video_start, video_reset, video_update, video_eof
+The default implementations of these call through the machine
+configuration's functions as before. However, if a driver_data_t
+overrides them, it will be called instead. [Aaron Giles]
+
+Also added virtual functions for pre_save() and post_load(), which can
+be overridden to implement machine driver-specific pre-save/post-load
+functionality instead of registering with the save state system.
+[Aaron Giles]
+
+Updated beathead to use these new virtual functions instead of
+specifying callbacks in the MACHINE_DRIVER. [Aaron Giles]
+
+CPS-1 update [Team CPS-1]:
+ * Added proper willowj roms to match real pcb, it was using incorrect
+    roms copied from parent set
+ * Added an old pcb rev of knightsj, using split roms
+ * Added an old pcb rev of kodj, using split roms
+ * Added newer Street Fighter II CE set
+ * Fixed kodj labels and confirmed pcb infos
+ * Fixed qadj labels, added PALs and pcb infos
+ * Fixed sf2ua labels and added pcb infos
+ * Minor cleanups and fixes
+
+fastlane (fastlane.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the HD6309
+    code)
+
+Fixed various issues in the AA emulation, this makes Poizone to
+theoretically work as current ertictac.c emulation (not yet enabled)
+[Angelo Salese]
+
+firetrap, firetrapj, firetrapbl (firetrap.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+ * Fixed coin insertion which now correctly supports "Coin A" and
+    "Coin B" settings
+ * Fixed MCU simulation for 'firetrapj' (only the initialisation was
+    different) so the game is now playable
+
+Z80DART changes: [Curt Coder]
+ * added SIO specific constants
+ * added sync character write registers
+
+Z80: Set IFF1 and IFF2 to 0 on a reset [Phil Bennett]
+
+Updated the 7474 device to no longer be legacy. [Harmony]
+
+Updated the 6522 VIA device to no longer be legacy. [Harmony]
+
+Updated the 6532 RIOT device to no longer be legacy. [Harmony]
+
+Updated the 6821 PIA device to no longer be legacy. [Harmony]
+
+Updated the 74123 device to no longer be legacy. [Harmony]
+
+Converted toaplan1/2 drivers to use driver_data [Atari Ace]
+
+fixing listxml year output (it was skipped if the year contains a '?')
+[Fabio Priuli]
+
+karnov, karnovj, wndrplnt, chelnov, chelnovu, chelnovj (karnov.c)
+[stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the M68000
+    code)
+ * Fixed coin insertion which now correctly supports "Coin A" and
+    "Coin B" settings
+
+Updated VIA 6522 to generate interrupt on T2 Pulse counting mode too,
+according to documentation [Miodrag Milanovic]
+
+flytiger: fixed colors [Roberto Zandona', Angelo Salese]
+
+Fixed timers and irq clears in Acorn Archimedes / Aristocrat MK-5 /
+Erotictac drivers [Angelo Salese]
+
+mikie, mikiej, mikiehs (mikie.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the M6809
+    code)
+
+Updated the 6526 CIA device to no longer be legacy. [Harmony]
+
+Updated the M48T02, M48T35, M48T58 and MK48T08 devices to no longer be
+legacy. [Harmony]
+
+6255via: added support for shift mode 5 (shift out under T2 control)
+[Miodrag Milanovic]
+
+mrflea (mrflea.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+
+Converted ertictac / poizone driver to use shared AA devices
+[Angelo Salese]
+
+Added a set of macros to minimize the amount of copy/pasting necessary
+to convert a device to the new style. [Harmony]
+
+Updated the ACIA 6850 device to no longer be legacy. [Harmony]
+
+Updated the PTM 6840 device to no longer be legacy. [Harmony]
+
+naomi.c: Added information about the Namco MASK B-F2X cartridge
+[f205v]
+
+Improved sound in Erotictac / Poizone [Angelo Salese, Phil Bennett]
+
+De-converted MACHINE_DRIVER from tokens back to constructor functions,
+regaining type safety. If legacy devices still use inline data, those
+types are not checked. However, new devices no longer have access to
+the generic m_inline_data. Instead their MDRV_* macros should map to
+calls to static functions in the device config class which downcast a
+generic device_config to the specific device config, and then set the
+appropriate values. This is not to be done inline in order to prevent
+further code bloat in the constructors. See
+eeprom/7474/i2cmem/okim6295 for examples. [Aaron Giles]
+
+Updated the i8237 DMA device to no longer be legacy. [Harmony]
+
+Updated the 8255 PPI device to no longer be legacy. [Harmony]
+
+Updated the PCI bus device so that PCI buses can be arranged in a tree
+like in real hardware  [Samuele Zannoli]
+
+Chihiro.c Improvements:  [Samuele Zannoli]
+ * Fixed the mapping of the bios at the top of the cpu addrsss space
+ * Updated the ram size to 128 megabytes
+ * Added some SMBus handling, to let the bios run
+ * Added placeholders for a few devices on the PCI bus
+ * Added the "jamdis StartAddress,Length" command to the debugger that
+lets you disassemble the "jam table" instructions used by the bios to
+do some basic hardware initialization.
+
+Updated the i8257 DMA device to no longer be legacy. [Harmony]
+
+Updated the Dallas DS1302 RTC device to no longer be legacy. [Harmony]
+
+pachifev (pachifev.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the TMS9995
+    code)
+
+Updated the Dallas DS2404 RTC device to no longer be legacy. [Harmony]
+
+Updated the Fairchild F3853 SMI device to no longer be legacy.
+[Harmony]
+
+Various snk drivers now use driver_data.  [Atari Ace]
+
+Updated the i8243 Port Expander device to no longer be legacy.
+[Harmony]
+
+Updated the INS 8154 RAM I/O device to no longer be legacy. [Harmony]
+
+Updated the PCI bus device so that PCI buses can be arranged in a tree
+like in real hardware  [Samuele Zannoli]
+
+m6800 - Fixed initial state of bit 7 and 6 of flag registers
+(according to documentation) [Miodrag Milanovic]
+
+[toaplan1] modified the mix for the tilemaps (like rallybik and
+demonwld); this fix outzone bug and vimana bug [Robert Zandona']
+
+Fixed rom mapping in Super Poker. Removed "bad dump" flag from e2
+roms, they pass self test now. [Mariusz Wojcieszek]
+
+toaplan1: removed custum video update for demonwld; now it's the same
+of toaplan1. [Robert Zandona']
+
+Updated the K033906 PCI Bridge device to no longer be legacy.
+[Harmony] 
+
+Updated the K056230 LANC device to no longer be legacy.
+[Harmony]
+
+combatscb: fixed offset and priorities [Roberto Zandona']
+
+lethalen: hooked up some k053244 register; [Roberto Zandona']
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Raiden Fighters (Asia?, Metrotainment license) [anondumper]
+Genie [Roberto Fresca, Ogoun]
+Doki Doki Idol Star Seeker
+  [Hurray Banana, cacis, Team Japump, David Haywood, The Dumping Union]
+3 Bags Full - 5VXFC790 (Victorian) [Roberto Fresca, Ogoun]
+Cal Omega - Game 8.0 (Arcade Black Jack) [Roberto Fresca]
+Cal Omega - Game 24.0 (Gaming Draw Poker, hold) [Roberto Fresca]
+Fire Trap (Japan) [stephh]
+Royal Card (Nichibutsu) [Roberto Fresca, Tomasz Slanina, Ogoun]
+
+
+
+New clones added
+----------------
+Pioneer Balloon (Rock-Ola license)
+  [gamerfan, Smitdogg, The Dumping Union]
+Legion (bootleg of Legend) [Team Europe]
+Eco Fighters (Phoenix Edition)
+Knights of the Round (Japan 911127, B-Board 89625B-1)
+  [Layne, john666, Ricky74, ranger_lennier, Smitdogg, The Dumping Union]
+The King of Dragons (Japan 910805, B-Board 89625B-1)
+  [Kevin Eshbach, takearushfan, M. De Pasquale, Smitdogg, 
+   The Dumping Union]
+Street Fighter II': Champion Edition (World 920513)
+  [john666, Smitdogg, The Dumping Union]
+Willow (Japan, Japanese)
+  [Layne, john666, C. Trutmann, Smitdogg, The Dumping Union]
+Yie Ar Kung-Fu (GX361 conversion) [Team Europe]
+Super Poker (Version 10.15S) [anondumper]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Olympic Hot Stuff [Ogoun]
+Cal Omega - Game 51.08 (CEI Video Poker, Jacks or Better)
+  [Roberto Fresca, Dave Ormiston]
+Savage Quest [TrevEB]

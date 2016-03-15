@@ -1,0 +1,84 @@
+0.33 BETA 1 (0.32 doesn't exist to avoid confusion with MAME32)
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Pac-Land [Ernesto Corvi]
+Punk Shot [Nicola Salmoria]
+Teenage Mutant Ninja Turtles [Alex Pasadyn]
+Lock'n'Chase [Zsolt Vasvari]
+Side Pocket [Ernesto Corvi]
+Zarzon [Dan Boris]
+Xain'd Sleena/Solar Warrior [Carlos A. Lozano]
+Centipede (rev 1) [Brad Oliver]
+Tutankham (Konami). Note that the old version has been renamed "tutankst".
+  [Marc Vergoossen]
+Nibbler (alternate) Note that I also replaced a bad sound ROM in the previous
+  set with the good one in this set. [Nicola Salmoria]
+Up'n Down (preliminary - the System 8 driver needs to support rotation, and
+  input ports have to be fixed). [Thierry lescot]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed glitches in Gemini Wing and Rygar. [Li Jih Hwa]
+
+- Fade-in/fade-out in Robocop [Nicola Salmoria]
+
+- Fixed colors in Centipede, including service mode multiplexed color test.
+  [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- New Zealand Story [Carlos A. Lozano]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed Atari System 1 games not accepting coins with -fm (actually -fm was
+  supposed to be a no-op in this case since emulation of the YM2151 through
+  OPL is not supported). You still have to keep sound on, however; disabling
+  it will disable coins. Of course you can set the dip switches to Free Play
+  and forget about coins.
+
+- Service mode in Centipede and Millipede works. [Brad Oliver]
+
+- Added support for coin counters to some games. [Brad Oliver]
+
+
+Changes to the main program:
+----------------------------
+
+- Increased the watchdog period, to avoid unexpected resets in some MCR games.
+
+
+Source:
+-------
+
+- Drivers which dynamically change the palette are no longer required to
+  initialize it in convert_color_prom(); they also can avoid initializing the
+  color table, if the default layout for it (a 1:1 mapping) fits their needs.
+  This is also useful when starting new drivers: you don't need to provide a
+  fake palette or prom conversion function, the graphics will be visible
+  somehow (but badly, so you had better change the defaults soon ;-) )
+  Also, games using PROMs don't need to initialize the colortable if the
+  GfxDecodeInfo structure is properly initialized to make the correspondence
+  1:1.
+
+- For drivers using the GfxLayer system, dirty rectangle support is partially
+  built-in into the core. The OS dependant rendering functions must use
+  Machine->dirtylayer to know which portions of the screen need to be
+  refreshed. Drivers which use the GfxLayer system no longer need the
+  VIDEO_SUPPORTS_DIRTY flag in the MachineDriver structure - it must be turned
+  on automatically by the OS dependant code.
+
+- Added support for undocumented Z80 opcodes to the C Z80 core. [Juergen
+  Buchmueller]
+
+- Improved speed of the C 68000 core. [Juergen Buchmueller]
+  (this is supposed to give a good speed increase, but I don't see any
+  appreciable difference on my K6 - Nicola)

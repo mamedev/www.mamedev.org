@@ -1,0 +1,102 @@
+0.118u4
+-------
+
+
+Source Changes
+--------------
+Converted the inputs in galaga.c to tags, using INCLUDE/MODIFY for 
+clones, and fixing the conditional extra lives dips in xevious and 
+digdug (bosco and galaga still need doing). Also added much more 
+information on the digdug sets, thanks to some excellent work by 
+stephh. [Alex Jackson]
+
+Fixed sound chip frequency in the superdq driver. [Jim Hernandez]
+
+chdman improvements: [smf]
+ * Fixed toc parsing to allow spaces and quotes in file names
+ * Supports "offset start length" track syntax that cdrdao creates 
+    if you don't read subcode
+ * Tracks are always padded with zeros & not whatever data happens 
+    to follow
+ * Moved cdrom_track_input_info out of src/lib/util/cdrom.h and 
+    into src/tools/chdcd.h
+ * Added audio byte swapping support
+
+Fixed DIP switches for Oscar (Japan Revision 0). [Corrado Tomaselli]
+
+Added DIP locations to the aerofgt driver. [Fabio Priuli]
+
+Amiga updates: [Erneso Corvi]
+ - Implemented ECS-Only BLTCON0L register
+ - Modified the amiga_interface structure to add a nmi callback and 
+    a flags variable.
+ - Added AGA chipmem mask definition
+ - Added 32 bit data bus support to chipram. It's automatically used 
+    if the chipset is AGA.
+ - Added clock chip constants in machine/amiga.h for 68k PAL and NTSC, 
+    and 68EC00 NTSC. Updates drivers to use those constants.
+ - Added convenience macros to determine wether we're running with an 
+    ECS chipset, AGA chipset, or 'ECS or AGA chipset'.
+ - Changed autoconfig reads to return 0x0000 instead of 0xffff.
+ - Fixed MSB value timer reads on the 8520 cia. We were previously only 
+    updating the count for the timer when the LSB value was read.
+ - Added basic Akiko emulation to the cubocd32 driver. Both the Chunky 
+    to Planar converter, and the I2C NVRAM should be fully implemented, 
+    however, the CDROM functionality is not complete. It's only enough 
+    to make the kickstart pass the Akiko checks.
+
+Taito input ports cleanup, continued: [stephh]
+ - Updated includes/taitoipt.h with macros for games with only 1 button
+ - Converted the following drivers and added more documentation, fixing
+    incorrect inputs and DIP switches along the way: taitoair.c, 
+    taito_h.c, taito_x.c
+ - Slightly changed the C-Chip emulation for 'superman' to behave in a 
+    similar way as other Taito games
+ - Corrected some notes in some other Taito drivers
+
+Changed verinfo code to parse the version.c file instead of relying
+on linking against version.o. This appears to fix the link ordering
+problem and also prevents it from being constantly regenerated on
+each build. [Aaron Giles]
+
+Significantly improved the i386 disassembler. Changed it so that it 
+no longer outputs 'byte ptr' except for ambiguous cases. Updated for 
+full 64-bit disassembly support. Added support for the full IA32 
+opcode matrix as specified by recent Intel manuals, including all
+SSE opcodes and variants. [Aaron Giles]
+
+Updated the x86 drc helper code to support externally-allocated cache.
+Also added support for allocating data structures out of the cache.
+Modified initialization so that it does not immediately generate code
+but rather waits for a reset to do that. Fixed code generation bug
+when generating [reg*scale] modrm forms. [Aaron Giles]
+
+Added new functions to the memory system to support CPU cores 
+explicitly specifying the access mask on 32-bit and 64-bit data bus
+systems. This enables the MIPS core to handle SWL/SWR and SDL/SDR
+without a read/modify/write cycle. Updated the C and DRC MIPS cores
+to use this new mechanism. [Aaron Giles]
+
+Added new module x86emit.h which supports dynamic code generation for
+both x86 and x64 systems. This new system is a far more complete
+solution, though not all opcodes are defined yet. The interface for 
+this is also cleaner than the previous one defined in x86drc.h. 
+Existing DRC cores are still using the old interface, but the new one 
+is preferred for new development. [Aaron Giles]
+
+Fixed recently introduced bug in the mips3 core that caused the C
+core to launch off into nowhere after the first instruction. 
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Undercover Cops (Alpha Renewal Version) [Guru]
+Final Fight (US) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Interstellar Laser Fantasy [Andrew Gardner]

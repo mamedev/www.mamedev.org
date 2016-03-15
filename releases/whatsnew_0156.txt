@@ -1,0 +1,409 @@
+0.156
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05646: [Crash/Freeze] (megatech.c) mt_soni2: Crash shortly after 
+  start (David Haywood)
+- 05306: [Crash/Freeze] (asteroid.c) llander, llander1: Changing the
+  Language on the Dip Switch screen freezes/crashes the game (mariuszw)
+- 05780: [Graphics] (raiden2.c) raiden2 and clones: Screen parameters/
+  refresh rate (Angelo Salese)
+- 00135: [Misc.] (dynax.c) quiztvqq: When you start the game it says 
+  "BACKUP ERROR" on the version screen. (Osso)
+- 05781: [Documentation] (cps2.c) hsf2, hsf2a, hsf2j: All sets except
+  the Phoenix Edition incorrectly use Arabic numeral in the title 
+  instead of Roman numerals (Alex Jackson)
+- 05395: [Color/Palette] (tmnt.c) cuebrick: Wrong colors in service 
+  mode "color check" (Alex Jackson)
+- 04990: [Flip Screen/Cocktail] (tumbleb.c) fncywld, jumpkids, tumbleb, 
+  tumbleb2: Game sprites not flipped when Flip Screen is ON (Osso)
+- 03590: [Color/Palette] (rockrage.c) rockrage, rockragea, rockragej:
+  Incorrectly coloured enemy sprites (Alex Jackson)
+- 05760: [Cheat System] (funworld.c) rcdino4: [debug] Assert during initialization
+- 05776: [Crash/Freeze] (tx1.c) buggyboy, buggyboyjr: Crashes after launch. (Robbbert)
+- 02523: [Graphics] (twin16.c) vulcan, gradius2, gradius2a, gradius2b: 
+  Sprite-background priority is wrong. (Alex Jackson)
+- 04742: [Crash/Freeze] (neodrvr.c) kog: "Attempted to map non-existent port 
+  'JUMPER' for read in space program of device ':maincpu'" when running 
+  from softlist (David Haywood)
+- 05769: [Gameplay] (taitogn.c) otenki: Fails to boot into the game. (smf)
+- 05741: [DIP/Input] (centiped.c) centiped3: 2P start button missing (Tafoid)
+- 05740: [DIP/Input] (vsnes.c) cstlevna: Dip switches 5 and 6 are unknown
+
+
+Source Changes
+--------------
+Added SCREEN_RAW_PARAMS for Arkanoid and Astrocorp HWs [Angelo Salese]
+
+Added SCREEN_RAW_PARAMS for Alpha 68k HW [Angelo Salese]
+
+Added dump of the sync prom at L8 to Drag Race [Matt]
+
+Skeleton driver for the PSE Desert Patrol, so to document the
+  dumped PROMs [Dave Widel, gregf]
+
+rspdrc: Optimized accumulator access in multiply instructions. [MooglyGuy]
+
+lpc: skeleton acpi [O. Galibert]
+
+pentium: More support of the magic 0x66 prefix [O. Galibert]
+
+More sane values for dec0.c / dec8.c screen raw parameters.  [Angelo Salese]
+
+i6300esb: Document more registers [O. Galibert]
+
+steppers: move to emu/machine [Ramiro Polla]
+
+steppers: add absolute position [Ramiro Polla]
+
+pentium: This is the kind of problems you find when a bios uses
+  xmm4 as call stack [O. Galibert]
+
+pentium: Some stuff to make lindbergh go further [O. Galibert]
+
+pci: Add grossly hacked smbus [O. Galibert]
+
+Experiments in PCI land [O. Galibert]
+
+Fixed an annoying inconsistency between memory_share and memory_region:
+  the width() method of the former returned the width in bits (8, 16, 32 or 64)
+  while the width() method of the latter returned the width in bytes
+  (1, 2, 4 or 8). Now both classes have a bitwidth() method and a bytewidth()
+  method. Updated all callers to use whichever one was more appropriate.
+  Also removed the implicit-cast-to-any-integer-pointer of memory_regions,
+  which was rather unsafe (if you weren't careful with your * operators and
+  casts it was easy to accidentally get a pointer to the memory_region object
+  itself instead of to the data, with no warning from the compiler... or at
+  least I kept doing it) Updated all devices and drivers that were accessing
+  regions that way to use a region_ptr_finder when possible, and otherwise to
+  call base() explicitly. [Alex Jackson]
+
+The tilemap system now respects gfx_element::total_colors(). Fixed various
+  drivers and devices that were using incorrect total_colors for gfx elements
+  used in tilemaps [Alex Jackson]
+
+Added language rom for Lunar Lander [Mariusz Wojcieszek]
+
+rsp: Made the RSP interpreter core functional again. [MooglyGuy]
+
+Long-overdue documentation about how to use priority-masked drawing
+  (aka pdrawgfx); add some useful constants. [Alex Jackson]
+
+Added preliminary layout for Alien Invaders based on screenshot [Tafoid]
+
+Use of security PIC's readouts for Naomi-M4 decryption [Andreas Naive]
+
+Ferrari F355 (original no-link deluxe) USA BIOS added [Andy Geezer]
+
+Improve template file family properties, added readme and licensed as 
+  BSD-3-Clause [Angelo Salese]
+
+Add correct xtal for Kaneko Fly Boy/Fast Freddie hardware based on PCB
+  pictures, correct clocks in driver. [Lord Nightmare, albolo]
+
+Golgo13: fix for service mode toggle mode.  [Angelo Salese]
+
+naomi.c, chihiro.c, triforce.c:  [f205v, Metallic]
+- Revised data while adding new information along with some cosmetic changes.
+
+i82875p: Host bridge fun [O. Galibert]
+
+pci: generic mapping [O. Galibert]
+
+i6300esb: More mapping verbosity [O. Galibert]
+
+tmaster.c: reverse-engineered the keys for all protected TouchMaster games;
+  removed the protection hacks.  [Peter Ferrie]
+
+cbombers: fix TC0480SCP text layer colors [Alex Jackson]
+
+pci: Add remapping notifiers [O. Galibert]
+
+upd7810.c:  [Ramiro Polla]
+- Small ADC improvements.
+- Clean up interrupt handler and make it edge triggered.
+- Set extended timer/event counter interrupts.
+- Fix and export extended timer/event counter output.
+ 
+mario.c: fix Monitor switch so it correctly affects both tiles and sprites
+  [Alex Jackson]
+
+Added command-line option -[no]drc_log_uml to control DRC UML 
+  disassembly logging. This allows logging of DRC UML disassembly without re-compiling
+  [Oliver Stoneberg]
+
+Added command-line option -[no]drc_log_native to control DRC 
+  native diassembly logging.  This allows logging of DRC native disassembly without
+  re-compiling [Oliver Stoneberg]
+
+calomega.c: Improve color emulation by analogy with tugboat.c (which
+  is actually a heavily modified Cal Omega board) [Alex Jackson]
+
+SEGA YBoard: Mapping the port bits used to provide motor movement feedback
+  [Felipe Sanches]
+
+naomi.c: redumped F355 [Andy Geezer]
+
+pci: A little more, reaches an unemulated pslldq at fd228 [O. Galibert]
+
+Converted the various Hard Drivin' board types to be devices, allowing the side screens
+  to be hooked up on Race Drivin' Panorama, which is now close to working (the side
+  screens fail when selecting one of the car types)
+  [David Haywood]
+
+rspdrc: Added undocumented ops VADDB, VACCB, VSUBB, and VSUCB. [MooglyGuy]
+
+rspdrc: Fix crash on Linux when recompiling BREAK opcode. [MooglyGuy, Firewave]
+
+mips3: Fixed left-shift-of-signed-value issues. [MooglyGuy]
+
+rsp: Fixed left-shift-of-signed-value issues. [MooglyGuy]
+
+correct patches for drgw2hk [iq_132]
+
+OS/2 build fixes [KO Myung-Hun]
+
+upd7220: Bresenham line drawing [Carl]
+
+n64: Fix up how negative values are handled in VRSQL/VRCPL [MooglyGuy]
+
+rsp: Add VNOP, VNULL, and VRSQ instructions. [MooglyGuy]
+
+n64: Abort MIPS timeslice when unhalting RSP. Fixes many RSP tests. [MooglyGuy]
+
+segas18.c: Fill in the dipswitches for Hammer Away. [Brian Troha]
+
+rdp: Do LOD calculation even in 1-cycle mode. Fixes many tests. [MooglyGuy]
+
+mips3drc: Generate -0.0 for NEG.S/D of 0.0 as FNEG does not on x86 [MooglyGuy]
+
+mips3drc: Sign-extend ROUND.L, TRUNC.L, CEIL.L and FLOOR.L [MooglyGuy]
+
+rspdrc: Add destination address support to the BREAK opcode. [MooglyGuy]
+
+naomi.c:  samba2k, ringout - correct maskrom size and labels [Arzeno Fabrice, MetalliC]
+
+Power Drift: Portbits for Limit & Safety switches
+
+G-LOC: Mapping portbits related to the moving cabinet limit switches.
+
+Galaxy Force II: Adding gforce_output_cb1 (the values written there seem
+  to select the meaning of some of the PORTC bits related to motor control)
+
+Galaxy Force II: Mapping the port bits used to provide motor movement
+  feedback signals such as Up/Down/Left/Right limit switches.
+
+i386: call with expand down stack [Carl]
+
+i386: GP fault with softint in v86 mode when iopl < 3 [Carl]
+
+twin16.c: Rewrite video mixing based on PAL equations. Fixes sprite-bg
+  priority in Devil World intro, and in Vulcan Venture later stages
+  and ending [Alex Jackson]
+
+pic8259: priority and sfnm [Carl}
+
+segaufo update: added better layouts + made ufo800 work + added upd
+  sound to ufo21 + misc fixes  [hap]
+
+Man pages (*nix): Fixed some typos and bumped version to 0.155
+
+Fixed Mametesters 05769 by reducing ATA flash card seek time to zero. [smf]
+
+naomi.c:  kingrt66 use real MaskROM cart layout and labels instead of flashcart
+[Arzeno Fabrice]
+
+Handcrafted CPS-1 PALs for Area 88 and Strider PCBs.  [Palindrome]
+
+i386: fix segment present check for calls to a TSS
+
+i386: mark tss busy [Carl]
+
+Convert PSX sio to use devcb. [smf]
+
+calchase: map Trident memory clock, video clock and LUTDAC registers
+
+Added Solar War as playable, but with issues.  Layout needs work and coins
+  do not operate in game.  Therefore, game is set to Free Play by default.  
+  Also, renamed Solar Warrior (xain.c) from solarwar -> solrwarr to allow this
+  original game to use the setname "solarwar".  Added diplocations to both games.
+  [Tafoid]
+
+added command-line option -[no]snapbilinear to control binlinear filtering 
+  for snapshots (enabled by default).  This is mainly for making testruns and
+  debugging faster - could also be used to speed up -aviwrite usage though.
+  [Oliver Stoneberg]
+
+upd7220: slanted chars [Carl]
+
+sonson.c: Correct Audio CPU clock for Son Son as measured on PCB. [Corrado Tomaselli]
+
+psychic5.c: Correct Audio CPU clock for Psychic 5 as measured on PCB. [Corrado Tomaselli]
+
+Verified clocks/vsync for Super Ranger and Air Buster.  [Corrado Tomaselli]
+
+peplus.c: Add the CAPX2172 color prom to the Ace$ Bonus sets correcting color in those sets. [BrianT]
+
+Added -listnetwork option to list available network adapters
+
+winpcap: add WinPCap headers to the project;
+
+windows.mak: include WinPCap headers during Windows build; suppress MSVC debug build warning
+
+Altered FIRQ and NMI handling to improve Maygay M1 operation.
+
+Add remaining PAL from 'jumping' sets [Porchy]
+
+naomi.c:  [Arzeno Fabrice]
+- HOTD2 Proto BIOS added
+- Label correction for Club Kart Prize
+
+SDL: SDL2 is now the default except for OS/2 builds. [R. Belmont]
+
+USE_NETWORK Ethernet emulation is now enabled by default as per the roadmap. [R. Belmont]
+
+upd7220: better output for the compis and dmv [Carl]
+
+gts3.c : Added switches. After setting up, the games are playable.
+gts3.c : split into AN and DMD displays
+gts80b.c : Display is working. [Robbbert]
+
+model3: More rendering improvements [Ville Linde]
+- Draw transparent triangles in a separate pass
+- Implemented viewport priority
+
+calomega.c: Fill in some unknown dipswitches. [Brian Troha]
+
+amiga.c: use Aaron's memory_array class for bytewidth-agnostic access to chip
+  RAM, instead of a driver-specific implementation. Also store the custom chip
+  registers in an array instead of a memory share [Alex Jackson]
+
+calchase.c:  [Peter Ferrie]
+- Implemented missing DIP switch for Eggs Playing Chicken, promote to working. 
+  Press "S" to skip the CMOS error, "S" or wait to skip the emm386.exe error
+  (not an emulation issue), use "Coin 2" to coin-up and start the game, and 
+  "1 Player Start" to brake.
+
+calchase.c, gamecstl.c, midqslvr.c, queen.c, savquest.c, taitowlf.c,
+voyager.c, xtom3d.c:  [Peter Ferrie]
+- Intel component is not MXTC, it's MTXC.
+
+intelfsh.c:  [Jon Sturm]
+- Added support for AMD 29F400T, AMD 29F800T and FUJITSU 29F160T.
+
+
+darius.c: Add dipswitch locations to the Darius sets 
+  & give the newly added US set the correction coinage. [Brian Troha]
+
+Correct sound rom for 'tturf' (Tough Turf (set 2, Japan, 8751 317-0104)) [ShouTime]
+
+Added region_ptr_finder, which works like shared_ptr_finder except it
+  finds a ROM region instead of a memory share. Unlike the already
+  existing memory_region_finder, these can be accessed without
+  any overhead (since it's a pointer directly to the data and not
+  to the memory_region object), can be whatever data type you want
+  with no casting needed, and are strictly type-checked--if you have
+  a required_region_ptr<UINT32> the region has to be a ROM_REGION32
+  (or an implicitly 32-bit region due to belonging to a device with
+  a 32-bit bus) or the finder won't find it and will tell you why.
+  Basically, region_ptr_finders are strictly better than
+  memory_region_finders and all drivers using the latter should be
+  converted over [Alex Jackson]
+
+Converted many sound devices to use a required_region_ptr to find their
+  sample ROMs instead of looking up the region manually in device_start().
+  Note that this means that you can no longer get away with having e.g. an
+  OKIM6376 without a ROM (as several slot machine skeleton drivers did);
+  MAME will now complain at startup about the missing region, instead of
+  just crashing the first time the chip tries to play a sound like it did
+  before [Alex Jackson]
+
+twin16: Convert the scrolling layers to tilemaps (the fixed text
+  layer was already one). Miscellaneous cleanups/modernizations [Alex Jackson]
+
+Don't execute a timeslice before loading a savestate from the command line
+  [Alex Jackson]
+
+supduck.c: Fill in Lives, Demo Sounds and Game Sound dipswitches as well as add
+  dipswitch locations. [Brian Troha]
+
+Capcom updates: [any]
+- Fixed some incorrect info about the SF2 bootlegs and got them running better.
+- Dumped 8571 MCU from a bootleg Top Secret/Bionic Commando PCB. 
+
+k054156: save state register all video RAM, including the optional "external
+  linescroll RAM"; fixes Lethal Enforcers save states [Alex Jackson]
+
+more devfind: [Alex Jackson]
+
+i386: move initialisation of m_lock to i386_common_init(), so that it
+ is always initialised.
+
+i6300esb: More more more [O. Galibert]
+
+
+New clones added
+-------------------
+Super Breakout (Canyon and Vertical Breakout, prototype) [Mariusz Wojcieszek]
+Cadash (Japan, version 2) [ShouTime, The Dumping Union]
+Cadash (Japan, oldest version) [ShouTime, The Dumping Union]
+Billiard Academy Real Break (Europe, older) [system11, The Dumping Union]
+Sauro (Recreativos Real S.A. license) [Edcross & Rockman (from Aumap)]
+Dunk Shot (Rev C, FD1089A 317-0022) [ShinobiZ & COY]
+Atari Tetris (bootleg set 3) [Guru]
+Fire Trap (US, set 2) [Corrado Tomaselli]
+Play Girls 2 (bootleg) [system11, The Dumping Union]
+Ave Fenix (Recreativos Franco) [Enricnes]
+Oriental Legend 2 (V101, China) [bytestorm] (not working)
+Knights of Valour 2 New Legend (V300, Taiwan) [bytestorm] (not working)
+Magic Bubble (Adult version, YS-0211 PCB) [caius, The Dumping Union]
+Battle Bakraid - Unlimited Version (China) (Tue Jun 8 1999) [Bill D, The Dumping Union]
+Vigilante (World, Rev E) [system11, The Dumping Union]
+Dragon World II (ver. 100H, Hong Kong [Hokg Kong]) [rtw] (not working)
+Player's Edge Plus (X002173P+XP000038) Ace$ Bonus Poker [BrianT]
+Player's Edge Plus (PP0040) Standard Draw Poker (International) [BrianT, Ken R]
+Player's Edge Plus (PP0042) 10's or Better [BrianT, Ken R]
+Player's Edge Plus (PP0043) 10's or Better (International, set 2) [BrianT, Ken R]
+Player's Edge Plus (PP0060) Standard Draw Poker (set 3) [BrianT, Ken R]
+Player's Edge Plus (PP0429) Joker Poker (Aces or Better, set 2) [BrianT, Ken R]
+Player's Edge Plus (IVC006) Clear EEPROM Chip [BrianT]
+Player's Edge Plus (Set004) Set Chip [BrianT]
+Player's Edge Plus (KE0017) Keno [BrianT] (not working)
+Player's Choice (MG0252) Multi-Game [BrianT] (not working)
+JT-104 [Unknown]
+Arkanoid Returns (Ver 2.02A 1997/02/10) [Bill D, The Dumping Union]
+Donkey Kong (Spanish Crazy Kong bootleg) [Marcos75 (from AUMAP)]
+Galaxy Monsters (Laguna S.A. Spanish bootleg of Space Invaders) [Arcade Vintage ( http://arcadevintageshop.blogspot.com.es/ ), Ricky2001]
+Botanic (English / Spanish) [Arcade Vintage ((http://arcadevintageshop.blogspot.com.es/ ), Ricky2001]
+Club Kart (Rev C)  [Arzeno , The Dumping Union] (not working)
+Windjammer (021216) [MetalliC]
+Tron (Germany) [MikeMcBike]
+S.V.G. - Spectral vs Generation (M68k label V101TW) (ARM label V101TW, ROM 06/20/05 S.V.G V100) [ShouTime] (not working)
+Darius (US) [Andrew Welburn]
+Raiden 2 (Switzerland) [rtw, Smitdogg, Kranser, Mucci, Dullaron, B2K24, The Dumping Union]
+
+New Game Added
+--------------
+Pit Boss Megatouch (9234-20-01) [Brian Troha, Mariusz Wojcieszek, The Dumping Union]
+Alien Invaders [Seth Soffer, David Haywood, Mariusz Wojcieszek]
+Hammer Away (prototype) [( Atro - from Neo-geo.com aka Rui Baptista )
+ ( _rm_ - from Neo-geo.com aka Ricardo Marques)  
+ ( 1up - from Neo-geo.com aka Daniel "casebres" )]
+Solar War (Anonymous)
+Pop'n Music 1 (ver AA-A) [smf]
+Super Duck [system11, David Haywood]
+
+
+New NOT WORKING game added
+--------------
+Western Dream (Yasuhiro, hap)
+Club Pacman [Roberto Fresca, ytsejam] (dual inputs not mapped)
+Sonic 2 (bootleg of Megadrive version) [caius, The Dumping Union]
+Cute Fighters [system11]
+
+
+New games/clones promoted from NOT_WORKING
+----------------------------------------------
+Teenage Mutant Hero Turtles (UK 4 Players, set 3) [caius, The Dumping Union]

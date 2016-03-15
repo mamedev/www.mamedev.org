@@ -1,0 +1,149 @@
+0.110u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+circusc0110u2gre [Derrick Renaud]
+circusc37b16ora [Derrick Renaud]
+64street057gre [Mamesick]
+cannonb0104u8Yel [Mamesick]
+gratia099u4red [Atari Ace]
+
+
+
+Source Changes
+--------------
+Improvements to the Polygonet Commanders driver: [Andrew Gardner]
+ * Implemented various dsp56k opcodes
+ * Polygonet Commanders now gets past the memory tests
+
+Fixed the background color in perfrman. [Pierpaolo Prazzoli]
+
+Merged in some MESS-specific PC support code. [Nathan Woods]
+
+Added mosaic effect to valtric. Yes, it looks as bad on real hardware
+as in MAME :) [Tomasz Slanina]
+
+Fixed colors in Honey Dolls. [David Haywood]
+
+Added the final filtering stages to the sound, proper watchdog and 
+memory mirroring to the circusc driver. Also added PORT_DIPLOCATION 
+info and save state support. [Derrick Renaud]
+
+Updated vconv.c to support preprocessor and assembly file output in
+MSVC builds. [Nathan Woods]
+
+Improved DIP switches for Honey Dolls and Twin Adventure. 
+[Brian Troha]
+
+Removed the "Autocenter Speed" menu entry for Analog Controls that do 
+not use it. [Derrick Renaud]
+
+Added a "Digital Speed" of 0 in the "Analog Controls" menu. This will 
+cause the control to only inc/decrement once per button press no 
+matter how long the button is pressed. Remember this is still scaled 
+by the "Sensitivity" setting. [Derrick Renaud]
+
+Scaled Windows mouse Z axis by 30 to make it usable. Most mice 
+inc/decrement by 120 for each wheel click. Some rare ones are 30. So 
+this means for most mice, using a Sensitivity setting of 25%, you 
+will get 1 inc/decrement for each wheel click. [Derrick Renaud]
+
+Cleaned up the cclimber driver, replacing hacks for cannonb with a
+separate video update callback. [Mamesick]
+
+Moved the ST-V protection related code into stvprot.c and added some 
+notes about the decathlete protection and renamed stvhacks to 
+stvinit, because it contains most of the inits as well as the 
+speedhacks. [David Haywood]
+
+Major funworld driver rewrite: [Roberto Fresca]
+ - Merged/splitted some machine drivers, memory maps and inputs.
+ - Unified get_bg_tile_info for all games.
+ - Mapped the input buttons in a better format (all games).
+ - Added proper color PROM decode routines.
+ - Splitted the driver to driver/vidhrdw.
+ - Corrected the screen size and visible area to magiccrd.
+ - Added the remaining 2 GFX planes to magiccrd; GFX are imperfect.
+ - Royalcrd: Added all inputs and DIP switches.
+ - Fixed jolycdcr gfx to 4bpp.
+ - Other fixes to get jolycdcr running.
+ - Managed royalcdb to work, using the 2nd half of program ROM.
+ - Managed jolycdit to work, but with imperfect graphics.
+ - Fixed CPU clock to 2MHz. in all remaining games.
+ - Fixed ay8910 frequency based on elephfam audio.
+ - Fixed ay8910 volume in all games to avoid clipping.
+ - Reworked jolycdcr, jolycdit inputs.
+ - Set jolycdat as bigdeal clone. 
+ - Added the bipolar PROM and GAL to jolycdit. 
+ - Added color PROMs to cuoreuno and elephfam sets. 
+ - Corrected jollycrd screen size and visible area.
+ - Hooked, wired and decoded the color prom in jollycrd sets.
+ - Wired and decoded the color prom in cuoreuno and elephfam sets.
+ - Wired and decoded the color prom in royalcrd.
+ - Hooked, wired and decoded the color prom in bigdeal sets.
+ - Decrypted jolycdit gfx roms.
+ - Decrypted jolycdae and managed the planes to show correct colors.
+
+Minor Unicode changes for the Windows code. [Nathan Woods]
+
+Added serial in/out support to the Amiga hardware. Added hooks for
+output pins and light pen positioning. Also fixed the horrible static 
+at startup in the debug build. [Aaron Giles]
+
+Reorganized the laserdisc support a bit to accommodate new players.
+Added Sony LDP-1450 support. [Aaron Giles]
+
+Added new render texture format TEXFORMAT_YUY16, which is used to
+hold 4:2:2 Y/Cb/Cr format pixels. Updated the Windows Direct3D code
+and the software renderers to use this format directly. [Aaron Giles]
+
+Added new render texture fromat TEXFORMAT_PALETTEA16, which is the
+same as TEXFORMAT_PALETTE16 but respects the alpha component of the
+palette entry. Updated the Windows Direct3D code and the software
+renderers to use this format. [Aaron Giles]
+
+Changed the render system to respect blendmodes for screen elements
+rather than hard-coding them. This allows individual VIDEO_UPDATE
+routines to do their own compositing. [Aaron Giles]
+
+Removed the illusion from the rendering system that you could pass in
+arbitrary palettes. The system palette is all that is supported.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Twin Adventure [David Haywood]
+Royal Card [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Twins (set 2) [David Haywood]
+Jolly Card (Austria, encrypted) [Roberto Fresca]
+Royal Card (Slovakia, encrypted) [Roberto Fresca]
+Elephant Family (Italia, old) [Roberto Fresca]
+Phoenix (Centuri), Set 2 [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+ParaParaParadise [Ville Linde]
+Keyboardmania 3rd Mix [Ville Linde]
+Mad Dog McCree [Andrea Turci, Aaron Giles]
+Who Shot Johnny Rock? [Andrea Turci, Aaron Giles]
+Mad Dog II: The Lost Gold [Andrea Turci, Aaron Giles]
+Space Pirates [Andrea Turci, Aaron Giles]
+Gallagher's Gallery [Andrea Turci, Aaron Giles]
+Crime Patrol [Andrea Turci, Aaron Giles]
+Crime Patrol 2: Drug Wars [Andrea Turci, Aaron Giles]
+The Last Bounty Hunter [Andrea Turci, Aaron Giles]
+Fast Draw Showdown [Andrea Turci, Aaron Giles]
+Platoon [Andrea Turci, Aaron Giles]
+Zorton Brothers (Los Justicieros) [Andrea Turci, Aaron Giles]
+Joker Card [Roberto Fresca]

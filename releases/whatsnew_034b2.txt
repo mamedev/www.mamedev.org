@@ -1,0 +1,113 @@
+0.34 BETA 2
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+F1 Dream (bootleg) (merged) (this one works) [Paul Leaman]
+Pang [Paul Leaman]
+Pac Man Plus [Clay Cowgill, Mike Balfour]
+Beastie Feastie [Clay Cowgill, Mike Balfour]
+Tecmo Knight [Nicola Salmoria]
+Bull Fight [Nicola Salmoria]
+4D Warriors [Nicola Salmoria]
+Block Gal (not working due to encryption) [Nicola Salmoria]
+Wonder Boy (three sets, all merged with WB Deluxe) [Nicola Salmoria]
+I'm Sorry (Japan) (merged) [Marco Cassili]
+My Hero (Japan) (merged) [Nicola Salmoria]
+Flicky (set 2) (merged) [Nicola Salmoria]
+Ninja Princess (original) (merged) (the other set, which seems to be a bootleg,
+  has been renamed "nprincesb") [Nicola Salmoria]
+Frogs [Nicola Salmoria]
+Samurai [Nicola Salmoria]
+Sasuke vs. Commander [Nicola Salmoria]
+Subs [Mike Balfour]
+Vigilante (two sets merged) [Mike Balfour, Phil Stroffolino]
+Exterminator (VERY SLOW) [Alex Pasadyn, Zsolt Vasvari]
+COP 01 [Carlos A. Lozano]
+Renegade (two sets, only the bootleg works) [Phil Stroffolino]
+Hustle [Frank Palazzolo]
+Tomahawk 777 (two sets merged) [Zsolt Vasvari]
+Karate Champ (VS and Karatedo, merged) [Ernesto Corvi]
+Astro Fighter (set 3) (merged) [Zsolt Vasvari]
+Side Track [Al Kossow]
+Spectar (revision 3) (merged) (the previous one has been renamed "spectar1")
+  [Al Kossow]
+Venture (version 4) (merged) [Al Kossow]
+Venus (merged with Gyruss) [Nicola Salmoria]
+APB (set 2) (merged) (this fixes the title screen)
+Lost Tomb (hard) (merged) [Michael Appolo]
+Hyper Olympic (bootleg) (merged) [David Winter]
+Brix (merged with zzyzzyxx) [Brad Oliver]
+Shark Attack [Victor Trucco]
+Mikie (headbutt version) (merged) (the other set has been renamed "mikiehs")
+  [Nicola Salmoria]
+And a whole new bunch of Neo Geo games (NOT TESTED)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- The background in Golden Star changes color correctly. [Nicola Salmoria]
+
+- Accurate colors in Astro Fighter (PROMs required). [Zsolt Vasvari]
+
+- Accurate colors in Lost Tomb (PROMs required). [Michael Appolo]
+
+- Fixed tile flipping bug in Solomon's Key. [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- The music in Bubble Bobble seems to stay in sync now. [Tatsuyuki Satoh]
+
+
+Other drivers changes:
+----------------------
+
+- Dynasty Wars works (actually it was already working, it's just that the dip
+  switches had Freeze on by default).
+
+- Front Line and Tin Star have the aiming dial (using a dual joystick setup).
+  Also, you can now kill and be killed in Front Line. However, collision
+  detection is not accurately emulated. [Nicola Salmoria]
+
+- Fixed ending in Robocop. [JC Alexander]
+
+- *FINALLY* fixed Commando sometimes not starting. It was a bug in the decode
+  routine, which has been completely rewritten. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Vector translucency can be turned off with -notranslucency.
+  [Valerio Verrando]
+
+
+Source:
+-------
+
+- TMS34010 emulator. [Alex Pasadyn, Zsolt Vasvari]
+
+- Replaced the 6502 emulator with a new one which also supports 65C02 and 6510.
+  Marat Fayzullin's core is no longer used. [Juergen Buchmueller]
+
+- Fixed a bug in the 68000 BCD emulation which caused the F1 Dream timer to
+  malfunction. [Nicola Salmoria]
+
+- New function osd_on_screen_display() to show text over the game screen.
+  [Nicola Salmoria]
+
+- Fixed bug in the Z80 block I/O instructions (INI, IND, INIR, INDR, OUTI,
+  OUTD, OTIR, and OTDR). [Frank Palazzolo]
+
+- Updated the FM emulation and the way the 8910 updates its buffers. FM also
+  has support for YM2608 and YM2612, though they are not compiled in.
+  [Tatsuyuki Satoh]
+
+- [DOS] Rearranged the makefile using archives to work around E2BIG error on
+  some machines. [Juergen Buchmueller]
+
+- Support for CRC-32 checksums instead of MAME's custom ones. The actual CRCs
+  will be added later to the drivers. [John Butler]

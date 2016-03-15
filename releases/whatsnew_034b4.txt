@@ -1,0 +1,238 @@
+0.34 BETA 4
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Arm Wrestling [Nicola Salmoria]
+Karate Champ (1 Player) [Ernesto Corvi]
+Mr. TNT [Brad Oliver]
+Alpine Ski (two sets merged) [John Butler]
+Tokio / Scramble Formation (two sets merged) [Marcelo de G. Malheiros,
+  Fredrik Sjostedt]
+Tiger Heli (4 sets merged, only 2 work) [Nicola Salmoria]
+Turbo (preliminary) (3 sets merged) [Alex Pasadyn, Howie Cohen, Frank Palazzolo]
+Express Raider (2 sets merged) [Ernesto Corvi]
+Arkanoid 2 [Luca Elia, Mirko Buffoni]
+Rockman [Paul Leaman]
+Captain Commando [Paul Leaman]
+Discs of Tron (Upright) (merged) (the other, which is the Environmental, is now
+  called "dotrone") [Nicola Salmoria]
+Tron (set 2) (merged) [Nicola Salmoria]
+Vanguard (Centuri) (merged) [Nicola Salmoria]
+1942 (set 3) (merged) [Nicola Salmoria]
+Bionic Commando (set 2) (merged) [Nicola Salmoria]
+Commando (Data East) (merged) [Nicola Salmoria]
+Ghosts 'n Goblins (Taito) (merged) [Nicola Salmoria]
+Vulgus (set 2) (merged) [Nicola Salmoria]
+Silkworm (set 2) (merged) [Nicola Salmoria]
+Cop 01 (set 2) (merged) [Nicola Salmoria]
+Formation Z (merged with Aeroboto) [Nicola Salmoria]
+Alex Kidd (not working) [Phil Stroffolino]
+Alien Storm (not working) [Phil Stroffolino]
+Aurail (not working) [Phil Stroffolino]
+Dynamite Dux [Phil Stroffolino]
+E-Swat (not working) [Phil Stroffolino]
+Fantasy Zone (not working) [Phil Stroffolino]
+Flash Point (not working) [Phil Stroffolino]
+Heavyweight Champ (not working) [Phil Stroffolino]
+Major League (not working) [Phil Stroffolino]
+Quartet II (not working) [Phil Stroffolino]
+SDI (not working) [Phil Stroffolino]
+Time Scanner (not working) [Phil Stroffolino]
+Tough Turf (not working) [Phil Stroffolino]
+Wonder Boy Monster Lair [Phil Stroffolino]
+Wrestle War [Phil Stroffolino]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Pleiads colors might be correct now. [Nicola Salmoria]
+
+- Accurate colors in Strategy X. [Gerald Vanderick]
+
+- Preliminary backdrop support in Discs of Tron. The background image must be
+  called ARTWORK/DOTRON.PNG. [Mathis Rosenhauer, Brandon Kirkpatrick]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed sound pitch and tempo in Donkey Kong. [Mirko Buffoni]
+
+- Improved music tempo in SlapFight. [Sebastien Chevalier]
+
+- Improved Cop 01 (tempo is still wrong). [Nicola Salmoria]
+
+- Sound in all of the working System 16 games. [Phil Stroffolino]
+
+- Emulation of the Astrocade sound chip (Gorf, Wizard of Wor, etc.)
+  [Frank Palazzolo]
+
+- Improved speech in Gorf. It now plays speech 100% accurately except for the
+  missing samples. [Kevin Bales]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Nemesis. [Dani Portillo]
+
+- Terra Cresta, Rastan. [Juan Carlos Lorente]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed hang on level 7 of Discs of Tron. [Jim Thevenot]
+
+- Fixed Blasto. [Juergen Buchmueller]
+
+- Fixed controls in Stinger. [Miguel Figueiredo]
+
+
+Changes to the main program:
+----------------------------
+
+- Switched to CRC-32 for file integrity checks. The old custom checksums are no
+  longer used. [John Butler, Bernd Wiebelt]
+
+- When using zipped files, ROMs are automatically retrieved even if they don't
+  have the expected name (provided they have the correct CRC-32, of course).
+  You'll never have to rename files any more (though you might have to rename
+  zips ;-) [Nicola Salmoria]
+
+- [DOS] New command -listcrc. It lists the CRC-32 for all the supported ROMs.
+  00000000 means that the ROM is known to be bad. [Nicola Salmoria]
+
+- Some improvements to the cheat system. [Stephane Humbert]
+
+- Fixed bug in the 68000 interrupt handling which causes Rastan Saga to not
+  boot correctly. [Brad Oliver]
+
+- [DOS] Experimental profiler. To enable it, use the -profiler parameter; then,
+  hit Left Shift + F11 to show the results on screen. I don't know how accurate
+  the figures are; the "Sound" figure is certainly underestimated for sound
+  chip emulators which don't use streams.c (it is computed under the CPU
+  playing the sound instead that under Sound).
+  Note that the sum of the percentages is much less than 100%. This is in part
+  due to portions of the code which are not profiled, but is also caused by the
+  massive overhead of calling uclock() (which happens very often when sound is
+  playing). [Nicola Salmoria]
+
+
+Source:
+-------
+
+- New streams.c to abstract audio streams. This makes them easier to use and
+  more efficient. osd_play_streamed_sample() should now be considered a private
+  function and should not be used in new code. [Nicola Salmoria]
+
+- Completed the transition to CRC32 checksums. [John Butler, Bernd Weibelt]
+
+- Fixed bug in the I8039 external interrupt handling. [Dan Boris]
+
+- New file types for osd_fopen(): OSD_FILETYPE_STATE and OSD_FILETYPE_ARTWORK.
+
+
+NeoGeo Mame Support
+-------------------
+
+This beta contains a major update to the NeoGeo driver.  It is still far from
+perfect but has many improvements over the previous version.  This is still
+very much a 'work-in-progress' driver with many known problems.  Hopefully
+these problems will be fixed soon.
+
+How to:
+
+You need a zip file called neogeo.zip in your rompath.  It should contain at
+least two files:
+
+neo-geo.rom (128k)
+ng-sfix.rom (128k)
+
+There should also be two other roms which are not yet used by Mame, they _will_
+be used in future versions of this driver so do not delete them.
+
+You also need to place the game zip in your rompath.  If you do not know what 8
+character filename the NeoGeo game you want to play has you can type:
+
+mame -listclones neogeo
+
+That will list the 8 character zip names of all currently supported games.
+
+What's New?
+-----------
+
+Many graphics improvements:
+* 'Missing tiles' in games such as Puzzle Bobble are fixed.
+* Scaling is improved, but still not perfect.  Full screen zooms tend to break
+  (eg, Thrash Rally, Art of Fighting).
+* 'Japan/Europe/USA' territory selection in dipswitch menu.
+* Start & coin key positions are moved to their 'standard' MAME positions
+* Coin inputs work, freeplay is no longer the default.
+* Soft dipswitches are fully emulated and saved per game, the files are saved
+  to the hiscore directory for now.
+* Custom drawgfx routine in place.  This is slower than the previous MAME
+  release but allows the graphics to be drawn from their native data.  This
+  allows:
+* MEMORY REQUIREMENTS APPROXIMATELY HALVED!  And also quicker loading time.
+* If you experience a 'black screen' for a few seconds after loading it is
+  because the 'pen usage' arrays are being calculated.  MAME NeoGeo uses a
+  compressed palette system to give the full NeoGeo 12 bit colour on an 8 bit
+  display.  (This is nothing new, almost every other MAME driver for high
+  colour games works in the same way, by choosing only the colours that are
+  actually displayed at any one time).  Although this gives better quality it
+  actually takes around 10-15% of the processor time each frame.
+* There is no 'black screen' at the end of each games demo. All games now
+  behave as per the arcade version and cycle to the 'NeoGeo logo' screen.
+
+
+Notes on soft dipswitches:  You can access these from pressing F2 (self test)
+or setting the test mode dipswitch and resetting the virtual machine. Both soft
+dips and cabinet settings are saved for each game. If, for some reason, you
+experience strange gameplay (NOT graphics glitches), the soft dips may have
+become corrupt (this _is_ still a beta release!), to clear them you can wipe
+the file in the hiscore directory for the game OR go into the hardware test and
+select the 'clear backup ram' option (recommended).
+
+Other Fixes
+-----------
+
+Emulation of soft dips fixed many problems games had in previous versions, for
+example, the game timers being set low in games such as KOTM and Art of Fighting
+are fixed. Almost all 'gameplay' issues are fixed by this.
+
+Sidenote: The 'blood bios' is not needed, nor supported.  All games affected by
+the blood bios actually have the 'blood' option in their soft dip options.  It
+can be turned on & off there without having to use a special bios.  In fact any
+non-standard bios may not work at this point.
+
+Due to the much decreased memory requirements large games such as Karnov's
+Revenge now work.
+
+What isn't fixed?
+-----------------
+
+'New' games such as Metal Slug, Pulstar, Shock Troopers do not work, either due
+to protection or bankswitching used in these games (information needed!).
+
+The animation in the 'rain' scenes of Karnov's Revenge does not animate!
+
+As mentioned before, full screen zooms are not correct.
+
+The MVS memory card is not supported.
+
+(Probably many other small bugs too).
+
+And finally:
+------------
+
+Q: Why don't you MAME guys do something original instead of doing something
+   that's already done?
+A: Tell that to a Mac/Arm/Amiga owner!
+
+Q: It's a bit slow...
+A: The custom graphics draw routine will be improved soon! It was felt that the
+   slowdown was merited due to the advantages of halving memory usage.

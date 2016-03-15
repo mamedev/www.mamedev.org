@@ -1,0 +1,331 @@
+0.138u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03910: [Sound] All sets using stereo sound: Right speaker is louder 
+         than left speaker (hap)
+- 03913: [Graphics] arcadecl: Playfield is offset to characters in both 
+         games. (hap)
+- 03912: [Sound] kyros, kyrosj: Once you throw a punch, there is a white 
+         noise which lasts throughout the game (hap)
+- 02572: [Known Issues/To-Do's] All Sets in xain.c: 68705 MCU is not 
+         dumped, behavior patched out (Phil Bennett, Dr. Decapitator)
+- 02462: [Known Issues/To-Do's] storming: Supposed to be a bootleg 
+         without mcu. (hap)
+- 03899: [Sound] All sets in cloak.c: Music pitch is higher than PCB 
+         (Tafoid)
+- 03888: [DIP/Input] mstadium: Third button mapping missing. (Tafoid)
+
+
+
+Source Changes
+--------------
+Added many instances of missing static and const qualifiers to MAME,
+and disabled a fair chunk of dead code in konamiic.c.  [Atari Ace]
+
+Confirmation (with frequency counter) of proper 68000 clock speeds (16
+MHz) for Premier Soccer and Golfing Greats.  [Fabrizio Vasile]
+
+Updated expat library match the latest released version. (2.0.1) 
+[Oliver Stoneberg]
+
+Natural keyboard status saved in options when changed [Robbbert]
+
+Improvements to the Pinkiri 8 video emulation [David Haywood]
+
+Hooked up inputs and Dip-SW for Ron Jan and Pinkiri 8 [Angelo Salese]
+
+Simplified vram access in Pinkiri 8 HW [David Haywood]
+
+Added a skeleton driver for Philips CD-i-based arcade series, Quizard
+[Harmony]
+
+Moved softlist implementation from MESS [Miodrag Milanovic]
+ * Moved image related UI from MESS to emu core
+ * Reimplemented filename related image device calls
+
+Moved listsofware command line option from MESS, and added softlist in
+XML output [Miodrag Milanovic]
+
+TMS52xx now uses proper IP/PC/Subcycle counting for audio generation.
+[Lord Nightmare]
+
+video/cclimber.c: cclimber/ckong sprite X was off by 1 [hap]
+
+Rewrote video emulation to use the device system in Little Robin
+[David Haywood]
+
+Decrypted Double Dragon Italian bootleg char roms [Angelo Salese]
+
+Super Game III: added handling for two consecutive writes for MMC1
+making Snow Bros playable [Mariusz Wojcieszek, Fabio Pruli]
+
+Moved ioproc implementation from MESS [Miodrag Milanovic]
+
+Fixed bad cassette wave sound [Robbbert]
+
+Super Game III: fixed Tom & Jerry [Mariusz Wojcieszek]
+
+Added proper i8751H MCU dump to Legend of Hero Tonma (Japan)
+[Dr. Decapitator]
+
+C++-ified the debugger views. Split implementation of individual view
+types out to separate files. Updated all callers. [Aaron Giles]
+
+Changed emualloc to free resource pools from earliest to latest so
+that early objects can safely clean up stuff they allocated. 
+[Aaron Giles]
+
+Changed device name from an overridable function to a parameter passed
+to the device_config constructor. In situations where the proper name
+is not known at construction time, a generic name can be specified and
+then overridden later once the configuration is complete. [Aaron Giles]
+
+Decapped 89C51 MCU in Real Battle Mahjong King [Dr. Decapitator, Guru]
+
+metro.c: Added Puzzlet's MCU internal ROM. Zilog Z8 8-bit family MCU
+requires a new CPU core to be written. [Dr. Decapitator]
+
+Hooked up Renegade 68705 MCU [Phil Bennett, Dr. Decapitator]
+
+Made redufo Artic version the parent and bootleg version a clone [hap]
+
+Hooked up Xain d'Sleena/Solar Warrior 68705 MCU
+[Phil Bennett, Dr. Decapitator]
+
+Hooked up Daikaiju no Gyakushu 68705 MCU and removed MCU simulation
+code [Phil Bennett, Dr. Decapitator]
+
+Added DIP LOCATIONS for xain.c  [Tafoid]
+
+aristmk4: various improvements: [FrasheR, Palindrome]
+ * Fixed VIA for good. 5010 - 501F
+ * Hooked up push button inputs
+ * Hooked up ports for the PML 2852 U3
+ * Implemented coin input
+ * Lamp output and button layout
+ * NVRAM backup
+ * Connected SW7 for BG colour map select
+ * Added LK13. 3MHz or 1.5 MHz CPU speed select
+ * Added sound sample for mechanical meter pulse
+ * Replaced custom RTC code with MC146818
+
+naomi.c: Corrected and updated some game names and cartridge
+descriptions [f205v]
+
+neodrvr.c updates: [Johnboy]
+ * Tagged kof2003h AES VERSION
+ * Tagged the following sets as MVS AND AES VERSION: aodk, lbowling
+ * Renamed P1 in sengoku3 to correct chip label
+ * Marked v2 in strhoop BAD_DUMP
+ * Marked P1 in flipshot BAD_DUMP
+ * Identified kof98n as AES version, renamed to kof98h
+
+Improved v25 logging for Batsugun [David Haywood]
+
+igs011.c update [Luca Elia]
+ * Emulated IGS011 protection
+ * Emulated IGS012 protection
+ * Removed 149 rom patches
+
+Hooked up Slap Fight/Alcon 68705 MCU [Phil Bennett, Dr. Decapitator]
+
+Hooked up MCUs for Tough Turf (US) and Wrestle War; removed Wrestle
+War MCU simulation. [Aaron Giles, Dr. Decapitator]
+
+cps2.c: Correct the release order for the Xmen: Cota (Hispanic) sets
+[gregf]
+
+Made the machine_config a proper object. Added detokenize method to
+this object which can be called multiple times to append new devices
+after the initial machine configuration is set up. Updated member
+variables to match new naming convention. [Aaron Giles]
+
+Changed the running_machine to take a constructed machine_config
+object in the constructor, instead of creating one itself, for
+consistency. Also added machine->total_colors() as a shortcut to
+machine->config->m_total_colors. [Aaron Giles]
+
+firetrap.c: Added PCB documentation, corrected ROM names, corrected
+clocks [Guru]
+
+idsoccer: Improved DIP locations, confirmed MSM5205 clock
+[Kevin Eshbach]
+
+Fixed title screen colors in Bogey Manor
+[Angelo Salese, Stefan Lindberg]
+
+Modified way device_type constants are defined in order to get unidasm
+compile [Miodrag Milanovic]
+
+Changed autmoon (aristmk4) romload to proper crc/sha hashes.  The
+submitted romset contained a 32kb (u87.bin) which actually appeared to
+be an 8k overdumped. [Tafoid]
+
+slapfght.c: Corrected rom names for the Slap Fight sets and added PCB
+locations to any set where possible. Added Dipswitch locations to Slap
+Fight.  Moved PCB information down to matching rom sets.
+[Brian Troha, Guru]
+
+Split mame.c into mame.c and machine.c, the latter containing the
+running_machine definition and implementation. [Aaron Giles]
+
+Moved global machine-level operations and accessors into methods on
+the running_machine class. For the most part, this doesn't affect
+drivers except for a few occasional bits: [Aaron Giles]
+
+  mame_get_phase() == machine->phase() 
+  add_reset_callback() == machine->add_notifier(MACHINE_NOTIFY_RESET, ...) 
+  add_exit_callback() == machine->add_notifier(MACHINE_NOTIFY_EXIT, ...)
+  mame_get_base_datetime() == machine->base_datetime()
+  mame_get_current_datetime() == machine->current_datetime()
+
+Cleaned up the region_info class, removing most global region
+accessors except for memory_region() and memory_region_length().
+Again, this doesn't generally affect drivers. [Aaron Giles]
+
+Resurrect the old sampling profiler, and improve it to be useful:
+[Aaron Giles]
+ * always available now, just specify -profile <n> to enable it
+ * supports stack walking to uniquely identify call chains; the <n>
+    parameter to the -profile option specifies how deep to go
+ * automatically turns off throttling and multithreading, and sets the
+    number of processors available to 1 (since we only sample the main
+    thread)
+ * output now uses the common symbol lookup, which actually uses the
+    PDB for MSVC builds and sym files for gcc builds
+ * the top 30 unique call chains are output
+
+Fix performance regression for PowerPC games. The timing made heavy
+use of cpu_get_total_cycles() which is now slow. Better to use the
+legacy_cpu_device directly and call device->total_cycles() which
+avoids the dynamic_cast to find the execute interface from a generic
+device. [Aaron Giles]
+
+Added cycles_to_attotime() and attotime_to_cycles() which is more
+often what is requested. (Clocks are the raw input clock, while cycles
+are internal clock after dividers/multipliers.) [Aaron Giles]
+
+Removed most other instances of cpu_get_total_cycles. [Aaron Giles]
+
+Removed the following functions: [Aaron Giles]
+  cpu_get_total_cycles()   == cpudevice->total_cycles()
+  cpu_clocks_to_attotime() == cpudevice->cycles_to_attotime()
+  cpu_attotime_to_clocks() == cpudevice->attotime_to_cycles()
+
+Correct dipswitch location order in World Rally to match actual dips
+as seen by the game / service menu. [Brian Troha]
+
+namcos22.c: updated ridgerac, raveracw and acedrvrw to use keys
+instead of dipswitches for shifters [Fabio Priuli]
+
+Added COPX romloading for sets that didn't have it, marked as BAD_DUMP
+until the assumption that they're the same is (un)confirmed. [hap]
+
+Winmain cleanup: [Aaron Giles]
+ * created dynamic_bind<> template class to handle dynamically binding
+    to optionally-supported functions
+ * wrapped stack walking code in a class
+ * wrapped symbol lookup code in a class
+ * added support for parsing objdump-produced symbol dumps which
+    include non-global functions for much better stack dumps and
+    profiling in gcc builds
+
+Modified makefile for win32 targets to automatically run objdump
+and produce a .sym file if SYMBOLS is enabled. [Aaron Giles]
+
+Update cheat loading to support image devices (moved implementation
+from MESS), use only CRC of first found image. [Miodrag Milanovic]
+
+Removed cpu_get_sp(). [Aaron Giles]
+
+Added overrides to fetch the execute, memory and state interfaces 
+without doing a dynamic_cast<> to speed up common legacy operations.
+[Aaron Giles]
+
+Created CPU-specific device types for all CPUs, using new macros
+DECLARE_LEGACY_CPU_DEVICE and DEFINE_LEGACY_CPU_DEVICE. Changed CPUs
+to be their own device types, rather than all of type CPU with a
+special internal subtype. Note that as part of this process I removed
+the CPU_ prefix from the ALL-CAPS device name, so CPU_Z80 is just
+plain old Z80 now. This required changing a couple of names like 8080
+to I8080 so that there was an alphabetic first character. [Aaron Giles]
+
+Hooked up Heavy Barrel I8751 MCU [Bryan McPhail, Dr. Decapitator] 
+
+[cb2001] added 2 new opcodes [robiza]
+
+Hooked up Gondomania I8751 MCU [Bryan McPhail, Dr. Decapitator]
+
+Reimplemented Meikyuu Hunter G I8751 MCU according to schematics
+[Bryan McPhail]
+
+Software list update: [Wilbert Pol]
+ - Software list xml files are now read in full such that information 
+    for clone and parent sets is available.
+ - Added validity check to check for existence of parent sets.
+
+Imported image related utils from MESS into /lib/util [Miodrag Milanovic]
+
+Improved video emulation in cb2001 [David Haywood]
+
+Added support for Sega 317-5000 decryption (same as 315-5177). 
+Reorganised decryption code. [Nicola Salmoria]
+
+Moved debugging structure away from CPUs only and attached to all
+devices. Debugger now creates one for each device. C++-ified most
+debugger operations to hang off the debugging class, and updated
+most callers. [Aaron Giles]
+
+Got rid of cpu_count, cpu_first, cpu_next, etc. as they were badly 
+broken. Also removed cpu_is_executing, cpu_is_suspended,
+cpu_get_local_time, and cpu_abort_timeslice. [Aaron Giles]
+
+Software list improvements: [Miodrag Milanovic]
+ - Support for multiple software list per driver 
+ - Added MDRV_SOFTWARE_LIST_COMPATIBLE_ADD for adding compatible 
+    software lists (for documentation purposes) [Miodrag Milanovic]
+ - listsoftware option now return only original software lists
+ - UI is updated to enable mounting software items per device, it 
+    will display only items from list that are for specific device
+ - Separate compatible software lists in UI
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Slap Fight (set 1) [Phil Bennett, Dr. Decapitator]
+Alcon [Phil Bennett, Dr. Decapitator]
+
+
+
+New clones added
+----------------
+The King of Fighters '98 - The Slugfest / 
+    King of Fighters '98 - dream match never ends (Korean board 2)
+    [Johnboy]
+Looping (Video Games GMBH) [Andrew Welburn]
+Defend the Terra Attack on the Red UFO (Artic) [The Dumping Union]
+Crazy Kong (Falcon?) [Fred O.]
+Exciting Animal Land Jr. (USA) [Smitdogg, The Dumping Union]
+American Soccer [Kevin Eshbach]
+Virtua Striker 2 '99 (Revision B) [Guru]
+Fire Trap (Japan) [Guru]
+Marvel Vs. Capcom: Clash of Super Heroes (USA 971222) [Razoola]
+Raiden DX (UK) [Irongiant]
+Boggy '84 (original Kaneko) [Klaus Sommer, Team Europe, The Dumping Union]
+Exerizer (Japan) [N. Francfort, blib, Smitdogg, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Quizard (1.7) [ANY, The Dumping Union, Harmony]
+Quizard (2.2) [ANY, The Dumping Union, Harmony]
+Quizard (3.2) [ANY, The Dumping Union, Harmony]
+Quizard Rainbow (4.1) [ANY, The Dumping Union, Harmony]
+Model Racing Shooting Game (unknown title) 
+    [Luigi, Volker Hann, Team Europe]
+Out Run 2 (Rev. A) [GDX-0004A]  [Team Europe, The Dumping Union, Alex]

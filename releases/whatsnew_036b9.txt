@@ -1,0 +1,89 @@
+0.36 BETA 9
+
+Important: due to changes in the palette system, there might be games that
+had correct colors before, and wrong now. Please let us know if you find
+any.
+
+
+New games supported:
+--------------------
+
+Kick and Run [Nicola Salmoria, Ernesto Corvi]
+KiKi KaiKai [Nicola Salmoria, Ernesto Corvi]
+Perfect Soldiers [Bryan McPhail]
+Big Striker [Luca Elia]
+Kick Off [Luca Elia]
+Dream Soccer '94 [Bryan McPhail]
+Kageki [Takahiro Nogi]
+
+
+New clones supported:
+---------------------
+
+Mega Zone (Konami)
+Donkey Kong 3 (Japan)
+Ajax (Japan)
+Ring no Ohja (= The Main Event)
+Thunder Blaster (= Lethal Thunder)
+Fantasy (SNK)
+Blue Print (Jaleco)
+X-Men (2 Players Japan)
+Checkman (Galaxian hardware) [Zsolt Vasvari]
+Contra (Japan)
+Karate Dou (= Karate Champ)
+Undercover Cops (Japan)
+Dump Matsumoto (= Body Slam)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed raster effects in Turf Masters (Japan course) and Zed Blade. Improved
+  Super Sidekicks 2. [Massimo Morra]
+
+
+Other drivers changes:
+----------------------
+
+- Fixes to Lazer Command and Meadows Lanes. [Malcolm Lear]
+
+
+Changes to the main program:
+----------------------------
+
+- 16 bit support in the tilemap manager, so the Namco System 2 games no longer
+  require -depth 8. [Phil Stroffolino]
+
+- [DOS] Changed the -depth option behaviour, now it can be either 8, 16, or
+  auto. The default is auto, which uses the color depth appropriate for the
+  game. 8 forces use of a 256 colors display (faster but less accurate), 16
+  forces use of a 16-bit display (not suggested, doesn't work with all games).
+  MAKE SURE TO SET depth = auto IN MAME.CFG, OR YOU'LL USE 16-BIT IN ALL GAMES.
+
+- Fixed a few bugs in the NEC CPU core that caused problems in Hook, Gunforce,
+  Lethal Thunder and maybe others. [Bryan McPhail, Nao]
+
+- Several changes and improvements to the TMS34010 emulation and to the
+  Williams games using CVSD sound. [Aaron Giles]
+
+
+Source:
+-------
+
+- [DOS] Now compiled with Allegro 3.9.27 WIP.
+
+- Replaced MachineDriver->video_attributes VIDEO_SUPPORTS_16BIT with
+  GameDriver->flags GAME_REQUIRES_16BIT.
+  Added color_depth to struct RunningMachine and struct GameOptions. OS
+  dependant code may set it to force a specific depth.
+  Added depth parameter to osd_create_display(). The OS dependant code MUST
+  respect it - if it has special requirements, it must set the GameOptions
+  flag beforehand.
+
+- Calling palette_recalc() is now *MANDATORY* in all drivers that modify the
+  palette. The palette will not be updated otherwise.
+
+- Removed adpcm_sample_list, palette and colortable from struct GameDriver.
+  Changed char *color_prom to int prom_memory_region.
+
+- Updated the TMS9900 emulator. [Raphael Nabet]

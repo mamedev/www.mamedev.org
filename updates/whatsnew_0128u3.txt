@@ -1,0 +1,161 @@
+0.128u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02633: [Crash/Freeze] Many sets using the MC6845: Crash/hanging in 
+         many games. (Curt Coder)
+- 02626: [DIP/Input] crimfgt2, crimfgtj: Cannot start a game 
+         (Fabio Priuli)
+- 02618: [Sound] samuraia and clones: No SFX sound 
+         (Pierpaolo Prazzoli)
+- 02544: [Core] Dip Condition / Port Include limitation (Aaron Giles)
+- 02542: [DIP/Input] ghoulsu: Doesn't remove the original port when 
+         replacing it with a conditional port (Aaron Giles)
+- 02607: [Crash/Freeze] frogs: Taking a screenshot in Frogs (Gremlin) exits the game with an error. (aaron)
+
+
+
+Source Changes
+--------------
+Changed 74123 into a device. Clarified behavior from datasheet. Added
+logic to avoid recursive calls. [couriersud]
+
+Fixed Dip Switches for all games in halleys.c driver.
+Added Dip locations for 'halleys' and clones. [stephh]
+
+More improvements to the 32x code. [David Haywood]
+
+Irem M10: first results from schematics: [couriersud]
+ * Updated video timing and cpu/pixel clocks
+ * Rewrote irq for m10/m11 to use two 74LS123
+
+AICA: fix missing instruments in DTPK driver games.
+[R. Belmont, Deunan Knute, kingshriek]
+
+Naomi: unmapped words in the AICA address range must read as zero.
+[R. Belmont]
+
+Corrected YM2203 balance in powerins. [Jim Hernandez]
+
+Converted toobin to RGB32 to allow for mid-screen palette updates.
+Also added correct video timing and full memory map, and connected
+watchdog. [Aaron Giles]
+
+Added Dip locations for 'exprraid' and clones, and for 'gyruss' and 
+clones. [stephh]
+
+Hooked up 6845 to peplus driver: [couriersud]
+ * Hooked up 6845 in a daisy chain way into existing "6845 emulation"
+ * Clocks from schematics
+ * Video size issues - 6845 code related, discussion started on list
+
+Re-inlined core attotime functions. This makes a significant 
+difference when running with high interleaves. [Aaron Giles]
+
+Added support for recently-discovered internal Z80 register to the
+Z80 core. Improves accuracy of undefined flags. [Miodrag Milanovic]
+
+Reverted MC6845 changes as they broke a number of things. [Curt Coder]
+
+Converted Z80, R3000, ADSP2100, and M680x0 cores to reference their
+data via pointers instead of global structs, in anticipation of
+future changes. [Aaron Giles]
+
+Fixed coinage in Speed Attack! and cleaned-up the driver to current 
+standards. [Angelo Salese]
+
+Converted the MCS-48, MCS-51, and m6502 cores to reference data via 
+pointers. [couriersud]
+
+Added concept of scheduling quanta to the timer system. Also added
+means of setting the minimum useful scheduling quantum, and clamping
+all quanta to that value. [Aaron Giles]
+
+Changed interleave/boost handling to use scheduling quanta instead
+of timers. [Aaron Giles]
+
+Added machine parameter to cpu_boost_interleave. [Aaron Giles]
+
+Updated cpuexec to compute the "perfect" interleave value taking into
+account the minimum number of cycles per instruction specified by the
+CPU core. Updated Z80 core to indicate that the minimum cpi is 2. 
+Fixed incorrect minimum cpi in the 68020+ cores. [Aaron Giles]
+
+Changed core cycle computations to use div_64x32 instead of full 
+64-bit divides. This involves tossing a few bits of resolution at 
+divide time, but should make no real difference in practice.
+[Aaron Giles]
+
+Began the process of pruning options from the 68000 core, hard-coding 
+it for MAME's needs. We've hacked on it sufficiently that it is no 
+longer generic, so this is a good opportunity to simplify the code 
+so that it can actually be followed (still in progress). [Aaron Giles]
+
+Defined macros for all core CPU functions, along with macros for the 
+name and for calling, in the spirit of the devintrf.h macros.
+[Aaron Giles]
+
+Changed init, reset, exit, and execute interfaces to be passed a
+const device_config * object. This is a fake object for the moment,
+but encapsulates the machine pointer and token. Eventually this will
+be a real device. [Aaron Giles]
+
+Changed the CPU IRQ callbacks to a proper type, and added a device
+parameter to them. [Aaron Giles]
+
+Fixed background color of srmp1/srmp2. [EdxGROfS0]
+
+Various improvements in the ST-V driver: [Angelo Salese]
+ * Fixed bitmap zooming in Virtual Mahjong 2 - My Fair Lady;
+ * Worked around a major graphic bug in ElanDoree;
+ * Added some missing alpha blending effects,Pro Mahjong Kiwame S 
+    title screen needs it but it doesn't work yet due to other 
+    problems (still investigating)
+ * Fixed a crash bug with Astra Super Stars when the debugger is 
+    active.
+
+Merged DS5002FP into MCS51: [couriersud]
+ * Merged DS5002FP
+ * Disassembler now uses type specific memory names
+ * Merged DS5002FP disasm
+ * added 83C751 memory names to disassembler
+ * delete DS5002FP specific files
+ * removed unnecessary cpu callback in wrally
+ * DATA_MAP ==> IO_MAP in wrally
+
+Continued rewrite of the Motorola DSP56k CPU core:
+[Andrew Gardner, PhilB, RBelmont]
+ * Added proper clock speed to plygonet.c and internal divider to 
+    dsp56k.c
+ * Fixed up disassembler add/sub, 05xx, and bsr ops.
+ * Handle mysterious uuuuF instruction found in plygonet add op.
+ * Partially implemented add, sub, mac, mpy, inc, cmpm, macr, asr16, 
+    jscc, lea, and movec ops.
+ * Added dual X memory read and data move with short displacement 
+    parallel moves.
+
+Some improvements to the Forte Card driver, not yet working.
+[Angelo Salese]
+
+Changed Psicho Nics Oscar (japan revision 0) to (world revision 0)
+since there is no japan disclaimer. [Corrado Tomaselli]
+
+Fixed missing inputs in expro02. [Sonikos]
+
+CPS2 ROM updates to match PCB labels. [Razoola]
+
+Added ADDRESS_MAP_NAME macro, updated CPU cores to use it to reference
+internal address maps. [Atari Ace]
+
+Added include files for many drivers that never bothered before.
+[Atari Ace]
+
+Improved Star Castle drone sound. [Jim Hernandez]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Snezhnaja Koroleva [Antro]

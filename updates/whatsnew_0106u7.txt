@@ -1,0 +1,44 @@
+0.106u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+namcond1_0106u3yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Improvements to the Sang Ho driver, making them somewhat playable.
+[David Haywood, Tomasz Slanina]
+
+Fixed off-by-one drawing error in the Pasha Pasha 2 driver.
+[Pierpaolo Prazzoli]
+
+Fixed some instruction forms in the 6309 diassembler to consume
+the correct number of bytes. [Nicola Salmoria]
+
+Added back support for DirectDraw. Unlike the old support, this 
+requires DirectX 7 or later. There is now a new option to control
+what video system is being used for rendering. Use -video d3d to use
+Direct3D. Use -video ddraw to use DirectDraw. And use -video gdi to
+force the use of GDI for rendering. Also added back the -hwstretch
+option to control whether or not DirectDraw does stretching. Added
+support for the -prescale option when using DirectDraw as well. It
+should also work ok with multiple screens. [Aaron Giles]
+
+Added a compile-time option to rendersw.c to prevent reads from the
+destination. This removes the ability to do a number of blends and
+effects, but allows you to point the software renderer at a video
+memory target and not kill performance. It also improves performance
+of software rendering in general by avoiding expensive alpha blending
+operations. [Aaron Giles]
+
+Improved font logic so that small fonts are scaled more appropriately
+at low resolutions. It's not perfect, but works well for most games
+when running with the new DirectDraw option, which always renders
+games at minimum resolution. [Aaron Giles]
+
+Fixed bug that messed up partial updating. Hopefully it all should be
+back to normal again. [Aaron Giles]

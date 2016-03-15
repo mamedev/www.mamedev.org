@@ -1,0 +1,130 @@
+0.106u3
+-------
+
+WARNING: As of this build, the new rendering system is enabled by
+default. The primary focus at this point is compatibility, not
+performance. Compared to the old -ddraw system, it will appear
+slower when fully unthrottled because there is not a good mechanism
+to skip the render if the graphics hardware is still busy like we
+used to do. If you have any trouble getting a correct display or
+if you get warning messages printed out when starting MAME, please
+post about them on http://mametesters.org.
+
+SECONDARY WARNING: The command line and INI parsing code was
+rewritten. If you notice any problems with handling of parameters
+in either case, please report the bugs on http://mametesters.org.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+colmns970105gra [Mariusz Wojcieszek]
+
+
+
+Source Changes
+--------------
+Added a size parameter to osd_free_executable(). [Olivier Galibert]
+
+Fixed flash rom writes in dgpix games. [Pierpaolo Prazzoli]
+
+More fixes/improvements to jalmah.c DIP switches: [Roberto Fresca]
+ Kakumei:
+  - Added flip screen DIP switch.
+ Daireika, urashima & mjzoomin:
+  - Added flip screen DIP switch.
+  - Fixed test/service DIP switch.
+  - Fixed complete coinage.
+ 
+Added save state support to the 1942, 1943 and 1945kiii drivers. 
+[Lee Mitchell]
+
+Fixed blitters to work with 15-bit direct RGB modes. [Nathan Woods]
+
+Refactored resource tracking code, auto_malloc(), auto_strdup() 
+etc into a separate module, restrack.c. [Nathan Woods]
+
+Moved large stack buffers into heap buffers to work better on systems
+with small stacks. [Lawrence Gold]
+
+Fixed a subtle auditing issue when both parents and clones had
+NO_DUMP ROMs in their manifests. [Hobbes@Play]
+
+Tweaks to the MSVC compiler support: [AtariAce]
+ - Removed _MSC_VER specific #pragmas in nec.c
+ - Removed _MSC_VER specific #include <malloc.h> in winprefix.h
+ - Changed makefile to bootstrap vconv.exe with cl instead of gcc
+ - Changed calls to lib to use link /lib instead
+ - Updated vconv to only use /arch:SSE2 for VC71 and later
+ - Cleaned up the profiler code in winmain.c
+ - Removed the direct dependency of MAME on shell32 has been 
+ - Tweaked a couple of preprocessor definitions so we compile as far
+    back as MSVC 5.0
+
+Massive DIP switch update to the following drivers: actfancr,
+aliens, angelkds, argus, asuka, bwing, compgolf, cop01, dblewing,
+dec8, dogfgt, dooyong, fuukifg2, homedata, jcross, kaneko16, m92, 
+mainevt, megasys1, metro, ms32, nmk16, paradise, seta, seta2, 
+shisen, snk, ssv, system1, taito_b, taito_f2, taito_l, tecmo,
+thedeep, thepit, ultraman. [Brian Troha, Guru, Yasuhiro Ogawa]
+
+Added code in the debug build to put random data in allocated memory.
+[Aaron Giles]
+
+Removed remaining chunks of x86 assembly code, as well as references
+to NASM in the makefiles. [Aaron Giles]
+
+Rewrote the options parsing code to be more flexible and generic.
+A new core source file options.c provides the ability to add and
+maintain a database of key/value pairs, which can be queried at
+runtime. Reconnected all existing frontend options through this code. 
+Bounds checking on options for the old renderer is pretty loose, and 
+several more complicated options have been disconnected as a result. 
+If you are still running with the old renderer, be careful.
+[Aaron Giles]
+
+Reorganized fronthlp.c to be one step closer to universal. One more
+layer of abstraction and hopefully it will be able to move up into
+the core. [Aaron Giles]
+
+New options to control multiple screens in the new renderer:
+[Aaron Giles]
+ -numscreens specifies how many windows to create
+ -screen0/screen1/... specifies the name of the screen for each window
+ -resolution0/resolution1/... specifies resolution for each window
+ -aspect0/aspect1/... specifies aspect ratio for each screen
+ -view0/view1/... specifies starting view for each screen
+
+Deprecated osd_skip_this_frame() with the new renderer. osd_update()
+now returns TRUE if it wants to skip the following frame. [Aaron Giles]
+
+Fixes to the new rendering system: [Aaron Giles]
+ - Enabled new renderer by default
+ - Fixed crash at startup due to uninitialized memory
+ - Fixed crash at shutdown due to incorrect shutdown order
+ - Fixed rendering of 15-bit direct RGB games
+ - Fixed weird frameskipping issues
+ - Fixed off-by-one error on visible area
+ - Added proper clipping of quad primitives
+ - Optimized the clearing step to avoid redundant drawing
+ - Brought software-only case up to support all major blending types
+ - Added support for -filter option
+ - Reconnected snapshots, though they are unrotated and screen 0 only
+ - Fixed several UI problems with new video options menu
+ - More strongly defined the blending modes to produce correct effects
+ - Added a flag to indicate textures that are of screen bitmaps
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mario Lemieux Hockey (Mega-Tech) [David Haywood, Guru]
+Highway Chase (Cassette) [David Widel, Juergen Buchmueller]
+Critter Crusher [Mariusz Wojcieszek, gbluma]
+Daikaiju no Gyakushu [Tomasz Slanina, Guru]
+
+
+
+New clones added
+----------------
+Turtle Ship (North America) [Brian Troha]

@@ -1,0 +1,87 @@
+0.35 BETA 6
+
+Note: the CPU cores have been completely torn apart and rearranged in this
+release. Don't be surprised if a large number of games donì't work at all.
+FOr example, Twin Cobra doesn't boot, and most (all?) of the games using
+a 6803 lock up (ctrl-alt-del needed).
+
+
+New games supported:
+--------------------
+
+Space Wars [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Vectorbeam [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Star Hawk [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Star Castle [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Tailgunner [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Rip Off [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Speed Freak [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Sundance [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Warrior [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Armor Attack [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Solar Quest [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Demon [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+War of the Worlds [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Boxing Bugs [Aaron Giles, Zonn Moore, Jeff Mitchell, Neil Bradley]
+Mystic Marathon [Michael Soderstrom]
+Turkey Shoot [Michael Soderstrom]
+Inferno [Michael Soderstrom]
+Joust 2 [Michael Soderstrom]
+Pontoon [Zsolt Vasvari]
+
+
+New clones supported:
+---------------------
+
+Dark Seal (revision 3) [Bryan McPhail]
+Pocket Gal 2 [Bryan McPhail]
+Super Pool III [Bryan McPhail]
+Scramble (Konami) [Zsolt Vasvari]
+Scramble (bootleg) [Zsolt Vasvari]
+Yie-Ar Kung Fu (set 1) [Zsolt Vasvari]
+Tazz-Mania (Strategy X hardware) [Zsolt Vasvari]
+Eliminator (2 Players, set 2) [Thierry Lescot]
+Super Buster Bros (KEEP 1 PRESSED WHILE BOOTING THE FIRST TIME)
+Ninja Princes (not encrypted) [Nicola Salmoria]
+Rolling Thunder (set 2) [Nicola Salmoria]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed colors in Lode Runner 2. Also fixed the layout of round 8 and 28.
+  [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] New -stretch option to optionally stretch low resolution games to fill
+  the screen. The default is -stretch=off, which is the same behaviour as
+  before. -stretch=1024x768 automatically uses the "quadra" mode for horizontal
+  games whose resolution is less or equal to 256x256. -stretch=800x600 uses
+  the "triple" mode. The -quadra and -triple options are no longer needed and
+  have been removed.
+  1024x768 will be perfect (for 256x256 games) or almost perfect (for 256x240
+  and 256x224 games) without monitor adjustment, so it is indicated for LCD
+  displays. However, it is slower than 800x600. 800x600 is faster but the games
+  are stretched to resolutions from 768x448 to 768x512, so they don't fill the
+  screen and are squashed vertically. Here's the tip: if your monitor is good
+  enough, you can use the controls to expand the picture and make it fit
+  perfectly in the screen. Note that this tip  applies not only to stretched
+  modes, but also to med-res games like Lode Runner (384x256) and the CPS1
+  games (384x224). The CPS1 games in particular are unbearably squashed unless
+  you adjust the monitor. [Nicola Salmoria]
+
+- [DOS] New option -volume n to set the startup volume. The volume is an
+  attenuation in dB, e. g. "-volume -12" will start with a -12dB attenuation.
+  [Nicola Salmoria]
+
+- The user interface is rotated by -rol and -ror. [Nicola Salmoria]
+
+- Improvements to the YM2610 timers, added an interface for external volume
+  control. [Tatsuyuki Satoh]
+
+- Major changes to the whole CPU interface and cores. [Juergen Buchmueller]
+
+- [DOS] All new, completely rewritten autoframeskip code. [Nicola Salmoria]

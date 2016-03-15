@@ -1,0 +1,122 @@
+0.114u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gauntlet0114u2gre [Aaron Giles]
+psxbasedgames0114u3red [couriersud]
+successstv0114u2red [R. Belmont]
+asserts0113ora [Aaron Giles]
+hginga0114u2gra [Aaron Giles]
+ckongg0114u2gra [Aaron Giles]
+sample0114u3 [Aaron Giles]
+rampage0114u2gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Updated clocks in Arkanoid based on measurements from a real PCB.
+[Tormod Tjaberg]
+
+Rewrote the vp906iii driver: [Roberto Fresca]
+ - Decoded GFX properly.
+ - Rewrote the memory map based on program ROMs analysis.
+ - Hooked two SY6520/6280 (M6821) PIAs for I/O.
+ - Hooked the SY6545 (6845) CRT controller.
+ - Fixed size for screen total and visible area based on SY6545 CRTC 
+    registers.
+ - Added partial inputs through PIAs.
+ - Added proper sound through AY8910 (mapped at $0840-$0841).
+ - Proper colors through color PROM decode.
+ - Added some game-protection workaround.
+ - Added NVRAM support.
+
+Removed some unnecessary NULL checks and fixed some incorrect usage
+of auto_malloc. [Atari Ace]
+
+Fixed layer drawing and polygon sorting order in Model 1 games. 
+Improves wingwar significantly. [Yochizo]
+
+Significant ARM7 update: [R. Belmont]
+ * Cleaned up disassembly
+ * Added support for many more Thumb instructions
+ * Removed unnecessary logging
+ * Unaligned reads/writes are supported
+
+Fixed crash due to lack of CD in the Success ST-V games. [R. Belmont]
+
+Added calls to support enumerating through options. [Nathan Woods]
+
+Removed set_vh_global_attribute() and 
+get_vh_global_attribute_changed() from the dozen or so drivers that 
+used it. In the process, made an effort to clean up the video system 
+for these games. The biggest improvements are route16, hyhoo, 
+tutankhm and liberatr. [Zsolt Vasvari]
+
+Added a cpu core for a cpu nicknamed minx. This cpu core is used to 
+emulate the cpu in the nintendo pokemon mini handheld console. 
+[Wilbert Pol]
+
+Fixed and documented clocks in Omega Race. [Tafoid]
+
+Improved accuracy of 6502 CPU cores to implement the read/write that
+happens on every cycle. Moved the "undocumented" instructions from 
+the 6510 cores into the main 6502 core, since there were several 
+other versions of the 6502 cores which have the same undocumented 
+instructions. Removed some of the #define override magic that was 
+going on to make the code easier to read and understand. Updated the 
+6510 core port_read and port_write functions to include the ddr 
+register in the parameters. [Wilbert Pol]
+
+Updated the MIPS3 DRC to align the stack to sixteen-byte boundaries 
+at the point of calls, as required by Mac OS X calling conventions. 
+It doesn't break compatibility with Windows or Linux calling 
+conventions. This fixes crashes in MIPS3 games when running on OS X 
+for Intel. [Vas Crabb]
+
+Moved the -verbose option into the core. Added new function
+mame_printf_verbose() which is governed by this option. Changed all
+existing verbose output to use the new functions. [Aaron Giles]
+
+Changed cpu_boost_interleave(), cpu_spinuntil_time(), and
+cpu_yielduntil_time() to take mame_time parameters instead of 
+doubles. [Aaron Giles]
+
+Changed MDRV_CPU_PERIODIC_INT() to take a frequency parameter instead
+of a time. This is converted internally to a subseconds value.
+[Aaron Giles]
+
+Fixed asteroid and llander controls to be buttons not joysticks.
+[Aaron Giles]
+
+Simplified register and flags management in the TMS34010 core. 
+Reviewed all flag handling and fixed a couple of minor discrepancies.
+[Aaron Giles]
+
+Hooked up actual TMS32015 on Road Riot 4WD and Steel Talons.
+[Aaron Giles]
+
+Improved access to system registers in i386 core. Added explicit
+caching of segment data and flags. Fixed several minor issues.
+[Aaron Giles]
+
+Added several AY8910 variants so we can better specify the use of
+compatible but slightly different chips. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Excite League [Guru, Aaron Giles]
+Super League [Guru, Aaron Giles]
+Road Riot 4WD [Aaron Giles]
+Gaming Draw Poker [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Freeze (several clones) [Aaron Giles]
+Racin' Force (ver EAC) [David Haywood]

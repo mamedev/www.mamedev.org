@@ -1,0 +1,145 @@
+0.116u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+kinst0116u3gra [Zsolt Vasvari]
+
+
+
+Source Changes
+--------------
+Changed system1 driver back to using SN7489A. [Lord Nightmare]
+
+Fixed the road graphics, fixed the rest of the missing gfx, added 
+collision detection, and added save states to the changela driver.
+Also fixed the colors. [Adam Bousley]
+
+Changed all drivers to use the mame_timer_* calls. Deprecated the
+old double-based timer calls. [Zsolt Vasvari]
+
+Changes the last few instances of rand() to mame_rand() and added a
+#define to prevent it from being used again. [Zsolt Vasvari]
+
+Made many of the static info_list*() functions in clifront.c public.
+[Dave Dribin]
+
+Fixed regression crashes in maxaflex.c, megadriv.c, monzagp.c,
+tetriunk.c, and gticlub.c. [Atari Ace]
+
+Some more TIA graphics and sound improvements: [Wilbert Pol]
+ - INPT4 and INPT5 are now read when needed instead of by a timed
+    function. This removes the need for the tia_init_pal function.
+ - Improved handling of the HMOVE functionality
+ - Added code to reduce the flickering caused by some Atari 2600 games
+ - Improved the sound poly generation.
+ - Improved the handling of POLY5_DIV3 sound mode.
+
+Updated djboy driver: [Phil Stroffolino]
+ - support for djboyj; same MCU, but ROM banking bits need to be XOR'd
+ - fixed state handling for game over/win transitions
+ - fixes for dipswitches
+ - added coinage support
+
+Fixed a few places where driver code was not properly hooked up.
+Most cases were benign, but in a couple of instances, save state
+support was disconnected, and in one case it fixes a potential crash.
+[Atari Ace]
+
+Fixed regression in Space Raider. [Zsolt Vasvari]
+
+Improved frameskip behavior in the Gaelco 3d driver. [couriersud]
+
+Fixed palette regression in warpwarp/geebee. [Atari Ace]
+
+Added support to chdman to cope with toc files created with cue2toc.
+[smf]
+
+CPS3 updates: [David Haywood, ElSemi]
+ - Corrected Clock speed, used idle skipping instead of reducing the 
+    clock speed.
+ - Optimized some GFX functions. It now only decodes RAM based tiles 
+    when it needs to draw them, not every single time the data changes
+ - Added support for CD flashing
+ - Added support for alternate BIOS sets
+ - Changed code to use a custom render function
+
+Found a number of additional encrypted opcodes for gussun. [robiza]
+
+Simplified the internal handling of BIOS sets. Instead of there being
+an extra structure, the BIOS information is now embedded in the ROM
+definition for each BIOS. [Atari Ace]
+
+Fixed 2nd player inputs in Millipede. [Mike Haaland]
+
+Fixed crash in evilngt due to missing CD image. [R. Belmont]
+
+Fixed crash in cfarm/cclown due to out-of-bounds parameter.
+[R. Belmont]
+
+Added stricter checking in cdrom.c to prevent crashes in games when
+no CD-ROM is present. [R. Belmont]
+
+Fixed regressions in dkongjr and pestplce due to incorrect memory map
+and rendering too many sprites. [couriersud]
+
+Fixed SUBTARGET=tiny builds. [neoforma]
+
+Hooked up P1 joystick inputs for P2 in Upright mode in a number of
+black & white 8080 games. Removed cocktail settings for games where
+it is not appropriate. Enabled dual player game in spclaser.
+[Mike Haaland]
+
+x64 compilation fixes: [Oliver Stoneberg]
+ - some VS2005 x64 warning fixes
+ - enables the x64 porting warnings in VS2005
+ - adds win_create_window_ex_utf8() to get rid of some 
+    tstring_from_utf8() usage
+ - removed win_extract_icon_utf8()
+
+Improved color decoding in Irem M62 games. [Zsolt Vasvari]
+
+Synchronized MAME and AGEMAME versions of the MPU4 code. Improved
+Connect4 layout. Simplified much of the code.
+[James Wallace, Atari Ace]
+
+Improved the 6532riot timer implementation. Implemented irq callback 
+support. [Wilbert Pol]
+
+Updates to the minx CPU core: [Wilbert Pol]
+ - Fixed TEST (94,95,96, and 97) instructions. 
+ - Fixed 2 MOV instructions (BE and BF). 
+ - Fixed one AND instruction (DC).
+
+Simplified interrupt handling in the z80gb core. [Wilbert Pol]
+
+Hooked up lamps in Afterburner 2 driver. [Zsolt Vasvari]
+
+Fixed missing sound in PGM games. [Zsolt Vasvari]
+
+Fixed Millipede sprites in cocktail mode. [Mike Haaland]
+
+Fixed behavior of the RC filter in ddrible and ironhors. [couriersud]
+
+Added wrap around x for sprites in the m92 driver. 
+[Pierpaolo Prazzoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Change Lanes [Adam Bousley]
+DJ Boy [Phil Stroffolino]
+
+
+
+New clones added
+----------------
+B.Rap Boys (World) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Final Godori [Pierpaolo Prazzoli]

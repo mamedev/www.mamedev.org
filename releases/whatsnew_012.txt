@@ -1,0 +1,120 @@
+[note: only important changes are listed]
+
+0.12
+----
+
+Program:
+- Sound support in Burger Time. This is the first multiple CPU game supported
+  by MAME (two 6502, one for code, one for sound).
+  It's not perfect, but we're getting there.
+  Also, as you can guess, this is slow. A 486/100 cannot handle it at 60 fps.
+  Runs reasonably with -frameskip 1, though.
+
+- I also set up the second CPU to emulate sound in Scramble, but the sound
+  that comes out is completely wrong. I don't know what I'm missing, anyone
+  can help?
+
+- Since the 8910 emulator doesn't allow to set the clock frequency at runtime,
+  I temporarily switched to using the default one. This affects sound in Crazy
+  Climber, Crazy Kong and Bagman. Let me know whether it's better or worse
+  than before.
+
+- Sound in Centipede, through Ron Fries' POKEY emulator.
+
+- Fixed speed in Burger Time (was running at about half the real speed).
+
+- Valerio Verrando provided 288x224 video modes to be used with Rally X.
+  WARNING: these video modes might be unstable (the noscanlines one hangs my
+  system). Any help to make them better would be appreciated.
+  As usual, if the default mode doesn't work on your system, try -noscanlines.
+  If that doesn't work as well, use -vesa.
+
+- I finally found out what was causing slowdowns in Rally X and Bagman. It was
+  an interrupt related issue (see later). I hope I didn't break a dozen of
+  other games to fix this ;-)
+
+- Thanks to Mike Cuddy and Mirko Buffoni, Pooyan colors are now MUCH better ;-)
+  I also fixed a bug in the dip switches.
+  MAKE SURE TO DELETE POOYAN\POOYAN.DSW, OTHERWISE IT WILL NOT WORK CORRECTLY.
+
+- I suddenly realized that Time Pilot runs on the same hardware as Pooyan, so
+  I made a driver for it. Colors come straight from Mike Cuddy's emulator.
+
+- Gary Walton confirms that the colors in Moon Cresta and Moon Quasar are 100%
+  accurate. Very good!
+
+- The background stars in Scramble / Super Cobra now blink. However I don't
+  know how close to the real thing it is.
+
+- Ville Laitinen pointed out that The End runs on Scramble hardware, so it now
+  uses the same driver. He also fixed problems with the input controls and two
+  players modes.
+  IMPORTANT: MAKE SURE TO DELETE THE FILES SCRAMBLE\SCRAMBLE.DSW AND
+  THEEND\THEEND.DSW, OTHERWISE THE GAMES WILL NOT WORK CORRECTLY.
+
+- Ville also fixed sprite priorities in Congo Bongo.
+
+- Doug Jefferys provided the color PROMs for Crazy Kong, so colors are now 100%
+  accurate (with the possible exception of Kong itself, which uses a separate
+  palette).
+
+- Support for Moon Ranger (bootleg version of Moon Patrol).
+
+- Added support for Lost Tomb (Stern game running on Super Cobra hardware),
+  but it doesn't work well (crashes during the demo, and it's not playable) and
+  the graphics are garbled. I think some of the ROMs might be corrupted.
+
+- Preliminary support for Jump Bug. It uses a modified Scramble driver, the
+  hardware seems to be similar. It's not playable (the input bits are not even
+  mapped), and resets after a few seconds.
+  I'm not particularly interested in this game, anyone volunteers to complete
+  the driver?
+
+- Support for the version of Super Cobra with Stern copyright.
+  NOTE THAT I RENAMED THE OTHER ONE (Konami copyright) "scobrak".
+
+- Ivan Mackintosh provided a Millipede driver (dip switches are not supported
+  yet). Sound doesn't work, I don't know why.
+
+- Brad Oliver provided a preliminary version of the Mr. Do's Castle driver. Not
+  working yet!
+
+- Mike Coates pointed out that Carnival uses a RAM for character generation
+  (like Nibbler) and provided a driver for it. It's still not playable, but
+  the graphics are now correct.
+
+- Bernd Wiebelt suggested to add a new option: "-vesascan". It uses a VESA
+  800x600 screen to simulate scanlines. It is much slower than the other video
+  modes. Use this if you want scanlines and the default video mode doesn't
+  work.
+
+Source:
+- Multiple CPU support. All you have to do to setup multiple CPUs is add
+  entries to the cpu[] array in the MachineDriver definition. Each CPU can
+  have different type (currently Z80 and M6503 are supported), clock, address
+  space, memory/IO port hook, interrupt handlers, number of interrupts per
+  video frame.
+
+- Sometimes interrupt requests happen while interrupts are disabled. Until now
+  I just ignored them, but some games need them to be processed as soon as
+  interrupts are reenabled. Rally X is an example of such a game. The Z80
+  engine has provision to do that, but it would make writing a driver more
+  complex (need to find the interrupt acknowledge register) so I slightly
+  modified the engine to automatically cache an interrupt request and execute
+  it as soon as interrupts are enabled. I had already done a similar change to
+  the 6502 engine, it was needed by Burger Time which wouldn't accept coins
+  otherwise.
+
+- Since the functions xxx_vh_start(), xxx_vh_stop(), xxx_videoram_w(),
+  xxx_colorram_w() are the same for most video drivers, I moved them,
+  alongside with some variables, to vidhrdw/generic.c. This doesn't reduce
+  much the size of the executable, but greatly reduces the amount of code that
+  has to be put in a video driver (in many cases, you just have to write
+  xxx_vh_screenrefresh())
+
+- Fixed bug in msdos.c/osd_play_streamed_sampled() which prevented it from
+  handling more than one audio stream. This part of the code still needs a
+  major cleanup.
+
+- Fixed bug in drawgfx() which sometimes allowed transparent non remapped
+  copies to be drawn outside of the clip region.

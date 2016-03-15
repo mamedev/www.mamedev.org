@@ -1,0 +1,234 @@
+0.148u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04501: [Gameplay] (stv.c) groovef: Game starts with 2 credits
+  (Angelo Salese)
+- 05165: [Graphics] (moo.c) buckyaab and buckyuab: Graphics are 
+  missing (hap)
+- 05155: [Misc.] (wwfsstar.c) wwfsstar: Japanese text displayed 
+  in euro version (David Haywood)
+- 03086: [Graphics] (saturn.c) prikura: Glitches in attract mode 
+  and ending (Angelo Salese)
+- 02657: [Graphics] (saturn.c) puyosun: Part of graphics 
+  disappear (Angelo Salese)
+- 03871: [DIP/Input] (saturn.c) suikoenb: Game boots with credits 
+  being entered (Angelo Salese)
+- 05145: [Color/Palette] (vicdual.c) hocrash: The game has no blue color. 
+  When you go in the tab and select game configuration and switch to color 
+  it remains black/white (hap)
+- 04837: [Crash/Freeze] (aleck64.c) mtetrisc, starsldr: [debug] Crash 
+  after OK (Firewave)
+- 05122: [Graphics] (psikyosh.c) daraku:  Game has corrupted font used for
+  "insert coin" "game over" etc. It covers first screen used for monitor
+  calibration as well and sometimes appears when it should not be.
+   (David Haywood)
+
+
+
+Source Changes
+--------------
+-removed runtime ioport tagmap lookup when using PORT_CONDITION with
+ PORT_BIT, used by gmgalax for example [smf]
+
+-Moved some of the saturn code from mame/ into emu/ and made saturn.c &
+ stv.c separately compilable. Still needs work before saturn.c can be
+ moved to mess/ [smf]
+
+-upd1771.c: Further documentation updates based on the NEC APC
+ technical manual; now all pin names except two are known.
+ [Lord Nightmare]
+
+-Modernized the MOS6526, MOS6560, MOS7360, MOS6581, CBM IEC, and
+ IEEE-488 devices. [Curt Coder]
+
+-mos6551: Added serial callbacks. [Curt Coder]
+
+-fmtowns: Preliminary implementation of the CD-ROM controller's
+ software mode.  Enough to get the CD-ROM working under Win95.
+ [Barry Rodewald]
+
+-Improved protection in Steep Slope Sliders [Angelo Salese]
+
+-Added a more sane ST-V SMPC Intback command emulation, based off
+ Saturn version. Fixes inputs in Find Love [Angelo Salese]
+
+-emuopts.c: avoid slots without user configurable options to write
+ their configs at exit. [Fabio Priuli]
+
+-Fixed protection check in Tecmo World Cup '98, game is now playable
+ (Tecmo logo & Title Screen still garbled) [Angelo Salese]
+
+-Fixed SMPC change clock behaviour, fixes 2 credits at start-up for
+ various ST-V games [Angelo Salese]
+
+-input: Support up to 32 buttons and harmonize Windows and SDL behavior
+ if you exceed the limit [Nick3092]
+
+-Fixed SH-2 DMAC irqs, fixes at least hard-locking on Baroque
+ [Angelo Salese]
+
+-Modernized tms3615, es8712, cem3394, k051649, rf5c400, rf5c68,
+ tms36xx, polepos, redbaron, cps3, tiamc1, gridlee, gomoku, astrocade,
+ saa1099, st0016, c140, beep, taitosnd, CRT, okim6285, and ZSG2
+ devices. [Andrew Gardner]
+
+-deniam.c: Fixed OKI sound banking in Logic Pro 2 and removed
+ IMPERFECT_SOUND flag. [Lord Nightmare]
+
+-galdrvr.c: Corrected rom labels for Scorpion and redumped set 2.
+ [tirino73]
+
+-scramble.c: Corrected rom labels for Harem. Corrected dipswitches for
+ Harem [tirino73]
+
+-idectrl: words 57/58 of IDENTIFY DEVICE are total sectors, not sectors
+ per track [R. Belmont]
+
+-sp0256.c:  [Wilbert Pol]
+ * Added a little delay before settling LRQ when resetting the device.
+    Fixes MT05103.
+ * When reading the LRQ signal, force an update of the stream. This
+    fixes support for 'The Voice' in 'Turtles' for the odyssey2.
+
+-arcadia.c: Verified and corrected rom names for Arcadia Leader Board
+ v2.4 [Kevin Eshbach]
+
+-h8: PC and CCR are packed into one longword.  Fixes coinmvga games.
+ [O. Galibert, R. Belmont]
+
+-split saturn and stv up a bit more so that stvprot.c is not linked
+ into MESS [smf]
+
+-split mame/drivers/saturn.c into emu/machine/saturn.c and
+ mess/drivers/saturn.c, so mame doesn't have to compile and link the
+ unused code. [smf]
+
+-emuopts.c: Re-evaluate slot options after loading .ini files. 
+ [Wilbert Pol]
+
+-Ethernet: Make pcap work on Mac OS X & disable unnecessary packet
+ filtering. [Rob Braun]
+
+-Fixed SLEEP opcode in non-DRC SH-2 [Angelo Salese]
+
+-mcr.c: Added the "full" version of Demolition Derby that is dipswitch 
+ selectable between Upright and Cocktail mode. The other version was a 
+ only supported Cocktail mode. Also added proper dipswitch settings for
+ the Cocktail mode only version. [Brian Troha]
+
+-nscsi_hd: Added 6-byte WRITE, logging of unknown commands, and some
+ Apple-specific SCSI tweaks. [R. Belmont]
+
+-53c7xx: Preliminary save state support [A. Viloria]
+
+-Add dumped C68 program for Steel Gunner 2. [Guru]
+
+-Rewrite of 6809/6309/konamicpu cores.  6809 should be cycle exact
+ based on the 6809 datasheet.  [Nathan Woods]
+
+-Chihiro.c  [Samuele Zannoli]
+ * Implentation of nvidia register combiners.
+ * Fix for ide_controller_device class for most uninitialized
+    variables.
+
+-tms57002 works in unidasm, disassemble interface can be revisited when
+ all cpu cores have been converted. [smf]
+
+-cps1.c:  [Team CPS-1]
+ * Documented several games which have roms that have one a 1-byte
+    difference, now known to be confirmed good and simply an older
+    revision.  Thanks goto Bonky0013, Kold666, Stefan Lindberg and
+    others for the cooperation and board investigations.
+ * Restored back the rom parts removed in previous updates because
+    they needed to be documented and added the missing ones of the
+    recently dumped 3wondersr1.
+
+-cps1.c: improved operation of sf2m3, sf2m8, sgyxz [Robbbert]
+
+-g65816.c: added missing mirror of the 5a22 regs [Fabio Priuli]
+
+-315_5124.c: Improved triggering of IRQs.  [Enik Land]
+
+-Debugger:  [Wilbert Pol]
+ * Added support for registerpoints.
+ * Added 'exit' as a synonym for 'quit'.
+
+-s14001a.c: Add note that the four dac test pins are really digital out
+ pins [PlgDavid]
+
+-turbo.c - Corrected ROM labels and locations for Buck Rogers and
+ clones [Phil Bennett, Andy Welburn]
+
+-Windows OSD / stdout/stderr output buffering [qmc2]
+
+-M740 updates: [R. Belmont]
+ * Added JMP (zp) instruction
+ * Working interrupts
+ * Moved 6502 family V line to make room for up to 16 IRQs
+
+-turbo.c: Additional documentation for Buck Rogers: Planet of Zoom.
+ Noted the encrypted Z80 part number and Sega ID numbers for the CPU
+ and ROM boards. Correct sprite color prom based on photo of PCB.
+ [Brian Troha]
+
+-M3745x: Preliminary support for the Mitsubishi M37450 microcontroller
+ [R. Belmont]
+
+-gunpey.c: [Angelo Salese, David Haywood]
+ * Significant emulation improvements to the emulation bringing the
+    game to a mostly playable state, albeit without decompression of
+    the compressed graphics (scheme still not understood)
+
+- deco_mlc.c: [David Haywood]
+ * Rewrote video renderer to be scanline based, allowing for further
+    progress on Stadium Hero '96 emulation (it became possible to
+    implement raster interrupt scanline effects without crippling the
+    performance)  The game is now mostly playable but there are some
+    outstanding issues likely to be related to the protection.
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Zenkoku Seifuku Bishoujo Grand Prix Find Love [Angelo Salese]
+Cool Riders [David Haywood,  Angelo Salese]
+Williams 6-in-1 Multigame [robbbert]
+Dream Ball
+  [J. Finney, TrevEB, Yohji, Smitdogg, The Dumping Union, David Haywood]
+PoPo Bear [Angelo Salese, David Haywood]
+Stadium Hero '96 [David Haywood, Angelo Salese]
+
+
+New clones added
+----------------
+Scorpion (set 2) [tirino73]
+Chinese Hero (older, set 2) [Zab]
+Three Wonders (World 910513) [Bonky0013, The Dumping Union]
+Starfighter (Moon Cresta bootleg) [RevisionX]
+Bomb Kick (set 2) [ANY]
+Seibu Cup Soccer :Selection: (bootleg, set 3) [ANY] (NOT WORKING)
+Martial Champion (ver UAE) [Brian Troha, The Dumping Union]
+Demolition Derby [Brian Troha, The Dumping Union]
+Super Ranger (older) [ANY]
+Head On (bootleg, alt maze) [ANY]
+WWF WrestleFest (Korea) [Simon Dennison]
+Pit Boss Megatouch II (9255-10-01 ROG, Standard version)
+  [Brian Troha, The Dumping Union]
+Megatouch III (9255-20-01 ROK, Standard version)
+  [Brian Troha, The Dumping Union]
+Megatouch III (9255-20-01 ROB, Standard version)
+  [Brian Troha, The Dumping Union]
+Megatouch III (9255-20-01 ROA, Standard version)
+  [Brian Troha, The Dumping Union]
+Super Megatouch IV (9255-41-01 ROE, Standard version)
+  [Brian Troha, The Dumping Union]
+Super Megatouch IV (9255-41-01 ROC, Standard version)
+  [Brian Troha, The Dumping Union]
+Starblade (World) [ShouTime, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Hot Slots (6.00) [Roberto Fresca, Gerald (COY)]
+unknown 186 based gambling game (2 sets) [ANY]

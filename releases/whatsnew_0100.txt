@@ -1,0 +1,827 @@
+0.100
+-----
+
+
+Source Changes
+--------------
+Fixed crash in some games when using a low sample rate or -nosound.
+[Aaron Giles]
+
+Fixes crashes in the following drivers: [Aaron Giles]
+ * Beat Head (video update)
+ * Hit Me (graphics decode)
+ * Imago (palette setup)
+ * Legend of Kage bootlegs (accessing invalid CPU)
+ * Rock Climber
+ * Speed Attack (palette out of range)
+
+TumblePop driver updates: [David Haywood]
+ * split driver into tumblep.c and tumbleb.c
+ * tumblep.c runs the original tumble pop sets and use now using 
+    deco16ic.c for the gfx.
+ * tumbleb.c runs the bootlegs and games which use hardware which works 
+    in a similar way to tumble pop (semicom titles etc.)
+
+Kludged around glitches in Monster World. [David Haywood]
+
+Cross Pang is now using the sprite draw copied from tumbleb.c instead as 
+the game also seems to be based around Tumble Pop designs, as a result the 
+'Alpha Blend' bit has been removed and replaced with a flicker sprite bit 
+like Tumble Pop which looks more correct to me.  Also changed some default 
+settings. [David Haywood]
+
+Corrected Indian Battle DIP switches. [ShimaPong]
+
+Updated D-Day DIP switches to use conditionals. [James Wallace]
+
+More Namco sound/MCU updates: [R. Belmont]
+ * Fixed analog controls for Ridge Racer and Rage Racer
+ * Fixed sound/music to play in System 22 games
+ * Fully share the sound part of the MCU RAM for System 11. This allows 
+    games to read back the song names and fixes the sound test menu in 
+    Tekken and Tekken 2.
+
+
+
+New clones added
+----------------
+G-LOC R360 [Craig Walker]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Rebus [David Haywood]
+
+
+
+0.99u10
+-------
+
+
+Source Changes
+--------------
+Fixed bug in INP recording that crashed MAME. [Aaron Giles]
+
+Added some small optimizations to the Namco System 22 3D renderer.
+[Aaron Giles]
+
+Fixed interrupt problem in the M37710 core that caused problems with the
+recent Namco update. [Aaron Giles]
+
+Fixes to the recent Namco sound update: [R. Belmont]
+ * Fixed incorrect voices in System 11/12 games
+ * Fixed swapped stereo in System 11/12 games
+ * Fixed missing sound in Namco Classics games
+
+Added conditional DIP switches to 10 Yard Fight driver. [Curt Coder]
+
+Added and wired up color PROM for Truco Clemente, but still missing a
+transform. [Roberto Fresca]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Monsters World [David Haywood]
+
+
+
+New clones added
+----------------
+Surprise Attack (World Ver. K) [Corrado Tomaselli]
+Power Instinct 2 (Japan) [EGCG]
+Chuugokuryuu II (ver. 100J, Japan) [EGCG]
+
+
+
+0.99u9
+------
+
+
+Source Changes
+--------------
+Removed tilemap_dispose call and fixed the two drivers that were using it.
+This fixes improper save state registrations in megasys1 and ygv608 games.
+[Aaron Giles]
+
+Fixed bug that caused the sound cores to keep running while paused. 
+[Aaron Giles]
+
+Added discrete emulation of the background music for Indian Battle.
+[Derrick Renaud]
+
+Fixed tilemap priorities in Magic Bubble. [Pierpaolo Prazzoli]
+
+Cleaned up MESS hooks into the input port system. [Nathan Woods]
+
+Major Namco sound improvements: [R. Belmont]
+ * C352 now sets output pitch correctly by input clock
+ * Added emulated sound and music to all NB-1, NB-2,
+    and System 11 games, using Prop Cycle's BIOS as a
+    substitute until the original can be trojaned or
+    otherwise obtained
+ * Hooked it up for plain System 22 games as well, but
+    they're not interested in passing down proper commands
+    for some reason
+ * Speed-cheated all instances of the M37710/C352 sound
+    system so CPU requirements don't go up much.  This
+    also helped back off the requirements a hair for Prop
+    Cycle and Time Crisis
+
+
+
+New clones added
+----------------
+Magic Bubble (Adult version) [David Haywood]
+Dynamite Dux (set 1, 8751 317-0095) [Arzeno Fabrice, David Haywood]
+
+
+
+0.99u8
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+demonwld37b5gre [Pierpaolo Prazzoli]
+batrider099u1gra [Mamesick]
+
+
+
+Source Changes
+--------------
+Added save/restore of tilemap parameters. [Aaron Giles]
+
+Improvements to the ST-V driver: [Mariusz Wojcieszek]
+ * dma:  added another checking for dma parameters
+ * stv:  changed v-blank timing
+ * vdp1: implemented two framebuffers and flipping
+ * vdp1: added manual changing and erasing of framebuffers
+ * vdp1: added manual trigger for drawing
+ * vdp1: mapped framebuffer into memory (for 16bpp only)
+ * vdp1: added shadow and half luminance for RGB sprites
+ * vdp2: fixed bitmaps scrolling (fixes bad gfx in batmanfr and
+    bakubaku intro)
+ * vdp2: added preliminary window effect for tilemaps and sprite layer
+    (for batmanfr)
+ * vdp2: added scaling for 8bpp and 15bpp bitmaps (fixes vmahjong and
+    myfairld backgrounds)
+
+Fixed sprite-sprite priorities in toaplan1 games. [Pierpaolo Prazzoli]
+
+Fixed background color in Jolly Jogger. [Pierpaolo Prazzoli]
+
+Made input port conditionals work more generically. This necessitated a bit
+of a minor reorg in the input port code. Please verify that controls work as
+before. This change has also required a modification to how analog ports are
+recorded, so existing INPs may not work. [Aaron Giles]
+
+Minor tweak to fix Time Crisis crash. [Phil Stroffolino]
+
+Fixed spurious vectors in Top Gunner. [Mathis Rosenhauer]
+
+Added new functions memory_configure_bank() and memory_set_bank() which
+abstract bankswitching better. This allows current memory banking states to
+automatically be saved for drivers that use this feature. m62.c games have
+been updated to use this new feature as an example. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+World Trophy Soccer (Arcadia) [Mariusz Wojcieszek]
+Funky Head Boxers [Mariusz Wojcieszek]
+Pebble Beach - The Great Shot [Mariusz Wojcieszek]
+Air Rescue [Anonymous]
+Cuore Uno (Italia) [Roberto Fresca]
+Elephant Family (Italia) [Roberto Fresca]
+Royal Card (Austria) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+1000 Miglia: Great 1000 Miles Rally (94/06/13) [Corrado Tomaselli]
+Frogger (Falcon bootleg) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cookie and Bibi 3 [David Haywood]
+Soccer Superstar ver EAA [Corrado Tomaselli]
+
+
+
+0.99u7
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+uccops062gre [Pierpaolo Prazzoli]
+dynduke055gre [Curt Coder]
+countryc087u4gra [Roberto Fresca]
+analogconfig099u6 [Aaron Giles]
+konami099u6red [Aaron Giles]
+m92099u6red [Aaron Giles]
+midvunit099u6red [Aaron Giles]
+policetrc099u6red [Aaron Giles]
+popupinfo099u6ora [Aaron Giles]
+keyhold099u6gra [Aaron Giles]
+ymsound099u6yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Removed gross cur_chip hack from the OPN emulator. [Aaron Giles]
+
+Fixed crash when running games whose CPU core did not support save states.
+[Aaron Giles]
+
+Fixed interrupt timing in the F3 games. [Nicola Salmoria]
+
+Fixed MNG recording size. [Mathis Rosenhauer]
+
+Fixed colors in 8-Ball (Pac-Man hardware) [Steve Rice]
+
+Improved emulation of the IC13 ROM loading in ST-V driver. Find Love, 
+Decathlete, Sokyugurentai / Terra Diver can boot without hacks or debug 
+tricks. Also Suikoenbu has improved gameplay. [Angelo Salese]
+
+Added missing opcode 0 in leagueman_decryption_table (used in nbbatman).
+[Pierpaolo Prazzoli]
+
+Fixed Space Cruiser from resetting on the asteroids level when you die.
+[Pierpaolo Prazzoli]
+
+Fixed DIP switches in Space Position (Japan). [Roberto Fresca]
+
+Fixed tilemap-tilemap drawing order in m92 driver. [Pierpaolo Prazzoli]
+
+Fixed colors in Scooter Shooter. [Pierpaolo Prazzoli]
+
+Fixed several bugs in the Namco System 22 sound system. [Cync]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Jolly Jogger [Pierpaolo Prazzoli]
+Indian Battle [Tomasz Slanina]
+Long Hu Bang [Luca Elia]
+Chuugokuryuu [Luca Elia]
+Champion List II [Luca Elia]
+Xing Yen Man Guan (V638C) [Luca Elia]
+Maru-Chan de Goo! [Angelo Salese]
+Super Major League [Angelo Salese]
+Sando-R [Angelo Salese]
+Soukyugurentai / Terra Driver [Angelo Salese]
+Suikoenbu [Angelo Salese]
+
+
+
+New clones added
+----------------
+Eliminator (2 Players, cocktail) [Mathis Rosenhauer]
+Eliminator (4 Players, prototype) [Mathis Rosenhauer]
+World Beach Volley (set 2) [Corrado Tomaselli]
+
+
+
+0.99u6
+------
+
+
+Source Changes
+--------------
+Fixed crash that was introduced with the state saving updates last time.
+[Aaron Giles]
+
+Finished renaming. Major changes this time: [Aaron Giles]
+  struct mame_bitmap -> mame_bitmap
+  struct rectangle   -> rectangle
+  data8_t            -> UINT8
+  data16_t           -> UINT16
+  data32_t           -> UINT32
+  data64_t           -> UINT64
+
+Renamed pbchmp95.c driver to witch.c. [David Haywood]
+
+Fixed some bad colors in spelunkr background. [Pierpaolo Prazzoli]
+
+Fixed background position in hharry. [Pierpaolo Prazzoli]
+
+Added discrete sound effects to Spiders. [Hans Andersson, Don Maeby]
+
+
+
+New clones added
+----------------
+Sharpshooter v1.1 [Brian Troha]
+Shuffleshot (v1.40) [Brian Troha]
+
+
+
+0.99u5
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+docastle093u2ora [Corrado Tomaselli]
+sindbadm37b2gre [Pierpaolo Prazzoli]
+mgakuen094u1gra [Roberto Fresca]
+tdfeverj087u4gra [Roberto Fresca]
+
+
+
+Source Changes
+--------------
+Completed renaming of core structures. Most pervasive change was "struct
+tilemap" is now just "tilemap". [Aaron Giles]
+
+Added save state support to the Cinematronics vector games. [Buddabing]
+
+Added blending to the alt tilemap code in psikyosh.c, fixing the final
+boss in Sol Divide. [David Haywood]
+
+Improvements to the Witch/Pinball Champ '95 driver: [Sebasten Hegon]
+ * The games now show some graphics (the palette seems OK) and play some 
+    music and sounds.
+ * Since the controls are not yet figured out completely, they are still 
+    mapped as dipswitches.
+ * An NVRAM reset is required the first time you launch Witch (via the 
+    associated dipswitch). Pinball Champ seems to automatically do this.
+ * The sound part required some patching in sound/es8712.c. I disabled 
+    the hardcoded inconditional looping, and made the sound start when 
+    writing at offset 0x06 (cf patch). vmetal does not seem to be affected.
+ * As far as gameplay is concerned, the ball will freeze (in game and 
+    demo mode), and I don't know why. The video hardware is not completely 
+    figured out and may be the culprit.
+ * The coin in/out mecanism needs some work too.
+
+Some improvements to Jolly Card: [Roberto Fresca]
+ * Added extra hardware info (pinouts and dips).
+ * Added the correct dipswitch to Jolly Card. Hopper and Points/pulse not 
+    tested due to preliminary driver state. The rest are working properly.
+    Remember to delete the nvram and reinitialize to see some changes.
+ * Added almost the same dipswitch to Magic Card II (Bulgaria).
+
+Significant changes to the save state system: [Aaron Giles]
+ * Added alternate save state pre-/post-load function types that take
+    integer or pointer parameters. Updated several sound cores and other 
+    files to take advantage of this.
+ * Made state handler registrations track like other scoped resources
+    (timers, memory) so that registrations can occur as late as 
+    MACHINE_INIT time.
+ * Added logic to detect registrations after MACHINE_INIT time and prevent
+    saves in that case.
+ * Added logic to detect when CPUs or sound chips haven't registered 
+    anything to save/load. When this happens, info is logged to error.log
+    and saves/loads are disallowed.
+ * Allocated timers are now automatically saved and restored as part of
+    the save state. The global time is now restored as well as a bunch of
+    CPU execution state. This should produce more reliable restores.
+ * Added logic to defer saves until all anonymous timers have cleared. If 
+    a driver uses many anonymous timers it may not be possible to ever 
+    successfully save, so the operation will time out after one second.
+ * Before restoring, the machine is now reset. This gives a more
+    consistent environment for the load to occur.
+ * Re-enabled save state support for YM2151.
+ * Added save state support to the classic Namco sound system.
+ * Added save state support to the samples sound system.
+ * Removed anonymous timer usage in machine/scramble.c.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Muroge Monaco [David Haywood]
+The First Funky Fighter [Luca Elia]
+
+
+
+New clones added
+----------------
+SAR - Search And Rescue (Japan) [Pierpaolo Prazzoli]
+American Poker II (set 4) [Roberto Fresca]
+
+
+
+0.99u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+quarth37b1gre [Pierpaolo Prazzoli]
+devilw36b10yel [Pierpaolo Prazzoli]
+vulcan137b1gre, part 7 [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Added memory card and cheat menus back into the system. [Aaron Giles]
+
+Fixed MNG recording problem that was introduced in u3. [Aaron Giles]
+
+Fixed crash when running vector games that was introduced in u3.
+[Aaron Giles]
+
+Cleaned up/normalized the naming of several core structures in an
+attempt to impose some order on coding conventions in the core code:
+  struct InputPortDefinition   -> input_port_default_entry
+  struct InputPort             -> input_port_entry
+  struct RegionInfo            -> region_info
+  struct RunningMachine        -> running_machine
+  struct GameOptions           -> global_options
+  struct GameDriver            -> game_driver
+  struct InternalMachineDriver -> machine_config
+  struct MachineCPU            -> cpu_config
+  struct MachineSoundRoute     -> sound_route
+  struct MachineSound          -> sound_config
+  struct MachineSpeaker        -> speaker_config
+  struct RomModule             -> rom_entry
+  struct SystemBios            -> bios_entry
+  struct GfxLayout             -> gfx_layout
+  struct GfxElement            -> gfx_element
+  struct GfxDecodeInfo         -> gfx_decode
+Plus many others along the same lines (follow the pattern). Note that this
+work is not yet complete. In addition, a few of the more pervasive structs 
+(mame_bitmap, rectangle) will be left until a non-diff release (0.100).
+[Aaron Giles]
+
+Removed -skip_disclaimer since it automatically goes away after the first
+time execution. [Aaron Giles]
+
+Created new NMK112 ROM banking module and connected it up to a number of
+drivers that made use of it. Affected games are in cave.c, nmk16.c, 
+powerins.c, quizpani.c, toaplan2.c. [Alex W. Jackson]
+
+Added missing buttons to Showdown. [David Widel]
+
+Fixed the PULUW instruction on the 6309 disassembler. [Nathan Woods]
+
+Fixed the state save facility play better on multisession ports if 
+initialization fails. [Tim Lindner]
+
+
+
+New clones added
+----------------
+Plotting (US) [David Haywood]
+
+
+
+0.99u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+hanagumi082red [Mariusz Wojcieszek]
+rtypeleo062gre [Pierpaolo Prazzoli]
+labyrunr080u1gre [Pierpaolo Prazzoli]
+tricktrp061gre [Pierpaolo Prazzoli]
+gng37b4gre [Pierpaolo Prazzoli]
+battlane076u2gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Updates to the ST-V driver: [Mariusz Wojcieszek]
+ - vdp2: added rotation in RBG0 layer (improves diehard, vfkids,
+         vfremix, thunt, sassisu backgrounds)
+ - vdp2: added 15bit RGB tilemaps (used by thunt)
+ - vdp2: added opaque alpha blended bitmaps (fixes missing gfx in
+         shienryu intro)
+ - vdp2: added enable bit for RGB sprites (fixes some bad sprites in
+         vfremix)
+ - vdp2: added alpha blending for RGB sprites
+ - vdp1: fixed polygon drawing
+ - vdp1: added line drawing
+ - sh2:  fixed bug in division unit
+ - sh2:  added callback called when cpu reads FTCSR register (intended
+         for idle loop skipping for slave sh2 in stv)
+ - stv:  added idle loop skipping for several games
+ - dsp:  fixed dma (fixes some bad gfx in thunt)
+
+Added dsp56k CPU core and hooked it up to the Polygonet Commanders
+driver. [Andrew Gardner]
+
+SCSI hard disk updates: [R. Belmont]
+ - Added FORMAT UNIT, READ (6 byte), WRITE (6 byte), READ (12 byte), 
+    MODE SENSE, and READ CAPACITY commands.
+ - Changed INQUIRY to ID as a real Seagate model, which makes MacOS 
+    much happier than a manufacturer code of "MAME".
+ - Some MESS-specific tweeks to initialization.
+
+Fixed all the volume table calculations in the YMF271 core. [Ville Linde]
+
+SPI Improvements: [Ville Linde, Pierpaolo Prazzoli]
+ - Added real coin inputs. The previously used coin input was service coin
+ - Hooked up eeprom in rdft2us, rfjetus and rdft22kc
+
+Fixed recent LSI53C810 update which caused the Model 3 games to crash.
+[Ville Linde]
+
+Fixed PowerPC recompiler so that Scud Race works again. [Ville Linde]
+
+Significant overhaul of the user interface infrastructure: [Aaron Giles]
+ - All user interface rendering is now cached until the end and rendered 
+    in one pass.
+ - A large number of extraneous and redundant functions have been removed 
+    and replaced with a smaller set of more flexible APIs.
+ - Global access to the UI fonts and colortables is now gone, they are 
+    private to the user interface code.
+ - All global user interface function names have been normalized. Most
+    importantly, usrintf_showmessage is now ui_popup.
+ - Pause behavior has been redefined; instead of sitting in a tight loop,
+    the code proceeds normally, but the CPU execution system does not
+    advance time.
+ - Code for the menus has been reworked; some menus are temporarily not
+    available (cheats, memory cards).
+
+Removed the internal display of history.dat. Cramming this kind of data
+into MAME's limited UI is not really useful, and viewing the history.dat
+information is supported by many frontends and websites. [Aaron Giles]
+
+Removed the following obsolete and/or redundant command line options from 
+the Windows build: [Aaron Giles]
+ -wrongorientation
+ -wrongfps
+ -gamelist
+ -list
+ -listgames
+ -listdetails
+ -listwrongmerge
+ -listcpu
+ -listcpuclass
+ -listgamespersourcefile
+ -listnosound
+ -listnvram
+ -listpalettesize
+ -listromdistribution
+ -listromnumber
+ -listsound
+ -listdupcrc
+ -listsamdir
+ -listmd5
+ -listsha1
+ -verifysets
+ -vset
+ -vsam
+ -sortname
+ -sortdriver
+ -[no]clones
+ -crconly
+ -maxlogsize
+ -resamplefilter
+ -debug_resolution
+ -history_file
+ -mameinfo_file
+
+Removed the "Press any key" prompts when displaying ROM warnings. Instead,
+a warning about bad/missing ROMs is now displayed on the warnings screen.
+Details of the bad/missing ROMs are still printed to the console.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Taisen Tanto-R Sashissu!! (J 980216 V1.000) [Mariusz Wojcieszek]
+Tetris (Japan, System E) [David Haywood]
+
+
+
+New clones added
+----------------
+GTI Club (ver JAA) [Arzeno Fabrice]
+Master of Weapon (US) [Arzeno Fabrice]
+Sunset Riders (4 Players ver EAA) [Johan Samuelsson]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Forte Card [David Haywood]
+Jackpot Pool (Italy, bootleg) [David Haywood]
+
+
+
+0.99u2
+------
+
+Prior versions of MAME have excluded some drivers (primarily gambling-
+related) for philosophical reasons. Since these games are legitimately at
+risk of being lost to the ages, and many of them have strong similarities
+to the other sorts of games MAME emulates, it has been decided to allow their
+inclusion going forward. The criteria for inclusion in MAME is now simply
+"any primarily video based arcade machine, driven by one of more CPUs," and
+should relieve any confusion surrounding this issue going forward.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+namcos1099u1red [Aaron Giles]
+mcr3099u1yel [Aaron Giles]
+zaxxon088u2gre [Derrick Renaud]
+sprint1097gre [Derrick Renaud]
+sdgndmps058gre [Pierpaolo Prazzoli]
+gunforc2058gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+More input port cleanup: [Aaron Giles]
+ - Fixed input port handlers that used the port_tag_to_handler calls.
+ - Simplified the reading/writing of input ports so they work more reliably.
+ - Only write changed settings to the .cfg files.
+ - Fixed saving of analog port configurations.
+
+Updated to the latest zlib. [Atari Ace]
+
+Added flipscreen to Pop Bingo. Added some disable registers for tilemaps/
+sprites (fixing the bug in lastday demo). [Pierpaolo Prazzoli]
+
+Fixed some video bugs in Party Time. [David Haywood]
+
+Adjusted Namco CUS30 noise frequency. [BUT]
+
+Fixed input ports in djmain. [BUT]
+
+Several Konami improvements: [R. Belmont]
+ - Added support for "external memory address" registers on the YMZ280B, 
+    which can be used to read the contents of attached ROM or RAM.
+ - Hooked up the mask ROM tests in the service menu - both the tile 
+    character ROMS and the sound ROMs now can be tested.
+ - Added secondary control register.
+ - Hooked up IRQ control.
+ - Renamed ROMs for both games to include PCB location information.
+
+Some improvements to the DECO cassette games: [Juergen Buchmueller]
+ - Treasure Island graphics ROMs (overlay board) mapped according to
+    findings by debugging the game code.
+ - Swapped image names for ctislnd2 and ctislnd3 to match the driver names;
+    ctislnd3 is the not yet working set; removed IMPERFECT_GRAPHICS flag.
+ - Found bitswap for Zeroize type #3 dongle; found hack to get it running w/o
+    the dongle ROM by debugging the game code; changed year to 1983; removed
+    NOT_WORKING flag.
+
+SHARC/Model 2 updates: [Ville Linde]
+ - Reworked the SHARC internal ram implementation so that multiple instances 
+    of the core work.
+ - Added data address space
+ - Added coprocessor input and output FIFO's to Model 2.
+ - Updated Konami zr107, gticlub, nwk-tr, hornet to work with the SHARC 
+    changes
+
+Seibu SPI improvements: [Ville Linde]
+ - Fixed sprite priority issues
+ - Added support for pen-based alpha to sprites and tilemaps. It's currently 
+    using fixed alpha table for all games, but this seems to break some 
+    games, so it probably isn't correct.
+
+Fixed the discrete sound 555 timer modules when using actual DC mode. 
+[Derrick Renaud]
+
+Added low-frequency oscillator (LFO) to YMF271 emulator. [Ville Linde]
+
+Improvements to the dcon driver: [Pierpaolo Prazzoli]
+ - Fixed sprites - sprites priorities
+ - Fixed sprites - tilemaps priorities
+ - Added wrap around and flipy in sprites
+
+Added MNG recording support (shift+F12 by default). [Mathis Rosenhauer]
+
+Fixed 6309 division instructions overflow behavior on the HD6309.
+[Tim Lindner]
+
+Fixed more YMF271 issues: [Ville Linde]
+ - The mix buffer pointer was not being reset between two 2-operator FM 
+    sounds, causing missing sounds.
+ - Fixed some bugs in the phase modulation of FM sounds
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Derby [David Haywood]
+Champion Skill [Mirko Buffoni]
+Pontoon (Tehkan) [Zsolt Vasvari]
+Lovely Poker [Uki/El Condor]
+Golden Star [Mirko Buffoni]
+Jolly Card/Jolly Poker [Curt Coder, PeT]
+Inter Game Poker [Curt Coder, PeT]
+Magic Card II [Curt Coder, PeT]
+Zeroize (casette) [Juergen Buchmueller]
+Lucky Today [Curt Coder]
+Chewing Gum [Curt Coder]
+Royal Casino [Curt Coder]
+Vegas Roulette [Curt Coder]
+Jin [David Haywood]
+Attack Ufo [Tomasz Slanina]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Roulette (Playmark) [David Haywood]
+Bubble Trouble [David Haywood]
+American Poker II [Curt Coder]
+Cherry Master [Curt Coder]
+Cherry Master II v8.41 [Curt Coder]
+Lucky 8 Lines [Curt Coder]
+Starspinner [Curt Coder]
+906III Video Poker [Curt Coder]
+
+
+
+0.99u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+medlanes061gre [MASH]
+
+
+
+Source Changes
+--------------
+Undid a hack that was accidentally left in the MCR games in the last 
+release. [Aaron Giles]
+
+Fixed bug in spiders that caused bad video in cocktail mode.
+[Hans Andersson]
+
+Fixed several problems in the H8/3002 core. Improves sound in Namco System 
+12 and ND-1. [cync]
+
+Fixed sound banking in Go Go! Mile Smile. [Pierpaolo Prazzoli]
+
+Major improvement to the YMF271 sound core: [Ville Linde]
+ - Fixed timer A calculation
+ - Fixed note pitch calculation
+ - Added envelope generator
+ - Added stereo panning and fixed other volume calculations
+ - Added FM sound generation
+
+Fixed crash in mystwarr games. [R. Belmont]
+
+Figured out encryption key for Graplop (set 2). [MASH]
+
+Rewrote the configuration reader/writer code to be more generic and easier
+for other subsystems to plug into. This necessitated a rewrite of the way
+the existing code reads config data. As a result, your game.cfg files will
+be invalid after this update. Your default.cfg and existing controller-
+specific .cfg files should work fine. [Aaron Giles]
+
+Fixed all the mystwarr.c games so they pass their service mode mask ROM 
+tests, with the exception of Metamorphic Force (it gets hung up on the road
+generator ("LVC") test for some reason). [R. Belmont]
+
+Fixed Monster Bash (2-board version) so it works now, though the graphics
+are still not perfect. [David Haywood, MASH]
+
+Turned off -fomit-frame-pointer in optimized builds. It was leading to 
+crashes when used with setjmp/longjmp on Windows builds. [Aaron Giles]
+
+Fixed tilemap priorities and sprites in Flying Tiger. [Pierpaolo Prazzoli]
+
+Added green overlay to Meadows Lanes. [MASH]
+
+Various improvements to the simple Deco 156 games: [David Haywood]
+ - Modified video code to use the functions in deco16ic.c
+ - Changed Osman to default to 3 buttons as per Guru's eeprom dump.
+
+Namco System 22 update: [R. Belmont]
+ - Hooked up MCU/CPU communications properly
+ - The MCU now reads the controls in Prop Cycle, Alpine Racer, and 
+    Cyber Cycles
+ - Sound effects and music are now present in all Super System 22 games
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Lotto Fun 2 [Aaron Giles]
+Pit Boss [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Trivia ? Whiz [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Tic Tac Trivia [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Phraze Craze [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Top Gunner [Mathis Rosenhauer]
+
+
+
+New clones added
+----------------
+Omni [Pierpaolo Prazzoli]

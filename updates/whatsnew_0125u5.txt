@@ -1,0 +1,397 @@
+0.125u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01863: [Multisession] mwalk and clones: Crash on multisession.
+         (Atari Ace)
+- 00971: [Color/Palette] spdcoin: In a reverse of the artwork bug, 
+         the blue background has been replaced with a black one. 
+         (couriersud)
+- 00251: [Sound] spdcoin: Sound isn't perfect. There are many static 
+         pops to be heard, and volume is very low. (couriersud)
+- 01884: [Core] mtetrisc, vivdolls, starsldr (maybe all): (MAC OS) 
+         crashes with "Illegal instruction" message (Aaron Giles)
+- 01827: [Interface] All sets in galaga.c: DIP switch information is 
+         not being readded properly when .CFG is read. (couriersud)
+- 01865: [Graphics] nbapbp: The graphic is completely wrong 
+         (Aaron Giles)
+- 01864: [Interface] -listxml still crashes (Aaron Giles)
+- 01885: [Misc.] astdelux, astdelu1, astdelu2: Fatal Error: Unable to 
+         locate input port 'DSW' (Fabio Priuli)
+- 01190: [Color/Palette] punchout, spnchout: The colors of the title 
+         logo and letters on the top and bottom should be different 
+         than each other. (Nicola Salmoria)
+- 01693: [Sound] jackal, jackalj, topgunbl, topgunr: After you get in 
+         the jeep the music stops. (Nicola Salmoria)
+- 01880: [Color/Palette] All sets in mrdo.c: Color Regression 
+         (Nicola Salmoria)
+- 01870: [Graphics] skylance, skylancr: cocktail mode, player 2's shots 
+         are offset from player's position (Nicola Salmoria)
+- 01871: [Documentation] officeye: Misspelled title (robiza)
+
+
+
+Source Changes
+--------------
+Updated 68681 DUART: [Mariusz Wojcieszek] 
+ - converted to device interface
+ - converted to 8 bit device
+ - added input and output port
+ - added X1/16 timer
+
+Fixed compilation error when neither HAS_PPC403GA nor HAS_PPC403GCX 
+are defined. [Nathan Woods]
+
+Additional documentation in the TMS5220 and SN76496 cores.
+[Lord Nightmare]
+
+Fixed handling of the U register in the RET instructions and when 
+taking an interrupt in the Nintendo Minx cpu core. [Wilbert Pol]
+
+suprnova updates: [David Haywood]
+ - now uses its own draw roz function, which supports linescroll 
+    or columnscroll, and will give us the ability to 'render' 
+    priority data (with roz applied) from the flagsmap to a temp 
+    bitmap to work with.
+ - priorities should be correct from start to end in cyvern now.. 
+    still not perfect tho.
+ - added a note about what needs fixing for the sengekis sprite zoom 
+    (shrink flag we're not handling)
+ - allow wraparound to be turned off (sarukani..)
+
+Italian gambling games based on H8/3337 MCU + NEC D7759GC: 
+[Roberto Fresca]
+ - Corrected year and manufacturer to ntcash and wizard.
+ - Sorted the games by year.
+
+Simplified m90 video update routine. [robiza]
+
+Improvements to bomblord (bbmanw clone): [robiza]
+ - partially fixed the background
+ - fixed the sprites
+ - implemented video register for selecting different resolutions; 
+    this fixes graphic in the game screen
+ - fixed scroll video register
+ - cleaned up offset and priorities
+ - implemented linescroll
+ - promoted to working
+
+Improvements to dynablsb (dynablst clone): [robiza]
+ - partially fixed the background
+ - fixed the sprites
+ - fixed mark for last sprite
+ - fixed player #1 and player #2 controls
+ - fixed graphics layer and offset
+ - fixed layer select
+ - implementated the scroll video register
+ - cleaned up offset and priorities
+ - promoted to working
+
+Numerous improvements to the blackt96 driver. [David Haywood]
+
+Fixed colortable creation in Mr. Do driver. Fixed diode voltage drop 
+value which caused apples to be orange instead of red-orange. The 
+title screen now perfectly matches 
+http://www.flickr.com/photos/arecee/2384126902/sizes/l/ including the 
+logo outline. [Nicola Salmoria]
+
+Jackal driver improvements: [Nicola Salmoria]
+ - Fixed palette animation (very subtle!)
+ - Verified on the schematics and on the pcb that the high score table 
+    text cannot change color.
+ - Removed the IMPERFECT_GRAPHICS flag
+ - Fixed music with a kludge (overclock sound CPU)
+ - Added dip switch locations and sorted input ports
+
+Simplified palette handling in punchout. Fixed big sprite palette in 
+top monitor. [Nicola Salmoria]
+
+Cal Omega driver: [Roberto Fresca]
+ - Cleaned up the driver following the MAME Coding Conventions.
+ - Added support to Game 18.7 (Amusement Poker).
+ - Improved the input system for some games.
+ - Fixed some wrong color codes.
+ - Updated technical notes.
+
+New driver for italian gambling games based on Mitsubishi/Renesas 
+M16C MCU family. Added dumper notes, hardware details and hooked the 
+sound devices. Moved Euro Jolly X5 to this new driver, and add 
+support for Grand Prix. [Roberto Fresca]
+
+Improvements to Sandii' games driver: [Roberto Fresca]
+ - Fixed the tilemap size.
+ - Fixed the screen size.
+ - Updated technical notes.
+
+Changed map command in the debugger to now perform separate 
+read/write/fetch lookups. [Aaron Giles]
+
+Fixed AY-3-8910 output mode in Draco. [Curt Coder]
+
+Thayer's Quest changes: [Curt Coder]
+ - cleaned up driver
+ - added LED layout from Dragon's Lair
+ - mapped keyboard and dips correctly
+ - added laser disc drive selection
+ - fixed Z80-COP communications
+ - figured out ports from disassembly
+ - added cart presence detection logic
+ - fixed SSI-263 timings, service mode works now
+ - changed to use COP421
+
+COP4xx: [Curt Coder]
+ - fixed LEI instruction
+ - added COP421 variant
+
+Moved calipso, spdcoin, superbon, moonwar and moonwara to galaxian.c:
+[couriersud]
+ - superbon: Change name to Agent Super Bond and Manufacturer to 
+    "Signatron USA"
+ - superbon: Change year to 1985 following information on 
+    arcadeflyers.com
+ - removed armorcar remains from scobra.c
+
+In the i8051 core, timer 0's second split counter was incorrectly 
+checking the Timer 1 Run Control Bit. Fixed it. [Jim Stolis]
+
+PEPlus driver updates: [Jim Stolis]
+ - All video slot titles now accept coins and play normally
+ - Renamed peps0716 to its proper name "River Gambler Slots", instead 
+    of "Quarter Mania Slots"
+ - Updated peps0716 to use the proper CAP
+ - Replaced peps0615 to use a CAP with closer colors (still wrong)
+
+Added alternate layout for World Rally 2 PCB. [Mirko Mattioli]
+
+Added sound emulation to Dacholer and Kick Boy. [Tomasz Slanina]
+
+Cleaned up the usage of Machine in many of the src/video files.
+[Oliver Stoenberg]
+
+Correctness pass over the source tree: [Atari Ace]
+ - added static qualifiers where appropriate
+ - added missing #include statements, source comments and header 
+    declarations
+ - removed dead declarations
+ - added ~30 header files for a number of drivers
+ - consolidated various cchip declarations
+
+Improved 8085 timing and fixed flag calculations based on differences
+between it and the 8080. [Miodrag Milanovic]
+
+Converted a number of drivers over to using input_port_read() from
+input_port_read_indexed(). [Fabio Priuli]
+
+Updated cheat system: [ShimaPong]
+ - Changed the function of default memory read in case of the search
+    to prevent from crashing if a game uses cpu_spinutil()
+    Now basically used do_memory_read() instead of do_cpu_read()
+    (Try to search in actfancr between this and previous version)
+    NOTE : It's not fundamental solution but no longer crash
+ - Cleaned up read_data() and write_data()
+ - Cleaned up save/load routine and added open_cheat_database()
+ - Added new menu "Cheat Commands" into the cheat main menu
+     the following commands are supported in this menu
+      * reload cheat code (the same as Reload Database key)
+      * cheats ON/OFF (the same as Toggle Cheat key)
+      * watchpoints ON/OFF (the same as Shift + Toggle Cheat key)
+      * save description (save the title of the game)
+      * save raw code (save raw cheat code with new format)
+ - Fixed several bugs which has found in testing
+ - Renamed functions based on coding guidlines
+
+Added option -[no]coin_lockout (-[no]coinlock) to control coin 
+lockout behavior. [Aaron Giles]
+
+NeoGeo updates: [Johnboy]
+ - Updated Neo-Geo game pcb infos
+ - Marked kof2001h AES VERSION
+ - Marked samsho3a MVS VERSION
+ - Marked 2020bba AES VERSION, renamed p1 and added a note
+ - Renamed lastsold p1 to correct chip label 134-p1k
+    -> Checked other Korean sets, found similar ID change; renamed 
+       accordingly
+	    Renamed rbff2k p1 to 140-p1k
+	    Renamed fswords p1 tp 187-p1k
+	    Renamed aof3k p1 to 196-p1k
+       Added comment to kof99n: Korean version?
+ - Renamed mslug3n to mslug3h, Marked AES VERSION, changed mamedriv.c
+ - Remove BAD_DUMP from kotm, add correct m1
+ - Correct s1 layer size in samsh5sp + clones
+ - Removed BAD_DUMP from burningf + clone
+ - Added correct m1 to lbowling
+ - Added correct m1 to socbrawl + clone
+ - Added correct m1 to mutnat
+ - Added correct m1 to joyjoy
+ - Added correct c1/c2 and s1 to marukodq
+ - Renamed p-roms in wh1 and wh1h, added comment
+ - Added some comments about 'M1' and 'S1' roms
+ - Renamed files in kof2001 to correct chip label, changed m1
+ - Corrected set pbobblen as found on MVS cart, added notes
+
+Added bilinear filter option to software rendering. Not hooked up to 
+anything yet. [Aaron Giles]
+
+DRC UML changes: [Aaron Giles]
+ - separated conditions and flags into two separate fields
+ - added more extensive per-opcode information
+ - made validation more thorough using the extended information
+ - disabled back-end validation for now until it can be revisited
+    using the new tables
+ - changed GETFLGS encoding so that the mask is in parameter 2 instead
+    of the flags field
+ - wrote new disassembler based on enhanced opcode info structure
+ - moved disassembler into drcuml.c and removed old code
+ - extended disassembler buffer sizes to at least 256 bytes
+ - removed explicit flag requests from the shorthand opcodes
+ - added optimization function to drcuml which is called at block end
+ - added logic to compute the necessary flags based on upcoming opcodes
+    and only select those flags which are required
+ - added NOP opcode
+ - added logic to simplify opcodes as much as possible at the UML layer
+ - removed similar logic in the x86 and x64 back-ends
+ - added stricter parameter validation for registers and mapvars
+ - improved disassembly output
+ - added simple symbol table to the UML for improved disassembly
+ - changed optional disassembler cache parameter to a drcuml object
+ - fixed STORE opcode description to allow immediate source operands
+
+DRC frontend changes: [Aaron Giles]
+ - changed from tracking "live" registers to tracking "necessary" 
+    registers
+ - genericized register tracking to be more flexible
+ - added previous instruction pointer to opcode descriptions
+
+PowerPC recompiler: [Aaron Giles]
+ - fixed bug where a branch and link to the link register would
+    overwrite the link register before fetching the target address
+ - updated to no longer explicitly specify flags
+ - added symbols for most common variables
+ - fixed bug in handling XER carry flag for subo. forms
+ - simplified flag insertion logic for opcodeo. forms
+ - rewrote lswi/stswi as subroutines
+ - made accesses to tempdata explicitly dword or qword
+ - fixed SRR0 when generating a syscall
+ - removed no longer necessary TESTs on extsb/w, rlwinm, rlwnm, 
+    rlwimi, cntlzw
+ - fixed bug where the SO flag was not being computed for compares
+ - fixed flag computations for mulhw/mulhwu/mullw
+ - fixed subtlety of shifts between 32 and 63 in srw/sraw
+ - fixed mffs/mtfsf to use FP registers
+ - fixed mtfsfi to use the immediate value properly
+ - now marking terminal count bit in DMA status register
+ - added support for 4xx protection registers via the MMU
+ - added TLBH, TLBU, and DEC to the list of registers in the debugger
+ - turned off "end of transfer" DMA signals in favor of "transfer 
+    count 0" signals; fixes memory-to-memory DMA in fiveside
+ - minor flags optimizations:
+    * broke CR into several individual bits of state
+    * extracted the SO bit from XER into its own state
+ - cleaned up register tracking implementation
+ - fixed numerous errors and shortcomings in the tracking
+ - added support for removing unnecessary XER CA and CR0 computations
+ - updated UML logging to output new frontend statistics
+ - added basic cycle counts for longer instructions
+ - added penalty for polling timebase and decrementer registers
+ - fixed dependencies in cpu.mak
+ - reduced address bus width of 4xx series to 31 bits per the
+    documentation
+ - fixed bug that would jump to incorrect PC after filling the
+    TLB during a mismatch event
+ - added explicit address truncation to 31 bits for 4xx series
+ - added new PPCDRC_ACCURATE_SINGLES option, which removes the
+    excessive (and very likely unecessary) extra rounding when
+    performing the "fast" single-precision floating point ops
+ - fixed TLB filling for 4XX protection ranges
+ - fixed parameter ordering for masked reads/writes
+ - added detection of MMU enablement in 403GCX case
+ - fixed bug in protection bounds violation detection for 4XX
+ - changed SPU receive model to a push model; updated drivers accordingly
+ - added macros for setting the SPU transmit handler and sending bytes
+ - cleaned up ppc.h
+ - fixed lmw/stmw if rA is one of the loaded/stored registers
+ - removed unnecessary variables & structure members
+ - optimized for the XER and CR0 case where XER doesn't need an overflow 
+    calculation
+
+MIPS recompiler: [Aaron Giles]
+ - updated to no longer explicitly specify flags
+ - tweaked register tracking to match new DRC frontend system
+ - updated UML logging to output new frontend statistics
+ - fixed left/right accesses to work with recent memory handler changes
+
+x86/x64 back-ends: [Aaron Giles]
+ - added flag support to SEXT, ROLAND, ROLINS, LZCNT opcodes
+ - fixed bug where sometimes the flags would be corrupted; in 
+    particular, we always clobbered the flags for the subfze 
+    instruction, which broke the nbapbp camera and some other things
+ - fixed DIVS/DIVU opcode so they properly compute SZ flags when 
+    requested; fixes camera wackiness in nbapbp
+ - added a "hop" around the prolog of the HANDLE opcode to allow 
+    fall-through
+ - redesigned x86 stack management to keep the stack at the same 16-byte 
+    alignment
+ - fixed adc/sbb so that they don't optimize out ever
+ - fixed detection of special and/or/xor cases
+ - fixed GETFLGS opcode so that it doesn't return anything other than 
+    requested flags
+ - changed LZCNT/BSWAP to be more flexible in register selection
+
+gticlub driver: [Aaron Giles]
+ - converted sysreg_r/w to 8-bit handlers
+ - added hack to make network IRQs work; brings some games back to life
+ 
+Konami PowerPC drivers: [Aaron Giles]
+ - designated fast RAM accesses for work RAM
+ - removed unnecessary mirroring
+
+Firebeat driver:
+ - added VBLANK IRQ clear
+ - added ATAPI IRQ clear
+ - tried to add UART IRQ clear but it doesn't yet work
+ - most of the games start to show something again with these changes
+ - added fast RAM region
+
+Model 3 driver: [Aaron Giles]
+ - identified and fixed VBLANK bit in real3d status which was
+    causing the system to hang at startup
+ - designated fast RAM accesses for work RAM
+
+53C810 SCSI controller: [Aaron Giles]
+ * changed read/write handles to proper READ8/WRITE8_HANDLER
+    callbacks so they can eventually be used directly
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Rider (Italy) [Luca Elia]
+SWAT Police [Brian Troha]
+Player's Edge Plus (PS0014) Super Joker Slots [Jim Stolis]
+Player's Edge Plus (PS0022) Red White & Blue Slots [Jim Stolis]
+Player's Edge Plus (PS0043) Double Diamond Slots [Jim Stolis]
+Player's Edge Plus (PS0045) Red White & Blue Slots [Jim Stolis]
+Player's Edge Plus (PS0308) Double Jackpot Slots [Jim Stolis]
+
+
+
+New clones added
+----------------
+Tank Force (US, 4 Player) [Brian Troha]
+Videomat (polish bootleg) [Roberto Fresca]
+Head Panic (ver. 0117, 17/01/2000) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mystery Number [Roberto Fresca]
+Shark Party (Italy) [Luca Elia]
+Victor 5 [Luca Elia]
+Victor 21 [Luca Elia]
+Euro Jolly X5 [Roberto Fresca]
+Cal Omega - Game 18.7 (Amusement Poker) [Roberto Fresca]
+Grand Prix [Roberto Fresca]
+Squash (Itisa) [f205v]

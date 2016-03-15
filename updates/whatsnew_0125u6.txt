@@ -1,0 +1,124 @@
+0.125u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00181: [Sound] ddragon3: OKI volume is too low in MAME. (sonikos)
+- 00417: [Sound] ddragon3: the title voice should start when the 
+         background tune hits its highest note. (sonikos)
+- 01441: [Sound] ctribe, ddragon3: The OKI6295 playback frequency is 
+         too high. (sonikos)
+- 01888: [DIP/Input] raidena, raidenk, raident: Flip screen DIP switch 
+         doesn't work. (couriersud)
+
+
+
+Source Changes
+--------------
+MIPS3 recompiler: [Aaron Giles]
+ * added UML comments for common state variables
+ * removed some unused fields
+ * implemented LL/LLD/SC/SCD (only works single-processor for now)
+
+Added sound emulation to Wily Tower, Atomic Boy and Fighting 
+Basketball. [Tomasz Slanina]
+
+Improvements to squahitsa. [David Haywood]
+
+Progress on protection simulation for 2 Crystal System titles. Still 
+not working. [ElSemi]
+
+Some progress on tankfrc4 inputs. [David Haywood]
+
+Created common virtual TLB managment module. Updated MIPS and PowerPC 
+code to make use of it. [Aaron Giles]
+
+Added a validity check against reading input ports at init time.
+[Curt Coder]
+
+Cleaned up software bilinear filtering code. Added bounds checking.
+Enabled by default for snapshots and movie rendering. [Aaron Giles]
+
+Added new option: -snapsize, which lets you specify the target
+resolution for snapshots and movies. The existing behavior is still
+the default: create snapshots and movies at native pixel 
+resolutions. [Aaron Giles]
+
+Added new option: -snapview, which lets you specify a particular
+view to use for rendering snapshots and movies. The existing 
+behavior is still the default: use a special internal view and 
+render each screen to its own snapshot in its own file. When using 
+this option to specify a view other than 'internal', only a single 
+snapshot file will be produced regardless of how many screens the 
+game has. [Aaron Giles]
+
+Improved AVI and MNG recording to properly duplicate/skip frames
+as appropriate to keep the correct framerate. [Aaron Giles]
+
+Added new function video_get_view_for_target() which selects a view 
+based on a command-line parameter and the configuration. Changed 
+Windows OSD code to use this instead of its own logic. Changed 
+-snapview to share the logic as well, enabling 'auto' as a -snapview 
+option. [Aaron Giles]
+
+Renamed "Nintendo z80gb" cpu core to "Sharp LR35902". [Wilbert Pol]
+
+UML: [Aaron Giles]
+ - reactivated back-end validation mechanism
+ - added back-end validation for ADD/SUB/MUL/DIV/CMP forms
+ - fixed several errors in dealing with more obscure flag combinations
+
+konamigx frequency tweaks: [Yasuhiro Ogawa]
+ - set screen refresh rate to 58Hz (parameters from  developer manual 
+    are not 100% correct)
+ - removed sound CPU clock hack
+
+Set tecmosys screen refresh rate to measured 57.4458Hz. [Guru]
+
+Added missing machine parameters and removed deprecat.h usage in a
+number of drivers/ and machine/ files. [Oliver Stoenberg]
+
+Changed all games after Street Fighter 2 CE to have a 12mhz clock. 
+Verified on Megaman and Quiz and dragons (original kits with plastic
+case). I am resonably sure all the other games after ST2CE have the 
+DASH cps1 board with 12mhz clock. [Corrado Tomaselli]
+
+Converted many drivers in the d-j alphabetical range to use
+input_port_read() instead of input_port_read_indexed(). [Fabio Puiuli]
+
+ddragon3 driver cleanups/fixes: [sonikos]
+ - Fixed the mess dips location in ctribe
+ - Added dips location in all sets of ddragon3
+ - Added the missing dips (now are 8x2) on ctribe,ctribe1,ctribeb,
+    ctribb2 and ddrago3b
+ - Fixed the "Stage Clear Energy" dips in ctribe
+ - Adjusted the frame rate from 60hz to around 57 as reported on 
+    mametester ID 00417
+ - Adjusted OKI frequency to 1.000mhz (according to recording on 
+    mametester ID 00181)
+ - Adjusted the ddragon3 & ctribe volume (according to recording on 
+    mametester ID 00181 and 01441)
+
+Some protection improvements for vgoalsoc / tecmo world cup 98. 
+[nuapete]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Alien Storm 2 player World [Frederic Canoen]
+
+
+
+New clones added
+----------------
+Terra Force (bootleg with additional Z80) [David Haywood]
+Turbo Outrun - White Cockpit version [Frans van Egmond]
+The Combatribes (Italian bootleg) [Sonikos]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Wonderboy 3 System16A FD1089A [Volker Hann]

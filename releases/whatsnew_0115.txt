@@ -1,0 +1,469 @@
+0.115
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+ym2203slowdown0114u2gre [Aaron Giles]
+powerins0104yel [Aaron Giles]
+k007232_0114u1gre [Aaron Giles]
+rfjetus0114u2red [Aaron Giles]
+namcos2_0114yel [Zsolt Vasvari]
+term2_0114u4yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Additional ARM7 core fixes: [R. Belmont]
+ * Fixed SWI instruction in Thumb mode
+ * Rewrote SWP instruction to work properly
+ * Added some missing change_pc()s
+
+Fixed Mustache Boy interrupt behavior and visible area.
+[Lord Nightmare]
+
+Updated Windows exit code to ensure cursor is shown again.
+[Nathan Woods]
+
+Moved Space Stranger/Space Stranger 2 into its own driver and fixed
+cocktail mode. [Zsolt Vasvari]
+
+Major rewrite of pmpoker driver: [Roberto Fresca]
+ * Removed all inputs hacks.
+ * Connected both PIAs properly.
+ * Demuxed all inputs for each game.
+ * Documented all outputs.
+ * Added lamps support.
+ * Created different layout files to cover each game.
+ * Add NVRAM support to all games.
+ * Corrected the color PROM status for each set.
+ * Figured out most of the DIP switches.
+ * Added diplocations to goldnpkb.
+
+Updates Enigma 2 video and interrupt systems from the schematics. 
+Changed the color gun layout to match the flyers as much as possible.
+[Zsolt Vasvari]
+
+Converted Raiders 5 driver to tilemaps. [Zsolt Vasvari]
+
+Updated 68705 clocks to take into account the internal divide by 4.
+Added constant so that it is clear why this is being done.
+[Aaron Giles]
+
+Hooked up 6845 CRTC to the qix-based games. All games now generate
+display resolutions and frame rates on the fly. Cleaned up memory
+maps and a few other bits along the way. Added save state support.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Viper Phase 1 (Hong Kong, Metrotainment license) [Corrado Tomaselli]
+
+
+
+0.114u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gauntlet0114u2gre [Aaron Giles]
+psxbasedgames0114u3red [couriersud]
+successstv0114u2red [R. Belmont]
+asserts0113ora [Aaron Giles]
+hginga0114u2gra [Aaron Giles]
+ckongg0114u2gra [Aaron Giles]
+sample0114u3 [Aaron Giles]
+rampage0114u2gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Updated clocks in Arkanoid based on measurements from a real PCB.
+[Tormod Tjaberg]
+
+Rewrote the vp906iii driver: [Roberto Fresca]
+ - Decoded GFX properly.
+ - Rewrote the memory map based on program ROMs analysis.
+ - Hooked two SY6520/6280 (M6821) PIAs for I/O.
+ - Hooked the SY6545 (6845) CRT controller.
+ - Fixed size for screen total and visible area based on SY6545 CRTC 
+    registers.
+ - Added partial inputs through PIAs.
+ - Added proper sound through AY8910 (mapped at $0840-$0841).
+ - Proper colors through color PROM decode.
+ - Added some game-protection workaround.
+ - Added NVRAM support.
+
+Removed some unnecessary NULL checks and fixed some incorrect usage
+of auto_malloc. [Atari Ace]
+
+Fixed layer drawing and polygon sorting order in Model 1 games. 
+Improves wingwar significantly. [Yochizo]
+
+Significant ARM7 update: [R. Belmont]
+ * Cleaned up disassembly
+ * Added support for many more Thumb instructions
+ * Removed unnecessary logging
+ * Unaligned reads/writes are supported
+
+Fixed crash due to lack of CD in the Success ST-V games. [R. Belmont]
+
+Added calls to support enumerating through options. [Nathan Woods]
+
+Removed set_vh_global_attribute() and 
+get_vh_global_attribute_changed() from the dozen or so drivers that 
+used it. In the process, made an effort to clean up the video system 
+for these games. The biggest improvements are route16, hyhoo, 
+tutankhm and liberatr. [Zsolt Vasvari]
+
+Added a cpu core for a cpu nicknamed minx. This cpu core is used to 
+emulate the cpu in the nintendo pokemon mini handheld console. 
+[Wilbert Pol]
+
+Fixed and documented clocks in Omega Race. [Tafoid]
+
+Improved accuracy of 6502 CPU cores to implement the read/write that
+happens on every cycle. Moved the "undocumented" instructions from 
+the 6510 cores into the main 6502 core, since there were several 
+other versions of the 6502 cores which have the same undocumented 
+instructions. Removed some of the #define override magic that was 
+going on to make the code easier to read and understand. Updated the 
+6510 core port_read and port_write functions to include the ddr 
+register in the parameters. [Wilbert Pol]
+
+Updated the MIPS3 DRC to align the stack to sixteen-byte boundaries 
+at the point of calls, as required by Mac OS X calling conventions. 
+It doesn't break compatibility with Windows or Linux calling 
+conventions. This fixes crashes in MIPS3 games when running on OS X 
+for Intel. [Vas Crabb]
+
+Moved the -verbose option into the core. Added new function
+mame_printf_verbose() which is governed by this option. Changed all
+existing verbose output to use the new functions. [Aaron Giles]
+
+Changed cpu_boost_interleave(), cpu_spinuntil_time(), and
+cpu_yielduntil_time() to take mame_time parameters instead of 
+doubles. [Aaron Giles]
+
+Changed MDRV_CPU_PERIODIC_INT() to take a frequency parameter instead
+of a time. This is converted internally to a subseconds value.
+[Aaron Giles]
+
+Fixed asteroid and llander controls to be buttons not joysticks.
+[Aaron Giles]
+
+Simplified register and flags management in the TMS34010 core. 
+Reviewed all flag handling and fixed a couple of minor discrepancies.
+[Aaron Giles]
+
+Hooked up actual TMS32015 on Road Riot 4WD and Steel Talons.
+[Aaron Giles]
+
+Improved access to system registers in i386 core. Added explicit
+caching of segment data and flags. Fixed several minor issues.
+[Aaron Giles]
+
+Added several AY8910 variants so we can better specify the use of
+compatible but slightly different chips. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Excite League [Guru, Aaron Giles]
+Super League [Guru, Aaron Giles]
+Road Riot 4WD [Aaron Giles]
+Gaming Draw Poker [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Freeze (several clones) [Aaron Giles]
+Racin' Force (ver EAC) [David Haywood]
+
+
+
+0.114u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cannonb078u6yel [couriersud]
+hatris0111u4gre [couriersud]
+pipedrm0111u4gre [couriersud]
+galaxianc058gre [couriersud]
+ssf2ghw0114u1yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Additional CDP1802 updates, taken from MESS. [Curt Coder]
+
+Fixed colors in One + Two. [Tomasz Slanina]
+
+Made the PowerPC dynarec options runtime configurable. [Ville Linde]
+
+Added save state support to the hatris/pipedrm driver. [couriersud]
+
+Corrected Moustache Boy main cpu interrupt rate, main cpu clock freq, 
+and screen refresh rate according to measurements on a real PCB.
+[Tormod Tjaberg]
+
+Separated the DECO and Mitchell games in the simpl156 driver and added
+more extensive documentation. [Brian Troha]
+
+Fixed analog controls in Solar Assault. [Ville Linde]
+
+Changed the options code so that ranges are specified on the 
+option_entry structure, and enforced when option values are changed.
+[Nathan Woods]
+
+Further improved the ROZ layer emulation in the K001604. [Ville Linde]
+
+Konami ZR107 update: [Ville Linde]
+ - Fixed sound hardware check in Winding Heat
+ - Changed to use the correct tilemap chip type
+ - Hooked up analog controls
+ - Fixed texture rom loading and texture decoding
+ - Improved the 2D tilemaps
+
+Introduced a mame_options_exit() call to complement 
+mame_options_init(). [Nathan Woods]
+
+Added a mame_fopen_options() call, similar to mame_fopen() but with 
+the ability to specify a core_options object to use. [Nathan Woods]
+
+Improved noise emulation in the SN76496 emulator. Added several
+variants which differ based on the noise generator and other
+parameters. [Lord Nightmare]
+
+Changed all plot_pixel and read_pixel calls to BITMAP_ADDRXX macros.
+Removed the now-obsolete functions. [Zsolt Vasvari]
+
+Added support for aliasing sound types. This allows minor variants in
+sound cores to share the same fundamental "type" so that the same
+sndti_* functions can be used regardless of the subtype. [Aaron Giles]
+
+Changed location of save state files. Now they are placed in the
+<savestate>/<gamename> directory. Auto-generated save state files have
+the name "auto.sta". All other save state files are named <slot>.sta.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Midnight Run [Ville Linde]
+Winding Heat [Ville Linde]
+
+
+
+New clones added
+----------------
+Night Warriors: Darkstalkers' Revenge (Euro 950316)
+  [Johan Samuelsson, Nicola Salmoria]
+Terra Force (set 2) [Stefan Lindberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Kokoroji 2 [David Haywood]
+
+
+
+0.114u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+revx060gre [Aaron Giles]
+totcarn063gre1 [Aaron Giles]
+term20104u2gre [Aaron Giles]
+term20103u4gre [Aaron Giles]
+openice093u2gre [Aaron Giles]
+mk095gre [Aaron Giles]
+rmpgwt060gre [Aaron Giles]
+psyforce0105u5red [couriersud]
+raystorm0111u1red [couriersud]
+sfex20103red [couriersud]
+pkscram0111u4red [couriersud]
+looping0111u3yel [couriersud]
+cpsgfxpage4_0111red [couriersud]
+rfjetus0101u5red [couriersud]
+policetr059yel [couriersud]
+
+
+
+Source Changes
+--------------
+Fixed cdp1802 DMA emulation. [Curt Coder]
+
+More Konami updates: [Ville Linde]
+ - Hooked up vblank interrupt to Voodoo in all Voodoo-based games
+ - Fixed a rom loading issue in Silent Scope
+ - Added ADC1213x A/D converter emulation (machine/adc1213x)
+ - Hooked up analog controls in NWK-TR games
+
+MPU4 improvements: [James Wallace]
+ - Added NMI pulsing so Deal 'Em at least starts to boot.
+ - Decommissioned machine/mpu4.c, as the 6850acia code from Phil 
+    does the same job, making one less thing to maintain.
+
+Moved frontend commands and command-line handling into a central,
+core-managed location clifront.c. This eliminates the need for
+windows/fronthlp.c and windows/config.c and should make creating
+command-line based ports much easier in the future. [Aaron Giles]
+
+Fixed many of the remaining polygon glitches in GTI Club / Solar 
+Assault / Operation Thunder Hurricane. [Ville Linde]
+
+Added save state support to the pkscram driver. [couriersud]
+
+Removed all the timing kludges from machine/konppc.c. GTI Club is 
+kind of playable now. You can finish a lap or two, but eventually it 
+will hang on network error. [Ville Linde]
+
+Fixed the SUBTARGET=tiny build and removed some duplicate entries in 
+mame.mak. [Atari Ace]
+
+Added full discrete emulation of Space Invaders. I think people are 
+going to be too used to the current samples and their relative 
+levels. The new relative levels are determined by the mixing 
+resistors. There are all different versions of the sound board, that 
+all have slightly different sounds/components. This should be the 
+proper Midway sounds. [Derrick Renaud]
+
+Updated stvcd to be working enough that most Saturn games at least 
+die for some other reason, and a few actually do useful things.
+Also included a small update to the core cdrom code so you can fetch 
+a sector without knowing in advance what format it is. [R. Belmont]
+
+Added a concept of a "crosshair screen mask" internal to video.c and 
+created a static call to retrieve the mask. [Nathan Woods]
+
+Converted Roller Aces to stereo sound like the real hardware. Fixed
+the clocks and NMI rates to match the PCB. [Corrado Tomaselli]
+
+Added save state support to the Midway Y, T, X and Wolf Unit games.
+[Aaron Giles]
+
+Added preliminary 64-bit disassembly support to i386dasm.c.
+[Aaron Giles]
+
+Cleaned up internal interrupt handling in the TMS34010 core.
+[Aaron Giles]
+
+Added more accurate video timing to most of the Atari 68000-era
+games. [Aaron Giles, couriersud]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Quiz Olympic [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Cameltry (World, YM2203 + M6295) [David Haywood]
+Lightning Fighters (Asia) [David Haywood]
+Street Fighter EX (EURO 961219) [Guru]
+Tekken 3 (TET3/VER.A) [Guru]
+Soul Calibur (SOC13/VER.B) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Filetto (v1.05 901009) [Angelo Salese, Chris Hardy]
+
+
+
+0.114u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+segas32pedal0114gra [Derrick Renaud]
+klaxp1_0114red [Couriersud]
+savestate0114gre [Couriersud]
+exerion0114yel [Aaron Giles]
+arcadecl0114red [Aaron Giles]
+apb0114gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added actual emulation of the microcontroller used for the Namco 50xx
+chip as found in Bosconian and Xevious. [Nicola Salmoria]
+
+In the COp420 core, fixed the XABR opcode, added LBI skip for 
+extended opcodes, and fixed the CPU name in save states. Added 
+GAME_SUPPORTS_SAVE flag to the Cidelsa games. Draco still has no 
+sound though. [Curt Coder]
+
+Fixed crash in playch10 driver when run standalone. [Curt Coder]
+
+Added skeleton driver for Konami Viper system. [Ville Linde]
+
+Added skeleton driver for Dreamcast-based systems.
+
+Added very preliminary SH4 CPU core. [R. Belmont]
+
+Added DIP locations to the mario, mrdo, sheriff, and spacefb drivers.
+[Justin Szczap]
+
+Added debug attribute to the XML output. [Firewave]
+
+Got the Hang Pilot driver working. The analog controls are still 
+missing, however, so it's still marked as non-working. [Ville Linde]
+
+Fixed crash with multithreaded rendering and the graphics viewer.
+[Couriersud]
+
+Improved the NWK-TR driver to get Thrill Drive mostly working.
+[Ville Linde]
+
+Fixed bug that caused video glitches when frameskipping due to using
+out of sync textures. [Nathan Woods]
+
+Updated video timing in the Sega System 16, Hang On, Out Run, and
+X-Board games according to measurements from the boards. [Aaron Giles]
+
+Substantially changed the TMS340x0 interfaces to allow the CPU
+emulator to directly manage the video screen. Glitches in several 
+games are now fixed as a result (for example the flashing screens in 
+NBA Jam are now gone at last). [Aaron Giles]
+
+Fixed internal timer counting in the TMS32025 core. This makes the
+music in Cool Pool and 9 Ball Shootout bearable. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Combat Hawk [David Haywood, stephh]
+Koi Koi Shimasho [Tomasz Slanina]
+Hanafuda Hana Ginga [Luca Elia]
+Mahjong The Mysterious Orient [Luca Elia]
+Mahjong The Mysterious Universe [Luca Elia]
+Mahjong Dunhuang [Luca Elia]
+
+
+
+New clones added
+----------------
+Mahjong The Mysterious World (set 2) [Luca Elia]

@@ -1,0 +1,149 @@
+0.34 BETA 8
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+The Empire Strikes Back (not playable) [Brad Oliver]
+Liquid Kids [Brad Oliver]
+Growl [Brad Oliver]
+Speed Ball [Joseba Epalza]
+Sauro [Zsolt Vasvari]
+Magic Sword (USA) (merged) [Nicola Salmoria]
+P.O.W. [Bryan McPhail]
+Ghostbusters [Bryan McPhail]
+Maze Hunter [Bryan McPhail]
+Oscar (2 sets merged) [Bryan McPhail]
+RF2 [Andrew Prime]
+Gradius [Andrew Prime]
+Galactic Warriors [Andrew Prime]
+TwinBee [Andrew Prime]
+Galivan [Luca Elia, Olivier Galibert]
+Jail Break [Ernesto Corvi]
+Kram (not playable) (2 sets merged)
+Meadows Lanes [Juergen Buchmueller]
+Heiankyo Alien [Nicola Salmoria]
+Cheeky Mouse (not working) [Chris Moore]
+Kid Niki [Phil Stroffolino]
+Spelunker II [Phil Stroffolino]
+Ghosts'n Goblins (new Cross set which replaces the old) [Zsolt Vasvari]
+Yankee Do! (merged with Mr. Do!) [Lee Taylor]
+Gunsmoke (US set 2, without the reset bug) (merged) [Nicola Salmoria]
+Legendary Wings (US set 2) (merged) [Nicola Salmoria]
+Smash TV (rev 5) (merged) [Zsolt Vasvari]
+Trog (rev 3) (merged) [Zsolt Vasvari]
+Total Carnage (protottype) (merged) [Zsolt Vasvari]
+Mr. Do! (bugfixed) (merged) [Gareth Hall]
+Galaxy Rescue (merged with Lunar Rescue) [David Winter]
+Heli Fire (set 2) [David Winter]
+Invader's Revenge (Dutchford) [David Winter]
+Super Invaders [David Winter]
+Sinistar (revision 2) (merged) (olso renamed oldsin to sinista1) [Howie Cohen]
+Pacland (set 1) (merged) (also renamed all of them, they are now
+  pacland, pacland2, pacland3, paclandm) [Nicola Salmoria]
+Polaris (set 2) [Victor Trucco]
+Snow Bros (set 1) (merged) [Zsolt Vasvari]
+Tetris (Cocktail set 1) (merged) [Zsolt Vasvari]
+
+
+Neo Geo status
+--------------
+
+- All games work, both in arcade and home mode. If you are stuck with a
+  copyright message or the coin inputs don't work, delete the .CFG and .HI file
+  for that game. This will fix the problem.
+  Super Sidekicks 2 controls still stop working after a couple of minutes,
+  though. Crossed Swords doesn't let you start a game in arcade mode. It works
+  in home mode.
+
+- Sound support is 95% complete. If you experience garbled sound and you get
+  NO GOOD DUMP EXISTS errors, this is caused by bad ROMs, not by imperfect
+  emulation. There is NO WAY to fix that apart from redumping the bad ROMs.
+
+- If you get a Z80 ERROR message, it means that the sound program ROM is bad.
+  Run the game without sound.
+
+- A few games have graphics glitches which are not easily fixed.
+
+- "ROM length mismatch" errors. If you get these, you are just using ROMs
+  larger than the ones MAME expects. This is not a fatal error and the game
+  will still run fine (provided the ROMs are good, of course). You can "fix"
+  the ROMs yourself just by removing the second half of the file.
+  Note that the sizes used by MAME are sort of arbitrary. In many cases it is
+  difficult to know for sure which size the ROMs are really supposed to be, so
+  we decided to consistently use the smallest possible files. The real ROMs
+  *might* be larger than that, but the extra space is not used by the game -
+  it is either all FF, or contains a verbatim copy of the first half.
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Better colors in Scion (still not accurate) [Dick Millikan]
+
+- Added artwork support to Lunar Lander. [Cristopher Kirmse]
+
+- Added artwork support to Asteroid Deluxe. [Peter Hirschberg, Mathis Rosenhauer]
+
+- Background light support in Discs of Tron. [Mathis Rosenhauer]
+
+- Fixed mooncrgx. [Barry Rodewald]
+
+- High resolution sprites in Blasteroids. [Nicola Salmoria]
+
+- Rooms in Intrepid are now properly hidden until you enter them. Also fixed
+  the bridges in Round Up. [Nicola Salmoria]
+
+- Fixed flickering sprites in SSI. [Andrew Prime]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Penguin-Kun Wars. [Roberto Fresca]
+
+- Cloak and Dagger, Frenzy, Future Spy, Cop 01. [Dave W.]
+
+- Exciting Soccer. [Jarek Parchanski]
+
+- Bionic Commando, Blasto, Tomahawk, Astro Invader, plus many fixes.
+  [Howie Cohen]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Improved the Pokey emulation. [Juergen Buchmueller]
+
+- Support for stereo output. This is implelemented in the YM2610 and in
+  Tatsuyuki's YM2151. It can be used by other games, for example the Atari
+  System 2 games (Paper Boy etc.) have two Pokeys, one per channel.
+  [Nicola Salmoria]
+
+- Fixed bass track in Do Run Run. [Jim Hernandez]
+
+- Partial sound in Satan of Saturn. [Nicola Salmoria]
+
+
+Other drivers changes:
+----------------------
+
+- Chelnov is now playable! Plus many other fixes to the driver including
+  slowdowns in Karnov. [Bryan McPhail]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Stereo sound support. It is a little slower than mono, to turn it off
+  use -nostereo. Stereo is enabled only for YM2610 and YM2151 games. The others
+  always use mono.
+
+- [DOS] New -listinfo command to give details on all of the supported games.
+  [Andrea Mazzoleni]
+
+- Several changes to the cheat system, you'll have to download a new cheat
+  database if you want to use it. [Stephane Humbert]
+
+- [DOS] Now using a new beta version of the SEAL audio library which further
+  improves the dynamic range. You'll notice louder and better balanced sound
+  in many games. Let me know about games with bad balance. [Nicola Salmoria]

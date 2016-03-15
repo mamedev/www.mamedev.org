@@ -1,0 +1,426 @@
+0.139u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04030: [Misc.] All sets in taito_f3.c, taito_z.c, kaneko16.c, 
+         konamigq.c, overdriv.c: "16-bit EEPROM set with 8-bit data" 
+         (Aaron Giles)
+- 04034: [Crash/Freeze] All sets in viper.c: [debug] Assert in Debug 
+         build (Aaron Giles)
+- 01993: [Graphics] stmblade: Graphical corruption on left side of screen 
+         beginining stage 3 (robiza)
+- 04050: [Graphics] twineag2: Missing graphic effect in screen 
+         transitions (robiza)
+- 04044: [Graphics] batsugun and clones: [possible] batsugun VDP mixing 
+         still not correct (David Haywood)
+- 00945: [Graphics] bkraidu: Text glitch in the flip screen mode. (robiza)
+- 00944: [Graphics] ghox: There are gfx glitches on the background in 
+         the ending scene. (robiza)
+- 03952: [Graphics] gaiden, wildfang, raiga: Screen is shifted 32 pixels
+         down with flip-screen. (robiza)
+- 04036: [Graphics] astrowar: [debug] Severe graphic corruption 
+         (Fabio Priuli)
+- 04035: [Crash/Freeze] All sets in chihiro.c: Assert before OK 
+         (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+mc6845.c: Rewritten to allow mid frame changes to the counter
+registers. This enables drivers to use advanced split screen and
+scrolling effects using a regular mc6845. [Wilbert Pol]
+
+Changed the MACHINE_DRIVER_* macros, as follows: [Aaron Giles]
+
+  1. Renamed MACHINE_DRIVER_* to MACHINE_CONFIG_* to match the name of
+  the object it actually describes. The MDRV_* prefix may eventually be
+  bulk updated at some point, but not now.
+
+  2. MACHINE_CONFIG_START() now takes a driver_data_t-derived class as a
+  required second parameter. This means that MDRV_DRIVER_DATA() is no
+  longer required, and every "root" machine config *must* specify a
+  driver data class (or driver_data_t itself if the driver has not yet
+  been updated to use driver data).
+
+  3. New MACHINE_CONFIG_DERIVED() macro defines a machine_config that is
+  derived from another machine_config. This takes the place of the very
+  typical MACHINE_DRIVER_START()/MDRV_IMPORT_FROM() combination.
+
+  4. New MACHINE_CONFIG_FRAGMENT() macro defines a partial
+  machine_config that can only be included in another "root"
+  machine_config. This is also used for machine_configs that are
+  specified as part of a device.
+
+  5. Changed MDRV_IMPORT_FROM() to MDRV_FRAGMENT_ADD() to more
+  accurately describe what is happening.
+
+  6. Added asserts to the above three macros to ensure they are properly
+  used.
+
+Updated all machine drivers to use the new macros. Search & replace
+lists below cover 99% of the changes, with just a few manual fixups.
+[Aaron Giles]
+
+timer.c: timers get rescheduled only if enable state has changed
+[Christophe Jaillet]
+
+bfm_dm01 improvements: replaced the video screen hack used for the
+dotmatrix display with a more accurate, artwork-based version. The
+BFM_DM01 clocks data in one byte at a time, and the new dotmatrix
+render object represents the 8 dots powered by each byte. [AGEMAME]
+
+aristmk4.c:
+ * Cashcade workaround for topgear [Frasher]
+ * Improved a few memory handlers [Palindrome]
+
+Changed driver_data objects to be devices. Replaced the driver_data_t
+class with a new driver_device class, which is the base class for all
+driver_data objects now. The new driver devices are added as the first
+device in the device list, with a tag of "root"; all other devices are
+now owned by the driver device. [Aaron Giles]
+
+Moved core callbacks (machine_start/_reset, sound_start/_reset,
+video_start/_reset/_eof/_update, and palette_init) into device
+configuration parameters on these new devices. The driver_device base
+class overrides device_start(), ensures all other devices have been
+started, and then calls, in order, the following overridable methods:
+
+  1. DRIVER_INIT function from the game driver 
+  2. palette_init() - by default calls the MDRV_PALETTE_INIT 
+     function 
+  3. driver_start() - new
+  4. machine_start() - by default calls the MDRV_MACHINE_START function
+  5. sound_start() - by default calls the MDRV_SOUND_START function
+  6. video_start() - by default calls the MDRV_VIDEO_START function
+
+Similarly, the driver_device class overrides device_reset() and then
+calls these methods in order:
+
+  driver_reset() - new 
+  machine_reset() - by default calls the MDRV_MACHINE_RESET function 
+  sound_reset() - by default calls the MDRV_SOUND_RESET function 
+  video_reset() - by default calls the MDRV_VIDEO_RESET function
+
+To accommodate these changes, initialization order is slightly altered
+from before. The tilemap, video, sound, and debug systems are now
+initialized prior to the devices' start. And the user callbacks for
+DRIVER_INIT, PALETTE_INIT, MACHINE_START, SOUND_START, and VIDEO_START
+are all called back-to-back. The net effect should be similar,
+however. [Aaron Giles]
+
+Changed device_t::subtag to only prepend a prefix if the device is not
+the 'root' device, in order to keep compatibility with existing tag
+searching. [Aaron Giles]
+
+Changed device startup to actively reorder devices when they report
+missing dependencies. This ensures that the reset functions get called
+in the same order that the start functions did. [Aaron Giles]
+
+Remove artificial SOUND_ prefix from sound device names. [Atari Ace]
+
+Converted sauro, scotrsht, segald, seicross, senjyo, shangha3,
+shaolins, shisen, skyraid, solomon, spcforce, speekatk, splash,
+sprcros2, ssozumo, suna16, suna8 to driver_data. [Atari Ace]
+
+Added include files for all remaining drivers with multiple source
+files. [Atari Ace]
+
+Corrected or clarified a number of duplicated inputs for drivers up
+through A  [Tafoid]
+
+Changed driver_device to expose the game_driver's ROMs through the
+device interface. This means all ROMs are now exposed via devices, and
+thus the process of enumerating ROMs gets simpler. [Aaron Giles]
+
+Changed all instances of temporarily allocating machine_config objects
+to just put them on the stack for simplicity, letting the destructor
+handle the cleanup work automatically. [Aaron Giles]
+
+Changed machine_config constructor to take a game_driver, from which
+the machine_config constructor is obtained. This also means the
+resulting machine_config holds a reference to the game_driver.
+[Aaron Giles]
+
+Changed running_machine constructor to no longer take a game_driver,
+since the game_driver is now obtainable via the machine_config.
+[Aaron Giles]
+
+Added two new template classes optional_device<> and
+required_device<>. Use these to declare the device pointers in the
+class. The only difference between the two is that required will
+fatalerror if the device is not found. These new classes are "pass-
+through" so the underlying pointer can be passed anywhere a regular
+device pointer would work. [Aaron Giles]
+
+Fix compiling on older GCCs (including OS X PowerPC) [Aaron Giles]
+
+Change shared memory regions to track their size. Added
+memory_get_shared() functions to retrieve a pointer to a shared region
+and optionally the size. [Aaron Giles]
+
+pipeline (pipeline.c) [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+
+Added templates required_shared_ptr<> and optional_shared_ptr<> which
+work just like required_device<> and optional_device<> for retrieving
+a pointer by tag from an address space that specifies AM_SHARE("tag").
+Also added templates required_shared_size<> and optional_shared_size<>
+for retrieving the size of the AM_SHARE region. [Aaron Giles]
+
+Created a new generic NVRAM device. It can be configured to default to
+0-fill, 1-fill, random-fill, or custom fill. In all cases, a
+same-named memory region overrides the default fill. The address range
+where the NVRAM can be found is now identified by an AM_SHARE() region
+of the same tag as the NVRAM device. Drivers can also explicitly
+configure a separately-allocated NVRAM region via
+nvram_device::set_base(). [Aaron Giles]
+
+Replaced all instances of MDRV_NVRAM_HANDLER(generic_*) with
+MDRV_NVRAM_ADD_*("nvram"). Replaced all
+AM_BASE_GENERIC/AM_SIZE_GENERIC(nvram) with AM_SHARE("nvram"). For all
+remaining drivers that referenced the generic.nvram directly, changed
+them to hold a required_shared_ptr<UINTx> to the NVRAM in their driver
+state, and use that instead. Removed nvram and nvram_size from the
+generic_ptrs. [Aaron Giles]
+
+Have each device create its own device_debug instead of letting the
+debugger do it. This allows the device to start itself up before the
+debugger tries to figure out what to do with it. Fixes the problem
+where register names were not populated into the symbol table
+correctly after I shuffled the initialization order. [Aaron Giles]
+
+multfish.c: Updated driver with new information and several new sets
+as well as several new bootlegs. [MetalliC]
+
+New driver for Jubilee's Double-Up Poker. Decoded graphics and colors
+properly. Hooked the correct TMS9980 CPU, added a preliminary memory
+map and some technical notes. [Roberto Fresca]
+
+Integrated comments into debugcpu.c, and removed debugcmt.c.
+Modernized the code and updated so it actually works with the modern
+debug classes. [Aaron Giles]
+
+Added AM_DEVREAD_MODERN/AM_DEVWRITE_MODERN/etc. macros for the
+non-modern address map case so that updated devices can shed their
+old-style read/write handlers in favor of member functions.
+[Aaron Giles]
+
+Bulk converted all okim6295_r/okim6295_w references in the address
+maps to call to the modern member functions. [Aaron Giles]
+
+quizpani (quizpani.c) [stephh] :
+ * Improved Dip Switches and fixed Inputs (after verification of the
+    M68000 code)
+
+Renamed namcops2 DVDs to match labels [Guru]
+
+Added read_status() and write_command() methods to the okim6295_device
+for the common case where these are done outside the context of a read
+or write handler (it was annoying to pass in the fake address space
+for these cases). [Aaron Giles]
+
+Added DEVCB_DEVICE_MEMBER() macros which allow you to specify a
+READ8_MEMBER or WRITE8_MEMBER in a device callback (via dynamically
+generated trampolines). [Aaron Giles]
+
+Replaced all remaining calls to okim6295_r/okim6295_w with calls to
+the new methods, and removed the static functions. [Aaron Giles]
+
+namcops2: added dongle dump for Federation vs. Z.A.F.T. [Guru]
+
+Corrected or clarified a number of duplicated inputs for drivers up
+through C  [Tafoid]
+
+Fixed sprite OV flag behaviour in PC Engine VDC emulation
+[Angelo Salese, Charles MacDonald]
+
+Corrected or clarified a number of duplicated inputs for drivers up
+through G  [Tafoid]
+
+Converted ASAP CPU core from a legacy CPU core to a modern device.
+[Aaron Giles]
+
+Renamed device_execute_interface::m_icount to m_icountptr to avoid
+commonly-named device values of m_icount. [Aaron Giles]
+
+Fixed a bogus Hu6280 CPU core bug with timer latch division values
+readings [Angelo Salese]
+
+[SSV] implemented visible area registers; now the resolution for all
+the games is the max visible area (the values of the registers after
+the boot process) [Robert Zandona']
+
+Fixed missing VRAM > VRAM DMA flag clearance in PC Engine emulation
+[Angelo Salese]
+
+strnskil.c: Added MCU dump for banbam. [Pete Ogoun, Andrew Gardner]
+
+Moved sound routing for non-speaker devices over to the sound
+interface's post-start method. Routing from one sound device to
+another was broken when sound_init() was moved ahead of device
+startup. [Aaron Giles]
+
+Removed vestigial NVRAM from starwars, which is now covered by the
+x2212 device. [Aaron Giles]
+
+CHDMAN: rewrote bin/cue support from specs, more images now work.
+[R. Belmont]
+
+Removed generic.videoram and generic.videoram_size. These generics
+have no core use, they are simply there for the convenience of
+drivers. Now that drivers are required to have devices, the data
+should move there. [Atari Ace]
+
+Added proper handling of the SRAM in Aristocrat MK-5 [Palindrome]
+
+Removed usage of I2C in Aristocrat MK-5 [Angelo Salese]
+
+Added -bench <emulated-seconds> option to standardize benchmarking.
+[Aaron Giles]
+
+Added DECLARE/DEFINE_TRIVIAL_DERIVED_DEVICE macros to simplify the
+definition of devices that are based off of a parent device, but which
+differ in name and a single parameter. [Aaron Giles]
+
+Convert ADSP21xx core to a modern CPU device. [Aaron Giles]
+
+On Windows, osd_break_into_debugger() will now dump a stack crawl if
+there's no debugger attached. This means that asserts should have a
+full crawl now, for easier debugging. [Aaron Giles]
+
+Replaced NVRAM_HANDLER in leland with an NVRAM device. [Aaron Giles]
+
+ssv:
+ * implemented y tilemap offset register; (Roberto Zandona')
+ * implemented x and y visible area register; (Roberto Zandona')
+ * disabled tilemap draw when mode=0; (Roberto Zandona')
+ * confirmed visible area register with a twin eagle II PCB (Corrado
+Tomaselli)
+
+Replaced largely redundant NVRAM handlers with NVRAM devices for
+namcos2 and a bunch of the Nichibutsu mahjong games. Also did it for
+the Atari games, moving the old hard-coded EEPROM data out into files
+finally. [Aaron Giles]
+
+Merged ssgbl.c into megadrvb.c and moved bootleg input definitions out
+of megadriv.c [Sonikos]
+
+Made the mc146818 a proper device, modernized it, and added an NVRAM
+interface so that drivers don't have to ask it to be manually saved.
+[Aaron Giles]
+
+Added definitions for [DECLARE_]READ_LINE_MEMBER and
+[DECLARE_]WRITE_LINE_MEMBER so that read/write line callbacks can be
+defined as member functions. [Aaron Giles]
+
+Added stubs and new macro DEVCB_DEVICE_LINE_MEMBER to allow these to
+be referenced from device callbacks. [Aaron Giles]
+
+Modernized the 6522 VIA device: [Aaron Giles]
+ * changed to use the new device timer mechanism
+ * removed all trampolines in favor of modern methods
+
+ssv: removed kludge for sprite x offset and implemented 1 bit of 7a-7b
+register [Roberto Zandona']
+
+ssv:
+ * implemented y sprite inversion CRT register;
+ * added a kludge for dynagear
+ * used CRT registers to get the sprite x offset [Roberto Zandona']
+
+ssv: removed offset values from the init; the offset now are handled
+by the CRT registers [Roberto Zandona']
+
+ssv: fixed bit #a of 7a-7b CRT register [Roberto Zandona']
+
+Converted intelfsh to a device, updated all users. [Aaron Giles]
+
+ssv: fixed background disable condition [Roberto Zandona']
+
+New build tool makedep.c, derived from src2html.c (really!). Does
+basic dependency analysis and supports excluding paths. [Aaron Giles]
+
+Makefile now supports a depend target which will run makedep on the
+src/$(TARGET) tree and create dependencies. It deliberately excludes
+the root of src/emu as well as the osd directories in order to keep
+the dependency file down to a reasonable size, so if a core header
+file changes, you still need to clean and build all. [Aaron Giles]
+
+CHDMAN: improved -extractcd bin/cue output, improved error handling.
+[R. Belmont]
+
+Added memory interface to the intelfsh device so you can access/view
+the data in the debugger and via the standard memory interfaces.
+Removed the old memory() method in favor of new functions
+read_raw()/write_raw() which do direct reads/writes of the data.
+[Aaron Giles]
+
+Cleaned up CPS3 No-CD sets to break up the "ROMs" into individual
+flash pieces which are automatically loaded by the intelfsh device on
+initialization. Also split the MACHINE_CONFIG to only populate the
+number of SIMMs actually present for each game, as documented in the
+top of the file. And replaced the NVRAM_HANDLER with an NVRAM device.
+[Aaron Giles]
+
+CHDMAN: support for .WAV tracks in bin/cue images [R. Belmont]
+
+neogeo.c: misc updates [Johnboy]
+ * viewpoint - Renamed v's to correct chip label
+ * ghostlop - Renamed roms to match proto naming sheme
+ * savagere, kizuna - Added correct c1
+ * crsword - Tagged MVS AND AES VERSION, added correct m1
+ * legendos - Added correct m1
+
+Triple Punch/Knock Out AY-3-8910 clock speed was incorrect, fixed and
+verified from real hardware. [plgDavid] Verified clocks and oki pin on
+quiz channel question boardset. [plgDavid]
+
+Added an integral device_timer_id to device timers. This is a cleaner
+way to differentiate between multiple timers rather than relying on
+the pointers. These values are also saved with the timers. Updated the
+few devices using device timers to leverage this. [Aaron Giles]
+
+Added new function device_timer_call_after_resynch() which creates a
+temporary 0-length timer that calls back through the device's
+device_timer() method with a given device_timer_id. [Aaron Giles]
+
+Added a function to change the MSM5205 frequency dynamically
+[Angelo Salese]
+
+Added a set volume function for CD-DA [Angelo Salese]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Shinobi / FZ-2006 (Korean System 16 bootleg) 
+  (ISG Selection Master Type 2006) [Angelo Salese]
+Poker Master (Tony-Poker V3.A, hack?)
+  [David Haywood, William Ostronic]
+
+
+
+New clones added
+----------------
+Vigilante (World, set 2) [porchy]
+Sega Rally Championship (Revision B) [Alex's Blog]
+Touchmaster 2000 Plus (v4.63 Standard)
+  [Brian Troha, The Dumping Union]
+Touchmaster 4000 (v6.01 Standard) [Brian Troha, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Jubilee Double-Up Poker [Roberto Fresca]
+Piccolo Poker [Roberto Fresca, Team Europe & Housi]
+Crisis Zone (CSZO2 Ver. A) [Guru]
+Soul Calibur 2 (SC22 Ver. A) [Guru]
+White Tiger [Palindrome]
+Swiss Poker ('50 SG-.10', V2.5)
+  [Roberto Fresca, Tomasz Slanina, Team Europe & Housi]
+Movie Card [Roberto Fresca, Team Europe & Housi]
+Maximum Speed [Guru]

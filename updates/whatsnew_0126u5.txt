@@ -1,0 +1,262 @@
+0.126u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02095: [Misc.] chqflag, chqflagj, -listxml: memory leaks 
+         (Aaron Giles)
+- 02110: [Side-by-side] All sets in cps3.c: video from a DV cam 
+         proves the refresh rate of CPS3 in MAME is wrong (Aaron Giles)
+- 02113: [Misc.] xymg: xymg title mispelled (Aaron Giles)
+- 01802: [Multisession] cybrcomm, raveracw, raveracj, raveraja, 
+         ridgerac, ridgerab, ridgeraj, acedrvrw, victlapw: No sound 
+         in games after reloading via the MAME UI (Atari Ace)
+- 00233: [Graphics] ikari: The current implementation of the shadow 
+         in Ikari Warriors and Victory Road is wrong. (Nicola Salmoria)
+- 02059: [Crash/Freeze] panicstr: Game hangs after choosing Stage. 
+         (R. Belmont)
+- 02027: [Crash/Freeze] lhba: lhba does not work (Luca Elia)
+- 02101: [Crash/Freeze] wboy, wboysys2: Access Violation 
+         (Nicola Salmoria)
+- 00492: [Crash/Freeze] vbowl: In every case, after the 3rd launched 
+         ball, the game resets. (Luca Elia)
+- 00491: [Crash/Freeze] drgwrld3: When you continue by inserting 
+         credit and play, the game crashes. (Luca Elia)
+- 02021: [Graphics] cottonbm: Sprite layer offset toward upper-left 
+         (R. Belmont)
+- 02022: [Crash/Freeze] cottonbm: Fatal Error Crash (R. Belmont)
+- 02071: [Crash/Freeze] coolridr: Access Violation (R. Belmont)
+
+
+
+Source Changes
+--------------
+Updated the FD1089 decryption algorythm to use the real keys generated 
+by the LCG as found by Andreas Naive. The algorithm is more complex 
+than it should be, but I haven't been able to simplify it more. The 
+keys are still embedded in the source. It would now be reasonable to 
+move them to external files; however, for several games we only have 
+partial keys so the files would need to be BAD_DUMP. [Nicola Salmoria]
+
+Changed ad2083 to load PROM data instead of using hardcoded values.
+[couriersud]
+
+Updated structure and naming conventions of sound and CPU cores to
+match core conventions. [Derrick Renaud]
+
+Added discrete sound for Mad Alien. [Derrick Renaud]
+
+Hooked up discrete filtering to SN76477 in Space Chaser. 
+[Derrick Renaud]
+
+Improvements to Lucky74.c driver: [Roberto Fresca, Grull Osgo]
+ - Reverse engineering of custom IC's 06B49P, 06B53P & 09R81P.
+ - Mapped the missing 3x SN76489.
+ - Measured and traced all clocks on the board.
+ - Measured and fixed the interrupt system.
+ - Implemented timings/clocks from custom 06B49P.
+ - Added sound support. All regular game sounds/musics are working.
+ - Implemented the ADPCM samples system through 09R81P + M5205 
+    emulation.
+ - Added pinouts and technical notes about custom IC's 06B49P, 
+    06B53P & 09R81P.
+ - Added flip screen mode.
+ - Inverted the order of double-up difficult DIP switches.
+ - Changed 'Key In' to be active LOW instead of HIGH
+ - Complete memory map and ports scheme.
+ - Created handlers for USART port and co-processor communication.
+ - Renamed the sets accordingly.
+ - Updated all notes.
+ - Cleaned-up the driver.
+
+Merged memory maps for drivers tigeroad, timelimt, toobin, tumbleb.c,
+tbowl, thedeep, and thief. Also changed gfx memory region tags in 
+obvious cases. [Andrew Gardner]
+
+Added sprite wrapping to Irem m63 driver.
+[Tomasz Slanina, Stefan Lindberg]
+
+More FM OPN fixes [Eke, R. Belmont]
+ - Pass chip type around and restore Jarek's original behavior for 
+    YM2203/YM2610
+ - Always recalculate attack rate in set_ar_ksr, fixes Megadrive/
+    Genesis "Batman & Robin"
+
+Added readmes for Cosmo, Don Den Lover, Beatmania (CHD dumping), 
+Dragon Master, Gals Panic, Fantasia II, Grand Tour, New Dyna Blaster 
+Global Quest, Daytona "To The MAXX" upgrade, Namco System FL, Great 
+Sluggers, Gun Nail, Gun & Frontier, Elevator Action Returns, Battle 
+Bakraid, Koro Koro Quest, Gigas (bootleg), Race Drivin', Hexa, IQ 
+Block, Open Golf Championship, Macross Plus, Malzak, Puzzle Club, 
+Naomi, Puzzle Star, Puckman Pockimon, Raiden 2, Raiden Fighters 2 
+(single board), Light Bringer, Landmaker, Knuckle Bash 2, Mahjong 
+Fight Club, Vivid Dolls, Tower and Shaft, Star Soldier Vanishing 
+Earth, Stone Ball, Sky Lancer, Squash, Winning Spike, Versus Net 
+Soccer, Undercover Cops, War Gods, Space Fever, Strikers 1945, Rohga, 
+Super Eagle Shot, Treasure Hunt (stv), Tickee Tickats, Great 1000 
+Miles Rally 2 and Super Monaco GP. [Guru, Andrew Gardner]
+
+Implemented MWR (memory width register) in shanghai to avoid 
+hardcoded 384 value for screen width. [robiza]
+
+Added the Plotting PAL to the Japanese set. Also corrected the PAL 
+ROM name. [Brian Troha]
+
+KO Punch boxer graphics had to be doubled. [Nicola Salmoria]
+
+Fixed NMI on Mad Alien sound CPU. This fixes shot sound and various 
+other sound glitches. Marked madalien and madalina as Imperfect 
+Graphics. They are missing an effect. When you shoot an enemy in the 
+dark, the whole screen lights up. Basically the headlights fill the 
+whole screen. [Guru, Derrick Renaud]
+
+Added reverse engineered PLD images to CPS1 games (A-board to all 
+and B-board and C-board to many). 
+[Corrado Tomaselli, Charles MacDonald]
+
+Rejiggered huffman.c to support multiple interleaving streams and a 
+delta-RLE pre-encoding. Added optimized case for the Y/Cb/Y/Cr video 
+encoding case. Cleaned up the code. [Aaron Giles]
+
+Updated avcomp.c to use the new huffman.c functions. Reworked 
+configuration options to allow for both input and output of naturally 
+aligned data streams. Updated chdman and laserdsc to use the new 
+interfaces. New compression gives an additional 3-7% over previous
+attempt and compresses the dummy CHDs down significantly. 
+[Aaron Giles]
+
+Some improvements to shanghai video drivers: [robiza]
+ 1) convert framebuffer's ram from 8 bit to 16 bit
+ 2) convert dma command from 8 bit to 16 bit
+ 3) convert gfx command from 8 bit to 16 bit
+ 4) implemented all gfx mode: 1,2,4,8,16 bpp
+Now we can use this gfx chip for adp driver that use 4bpp.
+
+updated Alpha 8302 MCU simulation to match newly dumped internal ROM.
+Added the ROM to Champion Baseball 2. [Nicola Salmoria]
+
+Added video level detection and reporting to ldverify. [Aaron Giles]
+
+Fixed incorrect test in winwork that led to spinning instead
+of using the nicely allocated events we had on hand. [Aaron Giles]
+
+Forced a sound synchronization on each vsync in the laserdisc
+playback. This prevents overwriting the tail end of the buffer which 
+was fouling up the MACH 3 audio decoding. [Aaron Giles]
+
+Fixed ROM mapping and added preliminary video emulation to galaxia.
+[Tomasz Slanina]
+
+Fix coolridr crash with DRC, now hangs waiting for impossible 
+conditions again. [R. Belmont]
+
+Added new flag to menu items: MENU_FLAG_DISABLE, which means the
+item will be visible but not selectable. [Aaron Giles]
+
+Fixed bug that prevented the cheat engine from working when the
+debugger was disabled. [Aaron Giles]
+
+Modified xmlfile.c to accept integer values in decimal or hex. The
+default is decimal. Numbers may be prefixed by '#' for decimal
+values, or by '$' or '0x' to indicate hexadecimal values. Also
+added function xml_get_attribute_int_format() to return the format
+of the attribute, so that it can be later replicated. [Aaron Giles]
+
+Updated cheat parser to preserve the format of attribute values
+used for cheat parameters and items. [Aaron Giles]
+
+Added support for information-only cheat items, which will be
+displayed in the menu but which are not selectable and have no
+action associated with them. Empty information-only items are
+automatically converted to menu separators. [Aaron Giles]
+
+Moved several include files from mame/ to emu/, as they were included 
+by generic components in emu/ and thus should have no dependencies 
+on the MAME code. [Aaron Giles]
+
+Added new target ldplayer, which is based on MAME but serves as a 
+standalone laserdisc player for CHDs. Right now only the Pioneer 
+LD-V1000 is connected, and limited commands are available. Each player 
+type is a driver, so you specify the player type on the command-line. 
+The driver then opens the first CHD it finds in your ROM path and 
+uses that as the laserdisc. The intention is that you specify the 
+-rompath each time on the command-line, so a typical approach might 
+be:
+
+   ldplayer ldv1000 -rompath j:\mach3
+
+where it will pick up the mach3.chd lurking in your j:\mach3 folder. 
+Several basic commands are supported:
+
+   Space = play/pause
+   Alt   = toggle frame display
+   Left  = scan forward (when playing) or step forward (when paused)
+   Right = scan backward (when playing) or step backward (when paused)
+   0-9   = enter numbers for search
+   Enter = execute search to frame
+
+[Aaron Giles]
+
+Implemented proper shadow handling in SNK drivers. [Nicola Salmoria]
+
+Corrected rom names with PCB locations for Lady Bug and verified the 
+dump against an original Universal Lady Bug PCB. Added information 
+about the Universal PCB number and prom type. [Brian Troha]
+
+Improved input ports for drivers starting with F->M. In particular: 
+they add AM_READ_PORT whenever suitable, they make inputs fully 32bit 
+where needed, they remove indexed input read handlers from INITs, they 
+replace many read handlers with appropriate CUSTOM_INPUTs.
+[Fabio Priuli]
+
+Additional input port improvements: [Fabio Priuli]
+ * added dip switches and locations to go2000 (even if they were 
+    partially documented in the source)
+ * fixed artmagic protection (it used a wrong tag, which probably 
+    I added somewhere in 0.125uX)
+ * changed a lot of input related things in irem m10->m107 irem boards. 
+    First of all, moved input definitions from drivers/m92.h to 
+    include/iremipt.h and removed completely drivers/m92.h (which 
+    only contained those definitions). Added more common inputs to 
+    iremipt.h and started to use that file in m62->m107 instead 
+    of local #defines. Finally, added diplocations to all the games 
+    in m62->m107 which were missing and it implemented coinage mode 2 
+    through dipconditions in the drivers which didn't support it.
+ * converted most of the games checking avgdvg_done() in inputs to use 
+    a CUSTOM_INPUT (defined in video/avgdvg.c)
+
+Fixed the i386 CPU core's BSR implementation for the case where the
+high bit is set. [Atari Ace]
+
+Added DIP locations to clshroad.c. [RansAckeR]
+
+Collapsed timer callbacks in some cases to avoid duplicating code. In 
+the case of crystal.c, also refactored two DMA handlers and shuffleed 
+the init/reset code around a bit. [Atari Ace]
+
+Cleaned up and grouped the sound chip entries based on sound.mak.
+[Oliver Stoeneberg]
+
+Fixed sfiii3's title animation and the linear zoom effect that 
+OopsWare didn't improve properly since 0.122u7. [Joshua Chang]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Da Ban Cheng [Pierpaolo Prazzoli, Luca Elia]
+Xing Yen Man Guan [Luca Elia, Wei Mingzhi]
+Killer Instinct (SNES bootleg) [Tomasz Slanina]
+Final Fight 2 (SNES bootleg) [David Haywood, Tomasz Slanina, Kowal]
+
+
+
+New clones added
+----------------
+Dai Makai-Mura (Japan new version) [Corrado Tomaselli]
+Defender (White label) [Andy Welburn]
+Free Kick (bootleg set 2) [David Haywood]
+Zhong Guo Long (China, V010C) [Luca Elia]
+Zhong Guo Long? (Hong Kong, V011H) [Luca Elia]
+Sonic Blast Man TURBO 2 (SNES bootleg) [Corrado Tomaselli]

@@ -1,0 +1,121 @@
+0.25
+
+Program:
+- We have added Starforce!  Another one that rocks!!
+  Sound is not supported yet.
+
+- Finally I've added Tutankham.  (Hi Moose!! ;)  Moose provided me a good
+  bunch of information and I lost much time on a stupid bug in bank selection.
+  Thanks to David Dahl (techt@juno.com) that provided me a driver too, and
+  I found the light!!  Also thanks to Rob Jarrett for the exaustive memory
+  map (I've included it in sources, it's better than mine).
+
+- I've decrypted the garbled graphics of AntEater and Rescue which are now
+  fully playable.  And Fabio Buffoni improved the decode routines with
+  thrilling code.  Colors are wrong, unless someone provides me a good
+  set of screenshots to study.  Hunchback doesn't work yet.
+
+- Nicola added a driver for Mysterious Stone.
+
+- Sal and John Bugliarisi provided us technical information about the game
+  Naughty Boy.  (Remember that code area is 64k long and not 32k).
+  We have implemented a driver and for this game which is now supported.
+
+- I took the time to add some high score saving.  So, now Junior Pacman,
+  Naughty Boy, Tutankham, Kangaroo, have high score saving support.
+  (So Dave will stop bothering me about that ;)  heheh!!!  Joking ;)
+
+- Nicola fixed Commando driver, so now intermissions have the correct
+  tiles positioned.
+
+- Added JrPacman speed cheat.  It works in the same way of Pacman.
+  (thanks to Hugo Pi for let me notice this).
+
+- Chris Hardy added support for Space Firebird.  Thanks to Chris and to
+  all Sage Staff.
+
+- Nicola did some fixes to Taito Games (Jungle King and Elevator Action)
+  about background placement and coins per credit dipswitch.  Plus vertical
+  scroll support in Jungle King (used in ground shake), correct sprite
+  priority, and no more rubbish is present during change of stage.
+  Finally, he also added preliminar support for WildWestern and FrontLine,
+  which are not yet playable.
+  DELETE ELEVATOB\ELEVATOB.DSW, JUNGLEK\JUNGLEK.DSW, JHUNT\JHUNT.DSW,
+  OTHERWISE THE GAME WILL NOT WORK CORRECTLY.
+
+- Eric Anschuetz proposed me to implement a different button layout for
+  joysticks.  I replyed with a configurable joystick setup (like the
+  keyboard one).  So Eric finished the work providing us a useful joystick
+  setup menu.  Thanks Eric and Robert! ;)
+
+- Refixed the galaga hiscore bug (it happened when syncing my sources with
+  Nicola's ones)
+
+- Maurizio Zanello provided a better interface between MAME and frontends.
+  And now you can select frameskip rate even while playing, without have to
+  exit.  Volume can be controlled with keypad PLUS and MINUS keys.
+
+- Robert Anschuetz provided me info about how to enable a shot sample with
+  moonquasar, mooncresta, galaxian and clones.
+
+- Valerio Verrando fixed the Williams driver to support joystick in
+  Blaster, Defender, Joust, Robotron, Splat, Stargate.  Also fixed the Space
+  Invaders driver to include high score saving and 100% arcade-perfect colors
+  for Lunar Rescue; since some bootleg machines did not use this colorful
+  overlay, Destination Earth retains the Space Invaders color scheme.
+
+- Bernd has cleaned up VESA command line options.
+  No longer supported:
+  '-vesascan'   --> use '-vesa' or (faster, if it works) '-vesa2l'
+  '-vesaskip N' --> use '-640x480 -skiplines N'  instead
+  '-rotate'     --> use '-rol' or '-ror' instead
+
+  New:
+  '-ror'
+  '-rol'  Rotate the display (anti)clockwise.  Since this uses
+          the standard VESA scanline mode, you'll get *vertical*
+          scanlines on rotated games (authentic?).
+  '-nodouble'
+          prevents pixel doubling, if you like miniaturised
+          arcade emulation. It's also faster than the standard
+          pixel-doubling VESA modes.
+  '-skiplines N'
+          does what '-vesaskip N' used to do, except it does not
+          select 640x480 VESA mode.
+
+- Minor modifications to Arabian palette.  Ville Laitinen also provided some
+  modifications to Kangaroo driver.
+
+- Pause key back to 'P'.  Sorry, you cannot use it for your redefinitions,
+  but, hey, you have 101 keys left!!! ;)
+
+- Found the meaning of SW1 in Moon Cresta (Thanks to Mikiya Yadohisa)
+
+- Added Crazy Kong bootleg version by Jeutel and Ms Pac Man Attacks clones
+
+Sources:
+- Added an alternate 224x288 video mode (on my Matrox this produce correct
+  aspect ratio with this tweaked mode).  To select it simply add -224 or
+  -224x288 parameter.
+
+- Nigel T. Barber  (Nigel.Barber@sgcs.co.uk) added mouse support.  We need
+  some feedback, because each mouse device has its own sensitivity.  Enable
+  mouse support with -mouse parameter.
+
+- Time to use proper MAME fonts.  I draw a good looking complete set of
+  chars to be used for messages and menu system in MAME.  Nicola changed
+  the entire set of drivers and implemented a user interface sublevel
+  (file is USRINTRF.C).
+
+- Modifications done by Eric Anschuetz to add joystick reconfiguration
+  menu.
+
+- I'v changed the system configuration of each game.  Now a game saves all
+  vital informations (DSW, KEY, and JOY settings) in a unique file with
+  .CFG extension.  A backward compatibility is provided, so the first time
+  MAME read previous settings and saves them in the .CFG file at exit/reset.
+
+- Bernd changed the VESA code to provide '-rol' and '-ror'
+  replacing '-rotate'. Rotation modes are now supported in all
+  VESA resolutions. The '-nodouble' option prevents pixel doubling
+  in VESA modes, resulting in more speed and a smaller display.

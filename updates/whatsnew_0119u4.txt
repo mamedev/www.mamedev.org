@@ -1,0 +1,142 @@
+0.119u4
+-------
+
+NOTE TO OSD PORTERS: The work interfaces have changed again. Please
+read details below. The updated interfaces remove functionality, so
+in the end it should be simpler(!) to port.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+parodius0111u3gra [Mike Green]
+ghostb0105u4gra [Mike Green]
+seibuspisingle099u9yel [couriersud]
+futspy0114gra [Mike Green]
+finalizr0102u5gra [Mike Green]
+gijoe0114gra [Mike Green]
+playch10_0109gre [Mike Green]
+
+
+
+Source Changes
+--------------
+Moved Hayaoshi Quiz Ouza Ketteisen to its own driver. [David Haywood]
+
+Added coin counters to cabal bootleg and hooked up the 2 sample player 
+CPUs in cabal bootleg. It seems there still are some problems, because 
+the coin up music is played during the game. [Pierpaolo Prazzoli]
+
+More improvements to the Vs. Janshi Brandnew Stars driver. 
+[David Haywood]
+
+More SCSP improvements: [El Semi]
+ - Fixed endianness issue on 8-bit samples and added interpolation
+ - Disabled modulation attempt (should fix the crash problems)
+ - Tweeked pitch calculation
+
+Added the repeat count register (reg 0x34) access and immediate value 
+load to the MB86233 core (needed by Pilot kids). [El Semi]
+
+Cleaned up the inputs, and fixed flipscreen in dynax.c. [Luca Elia]
+
+Fixed several issues in seibuspi.c: [couriersud]
+ - added sound to rdft2us
+ - added coin-handling to single board games
+ - fix interrupt handling
+ - for rfjetus, adds a hack to enable Test-Switch to enter testmode 
+    if no nvram exists
+
+Fixed several issues in the i386 core: [couriersud]
+ - the INTR-line for i386 is a "level" line; changed interrupt 
+    handling to trigger on asserted line
+ - in 32bit mode, determine trap/interrupt from gate-header
+ - interrupt line is read during two bus cycles. Adjust CYCLES 
+    accordingly.
+
+Added coin DIP switches and "teleport hole" DIP switch to crushs.
+[sonikos]
+
+Bug fixes for the z80gb cpu core: [Wilbert Pol]
+ - Fixed cycle count for taking an interrupt
+ - Fixed cycle count for BIT X,(HL) instructions
+ - Fixed flags in RRCA instruction
+ - Fixed DAA instruction
+ - Fixed flags in ADD SP,n8 instruction
+ - Fixed flags in LD HL,SP+n8 instruction
+
+Fixed the linking issues when specifying MSVC_BUILD=1 and DEBUG=1.
+[Oliver Stoneberg]
+
+Fixed a compile error on architectures where "char" is unsigned 
+(notably some PowerPC configurations). [Bill Blake]
+
+Added two more filters to the headon crash sound. Now, only the 
+envelopes for the crash sound filters are missing. [couriersud]
+
+Loverboy input fixes: [wolf676]
+ - added and verified all DSW
+ - added and verified Button1 for both players
+
+Added color PROMs for Cannon Ball. [Rob Walmsley]
+
+Fixed several out-of-bounds array accesses in the code. [Andi]
+
+Fixed mask rom test in prmrsocr. [Pierpaolo Prazzoli]
+
+Fixed 64-bit DRC bug that broke kinst in the previous release.
+[Aaron Giles]
+
+Added code to detect potential hotspots in the 64-bit DRC. Added
+hotspots to all the seattle.c games and several of the vegas.c games.
+[Aaron Giles]
+
+Simplified the osd_work implementation. Removed the concept of shared
+work items. Added new function osd_work_item_queue_multiple() which
+allows efficient queueing of large numbers of work items. Changed
+previous osd_work_item_queue() function into an inline that calls the
+new function. [Aaron Giles]
+
+Updated Voodoo code to use the new work functions. It now queues
+small scanline chunks as independent items rather than using shared
+items. Updated code to also copy some parameters to allow for greater
+overlapping of emulation and rendering. [Aaron Giles]
+
+For Windows work functions, added new scalable lock implementation 
+that hopefully has better performance characteristics when scaling
+above 2 CPUs. [Aaron Giles]
+
+For Windows work functions, added statistics gathering code. This is
+on by default for the moment to help point to problems that might be
+encountered with this version. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Jongkyo [David Haywood, Nicola Salmoria]
+Hayaoshi Quiz Grand Champion Taikai [David Haywood]
+Hayaoshi Quiz Nettou Namahousou [David Haywood]
+Super Real Mahjong Part 1 (Japan) [David Haywood]
+Hana wo Yaraneba! (Japan) [Luca Elia]
+Hanafuda Hana Tengoku (Japan) [Luca Elia]
+Player's Edge Plus (PP0516) Double Bonus Poker [Jim Stolis]
+
+
+
+New clones added
+----------------
+Toride II Adauchi Gaiden (Japan) [David Haywood]
+Pang (bootleg, set 3) [David Haywood]
+Super Bobble Bobble (set 1) [David Haywood]
+Airwolf (US) [David Haywood]
+Golden Tee '97 Tournament (v2.43) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+GTI Poker [David Haywood]
+Poker? (IGS) [David Haywood]
+Hanajingi [Luca Elia]
+GP World [Andrew Gardner]

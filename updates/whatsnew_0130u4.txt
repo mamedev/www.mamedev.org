@@ -1,0 +1,130 @@
+0.130u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03106: [Sound] mouja: Sound Effects/Voice missing (Angelo Salese)
+- 03065: [Crash/Freeze] All sets in namcos12.c: [debug] MAME asserts 
+         during load time (Aaron Giles)
+- 03069: [Crash/Freeze] All sets in midzeus.c: [debug] MAME asserts 
+         during load time (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Documented the www.segaresurrection.com decrypted Ninja Kids II sound 
+rom so it doesn't show up as newly "found" bootleg version.
+[Brian Troha]
+
+Converted downtown, gondo, hbarrel, midres, timesold, topgunbl to use 
+IPT_POSITIONAL. [Derrick Renaud]
+
+Fixed Analog Settings to return to default when IPT_UI_SELECT (enter) 
+pressed. Fixed misplaced brackets, allowing upper/lower case 
+extensions for crosshair graphics and ldplayer chd files. 
+[Derrick Renaud]
+
+Naomi updates: [Angelo Salese, David Haywood]
+ * Added H-Blank IN interrupt hook-up
+ * Generate a few more interrupts (ISP end of render, VIDEO end of 
+    render)
+ * Some minor improvements to the irq system
+ * Added a bunch of Maple-DMA fixes, now moeru boots too
+
+Factored out MESS-specific code from machine/atari.c (cart init, 
+loading & unloading) [Fabio Priuli]
+
+Correctly implemented 'trail' function in ninjakd2. [kanikani]
+
+Changed galgbios service switch to be a toggle. [David Haywood]
+
+Fixed CPU_GET_INFO issues spotted by -validate in MESS debug build.
+[Fabio Priuli]
+
+Added Dip Locations to jalmah.c. [Fabio Priuli]
+
+Improved test mode behaviour on the jalmah.c. [Angelo Salese]
+
+Added display of frame number to the beamx/y info in the register 
+view in the debugger. [Aaron Giles]
+
+munch mobile improvements: [robiza]
+ * implemented priorities
+ * removed unnecessary tile index check
+
+Memory map merging for naughtyb.c, ssrj.c. [Angelo Salese]
+
+Converted jangou & nightgal drivers to use resistors with the color 
+proms. [Angelo Salese]
+
+Reverted to older behavior for how modified input port fields are 
+handled. The originally intended behavior is that a new field that 
+intersected a previous field would completely wipe out the original 
+field. Recently a change was made that changed the behavior to only 
+remove a portion of the bits from the original field. This is actually 
+problematic behavior, so the original behavior was restored.
+[Aaron Giles]
+
+Fixed auto-center bug on analog joysticks. [Derrick Renaud]
+
+Fixed UI when modifying the inc/dec/analog fields of an analog control
+in sequence. [Derrick Renaud]
+
+Corrected System 1 Z80 clocking: [Aaron Giles]
+ * each opcode fetch is 2 cycles with /M1 low, so each byte of
+    opcode fetching causes slightly longer delays than the previous
+    tables
+ * implemented approximate wait state timing for videoram access;
+    further accuracy will rely on getting a dump of the PAL16R4
+    that controls the horizontal video timing
+
+Merged memory maps in taito_l.c, taito_x.c, taito_b.c, taito_f2.c,
+taito_f3.c, surpratk.c, system16.c, system18.c. Also removed some word 
+handlers in favor of using READ8/WRITE8 directly in address maps. 
+Removed some additional unnecessary handlers in favor of using 
+AM_READ_PORT. [Aaron Giles]
+
+Changed the PPU2C0x implementation to be a device. [Nathan Woods]
+
+Simplified the gun port handling in the Sammy Outdoor Shooting games.
+[Derrick Renaud]
+
+Small System 1 update: [Aaron Giles]
+ * correct video timing
+ * removed "small" video drivers for games that properly mask the
+    scrolling areas
+
+Correct sound ROM for T-Mek 4.4 [Lars Bull]
+
+Partial fix to bug MT 3070 (harddriv & racedriv do not show anymore 
+P2 inputs for analog controls). Still thinking about steeltal.
+[Fabio Priuli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Tekken Tag Tournament (world versions) [Olivier Galibert]
+
+
+
+New clones added
+----------------
+Might! Pang (Euro 000925) [Corrado Tomaselli]
+Night Warriors: Darkstalkers' Revenge (Asia 950302?) 
+  [Smitdogg Jones, Nicola Salmoria]
+Trivia Master (set 4) [SoftwareThis]
+Wolf Fang -Kuhga 2001- (Rohga Japan Ver.) [Team Japump!!!]
+Mystic Warriors (JAA) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+The Typing of the Dead [Alex's Rom Dumping Project]
+OutTrigger [Guru]
+Cannon Spike / Gun Spike
+Heavy Metal Geomatrix
+Super Lucky Roulette? [robiza, Angelo Salese]

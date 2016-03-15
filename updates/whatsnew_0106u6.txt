@@ -1,0 +1,85 @@
+0.106u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+wboysys2_0106u4gra [Canim]
+
+
+
+Source Changes
+--------------
+Minor fix for x64 compilation support with MSVC. [Malice]
+
+Updated astdelux and omegrace built-in overlays for the new render
+system.
+
+Fixed inputs in the mcr68 drivers. [Peale]
+
+Fixed new debugger support for custom register lists.
+[Tim Schuerewegen]
+
+Added workaround to make the V60 core work properly on GCC 4.x 
+(tested on 4.1.1). [R. Belmont]
+
+Fixed the drc blitters better. [Olivier Galibert]
+
+Improvements to Polygonet Commanders: [R. Belmont]
+ * Fixed Z80 IRQ/NMIs to go to the right CPU again
+ * Modernized memory map
+ * Added network status bit, so the initial test passes well enough 
+    to make the DSP56k crash on unimplemented opcodes
+
+Miscellaneous cleanups to the Atari/Max-A-Flex driver, attempting to 
+modernize it. [Nathan Woods]
+
+Updated Sega multi-32 driver to support multiple screens. 
+[Aaron Giles]
+
+Backed off of the multithreading for the moment in order to focus on
+getting the rest of the kinks out of the new renderer. All the
+infrastructure is still in place and can be re-enabled by flipping
+the ENABLE_THREADS flag in window.c. [Aaron Giles]
+
+Added support for "stretch to fit" when configuring a render target.
+Added back the "-keepaspect" option as a result. [Aaron Giles]
+
+Added clamping to the prescale effect so that it doesn't try to 
+create excessively large textures. Explicitly reset render states so
+that the prescale step is not filtered. Fixed StretchRect usage so
+that it doesn't filter on some video cards. [Aaron Giles]
+
+Fixed behavior of pixel aspect ratio when configuring render targets
+(was correcting in the wrong direction). [Aaron Giles]
+
+Moved thread priority logic out of ticker.c and into winmain.c where
+it really belongs. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pasha Pasha 2 [Pierpaolo Prazzoli]
+Rock Tris [Pierpaolo Prazzoli]
+Mahjong X-Tal 7 / Mahjong Diamond 7 [Luca Elia]
+Janputer '96 (Japan) [Luca Elia]
+Watashiha Suzumechan [Luca Elia]
+
+
+
+New clones added
+----------------
+Space Fury (revision B) [Highwayman]
+Double Point (Dong Bang Electron) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Red Corsair [David Haywood]
+Puzzle Star? (Sang Ho) [David Haywood, Tomasz Slanina]
+Sexy Boom [David Haywood, Tomasz Slanina]
+Super Free Kick [David Haywood]
+High Seas Havoc [David Haywood]
+Bombs Away [David Haywood, Andrew Gardner]

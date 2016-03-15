@@ -1,0 +1,180 @@
+0.122u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gui0121u1gre [Aaron Giles]
+drivedge0121u4gre [Aaron Giles]
+bking3076u2red [Pierpaolo Prazzoli]
+btoads0102u5gre [Aaron Giles]
+btoads0103u1gre [Aaron Giles]
+editableui0120u4red [Aaron Giles]
+cheat0118red [Aaron Giles]
+altf4_0111u4gre [Aaron Giles]
+beastrzb097u2red [Oliver Stoneberg]
+memoryleak0118u1ora [Oliver Stoneberg]
+memory_leak0111u6ora [Oliver Stoneberg]
+mahoudai0106u7yel [Philip Bennett]
+gridiron079gre [David Haywood]
+maniach37b11gre [David Haywood]
+matmaniac37b14gre [David Haywood]
+qzkklgy2_0106u6red [David Haywood]
+warriorb0109u2gre [David Haywood]
+vball071u1gre [Bryan McPhail]
+d3dwindow0117u3red [Aaron Giles, Emuman]
+arkanoid061gre [Bryan McPhail]
+flkatck058gre [David Haywood]
+memleak0119u3ora [Oliver Stoneberg]
+system24_0120u3red [Atari Ace, Aaron Giles]
+aleck64_0120red [Aaron Giles]
+mtetrisc0115u1red [Aaron Giles]
+suratk0122u3gra [Pierpaolo Prazzoli]
+suratk0122u3ora [Pierpaolo Prazzoli]
+skychut37b1yel [couriersud]
+skychut37b6gre [couriersud]
+darius2_0114gre [Bryan McPhail]
+ad2083_0111u5gra [couriersud]
+abaseb0122u3red [Zsolt Vasvari]
+ladybug080u1gre [Zsolt Vasvari]
+suprridr0122u2gra [Zsolt Vasvari]
+invho2_0122u3red [Zsolt Vasvari]
+narc37b16yel [Aaron Giles]
+kingofb37b6gre [robiza]
+stonebal0117u2gre [Aaron Giles]
+wotw36b1gre [Zsolt Vasvari]
+wallst071gre [Zsolt Vasvari]
+mtrap37b14gre [Zsolt Vasvari]
+pitfight0109u2gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Corrected btoads clocks according XTALs on the PCB. [Aaron Giles]
+
+"Simplified" MC8123 decryption, though it's still more complicated 
+than I'd like it to be. [Nicola Salmoria]
+
+Cleaned up clocks in the itech32 driver. [Aaron Giles]
+
+Added partial key for FD1089B 317-0037. [Nicola Salmoria]
+
+Fixed bking3 clocks as per Guru readme. Added GAME_WRONG_COLORS flag 
+to bking3. [Pierpaolo Prazzoli]
+
+TMS34020 fixes: [Aaron Giles]
+ * Allowed 32-bit pixel sizes
+ * Fixed RPIX instruction
+
+Added new function input_poll_keyboard_switches to poll for only key 
+events. Expanded the size of the maximum simultaneously pressed 
+switches. [Aaron Giles]
+
+Removed GAME_IMPERFECT_GRAPHICS from all jpmimpct games bar Cluedo 
+(see driver note). [Philip Bennett]
+
+mario driver improvements: [couriersud]
+ - Hooked up flipscreen
+ - Changed monitor orientation to ROT0
+
+Added Z80 DMA chip [couriersud]
+ - only implements intelligence to emulate dkong3
+ - fixed a misleading comment in 8257dma.h
+
+dkong driver improvements: [couriersud]
+ - hooked up z80dma
+ - removed 2nd player inputs from sdbk input_ports
+ - fixed some dump "copy/paste" bugs in dip locations
+
+Added redumped Turkey USA to the seta2.c driver. [Brian Troha]
+
+Fixed bad ram pages errors in stactics service mode. 
+[Pierpaolo Prazzoli]
+
+Atari updates: [Aaron Giles]
+ - Added save state support to slapstic.
+ - Added save state support to YM2413.
+ - Modified slapstic code to support address range mirrors.
+ - Cleaned up Rampart driver:
+    - simplified rendering code
+    - full memory map
+    - added save state support
+
+Implemented decent-sounding FM in the SCSP. [kingshriek]
+
+Updated Naomi driver, now boots and shows some test menus (press F2 
+to get into test, use 9 to navigate). Also hooked up ROM board PIO 
+and skeleton for DMA. [R. Belmont, Samuele Zannoli, ElSemi]
+
+N64 improvements: [SGINut]
+ - Move texture masking to occur after coordinate adjustment
+ - Fix 32-bit texturing in load_tile (Mario Kart 64 title screen)
+ - Add zero-alpha early-out (Mario 64 trees/stars, Mario Kart 64 
+    trees/karts)
+
+ad2083 improvements: [couriersud]
+ * completed tms5110A code
+ * working speech synthesis
+ * documented analysis done on pcb pictures and findings
+ * as a consequence, marked all sound roms as BAD DUMP
+ * created sound driver in scramble.c
+
+Cleaned up graphics layouts in preparation for new format. Added new
+GFXLAYOUT_RAW() macro to normalize definition. Added new validation
+code. Made all remaining instances of gfx_layouts const. [Atari Ace]
+
+Updated Amiga driver to use formal XTALs. [Dirk Best]
+
+Changed 6522 emulation such that when writing to the ACR register with 
+the timer 1 in continuous counting mode, the timer 1 value should not 
+be reloaded but keep on counting. [Wilbert Pol]
+
+Added XTAL defines to bfm_sc2.c and cleaned up lvcards.c. 
+[James Wallace]
+
+Added default layout to neogeo games allowing for either cropping or
+stretching to the alternate 304x224 layout. Removed default cropping
+in the driver. [David Haywood, Aaron Giles]
+
+Fixed crash when saving state of older DCS-based games. Added save 
+state support to the midvunit driver. [Aaron Giles]
+
+Major improvements to Cycle Warriors video code (still not perfect, 
+but road layer works now). [Bryan McPhail]
+
+Major rewrite of skychut.c. There are still some glitches and it is 
+not perfect but the following has been achieved: [couriersud]
+ * adds samples to ipm invaders - just rename your old invaders 
+    samples to ipminvad to test
+ * added - amongst others - "capsule" dip switch to ipm invaders
+ * sound ports identified
+ * demo sound and cabinet type driver configuration
+
+Updated memory configuration for Superboard game versions in peplus
+driver. Fixes CMOS DATA errors on reload. [Jim Stolis]
+
+Rewrote the CVS system video code. [Zsolt Vasvari]
+
+Fixed S2650 register window display. [Zsolt Vasvari]
+
+Added sound to Cycle Warriors and Big Fight. Corrected OKI M6295 
+clock values. [Philip Bennett]
+
+Fixed missing arrow in Venture on the zoomed out map, and the 
+incorrect fading twister in Hard Hat. [Zsolt Vasvari]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Dangerous Curves [Philip Bennett, Dazzer]
+Big Fight [Bryan McPhail]
+
+
+
+New clones added
+----------------
+Invasion - The Abductors (version 5.0) [Brian Troha]
+Alien Syndrome (set 5, System 16A, FD1089B 317-0037) [Nicola Salmoria]
+Dragon Spirit (Atari license) [Satoshi Suzuki]

@@ -1,0 +1,349 @@
+0.75
+
+General Source Changes
+----------------------
+
+TESTDRIVERS still enabled (see note for 0.74u2)
+
+Fixed bug in the time accounting for the V60 which was causing Outrunners to run
+with flickering sprites and slow music [Aaron Giles]
+	src/cpu/v60/v60.c
+
+Fixed another V60 bug introduced in 0.74u2 which broke the v70 games (and further
+broke Outrunners) [Kobat, Olivier Galibert]
+	src/cpu/v60/v60.c
+
+Fixed some bugs introduced with the timer system changes a while back [Aaron Giles]
+	Hopefully this is the last of them.... Fixes Exterminator and the Atari
+	polygon games. Hopefully doesn't break anything in the process.
+
+	src/cpuexec.c
+	* changed scanline timing to use floor() to get consistent results
+	* fixed bug in time computation if requesting a scanline in the next frame
+
+	src/cpu/tms34010/tms34010.c
+	* removed 4x executes per loop which screwed up timing
+	* fixed internal interrupt generation to get consistent timing results
+
+	src/timer.c
+	* now uses the active callback as a base time when adjusting timers outside
+	of a CPU context
+
+	src/drivers/harddriv.c
+	src/machine/harddriv.c
+	* fixed all the games again, but they are slower now due to more necessary
+	interleaving
+
+Fixed Dorachan Orientation [Tomasz Slanina]
+	src/drivers/dorachan.c
+	src/vidhrdw/dorachan.c
+
+Various Fixes [Nathan Woods]
+	src/artwork.c:
+	src/artwork.h:
+	src/common.c:
+	- Fixes a screenshot handling bug that affected Space Invaders
+
+	src/cheat.c:
+	- Moves the MESS specific code into a separate module, reducing
+	#ifdef clutter
+
+	src/harddisk.c:
+	- Moved some variable declarations out of for loops so that it
+	can compile in non-GCC compilers
+
+	src/cpu/i86/instr86.c:
+	- Fixes REP CMPSW so that it uses words and not bytes
+
+	src/cpuintrf.c:
+	src/cpuintrf.h:
+	- Adds a call cpuintrf_set_dasm_override() that gives drivers
+	the ability to customize disassemblies.  This probably isn't very useful
+	for MAME, but it is useful for MESS for things like software interrupts
+	used for BIOS calls.
+
+	src/windows/config.c:
+	- Increases the size of the buffer used when logerror() output
+	goes to OutputDebugString()
+
+	src/windows/config.c:
+	src/windows/config.h:
+	src/windows/winmain.c:
+	- Moves config.c externs to a header file
+	- Adds another call, cli_rc_create(), which creates MAME's rc
+	struct for use elsewhere.  (I'm actually creating a debug time
+	consistency check feature for MAME32, to verify at runtime that the
+	arguments that MAME32 has are consistent with MAME's).
+
+	src/rc.c:
+	- When rc_destroy() is now called, freed pointers to strings and
+	files will now be NULLed out.
+
+
+Overhauled the Canyon Bomber driver with a number of minor fixes like correct
+RAM size and VBLANK duration. [Stefan Jokisch]
+	- hiscore reset button added
+	- sprite positions should be fixed according to the schems
+	- language ROM added (i.e. the language dip works now)
+	- prototype set renamed from canbprot to canyonp
+
+Improved Super Chase sample loading [sedn]
+	src/drivers/superchs.c
+
+Replaced instances of "inline", "static inline", and "static __inline" with
+"INLINE".  This fixes some build problems with  xmame and makes things more
+consistent. [Lawrence Gold]
+	src/cpu/mips/mips.c
+	src/vidhrdw/psx.c
+	src/machine/psx.c
+	src/drivers/namcos2.c
+	src/machine/psx.c
+	src/vidhrdw/psx.c
+
+Corrected CPU speeds etc. in snowbros.c [The Guru]
+	src/drivers/snowbros.c
+
+Reversed inptport.c changes to 0.74u1 as the version in 0.74u2 wasn't correcly
+merged, these will need resubmitting
+
+Some namcos22 Improvements [Phil Stroffolino]
+	The major things improved are:
+	- fixes to display list processing (affects Prop Cycle ending)
+	- gouraud shading
+	- misc improvements for the not-working games
+	src/drivers/namcos22.c
+	src/vidhrdw/namcos22.c
+	src/vidhrdw/namcos3d.h
+	src/includes/namcos22.h
+	src/includes/namcos3d.h
+
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Lady Frog [Tomasz Slanina]
+	old 'ladyfrog' set (not working) renamed to 'roldfrog' (Return Of Lady Frog)
+	src/drivers/ladyfrog.c
+	src/vidhrdw/ladyfrog.c
+
+Sundance [Stefan Jokisch]
+	controls now emulated
+	src/drivers/cinemat.c
+
+Dodgem [Mike Coates, Pierpaolo Prazzoli]
+	no sound, the video hardware emulation was also rewritten for this driver, its
+	quite slow now but more accurate.
+	src/drivers/zac2650.c
+	src/vidhrdw/zac2650.c
+
+Main Event (SNK) [Tomasz Slanina]
+	controls probably need work
+	src/drivers/mainsnk.c
+	src/vidhrdw/mainsnk.c
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Lunar Battle (prototype, later) (clone of gravitar) [Aaron Giles]
+	src/drivers/bwidow.c
+Cloak & Dagger (International Versions, Spanish, French, German) [Aaron Giles]
+	src/drivers/cloak.c
+Dig Dug (newer Atari rev) [Aaron Giles]
+	src/drivers/digdug.c
+Tempest (rev ?) [Aaron Giles]
+	src/drivers/tempest.c
+Sub Hunter (clone of depthch) [Stefan Jokisch]
+	src/drivers/vicdual.c
+Route X (bootleg)
+	src/drivers/route16.c
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Task Force Harrier (Japan)
+	src/drivers/nmk16.c
+Various Sf2 bootlegs
+	Please note, I have no intention of fixing these, however if you want
+	to try and think you can do it in a clean way then feel free.
+	src/drivers/cps1.c
+	src/vidhrdw/cps1.c
+Gorkans [Tomasz Slanina]
+	gameplay works but there are no good gfx roms
+	src/drivers/pacman.c
+Whizz [Tomasz Slanina]
+	main program rom appears to be bad, maybe a gfx rom too
+	src/drivers/sidearms.c
+	src/vidhrdw/sidearms.c
+Marine Date [insideoutboy]
+	collisions not emulated + various other issues
+	src/drivers/marinedt.c
+
+
+0.74u2
+
+General Source Changes
+----------------------
+
+The TESTDRIVER system has been removed, all drivers are now enabled working or not,
+this decision was made by several members of the development team.  The drivers
+that were previously TESTDRIVERS are still marked as GAME_NOT_WORKING so can be
+filtered out easily with a front-end.  Please note, the enabling of these drivers
+does not indicate they're any closer to working than when they were first added
+and in many cases it could still be several years before they work depending on
+when they're worked on and how difficult they prove to be.  We're always looking
+for talented programmers to work on and improve Mame, some of these drivers could
+be a good place to start (others may be near impossible to fix)
+
+If any GAME_NOT_WORKING flags have been missed let us know at Mametesters
+
+
+Added MCU emulation to Tiger Heli [Tomasz Slanina]
+
+Various SegaPCM fixes [Olivier Galibert]
+
+Fixed some V60 Floating Point Operations and made core exit on unhandled opcodes,
+note UltraX doesn't work again [Olivier Galibert]
+
+Fixing missing continue graphics on actfancr [Bryan McPhail]
+
+Fixed recently introduced tp84 video bug [David Haywood]
+
+Fixed Config Saving Bug [BUT]
+
+Various Dipswitch Fixes [Iñigo Luja]
+
+
+New games supported:
+--------------------
+
+Touchdown Fever II [Smitdogg]
+
+Dorachan [Tomasz Slanina]
+	no sound	
+
+Jumping Cross [Tomasz Slanina]
+	attract mode seems a bit wrong
+
+Demoneye-X [Pierpaolo Prazzoli]
+	gfx problems, no sound
+
+Bakuretsu Breaker [David Haywood]
+	sound problems
+
+Suzuka 8 Hours [Dang Spot]
+
+Moero Pro Yakyuu Homerun [Tomasz Slanina]
+	missing voices
+
+Galaxian / Space Invaders Test Roms [Mike O'Malley]
+	worth supporting?
+
+
+New Clones supported:
+---------------------
+
+Phantomas (clone of spectar) [Pierpaolo Prazzoli]
+Donkey Kong 3 (bootleg on DKJr hw) [Pierpaolo Prazzoli]
+Driving Force (Galaxian hw) [Pierpaolo Prazzoli]
+Food Fight (rev 2 and cocktail) [Aaron Giles]
+Depthcharge (rev 1) [MASH]
+Mighty Monkey (original) [Pierpaolo Prazzoli]
+Dynablaster (world) [Brian Troha]
+Champion Golf (original?) [Brian Troha]
+
+
+New Non-Working games supported
+-------------------------------
+
+(All drivers that were previously TESTDRIVERS)
+
+Dealer [Pierpaolo Prazzoli]
+	bad rom or bad decryption
+
+0.74u1
+
+General Source Changes
+----------------------
+
+Mame now recognises off-screen shots with the Act-Labs gun in a way which works
+better with certain drivers (Area 51 etc,) [Bryan McPhail)
+
+Fixed some problems with defaults in inptport.c [Robin Merrill]
+	src/inptport.c
+
+Various SH2 fixes improving Master/Slave support (this improves shienryu on st-v
+but its not yet playable due to incomplete st-v emulation) [Olivier Galibert]
+	src/cpu/sh2/sh2.c
+	src/cpu/sh2/sh2.h
+
+Fixed SegaPCM bug [Olivier Galibert]
+	src/sound/segapcm.c
+
+Moved Some Config Code around [Nathan Woods]
+	src/config.c
+	src/config.h
+	src/inptport.c
+
+Hopefully fixed crash some people were having with Nostradamus [David Haywood]
+	src/vidhrdw/mcatadv.c
+
+Added Paddle support to pop 'n' bounce (use -mouse, enable it in test mode, the
+default is joystick not paddle) [David Haywood]
+
+Improved the type 1 GX games a bit but none are working well enough to enable
+yet [R.Belmont]
+	src/drivers/konamigx.c
+	src/vidhrdw/konamigx.c
+
+Fixed Crash with the original mustang set [R.Belmont]
+	src/drivers/nmk16.c
+
+Changed frogs to use a 3 way joystick instead of a 3 way joystick and 2 buttons
+which was incorrect [Robin Merrill]
+
+Remapped some of the mid*unit.c buttons to match the real board inputs
+
+Further ST-V improvements [Angelo Salese, David Haywood]
+	src/drivers/stv.c
+	src/vidhrdw/stvvdp1.c
+	src/vidhrdw/stvvdp2.c
+
+
+New games supported:
+--------------------
+
+Porky [Pierpaolo Prazzoli, Peter Storey] - no sound
+Driving Force [Pierpaolo Prazzoli]
+Big Bucks [Pierpaolo Prazzoli]
+	src/drivers/pacman.c
+	src/vidhrdw/pengo.c
+	src/includes/pengo.h
+
+Embargo [Stefan Jokisch, MASH]
+	src/drivers/embargo.c
+
+New Clones supported:
+---------------------
+
+8 Ball ACtion (Pacman Kit) [Pierpaolo Prazzoli, David Widel] - bad colours
+	no sound
+	src/drivers/pacman.c
+	src/vidhrdw/pengo.c
+	src/includes/pengo.h
+
+PuzzLoop (USA) [Brian Troha]
+	src/drivers/suprnova.c
+
+
+New TESTDRIVERS:
+----------------
+
+Competition Golf [Angelo Salese]
+	incomplete video emulation
+	src/drivers/compgolf.c
+
+(Medal) Yumefuda [Angelo Salese]
+	preliminary, doesn't boot yet
+	src/drivers/yumefuda.c

@@ -1,0 +1,264 @@
+0.130u1
+-------
+
+IMPORTANT NOTE: The CHD format has undergone a change with this
+release. The main reason for this change is to include some of the
+key metadata into the hashes for the CHDs. This ensures that the
+metadata is valid and prevents abuse.
+
+The first impact you will find is that all of your CHD differencing
+files are invalid. Just delete your "diff" directory contents 
+entirely.
+
+The second impact is that all your existing CHDs will warn you that
+they have incorrect hashes. This is expected. Your old CHDs should
+still work fine, so if you can live with the "bad ROM" warnings, you
+don't really need to do anything. However, if this bugs you or you
+want to be "clean", you can update your CHDs, using this command
+line:
+
+   chdman -update <chdfile> <newchdfile>
+   
+for each one of your CHDs. This will take a while, but will produce
+CHDs that match the new checksums posted in the drivers.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03017: [Crash/Freeze] bmfinal: crash after cutting edge logo 
+         (Phil Bennett)
+- 02875: [Sound] Any Game that uses AY-3-8910: Envelope Fix causes 
+         notes tones to be played back incorrectly (couriersud)
+- 03026: [Graphics] retofinv, retofin1, retofin2: The remaining lives 
+         are not shown. (Pierpaolo Prazzoli)
+- 02981: [Cheat System] CHEAT.C: MAX_ARGUMENTS doesn't seem to work. 
+         (Pugsy)
+- 00827: [Graphics] wc90b1, wc90b2: On the Credit display screen, the 
+         PCB shows the upper part of the stadium. (robiza)
+- 00230: [Graphics] troangel: I just checked mame emulation against my 
+         pcb. (robiza)
+- 03018: [Sound] f1gpstr2: Sounds not playing (Phil Bennett)
+
+
+
+Source Changes
+--------------
+Fixed C140 ROM loading in winrun, winrun91 and driveyes [Phil Bennett]
+
+Added Champion Italian PK blue board and promoted Champion Italian 
+PK green board (previously citalian) and Champion Italian Cup 
+(previously citaliana) to GAME_WORKING status 
+[Mirko Buffoni, David Haywood]
+ - Added cpokerpk (also known as CPK blue board for the color of the 
+    board)
+ - Renamed citalian -> cpokerpkg (green board, can be seen in rom too)
+ - Renamed citaliana -> citalcup
+ - added PAL decryption, making all games playable
+ - Updated input ports and fixed gfx layout to use 6 bitplanes like 
+    all others
+ - Changed number10 and cpokerpk video udpate to not use transparency
+
+Updated CHD format to version 4. Checksums are now computed and
+stored separately for raw data and metadata, and metadata is now
+checksummed by default. [Aaron Giles]
+
+Updated chdman to support a generic metadata addition system:
+  chdman -addmetatext <chdfile> <tag> [<index>] <sourcefile>
+  chdman -addmetabin <chdfile> <tag> [<index>] <sourcefile>
+[Aaron Giles]
+
+Changed the CHD verify interfaces to pass back a structure containing
+all the necessary data for verification and fixing. [Aaron Giles]
+
+NeoGeo update [Johnboy]
+ - maglordh - Renamed p1 to correct chip label (MichaelNet)
+ - Renamed maglordh to maglord (MVS) and maglord to maglordh (AES)
+ - whp - Renamed several roms to correct chip label (MichaelNet)
+ - kof2001 - Renamed p's to correct chip label; added note (MichaelNet)
+ - Added mv1c bios, redump/reverification required
+ - Updated documentation (see neogeo.c)
+ - cyberlip - Added correct m1 (Guru/Smitdogg)
+ - eightman - Removed BAD_DUMP from m1, is correct (Guru/Smitdogg)
+
+Merged Casino Winner and Royal Casino drivers [Angelo Salese]
+ * Fixes Royal Casino colors;
+ * Added flip screen support to the driver;
+ * Changed Casino Winner to be a clone of Royal Casino;
+ * Cleaned-up the driver;
+
+Fixed Midnight Landing gfx bitplanes [Angelo Salese]
+
+PGM updates: [Xing Xing, David Haywood] 
+ - added kov2p205, martmasc romset
+ - fixed some descriptions
+ - experimental video change with a view to fix priorities on kov2
+
+Modified cdrom.c to expose metadata read/write functions, and changed
+chdman to use them. Also changed chdman to parse old-style metadata 
+and convert it to new-style metadata. [Aaron Giles]
+
+Fixed regressed sound in the deco MLC driver. [Angelo Salese]
+
+Preliminary protection simulation in olds100a [XingXing]
+
+Added an older Japanese neogeo bios [Corrado Tomaselli]
+
+Improvements to Counter Steer [Angelo Salese]
+
+Added new function core_fload() to load a file into an allocated 
+buffer. Updated src2html, regrep, and chdman tools to use this 
+function where appropriate. [Aaron Giles]
+
+Fix f1gpstr2 sound regression [Phil Bennett]
+
+Added default nvrams to sfbonus.c using rom_load_optional. This should 
+save some time renaming and reparenting these in the future.
+[David Haywood]
+
+Minor video/psx.c changes that were needed for raycrisis. 
+[David Haywood]
+
+Fixed Heavy Unit main CPU bankswitch. This fixes the enemy appearing 
+in attract mode. [Mamesick]
+
+Added text tilemap flickering to pzletime. It allows to see the 
+selected options. [Pierpaolo Prazzoli]
+
+Changed the CPU cores to use the get_safe_token() pattern like other
+devices. [Aaron Giles]
+
+System16 update [kanikani]
+ - Enabled some buttons previously marked as 'unused'.
+   Manuals say 'No Connection', but programs read them and do 
+   something. i.e. button2 in Tetris: can rotate the piece 
+
+More Counter Steer progress. [Angelo Salese]
+
+Added PCB layout for Jumping Break and additional information. 
+Corrected the sound clocks on PCBs that only have a 28MHz OSC. Only 
+Super Lup Lup Puzzle has the 14.318180MHz OSC. Rearranged the rom 
+def section to group the F-E1-16-0xx PCB based games in order.
+[Brian Troha]
+
+troangel: better support of line scroll with wrap. The scroll offsets 
+are split in LOW byte and HIGH byte. [robiza]
+
+Add specific support for NEC VR4300/4310 CPUs. [R. Belmont]
+
+Fixed paletteram in Super Crowns Golf. Hooked up text background. 
+[Angelo Salese]
+
+Updated CHD hashes. [Yasuhiro Ogawa, Aaron Giles, David Haywood]
+
+Added default eeprom to skullfng, so that it appears less broken by 
+default. (doesn't boot without one) [David Haywood]
+
+wc90b1 and wc90b2: fix fg and bg vertical scroll [robiza]
+
+Implemented a multi-sprite bit in toaplan2 driver. [robiza]
+
+Changed mapping of start key in multfish.c to standard key (1) like 
+other gambling games, added extra set. [David Haywood]
+
+Fixed bug where chdman -extract would not truncate to the logical 
+size. [Aaron Giles]
+
+Silenced out heavy accesses to Sound RAM expansion area for Stress 
+Busters [Angelo Salese]
+
+Added better descriptions and dates to a number of drivers in the
+mamedriv.c file. [Yasuhiro Ogawa]
+
+Minor hack to fix start countdown sound bug in the Buggy Boys.
+[Phil Bennett]
+
+Added idle skipping and a number of new sets to the Naomi driver.
+[David Haywood]
+
+Burger Time: Added resistor values measured on real pcb [Anoid]
+
+Adjusted volume in the galaxian driver. [couriersud]
+
+Adjusted Volume and removed dc component from sound in the gyruss
+driver. [couriersud]
+
+AY-3-8910 improvements: [couriersud]
+ * Fixed Gyruss audio regression
+ * Measured RU and RD on AY-3-8910
+ * Modelled ZX Spectrum audio circuit in SwitcherCAD and derived 
+    resistor values for AY-3-8910
+
+MIPS III: Update RA before executing the delay slot. [R. Belmont]
+
+Added inputs for galaxia and astrowar. Galaxia is semi-playable.
+Note: After inserting a coin, it can take a few seconds to respond.
+[Robbbert]
+
+Fixed build of ldplayer on OS X. Since the CUSTOM sound module no 
+longer exists, I arbitrarily changed it to WAVE, as ar gets upset if 
+it has no input files. I also removed the -all_load flag for ldplayer 
+from the main makefile as it upsets the linker on OS X. [Vas Crabb]
+
+Fix build for PPC64 Linux. (This slightly messes up static branch 
+prediction hints on OS X and AIX, but OS X for PPC64 is dead, and 
+no-one builds MAME for AIX, and it will still build, anyway.)
+[Vas Crabb]
+
+Paramaterise the arguments to check for NULL in the ATTR_NONNULL macro 
+rather than just checking the first argument. This requires compiler 
+support for C99 variadic macros (MSVC2005 and GCC4 have this AFAIK).
+[Vas Crabb]
+
+Z80PIO: When outputting from a port to the hardware in pio mode 3, 
+only those bits defined by the mask should be output. Mame currently 
+outputs everything. [Robbbert]
+
+Changed the One-Shot List or Selectable value cheats to display "Set" 
+instead of "Off". Also stopped the cheat options being activated in 
+order when you are going through the possibilities in this case. 
+These cheats are now activated by pressing ENTER after you have 
+chosen an option. [Pugsy]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Buggy Boy/Speed Buggy (cockpit) [Phil Bennett]
+Chaos Heat [Olivier Galibert]
+Ray Crisis [Olivier Galibert, David Haywood]
+Chaos Heat [Olivier Galibert, David Haywood]
+Flip Maze [Olivier Galibert, David Haywood]
+Super Puzzle Bobble [Olivier Galibert, David Haywood]
+Soutenryu [Olivier Galibert, David Haywood]
+Shanghai Shoryu Sairin [Olivier Galibert, David Haywood]
+Psyvariar -Medium Unit- [Olivier Galibert, David Haywood]
+Psyvariar -Revision- [Olivier Galibert, David Haywood]
+Zoku Otenamihaiken [Olivier Galibert, David Haywood]
+Usagi [Olivier Galibert, David Haywood, Angelo Salese]
+Mahjong Oh [Olivier Galibert, David Haywood, Angelo Salese]
+XII Stag [Olivier Galibert, David Haywood]
+Jumping Break [Pierpaolo Prazzoli]
+Champion Super III [Mirko Buffoni, David Haywood, Angelo Salese]
+Champion Super 2 [Mirko Buffoni, David Haywood]
+
+
+
+New clones added
+----------------
+Millennium 4000 (version 1.5) [Mirko Buffoni]
+American Poker II (bootleg, v4) [Mirko Buffoni]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Go By RC [Olivier Galibert, David Haywood]
+Space Invaders Anniversary [Olivier Galibert, David Haywood]
+Night Raid [Olivier Galibert, David Haywood]
+Tokyo Cop (Italy) [David Haywood]
+California Chase [Angelo Salese]
+Street Games II [Guru, Angelo Salese]
+Street Games [Smitdogg, Angelo Salese]
+Bonanza [Smitdogg, Angelo Salese]
+Thunderbirds [AGEMAME]

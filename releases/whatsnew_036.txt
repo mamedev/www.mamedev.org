@@ -1,0 +1,902 @@
+0.36
+
+Important functional changes:
+-----------------------------
+
+- High score saving is no longer directly supported. It requires an external
+  file called HISCORE.DAT, which will be provided and maintained separately
+  from MAME. Without that file, nothing will be saved to the /hi subdirectory.
+  We cannot guarantee at this time that all future versions of HISCORE.DAT
+  will work with this version of MAME.
+  EEPROM, battery-backed RAM or other types of non-volatile memory are still
+  directly supported, and saved to the /nvram subdirectory. This doesn't
+  necessarily mean high score support, it is often used only for game
+  configuration.
+
+- [DOS] Changed the -depth option behaviour, now it can be either 8, 16, or
+  auto. The default is auto, which uses the color depth appropriate for the
+  game. 8 forces use of a 256 colors display (faster but less accurate), 16
+  forces use of a 16-bit display (not suggested, doesn't work with all games).
+  MAKE SURE TO SET depth = auto IN MAME.CFG, OR YOU'LL USE 16-BIT IN ALL GAMES.
+  If you see the game display (in full or in part) shrinked to the left side of
+  the screen, this is caused by using -depth 16 on a game that doesn't support
+  16-bit display. Change depth to auto and it will work again.
+
+- "-listsamples" and "-verifysamples" will not work correctly for some games.
+  This is a known problem which will be fixed in future releases by getting
+  rid of the samples altogether (replacing them with emulated sound).
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed bad tiles in some CPS1 games. [Paul Leaman]
+
+- Fixed sprite flipping in Xevious. [Nicola Salmoria]
+
+- Fixed title colors in Pinball Action. [Mirko Buffoni]
+
+- Improved sprite colors in Great Swordman. [Jarek Parchanski, Charlie
+  Miltenberger]
+
+- Sprite-sprite collision detection and other improvements in the Taito SJ
+  games. This fixes Bio Attack. Wild Western is now fully playable.
+  [Zsolt Vasvari]
+
+- Fixed Mega Zone high score display. [Chris Hardy]
+
+- Fixed text colors in Legend of Kage. [Phil Stroffolino]
+
+- Accurate colors in Darwin 4078.
+
+- Fixed sprite colors in Xybots. [Aaron Giles]
+
+- Fixed the background in Led Storm. [Bryan McPhail]
+
+- Fixed colors in Mysterious Stones. [Zsolt Vasvari]
+
+- Fixed colors in Return of the Invaders. [Andrea Mazzoleni]
+
+- Improved screen priority in Lifeforce, Salamander, Gradius, etc. [E.Watanabe]
+
+- Several fixes in the Toaplan games. [Satoshi Suzuki]
+
+- Sped up a little the NeoGeo raster effects and enabled them in several new
+  games. Fixed the field in ssideki3 etc., improved Super Sidekicks 2.
+  [Massimo Morra]
+
+- Enabled raster effets in Metal Slug 2 (needed for the dunes at the beginning)
+  [Sebastian Ojeda]
+
+- Fixed colors in Wanted, Marine Boy, Changes and Hopper Robo. [Zsolt Vasvari]
+
+- Fixed sprite lag in cps1, bionicc, lastduel. [Bryan McPhail]
+
+- Fixed priorities in wndrmomo and genpeitd. [E. Watanabe]
+
+- Fixed gfx in Muscle Bomber Duo and continue screen in Captain Commando.
+  [Paul Leaman]
+
+- Grid and stars in Radar Scope. [Nicola Salmoria]
+
+- Sprite multiplexing support in the Exidy440 games, this fixes Chiller's
+  start screen. [Aaron Giles]
+
+- Fixed the internal orientation of the Cinematronics games, if you use
+  artwork files for those games you'll have tomanually flip them (or
+  redownload).
+
+- Fixed System 16 games in 16-bit video modes. With -depth 16, shadows are also
+  color accurate, otherwise the old gray scale shadows are used. [Andrew Prime]
+
+- Fixed colors in Side Pocket. [Nicola Salmoria]
+
+- Fixed colors in Cosmic Alien. [Zsolt Vasvari]
+
+- Fixed shadow/highlight in the Namco System 1 games (check Dangerous Seed's
+  title screen!). [Vernon C. Brooks]
+
+- Fixed sprites colors in Contra (I hope) and other improvements to Konami
+  007121-based games. [Nicola Salmoria]
+
+- Fixed shadows in Gauntlet and other Atari games. [Aaron Giles]
+
+- Correct colors in Space Invaders Part II, Lunar Rescue and Balloon Bomber,
+  colors should also be close in Space Chaser (minus the "green lane" effect)
+  and Rolling Crash/Moon Base. [Zsolt Vasvari]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed hanging sound in 4D Warriors. [Zsolt Vasvari]
+
+- Added "Get Ready!" speech to Grobda. [Zsolt Vasvari]
+
+- Fixed sound in Ninja Kid 2. [Jarek Parchanski]
+
+- 053260 emulation in Punk Shot. [Ernesto Corvi]
+
+- Most System 16 games have sound. [Andrew Prime]
+
+- Support for new samples in Q*Bert and Reactor. [Fabrice Frances]
+
+- Improved sound in the Exidy 440 games. [Aaron Giles]
+
+- Samples support in Depthcharge. [Zsolt Vasvari]
+
+- Fixed Xenophobe. [Aaron Giles]
+
+- Samples and DAC support in Space Panic. [Mike Coates]
+
+- Fixed Genpei Toumaden. [Takahiro Nogi]
+
+- Fixed YM2151 sound board support for Joust 2. [Aaron Giles]
+
+- Sound in Blasted and Max RPM. [Aaron Giles]
+
+- Completed samples support in Space Panic. [Mike Coates]
+
+- Samples support in Invinco and Pulsar. [Zsolt Vasvari]
+
+- CVSD sound in Mouse Trap. [Dan Boris, Aaron Giles]
+
+- Fixed music in cworld2j [CAB]
+
+- Improved emulation of the Galaxians sound subsystem. Samples are no longer
+  used. [Juergen Buchmueller, Tatsuyuki Satoh]
+
+- Fixed missing sounds in roishtar. [CAB]
+
+- Fixed many SNK 8-bit games (Guerilla War, Psycho Soldier, Ikari Warriors,
+  etc.) [wwtk@mail.com]
+
+- Added samples to Star Cruiser. [Frank Palazzolo]
+
+- Sound in Warp Warp. [juergen Buchmueller]
+
+- Fixed sound in Sindbad Mystery. [Zsolt Vasvari]
+
+- Samples are no longer needed in Stratovox, Battle Zone, Red Baron, Asteroids.
+  [Juergen Buchmueller]
+
+- Preliminary sound in Bandido. [Zsolt Vasvari, Juergen Buchmueller]
+
+- Rewritten sound emulation in Phoenix, samples are no longer used. [Juergen
+  Buchmueller]
+
+- Fixed volume control in the MCR games. [Aaron Giles]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed controls and graphics in Commando (Sega), which is now fully playable.
+  This also fixes diagonal shots in Bosconian. Jungler shots are broken though.
+  [Nicola Salmoria]
+
+- Hacked protection in Wild Western, fixed bonus game, added second button
+  to jump onto the train. [Zsolt Vasvari]
+
+- Sea Fighter Poseidon should be working now.
+
+- Various fixes to System 16 games. [Andrew Prime]
+
+- Emulated the 68705 protection in Mania Challenge. [Nicola Salmoria]
+
+- Fixed scores in Bosconian. [Gamester]
+
+- Fixed cocktail mode in several games. [Chad Hendrickson]
+
+- Extracted all the data from the Heavy Barrel microcontroller, so all
+  special weapons and powerups appear correctly. Also a lot of other fixes
+  to Data East games. [Bryan McPhail]
+
+- Artwork in Space Wars. [Nathan Sturm]
+
+- Fixed steering wheel in Speed Freak. [Mathis Rosenhauer]
+
+- The Cinematronics driver now can handle games with backdrop + overlay. The
+  pngs have to be renamed:
+  backdrop: drivername + b.png
+  overlay:  drivername + o.png
+  [Mathis Rosenhauer]
+
+- Gun support in Terminator 2. You must use the calibration screen to
+  calibrate the gun.  When it asks the shoot the upper left corner, move the
+  mouse towards (0,0), the middle is (128, 128) and the lower right corner
+  is obviously (255, 255). If you have problems, delete hi/term2.hi.
+  [Zsolt Vasvari]
+
+- Simulated the protection in Renegade. [Phil Stroffolino]
+
+- Improved Battle Lane. [Paul Leaman]
+
+- Fixed Turkey Shoot. [Aaron Giles]
+
+- Fixes to Lazer Command and Meadows Lanes. [Malcolm Lear]
+
+- Fixed a few bugs in the TMS34010 games. [Aaron Giles]
+
+- Fixed hangs in TNZS. [Quench]
+
+- Fixed Bosconian score handling. [Vernon C. Brooks]
+
+- Fixed Frisky Tom. [Zsolt Vasvari]
+
+- Bypassed the protection in Exerion. [Zsolt Vasvari]
+
+- The hangs in Tempest caused by the Pokey protection should now be fixed once
+  and for all. [Juergen Buchmueller]
+
+- Fixed hangs in roishtar. [E. Watanabe, Takahiro Nogi]
+
+- Fixed crash at the end of Gun Smoke level 3. [Paul Leaman]
+
+- Fixed protection in Slam Masters. [Paul Leaman]
+
+- Fixed protection in Devastators and Blades of Steel. [Manuel Abadia]
+
+- Improved Capcom Avengers, the wrong colors are caused by the protection.
+  [Phil Stroffolino]
+
+- Added collision detection to Star Cruiser. [Frank Palazzolo]
+
+- Simulated the protection in the original version of Side Pocket.
+  [Bryan McPhail]
+
+- Fixed controls in atarifb4 and atari soccer. [Nicola Salmoria]
+
+- Fixed protection in Super World Stadium '92. [Vernon C. Brooks]
+
+- Emulated the protection in Combat School. [Nicola Salmoria]
+
+- Fixed Vindicators 1&2 colors. [Aaron Giles]
+
+
+Changes to the main program:
+----------------------------
+
+- New digital YM3812/YM3526 emulator. [Tatsuyuki Satoh]
+
+- [DOS] -noym3812opl is now the default (this won't have effect unless you
+  delete mame.cfg). [Nicola Salmoria]
+
+- [DOS] Triple buffer support in tweaked VGA modes. Warning: this is slower
+  than standard tweaked modes. [Brian Lewis]
+
+- [DOS] If you are using a HotRod, use the -hotrod / -hotrodse switch to
+  adjust the default keyboard settings. [Nicola Salmoria]
+
+- Fixed a bug in the T-11 emulation which caused APB not to work and the end
+  of race results in Super Sprint to contain garbage. [Aaron Giles]
+
+- Changed the UPD7759 emulator to support two chips ('88 Games needed this)
+  and fixed a bug in the ADPCM decoding. [Ernesto Corvi]
+
+- Fixed a 68000 "bug" (actually an undocumented feature of the cpu) that
+  caused the timer to roll over from 00 to 99 in KOF98. [Darren Olafson]
+
+- [DOS] Changed the tweaked VGA modes definitions to be more compatible.
+  It is suggested to delete mame.cfg to get rid of the obsolete tweak
+  parameters. Remember to set tweak = yes after doing so. [Brian Lewis]
+
+- Screen shots can be saved while the game is paused. [Phil Hopely]
+
+- You can single step while the game is paused, press Shift+P to advance to
+  next frame. [Phil Hopely]
+
+- [DOS] Changed the autoframeskip code, making it less anxious to increase
+  frameskip as soon as speed drops below 100%. [Nicola Salmoria]
+
+- [DOS] Support for ZIPped input files (-playback) and artwork. Well, PNG won't
+  compress very well, but I added it anyway ;) [Juergen Buchmueller]
+
+- 16 bit support in the tilemap manager, so the Namco System 2 games no longer
+  require -depth 8. [Phil Stroffolino]
+
+- Several changes and improvements to the TMS34010 emulation and to the
+  Williams games using CVSD sound. [Aaron Giles]
+
+- Support for gzipped (NOT zipped) cheat files. Uncompressed files still work.
+  [Mathis Rosenhauer]
+
+- Rewritten the sample listing routines for -listsamples, -listsamdir,
+  -verifysamples and -listinfo. [Juergen Buchmueller]
+
+- [DOS] New command -verifysets, this verifies all available games and reports
+  their status (good/best available/bad). Also changed the format of the
+  -verifyroms output. Some frontends might need small adjustments to parse
+  the new output. [Bernd Wiebelt]
+
+- [DOS] Artwork files can be stored in a .zip file. That way you can have eg.
+  both spacewr1.png and spacewr2.png in one file spacewar.zip.
+  [Juergen Buchmueller]
+
+- [DOS] The mouse buttons are no longer aliases for joystick buttons, they are
+  independently recognized. They are not enabled by default, you'll have to add
+  them to the controls if you want to. This is a minor annoyance that was
+  needed to allow interfacing a Discs of Tron controller to the mouse port
+  (spinner + up and down switches) while still using joystick buttons 1 and 2
+  for fire and deflect. [Nicola Salmoria]
+
+- Unified keyboard and joystick interface, now they are all assigned in the
+  "Input" menu and you can mix them at will.
+  Added the possibility to use a multiple keys or joysticks sequence to drive
+  a generic action. This can be handy with consoles or cabinets with a limited
+  number of buttons, to reuse all buttons with only one extra button, like a
+  shift key. For example the COIN1 action can be mapped to the "Player 1 Fire"
+  plus the "Extra Shift Button". It can also be used to map Q*Bert movements to
+  joystick diagonals (since the orginal used a joystick rotate 45 degrees).
+  It is also possible to have OR and NOT sequences. For recording OR key/joy
+  sequences in the key/joy setup menu simply press UI_SELECT (usually ENTER)
+  after the first recorded sequence. Don't press any UI_UP/UI_DOWN/UI_CANCEL
+  keys beetwen the two sequences.
+  To insert a NOT key/joy simply press it two times.
+  The first obvious use for this is to wire button 1 to both the joystick and
+  mouse button. [Andrea Mazzoleni]
+
+- Added cpu overclocking control to the on screen display (available only when
+  cheats are enabled). [Juergen Buchmueller]
+
+- Added noise generator to the Namco sound emulation. [Takahiro Nogi]
+
+- Added vector intensity control to the On Screen Display (for vector games).
+  [Mathis Rosenhauer]
+
+- [DOS] MMX optimized video blitting functions. [Bernd Wiebelt]
+
+- [DOS] -hotrodse selects a more appropriate button configuration when NeoGeo
+  games are played. [Paolo Fiorani]
+
+- The coin/start buttons are slightly changed. Now they are layed out this way:
+  1,2,3,4 -> start 1,2,3,4
+  5,6,7,8 -> coin 1,2,3,4
+  9,0,-,= -> service coin 1,2,3,4
+
+- Preliminary support for HISCORE.DAT. [Phil Stroffolino]
+
+- [DOS] Modified the SEAL audio library so it outputs real 16-bit samples
+  instead of truncating the least significant 8 bits. [Jarek Burczynski]
+
+
+Source:
+-------
+
+- [DOS] Compiled with Allegro WIP 3.9.32. You MUST use this version (or later),
+  previous ones had bugs causing incorrect behaviour and crashes.
+
+- [DOS] The new Allegro provides support for PSX and N64 pads (info here:
+  http://www.debaser.force9.co.uk/ccmame), Gravis GrIP devices, Wingman Warrior
+  and IF-SEGA (Saturn joystick I/F card available in Japan).
+  The names for the -joy parameter are
+  psxlpt1
+  psxlpt2
+  psxlpt3
+  n64lpt1
+  n64lpt2
+  n64lpt3
+  grip
+  grip4
+  wingwarrior
+  segaisa
+  segapci
+
+- Rewritten the OS dependant keyboard interface. The OS dependant code now
+  only has to provide four functions:
+  osd_get_key_list()
+  osd_is_key_pressed()
+  osd_customize_inputport_defaults() [optional]
+  osd_wait_keypress() [optional]
+  everything else is handled by the main core.
+  The joystick interface has been similarly modified, removing limitations
+  on the number of sticks and buttons. [Nicola Salmoria]
+
+- New sprite manager, used in System 16, Ninja Gaiden, Shoot Out, Blood Bros.
+  [Phil Stroffolino]
+
+- Took the gfx drawing functions out of common.c into the new dragfx.c.
+  Abstracted the low level data copying and used macros to generate 8-bit and
+  16-bit versions.
+  The gfxdata field of the GfxElement structure is no longer a osd_bitmap *; it
+  is instead a simple unsigned char *, pointing to a continuous stream of pixel
+  data. The new line_modulo and char_modulo fields are helpers to find the
+  offset in the array. [Nicola Salmoria]
+
+- Konami 052001/053248 CPU emulation, used by many games. [Ernesto Corvi,
+  Manuel Abadia]
+
+- Konami 053260 sound chip emulation. [Ernesto Corvi]
+
+- Sega PCM and RFC68 sound emulators, used by System 16. [Hiromitsu Shioya]
+
+- Moved the profiler into the core. The OS dependant code need only provide a
+  osd_cycles() inline function/macro in osinline.h, returning a counter. The
+  function must be as low overhead as possible since it is called thousands
+  of times per second when the profiler is active. The counter should be as
+  precise as possible, to provide accurate measurements; the ideal unit is the
+  number of CPU cycles, e.g. as returned by the Pentium instruction RDTSC.
+  The profiler display is handled by the core, so the OS code only has to make
+  the usual profiler_mark() calls to profile different sections of the code
+  (PROFILER_BLIT, PROFILER_SOUND and so on).
+  [Nicola Salmoria]
+
+- [DOS] The -profiler switch is no longer needed to enable the profiler, it is
+  automatically turned on and off when you hit Shift+F11. [Nicola Salmoria]
+
+- Updated the 68000 C core. [Karl Stenerud]
+
+- New PORT_SERVICE() macro, use it instead of the long declaration needed for
+  the service mode dip switch. [Nicola Salmoria]
+
+- New input type IPT_PEDAL. [Aaron Giles]
+
+- Fixed bug in the 6800 CMPX instructions. [Jess Askey]
+
+- Changed the 6821 PIA interface. [Aaron Giles]
+
+- New NEC CPU cores. [Oliver Bergmann]
+
+- Several improvements to FM sound emulators. This also fixes crashes in some
+  Jaleco Mega System 1 games. [Tatsuyuki Satoh]
+
+- Improvements to the other YM2151 emulator too. [Jarek Burczynski]
+
+- VIDEO_UPDATE_BEFORE_VBLANK is now the default. If you want your driver to
+  redraw the screen after vblank, use VIDEO_UPDATE_AFTER_VBLANK.
+
+- Rewritten the HC55516 CVSD decoder. This affects Sinistar, Joust 2, Arch
+  Rivals, Pigskin, Tri-Sports, Smash TV, Trog, Narc. [Aaron Giles]
+
+- Some improvements to the Z80 emulator. [Juergen Buchmueller]
+
+- Some fixes to HD63701 IRQ handling, and support for ICI (Input Capture
+  Interrupt). [Tatsuyuki Satoh]
+
+- Improvements to the 34010 emulation. [Aaron Giles]
+
+- New function findmemorychunk() that lets you look up a chunk of memory and
+  get its start/end addresses, and its base. This can be used (carefully!) by
+  drivers that wish to access memory directly without going through the
+  readmem/writemem accessors (e.g., blitters). [Aaron Giles]
+
+- Replaced cpu_reset() with cpu_set_reset_line().
+  cpu_set_reset_line(num,PULSE_LINE) is equivalent to the old cpu_reset().
+  ASSERT_LINE resets the cpu and halts it. CLEAR_LINE restarts it.
+  This avoids the need to call cpu_halt() in most cases. [Nicola Salmoria]
+
+- Finally fixed the CMPX instruction in the 680x core. On the 6800 it does
+  not affect the C flag, on the others (6803, 63701) it does.
+  [Tatsuyuki Satoh]
+
+- Fixes to the x86 asm 68k core. [Mike Coates]
+
+- VIDEO_BUFFERS_SPRITERAM. See bionicc, darkseal, lastduel for usage examples.
+  [Bryan McPhail]
+
+- Added vh_eof_callback to the MachineDriver structure. See bionicc, cps1,
+  lastduel for usage examples. [Nicola Salmoria]
+
+- Cleaned up the 6809 and Konami-2 emulations. [Juergen Buchmueller]
+
+- C140 emulation. [Phil Stroffolino]
+
+- Replaced MachineDriver->video_attributes VIDEO_SUPPORTS_16BIT with
+  GameDriver->flags GAME_REQUIRES_16BIT.
+  Added color_depth to struct RunningMachine and struct GameOptions. OS
+  dependant code may set it to force a specific depth.
+  Added depth parameter to osd_create_display(). The OS dependant code MUST
+  respect it - if it has special requirements, it must set the GameOptions
+  flag beforehand.
+
+- Calling palette_recalc() is now *MANDATORY* in all drivers that modify the
+  palette. The palette will not be updated otherwise.
+
+- Removed adpcm_sample_list, palette and colortable from struct GameDriver.
+  Changed char *color_prom to int prom_memory_region.
+
+- Updated the TMS9900 emulator. [Raphael Nabet]
+
+- Merged the flags and orientation fields of struct GameDriver.
+
+- Removed prom_memory_region from struct GameDriver. The PROM memory region is
+  now specified directly in the ROM declaration, with
+  ROM_REGION( length, REGION_PROMS )
+  Similarly, REGION_GFX1..8 are defined for gfx decoding, REGION_SOUND1..8 for
+  sound and so on.
+
+- Removed samplenames from stuct GameDriver. It is now in struct
+  SamplesInterface, and some drivers load the samples directly without using
+  that structure. [Nicola Salmoria]
+
+- Removed base and size from struct MemoryReadAddress, use MemoryWriteAddress
+  to store the pointers. [Nicola Salmoria]
+
+- Taken the 005289 emulation out of namco.c. [Bryan McPhail]
+
+- QSound player (preliminary) [CAB, Paul Leaman, Miguel Angel Horna]
+
+- Some changes to the TMS9900 emulation that completely screw up Cosmic Guerilla.
+  [Raphael Nabet]
+
+- Y8950 emulator, used by ginganin. [Tatsuyuki Satoh]
+
+- PORTERS BEWARE: the OS dependant code is now required to support a palettized
+  16-bit display, where osd_modify_pen() can be called and the palette lookup
+  is done during the final blit. A non palettized display can still optionally
+  be used in special cases, see the comment about osd_allocate_colors() in
+  osdepend.h. Also note that osd_allocate_colors() now can fail and returns a
+  value; and the special case for 32768 pens has been removed, a valid palette
+  is always passed to the function.
+
+- Fixed OPN and OPM output level. Unfortunately this means that all games using
+  YM2203, YM2151 etc. need to be rebalanced. [Tatsuyuki Satoh]
+
+- Removed memory_region from struct MachineCPU, now this information is stored
+  directly in the ROM list using the REGION_CPUx attributes.
+  Also remember that now you must never use Machine->memory_region[], always
+  use memory_region() (and the same for memory_region_length).
+
+- New NES sound emulation for Punch Out and Donkey Kong 3. [Matthew Conte,
+  wwtk@mail.com]
+
+- Added other members of the TMS99xx family. [Raphael Nabet]
+
+- Removed *rom_decode and *opcode_decode from struct GameDriver. Decryption
+  must now be handled by *driver_init. If opcodes and data are decrypted
+  separately, remember to allocate a larger chunk of memory in the ROM
+  declaration, decode the opcodes there, and call memory_set_opcode_base()
+  to tell the memory system where the opcodes are.
+  Note that this new system allows bank switching with encrypted ROMs, which
+  wasn't possible before. [Nicola Salmoria]
+
+- Removed *hiscore_load and *hiscore_save from the GameDriver structure. To
+  manage nvram/eeprom/cmos/etc the new *nvram_handler in struct MachineDriver
+  must be used. [Nicola Salmoria]
+
+- The struct GameDriver reorganization is finally complete. Drivers should now
+  use the GAME() and GAMEX() macros and not directly the GameDriver structure.
+  IMPORTANT FOR PORTERS: Note that the clone_of field now is not necessarily
+  0 even if the game is not a clone. If clone_of is not 0, to know if the game
+  is a clone you have to check (clone_of->flags & NOT_A_DRIVER) is 0.
+
+- Added OSD_FILETYPE_NVRAM.
+
+- MachineDriver->frames_per_second is now a float.
+
+- stream_init() and stream_init_multi() no longer have a sample_bits parameter.
+  Sound emulators are required to generate 16-bit samples.
+
+- mixer.c now does all sound mixing, generating one single sample stream,
+  played using the new osd_XXX_audio_stream() functions.
+  All other OS dependant sample functions (osd_play_sample() etc.) have been
+  removed. This should standardize the sound output across ports, and allow
+  porters to write much cleaner sound code. [Aaron Giles]
+
+- Added gain support to mixer.c, through the new MIXERG() macro (extension of
+  MIXER()). Removed the gain filed from AY8910, YM2204, YM2610 structures.
+
+- make68k.exe now requires as parameter the path of the comptab.asm include
+  file (see makefile).
+
+- The functionality of osd_skip_this_frame() is now more strictly defined (see
+  osdepend.h). Ports not complying with that must be updated, otherwise
+  problems with certain drivers might arise.
+
+- Removed some obsolete fields from struct GameOptions.
+
+- 65sc02 and 65ce02 cpu cores. [Peter Trauner]
+
+- Rewritten the Pokey emulator for greater accuracy. [Juergen Buchmueller]
+
+- Preliminary SN76477 emulation. [Juergen Buchmueller]
+
+- Fixed a rounding error in IPF_CENTER handling which caused problems with
+  Centipede. Note, however, that it would be advisable to not use IPF_CENTER
+  at all for trackball/dial inputs, since this is probably not how the
+  hardware works in reality.
+  For the same reason, also removed the "clip" parameter from the
+  PORT_ANALOG() macro. Incidentally, this fixed Peek-a-Boo. [Nicola Salmoria]
+
+- Lots of CPU fixes and cleanup. [Juergen Buchmueller]
+
+- Struct GfxLayout can now be parametric on the size of the memory region
+  it refers to. This way the same gfx definition can be used for games with
+  the same layout but different number of tiles. See drivers/m72.c,
+  drivers/dec0.c for usage examples. [Nicola Salmoria]
+
+- Fixes and improvements to the 6800 family emulator. [Tatsuyuki Satoh]
+
+- Improvements to the YM2151 emulator. [Jarek Burczynski]
+
+- Only one of the two YM2151 emulators is linked, this is determined at compile
+  time. The default is Jarek's, which is more accurate though a little slower.
+  It can be replaced with Tatsuyuki's changing the makefile.
+
+- There's a new game flag GAME_NO_COCKTAIL to mark drivers that don't support
+  screen flip, please use it because gamelist.txt is now generated
+  automatically and this is the only way to know whether a driver supports
+  it or not.
+
+- TMS36XX emulation (Phoenix, Pleiads, Naughty Boy, Pop Flamer, Monster
+  Bash). [Juergen Buchmueller]
+
+
+New games supported (in alphabetical order):
+--------------------------------------------
+
+'88 Games [Nicola Salmoria]
+Air Wolf [Nicola Salmoria]
+Ajax [Manuel Abadia]
+Aliens [Manuel Abadia]
+American Horseshoes [Olivier Galibert]
+Arcade Classics [Aaron Giles]
+Arch Rivals [Aaron Giles]
+Ark Area [Paolo Venturi]
+Assault [Keith Wilkins]
+Atari Soccer [Brad Oliver]
+Atomic Point [Andrew Prime]
+Aztarac [Mathis Rosenhauer]
+Baluba-louk no Densetsu [Zsolt Vasvari]
+Baraduke [Manuel Abadia]
+Batman [Aaron Giles]
+Batsugun [Quench]
+Battlantis [Manuel Abadia]
+Battle Chopper [Nao]
+Bay Route [Andrew Prime]
+Beraboh Man [Vernon C. Brooks]
+Berlin Wall [Luca Elia]
+Big Striker [Luca Elia]
+Black Hole [Zsolt Vasvari]
+Blade Master [Bryan McPhail]
+Blades of Steel [Manuel Abadia]
+Blast Off [Ernesto Corvi, Tatsuyuki Satoh]
+Blasted [Aaron Giles]
+Blazer [Ernesto Corvi, Tatsuyuki Satoh]
+Blood Bros [Carlos A. Lozano, Phil Stroffolino, Richard Bush]
+Body Slam [Andrew Prime]
+Bogey Manor [Bryan McPhail]
+Bomb Bee [Nicola Salmoria]
+Bomb Jack Twin [Mirko Buffoni]
+Bottom of the Ninth [Nicola Salmoria]
+Burning Force [Keith Wilkins]
+Cachat [Olivier Galibert]
+Capcom Baseball [Nicola Salmoria]
+Champion Wrestler [Olivier Galibert]
+Chicken Shift [Aaron Giles]
+Chimera Beast [Luca Elia]
+Chuka Taisen [Quench]
+Cisco Heat [Luca Elia]
+Combatribes [Carlos A. Lozano, Richard Bush, Bryan McPhail]
+Cosmic Chasm [Mathis Rosenhauer]
+Cosmo Gang [Keith Wilkins]
+Crazy Climber 2 [Takahiro Nogi]
+Crime Fighters [Manuel Abadia]
+Crude Buster [Bryan McPhail]
+Cue Brick [Phil Stroffolino]
+Cutie Q [Nicola Salmoria]
+Cybattler [Luca Elia]
+D-Con [Bryan McPhail]
+Dangerous Seed [Ernesto Corvi, Tatsuyuki Satoh]
+Desert Gun [Zsolt Vasvari]
+Detana!! Twin Bee [Nicola Salmoria]
+Devil World [Phil Stroffolino]
+Dogyuun [Quench]
+Dokaben [Nicola Salmoria]
+Dottori Kun (a cabinet test board) [Takahiro Nogi]
+Double Dragon 3 [Carlos A. Lozano, Richard Bush, Bryan McPhail]
+Dr. Toppel Tankentai [Quench]
+Dragon Breed [Nao]
+Dragon Buster [Manuel Abadia]
+Dragon Saber [Keith Wilkins]
+Dragon Spirit [Ernesto Corvi, Tatsuyuki Satoh]
+Dream Shopper [Zsolt Vasvari]
+Dream Soccer '94 [Bryan McPhail]
+Dynamite Duke (play it with sound disabled) [Bryan McPhail]
+Empire City: 1931 [Mark McDougall]
+Enduro Racer [Andrew Prime]
+F1 Grand Prix Star [Luca Elia]
+Face Off [Vernon C. Brooks]
+Fast Lane [Manuel Abadia]
+Fighting Hawk [Olivier Galibert]
+Fighting Soccer [Phil Stroffolino]
+Finalizer - Super Transformation [Nicola Salmoria]
+Finest Hour [Keith Wilkins]
+Fire Shark [Quench]
+Flak Attack [Manuel Abadia]
+Flash Gal [Nicola Salmoria]
+Galaga '88 [Ernesto Corvi, Tatsuyuki Satoh]
+Gallop [Nicola Salmoria]
+Gang Busters [Manuel Abadia]
+Gang Wars [Bryan McPhail]
+Garyo Retsuden [Bryan McPhail]
+Gee Bee [Juergen Buchmueller]
+Ghox [Quench]
+Gimme A Break [Aaron Giles]
+Ginga NinkyouDen [Luca Elia]
+Go Go Mr. Yamaguchi / Yuke Yuke Yamaguchi-kun [Phil Stroffolino]
+Goalie Ghost [Aaron Giles]
+Gold Medalist [Bryan McPhail]
+Got-Ya [Zsolt Vasvari]
+Gradius III [Nicola Salmoria]
+Great 1000 Miles Rally [Luca Elia]
+Gunforce [Bryan McPhail]
+Gyrodine [Ernesto Corvi]
+HAL21 [Phil Stroffolino]
+Hachoo! [Luca Elia]
+Hammerin' Harry [Nicola Salmoria]
+Hang-On [Andrew Prime]
+Hard Puncher [Phil Stroffolino]
+Hat Trick [Aaron Giles]
+Haunted Castle [Bryan McPhail]
+Herbie at the Olympics [Mike Coates]
+High Way Race [Zsolt Vasvari]
+Hook [Bryan McPhail]
+Hopper Robo [Zsolt Vasvari]
+Hopping Mappy [Nicola Salmoria]
+Hot Chase [Luca Elia]
+Hunchback (Scramble and Donkey Kong conversions) [Mike Coates]
+Hydra [Aaron Giles]
+I, Robot (suggestion: turn off autoframeskip) [Dan Boris, John Dickson]
+Iga Ninjyutsuden [Luca Elia]
+Ikari III - The Rescue [Bryan McPhail]
+Image Fight [Nao]
+In The Hunt [Bryan McPhail]
+Kageki [Takahiro Nogi]
+Kaitei Takara Sagash [Juergen Buchmueller]
+KiKi KaiKai [Nicola Salmoria, Ernesto Corvi]
+Kick Off [Luca Elia]
+Kick Start [Zsolt Vasvari]
+Kick and Run [Nicola Salmoria, Ernesto Corvi]
+Knuckle Bash [Quench]
+Kodure Ookami [Takahiro Nogi]
+Kyukai Douchuuki [Vernon C. Brooks]
+Labyrinth Runner [Nicola Salmoria]
+Lasso [Phil Stroffolino]
+Legend of Hero Tonma [Nao]
+Legend of Walkyrie [Keith Wilkins]
+Lethal Thunder [Bryan McPhail]
+Lightning Fighters [Nicola Salmoria]
+Mad Crasher [Phil Stroffolino]
+Mad Motor [Bryan McPhail]
+Major Title 2 [Bryan McPhail]
+Major Title [Nicola Salmoria]
+Marchen Maze [Ernesto Corvi, Tatsuyuki Satoh]
+Marvel Land [Keith Wilkins]
+Marvin's Maze [Phil Stroffolino]
+Mayday [Aaron Giles]
+Meikyu Jima (Kickle Cubicle) [Nicola Salmoria]
+Meteoroids [Zsolt Vasvari]
+Metro-Cross [Manuel Abadia]
+Mini Golf [Aaron Giles]
+Minivader (a cabinet test board) [Takahiro Nogi]
+Mirai Ninja [Keith Wilkins]
+Missing in Action [Nicola Salmoria]
+Mole Attack [Jason Nelson, Phil Stroffolino]
+Moonwalker  [Andrew Prime]
+Mr. Goemon [Nicola Salmoria]
+Munch Mobile [Phil Stroffolino]
+Mystic Riders [Bryan McPhail]
+Name that Tune [Aaron Giles]
+Navalone [Juergen Buchmueller]
+Night Stocker [Aaron Giles]
+Ninja Emaki [Takahiro Nogi]
+Ninja Spirit [Nao]
+Nunchackun [Phil Stroffolino]
+Off the Wall (Sente) [Aaron Giles]
+Off the Wall [Aaron Giles]
+Orbitron [Zsolt Vasvari]
+Ordyne [Keith Wilkins]
+Outrun [Andrew Prime]
+Pacmania [Ernesto Corvi, Tatsuyuki Satoh]
+Palamedes [Olivier Galibert]
+Pandora's Palace [Manuel Abadia]
+Parodius DA! [Nicola Salmoria]
+Peek-a-Boo! [Luca Elia]
+Perfect Soldiers [Bryan McPhail]
+Phelios [Keith Wilkins]
+Pigskin 621AD [Aaron Giles]
+Pinbo [Scott Kelley]
+Pipi & Bibis [Quench]
+Pistol Daimyo no Bouken [Ernesto Corvi, Tatsuyuki Satoh]
+Pit Fighter [Aaron Giles]
+Plotting [Olivier Galibert]
+Plump Pop [Nicola Salmoria]
+Plus Alpha [Luca Elia]
+Pole Position II [Aaron Giles, Ernesto Corvi, Juergen Buchmueller]
+Pole Position [Aaron Giles, Ernesto Corvi, Juergen Buchmueller]
+Power Drive [Aaron Giles]
+Power Surge [Nicola Salmoria]
+Puzzle Club [Vernon C. Brooks]
+Puzznic [Olivier Galibert]
+Quartet [Andrew Prime]
+Quarth [Nicola Salmoria]
+Quester [Vernon C. Brooks]
+R-Type II [Nicola Salmoria]
+R-Type Leo [Bryan McPhail]
+R-Type [Nicola Salmoria]
+Raiden [Oliver Bergmann, Bryan McPhail, Randy Mongenel]
+Raimais [Olivier Galibert]
+Razzmatazz [Nicola Salmoria]
+Relief Pitcher [Aaron Giles]
+Rescue Raider [Aaron Giles]
+Riot City [Andrew Prime]
+Rock 'n Rage [Manuel Abadia]
+Rollergames [Nicola Salmoria]
+Rolling Thunder 2 [Keith Wilkins]
+Rompers [Ernesto Corvi, Tatsuyuki Satoh]
+S.P.Y. [Nicola Salmoria]
+SOS [Juergen Buchmueller]
+SRD Mission [Ernesto Corvi]
+Saint Dragon [Luca Elia]
+Samurai (Taito) [Phil Stroffolino]
+Sente Diagnostic Cartridge [Aaron Giles]
+Shadow Dancer [Andrew Prime]
+Shadow Land [Ernesto Corvi, Tatsuyuki Satoh]
+Shanghai [Nicola Salmoria]
+Shuffleboard [Zsolt Vasvari]
+Sky Adventure [Bryan McPhail]
+Sky Kid Deluxe [Nicola Salmoria]
+Sky Kid [Manuel Abadia]
+Sky Soldiers [Bryan McPhail]
+Snacks'n Jaxson [Aaron Giles]
+Snake Pit [Aaron Giles]
+Snow Bros. 2 [Quench]
+Soldam [Luca Elia]
+Son of Phoenix [Ernesto Corvi]
+Souko Ban Deluxe [Ernesto Corvi, Tatsuyuki Satoh]
+Space Harrier [Andrew Prime]
+Sparkz [Aaron Giles]
+Spiker [Aaron Giles]
+Splash [Manuel Abadia]
+Splatter House [Ernesto Corvi, Tatsuyuki Satoh]
+Spy Hunter 2 [Aaron Giles]
+Stadium Hero [Bryan McPhail]
+Stocker [Aaron Giles]
+Streaking [Zsolt Vasvari]
+Street Football [Aaron Giles]
+Sunset Riders [Oliver Stabel, Nicola Salmoria]
+Super Champion Baseball [Bryan McPhail]
+Super Contra [Manuel Abadia]
+Super Hangon [Andrew Prime]
+Super World Stadium '93 Gekitouban [Keith Wilkins]
+Surprise Attack [Nicola Salmoria]
+Syusse Oozumou [Takahiro Nogi]
+TMNT 2 [Oliver Stabel, Nicola Salmoria]
+Takeda Shingen [Luca Elia]
+Tank Force [Vernon C. Brooks]
+Teki Paki [Quench]
+The Astyanax [Luca Elia]
+The Hustler [Manuel Abadia]
+The Percussor [Zsolt Vasvari]
+The Simpsons [Ernesto Corvi]
+Thunder Cross II [Nicola Salmoria]
+Thunder Cross [Bryan McPhail]
+ThunderJaws [Aaron Giles]
+Time Soldiers [Bryan McPhail]
+Toggle [Aaron Giles]
+Toryumon [Andrew Prime]
+Tri-Sports [Aaron Giles]
+Trio the Punch [Bryan McPhail]
+Trivial Pursuit (All Sports Edition) [Aaron Giles]
+Trivial Pursuit (Baby Boomer Edition) [Aaron Giles]
+Trivial Pursuit (Genus I) [Aaron Giles]
+Trivial Pursuit (Genus II) [Aaron Giles]
+Trivial Pursuit (Young Player's Edition) [Aaron Giles]
+Turbo Tag [Aaron Giles]
+Turbo [Aaron Giles, Ernesto Corvi]
+Ultraman [Manuel Abadia]
+Undercover Cops [Bryan McPhail]
+V-Five [Brian A. Troha]
+Vanguard II [Phil Stroffolino]
+Vapor Trail - Hyper Offence Formation [Bryan McPhail]
+Vendetta [Ernesto Corvi]
+Vulcan Venture [Phil Stroffolino, Nao, Dave Spicer]
+WEC Le Mans 24 [Luca Elia]
+World Court [Ernesto Corvi, Tatsuyuki Satoh]
+World Stadium '89 [Vernon C. Brooks]
+World Stadium 90 [Ernesto Corvi, Tatsuyuki Satoh]
+World Stadium [Vernon C. Brooks]
+X Multiply [Nao]
+X-Men [Nicola Salmoria]
+Zwackery [Aaron Giles]

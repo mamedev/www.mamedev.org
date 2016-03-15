@@ -1,0 +1,167 @@
+0.63
+
+An interim release with many things submitted in the past two months not
+included yet.
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Subroc-3D, Turbo and Buck Rogers use the artwork to show the LED counters.
+  [Stefan Jokish]
+
+- Fixed colors in Dynamic Ski. [Stefan Jokish]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Samples support in Subroc-3D [Dave France]
+
+- Fixed noie frequency in the Exidy games. [Jim Hernandez]
+
+- Preliminary Namco NA sound support. [Phil Stroffolino]
+
+
+Other drivers changes:
+----------------------
+
+- Partially simulated the protection in Birdie Try [Angelo Salese]
+
+- Improved decryption in Quiz F1 1-2 Finish, it's still incomplete though.
+  [Angelo Salese]
+
+- Fixed ball position recognition in Golfing Greats. [Olivier Galibert]
+
+
+Changes to the main program:
+----------------------------
+
+- New options -nodisclaimer and -nogameinfo to disable startup screens.
+  Warnings about incorrect emulation are not disabled. [Aaron Giles]
+
+- Replaced RDTSC timing with QueryPerformanceCounter. This should fix problems
+  on SpeedStep notebooks. It seems, however, that it causes even worse problems
+  on other machines. Therefore, the old behaviour can be forced with the new
+  -rdtsc option. [smf]
+
+
+Source:
+-------
+
+- Now compiled with MinGW 2.0/GCC 3.2. There might be bugs caused by the new
+  compiler, let us know.
+
+- All new, much better, YM2413 emulation. [Jarek Burczynski]
+
+- Drum support in YM2608 emulation (check e.g. Tail 2 Nose). [Jarek Burczynski]
+
+- Moved most of the file I/O out of the OS depndant code and into the core.
+  Added two new types, mame_file and osd_file, which enforce better type
+  checking throughout the system (and prevents confusing the two).
+  Instead of calling osd_fopen, osd_fread, osd_fwrite, etc., you now call
+  mame_fopen, mame_fread, mame_fwrite, etc. The osd_* calls are reserved
+  to the core.
+  All the ZIP handling is done in the mame_file functions, so it will be
+  inherited by all ports.
+  [Aaron Giles]
+
+- [Win32] The diff, snap, cfg, nvram, etc. directories are created
+  automatically if they don't exist the first time MAME tries to create a file
+  there. [Aaron Giles]
+
+- MIPS III/IV CPU cores. [Aaron Giles]
+
+- ADSP-2115 CPU support. [Aaron Giles]
+
+- TMS32025 CPU core. [Quench]
+
+- Fixed YMF278B emulation. [R.Belmont]
+
+
+MAME Testers bugs fixed (there are probably more)
+-----------------------
+
+galaga37b8gre [Satoshi Suzuki]
+galaga37b16gre [Satoshi Suzuki]
+cutieq37b2gre [Stephane Humbert]
+crusn062gre [Aaron Giles]
+totcarn062gre [Aaron Giles]
+commsega062gra [Stephane Humbert]
+wiping062red [Stefan Jokish]
+heartatk062red [Stefan Jokish]
+polyplay060red [Stefan Jokish]
+
+
+New games supported:
+--------------------
+
+Off Road Challenge [Aaron Giles]
+Shrike Avenger [Aaron Giles]
+War Gods [Aaron Giles]
+Grudge Match [Aaron Giles]
+Sharpshooter [Aaron Giles]
+Killer Instinct [Aaron Giles, Bryan McPhail]
+Killer Instinct 2 [Aaron Giles, Bryan McPhail]
+Dr. Micro [Uki]
+Run and Gun [R.Belmont]
+Holosseum [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Super Visual Football [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Burning Rivals [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Rad Mobile [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Rad Rally [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+F1 Exhaust Note [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Alien 3 [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Sonic [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Golden Axe 2 [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Spiderman [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Arabian Fight [David Haywood, Olivier Galibert, R. Belmont, Farfetch'd]
+Gumbo [David Haywood]
+Golly Ghost [Phil Stroffolino]
+Moon Shuttle [Zsolt Vasvari]
+SF-X [Zsolt Vasvari]
+Mighty Monkey [Zsolt Vasvari]
+Triv Two [David Haywood]
+Pirates [David Haywood, Nicola Salmoria, Paul Priest]
+Free Kick [Tomasz Slanina]
+Perfect Billiard [Nicola Salmoria]
+Wakakusamonogatari Mahjong Yonshimai [Nicola Salmoria]
+Got-cha [Nicola Salmoria]
+Formula 1 Grand Prix Part II [Nicola Salmoria]
+Real Mahjong Haihai [Nicola Salmoria]
+Real Mahjong Haihai Jinji Idou Hen [Nicola Salmoria]
+Real Mahjong Haihai Seichouhen [Nicola Salmoria]
+Mahjong Kyou Jidai [Nicola Salmoria]
+The Mah-jong [Uki]
+Mahjong Hourouki Part 1 - Seisyun Hen [Nicola Salmoria]
+Mahjong Hourouki Gaiden [Nicola Salmoria]
+Mahjong Hourouki Okite [Nicola Salmoria]
+Mahjong Clinic [Nicola Salmoria]
+Mahjong Rokumeikan [Nicola Salmoria]
+Tugboat [MooglyGuy, Nicola Salmoria]
+Super Triv 2 [MooglyGuy]
+Penguin Bros
+Target Hits [Manuel Abadia]
+TH Strikes Back [Manuel Abadia]
+Alligator Hunt [Manuel Abadia]
+World Rally 2: Twin Racing [Manuel Abadia]
+Maniac Squares [Manuel Abadia]
+Snow Board Championship [Manuel Abadia]
+Bang! [Manuel Abadia]
+Boomer Rang'r / Genesis [Bryan McPhail]
+Kamikaze Cabbie [Bryan McPhail]
+Liberation [Bryan McPhail]
+P-47 Aces
+
+
+New clones supported:
+---------------------
+
+Nostradamus (Korea)
+Cruis'n World (rev L2.0)
+Terminator 2 (LA2)
+Super High Impact (prototype)
+Mr Kougar (set 2)
+Donkey Kong Jr (bootleg on Galaxians hardware)
+Police Trainer (older)
+Hokuha Syourin Hiryu no Ken (=Shanghai Kid)

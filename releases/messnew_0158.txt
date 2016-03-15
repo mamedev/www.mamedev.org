@@ -1,0 +1,100 @@
+0.158
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05795: [Misc.] (ampro.c) ampro: Does not want to start! (Robbbert)
+- 05758: [Crash/Freeze] (sun3.c) sun3_80: [debug] Assert shortly after start
+
+New System Drivers Supported:
+-----------------------------
+-Japanese Speak & Spell [plgDavid]
+-Electronic Detective [hap, Sean Riddle]
+-Split Second [hap, Sean Riddle]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+-HP9000/310 [R. Belmont, Al Kossow]
+-HP9000/340 [R. Belmont, Al Kossow]
+-HP9000/380 [R. Belmont, Al Kossow]
+-HP9000/382 [R. Belmont, Al Kossow]
+-HP16500a (ver 00.00) [R. Belmont, Al Kossow]
+-HP 1650b [R. Belmont, Al Kossow]
+-HP 1651b [R. Belmont, Al Kossow]
+-VTech Genius Junior Redstar 2 (Germany) [TeamEurope]
+-VTech Genius Junior Movie (Germany) [TeamEurope] 
+-VTech Genius Winner Notebook Fun (Germany) [TeamEurope]
+-Slicer 80186 single board computer [Carl]
+
+Software Lists:
+---------------
+-ibm5170.xml: Added Multitasking MS-DOS 4.00. [PCjs Project]
+
+-Added VTech Genius Junior Movie softlist. [TeamEurope]
+
+-gamegear.xml: Fixed some unknown publishers and years. [Logan B]
+
+Source Changes
+--------------
+-hp9k_3xx: support 9000/370 (same bootrom as 330,340). [Al Kossow]
+
+-Improve mouse tracking for pre-ADB Macs. [Rob Braun]
+
+-Fix dropped keystrokes on pre-ADB Macs. [Rob Braun]
+
+-macplus: add all 3 official boot ROMs plus a homebrew enhanced
+ version. [R. Belmont, Rob Braun]
+
+-ap2_dsk: don't allocate 2Mb of *stack*, malloc() instead
+ [Peter Ferrie]
+
+-mac: greatly improve keyboard reliability on Macs with
+ first-generation ADB hardware (SE,II,IIx,IIcx,SE/30,IIci). [Rob Braun]
+
+-ui: when ESCing while creating a new floppy image, fall back to
+ the correct menu. [Fabio Priuli]
+
+-gamate : added newer bios and emulated protection [PeT]
+
+-floppy.c: initialise error code instead of crashing when menu
+ loads bad image [Peter Ferrie]
+
+-pc9821ap2: added newly dumped BIOS [caius]
+
+-Significant comment updates for the IAI Swyft based on board
+ tracing. [Lord Nightmare, Sandy Bumgarner]
+
+-nes: converted input code to use slot devices. this means that now you
+change the emulated controllers (Zapper, NES Four Score Adapter, Bandai
+Power Pad and Family Trainer, Famicom Keyboard Component, Arkanoid Vaus
+Paddle and Mahjong Controller) via the Slot Device menu of the UI interface and
+not anymore from the System Configurations menu. Also, changing controller now
+requires to reset the system, so please take some time *before* starting the game
+if you want to play a game that uses particular controllers. [Fabio Priuli]
+
+-nes: added emulation of the Konami Hyper Shot controllers, which are
+necessary to play Hyper Olympics and Hyper Sports for Famicom. [Fabio Priuli]
+
+-nes: added emulation of the Yonezawa Party Tap controllers, which are
+necessary to play in more than two players some quiz games for Famicom. [Fabio
+Priuli]
+
+-nes: added emulation of the Pachinko controller used by a few pachinko
+games for Famicom. [Fabio Priuli]
+
+-nes: added emulation of the Epoch Barcode Battler unit (even if only as
+Famicom controller, and not as a standalone unit) which is necessary to play
+Barcode World for Famicom. [Fabio Priuli]
+
+-sms/gamegear: misc improvements [Enik Land]
+ * Renamed the gear2gear port to EXT port, after reading the references
+   in the official GG documents
+ * Invert Y1 pin signal bits: now high is 1 and low is 0;
+ * More complete Y1 behavior: goes low only for transparent pixels;
+ * Fix color of column 0 when it doesn't completely entered in the active display;
+ * Improve behavior of sprite overflow, to not be flagged when VINT is active.

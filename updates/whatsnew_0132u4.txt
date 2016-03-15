@@ -1,0 +1,209 @@
+0.132u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03277: [DIP/Input] batrid & clones: If you select freeplay, hit 
+         score, music & sound dips are inverted vs MAME tab 
+         (Fabio Priuli)
+- 03292: [Crash/Freeze] battles, gallag, gatsbee: [debug] assert: 
+         src/mame/machine/namco06.c:240: state->device[2] != NULL || 
+         config->chip2 == NULL (Fabio Priuli)
+- 03019: [Core] Sets with added Shifters: Running with the Shifter 
+         changes orientation in vertical games (Mr. Do)
+
+
+
+Source Changes
+--------------
+Fixed sound in Seibu Cup Soccer bootleg [Angelo Salese]
+
+Removed a kludge from Sengoku Mahjong sound comms [Angelo Salese]
+
+K053936 cleanup and some improvements for Racin' Force [David Haywood]
+
+Marked siseikat prg rom as bad dump. [Angelo Salese]
+
+Added very basic SCC68070 implementation, currently is just a basic 
+m68k with 32-bits of address lines. The plan is to add the on-chip 
+peripherals on the magicard.c driver then, when I get some 
+consistency, hardwire it to the cpu core. [Angelo Salese]
+
+Better fix for Amiga AGA ddf_stop_pixel, to avoid breaking Amiga 1200 
+startup screen. [Mariusz Wojcieszek]
+
+Fixed Cubo CD32 framerate to 50 [Mariusz Wojcieszek]
+
+Confirmed Last Duel sets and changed to use genuine GFX ROMs 
+[Team Japump]
+
+Marked vf3tb CROM0 ROMs as BAD_DUMP (they should be 4MB). Updated game 
+status notes. [Phil Bennett]
+
+Allow skeetsht to put some gfxs. [Angelo Salese]
+
+SCC68070: hooked up basic registers in the memory map. [Angelo Salese]
+
+Update to the lastduel.c driver:
+ * Better rom load / decode for Last Duel sets [David Haywood]
+ * Readme / PCB layout [Guru]
+ * Corrected rom labels and added PCB locations to Mad Gear / LED 
+    Storm sets [Brian Troha]
+
+model3: masked CROM bank, fixes missing gfx in several games.
+[R. Belmont]
+
+Adds DIP port locations to Last Duel & Mad Gear sets. [Brian Troha]
+
+Added redumped vf3tb ROMs [Guru]
+
+Tokimeki Mahjong Paradise driver improvements:
+ - split tmmjprd / tmpdoki from rabbit.c as it uses the graphic chip 
+    in a very different way, and having them together was making it 
+    more difficult to make progress on [David Haywood]
+ - changed them to use custom rendering code instead of tilemaps, as 
+    they can address tile data at a sub-tile level, this fixes the 
+    girls in the intro [David Haywood]
+ - added inputs [Angelo Salese]
+ - added some notes about a hang, and possible reason [David Haywood]
+ - marked the graphic roms of tmpdoki as BAD as it appears to be 
+    using tiles which are not present in the tmmjprd roms for the 
+    title screen [David Haywood]
+
+ARM (26-bit): TST/TEQ should only update flags. This eliminates the 
+need for patches in poizone/ertictac, all deco32 games still run 
+(including hvysmsh), and it better matches the documentation.
+[R. Belmont]
+
+Updated the Led Storm Rally 2011 set with the new roms as per the 
+Guru's info. Marked this game as GAME_IPERFECT_GRAPHICS due to the 
+bad sprite ect. [Brian Troha]
+
+Corrected p911uc compact flash dump by Guru. [Angelo Salese]
+
+Added fade in/fade out effects for tmmjprd [Angelo Salese]
+
+Document the Pacman on Tecmo World Cup '90 hardware. Lists the roms 
+plus CRC32 / SHA1 in the comment section to prevent it from turning 
+up as a newly "found" game and to show users MAME is aware of it 
+existence. [Brian Troha]
+
+Add gun I/O board to Teraburst and hook up 68k/PPC comms. Not sure how 
+the guns are read yet but this fixes the CALL ATTENDENT immediate
+death and the game runs fine now. [R. Belmont]
+
+Changes to support address maps for arbitrary devices: [Aaron Giles]
+
+- Moved address_map array from cpu_config to device_config. Added MDRV
+  macros in the device for specifying address maps. Changed the memory
+  system to fetch the maps from the new location.
+
+- Moved the address-space related get_info constants to devintrf 
+  (including endianness). Removed space array from the CPU class 
+  header. Made the memory system much more device-neutral. Various 
+  other cleanups along the way.
+
+- Expanded address maps from 3 to 4. Moved ADDRESS_SPACE_PROGRAM/DATA/
+  IO constants to cpuintrf, as those names are really only applicable 
+  to CPUs. Added new ADDRESS_MAP_0/1/2/3 constants to identify address 
+  maps more generically.
+
+- Updated memory system to be more general about address map handling.
+  Added the concept of default address maps (in addition to the 
+  already existing internal memory maps). The difference between 
+  internal and default memory maps is that internal memory maps always 
+  override everything (including user-specified maps), but default 
+  memory maps simply provide a default that can be overridden.
+
+- Converted the okim6295 sound driver to use address maps for access.
+  By default, it defines a ROM address map that overlays its full
+  region. As a result, the validity checks require all okim6295 
+  regions to be at least 256k, unless you provide your own address 
+  map. Updated all regions to meet this requirement.
+
+- Updated the atarijsa code to use a custom address space for its
+  okim6295 accesses (which are banked on the first half and static on
+  the second half), as an example of configuring a device with a
+  custom address space.
+
+- For now, attempts to use okim6295_set_bank_base() will still work,
+  though banking for the okim chips should be moved to custom address
+  maps in the drivers eventually. The first time 
+  okim6295_set_bank_base() is called, it will install a banked memory 
+  handler over the region and use memory_set_bankptr() to change the 
+  base on subsequent bank switches.
+
+- Moved address map validity checks to be run for each device instead of
+  just each CPU.
+
+Removed PREDECODE_GFX compile flag, as the on-the-fly decoding seems
+to be working reliably. Deprecated the ROMREGION_DISPOSE flag, as 98% 
+of the use of it no longer is applicable with on-the-fly decoding, 
+and the remaining cases are difficult to identify among the others.
+[Aaron Giles]
+
+Documentation updates: [Kevin Eshbach]
+ * For Super Basketball adds the rom locations for those that were 
+    missing before and adds the jumper settings
+ * Documents the SEGA cpu part number for Future Spy and Super Zaxxon
+
+safarir: fixed colors and filenames, and added samples [Hau]
+
+Update Deniam driver YM3812 clocks to match recording. 
+[Lord Nightmare]
+
+Added comment about galaga.c bootlegs using 06XX emulation.
+[Fabio Priuli]
+
+Fixed Aqua Jet sample ROM loading [skeleton081983]
+
+Fixed a HD6309 core bug/typo in the divq_im opcode. [Romain Tisserand]
+
+Improved Jockey Club 2 driver organization: [David Haywood]
+ - added different machine drivers for the different sets.
+ - added an st0016 to the 'older hardware' machine driver, that's 
+    what the 'z80' rom on it is for (see st0016.c)  the newer 
+    hardware and bootleg don't use it.
+ - still waiting for proper gfx dumps
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Private [Uki, Yasuhiro Ogawa]
+Tokimeki Mahjong Paradise - Dear My Love [David Haywood, Angelo Salese] 
+Tokimeki Mahjong Paradise - Doki Doki Hen [David Haywood, Angelo Salese]
+Woodpecker (set 2) [Guru]
+Teraburst (1998/07/17 ver UEL) [Guru, Mark Frisbee]
+(Greyhound) Trivia (Questions Series 11) [Brian Troha, Dumping Union]
+
+
+
+New clones added
+----------------
+Millennium Nuovo 4000 (Version 1.3) [Tomasz Slanina]
+Millennium Nuovo 4000 (Version 1.6) [Tomasz Slanina]
+The Next Space (Japan, licensed to PIC) [Team Japump]
+Peter Pan [David Haywood]
+Knights of the Round (World 911127, bootleg) [David Haywood]
+Tehkan World Cup (set 3, bootleg) [David Haywood]
+International Toote II (World?) [David Haywood]
+SportTime Table Hockey (Arcadia, set 2) [Siftware]
+World Darts (Arcadia, set 2) [Siftware]
+Ninja Mission (Arcadia, set 2) [Siftware]
+Sidewinder (Arcadia, set 2) [Siftware]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pirati [Tomasz Slanina]
+Johnny Nero Action Hero [R. Belmont, The Dumping Union]
+Poly-Net Warriors [Uki]
+Sunset Riders (bootleg of Megadrive version) 
+  [Gatinho, Smitdogg, Dumping Union, David Haywood]
+The House of the Dead III [GDX-0001] [MAME Italia]
+Jockey Club II (2 sets) [David Haywood]
+Quake Arcade Tournament [Siftware]
+Turret Tower [Siftware]

@@ -1,0 +1,58 @@
+0.101u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mgcrystl093u3gre [Pierpaolo Prazzoli]
+lastmisn096u3gre, part 1 [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Fixed time stamp counter in the Pentium core. [Ville Linde]
+
+Fixed Z80 behavior on cold versus warm reset. [Frank Palazzolo]
+
+Fixed a number of games that were broken due to the recent memory system
+changes. There are still more problems to fix; continue reporting them.
+[Aaron Giles]
+
+Added support for logical mapping to the CPU interfaces and debugger. CPUs
+that have an MMU now need to support several new interface bits, including
+a logical address mask and page size for each address space, as well as a
+new translate function. There is also a new disassembler interface that
+should be used going forward, which will make it much simpler to keep the
+disassemblers standalone and not dependent on MAME functions for opcode
+accesses. Converted the i386 core to use the new interfaces. [Aaron Giles]
+
+Added MMU support to the non-drc MIPS3 emulator. Converted the Killer
+Instinct, Seattle, Vegas, and Hyper Neo-Geo 64 drivers to a proper physical 
+memory layout. Disabled the drc MIPS3 core until MMU support is added there 
+as well. [Aaron Giles]
+
+Added save state support to the S2650 CPU. [Aaron Giles]
+
+Got rid of gross banking hack in the T11 core. Updated Atari System 2 drivers
+to accommodate the lack of the hack. [Aaron Giles]
+
+Imported a number of memory handler conversion helpers from MESS, placed 
+them in memconv.h. [Aaron Giles]
+
+Cleaned up i386 disassembler to produce Intel-standard output. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Gouketsuji Ichizoku (Japan, bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Alpine Surfer [R. Belmont]
+Area 51: Site 4 [Ville Linde]
+Psychic Force 2012 [Ville Linde]
+

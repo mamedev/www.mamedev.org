@@ -1,0 +1,94 @@
+0.120u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+neodriv0117u3red [Hairu]
+kof10th0120u2yel [Robbbert]
+6800basedgames0120u2red [Curt Coder]
+mpatrol0120u2yel [Curt Coder]
+
+
+
+Source Changes
+--------------
+Cleaned up the inline assembly for both x86 and PPC, enabled the 
+mul32 family assembly stuff on 32-bit x86, and fixed some compiler 
+warnings on 64-bit GCC. In addition: [Vas Crabb]
+ * Provided single-precision reciprocal approximation code for 
+    PowerPC and x86 with SSE2.
+ * Filled in all other TBD functions in eigccx86.h for completeness.
+ * Conditionalised some code in eigccppc.h so that it isn't used 
+    when the compiler has 64-bit instructions available.
+
+Added static qualifiers and renamed symbols in MAME in an effort 
+to further tidy up the global namespace. Generally generic names were 
+targeted and some symbols that were both static and extern. Some
+specifics: [Atari Ace]
+ * K053247_ram was made static throughout and the existing 
+    K053247_export_config was used to obtain the value in xmen.c.
+ * The enums DS1991_STATE and DSP_TYPE were unused and were therefore 
+    removed. 
+ * Dead code in cps3.c and thayers.c was discovered and commented out.
+
+Made almost all input port definitions static. [Aaron Giles]
+
+Obsoleted the GAMEB macro, which is no longer necessary. [Atari Ace]
+
+Fixed casting issues in new inline validity checks. [R. Belmont]
+
+Some build-related improvements to the sound cores: [Atari Ace]
+ * The SCSP dependency on mame/drivers/stv.c was removed allowing it 
+    to built independent of the driver.
+ * The WAVE dependency on MESS code was made explicit, so it can be 
+    built independentally of MESS. 
+ * VOTRAX can now be built independentally of SAMPLES.
+ * The YM2612 core now can be built without including the YM3438 core.
+ * Unnecessary uses of BUILD_ and HAS_ macros have been removed.
+ * BUILD_ instead of HAS_ macros are used in 3812intf.c for 
+    consistency with the other fm cores.
+
+Added DIP locations to several SSV games (in ssv.c). [Vas Crabb]
+
+Corrected some errors in the SH4 core and implemented store queues 
+and the basics of DMA. Added a call to simulate dma transfers with 
+external devices. [Samuele Zannoli]
+
+Expanded polynew.c to support quad rendering. Converted midvunit.c
+over to using the new quad rendering, which fixes a number of 
+rendering issues that have plagued the driver since the start.
+[Aaron Giles]
+
+Added Z-clipping logic to polynew.c. Converted namcos22 over to using
+that code. Simplified namcos22 significantly, working in quads
+throughout the lower-level pipeline and then handing the results off
+to polynew.c. [Aaron Giles]
+
+Updated model3.c to use the new poly code, and changed much of the
+low-level implementation to make things easier. [Aaron Giles]
+
+Defined a couple of new functions in eminline.h: atomic_increment32
+and atomic_decrement32. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Every Second Counts [Philip Bennett]
+Treble Top [Philip Bennett]
+Quizvaders [Philip Bennett]
+
+
+
+New clones added
+----------------
+Extermination (Japan) [Corrado Tomaselli]
+Gang Busters (set 2) [Patrik Styrnell]
+Trog (rev LA5 03/29/91) [icronnya77]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Inquizitor [Philip Bennett]

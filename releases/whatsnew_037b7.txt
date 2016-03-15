@@ -1,0 +1,100 @@
+0.37 BETA 7
+
+-- FIRST, A WORD FROM OUR SPONSOR --
+
+Some time ago I (Nicola) mistakenly removed Lotto Fun because I thought it was
+a gambling machine. After some more careful evaluation, it is evident that
+this is a game of skill, therefore it is now supported again. This was my
+mistake and I apologize for that.
+
+As a reminder, the exclusion of gambling machines is purely technical, not
+moral or legal. Gambling machines are not video games, and just like MAME
+doesn't support mechanical pinballs (but it supports software pinballs), it
+also doesn't support gambling machines (but it supports games with a gambling
+theme). Both mechanical pinballs and gambling machines can be found in the
+same places where video games are; this doesn't make them all the same thing.
+The distinction between gambling machines and video games is not arbitrary:
+gambling machines usually require more money to play than a video game (e.g.
+10 tokens to start), and they have settings that allow the operator to decide
+how much of the money that comes in should come out. No amount of skill can
+improve a player's chances of winning: this is entirely predetermined by the
+machine.
+
+-- WE NOW RETURN YOU TO YOUR USUAL PROGRAMMING --
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Stars in Strider and Forgotten Worlds. [Nicola Salmoria, Tim Lindquist]
+
+- Fixed sprite/tile priority in Black Tiger. [Nicola Salmoria]
+
+- Fixed startup garbage in Vastar. [Zsolt Vasvari]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed the Pokey emulation so that the Tempest reset bug is fixed, this time
+  for real and forever. [Juergen Buchmueller]
+
+
+Source:
+-------
+
+- Important for porters: changes to the dirty marking system. The blitting
+  code was previously required to support two types of dirty marking: a
+  "correct" one, used for vector games, where only the screen portions marked
+  dirty during the current frame should be copied to the video card; and a
+  "wrong" one, relying on a hack, where the blitter was also required to
+  remember the dirty regions from *previous* frame, and copy those as well.
+  Only the "correct" one is left, which should somewhat simplify dirty
+  handling in the OS dependant code. Moreover, the code must not check for
+  VIDEO_TYPE_VECTOR to know whether to use dirty marking: it must check only
+  VIDEO_SUPPORTS_DIRTY, which is set for vector games.
+
+- Important for porters: the HAS_XXX constants for cpu and sound emulation are
+  no longer #defined in cpuintrf.h if they were not already defined. They are
+  set by the makefile (rules.mak). If you are not using that in your port,
+  you'll have to make sure that all constants are initialized somewhere.
+
+- Removed osd_led_w(); instead, an additional leds_status parameter is passed
+  to osd_update_video_and_audio(). Drivers now have to use set_led_status().
+
+- [DOS] The makefile now uses GNUs mkdir instead of the built-in one. If you
+  don't have mkdir you  can find it here:
+  http://www.simtel.net/pub/simtelnet/gnu/gnuish/gnufut21.zip
+
+- Added VIDEO_PIXEL_ASPECT_RATIO_2_1, this should be honored by the OS
+  dependant code just like VIDEO_PIXEL_ASPECT_RATIO_1_2.
+
+- Backdrops are handled by the core like overlays, specific support in the
+  drivers is no longer necessary. [Mathis Rosenhauer]
+
+
+New games supported:
+--------------------
+
+dozens of PlayChoice-10 games [Ernesto Corvi]
+Mahou Daisakusen [Yochizo]
+Shippu Mahou Daisakusen [Yochizo]
+Hot Pinball [Nicola Salmoria]
+Fantasia [Nicola Salmoria]
+New Fantasia [Nicola Salmoria]
+Miss World '96 Nude [Nicola Salmoria]
+Big Twin [Nicola Salmoria]
+World Beach Volley [Nicola Salmoria]
+Xexex [Olivier Galibert]
+Mag Max [Takahiro Nogi, Jarek Burczynski]
+Thief [Phil Stroffolino]
+NATO Defense [Phil Stroffolino]
+Super Invader Attack [Mike Coates]
+Buggy Challenge (preliminary, feedback needed) [Ernesto Corvi, Nicola Salmoria]
+Knuckle Joe [Ernesto Corvi]
+
+
+New clones supported:
+---------------------
+
+Winter Bobble (= Snow Bros) [David Haywood]

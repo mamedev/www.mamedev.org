@@ -1,0 +1,497 @@
+0.98
+----
+
+
+Source Changes
+--------------
+Nothing significant to report.
+
+
+
+0.97u5
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+srmp7077red [Luca Elia]
+skybump097u3yel [MASH]
+hachoo37b2gre [Mamesick]
+slipstrm097u4ora [Aaron Giles]
+outzone097u4ora [Aaron Giles]
+centiped097gre [Aaron Giles]
+goldnaxe097gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Significantly improved the 6-player version of X-Men. [David Haywood]
+
+Added very basic 68040 support to the 68000 core. [Ville Linde]
+
+Fixed row scroll in Thunder Fox. [Nicola Salmoria]
+
+Added hooks to support a future MMU in the PowerPC core. [Nathan Woods]
+
+Fixed DIP switches in Boogie Wings. [Brian Troha]
+
+Took another crack at fixing the compilation problems caused by using
+multi-monitor stubs on Windows. [Krick]
+
+Added Coin2 and fixeed some dipswitches in phoenix3, condor, griffon 
+and falcona. [Pierpaolo Prazzoli]
+
+Major cleanup of the Speed Ball driver: [Pierpaolo Prazzoli]
+- Cleaned up / converted to tilemap
+- Added coin counters
+- Added cocktail mode
+- Fixed priorities (probably they're not 100% right, because there still are 
+    some wrong priorities with a couple of pixel in the title screen.)
+
+Fixed visible area and tilemap scroll in Mug Smashers. [Pierpaolo Prazzoli]
+
+Included patch to zlib for buffer overrun bug. [Santeri Saarimaa]
+
+Abstracted memory interfaces and improved 53C810 SCSI emulation. 
+[Nathan Woods]
+
+Fixed scrolling in Mario Bros. [David Haywood]
+
+Cleaned up bank handling in Sega Multi-PCM sound core. [Aaron Giles]
+
+Connected Sega Multi 32 games up using the new System 32 code.
+[Aaron Giles]
+
+Updated memory maps for the MCR Chip Squeak Deluxe and Sounds Good boards.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Eagle Shot Golf [Luca Elia]
+Super Real Mahjong P7 [Luca Elia]
+Mobil Suit Gundam Final Shooting [Luca Elia]
+Gun Master [David Haywood]
+
+
+
+New clones added
+----------------
+X-Men (Euro 6 Players) [David Haywood]
+Pinball Champ '95 (new parent) [David Haywood]
+
+
+
+0.97u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+getstarb093u3gra [Mamesick]
+wintbob079u1gre [Mamesick]
+htchctch096u1gre [Mamesick]
+blswhstl36b16gre [Mamesick]
+offtwall097u3red [David Haywood]
+ppc096u1red [Ville Linde]
+akiss077u3 [Aaron Giles]
+gfxviewer097u1ora [Aaron Giles]
+gtmr097u3yel [Aaron Giles]
+mkla1097u1ora [Aaron Giles]
+okscreen097u2yel [Aaron Giles]
+topspeed097gre [Aaron Giles]
+yamato097u1gra [ShimaPong]
+
+
+
+Source Changes
+--------------
+Fixed v60 SBR handling to ignore the low 12 bits. This allows the hack in
+tp2m32 to be removed. [Aaron Giles]
+
+Adjusted volume balance in ddragon3, ctribe, mugsmash. [Mamesick]
+
+Added correct sound ROMs to World Class Bowling Tournament and Deluxe.
+[Brian Troha]
+
+Replaced old Outrun bootleg with a new dump that passes the ROM test and has
+proper ROM names. [David Haywood]
+
+More PowerPC improvements: [Nathan Woods]
+- Fixed exception handling; previously the MSR register was stored 
+  in EDX, and EDX is not preserved across the call to ppc_set_msr()
+- Implemented recompile_fcmpo()
+- Fixed certain rules in rules.mak (some said drc_ops.h instead of 
+  drc_ops.c)
+- Commented the MSR_* values
+- Moved BAT registers into their own structure
+- Added DSI and ISI exceptions (non-DRC core only for now)
+- Moved READ*/WRITE* functions into ppc_mem.c
+- Changed memory handling so that reading and writing are done 
+  through function pointers that can be changed at runtime (which would 
+  be useful if, say a MMU was implemented in the future :-))
+
+PSX/Namco System 12 improvements: [smf]
+- Added Tenkomori Shooting
+- Updated board notes from Guru.
+- Removed rom patches from the namco system 12 driver
+- Renamed sound program roms.
+- Added support for dma'ing incomplete blocks from MDEC
+- Added sprites x & y flipping
+- Caches the decoded tpage fields.
+- mask setting & dma setup updates status fields correctly.
+- reverse flag only has an effect on original GPU's.
+
+Yet another fix to the PowerPC counters, reimplementing them from scratch.
+[Ville Linde]
+
+Some improvements to the Model 2 driver: [Ville Linde]
+- Added the second SHARC
+- Fixed all the problems caused by the previous update
+
+Fixed incorrect test in sauro.c video system. [Pierpaolo Prazzoli]
+
+Improved Lethal Enforces sprites, allowing 2 sprite chips to be created.
+[David Haywood]
+
+Rewrote the System 32 mixer to support accurate implementation of the alpha
+blending modes. Sprite shadows and several other effects are still not yet
+implemented. And it's much slower than before. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Slipstream [Aaron Giles]
+Tenkomori Shooting [smf]
+
+
+
+New clones added
+----------------
+Gaiapolis (Europe ver EAF) [Brian Troha]
+Raiden DX (Metrotainment license) [Corrado Tomaselli]
+Mechanized Attack (US) [Highwayman]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+<unknown> Meyco game [Pierpaolo Prazzoli]
+
+
+
+0.97u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+irobot058gre [MASH]
+
+
+
+Source Changes
+--------------
+Added some sanity checking, and changed a printf() to logerror() to 
+intelfsh.c. [Nathan Woods]
+
+Made the DRC PowerPC core compilable when HAS_PPC403 is 0. [Nathan Woods]
+
+Improvements to Sega Model 3 [Ville Linde]
+ - Fixed a bug in the MPC106 emulation -> Star Wars Trilogy and Sega 
+   Rally 2 work
+
+Improvements to the PowerPC cores [Ville Linde]
+ - Rewrote the interrupt handling in the interpreter core so it matches 
+   the DRC core
+ - Fixed MCRXR instruction
+ - Fixed some timebase problems, so LeMans 24 is now working.
+
+Improvements to the MACS driver [Angelo Salese]
+ - Added some inputs to the MACS driver so that Yu-Jan works. Fixed the 
+   visible area in it.
+ - Also added a quick kludge for get Yu-Ka to work (Note: it's disabled by 
+   default).
+
+Fixed Oki frequency to match samples pitch on the pcb for Final Tetris.
+[Corrado Tomaselli]
+
+Fixed crash in the debugger when decoding instructions that were too long.
+[Aaron Giles]
+
+Fixed a number of problems with Eagle Shot Golf, removing several hacks from
+the SSV driver along the way. [Luca Elia]
+
+Decrypted tilemaps in Dark Mist and added info about missing proms.
+[Tomasz Slanina]
+
+Fixed minor bug in TIA emulation, taken from the MESS code. [Wilbert Pol]
+
+Renamed Hollywood Action to Action Hollywood. [David Haywood]
+
+Major video update to Taito F3 driver that amongst other things properly 
+implements zoom & column scroll according to how the hardware does it, 
+which not only fixes glitches in various games but allowed many hacks to be
+removed also.  Sprite & tilemap clipping is also implemented, as is
+proper priority mixing and alpha-blending on the vram and pixel
+layers. [Bryan McPhail]
+
+Fixed exception handling and task switching in the V60 core. [Aaron Giles]
+
+Add preliminary sound support for Action Hollywood. [Quench]
+
+Improvements to the PSX CPU core [smf]
+ - correct behaviour for a branch in a delay slot.
+ - added bios and syscall logging of all known functions & their parameters
+   (writing to file descriptor 1 or putchar will output to the console)
+ - fixed disassembly of gte instructions.
+ - fixed dismips.mak
+
+Did another overhaul on the PPC603 counters (timebase should increment 
+once every four core clock cycles and decrementer should decrement once 
+every four bus cycles). [Ville Linde]
+
+Namco System 2 updates [Brian Troha]
+ - Added Final Lap road clut prom to all Final Lap sets
+ - Made Final Lap 3 World the parent, new clone is finalp3j
+ - Added Final Lap's road clut to Four Trax (marked as bad_dump).. 
+ - Changed SWS sound rom to match the other sets (sws92 & sws93)
+ 
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Animalandia Jr. [Luca Elia]
+
+
+
+New clones added
+----------------
+Puzznic (Japan set 2) [Aaron Giles]
+Tant-R (Puzzle & Action) (Korea) [laugh, David Haywood]
+Raiden Fighters (Dream Island co. license) [Corrado Tomaselli]
+Raiden Fighters (US, Fabtek License) [Chris Hardy]
+
+
+
+0.97u2
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+intrepi237b13gre [Pierpaolo Prazzoli]
+robokid37b15gre [Pierpaolo Prazzoli]
+azurian060gre [MASH]
+gradius3094u5gra [Mamesick]
+
+
+
+Source Changes
+--------------
+
+* System 32 games are seriously under construction now. Do not report any
+bugs against them. The Multi-32 games are even more broken. [Aaron Giles]
+
+* Fixed Windows build so it works again on Windows 95. [Krick]
+
+* Added priorities, fixing 3rd level in The Combatribes. [Pierpaolo Prazzoli]
+
+* Updated the sound balancing in donpachi, manzinger, metmqstr and pwrinst2.
+[Sonikos]
+
+* Fixed video problems in ninjaw, which broke with the new colscroll addition.
+[Pierpaolo Prazzoli]
+
+* Changed OKI volume in midres to match real pcb. [Corrado Tomaselli]
+
+* Fixed protection in World Class Bowling v1.40 Tournament. [Brian Troha]
+
+* Fixed NES PPU video timing. [Andrew Church]
+
+* Fixed usage of change_pc() in PowerPC core. [Nathan Woods]
+
+* Improvements to the SHARC CPU core [Ville Linde]
+  - Correct IRQ handling
+  - Many more opcodes, including floating-point
+
+* Improvements to the Konami PPC games [Ville Linde]
+  - Fixed Gradius 4 data ROM mapping
+  - Fixed PPC/SHARC communications
+  - Fixed NVRAM protection on some games
+  - Stubbed out LAN interface
+
+* Fixed Space Raider graphics 100%. [Frank Palazzolo]
+
+* Correct colors in Pac-Man & Chomp Chomp. [Nicola Salmoria, Guru]
+
+* Cleaned up starfield code and fixed/added starfields to Space Raider, Zero
+Hour, and Red Clash. [Frank Palazzolo]
+
+* Reapplied fix for bad shadows in Dyna Gears. [Mamesick]
+
+* Fixed the way the VIA 6522 shift register was implemented to get rid of
+the previous hacky way. [Mathis Rosenhauer]
+
+* Fixed the remaining gfx problems in Championship Bowling. 
+[Pierpaolo Prazzoli]
+
+* Added code to flush error.log every time the debugger is entered.
+[Nathan Woods]
+
+* Implemented the MCRXR instruction in the PowerPC core. [Nathan Woods]
+
+* Added step in/out support to the v60 disassembler. [Aaron Giles]
+
+* Added support for character constants in the expression engine. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Final Tetris [David Haywood]
+
+
+
+New clones added
+----------------
+Turtle Ship (Japan) [Brian Troha]
+Ladybug (bootleg set 2) [Sonikos]
+Mr. Kougar (bootleg Set 2) [Sonikos]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+LeMans 24 [R. Belmont]
+
+
+
+0.97u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+wwfwfsta37b16gre1 [Pierpaolo Prazzoli]
+ddragon336rc2gre [Pierpaolo Prazzoli]
+cookrace093u2red [ShimaPong]
+ddragn2u077gre [Pierpaolo Prazzoli]
+starforc097gre [Aaron Giles]
+wotw094u3gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+* Changed v60 CPU to clock multiple cycles per instruction instead of requiring
+every driver to divide the clock; updated all drivers to use the correct clock
+speed. [Aaron Giles]
+
+* Made the expression engine in the debugger a little more generic to support
+its use in other tools. [Aaron Giles]
+
+* Began cleanup of the Sega System 32 driver. Things may not work as well as
+before; this will be fixed over time. Do not report bugs on it. [Aaron Giles]
+
+* Hooked up Pest Place redump, fixed dkong3b colors, and added support for Control
+Type dipswitch in Street Heat. [Pierpaolo Prazzoli]
+
+* Fixed vblank handling and some bad sprites in wwfsstar. [Pierpaolo Prazzoli]
+
+* Fixed missing speech in Hyper Crash. [MASH]
+
+* Some better understanding of the protecton in Dream World. Still not
+working. [David Haywood]
+
+* Moved gearshift display in polepos to debug-only build. [Mamesick]
+
+* Fixed sync rate in Demon World. [SUZ, Mamesick]
+
+* Fixed Z80 frequency in Toki bootleg. [Mamesick]
+
+* Added workaround for bad shadow sprites in Dyna Gear. [Mamesick]
+
+* Improved SAA5050 emulation for Malzak. [Barry Rodewald]
+
+* Added proper C-chip emulation to Operation Wolf. [Bryan McPhail]
+
+* Major update to Namco System 21 driver [Phil Stroffolino]
+
+  - Starblade is working with emulated master/slave DSPs.  Graphic updates
+  are a bit choppy; I believe there are 4 slaves and one master on the
+  real PCB, with work distributed across the slaves.  Some background
+  objects are still missing in Starblade - the giant "starships" in the
+  background of the first stage, for example (sprites are present showing
+  burning fires which are supposed to be superimposed on them).  The
+  "direct drawing" feature is used during the high score presentation;
+  colors are likely wrong, and there are missing graphics there as well
+  (hexagons).
+
+  - Solvalou works, but occasionally 3d graphics stop updating; press "A"
+  to unblock the pipeline and resume drawing them.
+
+  - The other System 21 titles are not working for various reasons. 
+  Solvalou needed cuskey support (used from the master DSP).  Cybersled
+  appears to use a different mechanism for uploading DSP code.
+
+* Fixed road colors in the Suzuka games. [Phil Stroffolino]
+
+* Added home/end key support in the history display. [Samuele Zannoli]
+
+* Added debugger suppot for the decrementer register in the PowerPC
+core. [Nathan Woods]
+
+* Implemented column scroll in TC0100SCN chip; used on (at least)
+Ninja Kids, Gun Frontier, Growl and Galemedes. [Bryan McPhail]
+
+* Added ADSP-21062 core and partially hooked it up for the Model 2B
+games. [Ville Linde]
+
+* Additional progress on the PowerPC DRC (faster), support for
+more exceptions, better support for the PPC internal serial ports.
+[Ville Linde]
+
+* Progress on the Konami PowerPC drivers [Ville Linde]
+  - Cleaned up and consolidated common hardware
+  - Hooked up ADSP-21062 and 3dfx chips
+  - Initial reverse-engineering work on the KS001005
+  custom 3D chipset in GTI Club
+  - Initial NVRAM values plugged in for many games. 
+  (They're used as a crude protection, similar to the
+  EEPROM on GV System).
+  - No games are playable or even show much yet, but
+  nearly all of them do pass POST now.
+
+* Fixed a minor bug in the SCSP timer handling. [Ville Linde]
+
+* Fixed memory leak in the cpu subsystem. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+N-Sub (upright) [Pierpaolo Prazzoli]
+Hana Kanzashi (Japan) [Luca Elia]
+Hana Kagerou [BET] (Japan) [Luca Elia]
+Mahjong Reach Ippatsu (Japan) [Luca Elia, bnathan]
+
+
+
+New clones added
+----------------
+Falcon (bootleg set 2) [Pierpaolo Prazzoli]
+Malzak II [Barry Rodewald]
+Battle Field (bootleg) [Pierpaolo Prazzoli]
+The Great Ragtime Show (Japan v1.5, 92.12.07) [David Haywood, NAmag]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Driver's Eyes [Phil Stroffolino]
+Winning Run [Phil Stroffolino]

@@ -1,0 +1,162 @@
+0.111u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+bitmapalloccore0111u4red [Aaron Giles]
+8080bw0111u4red [Zsolt Vasvari]
+sidvoice0111u4ora [Nathan Woods]
+pyramid0111u4red [James Wallace]
+dragngun0111u3gra [Canim]
+mitchelc0111u3gra [Luigi30]
+lockload0111u3gra [Canim]
+cobracom0111u3ora [Canim]
+
+
+
+Source Changes
+--------------
+Fixed a 6502 register naming bug, and fixed a size bug in the
+SC61860 disassembler. [Nathan Woods]
+
+Added built-in overlay layout for Crash. [Mr. Do]
+
+Added save state support to Gyruss. [Buddabing]
+
+Fixed missing sound interfaces from the MESS sound core merge.
+[Nathan Woods]
+
+Fixed several duplicated global variable names, removed unreferenced
+items from header files, and added header files for several drivers.
+[Atari Ace]
+
+Changed debug console code to use auto_malloc and to detect attempts
+at registering callbacks after initialization time. [Nathan Woods]
+
+Fixed kof2003 bootleg code to work on big-endian systems. [R. Belmont]
+
+Centralized some common Windows utility routines in new module
+winutil.c. [Nathan Woods]
+
+Cleaned up a few drivers to use input_port_dword_*_r. [smf]
+
+Cleaned up memory maps in the MPU4 and BFM drivers. Redesigned the 
+MPU4 code so that the DRIVER_INIT only needs to take an address in 
+the ROM for the lookup table for CHR generation to be done.
+[James Wallace]
+
+Updated built-in expat code to version 2.0. [Atari Ace]
+
+Fixed sound samples in Indian Battle. [Zsolt Vasvari]
+
+Added state saving to mhavoc. Also fixed sparkling vectors so 
+slowdowns and vector list overflows can be expected. It looks much 
+nicer, though. [Mathis Rosenhauer]
+
+Removed XORs from almost all CPS2 games in place of proper emulation
+of the encryption. [Nicola Salmoria]
+
+Added an assertion to prevent usage of pia_set_input_[a|b]() when 
+input reading callbacks are specified. [Nathan Woods]
+
+Fixed flip screen switch and changed COIN3 to SERVICE1 in the contra.c
+driver. [Canim]
+
+Cleand up and fixed DIP switches and inputs for the nmg5 driver.
+[stephh]
+
+Rewrote Z80 interrupt handling to avoid a bad bug in the post-EI
+interrupt signalling. [Aaron Giles]
+
+Added documentation to the esd16, afega, cave, unico, vamphalf, and
+yunsun16 drivers. [Brian Troha]
+
+Changed behavior in chdman so that a 0 sector size means the default.
+[Aaron Giles]
+
+Updated several video drivers (amiga, n64, ppu2c0x, psx, stvvdp2,
+tia, v9938) to use the new BITMAP_ADDR* macros instead of using the
+line[] array. [Nathan Woods]
+
+Some additional Midway 8080 B&W driver fixes: [Zsolt Vasvari]
+ - added PORT_CONDITION where needed
+ - added PORT_CONFNAME entries to the 3 baseball games and Space 
+    Invaders
+ - save state support for all games
+ - fixed typo and a bug with the Sea Wolf lamps
+
+Fixed a minor problem with sound clipping in the s14001a.
+[Lord Nightmare]
+
+Fixed PRNG noise in the TMS5110/5220 code and added signal wrapping
+to match the patent. [Lord Nightmare]
+
+Cleaned up usage of auto_bitmap_alloc() now that it is guaranteed not
+to fail. [Aaron Giles, Atari Ace]
+
+Added sound effects emulation to the Berzerk driver. [Aaron Giles]
+
+Fixed font aspect ratio on non-1:1 resolutions. [Aaron Giles]
+
+Added mechanism to cache a binary format of BDF fonts for improved
+loading speed. Also added a bit of progress when loading huge BDF
+fonts so that you know what's happening. [Aaron Giles]
+
+Removed gross TMS9928a configuration in place of more standard
+techniques. Updates the Cliffhanger and sg1000a drivers accordingly.
+[Aaron Giles]
+
+Added support for the custom Badlands commands to the LD-V1000
+emulation. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Dream World [David Haywood, Guru]
+
+
+
+New clones added
+----------------
+Multi 5 / New Multi Game 5 (Earlier) [Brian Troha]
+Bubble Bobble (bootleg with 68705) [David Haywood]
+Super Street Fighter II (World 930911) [Nicola Salmoria]
+Super Street Fighter II (Japan 930911) [Nicola Salmoria]
+Dungeons & Dragons: Tower of Doom (Euro 940113) [Nicola Salmoria]
+Super Street Fighter II Turbo (USA 940323) [Nicola Salmoria]
+Armored Warriors (Euro 941024) [Nicola Salmoria]
+Alien vs. Predator (Hispanic 940520) [Nicola Salmoria]
+Cyberbots: Fullmetal Madness (Euro 950424) [Nicola Salmoria]
+Marvel Super Heroes (Euro 951024) [Nicola Salmoria]
+Marvel Super Heroes (Japan 951117) [Nicola Salmoria]
+Marvel Super Heroes (Brazil 951117) [Nicola Salmoria]
+Vampire Hunter: Darkstalkers' Revenge (Japan 950307) [Nicola Salmoria]
+Street Fighter Alpha: Warriors' Dreams (Euro 950627) [Nicola Salmoria]
+19XX: The War Against Destiny (Japan 951225) [Nicola Salmoria]
+Dungeons & Dragons:Shadow over Mystara (Euro 960223) [Nicola Salmoria]
+Dungeons & Dragons:Shadow over Mystara (Euro 960208) [Nicola Salmoria]
+X-Men Vs. Street Fighter (Euro 961004) [Nicola Salmoria]
+Capcom Sports Club (Hispanic 970722) [Nicola Salmoria]
+Marvel Super Heroes Vs. SF (Euro 970625) [Nicola Salmoria]
+Marvel Super Heroes Vs. SF (Japan 970625) [Nicola Salmoria]
+Marvel Super Heroes Vs. SF (Hispanic 970625) [Nicola Salmoria]
+Marvel Super Heroes Vs. SF (Brazil 970827) [Nicola Salmoria]
+Marvel Super Heroes Vs. SF (Brazil 970625) [Nicola Salmoria]
+Vampire Hunter 2 (Japan 970929) [Nicola Salmoria]
+Vampire Savior (Hispanic 970519) [Nicola Salmoria]
+Marvel Vs. Capcom (Euro 980112) [Nicola Salmoria]
+Marvel Vs. Capcom (Asia 980123) [Nicola Salmoria]
+Marvel Vs. Capcom (Hispanic 980123) [Nicola Salmoria]
+Marvel Vs. Capcom (Brazil 980123) [Nicola Salmoria]
+Street Fighter Alpha 3 (Brazil 980629) [Nicola Salmoria]
+Street Fighter Zero 3 (Asia 980904) [Nicola Salmoria]
+Vs. Super Mario Bros. (alt) [Lord Nightmare]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Two Minute Drill [David Haywood]
+Super Don Quix-ote [Ernesto Corvi]

@@ -1,0 +1,395 @@
+0.30
+
+There have been some changes to the MAME licence, please check it in readme.txt.
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Swimmer (some corrupt graphics due to the lack of one ROM) [Brad Oliver]
+Astro Blaster [Mike Balfour]
+005 [Mike Balfour]
+Monster Bash [Mike Balfour]
+Space Odyssey [Mike Balfour]
+Frenzy [Brad Oliver, Keith Gerdes, Mirko Buffoni, Mike Cuddy]
+Exerion [Brad Oliver]
+Arkanoid (preliminary) [Brad Oliver]
+Pinball Action [Nicola Salmoria]
+Gauntlet [Aaron Giles]
+Gauntlet 2 [Aaron Giles]
+Food Fight [Aaron Giles]
+Bump 'n Jump / Burnin' Rubber [Kevin Brisley]
+Traverse USA [Lee Taylor, John Clegg]
+Circus [Mike Coates]
+Robot Bowl [Mike Coates]
+Track & Field / Hyper Olympic [Chris Hardy]
+Hyper Sports [Chris Hardy]
+Roc'n Rope [Chris Hardy]
+Circus Charlie [Chris Hardy]
+Super Zaxxon [Tim Lindquist, Nicola Salmoria]
+Future Spy (not working due to code encryption) [Nicola Salmoria]
+Major Havoc [Michael Appolo, Brad Oliver, Neil Bradley, Aaron Giles, Bernd Wiebelt]
+Colony 7 [Mike Balfour]
+Quantum [Paul Forgey, Hedley Rainnie, Aaron Giles]
+Mat Mania / Exciting Hour [Brad Oliver]
+Astro Fighter [Lee Taylor]
+Mikie [Allard Van Der Bas, Mirko Buffoni, Stefano Mozzi]
+Shao-Lin's Road [Allard van der Bas]
+Iron Horse [Mirko Buffoni]
+Sprint 2 [Mike Balfour]
+Sarge [Brad Oliver, Aaron Giles]
+Triple Punch [Nicola Salmoria]
+Vastar [Allard van der Bas]
+Break Thru [Phil Stroffolino]
+Fire Trap [Nicola Salmoria]
+Targ / Spectar [Dan Boris]
+Zoo Keeper [John Butler]
+Jumping Jack [Mirko Buffoni]
+Super Piero [Mirko Buffoni]
+10 Yard Fight (Vs. version) [Mirko Buffoni]
+Qix II [Mike Balfour]
+Space Phantoms [Lee Taylor]
+Rolling Crash [Lee Taylor]
+Cosmic Monsters [Lee Taylor]
+Make Trax [Mike Balfour]
+Armored Car [Mike Balfour]
+Minefield [Mike Balfour, Nicola Salmoria]
+Original, security chip version of the Sega G-80 vector games:
+  Space Fury
+  Zektor
+  Tac/Scan
+  Eliminator (2 and 4 players)
+  Star Trek
+  note that the versions previously supported have all been removed [Brad Oliver]
+Star Force (The real set. Note that the previous one has been removed.)
+  [Valerio Verrando]
+Mega Force (licensed version of Star Force) [Dave W.]
+Ghosts'n Goblins (Japanese) [Nicola Salmoria]
+Legendary Wings (Japanese) [Marco Cassili]
+Sidearms (Japanese) [Marco Cassili]
+Tempest Tubes [Valerio Verrando]
+Gunsmoke, Capcom copyright - note that I renamed the previous set
+  (Romstar license) "gunsmrom" [Nicola Salmoria]
+Gunsmoke (Japanese) [Marco Cassili]
+1943 Kai [Mirko Buffoni]
+Black Dragon (Japanese version of Black Tiger) [Mirko Buffoni]
+Donkey Kong Jr. (original Japanese) [Mirko Buffoni]
+Amidar running on Scramble hardware [Mike Coates]
+Crazy Kong (Alca bootleg) [Lee Taylor]
+Space Invaders Part 2 (Taito) [Lee Taylor]
+Mr. Du! [Lee Taylor]
+Tip Top (UK version of Congo Bongo) [Gary Walton]
+Super Pac-Man (Namco) [Gary Walton]
+Pootan (bootleg Pooyan) [Marc Vergoossen]
+Root Beer Tapper [Brad Oliver]
+Joust (White/Green) Note that the previous one has been renamed "joustr"
+  [Valerio Verrando]
+Joust (Green) [Marco Cassili]
+Joust (White/Red) [Marco Cassili]
+Robotron (Yellow/Orange)  [Valerio Verrando]
+Bubbles (Red)  [Valerio Verrando]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Accurate colors in Gunsmoke. [Paul Swan, Nicola Salmoria]
+
+- Colors in Super Basketball should now be correct for real (the opponent's
+  shirts weren't changing color in each level).
+  [Marco Cassili, Nicola Salmoria]
+
+- Accurate colors in Vulgus. [Pete Ground, Mirko Buffoni]
+
+- Background in Millipede [Brad Oliver]
+
+- Fixed sprites in Gunsmoke. [Nicola Salmoria]
+
+- Emulation of AVG sparkling bit (Tempest stars/fireworks) [Brad Oliver]
+
+- Fixed sprites and background in Sidearms. Colors should be correct as well.
+  There probably is another scrolling background missing.
+  [Nicola Salmoria]
+
+- A note about Zaxxon colors: we are aware that they are wrong. The reason is
+  that we are using the Super Zaxxon color PROM. As soon as we'll have the
+  correct Zaxxon color PROM, they will be fixed.
+
+- Better colors in Eggs [Petter Sjölund]
+
+- Appropriate blue background in Scramble, Super Cobra and other games
+  running on the same hardware. [Mike Coates]
+
+- Fixes to Star Wars brightness. [Bernd Wiebelt]
+
+- Added the background starfield to Bosconian. [Martin Scragg]
+
+- Slightly better colors in Locomotion. [Gonzalo Casas <gonzaloc@adinet.com.uy>]
+
+- Fixed character colors in Black Tiger [Michael Appolo]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Changed the way 8910 sound is updated: there's no longer a fixed "updates
+  per frame" value defined in the driver, instead the audio is stream is
+  generated whenever a chip register is written to (and at every vblank).
+  This improves sound quality in several games. [Nicola Salmoria]
+- Same change to the POKEY interface. [Aaron Giles]
+
+- YM2203 emulation not using the SoundBlaster OPL3 chip. This is more
+  accurate than the previous one, which used the SoundBlaster OPL chip,
+  however it is also slower. You can still revert to the old behaviour
+  using the -fm command line option. [Tatsuyuki Satoh]
+
+- YM2151 emulation. [Tatsuyuki Satoh]
+
+- Completely rewritten the 8910 emulator and interface. This affects a lot
+  of games, but the one which benefits more is Gyruss: it now plays many
+  sound effects which were missing. [Tatsuyuki Satoh, Fabrice Frances,
+  Nicola Salmoria, Pete Ground]
+
+- Full emulated sound in Gyruss. You can remove all the samples, they are no
+  longer needed. Also, music tempo should now be correct.
+  Due to the increased emulation overhead, it now runs slower than before.
+  To improve speed, you can use the new -sr option (see below) to lower the
+  sample rate. [Nicola Salmoria]
+
+- Cleaned up the SN76496 emulation, now it is similar to the 8910 one and all
+  games use Tatsuyuki's code. This affects several games, most notably the
+  Mr. Do! series. [Tatsuyuki Satoh, Nicola Salmoria]
+
+- 8039 emulator, and _emulated_ sound in Donkey Kong, Donkey Kong Jr.  and
+  Mario Bros. Since the boards also use discrete circuits to generate sound,
+  some samples are still needed to get complete sound support.
+  Also partial sound in Radarscope.
+  [Ron Fries, Dan Boris, Mirko Buffoni]
+
+- Sound (through samples) in Yie Ar Kung Fu [Phil Stroffolino, Kevin Estep]
+
+- Completely rewritten the Namco waveform audio subsystem. This gets rid of
+  some artefacts in pacMan (eating a ghost) and Ms Pac Man (eating dots
+  while a fruit is bouncing). [Nicola Salmoria, Aaron Giles]
+
+- TI TMS5220 emulator. This handles speech in Star Wars and other games.
+  [Frank Palazzolo]
+
+- Speech in Discs of Tron. [Aaron Giles]
+
+- Sound in Three Stooges. Actually the code had always been there, it just
+  had to be activated... [Fabrice Frances]
+
+- Music tempo in Scramble, Frogger, Amidar and derivatives should now be
+  correct [Frank Palazzolo]
+
+- Music in Spy Hunter, sound in Rampage. [Aaron Giles]
+
+- Sound in Qix. [Aaron Giles]
+
+- Sound in Super Basketball [Nicola Salmoria]
+
+- Sound in Rastan [Tatsuyuki Satoh]
+
+- Sound in Naughty Boy and Pop Flamer, using the Pleiads driver. Not very
+  good, but it's a start. [Brad Oliver]
+
+- Sound in Espial. [Brad Oliver]
+
+- Fixes to Missile Command. [Eric Anschuetz]
+
+- Music in Phoenix, via samples. [Brad Oliver]
+
+- Partial emulated sound in Bubble Bobble (only the YM2203 chip, therefore
+  only some sound effects - no music) [Nicola Salmoria]
+
+- Sound in Coors Light Bowling [Nicola Salmoria]
+
+- Better tempo and pitch in Blue Print [Alan J McCormick]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Fixed Asteroids [Brad Oliver]
+
+- Legendary Wings, Section Z, Espial, Black Tiger, Gunsmkoke. [Juan Carlos
+  Lorente]
+
+- Fixed Popeye. [Juan Carlos Lorente]
+
+- 1943. [Jeff Johnson]
+
+- Tac/Scan, Star Trek, pacmanbl, Red Ufo [Valerio Verrando]
+
+
+Other drivers changes:
+----------------------
+
+- A note about Tempest:
+  Several people complained that mouse control is reversed. This is not the
+  case. The more obvious place where this can be seen is the level selection
+  screen at the beginning: move the mouse right, the block goes right.
+  Anyway, you can now reverse the controls (see below).
+
+- Radarscope works. [Andy White]
+
+- Dirty rectangles support in Qix, all Williams games, Cloak & Dagger,
+  Berzerk, Arabian, Space Invaders & clones, Kangaroo, Space Panic,
+  Warp Warp. [Aaron Giles]
+
+- Some tweaks to dip switches in the Super Cobra / Lost Tomb / Rescue
+  driver. [James R. Twine]
+
+- Fixes to dip switches and input ports in several games. [Marco Cassili]
+
+- Space Panic supports rotation. [Mike Coates]
+
+- Fixed Invinco (it was missing a ROM) [Mike Coates]
+
+- Framerates in the Atari vector games should now be correct [Neil Bradley]
+
+- In Cloak & Dagger, the background bitmap is now aligned properly with the
+  playfield graphics, and boxes no longer get stuck at the corners of the
+  conveyors [Dan Boris]
+
+- Added the missing third button to Sidearms [Nicola Salmoria]
+
+- Spy Hunter displayes an extra line of text at the bottom indicating
+  the status of the lamps that were on the arcade machine. [Aaron Giles]
+
+- Fixed Bosconian crashing: This was the speech processor being used for a
+  protection check. [Martin Scragg]
+
+- Alternate controls in Defender and Stargate, to control the ship using the
+  standard 8-way directional controls instead of up/down/reverse/thrust.
+  Available only when the -cheat option is specified. [Maurizio Zanello]
+
+- Alternate controls in Battle Zone, Sarge, Defender and Stargate are
+  available only when the -cheat option is specified. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Right control and right alt work again. [Nicola Salmoria]
+
+- Enhancements to the analog input controllers emulation. Their keyboard
+  counterparts can be changed, the sensitivity adjusted, and the direction
+  reversed. This is all controlled by the analog setup menu. [Brad Oliver]
+
+- Support for true analog joystick input in games like Star Wars; moreover,
+  the whole range of joystick types supported by Allegro is now supported.
+  To handle that, use the new command line option -joy N, where N can be
+  0 - normal 2 button joystick
+  1 - CH Flightstick Pro
+  2 - Stick/Pad with 4 buttons
+  3 - Stick/Pad with 6 buttons
+  4 - dual joysticks
+  5 - Wingman Extreme (or Wingman Warrior without spinner)
+
+  Press F7 to calibrate the joystick. Calibration data will be saved in
+  mame.cfg. If you're using different joytypes for different games,
+  you may need to recalibrate your joystick every time.
+
+  Note that if you enable joystick support, games like Star Wars will work
+  ONLY with the joystick - mouse emulation will be disabled.
+  [Bernd Wiebelt]
+
+- When the -vsync option is specified, the program checks whether the video
+  mode is compatible with it (i.e. whether the video refresh rate is a
+  multiple of the target frame rate), and fails otherwise. Some sensible
+  default values for -vgafreq are built-in and automatically picked when
+  -vsync is requested.
+  It is also possible to successfully use -vsync with scanline video modes.
+  Note that for VESA modes you might have to configure your card in order
+  to make it use the 60Hz refresh rate.
+  [Nicola Salmoria]
+
+- Support for default configuration file. Start MAME with the -saveconfig
+  parameter, and the current configuration will be saved to mame.cfg,
+  becoming the default. You can still override the mame.cfg settings giving
+  parameters on the command line. [Valerio Verrando]
+
+- Modified the tweaked video modes to be as close as possible to 60Hz.
+  However please note that on some systems the new modes might not work,
+  while the old do. You can work around that by changing the line
+  syncedtweak=yes to syncedtweak=no in mame.cfg [Valerio Verrando]
+
+- The default directory for screen snapshots (F12) is now PCX instead of the
+  current directory, so make sure you create it or snapshots will not be
+  saved. [Valerio Verrando]
+
+- New command line options, -sr N, where N is the required audio sample rate,
+  and -sb N, where N is the number of sample bits (8 or 16).
+  For example,
+  mame gyruss -sr 22050 -sb 16
+  will use a 22kHz sample rate and 16 bits.
+  The -sb option currently doesn't change anything because none of the audio
+  subsystems support 16 bit samples.
+  [Nicola Salmoria]
+
+- You can keep the ROMs in a subdirectory called "ROMS", if you want to.
+  When loading ROMs for 'gamename', the program will look in these
+  directories in this order:
+  1) gamename
+  2) gamename.zip
+  3) ROMS\gamename
+  4) ROMS\gamename.zip
+  The same applies to samples, you can put them in a subdirectory called
+  SAMPLES - therefore separating them from the ROMs.
+  [Nicola Salmoria]
+
+- Samples can also be loaded from a common directory for variations of the
+  same hardware. For example, all Space Invaders clones will load samples
+  from the invaders directory. [Valerio Verrando]
+
+- In the DOS version, dirty rectangles are supported in all resolutions.
+  [Bernd Wiebelt]
+
+- Several changes to the cheat subsystem [James R. Twine, Marc Lafontaine]
+
+- Fixed bug in drawgfx() which caused Crazy Climber's big sprites to be
+  corrupted when horizontally flipped. [Vince Mayo]
+
+- New options, -record and -playback. They allow you to record, and later
+  playback, joystick input. Useful to document certain bug reports, or to
+  show your friends how good you are ;-)
+
+- New option -romdir which allows to specify a different directory where to
+  load the ROMs from. [Mike Balfour]
+
+- High score and configuration save now support ZipFolders/ZipMagic to
+  directly use .zip archives. If you want to use this feature, make sure
+  there are no HI or CFG directories, otherwise the files will be saved
+  there, not in the.zip archive. [Valerio Verrando]
+
+
+Source:
+-------
+
+- Now using Allegro 3.0 - this fixed problems 0.29 had under NT with mouse
+  enabled.
+
+- Integrated debugger. You must compile with MAME_DEBUG defined to activate
+  it. Start MAME with the -debug option, then press tilde to enter the
+  debugger. [Martin Scragg, John Butler, Aaron Giles]
+
+- cpu_setbankhandler_r() / cpu_setbankhandler_w() for better bank switching
+  support. The Williams drivers take advantage of it. [Tatsuyuki Satoh]
+
+- Removed samples field from the MachineDriver structure; added sound_prom
+  field to the GameDriver structure. [Nicola Salmoria]
+
+- Some changes to the 68000 emulator memory interface, and a new 68000
+  disassembler. Improved the 68000 cpu interface. [Aaron Giles]
+
+- Redesigned cpuintrf.c to be more modular and readable. [Aaron Giles]
+
+- added a cpu_reset() call so that a single processor can be reset during
+  execution; Gauntlet needs this to work properly. [Aaron Giles]
+
+- The 6502 supports bank switching via cpu_setbank(). [Aaron Giles]
+
+- Centralized dac.c for dac sound emulation. Several dirvers use it.
+  [Tatsuyuki Satoh]

@@ -1,0 +1,301 @@
+0.136u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03724: [Speed] mrdo: Incorrect XTALs cause for problems with 
+         refresh rate and game speed. (Tafoid)
+- 03706: [Sound] lastday, gulfstrm: Audio Regression (M.A.S.H.)
+- 03704: [Sound] evilston: Missing sound (M.A.S.H.)
+- 00993: [Crash/Freeze] sharrier: [debug] Crashes when a specific 
+         sample is being played during gameplay. (Phil Bennett)
+- 03692: [Crash/Freeze] kurikint: Service Switch error (M.A.S.H.)
+
+
+
+Source Changes
+--------------
+Fixed Dip Switches and Inputs (after verification of the Z80 code) 
+for 'scramblb', 'scramb2', 'bagmanmc', 'dkongjrm', 'rockclim' (also 
+updated memory map for this last game). [stephh]
+
+am29k: fix PPC GCC compile error [R. Belmont]
+
+Added Sega ID# for newly added version of INDY 500 and correct the 
+spelling of attract. [Brian Troha]
+
+minor information update for Viper 1 games in seibuspi.c. 
+[Brian Troha]
+
+Fixed disassembly of PDP1,TX0 and APEXC [Robbbert]
+
+Fix immediate crash on startup of GTK debugger. [R. Belmont]
+
+namcos11: use real C76 BIOS for audio and I/O 
+[R. Belmont, Olivier Galibert, Guru]
+
+Cleaned up comments refering to old driver names, and updated clone
+names in drivers from 0-K. [Tafoid]
+
+[APEXC] 1. Added pseudo PC register for the debugger, it will now 
+highlight the next instruction to be executed. 2. Added "normal" 
+addresses to disassembler output, so anyone can see the program flow. 
+[Robbbert]
+
+Sega misc wip: [Fabio Priuli]
+ - split dependences of system16 games from bootleg ones
+ - moved some .h files to includes/
+ - removed some unneeded include
+ - removed some dead code
+ - added driver data struct to segahang.c, segaorun.c, segas16a.c, 
+    sega16b.c, segas18.c, segaxbd.c & segaybd.c
+ - added save states to segas16a.c
+
+Fixed Dip Switches and Inputs (after verification of the Z80 code) for 
+'ozon1', 'ladybugg', 'vpool'. [stephh]
+
+Added driver data struct to system 16/18 bootlegs and removed most 
+unused code. [Fabio Priuli]
+
+Implemented reels in Treasure Island (Subsino), same as goldstar.c 
+[David Haywood]
+
+Converted Sega 315-5248, 315-5249 and 315-5250 custom ICs to be 
+devices and updated drivers accordingly. [Fabio Priuli]
+
+[PDP1] Display the PC in hex as well as octal. [Robbbert]
+
+Converted hornet.c to use the Konami 037122 device and removed the 
+old code. [Fabio Priuli]
+
+Converted gticlub.c, nwk-tr.c and zr107.c to use the Konami 001604 
+device and removed the old code. [Fabio Priuli]
+
+carjmbre.c - Added XTAL, corrected second z80 speed and added DIP 
+LOCATIONS for driver. [Tafoid]
+
+Improvements to Treasure Island: [Roberto Fresca]
+ - Added proper inputs.
+ - Added coin/keyin/keyout/payout counters.
+ - Limited the bet and coin pulses to avoid repeats and coin jams.
+ - Added complete coinage and keyin DIP switches.
+ - Added main game and double-up rates DIP switches.
+ - Added minimum bet DIP switches.
+ - Added maximum bet DIP switches.
+ - Added main game and double-up limit DIP switches.
+ - Added payout mode and auto take DIP switches.
+ - Added DIP locations as seen in the settings mode.
+ - Added demo sounds DIP switch.
+ - Created proper button-lamps layout.
+ - Added technical notes.
+ - Some clean-ups...
+
+Dumped IC1 from Giant Gram 2000 [Joerg Hartenberger]
+
+Fixed bonus game gfxs in Treasure Island (Subsino) [Angelo Salese]
+
+Fix os2 auto-detect [KO Myung-Hun]
+
+Preliminary Panasonic MN10200 CPU core and Taito ZOOM ZSG-1 sound 
+system [Olivier Galibert]
+
+Document FPGA-provided "ic1" data in gram2000 [Joerg Hartenberger]
+
+Implemented flip screen in Hanaroku [Angelo Salese]
+
+Fixed video emulation in Best League (World Cup version) 
+[Angelo Salese]
+
+Fix DISTRO=gcc44-generic make shortcut to use gcc-4.4 properly 
+(-V 4.4 does not work for linking) [couriersud]
+
+Minor changes for internal render debugger [couriersud]
+ - ui_input_frame_update is now global 
+ - moved element_component from rendlay.c to rendlay.h
+ - added ability to rendlay.c to define "container" components. These 
+    simply provide a render_container. 
+
+Added DEBUG_FLAG_OSD_ENABLED to allow coexistence of debuggers going 
+forward. Replaced all occurrences of OPTION_DEBUG in src/osd/* by 
+checking machine->debug_flags. Replaced all occurrences of 
+DEBUG_FLAG_ENABLED in src/osd/* by DEBUG_FLAG_OSD_ENABLED For the 
+time being, DEBUG_FLAG_OSD_ENABLED is default (set in mame.c).
+[couriersud]
+
+Fixed Dip Switches and Inputs (after verification of the Z80 code) for 
+'bongo', 'porter'. [stephh]
+
+Implemented Actel FPGA ID, used by some Naomi games for accessing a 
+special ROM check mode [Deunan Knute, Angelo Salese]
+
+Documentation update for Hotdog Storm, IE: The PCB ID number and tile 
+map chip info. [Brian Troha]
+
+Add and hook up ZOOM ZSG-2 skeleton [Olivier Galibert]
+
+Doesn't do much at the moment, but the increase in documentation value is
+significant (we're documenting the sample compression format, for one thing).
+
+New driver for Sigma B52 system. ACRTC implementation is a bit hacky 
+due to its preliminary emulation status. [Roberto Fresca]
+
+lethal.c - Verified clocks and vsync from orginal PCB 
+[Corrado Tomaselli]
+
+astrocorp.c update: [Luca Elia]
+ - Added frame buffer
+ - Fixed sprite list end, negative coordinates, wrap around
+ - Added battery backed RAM
+
+adp.c: hooked up (with a hack) gfx rom in hd63484 memory map [robiza]
+
+Hooked up coin input and start input in skattv. [robiza]
+
+astrocde.c - Fixed the Bonus Life dipswitch for gorf and clones. 
+It's state was inverted. [Tafoid]
+
+[I8255] Clear output lines to 0 on write to mode register, and float 
+input lines to 1. [Curt Coder]
+
+Simplified/combined MAME and MESS code: [Miodrag Milanovic]
+ - Moved compatibility validation into MAME core from MESS.
+ - Made GAME_NO_SOUND check done on MESS too.
+ - Removed MESS dependent checks
+ - Renamed GAME_COMPUTER_MODIFIED to GAME_UNOFFICIAL to mark 
+    unofficial hardware modifications
+ - Removed GAME_COMPUTER it is distinct by IPT_KEYBOARD
+ - Added GAME_NO_SOUND_HW (to mark that there is no sound hardware) 
+    and marked drivers in dotrikun.c, minivadr.c and tgtpanic.c as 
+    such
+ - Removed GAME_SHARE_ROMS flag and commented old check for 
+    duplicate ROM entries
+ - Moved natural keyboard support from MESS to MAME
+ - Moved OSD file functions and clipboard access functions into OSD 
+    core
+ - Significantly reduced the number of new OSD functions needed by
+    MESS [with couriersud]
+
+Fixed Dip Switches and Inputs (after verification of the Z80 code) for 
+'tazzmang'. [stephh]
+
+snes wip: [Fabio Priuli]
+ * added a couple of registers to snes_ppu struct 
+ * moved color blending (background & subscreen color 
+    addition/subtraction) at the end of the drawing process. 
+ * removed some unused (and not working anymore) debug code
+ * fixed the remaining debug functionalities
+ * moved colour struct to be another layer (simplifying some code)
+ * updated hires blending to work with two pixel at time. 
+ * fixed clipmasks with hires modes
+
+hng64 : Initial implementation of 0x10-sized palette pages for 3d 
+objects. This makes most environment colors correct in sams64. 
+[Andrew Gardner]
+
+[VIA6522] Read port A/B only if some pins are inputs. [Curt Coder]
+
+Fixed Dip Switches and Inputs (after verification of the Z80 code) 
+for 'dambustr' and clones. [stephh]
+
+Internal debugger using the mame rendering infrastructure [couriersud]
+ - added support for arbitrary number of containers for render_target
+ - added command-line parameter -debug_internal (-di) to use the 
+    internal debugger when in debug mode
+ - internal debugger supports all views except memory view
+ - added "Debug" view to layout/vertical.lay to create more place for 
+    debug views in vertical games.
+
+ NOTE: The colors are ugly. Font rendering needs improvement. There 
+ are no shortcut keys right now. There is still a lot of room for more
+ improvements. However, it works and does not depend on any ui 
+ toolkit. The interface has been designed to support displaying views 
+ programmatically e.g. from the ui. 
+
+ Short HowTo:
+  - Start MAME with "-debug -di"
+  - Console, register and disasm views will be shown. Place them by 
+     dragging the view on the title bar.
+  - Views can be resized by dragging the bottom-right yellow square.
+  - The view having the focus has a green background title bar.
+  - Hit "Tab" (IPT_UI_CONFIGURE) to show the menu.
+  - Console and disasm views support a very simple facility to 
+     support entering commands and addresses. Just start typing. 
+     Hit "enter" when finished.
+
+irobot.c - Added XTAL values from manual and hooked up to driver for 
+main/sound CPU.  [Phil Bennett/Tafoid]
+
+rungun: fix text tilemap lookup for big-endian targets. [R. Belmont]
+
+Added Intel 8021/8022 CPU types. [Curt Coder]
+
+irobot.c - Added/verified Dip Locations per manual and test mode.
+[Tafoid]
+
+Workaround for gcc-4.3 reporting a false warning on solaris: disable 
+-Werror for this file only. [couriersud]
+
+Cleaned up SDL OSD functions after merging in code from MESS.
+[couriersud]
+
+wrally.c - Added/verified DIP Locations for World Rally [Guru]
+
+Fixed long-standing (day one?) bug with ADPCM samples in Trojan / 
+Tatakai no Banka [Mamesick, Angelo Salese]
+
+Fixed Dip Switches and Inputs (after verification of the Z80 code) for
+'espial', 'espialu' and 'netwars". [stephh]
+
+Got Mortal Kombat 3 (bootleg of Megadrive version) to boot. Still
+missing some key inputs. [Mariusz Wojcieszek]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Midnight Resistance (bootleg with 68705) [IQ_132]
+Sexy Boom [Mariusz Wojcieszek]
+Treasure Island (Subsino) 
+   [Team Europe, Dumping Union, Angelo Salese, David Haywood, 
+    Roberto Fresca]
+Ghost Chaser Densei (SNES bootleg) [Tomasz Slanina, XingXing]
+Skill Drop Georgia 
+   [Luca Elia, Smitdogg, Brian Troha, The Dumping Union]
+Logic Pro Adventure 
+   [Guru, D. Beneke, snoopy, pongplaya, W. Belk, hap, S. S. Neilson, 
+    JacKc, The Dumping Union]
+Pachifever [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+INDY 500 Twin (Revision A, Newer) [Brian Troha, Dumping Union]
+Fantastic Journey (ver AAA) [Tirino73]
+Name That Tune (3-23-86) [Kevin Eshbach]
+E.D.F. : Earth Defense Force (bootleg) 
+   [Team Europe, Rene Single, Dumping Union] - not working
+Out Zone (set 5) [Corrado Tomaselli]
+Ghosts'n Goblins (World? set 3) [Corrado Tomaselli]
+Bagman (bootleg on Crazy Kong hardware) 
+   [Team Europe & Volker Hahn] - not working
+Magical Tonic / Magical Odds? [David Haywood] - not working
+Spiders (set 3) [Team Europe]
+Raiden (US, SEI8904 + SEI9008 PCBs) 
+   [tormod, Smitdogg, The Dumping Union, David Haywood]
+Asterix (ver AAD) [Luis "Datasat"]
+Pang! 3 (Euro 950601) 
+   [Gerald (COY), B. Sparks, Smitdogg, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mr. Kicker [krick, MrGoodwraith, Smitdogg, The Dumping Union]
+Crackin' DJ [Guru, R. Belmont]
+Joker's Wild (B52 system, set 1) 
+   [Roberto Fresca, Tomasz Slanina, Gerald Vanderick]
+Joker's Wild (B52 system, set 2) [Roberto Fresca, Tomasz Slanina]
+Joker's Wild (B52 system, Harrah's GFX) 
+   [Roberto Fresca, Tomasz Slanina, Gerald Vanderick]

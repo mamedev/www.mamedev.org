@@ -1,0 +1,163 @@
+0.144u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04556: [Interface] Changing INC and DEC inputs, results in .cfg file
+         issue (hap)
+- 04569: [Interface] Changing INC in UI menu changes DEC instead
+         (Olivier Galibert)
+- 04575: [Interface] [UI] Box no longer drawn around physical DIP
+         locations (Olivier Galibert)
+- 04574: [Speed] Many sets in snowbros.c: Graphic and gameplay
+         slowdown (Angelo Salese)
+- 04578: [Graphics] mwalk: Graphics corruption after a few seconds of
+         gameplay (Alex Jackson)
+- 04572: [Crash/Freeze] Many sets in dynax.c, royalmah.c: Failure to
+         boot/Hang at Post (Angelo Salese)
+- 04536: [Sound] flicky, flickys2: Z80 PIO issues causing missing
+         music (hap)
+- 03457: [Graphics] choplift: Choplifter (8751 315-5151) scrolling
+         problems (hap)
+- 04558: [Gameplay] wboy and clones: 'gameplay smoothness' issue (hap)
+- 04576: [Crash/Freeze] geebee, geebeeb, geebeeg: freeze when starting
+        the game (hap)
+- 04570: [Crash/Freeze] wof: Black screen (Brian Troha)
+- 04562: [Crash/Freeze] All sets in namconb1.c: Failure to boot past
+         post or disclaimer screen (Angelo Salese)
+- 04564: [Crash/Freeze] dwex, drgw3 and clones: Access Violation after
+         OK (Angelo Salese)
+- 04566: [Sound] rockragej, rockrage, rockragea: Stereo output is not
+         implemented. (Angelo Salese)
+- 04563: [Crash/Freeze] thedeep: Access Violation (Angelo Salese)
+- 03538: [Sound] salamand, lifefrce, lifefrcej, salamandj: Music is
+         too quiet in Salamander and Lifeforce (Fujix)
+- 04565: [Sound] salamand, lifefrce: Reversed Stereo (Angelo Salese)
+- 04559: [Documentation] m5draclb: The correct description is "Ooh Aah
+         Dracula Club (Barcrest) (MPU5)".
+- 04557: [Documentation] m5bankrl: The correct description is "The
+         Bank Roll (Barcrest) (MPU5)".
+
+
+Source Changes
+--------------
+Forte Card improvements: [Roberto Fresca]
+ * A lot of work on inputs.
+ * Added DIP locations.
+ * Lamps documentation and support.
+ * Added Lamps layout.
+ * Fixed and simplified inputs. Now Owner, Rental and Credits are
+    proper toggled service keys.
+ * Improved the button-lamps layout with the half and double addition
+    for betting in the gamble stage.
+ * Reverse engineering and partially documented the serial EEPROM
+    data.
+ * Added a clean default NVRAM and serial EEPROM.
+ * Added company and year notes.
+ * Added technical notes.
+
+Adjusted volume levels in nemesis.c to mirror observed levels from PCB
+recordings for Salamander/Lifeforce.  Partially addresses MT Bug #3538
+[Fujix]
+
+Various fixes to California Chase, it currently completes the POST
+[Grull Osgo]
+
+Fix to CD-I video code [fgs]
+
+Preliminary save state support to Naomi / AW / DC driver [Angelo
+Salese]
+
+Improved SN76477 interface. [Curt Coder]
+
+vigilant.c: fix reversed Demo Sounds dipswitch in kikcubic
+[Alex Jackson]
+
+Modernized MSM6242 RTC device [Angelo Salese]
+
+Added incrementing time to MSM6242 device [Angelo Salese]
+
+Added preliminary IRQ generation to the MSM6242, updated drivers that
+uses it accordingly and removed various related kludges [Angelo
+Salese]
+
+Capcom ZN-1, ZN-2 updates [Team CPS-1]:
+ * Confirmed and documented game board # for every set
+ * Properly fixed ROMs labels and locations to match real pcbs
+ * Marked MASK ROMs in ts2, ts2j as BAD_DUMP, current dumps don't
+    match real pcbs, added a note
+ * Replaced HR2-01M.3A in strider2 and clones with proper 32MBit dump
+    to match real pcb, 2nd half was cutted out
+ * Added a more accurate title description to some games
+ * Added some documentation notes to various sets
+ * Reordered all sets per release date
+ * Minor cleanups and fixes
+ 
+Properly hooked up MSM6242 device to Super Kaneko Nova System [Angelo
+Salese]
+
+Various avt.c progresses, it now properly shows some gfxs [Angelo Salese]
+
+Removed PC-based sound hack from Mirax [Angelo Salese]
+
+Fix for 8042kbc.c irq generation, now California Chase correctly
+accept keyboard inputs [Grull Osgo]
+
+Softlist support cleanup and addition of compatibility filtering
+[Miodrag Milanovic]
+
+Documented MCU ports in The Deep, doesn't work yet due of a MCS51 core
+bug [Angelo Salese]
+
+Some progresses with atamanot, got a garbled title screen and realized that
+the game is heavily protected [Angelo Salese]
+
+Added, and made Mr. Do! use the U8106 soundchip, which as far as I can
+tell is 100% identical to the sn76489 non-a, pending further testing.
+[Lord Nightmare, plgDavid]
+
+Added a note about pins held high on the Raiden 2 sound Z80. [Lord
+Nightmare, balrog]
+
+Converted gamtor.c to use the RAMDAC device [Angelo Salese]
+
+Hooked up VGA device to Photo Play [Angelo Salese]
+
+eeprom.c: Changed the 'erase' function to force all data bits of the
+specified address to 1s.  [Wilbert Pol]
+
+Other improvements to California Chase, it shows Windows 98 logo
+[Grull Osgo]
+
+Fixed VGA line compare register masking, makes Windows 98 logo to
+display correctly [Angelo Salese]
+
+Fixed irq ack in Itazura Tenshi [Angelo Salese]
+
+Merged dacholer.c and itaten.c drivers, fixes priority and sprite Y
+positions in Dacholer and Kick Boy [Angelo Salese]
+
+Added proper ROM labels for Taxi Driver [f205v]
+
+Various changes for Neo-Geo driver [Johnboy]:
+ * Marked quizkof MVS AND AES VERSION
+ * Cleaned up all labels (consistent for all protos now) for prototype
+    sets (in 99.9% of the cases the correct labels are not known) to:
+    proto_ID-XX.XX
+ * Identified product codes for viewpoint, savager and blazstar
+ * kotm2p m1/s1 parent/clone fix
+ * Documentation update
+ * Reflected changes in internal db to xml (except /* Plane x */ )
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Forte Card (Spanish) [Angelo Salese, Roberto Fresca, Rob Ragon]
+Itazura Tenshi [Team Japump!!!, Hau, Yohji]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Special Criminal Investigation (Tourvision PCE bootleg)
+  [Mariusz Wojcieszek, Clawgrip, Charles MacDonald, AUMAP]

@@ -1,0 +1,146 @@
+0.124u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01752: [Core] Warnings making standard .124u4 in GCC 4.3.0 (mingw) 
+       (Aaron Giles)
+00149: [Misc.] No error report for invalid BIOS setting. (Aaron Giles)
+01628: [Sound] bgaregga, bgareghk, bgaregnv, bgaregcn, bgaregt2: 
+       Sound broken (robiza)
+01757: [Graphics] fieldday, undoukai: Graphics Corruption. (robiza)
+00249: [Graphics] vangrd2: [possible] In cocktail mode, or when the 
+       flip screen dip is set, the score display is not flipped. 
+       (robiza)
+00506: [Graphics] marvins: Screen flipping isn't correctly supported 
+       (robiza)
+01744: [Graphics] gradius3, grdius3a, grdius3e: missing title text in 
+       intro (robiza)
+01747: [Graphics] dietgo, dietgoe, dietgou, dietgoj: A ToDo note no 
+       more needed into the driver. (robiza)
+01430: [Graphics] riskchal: Sprite-tile priority problem (robiza)
+01750: [Graphics] troangel, newtangl: Corrupt sprite graphics in game 
+       (robiza)
+
+
+Source Changes
+--------------
+snookr10 updates: [Roberto Fresca]
+ - Decrypted the apple10 tile matrix.
+ - Partially decrypted the apple10 color codes.
+ - Added encryption notes.
+ - Updated technical notes.
+
+Added DISCRETE_KEY_SALLEN_FILTER to discrete sound system. 
+[couriersud]
+
+Added discrete mixing and filtering to irem games using m52-sound-c 
+boards: mpatrol, travrusa. [couriersud]
+
+Proper implementation of the tile/sprite priorities in m90 driver.
+This fix priorities in quizf1, riskchal amd maybe more m90 games.
+[robiza, Corrado Tomaselli]
+
+Fix AY-3-8910/YM2149 and derivatives envelope handling. [couriersud]
+
+Funworld games: [Roberto Fresca]
+ - Fixed AY8910 volume to all games to avoid clips.
+ - Merge bigdeal and funworld machine drivers thanks to the AY8910 rewrite.
+ - Removed old unaccurate commentary about magiccrd tiles.
+
+De-hacked metro tilemaps. [David Haywood]
+
+Sandii' Games: [Roberto Fresca]
+ - Created a new machine driver for tenballs due to different memory 
+    map.
+ - Worked all the input ports from the scratch.
+ - Fixed the sound ROM_REGION.
+ - Added the oki6295 emulation to all games.
+ - Hooked output ports.
+ - Documented and calculated all bits related to lamps.
+ - Adjusted palette lenght to 256 colors.
+ - Totally decrypted the apple10 color matrix. Now colors are perfect.
+ - Created a new machine driver for apple10 due to encryption.
+ - Reverse engineering the code to complete the DIP switches.
+ - Added diplocations to DIP switches.
+ - Promoted snookr10, apple10 and tenballs to 'WORKING' state.
+ - Added game instructions & notes.
+ - Updated encryption & technical notes.
+
+NES/PlayChoice 10 changes: [Mariusz Wojcieszek]
+- added support for mapping rom and ram in PPU video memory space
+- added PinBot mapper (H board)
+
+All CMC italian games: [Roberto Fresca]
+ - Added TICKET and HOPPER buttons to allow payout through the SUPER 
+    GAME.
+ - Documented the featured SUPER GAME with complete instructions.
+ - Improved DIP switches to properly set the payout system.
+
+Changed the implementation of the cocktail mode in marvins.c.
+[robiza]
+
+Merged memory maps for tunhunt, tumblep, tugboat, trucocl, and truco.
+[Andrew Gardner]
+
+meritm driver updates: [Brian Troha, Tafoid]
+ - Consolidated, corrected and updated info
+ - Verified Megatouch IV program rom
+ - Corrected many rom names
+ - Add game revision to game name (IE: 9255-40-01 ROE)
+ - Added pals from Megatouch 6 to other sets as they all run on the 
+    same PCB
+ - Add the sound clock update from Tafoid
+
+Massive update to ROM naming in the CPS1 driver, also loading smaller 
+eproms for Japanese sets instead of the larger mask ROMs where 
+possible. Added information about B-Board revisions where possible. 
+There is still work to do on this regard but this is a first step in 
+untangling the mess. [Nicola Salmoria]
+
+Verified more CPS1 gfx ROM mappings against PALs. 
+[Nicola Salmoria, Corrado Tomaselli]
+
+Fixed another opcode in match it 2. [robiza]
+
+Converted the MSM6242 RTC into a proper device. [Dirk Best]
+
+Removed deprecat.h from debugger.h to prevent hiding modules that
+really needed to include deprecat.h. [Atari Ace]
+
+Added support for 8080/85 mode interrupts to the 8259 PIC.
+[Miodrag Milanovic]
+
+Verified a "not sure" opcode in bombrman. [robiza]
+
+Changed BIOS errors so that specifying an invalid BIOS is a warning,
+not a fatal error. Also re-allowed "default" as a BIOS setting with
+special meaning. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Quiz F-1 1,2finish [robiza]
+PinBot (PlayChoice-10) [Mariusz Wojcieszek]
+Snooker 10 [Roberto Fresca]
+Apple 10 [Roberto Fresca]
+Ten Balls [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Touch Master 3000 V5.02 [Brian Troha]
+Megatouch IV (9255-40-01-ROE) [Brian Troha]
+Dynasty Wars (US set 2) [Corrado Tomaselli]
+Final Fight (Japan 900112) [Chack'n]
+Street Fighter Alpha 2 (Euro 960229) [Razoola]
+Raimais (Japan / First Revision) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Forgotten Worlds (World?) [The Guru]

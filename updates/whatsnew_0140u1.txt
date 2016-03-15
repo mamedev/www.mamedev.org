@@ -1,0 +1,145 @@
+0.140u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04096: [DIP/Input] sjryuko: Most inputs do not work (Angelo Salese)
+- 02561: [Interface] Ability to choose a different name for the UI 
+         font (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Create new class osd_interface to house OSD callbacks. Added new
+module osdepend.c with default empty implementations. Changed
+mame_execute() and cli_execute() to accept a reference to an
+osd_interface which is provided by the caller. [Aaron Giles]
+
+Updated SDL and Windows OSD to create an osd_interface-derived class
+and moved their OSD callbacks to be members. [Aaron Giles]
+
+Make osdmini build again. [Aaron Giles]
+
+Discrete Sound - Added DISCRETE_XTIME_xxx logic modules.  These allow
+you to do logic operations on nodes that use x_time anti-alias info. 
+Added the ability to decode x_time to the DISCRETE_BIT_DECODE module. 
+This means you can have an oscillator pass x_time onto a counter, get
+the counter bits decoded, pass that through the new logic modules and
+also have them convert the x_time to energy/anti-alaised voltage. 
+Updated Donkey Kong Jr. to use these new modules. [Derrick Renaud]
+
+Convert rendfont to C++. [Aaron Giles]
+
+[SDL Debugger] Removed an unnecessary assert and brought focus back to
+the main debugger window on startup. [Andrew Gardner]
+
+Added support for OSD-generated fonts. The OSD is queried first to see
+if it owns a given font (based on the name), and if it does, it is
+responsible for generating bitmaps on the fly as characters are
+requested. [Aaron Giles]
+
+Added new option -uifont to specify the UI font. It can be set to a
+filename, in which case a BDF font will be loaded. It can also be set
+to a font name (assuming the OSD support is present), in which case
+the OSD font by that name is used. The default value is 'default'
+which can be used by the OSD to substitute a default font or by the
+OSD, which will default to ui.bdf as before. In all cases, it falls
+back to the built-in font by default if none of the previous options
+works. [Aaron Giles]
+
+  NOTE: On Windows, the OSD will default to Tahoma as the font name. 
+  Also on Windows, font names can be specified with [b] to indicate 
+  bold or [i] to indicate italic.
+
+Use "default" font for artwork elements as well. Make UI backgrounds a
+bit more opaque. Fix crash when passing NULL filename to OSD code.
+[Aaron Giles]
+
+Fixed and verified with Test Mode the few System 18 bootlegs located
+in the system16.c driver for Inputs and Dip Switches. [Tafoid]
+
+Discrete Updates [Derrick Renaud] 
+ * Removed old DISCRETE_74LS624 code and replaced it with new 74LS629 
+    based code. Updated Mario to use new DISCRETE_74LS624 and 
+    DISCRETE_XTIME_logic modules.
+
+C++-ified the cheat engine. [Aaron Giles]
+
+Naomi updates:
+ * Redumped Kick 4 Cash to fix bad dumps [f205v] 
+ * Completed dump of Neo Geo Battle Coliseum [Guru]
+
+i286.c: Moved call of i80286_urinit to CPU_INIT. Fixed display of PC
+in the debugger.  [Wilbert Pol]
+
+M6805: Add extremely preliminary 68HC05EG support. [R. Belmont]
+
+i80186/i80286: Fixed bound instruction restart when prefixed with a
+segment.  [Wilbert Pol]
+
+i286.c: Partially implemented protected mode. Fixed verw, verr, lar,
+lsl, and arpl instructions.  [Wilbert Pol]
+
+Atari Cops'n Robbers Updates [Derrick Renaud]
+ * Converted controls to Positional type. 
+ * Started Discrete sounds. (Motor 2 & 3, Crash sounds implemented)
+ * Added Motor 0 & 1, and Zings sounds. Zings sound not hooked up until 
+    address for Fires & Zings is found.
+
+Optimized speed of DISCRETE_DAC_R1 [Derrick Renaud]
+
+Converted the expression engine to C++, did the usual cleanup.
+[Aaron Giles]
+
+Neo Geo Changes: [Johnboy] 
+ * maglord/maglordh - Mixed up crc's, fixed 
+ * flipshot - Added correct p1
+ * kotm2 - Tagged MVS AND AES VERSION
+ * miexchng - Added correct c3/c4
+ * Updated game pcb info
+ * Continued to document mask ROM types
+
+Fixed crash in cubocd32/akiko [Mariusz Wojcieszek]
+
+Atari Cops'n Robbers Updates [Derrick Renaud] 
+
+Fixed operation of DISCRETE_COUNTER_7492 [Derrick Renaud]
+
+kofxi: Redumped mask ROMs due to error in TSOP70 adaptor [Cah4e3]
+
+Added UTF-8 constants for cursor key arrows, and accented characters
+on the Swedish/Finnish keyboard layout. [Curt Coder]
+
+Removed deprecat.h usage and rewritten irq routines in DJ Boy
+[Angelo Salese]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pit Boss Megatouch II
+  [Mariusz Wojcieszek, f205v, Smitdogg, The Dumping Union]
+Royal Card (TAB original) [Roberto Fresca]
+Janputer Special
+  [gamerfan, ranger_lennier, Smitdogg, The Dumping Union]
+Bygone
+  [Cananas, Mr. Do, S. Brown, J. Bijl,ranger_lennier, F. Xerri, Gor, 
+   Kevin Eshbach, Smitdogg, Tormod, Guru, Tomasz Slanina, 
+   The Dumping Union]
+
+
+New clones added
+----------------
+Mega Double Poker (conversion kit, set 2) [Roberto Fresca]
+Mahjong Neruton Haikujiradan (Japan, Rev. A?)
+  [Smitdogg, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Odeon Twister 2 [XoreX, Mariusz Wojcieszek]
+The King of Fighters XI (Cah4e3) [rbelmont]
+Shooting Star [Tomasz Slanina]
+Zero Gunner 2 [The Dumping Union]

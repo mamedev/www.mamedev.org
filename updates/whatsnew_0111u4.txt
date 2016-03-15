@@ -1,0 +1,205 @@
+0.111u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+simpbowl0110u2yel [R. Belmont]
+arcadiac0111u3yel [Ernesto Corvi]
+mcatadv0111u3gre [David Haywood]
+photoy2k0111u3yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added support for the Pioneer PR-8210 laserdisc player.
+[Ernesto Corvi]
+
+Added two new convenience macros for input ports: PORT_DIPUNUSED and
+PORT_DIPUNUSED_DIPLOC. [stephh]
+
+Updated DIP switches in the cave driver and added locations. [stephh]
+
+Improved DIP switches in sbrkout and converted "fake" DIP switches
+into configuration switches. [stephh]
+
+Improved DIP switches in Zero Hour. [Mike Ellery]
+
+Added DIP locations to the m90 driver. [Brian Oberholtzer]
+
+Unified the Forgotten Worlds driver with the cps1 driver and
+connected the OKI6295 pin control properly. [David Haywood]
+
+Modified the makefile to make it possible to independently specify
+symbols generation and optimization levels. [Atari Ace]
+
+Fixed system time counters in the Amiga code. [Ernesto Corvi]
+
+Major rewrite of the Midway 8080 black & white driver, separating it
+from the huge 8080bw driver and making the following changes:
+[Zsolt Vasvari, Derrick Renaud]
+
+  - 'True-to-hardware' emulation of the shifting circuits
+  - Identified and stubbed sound triggers
+  - Fixed DIP switches, where necessary (most games)
+  - Added DIPLOCATION to all switches
+  - Added watchdog
+  - Added coin counter
+  - Added lamp outputs to Sea Wolf, Guided Missile, Space Encounters,
+     Phantom II, Bowling Alley
+  - Added stereo sound to Gun Fight, Guided Missile, M-4
+  - Partial sound emulation in Tornado Baseball, Boot Hill,
+     Desert Gun, Double Play, Dog Patch, Blue Shark
+  - Properly emulated shifter circuit in Boot Hill
+  - Added gun recoil output to Desert Gun
+  - Added second set of analog controls to Clowns
+  - Fixed analog controls in Dog Patch
+  - Added SN76477 sound effect to Space Encounters
+  - Added non-memory mapped coin counters to Space Invaders,
+     Blue Shark, and Space Invaders II
+  - Added proper watchdog times to all the games
+  - Breadboarded the noise clocks and ensured their frequencies
+     were correct
+
+Added support for the lamp matrix to the video callback in the 
+Scorpion 2 driver, and updated lamps and inputs to better fit the 
+new UI. VFD support has been moved to a configuration switch, as 
+the output is actually always occurring - the switch mimics the 
+effect of plugging in or removing the VFD from the control point.
+[James Wallace]
+
+Improved sound output in the MediaGX driver. [Ville Linde]
+
+Preliminary emulation of the TSI S14001A speech synthesizer as found 
+in Berzerk/Frenzy (and also Stern pinballs).
+[Lord Nightmare, Kevtris, R. Belmont]
+
+Added missing linescroll effect to Magical Cat Adventure and 
+Nostradamus. It can be seen in action on the first levels of both 
+games. [David Haywood]
+
+Minor cleanup of mind-bending codce is the konamigx driver.
+[R. Belmont]
+
+Fixed crash in the Sega System 24 driver. [David Haywood]
+
+Added a validity check that input port names are valid UTF-8 strings.
+[Nathan Woods]
+
+Improved DIP switches in the tumbleb.c driver. [stephh]
+
+Added a large update to the legionna driver with much more 
+documentation on the protection and other updates. [Angelo Salese]
+
+Added cdp1869 video emulation to the Cidelsa driver. The games still 
+don't work due to timing and interrupt issues. [Curt Coder]
+
+Fixed crash in Tao Taido driver. [David Haywood]
+
+Made suprnova RLE rendering safe from out-of-bounds accesses.
+[David Haywood]
+
+Many improvements to the Midnight Landing driver, including partial
+sound, partial video emulation, and controls. Still not working,
+though. [Tomasz Slanina]
+
+Fixed TMS9928 so it recalculates the pattern mask when its 
+dependancies change so we don't end up in weird half-modes.
+[R. Belmont]
+
+Added support in the user interface to render all text assuming it is
+UTF-8 encoded. This means that UTF-8 encoded Unicode names can be
+used in in-game descriptions, etc. But first you will need a unicode
+capable BDF font. [Aaron Giles]
+
+Removed Vista build hacks from windows.mak as they are no longer
+necessary. [Aaron Giles]
+
+Removed hacky use of the 'depth' field of mame_bitmaps. Bitmaps are
+now allocated with an enumerated 'format' instead. This is internally
+translated into bits-per-pixel in a normalized way. Also removed 
+Machine->color_depth, which was often misused. [Aaron Giles]
+
+Added new macro BITMAP_ADDR that can be used for addressing into
+bitmaps. Removed the use of bitmap->line[] in the core code. The 
+line[] array will eventually be obsoleted, so stop using it.
+[Aaron Giles]
+
+Changed operation of plot_pixel, read_pixel, and plot_box. The first
+two are now inline functions and the latter just maps to fillbitmap
+via another inline function. [Aaron Giles]
+
+Added new required machine driver entry MDRV_SCREEN_FORMAT() which
+specifies the bitmap format for the screen. Removed the 
+VIDEO_RGB_DIRECT and VIDEO_NEEDS_6BITS_PER_GUN flags that used to
+determine the bitmap format implicity. [Aaron Giles]
+
+Deprecated the following obsolete machine driver entries:
+
+   MDRV_FRAMES_PER_SECOND -> MDRV_SCREEN_REFRESH_RATE
+   MDRV_VBLANK_DURATION   -> MDRV_SCREEN_VBLANK_TIME(TIME_IN_USEC(x))
+   MDRV_VISIBLE_AREA      -> MDRV_SCREEN_VISIBLE_AREA
+
+[Aaron Giles]
+
+Added a new mechanism for rendering the crosshairs on lightgun games.
+Crosshairs are automatically rendered if lightgun controllers are
+specified; the game no longer has to render them. Any other analog
+axis can be configued to use crosshairs via the new PORT_CROSSHAIR
+macro. Crosshairs are also now rendered in different colors for 
+different players, and done as an overlay using the new rendering 
+system instead of drawing into the game bitmap, which means they no 
+longer show up on screenshots. If you don't like the built-in 
+crosshairs, you can make your own. Just call them cross0.png 
+(player 1), cross1.png (player 2), etc. and place them in the root 
+of your artwork directory. [Aaron Giles]
+
+Changed F1 crosshair toggle. By default crosshairs are on for all
+configured players. Toggling once will turn them all off. Each
+sucessive toggle will enable one player at a time until all players
+are again visible. [Aaron Giles]
+
+Added support in chd.c for lossy compressors, computing CRCs and other
+hashes based on the decompressed output in those cases. Also added
+support for asynchronous reads/writes using the new osd work item
+interfaces. [Aaron Giles]
+
+Fixed several bugs in the Windows implementation of the osd work item
+interfaces. [Aaron Giles]
+
+Simplified the hard disk interfaces a bit. [Aaron Giles]
+
+Fixed several bugs and improved emulation of the Z80 SIO chip.
+[Aaron Giles]
+
+Improved behavior of the laserdisc code when seeking so it doesn't
+get "stuck". Added preliminary support for the 22VP932 laserdisc
+player. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Date Quiz Go Go (Korea) [David Haywood]
+Disco Boy [David Haywood, Stefan Lindberg]
+
+
+
+New clones added
+----------------
+Gain Ground (Japan) [Team Japump, Brian Troha]
+Dynamic Country Club (Japan) [Team Japump, Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cliffhanger [Ernesto Corvi]
+Goal To Go [Ernesto Corvi]
+Quick Jack [David Haywood, ClawGrip]
+Strip Teaser [David Haywood]
+Pango Fun (Italy) [David Haywood]
+Ganbare Chinsan Ooshoubu (MC-8123A, 317-5012) [David Haywood]
+Stelle e Cubi (Italy) [David Haywood]
+Space Ace [Aaron Giles]

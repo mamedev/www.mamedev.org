@@ -1,0 +1,138 @@
+0.132u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03250: [DIP/Input] empcity and clones: Credits are registering twice
+         (Luigi30)
+- 03309: [Crash/Freeze] All Sets in ojankohs.c: When game issues a 
+         sound/voice, the game crashes (Tafoid)
+- 03308: [Crash/Freeze] overdriv: Game Resets at "Ram Check" (Tafoid)
+- 03235: [Graphics] timecris and clones: Severe graphics corruption
+         (Skeleton081983)
+- 03299: [Core] tehkanwcc: double and wrong rom definition
+         (Roman Scherzer)
+- 03305: [Graphics] blockout, blckoutj, blckout2: The text in yellow 
+         on the "blockmaster" screen is corrupted (Fabio Priuli)
+- 00772: [Gameplay] burnforc: The powerup item is always "L" in mame.
+         (hap)
+- 02197: [Gameplay] rthun2, rthun2j, finehour: Black screen, game does 
+         not start (Phil Bennett)
+- 03298: [Compiling] Warning at devintrf.c:128 compiling with MSVC 
+         (Aaron Giles)
+
+
+
+Source Changes
+--------------
+DIPSW update [kanikani]
+ - fixed default setting of jjsquawk, marked the game as 
+    IMPERFECT_SOUND, and added some notes
+ - added DIPLOCATION for toypop and liblrabl
+
+Intel 8255A PPI:
+ - Added a new implementation of the I8255A device. Rewritten from 
+    scratch to properly support handshaking in modes 1 and 2.
+ - Refactored sg1000a.c to use the new implementation.
+
+Redumped Konami Viper CF and NVRAM for all games and updated drivers. 
+[Guru, Angelo Salese]
+
+Fixed Aqua Jet sample ROM loading offset again. [Phil Bennett]
+
+Fixed screen masking and left screen call drawing in tmmjprd.
+[Angelo Salese]
+
+Added hardware notes to the Quake Arcade Tournament driver. 
+[vidpro1, Andrew Gardner]
+
+Added mechanism for the laserdisc core to return 0 for the philips 
+codes if video is squelched. Updated the Gottlieb and Cliff Hanger 
+drivers to request it this way, since they decode externally.
+[Aaron Giles]
+
+Made a couple of minor tweaks to the Cliff Hanger driver. Fixed 
+interrupt timing (was not taking into account interlacing) to fix up 
+glitches in playback and ensure the disk test passes. Added SHA1 and 
+marked the game as working. [Aaron Giles]
+
+Promoted Final Lap 2 & Final Lap 3 to working since they just require 
+to init their analog controls (same sequence as Final Lap R).
+[Angelo Salese]
+
+Added basic support in bitmap.c for 64-bit indexed bitmaps. As a
+result, you will need a full recompile with this change, since the
+bitmap formats enum was altered. [Aaron Giles]
+
+Introduced new feature -burnin, which can be used to generate a PNG
+that represents the overall brightness seen during the course of
+running a game. This PNG can be used as a fake "bezel" that overlays
+the screen via the artwork systems (with a low alpha, say 0.1 or 0.2)
+to simulate running a game with a monitor that has been burned in
+from another game. [Aaron Giles]
+
+Fixed the -crsshairpath option to be spelled properly. [Aaron Giles]
+
+Made pr8210 serial processing a little more robust. [Aaron Giles]
+
+Fixed year for Mighty Monkey (and clones) based on US Copyright 
+Searches. [Braille]
+
+ARM7 updates [R. Belmont, Ryan Holtz]
+ - Prepped to support multiple architecture versions
+ - Added ARM9 CPU type (ARMv5TE)
+ - Added mostly-stubbed system coprocessor/MMU support
+
+Fixed resource leak in core_fload(). [Aaron Giles]
+
+Added flashv2.u30 (v2 bios) to the taitogn driver. [Joerg Hartenberger]
+
+Added IDE Lock mechanism to the IDE Driver in MAME, so games on gnet
+v2 bios are working correct now (idectrl.c / idectrl.h) & taitogn.c.
+[Joerg Hartenberger]
+
+Further improvements for Shogun Warriors: 
+[David Haywood, Tomasz Slanina]
+ -- decoded tables for several of the startup commands, made some
+   observations, was unable to properly decode table 0x80, second byte
+   scrambling is .. odd, so just using extract data right now.
+ -- properly mapped inputs in Shogun Warriors
+ -- decodes a block of data used by the Japanese version (fjbuster) 
+   for the character select screen. Basically block 0x40 is the same 
+   as mcu block/table 0x41, but using different encryption (inline 
+   encryption table + additional overlay table instead of each byte 
+   being bit shifted)
+
+Updated Jockey Club II notes. [David Haywood, Gerald]
+
+Verified Fruits & Bunny PROM. [f205v]
+
+Added new split tool that can be used for splitting giant files 
+with per-file hashes and without corrupting them. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Cliff Hanger [Aaron Giles, Warren Ondras, Ernesto Corvi]
+Cobra Command (M.A.C.H. 3 conversion) [Aaron Giles, Warren Ondras]
+Otenami Haiken Final (V2.07JC) [Joerg Hartenberger]
+Back Fire (Tecmo) [Tirino73, David Haywood]
+
+
+
+New clones added
+----------------
+Witch Card (german?) [Team Europe / Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Shootout Pool [f205v]
+Multipede [Angelo Salese]
+Cobra Command (Data East LD) [Angelo Salese]
+Road Blaster (Data East LD) [Angelo Salese]
+Time Traveller [Angelo Salese]
+Super Cherry Master [Team Europe / Dumping Union] (incomplete set)

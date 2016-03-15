@@ -1,0 +1,105 @@
+0.118u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cave0118u5red [Aaron Giles]
+radikalb0118u5red [Aaron Giles]
+chdrewrite0118u5red [smf]
+pacland0118u5yel [Aaron Giles]
+sspaceat0118u1red [Aaron Giles]
+yamato0118u5red [Aaron Giles]
+ym2203_0118u1yel [Aaron Giles]
+profiler0116u2yel (maybe) [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Updated TMS5220 core to use shifts instead of divides for the 
+parameter interpolation. Also added support for internal clamping to
+8-bit output when using the internal DAC. [Lord Nightmare]
+
+Fixed regression that caused CHD games to crash if the CHD was not
+present. Also fixed change that required write access to CHDs. [smf]
+
+Fixed CHD search paths again so that they look in parent 
+subdirectories. [Aaron Giles]
+
+Fixed security cassette contents to get Guitar Freaks 3rd Mix 
+(GE949 VER. JAB) in game. [smf]
+
+Exposed core_vfprintf(), and implemented mame_vfprintf() in terms of 
+that call. [Nathan Woods]
+
+Some improvements to the Wheels + Fire driver. Still not right.
+[David Haywood]
+
+Added SCSIOP_GET_INQUIRY_BUFFER to scsicd & scsihd. [smf]
+
+MB86233 core changes: [ElSemi]
+ * fixed a double move opcode
+ * added a previously unknown double move opcode
+
+Changed the way MAME handles options internally. Changed 
+mame_options_init() to return a core_options object, which is now 
+passed into mame_execute(). Moved mame_options() to mame.c, which is 
+now only valid while the emulation is running. Audit functions now 
+take a core_options parameter. [Nathan Woods]
+
+More HD6309 fixes: [Tim Lindner]
+ * the SEXW instruction not longer clears the overflow flag
+ * now generating an illegal instruction trap if invalid registers
+    specified for TFM
+
+Changed Windows message filtering to only apply to MAME game windows.
+[Nathan Woods]
+
+Improved graphics and cleaned up driver for srmp6. 
+[David Haywood, Tomasz Slanina]
+
+Made a cleanup pass through the new x86emit.h code emitters, changing
+the way memory is referenced and replacing macros with inline 
+functions. [Aaron Giles]
+
+Updated MIPS and PowerPC drc cores to use the new emitters. Removed
+the old macro-based ones in x86drc.h. [Aaron Giles]
+
+Added save state support to pacland. [Aaron Giles]
+
+Made -autoframeskip aware of the -speed setting. [Aaron Giles]
+
+Fixed stack buffer overrun in install_mem_handler() that broke the
+Hyperstone-based games under gcc 4.2.1. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Yukon [Al Kossow, Aaron Giles]
+Mega Man - The Power Battle [Nicola Salmoria, David Haywood]
+
+
+
+New clones added
+----------------
+Hard Times (set 2) [David Haywood]
+Scorpion (set 3) [David Haywood]
+Satan of Saturn (set 2) [David Haywood]
+Street Fighter Alpha 3 (Euro 980904) [David Haywood]
+Dimahoo (Euro 000121) [David Haywood]
+Crush Roller (bootleg) [David Haywood]
+Crush Roller (Sidam bootleg) [David Haywood]
+Moon War (Moon Cresta bootleg) [David Haywood]
+Port Man (bootleg on Moon Cresta hardware) [David Haywood]
+Turpin (bootleg on Scramble hardware) [David Haywood]
+Operation Wolf (World, set 2) [David Haywood]
+Star Force (encrypted, bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Astropal [David Haywood]
+Come On Baby [MooglyGuy]

@@ -1,0 +1,131 @@
+0.105u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+metmqstr0105yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Cleaned up the usage of includes/*.h files across the project, by
+ensuring that:
+ 1. All includes/foo.h files are annotated with comments describing 
+     the source of the declarations.
+ 2. Each source file so annotated also explicitly does an
+     #include "includes/foo.h" to ensure consistent definitions.
+Along the way a number of inconsistent, irrelevant, and incomplete
+declarations were removed/cleaned up. [Atari Ace]
+
+Moved calls to ui_set_visible_area() into set_visible_area() to work
+around timing problems when they are called at separate times during
+a single frame. [Nathan Woods]
+
+Updated CPS driver to more accurately draw tilemaps, based on
+evidence from a board with mixed ROMs. [David Haywood]
+
+Fixed crash bug in old debugger introduced in the last release.
+[Olivier Galibert]
+
+Added demo sounds DIP switch to Pig Newton. [Derrick Renaud]
+
+Fixed DIP switches in gunmast, batlbubl. [Brian Troha]
+
+Added simulated sound for tumbleb2 and pangpang. [David Haywood]
+
+Added accessors for the CA2, CB2 and IRQ signals on the 6821 PIA.
+[Nathan Woods]
+
+Accurate C-Chip emulation in Bonze Adventure to fix protection 
+problems (no more missing or made up data, all data extracted from 
+working pcb). [Bryan McPhail]
+
+Some cleanups to the Taito F3 naming. [Marco, Bryan McPhail]
+
+Fixed the Z80 PIO code to prevent an interrupt to occur between the 
+PIO_OP_MODE byte and mask which follows. According to the datasheet, 
+this is not permitted in hardware. [Robert]
+
+Added many FPU opcodes to the M68040 core. [Ville Linde]
+
+Fixed rom loading in all Taito JC games. [Ville Linde]
+
+Added TMS320C51 cpu core. [Ville Linde]
+
+Split out some of the Nintendo 64 core pieces into MESS-shareable
+modules. [R. Belmont]
+
+Removed hard linkage of game driver clones. This reduces hard 
+inter-driver dependencies and allows for easier usage of tiny.mak.
+[Atari Ace, Aaron Giles]
+
+Updates to the PGM driver: [El Semi]
+ - Corrected mask on sprite width parameter in sprite list
+ - Corrected decryption function for The Killing Blade
+ - Fixed GFX Rom loading in The Killing Blade
+ - Added set The Killing Blade (Taiwan?)
+ - Added some WIP protection simulation for The Killing Blade
+    (Taiwan?), game boots but at least one stage is broken
+
+Added $(OBJ)/%.s target to the makefile for easy disassembly
+analysis of generated code (you can also use the $(OBJ)/%.pp to
+examine preprocessor output). [Nathan Woods]
+
+Moved region and address space names out of the Windows-specific
+code and into more common locations. [Olivier Galibert]
+
+Fixed a bug with code comments that led to incorrect display for
+long comments. [Andrew Gardner]
+
+Added several missing H8 opcodes to the core and color DAC to 
+lastfght.c. [Tomasz Slanina]
+
+Changed -romident option so that it returns errorlevels based on how
+many ROMs were identified (0=all files identified, 1=all files except
+some non-ROM files identified, 2=some files identified, 3=no files
+identified). [Aaron Giles]
+
+Added stricter type checking for save state registrations (only works 
+in gcc). [Aaron Giles]
+
+Changed automatic ROM assignment logic in the memory system so that
+it doesn't auto-assign out-of-bounds ROM regions. [Aaron Giles]
+
+Changed memory save state registration so it doesn't register for
+saving memory areas that overlap memory regions. This means that 
+drivers which rely on extra memory regions for RAM will need to fix
+that before supporting save. [Aaron Giles]
+
+Modified a number of drivers that were using empty RAM regions for
+RAM or which had extraneous memory regions. Most significant changes
+were to the arcadia, nss, and stv drivers. [Aaron Giles]
+
+Added a warning during validity checks to point out empty memory
+regions. These should either be eliminated, or marked with an 
+explicit fill value (ROMREGION_ERASE00 or ROMREGION_ERASEFF) to clear
+the warnings. [Aaron Giles]
+
+Rewrote a large chunk of the Amiga emulation to support sound and
+additional video modes/effects including extra half-bright mode, 
+manual sprites, and mid-scanline changes. This is still a work
+in progress. [Aaron Giles]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pang Pang [David Haywood]
+Crazy Fight [Luca Elia]
+Puzzle King (Dance & Puzzle) [Pierpaolo Prazzoli]
+Fighter's History [Bryan McPhail]
+Sex Triv [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Battle Bubble [f205v, Corrado Tomaselli]
+Bonze Adventure (World, Older) [Bryan McPhail]
+Fantasia II (set 2, less explicit) [HIGHWAYMAN]
+The Killing Blade (Taiwan?) [El Semi]

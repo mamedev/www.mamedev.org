@@ -1,0 +1,512 @@
+0.91
+----
+
+Fixed pengo (was broken in u4) [smf]
+
+Increased interleave in megasys1 driver, fixing speed in avspirit [David Haywood]
+
+Fixed a problem in palette_get_color() causing an incorrect value to be returned
+in some specific cases [Nicola Salmoria]
+
+Fixed kaneko16.c which was broken in u4 [Sebastien Volpe]
+
+Debugger enhancements [Nathan Woods]
+	src/debug/debugcmd.c:
+	src/debug/debugcpu.c:
+	src/debug/debugcpu.h:
+	src/debug/debughlp.c:
+	src/debug/debugvw.c:
+	    - Adds a 'source' command, that reads in a set of debugger commands 
+	      similar to the UNIX shell command of the same name
+	    - Added a debug_trace_printf() call, for use during debugging to 
+	      emit text into a trace file
+	    - Petty compiler warning fixes
+
+Kludged reset in Crystal System so it no longer crashes Mame [ElSemi]
+
+Memory System update with improved mirroring support [Aaron Giles]
+
+Removed obsolete orientation code from tilemap code and drivers [Aaron Giles]
+
+Sega update [Aaron Giles]
+	segas16a:
+	* added proper mirroring for the memory map (needs my memory update)
+	* fixed sense of Time Scanner cocktail DIP
+	* fixed SDI
+	
+	segas16b:
+	* fixed sense of Time Scanner cocktail DIP
+	* fixed SDI
+	
+	machine/segaic16:
+	* added support for 3 multiply chips and 3 divide chips
+	* fixed timer/compare chip implementation to match real PCB
+
+	vidhrdw/segaic16:
+	* added tilemap flipping support
+	* added sprite flipping support for 16A and 16B sprites
+
+Changed outrun and outruna to use a better set of GFX roms [David Haywood]
+
+Fixed some NeoGeo G FX bugs [A nonymous]
+
+Fixed some vasara2 dipswitch text [Mamesick]
+
+Fixed popeye crash + water colour [Nicola Salmoria]
+
+Fixed vs. Wrecking Crew colours [Roberto Gandola]
+
+Improved workaround for hang bug in tnzs [Nicola Salmoria]
+
+Improvements to PPC core / Model 3 driver [Ville Linde]
+	some step 2.0 games now show something
+	
+MC68HC11 CPU core [Ville Linde]
+
+Lethal Enforcers update [R.Belmont]
+	Fixes/resolves:
+	- Both versions now boot and run
+	- Tilemaps and sprites display
+	- Sound now works
+	- Memory maps unified
+	- All digital inputs added (including DIPs)
+
+	Still to do:
+	- Colors
+	- Gun inputs
+	- Tilemap enable/disable
+	- Priorities
+	- K054000 protection chip hookup
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Dacholer [Pierpaolo Prazzoli]
+Kick Boy [Pierpaolo Prazzoli]
+	both are missing proms (causes bad colours) and lack sound
+
+clones
+------
+
+Clash Road (Status License) [Steve Rice, Pierpaolo Prazzoli]
+Golden Axe RODA (Japan) [Tormod Tjaberg]
+Thunder Cross (World?) [Andreas Thorsén]
+PushMan (Korea) [Andreas Thorsén]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Tarzan (IGS)
+	no work been done on it, might be gambling
+
+Magical Tetris Challenge
+Eleven Beat
+	these are n64 based, skeleton driver only with board layouts, maybe
+	more useful to n64 emulator authors.
+
+See See Find Out [Tomasz Slanina]
+	mostly ok, but sometimes pauses
+
+
+0.90u4
+------
+
+Sega Update [Aaron Giles]
+	drivers/segahang.c:
+	* connected rowscroll/colscroll controls, though I don't think anyone uses them
+	* upped YM2151 mixing volume, as suggested by Arbee
+	* made all the 6844 dumps verified
+	
+	drivers/segaorun.c:
+	* noted that the break LED no longer functions
+	* upped YM2151 mixing volume
+
+	drivers/segas16a.c:
+	* improved the way custom I/O controls work internally
+	* rewrote the N7751 path so that it is properly triggered and better described
+	* added support for mjleague controls
+	* added support for sjryukoa controls
+	* hooked up DIP switches for timescna
+	* connected up the watchdog (some games use it, some don't)
+	* removed unused controls from all games' input lists
+	* upped YM2151 mixing volume
+
+	drivers/sega16b.c:
+	* improved the way custom I/O controls work internally
+	* added support for sjryuko controls
+	* hooked up DIP switches for timescn
+	* upped YM2151 mixing volume
+
+	drivers/segas18.c:
+	* added P3 start button to desertbr
+	* included 317-0184 dump in ddcrewb
+
+	drivers/segaxbd.c:
+	* upped YM2151 mixing volume
+	
+	vidhrdw/segaic16.c:
+	* cleaned up tilemap handling using the new user_data feature
+	* added pixel-accurate scaling to System 16B sprites
+	* based on this knowledge, tweaked Hang On, Space Harrier, and 16A sprite systems
+	* fixed documentation on Hang On/Space Harrier road chip
+
+	vidhrdw/segas18.c:
+	* fixed memory leak
+
+FD1089 update [Nicola Salmoria, Charles MacDonald]
+	Improved decryption logic
+	Added complete table for Enduro Racer
+	Added more data to Super Hang On Table
+
+Increased the amount of adjustable memory banks from 24 to 32. [Nathan Woods]
+
+ST-V Update [Angelo Salese]
+
+	-Started to work with the A-Bus protection,it is a sort of data transfer with the
+	 cartridge area,more info in the stv.c file.
+	 Current implementation just fixes character selection screens in sss,I will work out
+	 about this one in the future,it has various "interesting" issues which was thought
+	 to be emulation probs(i.e booting in rsgun,textures in elandore etc.).
+	
+	-Added a preliminary timer 1 irq handling,it fixes pblbeach booting but it doesn't
+	 work yet because of incomplete VDP-1 emulation.
+	
+	-Noticed that ignoring VDP-1 long word access read by SH-2 isn't correct and not
+	 needed (because sss is protected rather than using an illegal procedure),it was
+	 causing wrong graphics in fhboxers & boot errors in pblbeach,reversed it back to
+	 default.
+
+Added missing Player 2 controls to Space War (Leijac) [Steve Ellenoff]	
+
+Pacman Driver Update [Dave Widel]
+	Sets added:
+	
+	jumpshtp: prototype from PokeMAME
+	vanvanb:  bootleg but it looks earlier.
+	sprglobp: Not sure if this is the official set, or an accidental merged set with
+	          the glob.
+	ctrpllrp: I consider this sig. since it came in it's own cab, and they did change
+	          some of the music.
+
+	Other changes:
+	
+	Added full memory map, this should fix the ending of Ms Pac.
+	Added a jumpshot dip.
+	I didn't remove any sets, but I mentioned which of them are junk imo and why.
+
+Pacman Driver Update [smf]
+	* pacman/pengo/jrpacman use the same tile/sprite decode, palette decode & sprite
+	  rendering
+	* renamed pengo sound & video hardware to pacman as it was used their first.
+	* converted to use tilemaps
+	* merged memory maps
+	* added rom mirroring to pacman & moved any game that needs another rom into 
+	  another map.
+	* tidied up the mirroring in the S2650 games.
+	* grouped the GAME() lines by hardware and then year.
+	* moved jrpacmbl back into pengo.c
+
+Emulated protection in Golden Axe ROTD [Charles MacDonald, David Haywood]
+
+Fixed 65816 dasm error [Nathan Woods]
+
+Minor Debugger Fix [Nathan Woods]
+	Removed the VK_HOME and VK_END cases for the WM_KEYDOWN event.  As far as I can
+	tell, the default action does the trick, and additionally, Shift+Home and
+	Shift+End are also handled correctly. 
+
+Added standard set of Mahjong Inputs [Aaron Giles]
+
+Arcadia Update [Mariusz Wojcieszek]
+	- changed driver to use multi bios setup
+	- added support for TenPlay bios (from 10 games board)
+	- added proper Kickstart 1.3 image (256k instead of 512k)
+	- reverted ar_sdwr to 0.5MB chip ram, and made blitter to discard 
+	  writes above chip ram
+
+Operation Thunderbolt Update [Nicola Salmoria]
+	- verified and coumented from schematics
+	- emulated external volume and panning control
+	- added othundrj (region byte change)
+	- fixed garbage graphics on startup with a kludge (othunder074u1gre)
+	- also fixed wrong plane graphics at the end of the game (othunder074u1gre3) 
+	  but I have no idea how! I completed the game three times and it's not doing 
+	  it anymore.
+
+Tilemap Update [Aaron Giles]
+	Added a user_data field for tilemaps. You can call tilemap_set_user_data() to
+	set this field internally in the tilemaps. Before  rendering, this value will
+	be copied into the (new) global  tile_info.user_data field, so that your
+	tilemap callback can use it
+
+Kaneko update in preparation for data from Blood Warriors [Sebastien Volpe]
+
+Preliminary decryption of Shisensho II [Pierpaolo Prazzoli]
+	note: still being worked on
+
+Erotictac driver update [Tomasz Slanina]
+	Few changes to video hw and interrupts.
+	Added timer.
+	Gameplay speed should be ok now, as well as title animation
+	and attract mode speed.
+	Added few notes about sound.
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Sukeban Jansi Ryuko [Aaron Giles]
+
+clones
+------
+
+Shot Rider (new parent, without Sigma license) [Pierpaolo Prazzoli]
+Jump Shot Engineering Sample [PokeMAME]
+Van Van Car (bootleg) [Dave Widel]
+Super Glob (pacman HW) [Dave Widel]
+Caterpillar Pacman [Dave Widel]
+DD Crew (Euro, 2 players) [Andreas Thorsen, Thierry]
+Operation Thunderbolt (Japan) [Nicola Salmoria]
+
+
+0.90u3
+------
+
+Sega Update [Aaron Giles]
+	Changes:
+	- hangon, sharrier, and enduror now have accurate road and sprite scaling
+	- renamed shangonb to shangupb to indicate it is an upgrade bootleg
+	- added Gerald's latest Super Hang On sets as shangonb, shangonc
+	- fixed graphics in Sukeban Jansi Ryuko (both versions), but no controls yet
+
+Added support for a new command line  parameter, -screen, that specifies which screen
+to draw on (if the user has more than one) [Chris Kirmse]
+
+Sound Updates [Derrick Renaud]
+
+	* Added filtering circuit to sound\namco52.c and
+	converted it to stream based.
+	* bosco, galaga, polepos, xevious - added proper
+	filters to Namco52 sample player.  Adjusted relative
+	effect volumes per schematics.
+	* polepos - added proper filters to engine sound.
+	* fixed gain in asteroids etc. broken in 0.90
+	* montecar - added proper filter to crash sound
+	* bsktball - converted to component value code
+	* abaseb   - corrected component values for crowd
+	 filter
+	
+Removed Starfield in Tazzmania bootleg (it doesn't have one) [Pierpaolo Prazzoli]
+
+Added conditional dips to Battle Garrega [Barry Rodewald]
+
+Arcadia Update [Mariusz Wojcieszek]
+	- changed video update to be scanline based
+	- improved sprites rendering, fixed sprite clipping
+	- added hold-and-modify display mode
+	- changed ar_sdwr to use 1MB chip ram, this needs more investigation
+
+Fixed Vrender0 sound broken in u2 [Lawrence Gold]
+
+Fixed some PPC core compiler warnings [Lawrence Gold]
+
+Added some missing SHA1s [Steve Ellenoff]
+
+Cleanups in the Rastan driver, derived from schematics [Nicola Salmoria]
+	ADPCM is now played through a MSM5205
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Erotictac [Tomasz Slanina (colour fix by Nicola Salmoria)]
+	runs at incorrect speed, some gfx issues
+
+SportTime Table Hockey (Arcadia) [Mariusz Wojcieszek]
+Sidewinder (Arcadia) [Mariusz Wojcieszek]
+Space Ranger (Arcadia) [Mariusz Wojcieszek]
+
+clones
+------
+
+Top Racer (set 3) [Steve Ellenoff]
+Ant Eater (GB set) [Pierpaolo Prazzoli]
+Super Hang On (2 new sets) [Aaron Giles]
+Great 1000 Mile Rally 2 USA [David Haywood]
+Neogeo Bios (Japan S1)
+
+
+0.90u2
+------
+
+Fixed colours in Battle City [Roberto Gandola]
+
+Slight change to the Arcadia Driver [Nathan Woods]
+	src/drivers/arcadia.c:
+	src/includes/amiga.h:
+	src/machine/amiga.c:
+	- Refactors code specific to the Arcadia arcade system and the Amiga 
+	computer out of src/machine/amiga.c into callbacks.  This allowed me to 
+	get rid of all #ifdef MESS code out of src/machine/amiga.c
+
+ST-V updates [Angelo Salese]
+	-Fixed a bug with the VDP-1 ram reading,
+	 SH-2 can do byte or word access, it's implicit that can't do long word access.
+	 This fixes the Steep Slope Sliders booting so the game now works.
+	-VDP-1 PTM's "draw by request" was actually causing sprites to flicker in
+	 kiwames,reversed back to old implementation until I or somebody else understand
+	 what the current issue is (clear_framebuffer?)
+	-Finished the game header update,let me know if you like/don't like the system
+	 used for the description of the games.
+	-fixed a ST-V visible area incorrectness which was causing Virtual Mahjong 2 to
+	 crash after the sound ram check
+	-fixed a window effect bug in Double-density interlace mode,this fixes some
+	 graphics in vmahjong & myfairld.
+	-Guessed a bitmap positioning issue in double-density interlace mode,this fixes
+	 the NBG1 positioning in myfairld.
+	-My Fair Lady now works but only with sound disabled.I have not removed the
+	 NOT_WORKING status due to that.
+
+New Sound Functionality [Derrick Renaud]
+	Took Frank Palazzolo's DISCRETE_FILTER2 code and made it work outside of the
+	discrete system.
+	See sound\filter.h for new functions.
+
+	Added op-amp bandpass filtering circuit to sound\namco54.c
+
+	Game Driver Changes
+	* bosco, galaga, polepos, xevious - added proper filters to new Namco54 noise
+	  source.
+
+Fixed Priority bug in Kid Niki and fixed crash on last level [Nicola Salmoria]
+
+Fixed Priority in Lot Lot [Pierpaolo Prazzoli]
+
+Decrypted Sukeban Jansi Ryuko [Nicola Salmoria]
+
+ARM7 CPU core [Steve Ellenoff]
+
+G65816 CPU core patch [Nathan Woods]
+	src/cpu/g65816/g65816.c:
+	src/cpu/g65816/g65816.h:
+	src/cpu/g65816/g65816ds.c:
+	src/cpu/g65816/g65816ds.h:
+	src/cpu/g65816/g65816op.h:
+	- Cleaned up the code a bit; make some functions static and added 
+	step over/out support to the disassembler.
+
+fixed 6809dasm.c compile warning [Hans de Goede]
+
+Model 3 Updates [Ville Linde]
+	PowerPC core: 
+	- Better interrupt handling.  Nested interrupts work properly.
+	- Some support for PPC602
+	- Major bugfixes
+	- Added some unimplemented opcodes
+
+	53c810 SCSI:
+	- Fixed single-stepping mode DMA
+	- Added memory moves and DMA callback
+
+	Model 3:
+	- Added Epson RTC-72421 emulation
+	- Preliminary polygon emulation
+	- Preliminary (not working yet) sound emulation
+	- Too much to list :)  Most Step 1.x games show
+	something now, up to and including full 3D.
+
+Fixed multiple port recording [Chad Hurwitz]
+
+Fixed several compile warnings [Lawrence Gold]
+
+upgraded to zlib 1.2.2 [Santeri Saarimaa]
+
+added unused proms to Crystal Castles [Santeri Saarimaa]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Winning Spike (EAA version)  [Fabrice Arzeno]
+
+(maybe others as some of the Model 3 games such as vs215 work quite well)
+
+0.90u1
+------
+
+Thanks to Pierpaolo Prazzoli (Reip) for putting together the 0.90 release while I was away
+
+General Improvements
+--------------------
+
+FD1089 decryption [Nicola Salmoria, Charles MacDonald]
+	- 100% accurate emulation of FD1089A, FD1089B should be considered 99% 
+	because it will have to be verified with other CPUs (it is 100% for all 
+	currently supported games).
+
+	- complete tables provided by Charles MacDonald for 317-0018 (Action 
+	Fighter), 317-0022 (Dunk Shot), 317-0168 (Aurail).
+
+	- partial tables derived by comparison with the unencrypted versions for 
+	Enduro Racer, Alex Kidd, 317-0024 (Time Scanner), 317-0033 (Alien Syndrome, 
+	3 versions), 317-0027 (SDI). (actual working cpus are needed to obtain full
+	tables)
+
+Big Sega Update [Aaron Giles]
+	* dunkshot graphics correct, controls hooked up
+	* sdioj controls hooked up
+	* timescna sprites fixed
+	* shangona, shangnle now playable
+	* toutrun road fixed
+	* all memory mapping code unified and moved into machine/segaic16.c
+	* all tilemap, sprite, and road code unified and moved into 
+	  vidhrdw/segaic16.c
+	* improved documentation on the various register layouts on the video side
+
+	Note that in the process, I broke the title screen animation for Laser 
+	Ghost, and there is now a 1-pixel column error on ddcrew's attract mode. 
+	These are known issues that I will try to address soon.
+
+Some ST-V fixes which allow seabass to run [Angelo Salese]
+
+Taken out the resource file from the windows objs when UI=1 (for MAME32) [Chris Kirmse]
+
+Improved Polaris sound (real board differs from Schematics) [Derrick Renaud]
+
+Fixed cloud scroll direction in Polaris [Pierpaolo Prazzoli]
+
+Fixed enigma2 colours [Pierpaolo Prazzoli]
+
+Fixed the m6509 core to appease the new compiler. [Nathan Woods]
+
+Arcadia Update [Mariusz Wojcieszek]
+	- fixed DMACON register writing
+	- added horizontal scrolling for playfield
+	- improved coin handling
+	- fixed area filling mode in blitter
+	- kludged ar_dart to work (addind sound emulation shoud make kludge
+	obsolete)
+	- fixed attached sprites rendering
+	- fixed CIA registers reading
+	- improved vblank/video update timing
+
+Changed rom loading for mt_gng [David Haywood]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Merlins Money Maze [Pierpaolo Prazzoli]
+	maybe impossible to win?
+
+Spot (Arcadia) [Mariusz Wojcieszek]
+Magic Johnson's Fast Break (Arcadia) [Mariusz Wojcieszek]
+World Darts (Arcadia) [Mariusz Wojcieszek]
+Xenon (Arcadia) [Mariusz Wojcieszek]
+
+Sea Bass Fishing [Angelo Salese]
+	set to 1 player in system assignments menu
+
+Dunk Shot [Nicola Salmoria, Charles MacDonald, Aaron Giles]
+Action Fighter [Nicola Salmoria, Charles MacDonald, Aaron Giles]
+	
+Various Sega Sets [Nicola Salmoria, Charles MacDonald, Aaron Giles]
+	sdioj, shangona, shangnle, alexkidd
+
+Tazzmania (bootleg on Galaxian Hardware) [Pierpaolo Prazzoli]

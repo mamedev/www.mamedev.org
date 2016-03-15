@@ -1,0 +1,313 @@
+0.128u7
+-------
+
+NOTE: As of this release, we have two more major changes. These should
+be the last "huge" changes of this dev cycle. 
+
+The most major change is the final retirement of the global Machine
+pointer, which has been part of MAME for many years. Frankly, I never
+thought we'd hit this point so quickly, so my hats off to Atari Ace
+who helped push through the final round of changes needed to make this
+happen finally. As a result of this change, it should be possible in
+the coming year to finally write a driver that runs two full machines
+simultaneously.
+
+The second big change is that the CPUs are now full-fledged devices, 
+and participate like all other devices in the system configuration.
+This is mainly an internal structural change, but in the end removes
+some redundant code and behavior. In a future dev cycle, a similar
+thing will happen with the sound cores.
+
+Starting now, the focus for MAME will be to iron out remaining issues
+and release a 0.129 sometime around the 1st of the year. Please keep
+reporting bugs to MAMETesters as you find things.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02745: [Crash/Freeze] all sets using autosave: Games using autosave 
+         segfault on startup (Aaron Giles)
+- 02750: [Sound] All Sets in equites.c: no background music 
+         (Aaron Giles)
+- 02757: [Documentation] sengoku3: manufacturer should be "Noise 
+         Factory / SNK" (Phil Bennett)
+- 02753: [Crash/Freeze] gradius4: hardware error -1 (Aaron Giles)
+- 02755: [Crash/Freeze] All Sets in metro.c: Crash with access 
+         violation. (Aaron Giles)
+- 02756: [Crash/Freeze] hyprduel, hyprdelj: Colors on the title screen 
+         wrong, games crash mame with ACCESS VIOLATION (Mamesick)
+
+
+
+Source Changes
+--------------
+Removed old cherrym driver (meant to be removed last time, oops).
+[Aaron Giles]
+
+Funworld.c improvements [Roberto Fresca]
+ - Added new set: Jolly Card (italian, encrypted bootleg).
+   No coins... Only remote credits. After nvram init, set the Payout 
+   DIP to 'manual' to allow the remote credits mode to work.
+ - Created inputs from the scratch for jolycdib.
+ - Updated technical notes.
+
+Made CPUs into proper devices. CPUs are now added in the machine 
+configuration just as any other device, and the standard CPU 
+configuration is performed via the inline configuration macros.
+[Aaron Giles]
+
+Changed cpu_type from an enumeration into a pointer to the CPU's 
+get_info function, very similar to device behavior. Updated all 
+drivers to #include the necessary header files for the CPU's they
+reference. [Aaron Giles, Atari Ace]
+
+Added function cpu_get_type() to return the CPU type. [Aaron Giles]
+
+Changed several cpu_* functions over to the device_* equivalents,
+specifically for get/set info and for reset. [Aaron Giles]
+
+The device system now maintains a parallel list of devices based on 
+type and class, for faster iteration through all devices of a given 
+type or class. [Aaron Giles]
+
+Cleaned up code that looped over CPUs via the machine->cpu array to 
+now loop using the type-based device list. [Aaron Giles]
+
+Removed start/stop/reset/nvram functions from the device_config in 
+favor of grabbing them as needed. [Aaron Giles]
+
+Cleaned up the generic interrupt_enable code to work with CPU devices 
+instead of numbers. [Aaron Giles]
+
+Mapped the devtag_* functions to device_* functions via macros instead 
+of parallel implementations. [Aaron Giles]
+
+Removed cpuintrf_init() which is no longer necessary. [Aaron Giles]
+
+Changed a number of APIs in the system to accept running_machine,
+address_space, or device_config types, in order to remove the use of
+the global Machine variable. Removed the global Machine variable now
+that it is no longer directly references. [Atari Ace, Aaron Giles]
+
+Added the concept of device "owner", for devices owned by other 
+devices. [Aaron Giles]
+
+Modified laserdisc players to walk back to their global device state
+via the owner, rather than brute-force searching for the first 
+instance and hoping that is the right one. [Aaron Giles]
+
+Finalizer update [poUzVdb90]
+ - converted to tilemap
+ - added flipscreen
+ - changed sound chip name from SN76496 to SN76489A
+
+Made the concept of a "clock" native to devices. The clock is now
+specified when the device is added, and the clock is available in
+the device_config directly via device->clock. Updated all devices
+that have a clock to specify it when adding the device, rather than
+as part of their configuration. As part of this work, also created
+device-specific _ADD and _REMOVE macros to simplify configuration.
+[Aaron Giles]
+
+Defined a generic device execute function callback, though it
+is not used yet. The long term plan is that any device with an 
+execute callback will be scheduled along with the CPUs. Now that
+CPUs are devices, their scheduling will be moved over to this
+logic eventually. [Aaron Giles]
+
+Changed various NVRAM devices to fetch their default memory region
+from the device->region rather than specifying it in the 
+configuration. [Aaron Giles]
+
+Moved device startup to *before* the DRIVER_INIT is called. This
+is to allow the DRIVER_INIT to configure devices that have been
+properly allocated. So far I don't see any negative effects, but
+be on the lookout if something weird shows up. [Aaron Giles]
+
+Rewrote the device iteration logic to make use of the typenext
+field and the newly-introduced classnext field for iterating more
+efficiently through devices of a given type or class. [Aaron Giles]
+
+Modified the parameters of the stream_update_func callback. As part of
+this work, macro-ized all the callbacks to STREAM_UPDATE, and added
+the sound device as a parameter. [Atari Ace]
+
+Cleaned up i86/i286/i386/nec/v30mz headers: [Aaron Giles]
+ * renamed i86.h -> i86priv.h
+ * renamed i86intrf.h -> i86.h
+ * consolidated i88intrf.h, i186intf.h, i188intf.h, etc into i86.h
+
+Cleaned up many other CPU headers to move memory read/write macros
+out of them, since they are inappropriate and should be prive to the
+CPU core. [Aaron Giles]
+
+Removed index and clock parameters from CPU_INIT function. 
+[Aaron Giles]
+
+Some PIC8259 updates: [Wilbert Pol]
+ - Fixed operation of edge-triggered interrupts
+ - INT output line is now cleared when an IRQ is acknowledged
+ - Implemented basic OCW3 features
+
+Fixed proms in boobhack. [robiza]
+
+Decoded some graphics and setup some RAM in the Virtual Combat driver.
+[Andrew Gardner]
+
+Cleaned up device and sound interfaces to match the CPU interfaces 
+when handling strings. Namely, the generic get_info functions 
+allocate a temporary string and the device in question copies its 
+string to the target, instead of assigning a const char *. Updated 
+all device and sound cores to operate this way. [Aaron Giles]
+
+Added the concept of a cpu_state_table, which is supplied by the CPU 
+cores and which describes all the register state accessible to the 
+debugger and other subsystems. The format of the table is such that 
+most data can be simply fetched from memory without the further 
+involvement of the CPU core, including the display of common formats. 
+Extensibility points are available for custom display and for 
+importing/exporting the data to intermediate variables for more 
+complicated scenarios. Updated the ADSP21xx, TMS340x0, i86, Z80, Z180,
+and 8085 cores to use this. [Aaron Giles]
+
+Removed the old debugger register list, which was never used. Replaced 
+it with using ordering from the cpu_state_table. [Aaron Giles]
+
+Renamed REG_PC -> REG_GENPC, REG_SP -> REG_GENSP, and 
+REG_PREVIOUSPC -> REG_GENPCBASE. Updated a few spots that were using 
+these directly. Moved these definitions into the end of the register 
+area rather than leaving them outside which put them in a weird range.
+[Aaron Giles]
+
+More cleanup. Added address-space-specific constants for the various
+bus width and shift CPU interface constants. Changed all the cores
+to use them. [Aaron Giles]
+
+Changed ADSP21xx cores to accept a configuration struct instead of
+using set_info to specify serial port callbacks. Simplified the
+ADSP21xx get/set info significantly. Removed support for only
+including certain variants of the chips; they are now either all
+supported or all unsupported. [Aaron Giles]
+
+Memory view fixes: [Aaron Giles]
+ * Fixed bug that computed the wrong total size if the address
+   space was a full 32 bits
+ * Improved display to show unmapped memory with *s
+ * Disabled enumeration of disk and 0-length regions
+
+Added PAL to arkgcbl. [robiza]
+
+Added Country Girl to the Jangou driver,working with sound 
+[David Haywood, Angelo Salese]
+ - Fixed transparency pens in the Jangou driver (so removed the 
+    GAME_IMPERFECT_GRAPHICS flag); [Angelo Salese]
+ - Added a kludge for Jangou Lady RNG,will be worked on in the future;
+    [Angelo Salese]
+
+Added running_machine callbacks for the Amiga code. [Nathan Woods]
+
+Updated sscope2 to use newly-dumped roms. [robiza]
+
+Added running_machine parameters to the f3853 callbacks. [Wilbert Pol]
+
+Added running_machine parameter to the callback in the sid interface.
+[Wilbert Pol]
+
+Removed MDRV_INTERLEAVE(x), which specified the minimum scheduling
+quantum in terms of "frames" (a dubious concept now with multiple
+screens and changing refresh rates). Replaced it with a new
+MDRV_QUANTUM_TIME(x) which specifies the minimum scheduling quantum
+as a time value. Time can be specified as HZ(x), NSEC(x), USEC(x),
+etc. Updated all drivers to use this, assuming 60 was the frame
+rate (this is not perfect but should work for almost all cases).
+[Aaron Giles]
+
+Changed MDRV_WATCHDOG_INIT_TIME(x) to automatically prepend
+UINT64_ATTOTIME_IN_ to the parameter, ensuring there is no improper 
+use of this macro and bringing it in line with the MDRV_QUANTUM_TIME() 
+macro. Updated all callers. [Aaron Giles]
+
+Added new MDRV_QUANTUM_PERFECT_CPU(x) to specify that the minimum
+quantum should be enough to ensure that the specified CPU tag only 
+ever executes a single instruction at a time. This can be used to 
+explicitly require "perfect" synchronization for drivers that have 
+multiple CPUs with shared memory. Turned this on for the arknoid2 
+driver for now as a test (the interleave on that driver was already 
+very close to perfect anyway). [Aaron Giles]
+
+Fixed some color issues in the goldstar.c driver [David Haywood]
+
+Merged goldstar and lucky8 drivers. [David Haywood]
+
+Improvements to ddragon3/shadfrce/wwfsstar/wwfwfest: [Mamesick]
+ - converted driver to be fully scanlines based using timers
+ - updated driver to new video screen raw parameters
+ - hooked up interrupts (ddragon3, wwfwfest)
+
+Fixed Agress' title screen. [David VanVoorhis]
+
+Fixed update_handler for the dsp56k and polygonet. [Andrew Gardner]
+
+Improvements to the dmndrby.c driver. [Mike Green]
+
+Continued rewrite of the Motorola DSP56k CPU core. [Andrew Gardner]
+ * Fixed flag calculation and sign extension for numerous ops.
+ * Added rnd, mpysuuu, and dmac ops.
+ * Fixed do loop behavior to skip empty loops.
+ * Added stack underflow exception handling.
+
+Improvements to the skylncr.c driver: [Roberto Fresca, David Haywood]
+ - Complete reel support from the scratch.
+ - Full inputs, outputs & DIP switches from the scratch.
+ - Added new games.
+ - Updated technical and game notes.
+
+Rewrote 8080/8085 interrupt handling so that it makes sense. Changed 
+callbacks to be specified in a config structure. Converted core to 
+cpu_state_table. Changed to a single HAS_808X define for both cores.
+Fixed several drivers that used 8080/8085 interrupts in odd ways.
+[Aaron Giles]
+
+Converted warpwarp driver to raw video parameters. [Aaron Giles]
+
+Fixe 'run to cursor' and 'toggle breakpoint' operations in the 
+debugger when dealing with CPUs that have shifted address spaces. 
+[Andrew Gardner]
+
+Improvements to goldstar.c driver. [Roberto Fresca]
+ - Hooked the 3x PPI 8255 devices to chryigld and ncb3.
+ - Reworked the chryigld and ncb3 inputs based on PPI 8255 connections.
+ - Added the unmapped PSG sound to chryigld and ncb3.
+ - Some works on their machine driver.
+ - Some cleanups.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Country Girl [David Haywood, Angelo Salese]
+4nin-uchi Mahjong Jantotsu [David Haywood, Angelo Salese]
+Three Ds - Three Dealers Casino House [David Haywood, Angelo Salese]
+Sky Lancer (Bordun, ver.U450C) [Roberto Fresca, David Haywood]
+Butterfly Video Game (ver.U350C) [Roberto Fresca, David Haywood]
+Mad Zoo (ver.U450C) [Roberto Fresca, David Haywood]
+Casino Winner [Chris Hardy, Angelo Salese]
+Cherry I Gold (bootleg of Golden Star) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Jolly Card (italian, encrypted bootleg) [Roberto Fresca]
+Double Dragon 3 - The Rosetta Stone (prototype) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Grand Prix 98 [David Haywood]
+Leader [Roberto Fresca, David Haywood]
+Parent Jack [David Haywood]
+Janshi [David Haywood]
+Cherry Master I (v1.01) [Roberto Fresca, David Haywood]

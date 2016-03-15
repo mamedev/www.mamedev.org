@@ -1,0 +1,328 @@
+0.167
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00100: [Sound] (galdrvr.c) froggermc: After starting a game, the sound cuts off. (Osso)
+- 05596: [Color/Palette] (thunderj.c) thunderj & clones: palette problem in the briefing (hap)
+- 06049: [Gameplay] (ibmpcjr.c) ibmpcjr [kingqst, mouser, pitfall2, scubavnt] : some 
+  softlist games are broken (crazyc)
+
+Source Changes
+--------------
+-piggypas.c: fixed CPU type, added layout and some inputs. [Sandro Ronco]
+
+-firebeat: add proper dongle dumps for kbm3rd, pop4 and popn5 [Guru, Ville Linde]
+
+-Fix reversion for PI.  PI transfers round length up, not down. Add [Happy]
+ field for VI interlaced modes.  Display of interlaced video still
+ needs work.
+
+-adding ROM dump of Commodore MPS-1000 dot matrix printer [Felipe Sanches]
+
+-dvk_ksm: update memory map, rom checksums. [shattered]
+
+-ec1840, ec1841: clean up memory options [shattered]
+
+-Victor 9000 Keyboard: Added two key labels I realized I'd forgotten.
+ Updated comments to be more clear about keys with multiple contacts
+ underneath but only one metal contact on the key. Noted in comments
+ that the symbolic and mode keys on the numeric keypad (except for
+ decimal point) are beige, not white. [Lord Nightmare]
+
+-DEC LA120: Make the status leds and 7seg displays a popmessage(), for
+ now. [Lord Nightmare]
+
+-Votrax TNT: fixed the memory map mirroring based on schematic.
+ [Lord Nightmare, Kevtris]
+
+-added correct sprite rom dumps to Led Storm Rally 2011 (US) [Guru]
+ 
+-adjusted the rom loading / gfxdecoding in the driver to accommodate
+ the correct ROMs for Led Storm Rally 2011 [David Haywood]
+
+-z80scc rework [Joakim Larsson]
+ * z80scc_channel class rebased on device_t instead of z80sio_channel
+ * Improved LOG printouts
+ * Interrupt support started
+ * Made register pointer bits shared bewtween A and B channel as per
+    spec
+ * Variant type keeping moved from channel class to device class where
+    it belongs
+ * Clocks are blocked until Rx/Tx enabled by ROM code
+ * Improved logging
+ * Started variant handling
+
+-tiki100: Added 8088 expansion ROMs. [Person]
+
+-tiki100: Used PROM for memory mapping. [Curt Coder]
+
+-tiki100: Added expansion bus and skeleton for 8088 card. [Curt Coder]
+
+-tiki100: Connected the I/O space to the expansion bus, and added the
+ 360KB floppy format for MS-DOS. [Curt Coder]
+
+-tiki100: Added raw screen parameters. [Curt Coder]
+
+-tiki100: Added DART speed select jumper. [Curt Coder]
+
+-tiki100: Added skeleton for Winchester controller. [Curt Coder]
+
+-tiki100: Added the expansion bus slots to the Z80 daisy chain.
+ [Curt Coder]
+
+-tiki100: Added BUSRQ, BUSAK, and EXIN to the expansion bus.
+ [Curt Coder]
+
+-PTY support for u*x OSes [F.Ulivi]
+
+-Fix to allow mips3 exceptions to detect branch delay slots for setting
+ EPC. Minor cleanup/correction for n64.c [Happy]
+
+-Added Siemens Sicomp PC16-05 BIOS ROM (Multitech MPF-PC/700 mainboard) [rfka01]
+
+-Split cat.c into separate drivers for canon cat and iai swyft.  [Lord Nightmare]
+
+-PSX GPU: Fix the 24bit rendering of video sequences on games such as
+ GranTurismo and Digimon World 3 [Felipe Sanches]
+
+-ETI-660 fixed and working [Robbbert]
+
+-Camputers Lynx 48k, 96k, 128k fixed and working. [Robbbert]
+
+-Game-A-Tron gambling hardware changes [Roberto Fresca]:
+ * Added siren/alarm input to Pull Tabs, and beeps/alarm input to Four
+    In One Poker. All these are present in the Test Mode. However,
+    their functions aren't clear.
+ * Switched the PSG to SN76489, since it's present in the Bingo PCB.
+ * Added technical notes and more documentation.
+
+-Pinball, Bally early solid state (by17.c by35.c)   [Quench]
+ * Add mockup playfield layouts for Playboy, PowerPlay and Matahari
+    that includes input/output devices
+ * Add sound to first gen -35 games
+ * Various fixes based on schematics and measurements.
+
+-TMS52xx: Fix a bug where if the FIFO contained exactly 0 bytes and a
+ SPEAK (VSM) command was issued, the command would instantly terminate
+ due to the FIFO being empty even though the chip wasn't in SPEAK
+ EXTERNAL mode. Fixes speech in TI Extended Basic [Lord Nightmare]
+
+-wackygtr: added inputs and internal layout. [Sandro Ronco]
+
+-Aristocrat MKV driver: Added the undumped PLD devices to Adonis
+ (parent) ROM_LOAD since is running in the same hardware than the
+ recent added clon. [Roberto Fresca]
+
+-Aristocrat MKV driver: Added PCB ASCII layout and components
+ description. Added extra documentation and some notes. [Roberto
+ Fresca]
+
+-Aristocrat MKV driver improvements [Roberto Fresca]
+ Added the undumped ST93C46 serial EEPROMS to Adonisa, and added a placeholder to
+ the parent set for the same devices, flagged as NO_DUMP. Added master
+ crystal via #define, and derived the CPU clock. Added some technical
+ notes.
+
+-saa5050: graphics generator and character rounding [Nigel Barnes]
+ * implemented graphics generator, no longer read from fake ROM
+ * added character rounding
+ * improved control code handling
+ * added ROMs for variants saa5051, saa5053, saa5054, saa5055,
+    saa5056, saa5057
+
+-osborne1: add SCREEN-PAC support [Vas Crabb]
+ * implement 104-column and pseudo-80-column modes
+ * correct scrolling in 52-column mode according to schematics
+ * approximate scrolling in 104-column and pseudo-80-column modes
+ * rework Osborne 1 memory and I/O maps to match schematics
+
+-bbc: floppy formats and rom updates [Nigel Barnes]
+ * improved ssd, dsd handling
+ * added Acorn DOS and CPM formats
+ * added known good rom configuration for acw443 (Cambridge
+    Workstation)
+ * removed some BAD_DUMP flags
+
+-bbc: various softlists  [Nigel Barnes]
+ * bbca_cass - new titles and additional info added
+ * bbcb_cass - new titles and additional info added
+ * bbcb_flop - preliminary list containing test cases
+ * bbcm_flop - preliminary list
+ * bbc_32016_flop - requires additional hardware emulated
+ * bbc_65c102_flop - requires additional hardware emulated
+ * bbc_80186_flop - requires additional hardware emulated
+ * bbc_arm_flop - requires additional hardware emulated
+ * bbc_z80_flop - requires additional hardware emulated
+ * pro128s_flop - all known available dumps
+
+-bbc: fdc intrq/drq causes nmi [Nigel Barnes]
+
+-HLSL changes [ImJezze]
+ * Unified HLSL render pipline for raster and vector graphics
+ * simplified draw call of render pass functions
+ * reduced number of used render targets from 7 to 4 (2 native and 2
+    pre-scaled)
+ * made render pass functions (nearly) independent from each other
+ * unified render pipeline for raster and vector graphics, which means
+    that all effects are now also available for vector graphics
+    (except scan-lines)
+ * removed/replaced simple.fx by primary.fx
+ * removed CU_PHOSPHOR_IGNORE uniform, which was only used in phosphor
+    pass function and is now directly set
+ * added CU_TARGET_DIMS uniform based on the current render target
+ * added CU_QUAD_DIMS uniform based on the current full screen polygon
+    quad
+ * removed pre-scale knowledge from shaders
+ * fixed DX9 related half pixel offset in most shaders
+ * reduced shadow mask color bleeding
+ * fixed defocus strength with different pre-scales
+ * added slight noise to bloom effect to reduce the color banding of
+    lower bloom levels
+ * fixed position of reflection effect when screen is rotated or
+    flipped
+ * fixed roundness and size of rounded corners in any aspect ratio
+ * added distortion pass, which is applied after the bloom pass and
+    moved curvature, vignetting, rounded corners and reflection effect
+    to this pass
+ * fixed bloom stair-step artifacts when screen is curved
+ * added smooth border effect and option, its amount is limited by the
+    amount of rounded corners
+ * added bloom overdrive effect and options, this effect allows to
+    overdrive pure colors like red, green and blue to become more
+    brighter
+ * merged vector and raster bloom options, use vector.ini or
+    raster.ini to distinguish
+ * added raster.ini and lcd.ini to parse_standard_inis()
+ * added bounds() and screen_bounds() getter to layout_view
+ * added current_view() getter to render_target 
+ * many other small changes and refactoring
+ * fixed vector intensity
+ * fixed vector flicker
+ * replace beam width by beam width min. and beam width max. width, this 
+   makes it possible to create a linear dynamic beam width by the amount
+   of intensity of the beam
+ * added beam intensity weight, this adds an exponential factor to the 
+   dynamic beam width (values greater than 0 will push larger intensities
+   more than smaller intensities)
+ * fixed ratio of "vector points" (zero-length lines)
+
+-psxcd: Declaring ROM images for the CDROM controller MCU. [Felipe Sanches]
+
+-Apollo changes: [Hans Ostermeyer]
+ * fixed the Apollo floppy disk emulation
+ * added the media option -node_id resp. -ni to set the node ID from a
+    node ID rom image file
+ * fixed the unmapped ISA Bus access to return 0xff instead of 0x00
+ * removed excessive log entries from unmapped ISA Bus access
+ * fixed date (and some other issues) in mc146818 (new in MAME 0166)
+
+-Fix for imds2 driver after i8271 modernization [F.Ulivi]
+
+-namcos23: fix the polynew conversion [O. Galibert]
+
+-namcos23: Go back to z-sorting [O. Galibert]
+
+-deorphaned the software lists for cd32, 3do_m2 and pippin so that they get
+ parsed by the validity checker etc. [Shideravan]
+ 
+-amstrad: added Draysoft Doubler expansion [Barry Rodewald]
+
+-Changed the qotna set to run in a US-Export hardware.
+ Even when is NSW/ACT, the program seems to run in that hardware.
+ Added more documentation. [Roberto Fresca]
+
+-apple2: fixed "The Mill" 6809 card so OS9 can boot. [robj, R. Belmont]
+
+-Changed the vpoker set description to Videotronics Draw Poker,
+ since the game is "Draw Poker". Two companies sold it with
+ different name. Documented the legal issues and added links.
+ [Roberto Fresca]
+
+-Update VMX/Altivec RGB implementation (fixes PowerPC) [Vas Crabb]
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Attack Pla Rail (Japan, AP1/VER.A) [Guru, R. Belmont]
+Led Storm Rally 2011 (US) [Guru, David Haywood]
+Player's Edge Plus (X002287P+XP000057) Pay the Aces NO Faces Bonus Poker  [BrianT]
+Exidy Sorcerer II [Robbbert]
+Unisonic Champion 2711 [David Viens]
+SegaSonic Popcorn Shop (Rev B) [ShouTime, The Dumping Union - insert full credit list here]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Final Fight (USA 900424) [Bonky0013]
+Lightning Swords [System11, The Dumping Union]
+Air Duel (World, M82) [system11, The Dumping Union]
+Ken-Go (set 2) [caius]
+Master Boy (Italian, PCB Rev A, set 2) [Any, The Dumping Union]
+WEC Le Mans 24 (v1.26)  [Any, The Dumping Union]
+Wonder Stick (set 2, censored)  [Any, The Dumping Union]
+Sliver (set 2)  [Any, The Dumping Union]
+Joe & Mac Returns (Japan, Version 1.2, 1994.06.06)  [rtw, The Dumping Union]
+Led Storm Rally 2011 (World) [system11]
+Player's Edge Plus (KE0004) Keno [Badbaud, BrianT]
+Player's Edge Plus (KE1006) Keno [Badbaud, BrianT]
+Player's Edge Plus (KE1013) Keno (set 2) [Badbaud, BrianT]
+Player's Edge Plus (PP0042) 10's or Better (set 2) [Badbaud, BrianT]
+Player's Edge Plus (PP0045) 10's or Better (Gambler Downtown Reno)  [Badbaud, BrianT]
+Player's Edge Plus (PP0045) 10's or Better (Par-A-Dice Riverboat Casino)  [Badbaud, BrianT]
+Player's Edge Plus (PP0045) 10's or Better (Annie Oakely's Central City)  [Badbaud, BrianT]
+Player's Edge Plus (PP0055) Deuces Wild Poker (set 2, Skyline Casino)  [Badbaud, BrianT]
+Player's Edge Plus (PP0158) 4 of a Kind Bonus Poker (set 2, Skyline Casino)  [Badbaud, BrianT]
+Player's Edge Plus (PP0430) Deuces Joker Wild Poker [Badbaud, BrianT]
+Player's Edge Plus (PP0459) Joker Poker [Badbaud, BrianT]
+Player's Edge Plus (PP0515) Double Bonus Poker (set 4) [Badbaud, BrianT]
+Player's Edge Plus (X000055P+XP000038) Deuces Wild Poker (Sunset Station Hotel-Casino)
+  [Badbaud, BrianT]
+Player's Edge Plus (X000426P+XP000038) Joker Poker [Badbaud, BrianT]
+Player's Edge Plus (X002179P+XP000119) Double Bonus Poker [BrianT]
+Player's Edge Plus (XM00006P+XMP00002) Multi-Poker (The Orleans)  [Badbaud, BrianT]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Micral 80-22G [Robbbert]
+Data RD100 [Robbbert]
+Proteus III [Robbbert]
+Neo Print (Japan) (T2d) [Bonky0013]
+Cuckoo (MV4104, Export) [Roberto Fresca]
+Mine, Mine, Mine (Export) [Roberto Fresca]
+Party Gras (MV4115/6, Export) [Roberto Fresca]
+Penguin Pays (Export) [Roberto Fresca]
+Wild Cougar (Export) [Roberto Fresca]
+Boot Scootin' (Export, 92.767%) [Roberto Fresca]
+Bumble Bugs (Export, 92.691%) [Roberto Fresca]
+Cash Chameleon (Export) [Roberto Fresca]
+Sub Hunter [Piero Andreini]
+The Chariot Challenge (04J00714, NSW/ACT) [Roberto Fresca]
+Eagle 1600 [SomeGuy]
+
+
+New clones marked as NOT_WORKING
+--------------------------------
+Dolphin Treasure (Export) [Roberto Fresca]
+Magic Mask (MV4115, Export, set 2) [Roberto Fresca]
+Adonis (MV4124/1, Export) [Roberto Fresca]
+Mega-CD with 32X (Japan, NTSC) [Shideravan]
+Mega-CD with 32X (Europe, PAL) [Shideravan]
+Adonis (0100751V, NSW/ACT) [Roberto Fresca]
+Dolphin Treasure (Export) [Roberto Fresca]
+Queen of the Nile (MV4091, NSW/ACT) [Roberto Fresca]
+
+
+New WORKING software list additions
+-----------------------------------
+a2600.xml: Atari 2600 cartridges
+ - Stella's Stocking 2008 [The Dumping Union]
+megadriv.xml:
+ - Putty Squad (prototype) [?]
+
+
+New NOT_WORKING software list additions
+---------------------------------------
+

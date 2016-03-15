@@ -1,0 +1,486 @@
+0.118
+-----
+
+
+Source Changes
+--------------
+Changed INI parsing so that mame.ini is parsed twice, picking up
+changes to the inipath. [Aaron Giles]
+
+Fixed bug in options handling introduced with recent changes.
+[Nathan Woods]
+
+Fixed macros in stvcd.c to work with C89 compilers. [Mike Haaland]
+
+Fixed some more 64-bit warnings and unused functions. 
+[Oliver Stoneberg]
+
+Fixed DIP switch "Difficulty" in fstarfrc. Also added DIP locations
+to the tecmo16 driver. [BisonSAS]
+
+Simplified the nemesis video driver code. [Atari Ace]
+
+Modularized the TMS5220 code. [Lord Nightmare]
+
+Fixed issues with recent R-Type ROMset. [Brian Troha]
+
+Fixed a number of issues in the HD6309 core. [Darren Atkinson]
+
+Sync with AGEMAME: [James Wallace]
+ * removed the 'lamps.c' module from the source tree
+ * cleaned up names in the BFM BD1 driver
+ * moved VFD drawing functions out of the video update
+ * overhauled the sound system in the MPU4 driver
+
+Changed windows builds so that all tools use the utf8_main entry
+point consistently. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Dancing Stage Euro Mix 2 [smf]
+
+
+
+New clones added
+----------------
+Maximum Force (No Gore version) [Brian Troha]
+
+
+
+0.117u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+headon0117u2ora [Aaron Giles]
+numpadremap0117u2gra [Aaron Giles]
+joystick0117u2gra [Aaron Giles]
+NewUI0117u2ora [Aaron Giles]
+mtrap0117u2ora [Aaron Giles]
+verifyroms0117u2ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added some more setup code for the Naomi driver. [R. Belmont]
+
+Improved DIP switches in powerins driver. [BisonSAS]
+
+Added some basic cdrom switching to the system 573 driver. Hooked it
+up for best of cool dancers to work and the Club versions. Added
+DIP locations. Moved fake switches to the configuration menu. [smf]
+
+Added preliminary video hw emulation and sound support to the
+2 Minute Drill driver. [Tomasz Slanina]
+
+Added an optional vsync callback to the TIA emulation to allow a 
+driver to dynamically change the screen configuration. [Wilbert Pol]
+
+Cleaned up redundant function names. [Atari Ace]
+
+Changed CreateWindowEx() call to be win_create_window_ex_utf8(), 
+removing the need for a string conversion. [Nathan Woods]
+
+Fixed running the konamigx BIOS on its own do what it should: 
+display a scrolling marquee telling the operator to attach
+a ROM board. [Alex Jackson]
+
+Added new debugger commands for hardreset and softreset. 
+[Nathan Woods]
+
+Added built-in support for 14-segment and 16-segment LEDs with
+comma/period additions. Split vacfdisp into component specific 
+drivers. The system now supports the Rockwell 10937 (aka MSC1937) 
+and 10957, as well as the BD1. All relevant drivers have been 
+updated with the new code, and new layouts have been prepared.
+[James Wallace]
+
+Fixed a few more 64-bit build errors. [Aaron Giles]
+
+Separated build tools from general tools. Build tools are now located
+in the build/ subdirectory. [Aaron Giles]
+
+Added new general library module astring.c, which supports allocated
+strings of arbitrary length and a number of basic functions on them.
+[Aaron Giles]
+
+Replaced assemble_x_strings() functions with the astring equivalents.
+Updated code in several places to use astrings where appropriate.
+[Aaron Giles]
+
+Added new tool src2html which is used to convert the MAME source tree
+to HTML format with linked include files and color coded keywords
+and comments. [Aaron Giles]
+
+Converted the memory pool code to a more generic resource pool. 
+Changed internal MAME tracking of timers and save state registrations
+over to using the new system. [Aaron Giles]
+
+Removed underscores from some keycode token names. Thus, 
+KEYCODE_0_PAD now becomes KEYCODE_0PAD. This is to prevent confusion
+when parsing multiple keyboard items. Due to this change, also removed
+imperfect backward compatibility with older configs; some mappings
+will still work, but some won't. Note that this change will also
+break some existing ctrlr files; new ones will be provided. 
+[Aaron Giles]
+
+Did some cleanup of the tilemap interfaces. Changed tilemap type
+constants to be an enum prefixed by TILEMAP_TYPE_* instead of simply
+TILEMAP_*. Removed unused members from the tile_info structure. 
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Cross Blades! (Japan) [Stefan Lindberg]
+Shadow Force (Japan Version 2) [Stefan Lindberg]
+Dig Dug (Sidam bootleg) [David Haywood]
+Dance Dance Revolution Best of Cool Dancers [smf]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Astron Belt [Andrew Gardner]
+Cobra Command (Sega LaserDisc Hardware) [Andrew Gardner]
+Galaxy Ranger [Andrew Gardner]
+Star Blazer [Andrew Gardner]
+
+
+
+0.117u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+joystickremap0117u1gra [Aaron Giles]
+mallocerror0117u1gra [Aaron Giles]
+mouse0117u1gra [Aaron Giles]
+newinterface0117u1gra [Aaron Giles]
+tapper0102gre2 [Ernesto Corvi]
+timber0100u3gre [Ernesto Corvi]
+tapper0102gre1 [Aaron Giles]
+timber099gre [Aaron Giles]
+mcr0103u3yel [Aaron Giles]
+dotrone0101u5yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Imola GP updates: [Phil Stroffolino]
+ - renamed from "monzagp"
+ - the leds are fully mapped
+ - fixes for blitter modes, that affect the "tunnel" area
+ - dipswitch/port fixes; game now starts in attract mode, rather 
+    than immediately starting
+ - placeholder (handpicked) colors
+
+Updated DIP switches for topland & ainferno according to their 
+manuals. [Fabio Priuli]
+
+More SH-4 core improvements: [Samuele Zannoli]
+ - fixes some problems in the disassembly and instruction execution 
+    from the previous patch
+ - adds interrupt management
+ - implements register bank switching
+ - adds RTC timer counters
+ - adds memory refresh timer
+ - adds three timers of the TMU
+ - adds a configuration structure that specifies the processor mode 
+    pin settings
+ - internal processor clock frequencies calculated from mode pins and 
+    cpu clock
+ - systems using the sh4 processor secify its configuration structure
+
+Fixed some DIP switches in littlerb. [Sonikos]
+
+Made some minor code quality changes across the code: [Atari Ace]
+ - avoided exporting a few global variables
+ - fixed variable names that conflicted with typedef names
+ - removed some shadow variables that were bugs or unnecessary
+ - removed extraneous #defines
+
+Fixed up sc61860 core, f3853 core, and pckeybd.c to work with new
+timing code. [Nathan Woods]
+
+More TIA improvements: [Wilbert Pol]
+ - fixed some minor missile graphics positioning issues
+ - moved some initialization code from tia_init to tia_reset
+
+Fixed a few errors related to headers in the source code. Added 
+missing self-includes, removed dead prototypes, and added location 
+comments in headers in mame/includes. In a few cases the audit 
+showed items that didn't need to be exported so they were made 
+static. [Atari Ace]
+
+Cleaned up the inputs in gdrawpkr and changed the hold buttons to 
+"discard" since they are in fact discard buttons. [Roberto Fresca]
+
+Added support for 14- and 16-segment LED displays to the MAME 
+artwork system. [Dirk Best]
+
+Fixed button 4 of player 2 inputs in bloodwar. [Barry Harris]
+
+Connected S14001A speech to the wolfpack driver. [Lord Nightmare]
+
+Fixed incorrect implementation of SSIO volume controls in the MCR
+driver. This makes the engine sound in Spy Hunter audible again,
+among other things. [Ernesto Corvi]
+
+Added support back for the "none" option for the various *_device
+options. [Nathan Woods]
+
+Fixed HD6309 dissaembly of the post-byte for ,W++ and ,--W.
+[Captain Ahab]
+
+Updated the 6532 riot interface to be more like the 6522via and 
+6821pia interfaces. [Wilbert Pol]
+
+Improved -listxml output to reflect new BIOS flag. New attribute
+isbios="yes" indicates that a given game is a BIOS. [Aaron Giles]
+
+Further tweaks to the game selection UI: [Aaron Giles]
+ - disabled the tab key
+ - added hook for general input configuration from the menu
+ - split set names from friendly names into left/right columns
+ - added a background to the descriptive names of clones
+ - if you start with the game selection menu, hitting Esc to exit
+    a game brings you back to the menu rather than quitting 
+    immediately
+ - fixed logic so that INI files are reloaded for each game
+
+Moved INI file handling fully into the core. As a side-effect of this 
+change, <exename>.ini is no longer parsed. Changed -createconfig to 
+always output mame.ini instead of <exename>.ini as a result. 
+[Aaron Giles]
+    
+Renamed run_game() to mame_execute(). The game driver is no longer
+specified as a parameter; rather, this information is extracted from
+the options via OPTION_GAMENAME. [Aaron Giles]
+
+Fixed raw input-based lightgun buttons. [Aaron Giles]
+
+Cleaned up options.c code. Added priority levels to options as they
+are set. New options are only accepted if they have greater or equal
+priority to a previous change. Added new function options_revert() to
+revert options below a given priority to their defaults. Changed 
+options_get_string() so that it always returns a valid string
+(never NULL). Invalid strings are returned as empty strings. 
+[Aaron Giles]
+
+Added new functions core_filename_extract_base() and 
+core_filename_ends_with() to corefile.h. [Aaron Giles]
+
+Changed menu rendering a bit. Added a background hilight to more
+strongly emphasize the current item. Added rendered arrows to indicate
+more items on the top/bottom and to indicate selection options in the
+DIP switch menus. Changed hilighting to be a bit less garish. Fixed
+repeat rates on keys to no longer be tied to the framerate.
+[Aaron Giles]
+
+Added support for page up/page down generically in menus. Also made
+pause toggle work while menus are visible. [Aaron Giles]
+
+Changed render_textures to allocate in a pool model, to avoid high
+memory overhead when allocating large numbers of textures (for example
+in the 14- and 16-segment LED displays). [Aaron Giles]
+
+Fixed a number of 64-bit compiler warnings. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+King Pin [Andrew Gardner]
+King Pin Multi-Game [Andrew Gardner]
+
+
+
+0.117u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+brkthru091u1gra [Luigi30]
+debbuger+psx_0117ora [Aaron Giles]
+cbtime0117red [Zsolt Vasvari]
+hotpinbl0117gra [Roberto Fresca]
+batrider0114red [Alex Jackson]
+battleg0113u4red [Alex Jackson]
+battleg0116u1ora [Alex Jackson]
+    
+    
+
+Source Changes
+--------------
+Fixed bug in screenless systems. [Nathan Woods]
+
+Fixed crash in chd code if reading beyond the end of the file.
+[Roman Scherzer]
+
+Moved Sand Scorpian and Gals Panic over to use the Pandora emulation.
+Also fixed some problems in the pandora emulation which improves the 
+sprites in Djboy. [David Haywood]
+
+Added new function timer_call_after_resynch(), which effectively
+sets a zero-duration timer for resynchronization. Replaced instances
+of zero-duration timers in the code with this more descriptive call.
+[Zsolt Vasvari]
+
+Defined new macro TIMER_CALLBACK, which should be used to wrap
+timer callbacks. Added a running_machine * parameter to timer 
+callbacks. Updated all existing timer callbacks to use the new
+macro. [Zsolt Vasvari]
+
+Added more opcode decryption to gussun. [Robiza]
+
+Added discrete sound to headon and clones in vicdual.c. [couriersud]
+
+Added two inverter oscillators supporting enable and mixing in signals
+to discrete.h / disc_wav.c. [couriersud]
+
+Fixed a few bugs in the change lanes video emulation. [Adam Bousley]
+
+Updated the monzagp driver into a somewhat playable state. There are
+still some graphics problems. LEDs still need to be hooked up for
+score/time-remaining display. [Phil Stroffolino]
+
+Neo-Geo update: [Zsolt Vasvari]
+ - BIOS only driver 'neogeo' no longer crashes
+ - Cleaned up memory banking code to use memory_set_bank() instead 
+    of memory_set_bank_ptr()
+ - Fixed LEDs
+
+Improvements to the toaplan2 driver: [Alex Jackson]
+ - Replaced byteswapped truxton2 M68K program ROM with correct one
+ - Fixed sound CPU communications in the Raizing games. This is 
+    educated guesswork, but it's more complete and probably more
+    correct than what was there before, and doesn't rely on excessive 
+    use of cpu_yield()
+ - Added more information about the Raizing sets to the comments in 
+    the driver, and corrected some errors
+ - Reorganized the Battle Garegga sets in a more sensible fashion
+
+Reworked input system to push more features into the core. Cleaned
+up architecture to properly separate dependencies. Please note that
+this change only addresses the lower layer of input handling. The
+upper layer (i.e., input port handling at the driver layer) remains
+the same. [Aaron Giles]
+
+Major changes include:
+
+  * Removed the concept of os_code from the system. Now all codes
+    are defined via a set of macros in input.h. Each code is a 32-bit
+    value that encodes a device class, device index, item class,
+    item modifier, and item ID.
+    
+  * Removed OSD functions osd_get_code_list() and osd_get_code_value().
+    Instead, the OSD layer during osd_init() must register one or more
+    devices and the input items attached to each device via two new
+    functions input_device_add() and input_device_item_add().
+    
+  * Separated input sequence code into new module inputseq.c.
+    
+  * Moved support for the following options into the core: -mouse,
+    -joystick, -lightgun, -steadykey, -offscreen_reload, -joy_deadzone,
+    -joy_saturation, -paddle_device, -adstick_device, -pedal_device,
+    -dial_device, -trackball_device, -lightgun_device, 
+    -positional_device, -mouse_device. The OSD layer should simply 
+    register all devices at osd_init() time and allow the core to 
+    enable/disable them according to the options.
+  
+  * Added two new options: -multikeyboard and -multimouse. By default,
+    both options are OFF. When OFF, the core will combine all keyboard
+    or mouse input into a single keyboard or mouse device. When ON,
+    these options instruct the core to keep inputs for each keyboard
+    and/or mouse independent.
+    
+  * Added new option: -joystick_map. This option allows for a 9x9 grid
+    to be specified which controls analog-to-digital mapping of 
+    joystick inputs.
+    
+  * Changed the Windows implementation of input handling to fully
+    support the raw input interfaces for keyboard and mouse. 
+    DirectInput is still used for all joystick inputs, as well as for
+    keyboard and mouse inputs on pre-Windows XP systems. This allows
+    for multiple keyboards and mice to be supported. Also changed
+    keyboard and mouse behavior to use non-exclusive mode in 
+    DirectInput, and to keep the devices alive during pause for more
+    consistent input handling.
+
+  * Broke windows.txt into config.txt, which contains all common
+    core-supported options and commmands, and windows.txt, which now
+    only lists Windows-specific additions.
+
+Added support for frame update callbacks, similar to pause and exit
+callbacks but called at the same time as osd_update(). [Aaron Giles]
+
+Changed osd_init() to no longer return a value. OSD initialization
+should now rely on fatalerror() to report fatal initialization
+problems. [Aaron Giles]
+
+Added new function mame_schedule_new_driver() which allows for a new
+driver to be queued after a hard reset. [Aaron Giles]
+
+Added experimental new minimal game selection user interface. This
+interface can be accessed if MAME is started with no parameters, or
+via the main menu by choosing "Select a New Game". This interface
+allows you to select a game driver by typing in the name of the game.
+As you type, MAME's fuzzy name matching code will list the top 15
+selections that match. The interface will only display games that
+it finds in your rompath. [Aaron Giles]
+
+Added "empty" driver which is used to host the game selection screen
+when no valid game is selected. [Aaron Giles]
+
+Changed behavior in the Windows build so that double-clicking on
+MAME brings up the new game selection interface. [Aaron Giles]
+
+Removed the NOT_A_DRIVER flag which was overloaded to mean two 
+different things. There are now two new flags: GAME_IS_BIOS_ROOT
+indicates that a particular driver represents a BIOS rather than
+a full game. And GAME_NO_STANDALONE indicates that the given driver
+should not be listed or permitted to execute on its own. For MAME,
+most BIOSes are executable on their own, so they have the
+GAME_IS_BIOS_ROOT flag set but not the GAME_NO_STANDALONE flag.
+[Aaron Giles]
+
+Added new routines mame_openpath(), mame_readpath(), and 
+mame_closepath() for iterating over all files in a path specification,
+including support for multiple paths. [Aaron Giles]
+
+Changed audit interfaces to take a game_driver * instead of a game
+index. [Aaron Giles]
+
+Changed driver_get_approx_matches() and driver_get_count() APIs to
+work on arbitrary driver lists rather than being hard-coded to the
+static driver list. Renamed the functions from driver_get_* to
+driver_list_get_* [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Sliver [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Space Dragon (Moon Cresta bootleg) [David Haywood]
+Battle Garegga - Type 2 (Europe / USA / Japan / Asia) [Alex Jackson]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gals Panic (US, EXPRO-02 PCB) [David Haywood]
+Balloon & Balloon [Pierpaolo Prazzoli]

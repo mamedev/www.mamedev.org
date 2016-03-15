@@ -1,0 +1,91 @@
+0.97u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+irobot058gre [MASH]
+
+
+
+Source Changes
+--------------
+Added some sanity checking, and changed a printf() to logerror() to 
+intelfsh.c. [Nathan Woods]
+
+Made the DRC PowerPC core compilable when HAS_PPC403 is 0. [Nathan Woods]
+
+Improvements to Sega Model 3 [Ville Linde]
+ - Fixed a bug in the MPC106 emulation -> Star Wars Trilogy and Sega 
+   Rally 2 work
+
+Improvements to the PowerPC cores [Ville Linde]
+ - Rewrote the interrupt handling in the interpreter core so it matches 
+   the DRC core
+ - Fixed MCRXR instruction
+ - Fixed some timebase problems, so LeMans 24 is now working.
+
+Improvements to the MACS driver [Angelo Salese]
+ - Added some inputs to the MACS driver so that Yu-Jan works. Fixed the 
+   visible area in it.
+ - Also added a quick kludge for get Yu-Ka to work (Note: it's disabled by 
+   default).
+
+Fixed Oki frequency to match samples pitch on the pcb for Final Tetris.
+[Corrado Tomaselli]
+
+Fixed crash in the debugger when decoding instructions that were too long.
+[Aaron Giles]
+
+Fixed a number of problems with Eagle Shot Golf, removing several hacks from
+the SSV driver along the way. [Luca Elia]
+
+Decrypted tilemaps in Dark Mist and added info about missing proms.
+[Tomasz Slanina]
+
+Fixed minor bug in TIA emulation, taken from the MESS code. [Wilbert Pol]
+
+Renamed Hollywood Action to Action Hollywood. [David Haywood]
+
+Major video update to Taito F3 driver that amongst other things properly 
+implements zoom & column scroll according to how the hardware does it, 
+which not only fixes glitches in various games but allowed many hacks to be
+removed also.  Sprite & tilemap clipping is also implemented, as is
+proper priority mixing and alpha-blending on the vram and pixel
+layers. [Bryan McPhail]
+
+Fixed exception handling and task switching in the V60 core. [Aaron Giles]
+
+Add preliminary sound support for Action Hollywood. [Quench]
+
+Improvements to the PSX CPU core [smf]
+ - correct behaviour for a branch in a delay slot.
+ - added bios and syscall logging of all known functions & their parameters
+   (writing to file descriptor 1 or putchar will output to the console)
+ - fixed disassembly of gte instructions.
+ - fixed dismips.mak
+
+Did another overhaul on the PPC603 counters (timebase should increment 
+once every four core clock cycles and decrementer should decrement once 
+every four bus cycles). [Ville Linde]
+
+Namco System 2 updates [Brian Troha]
+ - Added Final Lap road clut prom to all Final Lap sets
+ - Made Final Lap 3 World the parent, new clone is finalp3j
+ - Added Final Lap's road clut to Four Trax (marked as bad_dump).. 
+ - Changed SWS sound rom to match the other sets (sws92 & sws93)
+ 
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Animalandia Jr. [Luca Elia]
+
+
+
+New clones added
+----------------
+Puzznic (Japan set 2) [Aaron Giles]
+Tant-R (Puzzle & Action) (Korea) [laugh, David Haywood]
+Raiden Fighters (Dream Island co. license) [Corrado Tomaselli]
+Raiden Fighters (US, Fabtek License) [Chris Hardy]

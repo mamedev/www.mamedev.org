@@ -1,0 +1,202 @@
+0.35 BETA 1
+
+Note: the configuration save format has changed. You may just as well delete
+all of the cfg/*.cfg files, since they won't be loaded. Old .inp files will not
+work either.
+The good news is that the default key assignments can now be modified, so you
+don't have to change them for all the games. The code is a quick hack put
+together in fifteen minutes, but it's bettern than nothing. It will be improved
+in future versions.
+
+
+New games supported:
+--------------------
+
+Rolling Thunder [Jimmy Hamm, Phil Stroffolino, Ernesto Corvi]
+Pocket Gal [Bryan McPhail]
+Battle Lane Vol. 5 (preliminary) [Paul Leaman]
+Turtle Ship [Victor Trucco]
+Mariner [Zsolt Vasvari]
+Atari Football [Mike Balfour, Patrick Lawrence, Brad Oliver]
+
+
+New clones supported:
+---------------------
+
+Sector Zone (= Seicross) [Nicola Salmoria]
+Carnival (cocktail) [Nicola Salmoria]
+Pac Man (Hearts) [a zillion people]
+City Connection (set 2) [Thierry Lescot]
+Burger Time (DECO set 1) [Nicola Salmoria]
+Sly Spy (set 1) [Nicola Salmoria]
+Wild Fang (= Tecmo Knight) [Thierry Lescot]
+Crazy Kong (Orca bootleg) [David Winter]
+Gate of Doom (set 2) [Thierry Lescot]
+Zig Zag (Dig Dug hardware) [Nathan Barber]
+Black Dragon (bootleg, hacked) [Nicola Salmoria]
+Exciting Soccer (alternate music) [Thierry Lescot]
+
+
+Changed ROM sets:
+-----------------
+
+- Replaced Super Punch Out with a good set
+
+- Added missing PROMs to Black Tiger
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed Psychic 5 and Toki title screens. [Jarek Parchanski]
+
+- Proper support of the playfiled/sprite priority and palette system in Return
+  of the Jedi. [Nicola Salmoria]
+
+- Accurate colors in Spelunker II. [Nicola Salmoria]
+
+- Fixed Heiankyo Alien colors. [Zsolt Vasvari]
+
+- Fixed NeoGeo palette - it's 5 bits per gun, not 4. Of course this makes the
+  reduction to 256 colors even more difficult. 16-bit video modes will be
+  supported in a later version. [Nicola Salmoria]
+
+- Added a kludge to avoid leftover sprites in Rally-X. [Larry Bank]
+
+- Fixed missing background behind the three towers in Metal Slug level 1.
+  [Nicola Salmoria]
+
+- Fixed missing line in the tank's shot in Metal Slug intro. [Nicola Salmoria]
+
+- Fixed the Swimmer side panel background color. [Gary Walton]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed shoot sound in Juno First. [Nicola Salmoria]
+
+- Added PCM samples to Ninja Kid II. [Jarek Parchanski]
+
+- Added the 007232 to TMNT. Another sound chip is still missing to get 100%
+  sound. [Howie Cohen]
+
+- Sound in Psycho-Nics Oscar. [Nicola Salmoria]
+
+- Partial sound in The Real Ghostbusters. The YM203 doesn't seem to work
+  correctly. [Nicola Salmoria]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Road Fighter, Iron Horse. [Howie Cohen]
+
+- Lizard Wizard. [M.C. Silvius]
+
+- Space Tactics. [Zsolt Vasvari]
+
+
+Other drivers changes:
+----------------------
+
+- Analog joystick support in Sinistar and Blaster. [Nicola Salmoria]
+
+- Worked out the Super Punch Out protection. [Tatsuyuki Satoh, Ernesto Corvi]
+
+- Hacked the protection in Super Sidekicks. [Battlepriest]
+
+- Fixed two players games in Phoenix, and the protection in Pleiads (which
+  made game resets not work). [Zsolt Vasvari]
+
+
+Changes to the main program:
+----------------------------
+
+- Support for the Namco System 1 sound system. [Ernesto Corvi]
+
+- [DOS] Widened the frameskip range. It now is 0-11, meaning the number of
+  frames to skip out of 12. For example, if the game normally runs at 60 fps,
+  "-frameskip 2" will make it run at 50 fps, and "-frameskip 6" at 30 fps.
+  Also, if a frame takes more than the allotted time to display, the lost
+  time can be recovered in the following frames. Moreover, improved the way
+  audio streams are handled, so they stay more in sync with the video. There
+  should never be any more audio breakups EVER (as long as your system can
+  keep the game running at 100% speed).
+  All of these changes together mean that it is now possible to run at much
+  higher frame rates than before (if your system is fast enough).
+  [Nicola Salmoria]
+
+- [DOS] Implemented auto frameskip. It dynamically adjusts the frameskip
+  setting to display the maximum possible frames without dropping below 100%
+  speed.
+  It is on by default; to turn it off, specify an explicit frameskip value,
+  e.g. "-frameskip 0". Autoframeskip only works well if your machine is fast
+  enough to run the game at 100% speed. If it isn't, you had better use a
+  fixed frameskip.
+  NOTE: you must delete mame.cfg (or manually change the line "frameskip = 0"
+  to "frameskip = auto") for the auto frameskip to become the default.
+  [Nicola Salmoria]
+
+- [DOS] "vmame" modes 320x480 and 400x600, which speed up scanlined VESA modes
+  for some games and graphic cards which support these resolutions.
+  Currently, these modes will not be autodetected, that is, the commandline
+  options "-320x480" or "-400x600" have to be used.
+  [Nicola Salmoria, Michael Cunnanan]
+
+- [DOS] Joysticks are now selected by a symbolic name (e.g. "-joystick wingex"
+  for Wingman Extreme) instead of a number. For the list of names, look into
+  readme.txt. Numbers are still supported, but may not be in future releases.
+  SNES gamepads on parallel ports are supported now, provided you have some
+  additional hardware (the "official" Snespad-Support site is
+  http://snespad.emulationworld.com). [Bernd Wiebelt]
+
+- [DOS] For cosmetical reasons, added support for VESA3, which can be selected
+  by putting "vesamode=vesa3" into mame.cfg. It is highly unlikely that you'll
+  get any speed improvement. [Bernd Wiebelt]
+
+
+Source:
+-------
+
+- New function cpu_getcurrentframe() which returns the number of the video
+  frame currently being played. It can be used by drivers to control effects
+  which spawn over multiple frames (e.g. blinking) without using static
+  internal counter (which would require a custom interrupt handler to avoid
+  problems when the game is paused). [Nicola Salmoria]
+
+- Frame skipping is entirely handled by the OS dependant code.
+  osd_skip_this_frame() no longer has the "recommend" parameter.
+  Also, replaced osd_update_display() and osd_update_audio() with the single
+  osd_update_video_and_audio().
+  IMPORTANT: osd_update_video_and_audio() is called *every frame* by the main
+  core. It's its responsability to know whether the frame has to be skipped.
+  osd_skip_this_frame() is used by the main core only to know if it can avoid
+  calling drv->vh_update(). [Nicola Salmoria]
+
+- New Z80 emulator. [Juergen Buchmueller]
+
+- Fixed several bugs in the I86 emulator. [Juergen Buchmueller]
+
+- New CPU interrupt system. The functions cpu_set_irq_line() and
+  cpu_set_nmi_line() can be used to precisely control the status of the CPU
+  physical lines, instead of using the limited control granted by
+  cpu_cause_interrupt(). [Juergen Buchmueller]
+
+- Konami 007232 sound chip emulator. This is used by TMNT. [Hiromitsu Shioya]
+
+- The driver input ports are now 16 bit. This allows for higher resolution
+  analog inputs (Arkanoid 2). Also, the 68000 based games no longer have to
+  read and mix two 8 bit ports to get a 16 bit value. [Brad Oliver]
+
+- [DOS] Now compiled with Allegro 3.1. Unfortunately the standard allegro.h
+  doesn't compile with the pedantic compiler setup we are using, you'll have to
+  use the provided fixed version instead. [Bernd Wiebelt]
+
+- Added a horrible dirty hack to allow opcode encryption on CPUs other than
+  the main one. It's really ugly and needs a rewrite, but it's enough to get
+  sound in Pocket Gal and The Real Ghostbusters. [Nicola Salmoria]
+
+- Exported info_cpu_name(), info_sound_name() and other similar functions from
+  info.c so they can be used by usrintf.c and by anyone else who needs them.
+  [Nicola Salmoria]

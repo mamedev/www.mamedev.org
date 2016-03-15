@@ -1,0 +1,352 @@
+0.68.
+
+Note, this Release was put together by David Haywood, some of it is
+untested but most of seems to work.
+
+General Source Changes
+----------------------
+
+SHA1 hash support, including various new command line options [Farfetch'd]
+	src\too many to list ;-)
+
+Mame Blitter Generation Code [Phil Stroffolino]
+	src\mameblit.c
+	src\mame.c
+	src\mame.h
+	src\drawgfx.c
+	src\blitgen.c
+
+Basic Direct3D blitting support [Leon van Rooij]
+
+You need DirectX7 headers and libs to compile it, I'm using the set from
+http://caesar.logiqx.com/html/tools/compilers/mingw.shtml which has the
+original MS headers (the same set is used for Allegro and FB Alpha) and
+I've made a minor update to the ddraw code so that it compiles with this
+set of headers (VC++ should still be fine as well).
+
+The code manually imports the DirectDrawCreateEx() function so MAME
+compiled with d3d support will (or rather should, I've not actually tested
+that yet) still run on PC's with older versions of DirectX. It should work
+with pretty much any 3D hardware (except perhaps older Voodoo-based cards),
+and the speed should be similar to the DirectDraw blit (a bit faster for
+some older cards).
+
+-direct3d or -d3d: use Direct3D (default is off, overrides -dd);
+-filter or -flt: use bi-linear filtering (default is on);
+-texture_management: use DirectX texture management (default is off, but
+ some 3D cards need this (however, there's a small-ish speed-penalty)).
+	src\windows\windows.mak
+	src\windows\window.h
+	src\windows\window.c
+	src\windows\windraw.h
+	src\windows\windraw.c
+	src\windows\wind3d.h
+	src\windows\wind3d.c
+	src\windows\video.h
+	src\windows\video.c
+	
+Various Konami Related Fixes and Improvements [Acho A. Tang, R. Belmont]
+	src\tilemap.c
+	src\palette.c
+	src\drivers\mystwarr.c
+	src\vidhrdw\mystwarr.c
+	src\vidhrdw\konamiic.c
+	src\vidhrdw\konamiic.h
+	src\machine\konamigx.h
+	src\drivers\konamigx.c
+	src\machine\konamigx.c
+	src\vidhrdw\konamigx.c
+	src\drivers\xexex.c
+	src\vidhrdw\xexex.c
+	src\sound\ko54539.c
+	src\sound\ko54539.h
+	src\drawgfx.c
+	src\blitgen.c
+	
+Various System 32 Updates (Priority, SVF Pitch etc.) [Acho A. Tang, Jason Lo, David Haywood]
+	Note, theres a chance some things may be broken
+	src\drivers\multi32.c
+	src\drivers\system32.c
+	src\vidhrdw\system32.c
+	
+Sound in Macross Plus & Quiz Bisyoujo Senshi Sailor Moon [Bryan McPhail]
+	src\drivers\macrossp.c
+	src\sound\es5506.c
+
+Fixes for Crashes introduced in last version
+	src\drivers\namcos1.c
+	src\drivers\namcos2.c
+	src\drivers\shangha3.c
+
++ plenty of other things I just don't have time to list.
+	
+New games supported:
+--------------------
+
+Chack'n Pop [BUT]
+	src\drivers\chaknpop.c
+	src\machine\chaknpop.c
+	src\vidhrdw\chaknpop.c
+
+Salamander 2 [Acho A. Tang, R. Belmont]
+	Some protection issues remain (ships in attract mode)
+Tokimeki Memorial Taisen Puzzle-dama [Acho A. Tang, R. Belmont]
+Dragoon Might [Acho A. Tang, R. Belmont]
+	src\ see list in 'Various Konami Updates' above
+Koi Koi Shimasyo 2 - Super Real Hanafuda [Luca Elia]
+Vasara []
+Vasara 2 []
+	src\drivers\ssv.c
+	src\vidhrdw\ssv.c
+	src\includes\seta.h
+Billiard Academy Real Break [Luca Elia]
+	src\drivers\realbrk.c
+	src\vidhrdw\realbrk.c
+	src\includes\realbrk.h
+	src\drivers\seta2.c
+	src\machine\tmp68301.c
+	src\machine\tmp68301.h
+	src\sound\ymz280b.c
+	src\sound\ymz280b.h
+Cannonball [Jarek Burczynski]
+	some gfx problems (Bad ROMs?)
+	src\drivers\cclimber.c
+Kick Start Wheelie King [Tomasz Slanina]
+	previously a testdriver, emulation completed
+	src\drivers\taitosj.c
+	src\vidhrdw\taitosj.c
+Truco-Tron [Ernesto Corvi]
+	src\drivers\truco.c
+	src\vidhrdw\truco.c
+(Super) Ground Effects [David Graves, Bryan McPhail]
+	src\drivers\groundfx.c
+	src\vidhrdw\groundfx.c
+	src\vidhrdw\taitoic.c
+	src\drivers\undrfire.c
+Horizon [smf, David Haywood]
+	src\drivers\m62.c
+	src\vidhrdw\m62.c
+Fire Battle [Martin Pugh]
+	previously a testdriver, patch added
+	src\drivers\clshroad.c
+Rapid Hero [David Haywood]
+	src\drivers\nmk16.c
+	src\vidhrdw\nmk16.c
+Zero Point 2 [Luca Elia]
+	src\drivers\unico.c
+	src\vidhrdw\unico.c
+	src\includes\unico.h
+Idol Janshi Su-Chi-Pie 2 [David Haywood]
+	src\drivers\ms32.c
+	src\vidhrdw\ms32.c
+Quiz Ghost Hunter [Olivier Galibert]
+Tokoro San no MahMahjan [Olivier Galibert]
+Tokoro San no MahMahjan 2 [Olivier Galibert]
+Quiz Mekiromeki Story [Olivier Galibert]
+	src\drivers\system24.c
+	src\vidhrdw\system24.c
+	src\machine\system24.c
+	src\includes\system24.h
+	src\vidhrdw\segaic24.c
+	src\vidhrdw\segaic24.h
+Straight Flush [Tomasz Slanina]
+	2 player mode isn't working
+	src\drivers\8080bw.c
+	src\vidhrdw\8080bw.c
+	src\includes\8080bw.h
+SD Gundam Neo Battling [Luca Elia]
+	src\drivers\seta.c
+Fantasy Land [Luca Elia]
+Galaxy Gunners [Luca Elia]
+	src\drivers\fantland.c
+	src\vidhrdw\fantland.c
+Metal Soldier Isaac II [Angelo Salese]
+	previously a testdriver, mcu simulation added
+	src\drivers\msisaac.c
+Progress [David Haywood]
+	Bad Colours due to missing Proms
+	src\drivers\timelimt.c
+Birdie King 3 [Angelo Salese]
+	src\drivers\bking2.c
+Dark Tower [Bryan McPhail, David Haywood]
+	dips need mapping correclty, default coinage is bad
+	src\drivers\ddragon.c
+Tricky Doc [Reip, David Haywood]
+	Bad Colours due to missing Proms
+	src\drivers\sauro.c
+	src\vidhrdw\sauro.c
+Tournament Table [Stefan Jokisch]
+	src\drivers\tourtabl.c
+	src\machine\6532riot.c
+	src\machine\6532riot.h
+	src\sound\tiaintf.c
+	src\sound\tiaintf.h
+	src\sound\tiasound.c
+	src\sound\tiasound.h
+	src\vidhrdw\tia.c
+Eggor [Tomasz Slanina]
+	src\drivers\pacman.c
+Rock Climber [Tomasz Slanina]
+	src\drivers\galaxian.c
+	src\vidhrdw\galaxian.c
+	src\includes\galaxian.h
+Kung-Fu Taikun [Tomasz Slanina]
+	src\drivers\wiz.c
+Metal Clash [Luca Elia]
+	src\drivers\metlclsh.c
+	src\vidhrdw\metlclsh.c
+Head Panic
+	eeprom needs hooking up
+	src\drivers\esd16.c
+	src\vidhrdw\esd16.c
+Puckman Pockimon [Luca Elia]
+	src\drivers\segac2.c
+	src\vidhrdw\segac2.c
+Operation Wolf 3 [David Graves, Bryan McPhail]
+	src\drivers\slapshot.c
+Sky Army [Ryan Holtz]
+	src\drivers\skyarmy.c
+Super Doubles Tennis [Bryan McPhail]
+	src\drivers\btime.c
+Egg Venture [Aaron Giles]
+Lethal Justice [Aaron Giles]
+	src\drivers\lethalj.c
+	src\vidhrdw\lethalj.c
+	src\includes\lethalj.h
+Area 51 / Maximum Force Duo [Aaron Giles]
+	src\drivers\cojag.c
+Prebillian [Tomasz Slanina]
+	src\drivers\pbillian.c
+	src\vidhrdw\pbillian.c
+	src\sndhrdw\pbillian.c
+Bwings [Acho A. Tang]
+Zaviga [Acho A. Tang]
+	src\drivers\bwing.c
+	src\vidhrdw\bwing.c
+Wall Crash [Jarek Burczynski]
+	src\drivers\wallc.c
+Mighty Pang [Razoola]
+	src\drivers\cps2.c
+	src\vidhrdw\cps1.c
+J-League Soccer V-Shoot [Phil Stroffolino]
+	src\drivers\namconb1.c
+Rotary Fighter [Barry Rodewald]
+	src\drivers\rotaryf.c
+The Deep / Run Deep [Luca Elia]
+	src\drivers\thedeep.c
+	src\vidhrdw\thedeep.c
+
+
+New clones supported
+--------------------
+
+Lethal Enforcers 2 (USA) [Brian Troha]
+	src\drivers\konamigx.c
+Violent Storm (Europe) [David Haywood]
+	src\drivers\mystwarr.c
+Mello Yello Q*Bert [David Haywood]
+	src\drivers\gottlieb.c
+Big Bang (clone of Thunder Dragon 2) [David Haywood]
+Vandyke (Jaleco) [David Haywood]
+	src\drivers\nmk16.c
+BlockBuster (clone of Mr Jong) [David Haywood]
+	src\drivers\mrjong.c
+Catsbee (clone of Galaga) [David Haywood]
+	src\drivers\galaga.c
+	src\vidhrdw\galaga.c
+Croquis (clone of Logic Pro) [David Haywood]
+	src\drivers\deniam.c
+Super Pinball Action (US) [David Haywood]
+	src\drivers\spbactn.c
+Pollux (set 2) [David Haywood]
+	src\drivers\dooyong.c
+Vautour (clone of Phoenix) [Chris Hardy]
+	src\drivers\phoenix.c
+Moon Alien (clone of Galaxian) [David Haywood]
+	src\drivers\galaxian.c
+Country Club (clone of Fighting Golf) [Tomasz Slanina]
+	src\drivers\snk.c
+DoDonPachi (International Version) [Brian Troha]
+	src\drivers\cave.c
+Batrider (Korea) [Brian Troha]
+	src\drivers\toaplan2.c
+Vs Block Breaker (clone of sarukani) [David Haywood]
+	src\drivers\suprnova.c
+	src\vidhrdw\suprnova.c
+Ring Fighter (clone of Vs. Gong Fight) [David Haywood]
+	src\drivers\tsamurai.c
+Space Panic (various alt sets) [Zsolt]
+	src\drivers\cosmic.c
+Piranha (GL sets) [Dave Widel]
+	src\drivers\pacman.c
+Hydra (prototype set 2) [Aaron Giles]
+	src\drivers\atarig1.c
+Millpac (clone of centipede) [Chris Hardy]
+	src\drivers\centiped.c
+Some Cps1 Clones [Razoola]
+	src\drivers\cps1.c
+Bang Bead (Release Version) [Various]
+	src\drivers\neogeo.c
+Terminator 2 (LA1) [Brian Troha]
+	src\drivers\midyunit.c
+Various NeoGeo Clones [Razoola]
+	src\drivers\neogeo.c
+	src\machine\neogeo.c
+
+	
+New TESTDRIVERS in source
+-------------------------
+
+Shougi [Jarek Burczynski, Tomasz Slanina]
+Shougi 2 [Jarek Burczynski, Tomasz Slanina]
+	Not Working due to Protection MCU
+	src\drivers\shougi.c
+Konami's Open Golf Championship [Acho A. Tang, R. Belmont]
+	Missing ROZ layer, always thinks the ball is in the water
+	src\drivers\konamigx.c
+F1 Grand Prix Star 2 [Luca Elia]
+	Missing / Bad ROMs
+	src\drivers\cischeat.c
+	src\vidhrdw\cischeat.c
+Ultra Weapon X [Luca Elia]
+	problems with v60 interrupts
+Joryuu Syougi Kyoushitsu [Luca Elia]
+	unemulated CPU
+	src\drivers\ssv.c
+	src\vidhrdw\ssv.c
+Hot Rod [Olivier Galibert]
+Bonanza Bros [Olivier Galibert]
+Quiz Rouka Ni Tattenasai [Olivier Galibert]
+	various problems with the System 24 emulation
+	src\drivers\system24.c
+	src\vidhrdw\system24.c
+	src\machine\system24.c
+	src\includes\system24.h
+	src\vidhrdw\segaic24.c
+	src\vidhrdw\segaic24.h
+Thunder Strike
+	src\drivers\ddragon.c
+Hot Smash [Tomasz Slanina]
+	MCU Protection problems
+	src\drivers\pbillian.c
+	src\vidhrdw\pbillian.c
+	src\sndhrdw\pbillian.c
+Raiden 2 [Bryan McPhail]
+	Protected and Encrypted Sprites
+	src\drivers\raiden2.c
+Grand Tour [David Haywood]
+	Protection?
+	src\drivers\iqblock.c
+Great Wall
+	Needs work on vidhrdw (none done)
+	src\drivers\grtwall.c
+China Dragon
+	Needs work on vidhrdw (none done)
+	src\drivers\chindrag.c
+Space Bugger [David Haywood]
+	bad rom?
+	src\drivers\sbugger.c
+	src\vidhrdw\sbugger.c
+Main Event (SNK) [David Haywood]
+	vidhrdw not finished
+	src\drivers\mainsnk.c

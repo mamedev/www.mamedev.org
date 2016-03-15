@@ -1,0 +1,127 @@
+0.99u2
+------
+
+Prior versions of MAME have excluded some drivers (primarily gambling-
+related) for philosophical reasons. Since these games are legitimately at
+risk of being lost to the ages, and many of them have strong similarities
+to the other sorts of games MAME emulates, it has been decided to allow their
+inclusion going forward. The criteria for inclusion in MAME is now simply
+"any primarily video based arcade machine, driven by one of more CPUs," and
+should relieve any confusion surrounding this issue going forward.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+namcos1099u1red [Aaron Giles]
+mcr3099u1yel [Aaron Giles]
+zaxxon088u2gre [Derrick Renaud]
+sprint1097gre [Derrick Renaud]
+sdgndmps058gre [Pierpaolo Prazzoli]
+gunforc2058gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+More input port cleanup: [Aaron Giles]
+ - Fixed input port handlers that used the port_tag_to_handler calls.
+ - Simplified the reading/writing of input ports so they work more reliably.
+ - Only write changed settings to the .cfg files.
+ - Fixed saving of analog port configurations.
+
+Updated to the latest zlib. [Atari Ace]
+
+Added flipscreen to Pop Bingo. Added some disable registers for tilemaps/
+sprites (fixing the bug in lastday demo). [Pierpaolo Prazzoli]
+
+Fixed some video bugs in Party Time. [David Haywood]
+
+Adjusted Namco CUS30 noise frequency. [BUT]
+
+Fixed input ports in djmain. [BUT]
+
+Several Konami improvements: [R. Belmont]
+ - Added support for "external memory address" registers on the YMZ280B, 
+    which can be used to read the contents of attached ROM or RAM.
+ - Hooked up the mask ROM tests in the service menu - both the tile 
+    character ROMS and the sound ROMs now can be tested.
+ - Added secondary control register.
+ - Hooked up IRQ control.
+ - Renamed ROMs for both games to include PCB location information.
+
+Some improvements to the DECO cassette games: [Juergen Buchmueller]
+ - Treasure Island graphics ROMs (overlay board) mapped according to
+    findings by debugging the game code.
+ - Swapped image names for ctislnd2 and ctislnd3 to match the driver names;
+    ctislnd3 is the not yet working set; removed IMPERFECT_GRAPHICS flag.
+ - Found bitswap for Zeroize type #3 dongle; found hack to get it running w/o
+    the dongle ROM by debugging the game code; changed year to 1983; removed
+    NOT_WORKING flag.
+
+SHARC/Model 2 updates: [Ville Linde]
+ - Reworked the SHARC internal ram implementation so that multiple instances 
+    of the core work.
+ - Added data address space
+ - Added coprocessor input and output FIFO's to Model 2.
+ - Updated Konami zr107, gticlub, nwk-tr, hornet to work with the SHARC 
+    changes
+
+Seibu SPI improvements: [Ville Linde]
+ - Fixed sprite priority issues
+ - Added support for pen-based alpha to sprites and tilemaps. It's currently 
+    using fixed alpha table for all games, but this seems to break some 
+    games, so it probably isn't correct.
+
+Fixed the discrete sound 555 timer modules when using actual DC mode. 
+[Derrick Renaud]
+
+Added low-frequency oscillator (LFO) to YMF271 emulator. [Ville Linde]
+
+Improvements to the dcon driver: [Pierpaolo Prazzoli]
+ - Fixed sprites - sprites priorities
+ - Fixed sprites - tilemaps priorities
+ - Added wrap around and flipy in sprites
+
+Added MNG recording support (shift+F12 by default). [Mathis Rosenhauer]
+
+Fixed 6309 division instructions overflow behavior on the HD6309.
+[Tim Lindner]
+
+Fixed more YMF271 issues: [Ville Linde]
+ - The mix buffer pointer was not being reset between two 2-operator FM 
+    sounds, causing missing sounds.
+ - Fixed some bugs in the phase modulation of FM sounds
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Derby [David Haywood]
+Champion Skill [Mirko Buffoni]
+Pontoon (Tehkan) [Zsolt Vasvari]
+Lovely Poker [Uki/El Condor]
+Golden Star [Mirko Buffoni]
+Jolly Card/Jolly Poker [Curt Coder, PeT]
+Inter Game Poker [Curt Coder, PeT]
+Magic Card II [Curt Coder, PeT]
+Zeroize (casette) [Juergen Buchmueller]
+Lucky Today [Curt Coder]
+Chewing Gum [Curt Coder]
+Royal Casino [Curt Coder]
+Vegas Roulette [Curt Coder]
+Jin [David Haywood]
+Attack Ufo [Tomasz Slanina]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Roulette (Playmark) [David Haywood]
+Bubble Trouble [David Haywood]
+American Poker II [Curt Coder]
+Cherry Master [Curt Coder]
+Cherry Master II v8.41 [Curt Coder]
+Lucky 8 Lines [Curt Coder]
+Starspinner [Curt Coder]
+906III Video Poker [Curt Coder]

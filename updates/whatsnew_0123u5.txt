@@ -1,0 +1,234 @@
+0.123u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01216 [Tomasz Slanina]
+00898 [couriersud]
+01436 [Aaron Giles]
+01480 [robiza]
+01482 [Zsolt Vasvari]
+01429 [RansAckeR]
+00593 [RansAckeR]
+01478 [RansAckeR]
+
+
+
+Source Changes
+--------------
+Fixed flickering in Electric Yo-Yo. Changed qix driver to use the
+MC6845's VSYNC notification for interrupts. [Zsolt Vasvari]
+
+Removed machine from the parameters of some of the device_get_info
+and device_set_info calls because that information is stored
+with the device now. [Aaron Giles]
+
+Changed device interfaces to pass the device_config * rather
+than tokens and individual bits to the device callbacks. Updated
+all existing devices accordingly. [Aaron Giles]
+
+A number of changes to remove references to screens by index and
+make the video system based strictly upon the screen devices:
+[Zsolt Vasvari]
+
+ * changed vblank_state_changed_func to now have a device_config 
+    argument
+ * removed runnning_machine as the first parameter of a VBLANK 
+    callback
+ * removed video_data from running_machine
+ * private state screen information now hangs off the public one, 
+    instead of the other way around
+ * combined video_global and video_private into a single structure
+ * moved populating screen_state from mame.c to video.c
+ * removed defstate; the default screen parameters live in 
+    screen_config directly
+ * moved 'refresh' from public to internal video state and renamed 
+    it to 'frame_period'
+ * changed all drivers that previously accessed 'refresh' to use 
+    video_screen_get_frame_period()
+ * changed VIDEO_UPDATE signature to pass the screen device
+ * added const device_config *primary_screen to running_machine
+ * changed first argument of video_screen_* functions to take a 
+    device_config; all callers that used 0 for the screen number now 
+    use machine->primary_screen
+ * changed game info screen and overlay UI to display the screen tag 
+    instead of screen number
+ * added video_screen_get_visible_area()
+ * changed render.c to use screen devices
+ * removed direct driver access to machine->screen[] array
+ * added video_screen_auto_bitmap_alloc(screen)
+ * the Dynax/Don Den Lover games now do their updating in VIDEO_UPDATE 
+    instead of VIDEO_EOF. Seems to have fixed the palette problems
+ * hooked up swapped videoram in Karnov properly -- same idea as 
+    Burger Time
+ * removed the public screen_state object -- all access is via 
+    functions
+ * removed screen[] object from running_machine
+ * removed MAX_SCREENS constant -- there is no longer a hardcoded 
+    upper bound
+ 
+Changed the MC6845 to take and pass device_config's only. The 
+following shook out from this that are applicable to other devices 
+as well: [Zsolt Vasvari]
+ - running_machine is no longer taken, passed or stored
+ - mc6845_t is now private
+ - since passing device_config's is not device type safe, I added a
+    get_safe_token() to mc6845.c to check the device passed in for 
+    the valid type.
+
+Removed video_data from running_machine. Private state screen 
+information now hangs off the public one, instead of the other way 
+around. Combined video_global and video_private into a single 
+structure. [Zsolt Vasvari]
+
+Fixed the crash in Galaga caused by the slightly altered video timing.
+[Zsolt Vasvari]
+
+Converted address maps to tokens. Changed the address_map structure
+to house global map-wide information and hung a list of entries off
+of it corresponding to each address range. Introduced new functions
+address_map_alloc() and address_map_free() to build/destroy these
+structures. Updated all code as necessary. [Aaron Giles]
+
+Fixed several instances of porttagtohandler*() in the address maps.
+Drivers should use AM_READ_PORT() macros instead. [Aaron Giles]
+
+ADDRESS_MAP_EXTERN() now is required to specify the number of 
+databits, just like ADDRESS_MAP_START. [Aaron Giles]
+
+Removed ADDRESS_MAP_FLAGS() grossness. There are now three new macros
+which replace its former usage. ADDRESS_MAP_GLOBAL_MASK(mask)
+specifies a global address-space-wide mask on all addresses. Useful
+for cases where one or more address lines simply are not used at
+all. And ADDRESS_MAP_UNMAP_LOW/HIGH specifies the behavior of
+unmapped reads (do they come back as 0 or ~0). [Aaron Giles]
+
+Changed internal memory mapping behavior to keep only a single
+address map and store the byte-adjusted values next in the address
+map entries rather than maintaining two separate maps. Many other
+small internal changes/cleanups. [Aaron Giles]
+
+Changed MC6845 to take a screen tag instead of a screen number.
+[Zsolt Vasvari]
+
+Voodoo now takes a device_config for the screen. [Zsolt Vasvari]
+
+Changed TMS34010 to take a screen tag instead of screen number.
+[Zsolt Vasvari]
+
+Replaced the following macros (SMH == static memory handler)
+
+   MRA*_BANK*/MRA*_BANK* -> SMH_BANK*
+   MRA*_RAM/MRA*_ROM     -> SMH_RAM
+   MRA*_ROM/MWA*_ROM     -> SMH_ROM
+   MRA*_NOP/MWA*_NOP     -> SMH_NOP
+   MRA*_UNMAP/MWA*_UNMAP -> SMH_UNMAP
+
+This removes the silly need for a bunch of redundant constants
+with faux type definitions that didn't buy anything. [Aaron Giles]
+
+Moved some memory system constants into memory.c. [Aaron Giles]
+
+Converted atarigen and tms34061 to be handle based. [Zsolt Vasvari]
+
+Changed how the PowerPC MMU is enabled at compile time, to cut down 
+on the amount of unused functions in MAME. [Nathan Woods]
+
+Some additional memory system cleanups: [Aaron Giles]
+ * Made address versus byte offsets explicit throughout.
+ * Removed some unused parameters.
+ * Consolidated initialization process.
+ * Removed maximum memory block count.
+ * Centralized bank management.
+ * Added masked handlers and change_pc to the accessors.
+ * Added memory_get_accessors() to return a pointer to the accessors
+   for a given address space/databus width/endian configuration.
+
+Adds some new 6845 varieties: MC6845-1, H46505, HD6845 and SY6545-1.
+[Zsolt Vasvari]
+
+Moved crosshair code from video.c into its own module. Simplified 
+crosshair logic and made it screen device based. [Zsolt Vasvari]
+
+Saturate MultiPCM on clip and fix envelope discontinuity. [ElSemi]
+
+Fixed loading mixer settings when the driver default value is 
+calculated. [Nicola Salmoria]
+
+Removed cpu_scalebyfcount(). Changed input ports to register a frame 
+callback, which is called immediately after throttling and updating. 
+This is the proper "sync point" between emulated time and real time. 
+Moved all analog and digital port processing into a central place
+here. Added tracking of time since the previous frame update and use 
+that as an estimate for the time of the current frame. This is used 
+to scale analog ports without the use of cpu_scalebyfcount(). This 
+is not perfect in the case where frame rates are dynamic (vector 
+games), but works well for other cases. [Aaron Giles]
+
+Fixed VBLANK end time computation and video_screen_get_vblank() -- 
+they weren't taking into account games that use 
+MDRV_SCREEN_VBLANK_TIME. [Zsolt Vasvari]
+
+Fixed 68000 prefetching operation. Previous behavior was incorrect.
+[Aaron Giles]
+
+Changed slapstic management to always install an opbase handler to 
+more aggressively catch code executing in the slapstic region. 
+Updated all drivers to separate the slapstic region of ROM into a 
+different ROM section from the fixed ROM. [Aaron Giles]
+
+superqix.c changes: [Mike Haaland]
+ - Changed vblank interrupts to 3 to fix screen drawing issues.
+ - Used memory_configure_bank() to configure memory.
+ - Added save states.
+
+Added some clock frequency changes which were documented in u4 but
+which did not apply due to operator error. [Corrado Tomaselli]
+
+Added layout to crop corners in Electric Yo-Yo. [Mr. Do!]
+
+Added support for Sega Virtua Processor, to run Genesis/MegaDrive 
+version of Virtua Racing, intended to be used by MESS. It consists 
+of a CPU core SSP1601, and updates in megadriv.c: [notaz]
+ * SSP1601 replaces SSP1610, as it has been confirmed that SVP 
+    actually contains SSP1601. The current SSP1610 is only a 
+    placeholder (nearly completely unimplemented) anyway.
+ * Changed megadriv.c add a new driver for Genesis/MegaDrive+SVP
+    combination, also add SVP memory controller logic and memory map.
+
+Phase 2 of the Deal 'Em input changes (these work well with the 
+default cabinet type, I need to do some conditional input work 
+to fix them fully), and also a conversion to the resnet code. 
+Unfortunately, this still doesn't fix the apparently needed 
+transparency. [James Wallace]
+
+Simplified inputs, improved DIP switches, and added DIP locations
+to punchout.c, bankp.c, and baraduke.c. [RansAckeR]
+
+In asuka.c, created MACHINE_START( asuka ) to configure cpu2 banks 
+with memory_configure_bank(). All drivers support save states, with 
+the exception of cadash and clones, the background does not load 
+properly. [Mike Haaland]
+
+Fixed M68000 build logic to only include it if enabled. [Fabio Priuli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Amuse (Version 50.08 IBA) [Pierpaolo Prazzoli]
+Joker Poker (Version 16.03B) [Pierpaolo Prazzoli]
+Super Bowl (Version 16.03B) [Pierpaolo Prazzoli]
+Pit Boss II [Mariusz Wojcieszek]
+Super Pit Boss [Mariusz Wojcieszek]
+Pit Boss Megastar [Mariusz Wojcieszek]
+Megatouch IV [Mariusz Wojcieszek]
+Megatouch IV Tournament Edition [Mariusz Wojcieszek]
+Megatouch 6 [Mariusz Wojcieszek]
+
+
+
+New clones added
+----------------
+Raiden Fighters (Austria) [Corrado Tomaselli]

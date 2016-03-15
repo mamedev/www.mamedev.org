@@ -1,0 +1,155 @@
+0.124u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01691: [Misc.] Various Sets: when exiting a game, seems to be 
+  any game I get an eip error (Aaron Giles)
+01697: [Graphics] sfa3, sfa3b, sfa3u, sfa3ur1: About the blue 
+  background in startup screen. (Nicola Salmoria)
+00206: [Graphics] ninjakd2: PCB info for Nicolas state. 
+  (Nicola Salmoria)
+01695: [DIP/Input] ptblank, gunbulet: Crosshair doesn't move (smf)
+01694: [Graphics] punisher, punishrj, punishru: missing graphic 
+  (Nicola Salmoria)
+
+
+
+Source Changes
+--------------
+PSX core updates: [smf]
+ - removed casts and removed unnecessary decoding from NCLIP.
+ - added signed values to PAIR & PAIR64.
+ - renamed PAIR64.lw to PAIR64.q
+ - tidied up DPCS, improved flag calculation and added support for 
+    lm/sf fields.
+ - added sf/lm support to INTPL, improved flag calculation & 
+    calculates correct rgb 
+ - fixed calculation of bit 31 of GTE FLAG register, when writing 
+    to it directly.
+ - added lm mode to OP and fixed the calculation.
+ - added lm mode to SQR.
+
+Seibu implementation cleanups: [David Haywood]
+ - added cop/heatbrl ram clear stuff
+ - tried to make cop a bit more generic, breaks a few things for 
+    now, but better than duplicated code all over the place
+ - added the sound cpu to raiden2, although it doesn't make any sounds
+
+Fixed CPS1 palette control register to match tests on msword psb. 
+[Nicola Salmoria, Corrado Tomaselli]
+
+Changed the pic8259 implementation into a device. [Wilbert Pol]
+
+Fixed an opcode in quizf1. Fixed encrypted disassembly for 
+bp+ix+offset8 and bp+it+offset8. [Robiza]
+
+Modified bionicc to compute the palette based on the schematics.
+[Nicola Salmoria]
+
+Verified several CPS1 graphics ROM mappings against PAL dumps. 
+[Nicola Salmoria]
+
+Changed device read/write functions to take a const device_config *.
+Reverted recent hacks to get around this and removed unnecessary 
+casts. [Aaron Giles]
+
+Fixed I8039 DAA instruction when A is > 0xF9. [Wilbert Pol]
+
+Fixed crosshair update when the game is not polling the coordinates.
+[smf]
+
+Merged CPS1, CPS2 memory maps and some tweaks from schematics, though 
+to get perfect memory maps dumps of the A-board PALs would be needed.
+[Nicola Salmoria]
+
+Adjusted docastle refresh rate to match PCB measurement. 
+[Nicola Salmoria]
+
+Finished memory map merge for W drivers. [Andrew Gardner]
+
+Added support for using smaller-sized memory handlers directly in
+memory maps. To do so, you need to use the new AM_READn/AM_WRITEn
+macros and specify a mask for which bits are connected. [Aaron Giles]
+
+Removed word-sized handlers from 6821pia.c. Updated drivers that
+needed them to use these new interfaces instead. [Aaron Giles]
+
+Updated gaelco3d.c and itech8.c to remove the need for memconv.h
+by using this new feature. [Aaron Giles]
+
+Added machine parameter and macros for the CDP1802 callback functions.
+This seems to have fixed the player sprite flashing in Destroyer/
+Altair/Draco. [Curt Coder]
+
+Fixed lookup table for sprites in spikes91. [Robiza]
+
+Made some changes to the 'v25' code in toaplan2.c. Batsugun does 
+upload what looks to be the entire program, unencrypted. If enabled 
+it runs to the point of waiting for interrupts, however, for those it 
+looks like it needs a real V25 core with register banks etc.
+[David Haywood]
+
+Converted the IDE controller to a device. Updated all drivers
+accordingly. [Aaron Giles]
+
+Added new functions for dynamically installing device memory 
+read/write handlers. [Aaron Giles]
+
+Updated install_memory_XXX_handler() functions to take a machine
+parameter. Updated all drivers accordingly. [Aaron Giles]
+
+Merged installation of read and write handlers where appropriate.
+[Aaron Giles]
+
+Simplified memory.c code for dynamic installation so that a single
+function handles all the work; a NULL read or write handler 
+indicates not to install anything for reads or writes. [Aaron Giles]
+
+Fixed sprite overdraw mode to match Mutant Night movie. 
+[Nicola Salmoria]
+
+Properly marked puzznici as a bootleg and disabled the MCU simulation 
+on it, it has it's own internally. [David Haywood]
+
+Merged memory maps for aquarium, argus, armedf, bagman, battlera
+drivers. [Aaron Giles]
+
+Created new macro: AM_RAM_WRITE(handler) which specifies a memory
+range to be RAM-like for reads but calls the given handler for writes.
+[Aaron Giles]
+
+Replaced AM_READWRITE(SMH_RAM, handler) with AM_RAM_WRITE(handler).
+Also replaced AM_RAM AM_WRITE(handler) with AM_RAM_WRITE(handler).
+[Aaron Giles]
+
+Added correct rom dump for Shinobi4 set. [Arzeno Fabrice]
+
+Added good denjinmk graphic rom. [Guru]
+
+Removed ancient 720 kludge in the T-11 core. [Aaron Giles]
+
+Added support in the T-11 core for an external vector via irq_callback.
+Apparently the hardware actually did support this and it is necessary
+for emulating the BK 0010/11 computer in MESS. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Show Hand [Luca Elia]
+
+
+
+New clones added
+----------------
+Led Storm Rally 2011 (US) [Bryan McPhail]
+Shinobi (alternate set) [Brian Troha]
+Aero Fighters (bootleg set 2) [Robiza]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Nandemo Seal Iinkai [Luca Elia]

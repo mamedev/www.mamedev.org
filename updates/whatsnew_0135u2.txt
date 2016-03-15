@@ -1,0 +1,356 @@
+0.135u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03553: [Crash/Freeze] extdwnhl: Game does not start (Phil Bennett)
+- 03544: [DIP/Input] mgdh, sdmg2: The joystick function missed in 
+         mgdh and sdmg2 (Luca Elia)
+- 03547: [Graphics] mgdh,sdmg2: Donden graphics in mgdh and sdmg2 are 
+         inaccurate (Luca Elia)
+- 03546: [Documentation] nkishusp: Black screen after the game start. 
+         (Luca Elia)
+- 03540: [Sound] glpracr3, hvnsgate, raystorm: Missing sound. 
+         (Phil Bennett)
+- 03545: [Graphics] tekken3, tektagt: Tekken games do not proceed 
+         into attract mode after initial screen (Phil Bennett)
+- 03542: [Sound] Sets/Drivers using YM2610: Missing sounds 
+         (Phil Bennett)
+
+
+
+Source Changes
+--------------
+Added driver data structs to: [Fabio Priuli]
+ - beaminv.c
+ - cball.c and capbowl.c
+ - changela.c, circus.c and circusc.c
+ - crgolf.c and clayshoo.c
+ - decocass.c
+ - docastle.c, dotrikun.c, cloud9.c and destroyr.c
+ - cheekyms.c
+ - embargo.c
+ - ddragon.c, ddragon3.c and fgoal.c
+ - bwing.c
+ - dday.c
+ - dcheese.c
+ - flyball.c
+ - freekick.c
+
+Added driver data and save state support to: [Fabio Priuli]
+ - blmbycar.c
+ - zerozone.c, yunsun16.c, dominob.c, dogfgt.c and bogeyman.c
+ - blockout.c and bigevglf.c
+ - chaknpop.c
+ - albazg.c
+ - chinagat.c, esd16.c, f-32.c, fcombat.c, finalizr.c
+ - fantland.c and firetrap.c
+ - btime.c and scregg.c
+ - fitfight.c, flstory.c and funkybee.c
+ - fuukifg2.c and fuukifg3.c
+
+Added save state support to: [Fabio Priuli]
+ - 2mindril.c, ashnojoe.c, bigfghtr.c, bublbobl.c, cchance.c, 
+    champbwl.c, missb2.c
+ - compgolf.c, champbas.c, copsnrob.c, cop01.c, cosmic.c, cntsteer.c, 
+    dacholer.c and dec8.c
+ - armedf.c, calorie.c, canyon.c, chanbara.c, citycon.c, commando.c, 
+    crospang.c & cultures.c
+ - astrocorp.c
+ - ddayjlc.c, ddealer.c, deniam.c, discoboy.c, diverboy.c, dorachan.c,
+    dragrace.c, dreamwld.c, dribling.c, drmicro.c, drtomy.c
+ - dynadice.c, dwarfd.c, dunhuang.c, enigma2.c, epos.c, drgnmst.c 
+    and egghunt.c
+ - equites.c, exedexes.c, exerion.c and exprraid.c
+ - funybubl.c, galaxi.c, gaiden.c and rocnrope.c
+
+Removed some rogue occurrences of 'x1snd' resulting from device tag 
+mass-change. [Phil Bennett]
+
+drw80pkr.c updates: [Jim Stolis]
+ - Added Save State Support
+ - Added Preliminary Dip Switch Settings
+ - Corrected CPU Clock Value
+ - Corrected Sound (Now Works)
+ - Narrowed Down More IO R/W Areas
+
+tms7000: Fixed disassembly of PCREL addressing mode. [Wilbert Pol]
+
+Added device support to the input system. Internally this replaces 
+PORT_CUSTOM/PORT_CHANGED, backward compatibility is achieved with an 
+internal dummy device. Added output lines (IPT_OUTPUT), which can be 
+written using new input_port_write* functions or directly from a 
+memory map using AM_WRITE_PORT converted adc083x to use io lines.
+[smf]
+
+ADC devices updates: [smf]
+ - adc08x chips are all hooked up using input/output ports
+ - reversed racing force steering wheel input and gas pedal, which 
+    is enough to get the game to boot.
+ - reversed steering wheel input on winding heat, the usa cabinets 
+    are however hooked up the other way.
+ - renamed adc0831_interface to adc083x_interface.
+ - fixed adc083x gnd input
+ - removed stray call logerror from adc083x.c
+ - fixed default adc083x sars value
+ - adc083x reset only affects outputs
+
+Added set name to -romident. [smf]
+
+Updated ddr 3rd mix plus protection to remove display corruption. 
+[smf]
+
+RDP Updates: Fixed TMEM size, removed separate tlut, fixed tlut 
+uploads [angrylion]
+
+hng64 updates: 
+ - Added preliminary hook-up for multi-byte chain mode for sprites, 
+    used by Buriki One and the two Samurai Shodown games 
+    [David Haywood, Angelo Salese]
+ - Fixed back plane color, thus giving characteristic blue background 
+    for POST screen [Angelo Salese]
+ - Improved Dual Port emulation, fixing the POST errors about it
+    [Angelo Salese]
+ - Implemented "simple" scroll register layout [David Haywood]
+ - Implemented "complex" scroll register layout [David Haywood]
+ - Corrected sprite end boundary, fixes credit messages in Buriki One 
+    [Angelo Salese]
+ - Fixed scrolling text in Buriki One attract mode [Angelo Salese]
+ - Hooked up global bpp switch for sprites, HW doesn't seem capable 
+    of doing per-sprite bpp switch, fixes coin credit text in Buriki 
+    One [Angelo Salese]
+ - Implemented V-Blank register, fixes palette uploading in Samurai 
+    Shodown 1 & 2 [Angelo Salese]
+ - Fixed sprite wrap-around [David Haywood]
+ - Implemented irq 11, used by the racing games for network check, 
+    currently crashes due to an invalid parameter inside the 3d 
+    packets [Angelo Salese]
+ - Added 16x16 / 8x8 tilemap mode select, fixes one scene in Extreme 
+    Rally and transition layer in Fatal Fury WA (squares on title 
+    screen) [David Haywood]
+ - Added alt layout for the roz, fixes Roads Edge graphics before the 
+    title screen [David Haywood]
+ - Implemented sprite clearance capability, fixes garbage gfxs as 
+    seen in Samurai Shodown 64 1 & 2 [Angelo Salese]
+ - Implemented x/y sprite global offsets, used by Samurai Shodown 64 
+    1 ranking screen [David Haywood]
+ - Hooked-up backup ram [Angelo Salese]
+ - Documented some sprite findings [Angelo Salese]
+ - Re-implemented zooming in Fatal Fury WA, and added alternative 
+    zooming mode used by the other games, they have some precision 
+    bugs though [Angelo Salese]
+ - Implemented preliminary additive blending [David Haywood]
+ - Slight optimization to the tile dirty marking [David Haywood]
+ - Better documentation of mosaic and floor modes [David Haywood]
+ - Implemented sprite disable bit [David Haywood]
+ - Implemented dynamic visible area [Angelo Salese]
+ - Start to document 3d / framebuffer video registers, implemented a 
+    quick hook-up that fixes Buriki One 3d model colors minus one 
+    case [Angelo Salese]
+ - Implemented screen disable when the visible area regs are equal to 
+    zero and fixed back layer [Angelo Salese]
+
+Updated the albazg driver to use hanafuda standard inputs, eeprom 
+device, and memory_set_bank in place of memory_set_bankptr. 
+[Fabio Priuli]
+
+System 23 update [Naibo Zhang]
+ - Corrected memory mapping of palette RAM and handling of palette 
+    data. Power-On Self Test now shows correct colors.
+ - Changed Panic Park from SS23 to S23 game.
+
+Galaxian3 update [Naibo Zhang]
+ - Fleshed out skeleton driver. Each CPU board passes many self-tests
+ - Master and slave CPU comms hooked up
+
+Designated Puzzle Bang Bang (vamphalf.c) as Korean version. For this 
+set the title and language cannot be change. [Brian Troha]
+
+Added new module tagmap which is a simple hashed string map. Updated 
+device and input port lists to use the tagmap for tag searches. Also 
+removed the whole "quark" thing from the validity checker in favor of 
+using the tagmaps. [Aaron Giles]
+
+Added Intel 8008 and National Semiconductor SC/MP CPU cores.
+[Miodrag Milanovic]
+
+INS 8060 SC/MP II support (using clock divider 2), main model renamed 
+to INS 8050 SC/MP. [Miodrag Milanovic]
+
+Updated the astrocorp.c and groundfx.c drivers to use EEPROM device.
+[Fabio Priuli]
+
+Added support for SCSI command 0x2a (Write w/ 32-bit LBA), upped 
+input buffer size in WD33C93 controller [Harmony]
+
+Hooked up eepromdev.c using PORT_READ_LINE_DEVICE/
+PORT_WRITE_LINE_DEVICE in groundfx.c. Output ports are now affected 
+by IP_ACTIVE_HIGH/IP_ACTIVE_LOW (eepromdev.c has active low cs).
+The previous value for callbacks in inptport.c is now tracked per 
+field. This saves recalculating it for PORT_CHANGED & conditional 
+fields wouldn't always get updated correctly. Tidied up eepromdev.c 
+interface. [smf]
+
+Added sprites list stop to igs017.c. Implemented joystick mode in 
+mgdh and sdmg2 [Luca Elia]
+
+Fixed audio output lengths in aviio.c. [CDiFan]
+
+Added memory_install_write_port_handler & 
+memory_install_readwrite_port_handler to be consistent with 
+installing handlers. [smf]
+
+CDP1869 changes: [Curt Coder]
+ - converted page RAM functions to use devcb
+ - added pull interface for predisplay
+
+Switched from linear interpolation to antialiased point sampling
+when upconverting low-frequency sound streams. This should de-muffle 
+low-frequency streams, treating them has having hard edges at sample 
+boundaries. [Aaron Giles]
+
+Converted the following drivers to use EEPROM device: deco156.c, 
+eolith.c, eolith16.c, limenko.c, taito_f3.c, taito_z.c, taito_b.c, 
+taitojc.c, toaplan2.c and kaneko16.c. [Fabio Priuli]
+
+Implemented use of per tile colour lookup ROM in Portraits, colour 
+decode is still wrong [David Haywood]
+
+CF clear after binary operations on Intel 8008 CPU core. 
+[Miodrag Milanovic]
+
+Improvements to Noraut Poker driver: [Roberto Fresca]
+ * A lot of work in memory maps and machine driver stuff.
+ * Improved Inputs / DIP switches for some games.
+ * Added lamps support / layouts to new working games.
+ * Added preliminary support to Kimble hardware.
+ * Added support to CGI's Credit Poker 30x games.
+ * Added new (and fixed old) technical notes.
+ * Renamed norautpn descripion to Noraut Deluxe Poker (bootleg).
+ * Added a placeholder for tpoker2's undumped 68705 MCU.
+ * Reorganized the driver, plus some clean-ups.
+ * Renamed kimblejp to kimbldhl. Changed game description to Kimble 
+    Double Hi-Lo.
+ * Added specific memory map & machine driver to Kimble Double Hi-Lo.
+ * Fix the Kimble Double Hi-Lo CPU type.
+ * Added notes about the code obfuscation and PPI's handling/offsets.
+
+Added Magic Card Jackpot and Magic Lotto Export to Impera Magic Card 
+driver. Also added PCB layouts, hardware description and technical 
+notes. Changed the bipolar prom dumps to serial I2C bus EEPROM.
+[Roberto Fresca]
+
+Made DEVCB_INPUT_PORT(tag) work for write callbacks. [smf]
+
+Fixed regression in magicard.c driver [Angelo Salese]
+
+Introduced a generic_pointers structure within machine that is 
+designed to hold generic pointers that are commonly used. Moved
+generic_nvram, videoram, colorram, spriteram*, paletteram* pointers
+there. Added AM_BASE_GENERIC and AM_SIZE_GENERIC macros for 
+initializing generic pointers in memory maps. Also added 
+AM_BASE_SIZE_GENERIC to set both base and size in one step.
+[Aaron Giles]
+
+Moved global variables out of machine/generic and into a private data 
+structure hanging off of the running_machine. Added newly-needed 
+machine parameters to coin_counter_w, coin_lockout_w, and
+coin_lockout_global_w. Also added machine parameter to 
+set_led_state. [Aaron Giles]
+
+Added interface functions to get the number of dispensed tickets and 
+to increment the count, to remove the need for direct access to these 
+global variables. Also added functions to get the current count on a 
+particular coin counter and to determine the lockout state. 
+[Aaron Giles]
+
+Intel 8255A: clear input latch after reading it. [Curt Coder]
+
+Actually use the speaker interface if provided. [Curt Coder]
+
+Purged remaining globals from video/generic.c and audio/generic.c.
+[Aaron Giles]
+
+Fixed i386 REP prefix to use segment:SI when address size is 16-bit 
+(ie: when using OUTSB or OUTSW). [Barry Rodewald]
+
+Removed limited use of spriteram_3 global. [Atari Ace]
+
+Added AM_BASE_SIZE_MEMBER() macro for specifying both base and size
+structure members at once. Updated all cases where this could be
+used. [Aaron Giles]
+
+Cleaned up many driver data structs: [Fabio Priuli]
+ * dropped almost completely the use of generic sizes with struct 
+    members 
+ * reduced as much as possible accesses to cputag calls during 
+    emulation (they are now mainly concentrated at MACHINE_START & 
+    DRIVER_INIT)
+
+Joker's Wild: bypassed the rng test [Angelo Salese]
+
+Joker's Wild: implemented bare minimum to allow it to go into gameplay 
+and fixed tilemap graphics [Angelo Salese]
+
+Memory regions now use a tagmap for lookups. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Submarine [Volker Hann, Team Europe, David Haywood, Angelo Salese]
+Noraut Deluxe Poker (console) [Roberto Fresca, ByteMaster]
+Noraut Joker Poker (original) [Roberto Fresca, ByteMaster]
+Noraut Red Hot Joker Poker (alt HW) [Roberto Fresca, ByteMaster]
+Mainline Double Joker Poker [Roberto Fresca, ByteMaster]
+Double Joker Poker (45%-75% payout) [Roberto Fresca, ByteMaster]
+Royal on Ten (Noraut Deluxe hack) [Roberto Fresca, ByteMaster]
+Credit Poker (ver.30c, standard) [Roberto Fresca, ByteMaster]
+Iron (SNES bootleg) [Tomasz Slanina, Volker Hann & Team Europe]
+
+
+
+New clones added
+----------------
+Cannon Ball (bootleg on Crazy Kong hardware) (set 3, no bonus game) 
+   [Volker Hann, Team Europe]
+X-Men (4 Players ver EBA) [Irongiant]
+Wizard of Wor (with German Language ROM) [Volker Hann]
+Gorf (program 1, with German Language ROM) [Volker Hann]
+Super Puzzle Fighter II Turbo (Hispanic 960531) 
+   [Artemio Urbina, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+The King of Fighters Neowave (Japan) [Cah4e3]
+Final Furlong (FF2 Ver. A) [Guru]
+Dragon Chronicles (DC001 Ver. A) [Guru]
+Netchuu Pro Yakyuu 2002 (NPY1 Ver. A) [Guru]
+Soul Calibur II (SC23 Ver. A) [Guru]
+Soul Calibur II (SC21 Ver. A) [Guru]
+Tekken 4 (TEF3 Ver. C) [Guru]
+Tekken 4 (TEF2 Ver. A) [Guru]
+Tekken 4 (TEF1 Ver. A) [Guru]
+Mobile Suit Z-Gundam: A.E.U.G. vs Titans (ZGA1 Ver. A) [Guru]
+Capcom Fighting Jam (JAM1 Ver. A) [Guru]
+Quiz and Veriety Suku Suku Inufuku 2 (IN2 Ver. A) [Guru]
+Mobile Suit Z-Gundam: A.E.U.G. vs Titans DX (ZDX1 Ver. A) [Guru]
+Soul Calibur III (SC31001-NA-A) [Guru]
+Kinnikuman Muscle Grand Prix (KN1 Ver. A) [Guru]
+Taiko No Tatsujin 9 (TK91001-NA-A) [Guru]
+Tekken 5.1 (TE51 Ver. B) [Guru]
+Airline Pilots (Rev. A) [f205v]
+Sega Tetris [Guru]
+Noraut unknown set 1 (console) [Roberto Fresca, ByteMaster]
+Noraut unknown set 2 (console) [Roberto Fresca, ByteMaster]
+Noraut Joker Poker (V3.011a) [Roberto Fresca, Alan Griffin]
+Poker / Black Jack (Model 7521) [Roberto Fresca]
+Kimble Double Hi-Lo [Roberto Fresca, Alan Griffin]
+DRHL Poker (v.2.89) [Roberto Fresca, Siftware]
+Magic Card Jackpot (4.01) 
+   [Roberto Fresca, Team Europe, krick & The Dumping Union]
+Magic Lotto Export (5.03) 
+   [Roberto Fresca, Team Europe, krick & The Dumping Union]

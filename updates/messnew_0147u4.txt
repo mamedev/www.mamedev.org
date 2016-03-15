@@ -1,0 +1,231 @@
+0.147u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+New System Drivers Supported:
+-----------------------------
+-Sega Visual Memory Unit [Sandro Ronco]
+-Dragon 2000 [robcfg]
+-Yamaha MU-100 [Guru, R. Belmont, O. Galibert]
+-Yeno/Vtech Professor Weiss-Alles [Team Europe]
+-NeoGeo CDZ [FinalBurn Alpha / Barry Harris, David Haywood]
+-Kaypro 286i [Cowering]
+-ASEM AM 64 [Museo Dell'Informatica Funzionante]
+-Ensoniq KT-76 [R. Belmont]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+-ADC SuperSlave [Al Kossow]
+-Televideo TS802H [Al Kossow]
+-Televideo TS803H [Al Kossow]
+-Genius Leader 8008 CX (Germany) [Team Europe]
+-V-Tech IQ TV 512 (Germany) [Team Europe]
+-General Processor Modello T [Any,The Dumping Union]
+-Commodore PC-1 [rfka01]
+-Commodore PC-10 III [rfka01]
+-Ensoniq MR Rack [R. Belmont]
+
+Software Lists:
+----------------
+-genius: Added software list for VTech Genius cartridges.
+ [Team Europe, Curt Coder]
+
+-pico.xml: new Japanese dumps added [Team Europe]
+
+-added software list for NEC APC [kaylee]
+
+-added PCB readme for FM Towns Marty [Guru]
+
+-xerox820: Added floppy software list. [Curt Coder]
+
+-xerox820ii: Added floppy software list. [Curt Coder]
+
+-pico.xml: added a new Euro dump and better documented some of the
+ older dumps. [TeamEurope]
+
+-comx35: Added floppy software list. [Curt Coder]
+
+-ibm5150.xml: added some redumps and new dumps. [Kaylee]
+
+-wangpc.xml: added some new dumps from Don Maslin's archive. [Kaylee]
+
+-Add another CP/M8-6 version to the ibm5150 software list [Kaylee]
+
+-trs80m2: Added floppies to software list. [Don Maslin's archive]
+
+System Driver Changes:
+----------------------
+-Sega VMU added more bioses [El Barto]
+
+-qx10: Downgrade floppies to DD [O. Galibert]
+
+-super6: Added original BIOS. [Al Kossow]
+
+-APC: Fixed a few missing keys (a few are still missing though),
+ and hooked the rtc clock, command and strobe lines up in a plausible
+ configuration. The status line clock now works though shows an invalid
+ value for year (the upd1990a didn't have a year response, so perhaps
+ whatever rtc is being used here is a later variant which does store a
+ year). The "date set" command doesn't work properly and doesn't even
+ seem to poke the rtc at all. Needs further investigation.
+ [Lord Nightmare]
+
+-z800x: Fixed some incorrect opcodes and address register math in
+ segment mode.  Olivetti M20 now can boot PCOS to the prompt.
+ [Christian Grössler]
+
+-Minor fix to the character tile row ordering in apc
+ [Lord Nightmare]
+
+-esq5505 updates [Christian Brunschen, R. Belmont]
+ * Fixed up clocks for 21 vs. 32-voice models
+ * Added ROMs for the 12-bit sample region on the SD-1 and SD-1
+    32-voice
+ * Minor cleanups
+
+-Fixed upd765 SIS status when fid = 4, this makes NEC PC-88VA to
+ attempt to DMA from floppy. [Angelo Salese]
+
+-bw2: Fix disk select and quick hack to make the timings work
+ [O. Galibert]
+
+-Olivetti M20: improved keyboard and floppy handling
+ [Christian Grössler]
+
+-fixed various bugs with Acorn Archimedes IRQs [Angelo Salese]
+
+-mirage: Make it boot by whatever means necessary [O. Galibert]
+
+-Finished sample ROM dump for SD-1 & SD-1 32 [Christian Brunschen]
+
+-Mirage: lots of documentation from the schematics, added
+ preliminary LED hookup [R. Belmont]
+
+-a7000: Added RiscOS roms 3.60, 3.71, 4.02 and 4.39 [robcfg]
+
+-mu100: Main screen turn on! [O. Galibert]
+
+-pc98: Add its specific almost raw fdi disk format [O. Galibert]
+
+-macrtc: Remove weird address swizzle that confused systems with
+ extended PRAM [Rob Braun]
+
+-studio2: Documentation update. [Stiletto, Guru]
+
+-mu100: Added older BIOS ver 1.05 [Stefan Lindberg]
+
+-Implemented proper IRE and phase value to the palette for Atari 7800
+ [Robert Tuccitto]
+
+-Mac: added "image" card which allows direct read/write access
+ to any vMac/BasiliskII compatible image under 256 MB, including HD
+ floppies.  Disk is bootable if set in the control panel but only 
+ can eject from Finder.
+ [Rob Braun, R. Belmont]
+
+-nubus_image: revised firmware allows multiple cards to work
+ [Rob Braun]
+
+-nubus_image: add eject/insert support [Rob Braun]
+
+-sf7000: Fixed floppy. [Curt Coder]
+
+-m20: Implement memory map correctly.  BASIC now shows its
+ startup banner. [Christian Grössler]
+
+-vt100: added redumps of some of the vt102/vt131 roms [pjustice]
+
+-vt100: updated a bunch of driver notes and rom defs to reflect current
+ research [Lord Nightmare]
+
+-sf7000: Verified floppy format gap sizes. [Curt Coder]
+
+-vt100: Verified that the checksum of the typed-from-manual
+ 23-018e2 character generator ROM matches the dump from the actual
+ chip. [Lou Ernst Jr.]
+
+-sms.c: Improved support for '3-D' games.  [Enik Land]
+
+-dc: Added European DC bios 1.01c [BadAd84]
+
+-mackbd: dumped correct ROM, prep for actual emulation
+ [Lord Nightmare, R. Belmont]
+
+-a7800.c: Adjusted colorburst/tint/hue of entire palette to closer reflect
+ default hardware configuration setting of ~180 degrees
+ [i.e. $17 = 179.92706396 & $18 = 179.927063726]. [Robert Tuccitto]
+
+
+Source Changes
+--------------
+-Added proper char roms for Wyse700 [John Elliott]
+
+-upd765: Handle the rate correctly in FM [O. Galibert]
+
+-upd765: Don't choke on DDAMs [O. Galibert]
+
+-upd765: Reset MA when sector is found on write data too [O. Galibert]
+
+-imd: Accept versions with single-digit minor [O. Galibert]
+
+-upd765: Get ready from the correct place in sense interrupt status
+ [O. Galibert]
+
+-upd765: Better integration and support of FM [O. Galibert]
+
+-pc floppies: Merge the common parts of d88/imd [O. Galibert]
+
+-floppy: Fix index pulse generation when motor is always on
+ [O. Galibert]
+
+-floppy: Added macros for declaring modern floppy formats. The
+ generic floppy formats (D88/DFI/IMD/IPF/MFI/MFM) are now automatically
+ supported in each driver using the modern floppy code. [Curt Coder]
+
+-wd1772: Improved interrupts, added ready handling and FD1793
+ variant. [Curt Coder] 
+
+-floppy: Default on head 0, not 1 [O. Galibert]
+
+-upd1771.c - additional comment updates, including some upd1771
+ patents and internal workings information. [Lord Nightmare]
+
+-wd1772: Added FD1771 and FD1797 variants. [Curt Coder]
+
+-upd765, wd1772: Move to emu [O. Galibert]
+
+-wd1772: Rename to wd_fdc [O. Galibert]
+
+-upd765: Externalize the fdc [O. Galibert]
+
+-wd_fdc: Add comments on the family [O. Galibert]
+
+-wd_fdc: Change the feature functions into bools, and use the correct
+ pll for each chip [O. Galibert]
+ 
+-wd_fdc: Describe track when formatting [O. Galibert]
+
+-wd_fdc: fm support, need to review all timings [O. Galibert]
+
+-floppy: Enhance ready support [O. Galibert]
+
+-wd_fdc: Interrupt on ready support [O. Galibert]
+
+-upd765.c: changes to busy flag, r/w sector increment and reset int
+ [Carl]
+
+-upd765: Try another hypothesis [O. Galibert]
+
+-floppy: restore/recalibrate is supposed to work like this [O.
+ Galibert]
+
+-wd_fdc: Fix sector sizes and (most) timings [O. Galibert]
+
+-wd_fdc: Change the fd179x timings to be tighter [O. Galibert]

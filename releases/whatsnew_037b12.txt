@@ -1,0 +1,111 @@
+0.37 BETA 12
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed colors in Wiz. [Nicola Salmoria]
+
+- Fixed colors in Funny Mouse. [Nicola Salmoria]
+
+- Fixed auto animation speed in the NeoGeo games. [Ralf Willenbacher]
+
+- Fixed raster effects in mosyougi (title screen) and viewpoint (Sammy logo).
+  [Nicola Salmoria]
+
+- Accurate emulation of sprite multiplexing in Gyruss (also emulating the slave
+  6809) and Time Pilot. [Nicola Salmoria]
+
+- Some fixes to the Cave games. [Shiriru]
+
+- Fixed colors and music tempo in Battle Lane. [Nicola Salmoria]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed engine sound in After Burner. [Shica]
+
+
+Source:
+-------
+
+- 054539 sound emulation, used in X-Men, Xexex, GI Joe. [Olivier Galibert]
+
+- All new set of functions for alpha blending support, used in Xexex.
+  Porters: you have to support direct mapped 15 and 32 bits video modes. Remember
+  to update osd_alloc_bitmap() too! See osdepend.h for the changes in
+  osd_create_display() and osd_allocate_colors(). [Olivier Galibert]
+
+- draw_crosshair(). [Nicola Salmoria]
+
+- GAME_IMPERFECT_GRAPHICS flag for game drivers.
+
+- Standalone YM2413 emulator, giving much better sound in e.g. Pang.
+  [Mitsutaka Okazaki, Sean Young]
+
+- [DOS] Now compiled with Allegro WIP 3.9.34, this fixes problems with the
+  Sidewinder gamepad. GNU Binutils 2.9.5.1 might also be needed to compile.
+
+- New filtering code for the audio mixer. It is applied to audio streams
+  generated at a sampling rate different from the sound card's one, improving
+  quality. Some examples with a very audible difference are: fantasy, polyplay,
+  galaxian (the background effect when playing), nibbler, vanguard and all the
+  Seta games.
+
+  [DOS] The "resamplefilter" option can be used to turn the filtering off.
+  [Andrea Mazzoleni]
+
+
+New games supported:
+--------------------
+
+The Karate Tournament [Luca Elia]
+Poitto! [Luca Elia]
+Toride II Adauchi Gaiden [Luca Elia]
+Pururun [Luca Elia]
+Cannon Ball [Luca Elia]
+Shocking [Luca Elia]
+Strike Gunner S.T.G [Luca Elia]
+Mobile Suit Gundam [Luca Elia]
+Quiz Kokology [Luca Elia]
+Ultra Balloon [Luca Elia]
+Blomby Car [Luca Elia]
+Grand Champion [Ernesto Corvi, Phil Stroffolino]
+Cosmo Gang the Puzzle [Phil Stroffolino]
+Emeraldia [Phil Stroffolino]
+Tinkle Pit [Phil Stroffolino]
+Chinese Hero [Phil Stroffolino]
+VS Gong Fight [Phil Stroffolino]
+Looping [Phil Stroffolino]
+Sky Bumper [Phil Stroffolino]
+Fire Truck [Phil Stroffolino]
+Championship V'Ball [Paul Hampson]
+lots of Nichibutsu mahjong games [Takahiro Nogi]
+Shoot the Bull [David Widel]
+Fighting Roller [Ville Laitinen]
+Street Fighter: The Movie [Aaron Giles]
+Battle Cruiser M12 [Guru]
+Star Luster [Howie Cohen]
+Ice Climber Dual [Howie Cohen]
+Dungeons & Dragons: Tower of Doom [Paul Leaman]
+Vampire: The Night Warriors [Paul Leaman]
+Street Fighter Alpha: Warriors' Dreams [Paul Leaman]
+Vampire Savior: The Lord of Vampire [Paul Leaman]
+X-Men: Children of the Atom [Paul Leaman]
+Super Street Fighter 2: The New Challengers [Paul Leaman]
+Aliens vs. Predator [Paul Leaman]
+Street Fighter Alpha 2 [Paul Leaman]
+Marvel Super Heroes [Paul Leaman]
+Robocop 2 [Bryan McPhail]
+
+
+New clones supported:
+---------------------
+
+Sky Kid (set 2)
+Pang Poms (Mitchell)
+NBA Hangtime
+Spelunker (Japan)
+Kitten Kaboodle (= Nyan Nyan Panic)
+Klax (Germany)

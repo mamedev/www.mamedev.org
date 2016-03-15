@@ -1,0 +1,134 @@
+0.37 BETA 16
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed colors and other things in Arabian. [Aaron Giles]
+
+- Fixed colors and other stuff in ninjakun. [Uki]
+
+- Fixed sprite priorities in CPS2 games. [Shiriru]
+
+- Fixed colors in World Tennis. [Nicola Salmoria]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed incomplete first credit sound in MetalB and other F2 games, and
+  bonzeadv player shoot sound. [Stefan Jokisch]
+
+- Decrypted the Seibu sound CPU, giving sound in raidena, dynduke, toki, cabal.
+  [Nicola Salmoria]
+
+
+Other drivers changes:
+----------------------
+
+- Rewritten the Galaxian PCB drivers. [Zsolt Vasvari]
+
+- Partial protection simulation in Avengers. [Phil Stroffolino]
+
+- Fixed Toki original versions. [David Graves, Bryan McPhail]
+
+- Fixed Cabal original version. [Nicola Salmoria]
+
+- Fixed some protection issues in Wiz. [Stefan Jokish]
+
+- Decrypted the original Ms. Pac Man [David Widel]
+
+
+Changes to the main program:
+----------------------------
+
+- [Windows] New command line parameter: -effect <string>
+    -effect none:   no blitting effects
+    -effect scan25: 25% scanlines
+    -effect scan50: 50% scanlines
+    -effect scan75: 75% scanlines
+	-effect rgb3
+	-effect rgb4
+	-effect rgb6
+	-effect rgb16
+	-effect rgbtiny
+	-effect rgb4v
+	-effect scan75v
+  [Aaron Giles]
+
+
+Source:
+-------
+
+- New subdirectory "includes" for driver-specific header files.
+
+- Added new flags for the tilemap subsystem: TILE_SWAXY and TILE_4BPP. Also
+  added tile_info.skip. SET_TILE_INFO() now has a third parameter (flags),
+  tilemap_set_transmask() sets independently the transparency masks for the
+  front and back layer, and tilemap_draw() can be called with a NULL tilemap
+  (in that case, only the priority bitmap is updated). [Phil Stroffolino]
+
+- Support for GFX_RAW in GfxLayout (see drawgfx.h). [Nicola Salmoria]
+
+
+New games supported:
+--------------------
+
+Gridlee [Aaron Giles]
+Slither [Aaron Giles]
+Extreme Downhill [Luca Elia]
+Burglar X [Luca Elia]
+Zero Point [Luca Elia]
+Gundhara [Luca Elia]
+Stagger I [Luca Elia]
+Sen Jin - Guardian Storm [Luca Elia]
+Multi Champ [Luca Elia]
+Mahjong Gakuensai [Luca Elia]
+Mahjong Gakuensai 2 [Luca Elia]
+Under Fire [David Graves]
+Voflied [Stefan Jokish]
+Premier Soccer [Nicola Salmoria]
+Raiders 5 [Uki]
+Markham [Uki]
+Strength & Skill [Uki]
+Pettan Pyuu [Uki]
+Ikki [Uki]
+Namco Classics vol. 1 [Mark McDougall]
+Hang-On Jr. [David Haywood]
+Transformer [David Haywood]
+Riddle of Pythagoras [David Haywood]
+WWF Superstars [David Haywood]
+WWF Wrestlefest [David Haywood]
+China Gate [Paul Hampson]
+Nebulas Ray [Phil Stroffolino]
+Gun Bullet [Phil Stroffolino]
+Great Sluggers '94 [Phil Stroffolino]
+Super World Stadium '96 [Phil Stroffolino]
+Super World Stadium '97 [Phil Stroffolino]
+Red Clash [inkling]
+Exzisus [Yochizo]
+Bonze's Adventure [Yochizo, Stefan Jokisch]
+Super Real Mahjong P2 [Yochizo, Takahiro Nogi]
+Idol-Mahjong Housoukyoku [Takahiro Nogi]
+Mahjong Natsu Monogatari [Takahiro Nogi]
+Mahjong Fun Club - Idol Saizensen [Takahiro Nogi]
+Mahjong Daiyogen [Takahiro Nogi]
+Nekketsu Mahjong Sengen! AFTER 5 [Takahiro Nogi]
+Idol-Mahjong Final Romance [Takahiro Nogi]
+
+
+New clones supported:
+---------------------
+
+Main Stadium (= Bottom of the Ninth)
+Cosmo Gang the Puzzle (US)
+All American Football (rev C)
+Wonder Boy (set 1, new encryption)
+Stinger (set 1)
+Bull Fight (English)
+Disco (rev F)
+Performan (US)
+World Cup '90 (set 2)
+Ms. Pac-Man (original)
+Ms. Pac Attack
+Lady Killer (Mitchell)

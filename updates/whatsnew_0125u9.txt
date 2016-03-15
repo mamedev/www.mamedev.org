@@ -1,0 +1,186 @@
+0.125u9
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01962: [DIP/Input] tailg: "Fatal error: Input ports cannot be read 
+         at init time!" with -debug (Aaron Giles)
+- 01948: [Misc.] All alg.c and cliffhgr.c sets: Access Violation when 
+         taking a snapshot (Aaron Giles)
+- 01940: [Misc.] All cps3.c sets: Access Violation (Aaron Giles)
+- 01946: [DIP/Input] Various: Fatal error: Input ports cannot be read 
+         at init time! (part 2) (Aaron Giles)
+- 01957: [Core] Access Violation on hardreset with -debug (Aaron Giles)
+- 01955: [DIP/Input] gauntleg: Unable to locate input port 'IN1' / 
+         gauntleg cannot start (Aaron Giles)
+- 00654: [DIP/Input] usclssic: Can't start 2P game. Seems like 2P 
+         Start key has no effect. (stephh)
+- 01945: [Misc.] All asteriod.c sets: Assertions (couriersud)
+- 01939: [Misc.] All sega80v.c sets: Assertions (couriersud)
+- 01947: [DIP/Input] All omegrace.c sets: Assertions (couriersud)
+- 01941: [Misc.] pleiads, pleiadbl, pleiadce: Fatal error: 
+         activecpu_get_info_int() called with no active cpu! 
+         (src/emu/cpuintrf.c:1160) (couriersud)
+- 01944: [DIP/Input] hachamf: Unable to locate input port 'DSW' 
+         (robiza)
+- 01936: [DIP/Input] All namcos21.c sets: Unable to locate input port 
+         'AN7' (robiza)
+- 01938: [Gameplay] vaportrx: Game freeze (Aaron Giles)
+- 01937: [Interface] All Sets: Fatal Exception on In-Game Menu 
+         (couriersud)
+
+
+
+Source Changes
+--------------
+SH2 core: [R. Belmont]
+ * refactored to separate out things that aren't part of the 
+    interpreter.
+ * converted context struct to go through a pointer
+
+Fixed nile pitch calculation. [h0pdmiYX0]
+
+MIPS3 recompiler: [Aaron Giles]
+ * don't generate compare interrupts unless the compare register was 
+    written to; fixes hangs in blitz, calspeed, and others
+ * stash jump target address before executing delay slot; also, don't
+    update link register until delay slot has finished executing;
+    fixes hang in gauntleg
+ * marked IDT instructions for R4650 only
+ * accounted for time taken in throwaway likely branch slots
+ * fixed jalr to respect the correct link register
+ * fixed c.eq, c.lt, c.le to fail if unordered
+ * fixed swxc1, sdxc1 to use the correct source register 
+    (fixes many Gauntlet problems)
+ * fixed CCR31 display in debugger
+ * fixed LWXC1/LDXC1; corrects gauntleg camera
+    
+ADded state saving for flower.c. [couriersud]
+
+Corrected dip setting for Risky Challenge. [Brian Troha]
+
+Changed how watchpoints work so that supporting them adds 0 overhead
+unless some are actually live. [Aaron Giles]
+
+Removed calls to memory_set_context() in favor of 
+cpuintrf_push_context(). [Aaron Giles]
+
+Renamed wilytowr.c to m63.c. Added Irem M63 PCB layout (based on 
+Atomic Boy). [Tomasz Slanina, Stefan Lindberg]
+
+Fixed 32031 so that it doesn't call the debugger if not enabled.
+[Aaron Giles]
+
+Fixed assertion in astring.c when compiled against MSVC and the 
+string is UTF-8. [Nathan Woods]
+
+Night Striker update: [kanikani]
+ - Added World version as new parent (nightstr)
+ - Renamed already-supported US version to nghtstru
+ - Added Japanese version (nghtstrj)
+ - Removed unnecessary analog input remapping
+ - Added analog stick adjusting port
+
+Added diplocations to all games in taito_z.c. [kanikani]
+
+Added pot wheel support to world rally 2. [Mirko Mattioli]
+
+Split ADSP2100 execution loop between debug/non-debug. [Aaron Giles]
+
+Improved behavior of PGM on big-endian. The ARM7 boots properly now 
+but can't sync with the 68k for some reason. [R. Belmont]
+
+Update S14001A core: improved filtering to be more accurate to the 
+chip, changed internal audio renderer to produce 4 bit sound as the 
+real chip does. Moved filter outside of the main rendering loop into 
+the glue code. Note: with this update, you may hear a whining noise 
+that was not previously present. This is accurate to the chip! The 
+real chip would almost always have an analog filter placed on its 
+output to suppress this whine. [Lord Nightmare]
+
+Fixed some save state problems in the DCS driver. Still comes out 
+garbled on a load, however. Extended memory.c to support up to 4096 
+banks. [Aaron Giles]
+
+Improvements to Cal Omega driver: [Roberto Fresca]
+ - Unified MACHINE_RESET for systems 903/904/905.
+ - Created a new handler to manage the first 4 bits of system 905's 
+    PIA1 portB as input mux selector (905 is still not working)
+ - Updated technical notes.
+
+Fixed incorrect assumption in the x86/x64 implementation of HASHJMP 
+that the base table for a mode will always be allocated when a fixed 
+mode is first used. [Aaron Giles]
+
+Fixed 64-bit writes in UML C back-end. [Aaron Giles]
+
+Preliminary emulation of video hardware (simple blitter) in Strip 
+Teaser. [Tomasz Slanina]
+
+I80286: Fixed POP ES in protected mode. [Wilbert Pol]
+
+tumbleb.c update: [stephh]
+ - updated Dip Switches for 'wlstar' and 'wondl96'
+ - added notes for these 2 games and updated some others
+ - added port tags and updated memory definitions and read handlers
+
+Updated cheat system [ShimaPong]
+ - Roll back older periodic function
+   Now standard/old format work in this function
+   Otherwords, several operations which doesn't exist in older
+   function and added recently are now disabled
+ - Separated load_cheat_code() to 3 indipendent functions
+   And added new cheat options, "Load New/Standard/Old Format Code"
+   (Default : load all format codes)
+     NOTE : delete all cheat options in the database before start
+            or reload default options (Shift + Reload key)
+            in cheat general menu
+ - Added format strings structure to accept huge size strings
+   in loading a database to prevent from breaking other strings
+ - Changed Link in new format
+   Label code is now "Link-Label" and sub-label is "Label-Sub-Link"
+   "Standard-Link" is no longer label
+ - Added choose_label_index() to manage label selection
+ - Fixed build_label_index_table() to prevent from crashing
+   And disabled to build label index table in case of
+   standard/old format
+ - Fixed memory free problem in case of standard/old code
+ - Fixed several reported/found bugs
+
+Cleaned up input handling in seta.c and bigevglf.c. [stephh]
+
+Adds rom loading for the cadillacs & dinosaurs sets with PICs, and
+for several similar punisher sets. No good dumps of the PICs exist, 
+and this is mainly for reference so that we don't forget the graphic 
+rom loading on them. They don't work. They're basically the same set 
+from different PCBs, so one will probably be removed eventually.
+[David Haywood]
+
+Fixed memory leak in ledutil.c. [HeadKaze]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Touchmaster 8000 (v9.04 Standard) [Brian Troha]
+Galactic Storm [Hau, Team Japump!]
+
+
+
+New clones added
+----------------
+Night Striker (Japan) [kanikani]
+Night Striker (US) [kanikani]
+Wiz (Taito, set 2) [David Haywood]
+Moon Lander [David Haywood]
+Star Force (encrypted, set 2) [highwayman]
+Spy Hunter (Playtronic license) [stefanocsw]
+Captain Commando (bootleg) [highwayman] (NOT WORKING)
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+King of Football [Tomasz Slanina]
+Hell Night (ver EAA) [Guru]

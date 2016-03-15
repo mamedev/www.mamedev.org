@@ -1,0 +1,286 @@
+0.139u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04060: [Crash/Freeze] All sets in taitogn.c: NVRAM written 
+         incorrectly - games never start. (Aaron Giles)
+- 04068: [DIP/Input] viofight: Missing Player 2 button 3 (Tafoid)
+- 04063: [Gameplay] All sets in solomon.c: All characters in the 
+         game are missing (player and enemies) (hap)
+
+
+
+Source Changes
+--------------
+Converted amiga drivers to use driver_devices. Merged common code
+between legacy Amiga and AGA video systems. [Atari Ace]
+
+Death to more NVRAM_HANDLERS. [Aaron Giles]
+
+cdda - Added a per-channel volume setting function [Barry Rodewald]
+
+M68k: Add more conditionals and FGETEXP instruction [R. Belmont]
+
+Converted x2212 to a modern device. Changed x2212 device to return 
+unmapped bits for the upper 4 bits. Added e2prom address space to 
+x2212 so that the latched contents can be viewed. Updated starwars 
+and firefox. Hooked up x2212 in foodf. [Aaron Giles]
+
+Changed ccastles and cloud9 to use the x2212 instead of the hacked-up
+fake version they had. [Aaron Giles]
+
+Enable vertical scroll bars in debugger comboboxes, and resize them to
+show the full text. [Aaron Giles]
+
+Changed memory width stubs to fill unpopulated regions with the
+appropriate portion of the unmap value. [Aaron Giles]
+
+Added ER2055 device. Changed liberator over to using it. Other Atari
+games to follow. [Aaron Giles]
+
+Modernized liberator driver, added save state support. Moved
+generalized EAROM handling to atarigen. [Aaron Giles]
+
+Added new (modern) address map macros for referencing member functions
+in base classes: AM_READ_BASE(_class, _member), AM_WRITE_BASE,
+AM_READWRITE_BASE, etc. [Aaron Giles]
+
+Debugger (SDL) : Window locations in the SDL debugger are now saved
+and loaded at exit and startup. [Andrew Gardner]
+
+Modified Z80-DMA reset command (C3) to not randomly clear registers.
+[Curt Coder]
+
+raiden2: checkpoint current state [Olivier Galibert]
+
+Removed IRQ hack in Niyanpai HW [Angelo Salese]
+
+Ported over CD-i cleanup from MESS. [Harmony]
+
+Put the SH2 DMA on a timer.  This is needed because Knuckles Chaotix
+on the 32X can't be done with 'Instant DMA' due the SH2 DMA is used to
+read from a FIFO port which is being filled by the 68k during the
+transfer.  [David Haywood]
+
+Fixed 8-bit dram (framebuffer) access for 32x [David Haywood]
+
+Added sprite buffering to Mirage Youjuu Mahjongden, confirmed by a
+real PCB video [Angelo Salese]
+
+680x0: '030 MMU now emulates translation cache; fixed misinterpreted
+MMU opcodes [R. Belmont]
+
+Megadrive: changed way the z80 window into 68k space works so that it
+automatically can handle things like the 32x. [David Haywood]
+
+Improvements to Piccolo Poker 100. [Roberto Fresca]
+ * Added a workaround to get the game booting.
+ * Created inputs from the scratch.
+ * Promoted to 'working'.
+ * Added technical and game notes.
+
+Fixed Fairchild F8 CPU interrupt handling. [Curt Coder]
+
+Implemented support for SH-2 cycle steal mode, used by Fever Soccer
+[David Haywood]
+
+Fixed a SH-2 with TSTM opcode [R.Belmont]
+
+Neo-Geo updates [Johnboy]:
+ * savagere, kizuna - Reverted C1 change from u2 (chip was bad, C1 was
+    correct)
+ * gururin - Added correct M1 ROM
+ * quizdai2 - Tagged as MVS and AES version
+ * Started to document mask ROM types
+
+naomi.c: Added Mamonoro cartridge description [f205v]
+
+viper.c: Added the 941a01 BIOS and p911e missing NVRAM dump
+[John Bud @ Jamma+]
+
+Golden Poker driver updates... [Roberto Fresca]
+ * Added 3 new Witch Card sets.
+ * Added 3 new Falcons Wild sets (from 3 different hardwares).
+ * Hooked the second CPU (still encrypted) to the Falcon hardware.
+ * Partially decrypted the second CPU program from Falcon hardware.
+ * Figured out the Falcons Wild (Video Klein) memory map and machine.
+ * Defeated the evil Video Klein's Witch Card hardware.
+ * Reworked inputs for some sets.
+ * Added lamps layouts/connections to the new sets.
+ * Figured out the multiplexed data/address from Falcon's boards
+    sound.
+ * Added full sound support to Falcon hardware.
+ * Reorganized and partially cleaned-up the driver.
+ * Added more technical notes.
+
+Fixed unaligned 16 and 32-bit i/o accesses in i386 CPU core
+[Barry Rodewald]
+
+Fix bug where multiple sampleof attributes could be output, resulting
+in invalid XML. [Aaron Giles]
+
+Enable wavwrite (and aviwrite) sound even if -nosound is specified.
+[Aaron Giles]
+
+Since PNG writing is used for MNG as well, switch back to default
+compression instead of best compression in order to keep the
+performance reasonable. [Aaron Giles]
+
+Fix another Clang issue [Balrog]
+
+SH2DRC: Fix BSRF and JSR so delay slot insns can trash the calculated
+PR if they want [R. Belmont]
+
+v9938 - Set default value for status register 4 and 6  [Michael Zapf]
+
+Added INT1, INT2, INT3, DRQ0, DRQ1, TMRIN0, TMRIN1 input and TMROUT0,
+TMROUT1 output lines to the Intel 80186 CPU interface. [Curt Coder]
+
+SH2: fix PC relative MOV in delay slot
+SH2: Further improvements to PC_relative loads in the delay slot.
+[R. Belmont]
+
+Improvements to vpoker.c driver [Roberto Fresca]
+ * Added 5-Aces Poker.
+ * Fixed, improved and merged memory map.
+ * Fixed the ROM loading.
+ * Removed the mame rnd hack from the blitter read handler.
+ * Preliminary inputs.
+ * Fixed visible screen.
+
+Added new driver for NSM TMS9995 based hardware. [Roberto Fresca]
+
+Added UART Tx/Rx framework to the CD-i 68070 implementation, necessary
+for Quizard protection. [Harmony] Changed default CD-i SLAVE video
+setting to PAL, necessary for Quizard to boot. [Harmony]
+
+Naomi: added protection key for gundmct, it boots now [Cah4e3]
+
+Changed visible area and resolution of CD-i based arcade games.
+[Harmony] 
+
+Got Quizard 1.7 to boot with a targeted hack. Still not
+playable. [Harmony]
+
+New driver for Advanced Video Technology (AVT) platform
+[Roberto Fresca]
+ * Almost accurate memory map.
+ * Decoded graphics.
+ * Decoded the bipolar PROM.
+ * Detected a CRTC (MC6845 type) reversing the code.
+ * Guessed the CRTC clock to get proper values.
+ * Hooked the AY-3-8910.
+ * Added games notes.
+ * Added technical notes.
+
+Patched out the majority of the Quizard 1.7 protection check and
+emulated the game's inputs. [Harmony]
+
+Patched out the majority of the Quizard 1.2 protection check and
+made the patch more generic. [Harmony]
+
+Added incomplete protection patches to Quizard 3.2 and Quizard Rainbow
+4.1; both now run through attract mode and coin up, but crash when
+going in-game. [Harmony]
+
+video/neogeo.c: Call optimize_sprite_data() at VIDEO_RESET (for the
+convenience of Neo Geo CD) [Barry Rodewald]
+
+Attempt to untie the shared mapping for all games in zr107.c (midnrun,
+windheat, waveshrk).  Buttons now have labels and match up to test
+mode, even if you cannot play the games.  [Tafoid]
+
+Fixed vspinbalj (vsnes.c) flipper control and eliminated duplicated
+inputs. [Tafoid]
+
+Converted render.c objects into C++ objects. Updated all callers.
+[Aaron Giles]
+
+Improvements to Subsino driver. [Roberto Fresca]
+ * Created proper inputs for all Victor 6 sets.
+ * Fixed/extended Magic Train technical notes.
+ * Eliminated the 3 undumped bipolar PROMs from Magic Train since
+    these are in fact Darlington Arrays instead of bipolar PROMs.
+
+Replaced the excessively large Quizard patch scheme with a much
+smaller 4-byte patch plus basic protection obfuscation simulation.
+[Harmony]
+
+Found the appropriate patch values for Quizard 2.2 and promoted it
+to working. [Harmony]
+
+Removed RAM protection patches from Quizard games.  All games now at
+least boot with simulated protection, and the ones that were playable
+before remain playable. [Harmony]
+
+Changes LIVES to use only a single DIP instead of being split up
+between two input ports by using a CUSTOM_INPUT. 
+[Tafoid, Fabio Priuli]
+
+Eliminated non-functioning service mode mapping which was a duplicate
+(ssridersb - tmnt.c).  Added new labels to bombkick (yunsun16.c) to
+better describe the status required for each DIP, rather than the
+duplicate label "DON"T CHANGE IT!". [Tafoid]
+
+8237dma.c: Initialize the command register to 0 on reset. 
+[Wilbert Pol]
+
+Update psx drivers to use a driver_device. [Atari Ace]
+
+Update driver-specific sound devices to use tokens and store their
+state like other devices. [Atari Ace]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Tetris / Bloxeed (Korean System 16 bootleg) 
+  (ISG Selection Master Type 2006) [Anonymous]
+Mallet Madness v2.1 [Brian Troha, The Dumping Union]
+Piccolo Poker 100 [Roberto Fresca]
+Witch Card (Falcon, enhanced sound) [Roberto Fresca, Team Europe]
+Witch Card (German, set 3, alt gfx) [Roberto Fresca, Team Europe]
+Witch Game (Video Klein) [Roberto Fresca, Team Europe]
+Falcons Wild - Wild Card 1991 (TVG) [Roberto Fresca, Team Europe]
+Falcons Wild - World Wide Poker (Video Klein)
+  [Roberto Fresca, Team Europe]
+Victor 6 [Smitdogg, The Dumping Union]
+Quizard 1.7 [Harmony]
+Quizard 1.2 [Harmony]
+Quizard 2.2 [Harmony]
+
+
+
+New clones added
+----------------
+Sea Wolf (older?) [Siftware]
+Gun Fight (older?) [Siftware]
+Puckman Pockimon (set 2) [Guru]
+Hit Me [Siftware]
+X-Men: Children of the Atom (Asia 950105) [Razoola]
+Final Lap 3 (Japan - Rev C) [Smitdogg, Guru, The Dumping Union]
+Omega Race (set 2) [Dave France, The Dumping Union]
+Star Raker [Andreas Kraemer, Steffen & Laschek]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cosplay Heaven 5 [alien_mame, Angelo Salese]
+Game stops working due to "BAD" RAMDAC at u12 [briantro]
+Falcons Wild - World Wide Poker (Falcon original)
+  [Roberto Fresca, Darran]
+Faster Than Speed [Cah4e3, R. Belmont]
+Wave Runner GP [Cah4e3, R. Belmont]
+5-Aces Poker [Roberto Fresca]
+NSM Poker (TMS9995) [Roberto Fresca, Team Europe]
+Dual Games (prototype) [Smitdogg, The Dumping Union]
+Symbols (ver 1.4) [Roberto Fresca, Dave Ormiston]
+Symbols (ver 2.5) [Roberto Fresca, Dave Ormiston]
+Arrow Bingo [Roberto Fresca, Dave Ormiston]
+NFL (ver 109) [Roberto Fresca, Dave Ormiston]
+Virtua Striker 3 (rev. B) [ANY]
+Puyo Puyo DA! [Guru, f205v]
+Mobile Suit Gundam: Federation vs. Zeon [Guru]

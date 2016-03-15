@@ -1,0 +1,103 @@
+0.108u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mf_bdash0108u4gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed priority in galivan and danger (and clones). Added save state
+support to all games in galivan.c. Fixed portability issue in DAC
+audio save states. [Vas Crabb]
+
+Fixed bug in software renderer that prevented lower-resolution
+targets from being properly supported. [smf]
+
+Rewrote the Atari vector generators, using the schematics and actual
+state machine PROMs. The state machine is now emulated so timing 
+should be much more realistic. Clipping hardware in bzone and others 
+is emulated instead of hardcoded. Improved accuracy of clocks and
+various other bits of cleanup. [Mathis Rosenhauer]
+
+Some more cleanups to the getrivia, findout, and merit drivers:
+[wolf676]
+ - corrected order of buttons and lamps in the games
+ - removed impulse(2) from buttons -> buttons respond much better now
+ - added coin 2 to Selection and Trivia
+ - Poker and Sexual Trivia have no coin 2 -> unique inputs defined
+ - used PORT_INCLUDE() and PORT_MODIFY() where possible
+ - connected outputs for use with artwork
+
+Major updates to the Nintendo 64 based driver. [Ville Linde]
+
+More improvements to the pmpoker driver: [Roberto Fresca]
+ - Confirmed the GFX banks (a complete dump appeared!).
+ - Improved technical notes and added a PCB layout based on PCB pics.
+ - Found and fixed the 3rd bitplane of BigBoy gfx.
+ - Renamed Big-Boy to Golden Poker Double Up.
+ - Added 'Joker Poker' (Golden Poker version without 'double-up').
+ - Added 'Jack Potten's Poker' (same as Joker Poker, but with 
+    'Aces or better' instead of jacks).
+ - Simulated colors for all sets till color PROMs appear.
+ - Completed inputs in all sets (except DIP switches).
+
+Undid previous (incorrect) 'fix' of shangha3 sound clock. [Canim]
+
+Implemented some port conditions for gmgalax, so you only see the
+relevant DIP switches for the active game. [Canim]
+
+Numerous fixes to the cheat engine. [ShimaPong]
+
+Updated the TN2A03 CPU to match the proper cycle timings and 
+unsupported opcodes revealed by Blargg's NES chip test. [Wilbert Pol]
+
+Another big update to the ST-V driver: [Mariusz Wojcieszek]
+ - scsp: improved interrupt reset. diehard, dnmtdeka, vfkids, 
+ - colmns97 have sound now
+ - vdp1: added mesh effect for the sprites 
+ - vdp1: added polylines
+ - vdp2: optimized rbg rendering
+ - stv:  added speedups for dnmtdeka and diehard
+ - stv:  corrected some set names/descriptions
+
+Fixed crash in Windows code if we are unable to create sound buffers.
+[Nathan Woods]
+
+Fixed bug that caused Turbo sprites to be exceedingly large.
+[Aaron Giles]
+
+Began rewrite of Grand Champion driver. Still work to do on collision
+detection, radar, and some glitches. [Aaron Giles]
+
+Added new output utilities: output_set_led_value(), 
+output_set_digit_value(), output_set_lamp_value(), which are used to
+set a generic indexed data type. Changed Turbo and Max-a-Flex over to
+using output_set_digit_value() for their digits. [Aaron Giles]
+
+Rewrote the PNG reading/saving code, improving error reporting and
+
+simplifying the code significantly. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pocket Racer [smf, Guru]
+PlayMan Poker (Germany) [Roberto Fresca]
+Killer Instinct (SNES bootleg) [Tomasz Slanina]
+Real Fun (Version 7.01) [Brian Troha]
+
+
+
+New clones added
+----------------
+World Class Bowling (v1.5) [Brian Troha]
+Gryzor (Set 2) [Stefan Lindberg]
+Power Drift (World) [Stefan Lindberg]
+Strikers 1945 (Korea) [Stefan Lindberg]
+10-Yard Fight (World) [Brian Troha]
+Final Lap R (Japan Rev. C) [Arzeno Fabrice]

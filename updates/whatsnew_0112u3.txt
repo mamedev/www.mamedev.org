@@ -1,0 +1,169 @@
+0.112u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+ghouls097u4yel [MAME Italia Forum]
+hotchase0111u2gra [Brian Troha]
+bigtwin0111u4gra [Brian Troha]
+
+
+
+Source Changes
+--------------
+Modified ledutil to save the LED state when returning from pause.
+[Bob Seidel]
+
+Fixed the crashing in debug builds and added controls for Ski Champ.
+[Ville Linde]
+
+Updated makefile to remove the map file when making clean. [Dirk Best]
+
+Significant changes to the input system: [Derrick Renaud]
+ * Added the -vol shortcut to -volume to match the docs.
+ * Added new joystick options -joy_deadzone & -joy_saturation. 
+    Removed -a2d_deadzone. These now apply to the analog and 
+    digital-from-analog data. See windows.txt for more info.
+ * Analog joystick data is divided into chunks for IPT_POSITIONAL 
+    controls. e.g., for a 7 position emulated control, a joystick 
+    axis will move 3 positions each way from center + center = 
+    7 positions. One good use for this is 49way sticks. The driver 
+    input code just needs to be set to IPT_POSITIONAL 
+    PORT_POSITIONS(7) and use a PORT_REMAP_TABLE.
+ * IPT_PEDAL controls are now nothing special in the core. They can 
+    use any control like a paddle does. At the OS input level, the 
+    code has been changed to supply full joystick axis and the +/- 
+    axis. This means any half axis or full axis can be used for any 
+    emulated control. e.g., a pedal that only outputs Y- data can be 
+    used for the full range of the gun in boothill. Or a full axis 
+    slider on a joystick can be used in its full range as an emulated 
+    pedal. INC now increases the pedal value, not DEC.
+ * When seting up the player controls in the menu, the first time an 
+    analog joystick axis is selected it will use the full range. If 
+    you immediately select the same joystick axis it will toggle to 
+    the half +/- axis.
+ * Analog joysticks can now simulate relative devices such as a 
+    trackball. The further you move the joystick, the faster the 
+    trackball spins. Use the sensitivity setting to adjust.
+ * Added support for mouse +/- axis to be used as button input.
+ * Modified IPT_PADDLE and IPT_AD_STICK so they do not behave as 
+    pedals using half the joystick range if their default value is 
+    equal to one of the PORT_MINMAX values. Now you can select it as 
+    the full or +/- part axis.
+
+Updates to the acefruit driver: [stephh]
+ * added 'sidewndr' and 'spellbnd' (was 'sidewnda') which were missing 
+    in previous releases
+ * reorganised the layout to have all lamps and solenoids at the top 
+    (where there's nothing)
+ * also renamed some lamps and solenoids
+ * added 'starspnr' ... unfortunately, the game is not working due 
+    to a bad dump (H11)
+
+Updated the DISCRETE_OP_AMP_OSCILLATOR circuit to get it ready for a 
+future driver. It allows the DISC_OP_AMP_OSCILLATOR_1 | 
+DISC_OP_AMP_IS_NORTON oscillator to use nodes to adjust the 
+resistance values instead of only being static values.
+[Derrick Renaud]
+
+Fixed thrust control in Lunar Lander. [Derrick Renaud]
+
+Created new utility module pool.c for managing memory pools. Rebuilt
+auto_malloc on top of this concept. [Nathan Woods]
+
+Added speedups to many of the Eolith games. [David Haywood]
+
+Added sprite rotation to the realbrk driver. This fixes the jigging
+reels in the pachinko games and the cue position and orientation in
+the pool games.
+
+Added discrete sound for Amazing Maze. Also added new Discrete 
+modules: DISCRETE_LOOKUP_TABLE & DISCRETE_LOGIC_JKFLIPFLOP.
+[Derrick Renaud]
+
+Fixed the small graphic issues in the Cidelsa driver. Draco still has 
+imperfect colors. [Curt Coder]
+
+Fixed naming and identification of several Neo Geo ROMs. [JohnBoy]
+
+Fixed regression in the GeeBee driver. [David Haywood]
+
+Major update to the Konami System 573 driver: [smf]
+ * added state saving to emu\sound\cdda.c & mame\drivers\ksys573.c
+ * added DS2401 emulation
+ * added X76F100 emulation
+ * added ZS01 emulation (HLE of System 573 PIC)
+ * added write support to X76F041 emulation
+ * many new games partially supported
+
+Connected brightness support on the CPS1 board (not just CPS2) after
+verifying that the real board does support it. [MAME Italia forum]
+
+Improved the K001604 tilemap chip emulation. [Ville Linde]
+
+Fixed garbage in fonts on some systems. [Aaron Giles]
+
+Added new tool makemeta.exe, which can generate properly formatted
+metadata for laserdisc CHDs using either a specially captured AVI as
+input (preferred) or a hand-crafted set of encoded Philips codes.
+[Aaron Giles]
+
+Rewrote throttling code to be more forgiving of OSD-level glitches
+and uneven frame rates. [Aaron Giles]
+
+Changed sound streaming engine to be emulated time based instead of
+sample based. This means that emulation behavior is independent of
+the user-specified sample rate (except that some sound cores still
+use this value; to fixed in a future update). Also separated sound
+generation from video frame rate. Sound is now pushed to the OSD
+layer at a fixed rate of 50 updates per emulated second. This entailed
+a change in the way sound is handed to the OSD layer. Instead of the 
+OSD layer requesting arbitrary numbers of samples each frame, the
+core now pushes the appropriate number of samples based on the
+emulated time. [Aaron Giles]
+
+Simplified the OSD interface for sound. Removed osd_start_audio_stream
+and osd_stop_audio_stream; OSD initialization code is now responsible
+for initialization. Removed osd_get_mastervolume and osd_sound_enable,
+keeping management of the main volume in emu/sound.c. [Aaron Giles]
+
+Changed K054539 to run at native sample rate. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Crazy War [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Super Puzzle Fighter II Turbo (Asia 960529) [Nicola Salmoria]
+Meikyuu Hunter G (Japan, set 2) [David Haywood]
+Chinese Heroe (Taito) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Dance Dance Revolution (GC845 VER. JAB) [smf]
+Dancing Stage featuring TRUE KiSS DESTiNATiON (G*884 VER. JAA) [smf]
+Dance Dance Revolution Solo Bass Mix (GQ894 VER. JAA) [smf]
+Dance Dance Revolution Solo 2000 (GC905 VER. AAA) [smf]
+Dance Dance Revolution 3rd Mix [smf]
+Dance Freaks (G*874 VER. KAA) [smf]
+DrumMania 2nd Mix (GE912 VER. JAA) [smf]
+Dance Dance Revolution 3rd Mix Plus (G*A22 VER. JAA) [smf]
+Dance Dance Revolution 4th Mix (G*A33 VER. AAA) [smf]
+Dance Dance Revolution Solo 4th Mix (G*A33 VER. ABA) [smf]
+Dance Dance Revolution USA (G*A44 VER. UAA) [smf]
+Dance Dance Revolution 4th Mix Plus (G*A34 VER. JAA) [smf]
+Dance Dance Revolution 4th Mix Plus Solo (G*A34 VER. JAA) [smf]
+Dance Maniax 2nd Mix (G*A39 VER. JAA) [smf]
+Dance Dance Revolution 5th Mix (G*A27 VER. JAA) [smf]
+Dance Maniax 2nd Mix Append J-Paradise (G*A38 VER. JAA ) [smf]
+Salary Man Champ (G*A18 VER. JAA) [smf]
+DDR Max - Dance Dance Revolution 6th Mix (G*B19 VER. JAA) [smf]
+DDR Max 2 - Dance Dance Revolution 7th Mix (G*B20 VER. JAA) [smf]

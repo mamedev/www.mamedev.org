@@ -1,0 +1,126 @@
+0.132u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03262: [DIP/Input] Drivers using TMS9928: Using any type of 
+         frameskip causes crash (Fabio Priuli)
+- 03247: [DIP/Input] battles: Unable to locate input port 'IN0' 
+         (stephh)
+- 03263: [Crash/Freeze] polyplay: PolyPlay crashes/exits with some 
+         acces violation (Fabio Priuli)
+- 03255: [Compiling] Compile errors with GCC 4.4 (SDLMAME specific)
+- 03251: [Sound] kingofb, ringkin3, ringkinw: No sound output (Tafoid)
+- 03237: [Crash/Freeze] bagman, sbagman and clones: Error Message: 
+         Duplicate save state registration entry (Tafoid)
+- 03245: [DIP/Input] nitrobal, gunball: Screen Flipped by default/
+         Input not allowed (Tafoid)
+
+
+
+Source Changes
+--------------
+Fixed handshaking signals for PPI8255 modes 1/2, and mode 2 input 
+mask. [Curt Coder]
+
+Added framebuffer support in 18 Holes Pro Golf. Fixed backgrounds
+and added inputs. Decoupled from btime. [Angelo Salese]
+
+Adjusted sound command descriptions for dkong to be closer to the 
+other drivers, and added a missing command description. [Kef Schecter]
+
+Added SP0256 pinout. [Curt Coder]
+
+Fixed colors in Jan-Oh [Angelo Salese]
+
+Fixed several issues compiling with gcc 4.4. [R. Belmont]
+
+Added Dip Locations and made default settings changes to match manuals 
+for Star Wars and The Empire Strikes back. [Tafoid]
+
+Added irq ack support in the rohga driver, fixes character selection 
+behaviour in Wizard Fire. [Angelo Salese]
+
+Fixed background colors and improved the graphics in Pro Soccer.
+[Angelo Salese]
+
+Refactored MC6845 to use devcb and added cursor callback (for MESS).
+[Curt Coder]
+
+Added basic gfx pal descrambling to liberate.c, and enabled sound 
+(memory map was disabled but it is actually good?) Fixed for good the 
+background colors and added gfx rom read-back (helps a lot for the 
+tile-based sprites). Improved playability by tweaking IRQ generation.
+[Angelo Salses]
+
+Added correct ROM names for eprom/eprom2. [Phil Bennett]
+
+Made the 8237 dma controller emulation more accurate by implementing 
+it as a state machine. Deprecated the dma8237_run_transfer function.
+[Wilbert Pol]
+
+Updated readmes for ATOMISWAVE and TWINKLE hardware. [Guru]
+
+Fixed prom hook-up in Dambuster. [Angelo Salese]
+
+Twinkle WIP: [R. Belmont]
+ - SPU board emulation improvements (memory map, IRQ controller, IDE, 
+    RF5c400)
+ - Change 4th mix to use real dumped security dongle data
+
+Many graphics and logic fixes to Pro Sports. [Angelo Salese]
+
+Decoded BG backgrounds in Pro Sports. [David Haywood]
+
+Fixed a DECO16 CPU core bug that was causing issues with Pro Bowling 
+part of Pro Sports. [Angelo Salese]
+
+Implemented a new DECO CPU-16 opcode, used by Express Raider for 
+V-BLANK bit and a bunch of liberate.c games for TILT bit. Converted 
+Express Raider to use the DECO CPU-16 core instead of the plain M6502. 
+[Angelo Salese]
+
+Added BPROMs for Intruder. [Yasuhiro Ogawa]
+
+Total Vice now uses the correct boot ROM (same as Polystars). 
+[Phil Bennett]
+
+Fixed Pro Tennis gameplay and added basic background hook-up.
+[Angelo Salese]
+
+Improved protection simulation and documentation for Shogun Warriors/
+BRAP Boys. [David Haywood]
+
+Pointer-ified the minx CPU core. [Atari Ace]
+
+Improved System 16 bootleg behaviors, especially with regards to
+sprite rendering. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+New Double Bet Mahjong  [alien_mame, Dumping Union]
+Pro Soccer [Angelo Salese]
+Steel Worker [Hau, Chack'n, Dumping Union]
+
+
+
+New clones added
+----------------
+Give us a Break (6 versions) [Anonymous, alien_mame]
+Dambusters (US, set2) 
+  [N. Garnier, D. Beneke, J. Leyda, A. Costin, W. Belk and Smitdogg]
+Cruis'n Exotica (version 2.4) [K. Lee, Smitdogg]
+Grand Striker (Americas) [ClawGrip, ShengLuc]
+Best League (World) [ClawGrip, ShengLuc]
+Grand Striker 2 (Europe and Oceania) [ClawGrip, ShengLuc]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Sports Shooting USA [Guru]
+Ranger Mission [Guru]
+beatmania IIDX [Guru]

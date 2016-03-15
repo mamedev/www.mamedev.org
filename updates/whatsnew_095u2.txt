@@ -1,0 +1,89 @@
+0.95u2
+------
+
+Incredible Tech. 8-bit update [Aaron Giles]
+* added extensive documentation on all the various PCB layouts
+* reorganized drivers to match PCB information
+* fixed paging/flicker problems in Poker Dice/Dyno Bop
+* fixed lack of announcer voices in Rim Rockin' Basketball (rimrockn057gre)
+* fixed P3/P4 controls in Rim Rockin' Basketball
+* added "behind the beam" updating for Super Strike Bowling
+* redid Slick Shot input to use a crosshair for starting point and trackball 
+movement for velocity
+* hooked up inputs for Dyno Bop/Super Strike Bowling, which are now somewhat 
+playable
+* rewrote blitter implementation to be much simpler (no more macros)
+* measured and implemented accurate blitter timing (fixes some speed 
+problems)
+* cleaned up TMS34061 implementation to remove dirty pixel tracking
+* fixed scanline computations in TMS34061 code
+* updated Capcom Bowling driver as well to handle TMS34061 changes
+
+Sega ST-V update [Angelo Salese]
+* Fixed Batman Forever rom loading,now the game works,thanks to Runik to point this out.
+* Fixed some interrupt issues because the old implementation was giving several hangs
+  on the above game.To be more specific added the sprite draw end irq to the INTERRUPT_GEN
+  structure & fixed a bug which prevented the vblank bit to not be cleared if the irq mask
+  has the VBLANK-IN disactivated.
+* Fixed the NMI_disable/enable cmds on the SMPC device,his function is to active/disactive
+  a bit in the SMPC ram.This fixes the "2 credits bug at start-up" in Shanghai Triple Threat.
+* Fixed a bug in the bitmap type 4 in VDP2 handling,which was causing the Sunsoft logo in
+  Shanghai Triple Threat to not show correctly.
+
+Removed hack from Ghox controls so it acts like real PCB [Corrado Tomaselli]
+
+Attempted to fix crash in Crackdown [David Haywood]
+
+Misc Patch [Nathan Woods]
+src/cpu/m6502/m6502.c:
+src/cpu/m6502/m6502.h:
+src/cpu/m6502/ops02.h:
+     - Added a hook that allows drivers to override the indexed 
+addressing mode (there is a certain system on the MESS side that does 
+some very ugly tricks to change the behavior of this mode)
+
+src/machine/6821pia.c:
+    - PIA fix
+
+Fixed error introduced in Splash when Funny Strip gfx were fixed [Pierpaolo Prazzoli]
+
+Improved SSlam audio MCU sim [Quench]
+
+SN76496 improvements [Sebastien Chevalier]
+
+Megaplay dipswitch fix [Barry Rodewald]
+
+Improved gamelist.txt generation code [Buddabing, Atari Ace]
+
+Changed way in which MCU kludge/hack works in armedf driver [Sebastien Chevalier]
+
+mayjisn2 input fix [WING]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Up Your Alley [Aaron Giles]
+Dr. Tomy [Pierpaolo Prazzoli]
+Snapper [Aaron Giles, Simon White]
+Pocket Gal Deluxe (bootleg) [David Haywood]
+Batman Forever [Angelo Salese, Runik]
+
+clones
+------
+
+Wally wo Sagase! (Rev. B) [Chack'n]
+DD. Crew (Japan, 2 Player) [Chack'n]
+Aurail (Japan) [Chack'n]
+Trio the Punch (World) [Roberto Gandola]
+Simpsons (4 Player alt) [Chris Hardy]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Comad World Beach Ball Championship 1997  (skeleton driver)
+Monster World  (different memory map etc. to speed spin)
+Peno Cup  (maybe wrong title, corrupt rom data)
+
+Panic Road [Tomasz Slanina]  (encrypted gfx, like mustache boy?)
+
+D.D Crew (3 Player, World) [Chris Hardy] (hangs when you select character, needs investigation)

@@ -1,0 +1,75 @@
+0.108u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+loadstate0108u1red [Aaron Giles]
+dooyong0108u1red [Aaron Giles]
+deadang0108u1red [Aaron Giles]
+pang337b15gre [robiza]
+botanic080u1gra [robiza]
+
+
+
+Source Changes
+--------------
+Fixed options_output_ini_file() and options_output_ini_mame_file() 
+to properly handle string options containing spaces. [Nathan Woods]
+
+Fixed incorrect DIP switches in Trivia (Version 1.03), Selection,
+and Poker games (getrivia.c). [wolf676]
+
+Added PORT_DIPLOCATION macros to a number of drivers based on 
+research. [Roberto Fresca]
+
+Fixed several issues with pausing and the multithreading code.
+[Nathan Woods]
+
+Cleaned up the vacfdisp module to display 14 and 16 segment displays.
+Added a separate character set for the OKI MSC1937. Changes Scorpion
+2 to the new system. Tidied up the 6840 emulator a bit. [El Condor]
+
+Attempted to fix the bad Space Odyssey ROM by using data from the
+previous dump. It is still marked BAD_DUMP (we would like to get an
+actual dump), but the new Space Odyssey is now playable. [MASH]
+
+Removed recently-introduced case dependency in the ROM naming.
+[Buddabing]
+
+Added new option -multithreading (-mt) which enables the previous
+multithreaded rendering code. This code has had problems on some
+systems, especially pre-XP systems, so consider it experimental. If
+you want to help debug issues, enable LOG_THREADS in windows/window.c
+and post them to MAMETesters.org with a description of your problem
+and your system. If you don't have hyperthreading, dual core, or a
+multi-CPU system, don't bother turning this flag on. [Aaron Giles]
+
+Changed the behavior of the led7seg primitive. It now no longer takes
+a state value but accepts states from 0-255, allowing independent
+control over all 7 segments and the decimal. Ordered the segments
+according to standard order. Updated the Turbo driver to do its own
+BCD decoding via an LS48 decoder to control the segments directly.
+This will break existing layouts using the led7seg primitive. 
+[Aaron Giles]
+
+Further turbo driver cleanup. Still in WIP. [Aaron Giles]
+ * derived sprite scaling from PROMs and R/C values (still not 100%)
+ * rewrote most of the video/sprite handling
+ * identified all PROMs and used them where appropriate
+ * added a more complete 8279 implementation
+ * converted 7-segment LEDs to the new behavior described above
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Carrera (Version 6.7) [David Haywood]
+Swinging Singles [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Lethal Enforcers (4 sets) [Patrik Styrnell, David Haywood]
+Muroge Monaco (set 2) [Roberto Fresca]

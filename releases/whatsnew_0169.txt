@@ -1,0 +1,405 @@
+0.169
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 00363: [Gameplay] (vsnes.c) balonfgt: When you try to play balonfgt using both screens, 
+  the 2 screens get out of sync almost immediately. (David Haywood)
+- 03860: [DIP/Input] (vsnes.c) hogalley, vsfdf : Shots don't hit. (David Haywood)
+- 05618: [Graphics] (dooyong.c) pollux: Title screen is static (David Haywood)
+- 04222: [Color/Palette] (dooyong.c) pollux, polluxa, polluxa2: The 2 characters in the ending scene have wrong colors (David Haywood)
+- 02844: [Graphics] (megasys1.c) soldam: Graphics corruption in high score listing (David Haywood)
+- 00365: [Misc.] (megasys1.c) 64street: characters don't move in attract mode (David Haywood)
+- 00366: [Misc.] (megasys1.c) chimerab: no movements in attract mode / instruction screen (David Haywood)
+- 05963: [Graphics] (megasys1.c) tshingen, tshingna: Missing graphical mosaic/resolution effect (David Haywood)
+- 06098: [Graphics] (segaybd.c) gloc: Priority issue after game start (David Haywood)
+- 06067: [Graphics] (megasys1.c) 64street, 64streetj: 64th Street - missing background graphics interaction (Angelo Salese)
+- 06093: [DIP/Input] (stv.c) ffreveng: should have 5 working buttons (David Haywood)
+- 06091: [Crash/Freeze] (pc9801.c) pc9801ux: Crash 7-8 seconds into emulation (crazyc)
+- 04857: [Crash/Freeze] (playch10.c) pc_pinbt: Hangs after insert coin (Osso)
+
+Source Changes
+--------------
+-Fix dates on the prose2k sets based on their internal datecodes
+ [Lord Nightmare]
+
+-Fixed BGM regression in Hot Chase [Angelo Salese]
+
+-rungun.c: Added '936 ROM readback. [Angelo Salese]
+
+-rungun.cpp: added video priority mode bit, fixes title screen missing
+ rotation effect. [Angelo Salese]
+
+-rungun.cpp: Fixed Run N Gun single/dual monitor logic setup.
+ [Angelo Salese]
+
+-Dumped the bipolar PROMS at locations 4a, 1m, and 3m of Club Pacman /
+ Lambada (Argentina). Only one at location 7f is remaining.
+ [Roberto Fresca]
+
+-EF9365 video controller skeleton added and connected to Squale [Jean-Francois DEL NERO]
+
+-Club Pacman: Dumped and added the remaining color PROMs They match the
+ pacman/mspacman ones. [Roberto Fresca]
+
+-Pacman Club: Changed game year and description, according with some
+ facts. [Roberto Fresca]
+
+-EF9365 driver improved. Squale palette and charset corrected. [Jean-Francois DEL NERO]
+
+-Initial conversion of core to C++14. Note that compilers are now
+ limited to GCC 4.9.0 and up, Clang 3.4.0 and up, and VS2013 and up
+ [Miodrag Milanovic]
+
+-zn: Added ZN-1 development version BIOS. [Guru, R. Belmont]
+
+-rewrote GameKing skeleton driver, dumped + added internal ROM, boots 
+ and runs menu, not yet fully working [Peter Trauner]
+
+-correct gfx rom for space train [f205v]
+
+-glass.cpp: Verified clocks & pin 7 status of the OKI M6295 from real PCB.
+ [system11, The Dumping Union]
+
+-pet_rom.xml: Added MONJANA/1. [Ruud Baltissen]
+
+- Jaleco Megasystem 1 improvements
+ * add Sprite Mosaic effect (port of FBA code) [iq_132, dink]
+   - used extensively by Chimera Beast
+ * use 68k byte write smearing on main RAM [David Haywood]
+   - fixes attract movement in 64th Street, Chimera Beast
+ * emulate 'Sprite Trails' effect and attempted to emulate sprite clearing
+   effect [David Haywood]
+   - used on P47 'Jaleco Logo'
+ * added memory mirrors on type B hardware [Angelo Salese]
+   - fixes 64th Street background destruction
+ * established that St. Dragon press start text is a raster effect, however
+   method of specifying line etc. is unknown (MCU?) so not currently
+   enabled [Angelo Salese]
+ * enabled Soldam hack for parent set as well as Japan set.  It seems likely
+   that enabling 16x16 tiles on one of the layers forces one of the others to
+   use 16x16 tile addressing even in 8x8 mode, further testing needed before
+   doing it that way tho [David Haywood]
+    - fixes the high score table text
+ * change refresh rate to ~56.19hz using raw params [Angelo Salese]
+    - now matches video references
+
+-Added Bandai Super Note Club Software List. [Team Europe]
+
+-spc1000:Using timing difference for cassette deck motor on/off toggle [Miso Kim]
+
+-sun3: switch to new Z80SCC device, add RS232 ports (not functioning yet) [R. Belmont]
+
+-Re-write S2636 from scratch as needed for subhuntr: [Vas Crabb]
+ * Needs raw screen parameters and calls from scanline timer to work properly
+ * Collision and completion bits generated correctly including duplicates
+ * Supports background and score display
+ * Generates audio tone from line frequency
+ * Several times faster when rendering per scanline
+
+-laserbat.c improvements: [Vas Crabb]
+ * Use proper video timings
+ * Implement shell and area effects
+ * There are still horizontal alignment issues between layers
+ * Decode PLA bitstream and use for video mixing
+ * Add PLA from lazarian to laserbat as bad dump as it's needed now
+ * Add PLA from catnmous to clone as bad dump as it's needed now
+ * Fix colours - detailed explanation in source comments
+ * Fix inputs - cocktail P2 controls and all 16 DIP switches work now
+ * Support cocktail mode (set in Machine Configuration - uses a sense line)
+ * Fix conditions for latching sound data
+ * Fix catnmous audio CPU memory map and ROM loading by tracing program
+ * Hook up catnmous audio CPU peripherals deduced by tracing program
+ * Add more notes on sound and video hardware
+ * laserbat, lazarian and catnmous are playable now
+
+-k053252: just reset internal screen state when a frequency clock
+ change occurs. [Angelo Salese]
+
+-Fixed gfx decoding for Konami GX BIOS [Angelo Salese] 
+
+-Fixed k055555 write access, fixing Lethal Enforcers 2 text colors properly [Angelo Salese]
+
+-Split Taito TC0780FPA into its own device [Ville Linde]
+
+-mac: use real split ROMs for maciici [Guru]
+
+-Refactoring memory map validity checking [ARJ]
+
+-Modernize `simple_list` code [Vittorio Romeo]
+
+-Modernize x86log.h and x86log.cpp [Vittorio Romeo]
+
+-monzagp: added car inputs and collisions. [Sandro Ronco]
+
+-Make -verifyroms verify sub-devices like mpu401 and c2040fdc [qmc2]
+
+-partial dumps of Namco FCA and FCB JVSIO MCU's firmware
+ [Darksoft, MetalliC, Mitsurugi]
+
+-apollo: cleanups and enhancements [Hans Ostermeyer]
+ * Split OMTI8621 ISA device into PC and Apollo versions (Apollo
+    doesn't have a BIOS extension ROM, PC does)
+ * Cleaned up OMTI8621 logging
+ * Forced slot # of OMTI board so we can look it up and auto-set the
+    node ID
+ * Adjusted mouse sensitivity
+
+-Squale Floppy drives working, EF9365 emulation improvement. [Jean-Francois DEL NERO]
+
+-HLSL: Improved Defocus, Fixed LCD screen, Extended Shadow Mask and Bloom [ImJezze]
+
+ Made defocus strength equal for x/y and independent from screen size
+
+ defocus is now independent from screen size and ratio horizontal and
+ vertical defocus now have the same strength replaced asymmetric
+ defocus kernel by a symmetric kernel defocus is now limited to a
+ maximum of 10 added shader uniforms for orientation and rotation
+ settings Fixed HLSL for LCD screen
+
+ fixed wrong detection of vector screen, which meant that a LCD screen
+ was also detected as vector screen re-enabled scan-line and other CRT
+ related sliders for LCD screen Extended Shadow Mask and Bloom
+ functionality
+
+ added shadow mask option to choose between "Screen" and "Source" tile
+ mode ("Screen" is the default as before) added bloom option to choose
+ between "Addition" and "Darken" blend mode ("Addition" is the default
+ as before) the alpha channel of a shadow mask is now filled with the
+ background color of the screen by the amount of the inverted alpha
+ value added monochrome-matrix.png which can be used in combination
+ with "Source" tile mode and "Darken" blend mode to simulate a STN LCD
+
+-qt5 debugger port [O. Galibert]
+
+-Major EF9365 driver update : All display functions emulated [Jean-Francois DEL NERO]
+
+-All hardware vector drawing commands are now working. All characters [Jean-Francois DEL NERO]
+ type drawing supported (Horizontal, Vertical, Titled, Zoomed...)
+
+ 512x512, 512x256 (EF9366),256x256 resolutions supported. New user
+ settings : Number of bitplans, Display resolution/mode. Busy time
+ dynamically generated for vectors and characters drawing. Various
+ fixes. Code clean-up.
+
+-gamate.cpp: verified bios ROM dumps on multiple consoles [Peter Wilhelmsen, Morten Shearman Kirkegaard]
+
+-cps2.cpp: Emulated Spinner for aiming in Eco Fighters, enabled it by default [David Haywood]
+
+-aquarium: Fixed music banking and video priorities [David Haywood]
+
+-Various improvements to the internal debugger [Barry Rodewald]
+ * make closed windows actually disappear
+ * add Run and Hide Debugger menu option
+ * set initial windows so that they don't overlap
+ * make the window colours less garish
+ * add memory window
+ * honour -debugger_font and -debugger_font_size
+ * make title bars the size of the debugger font
+ * make window editors appear over the window it is related to
+ * stop text being drawn out of bounds in window titles and editors
+ * fix order in which windows are rendered
+ * make new windows appear in a cascade fashion
+ 
+-In the debugger, memory views now can show data as 32 bit, 64 bit and 80 bit floating point numbers.
+  [Samuele Zannoli, R. Belmont]
+  
+-Build system now autodetects and builds cleanly on Raspberry Pi 2; other ARM Linux targets should also work [Miodrag Milanovic, R. Belmont]
+
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+
+Glass (Ver 1.1, Break Edition, Version 1994) (unprotected) [system11]
+Panda Train (Novamatic 1.7) [f205v]
+Tomy Power House Pinball [hap, Sean Riddle]
+Joker Poker (Coinmaster set 1) [MASH]
+Mattel Dungeons & Dragons - Computer Labyrinth Game [hap, Sean Riddle]
+Spelling B (1978 version) [hap, Sean Riddle]
+Mr. Challenger [hap, Sean Riddle]
+Run and Gun / Run and Gun (dual screen) [Angelo Salese]
+ * despite previously being marked as working these never really worked properly
+Lazarian / Laser Battle [Vas Crabb]
+ * see notes above, wasn't really playable before
+Captain Flag (Japan) [Ryan Holtz, coolmod, Smitdogg, The Dumping Union, Luca Elia]
+
+Various Player's Edge Plus sets [BrianT]
+ - Player's Edge Plus (PP0733) Double Aces and Faces
+ - Player's Edge Plus (PS0047) Wild Cherry Slots
+ - Player's Edge Plus (PS0092) Wild Cherry Slots
+ - Player's Edge Plus (PS0358) Wild Star Red White & Blue Slots 
+ - Player's Edge Plus (PS0470) Triple Diamond Slots
+ - Player's Edge Plus (PS0628) Double Black Jack Slots
+ - Player's Edge Plus (PS0708) Double Cherry Bar Slots
+ - Player's Edge Plus (X002127P+XP000043) Double Bonus Poker featuring 'Your Property' Royals
+ - Player's Edge Plus (X002134P+XP000043) Faces 'n' Deuces Double Bonus Poker
+ - Player's Edge Plus (X002152P+XP000043) Blackjack Poker
+ - Player's Edge Plus (X002211P+XP000043) Double Double Bonus with 3 Jacks Poker
+ - Player's Edge Plus (X002236P+XP000043) Double Double Bonus with 3 Aces Poker
+ - Player's Edge Plus (X002279P+XP000057) Ace$ Bonus
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+
+Lethal Enforcers (ver EAA, 09/09/92 09:44) [caius]
+Orius (ver UAA) [Ryan Holtz, Smitdogg, The Dumping Union]
+Gallop Racer 3 (Export) [Ryan Holtz, Smitdogg, The Dumping Union]
+Super Slam (set 3) [f205v]
+Super Street Fighter II Turbo (Hispanic 940223) [Artemio Urbina]
+Zombie Revenge (Rev A) [Ryan Holtz, Smitdogg, The Dumping Union]
+Ninja-Kid II / NinjaKun Ashura no Shou (set 4) [system11]
+Hat Trick Hero '93 (Ver 1.0A 1993/02/28) [Bill D, The Dumping Union]
+Ring of Destruction: Slammasters II (Hispanic 940902) [Raul Delgado]
+Miss World '96 (Nude) (set 4) [system11]
+Double Dragon II - The Revenge (US, bootleg) [system11]
+Space Chaser (Model Racing bootleg) [Piero Andreini]
+Street Fighter II': Champion Edition (M10 bootleg) [Robbbert, Marco]
+Street Fighter II': Champion Edition ('Taiwan' bootleg with PAL)
+  [rtw, Smitdogg, The Dumping Union]
+Pirates (set 2) [caius]
+Genesis (USA, NTSC, with TMSS chip) [David Haywood]
+Space Train [f205v, David Haywood]
+Aquarium (US) [funstuff]
+Knock Out! (bootleg) [Tirino73]
+Ameisenbaer (German, Galaxian hardware) [f205v]
+Dragonninja (bootleg with 68705) [f205v]
+
+Various Player's Edge Plus sets [BrianT]
+ - Player's Edge Plus (PP0060) Standard Draw Poker (set 3)
+ - Player's Edge Plus (PP0094) Standard Draw Poker
+ - Player's Edge Plus (PP0129) Joker Poker (Two Pair or Better)
+ - Player's Edge Plus (PP0189) Standard Draw Poker
+ - Player's Edge Plus (PP0190) Deuces Wild Poker (set 3)
+ - Player's Edge Plus (PP0265) 4 of a Kind Bonus Poker (set 3)
+ - Player's Edge Plus (PP0290) Deuces Wild Poker (set 2)
+ - Player's Edge Plus (PP0409) 4 of a Kind Bonus Poker
+ - Player's Edge Plus (PP0418) Standard Draw Poker
+ - Player's Edge Plus (PP0526) Deuces Wild Poker
+ - Player's Edge Plus (PP0540) Double Bonus Poker
+ - Player's Edge Plus (PP0562) 10's or Better
+ - Player's Edge Plus (PP0587) Standard Draw Poker
+ - Player's Edge Plus (PP0711) Bonus Poker Deluxe
+ - Player's Edge Plus (PP0797) One Eyed Jacks Wild Poker
+ - Player's Edge Plus (KE1001) Keno
+ - Player's Edge Plus (KE1012) Keno (set 3)
+ - Player's Edge Plus (PS0364) Wild Star Red White & Blue Slots
+ - Player's Edge Plus (PS0425) Sizzling Sevens Slots
+ - Player's Edge Plus (PS0631) Wild Star Red White & Blue Slots
+ - Player's Edge Plus (PS0722) River Gambler Slots
+ - Player's Edge Plus (X002033P+XP000112) White Hot Aces Poker
+ - Player's Edge Plus (X002034P+XP000112) White Hot Aces Poker
+ - Player's Edge Plus (X002270P+XP000053) Jackpot Poker
+ - Player's Edge Plus (X002315P+XP000112) Triple Bonus Poker Plus
+ - Player's Edge Plus (X002376P+XP000112) Super Double Bonus Poker
+ - Player's Edge Plus (XMP00022) 5-in-1 Wingboard (CG2346) - Spanish
+ - Player's Edge Plus (XM00002P+XMP00006) Multi-Poker (MGM Grand Detroit Casino)
+ - Player's Edge Plus (PP0822 A5W-A6F) Standard Draw Poker
+
+New machines marked as NOT_WORKING
+----------------------------------
+Tektronix TekXpress XP330 X Terminal [Justin Kerk]
+Patinho Feio (first computer developed in Brazil, in 1971) [Felipe Sanches]
+unknown animal-themed game (bottom) [Roberto Fresca, Matt B]
+unknown animal-themed game (top) [Roberto Fresca, Matt B]
+Tokyo Bus Guide (Rev A) [ShouTime, rtw]
+Mortal Kombat 3 (SNES bootleg) [Kevin Eshbach]
+Bandai Super Note Club (Japan) [Team Europe]
+Bandai Super Note Club EX (Japan) [Team Europe]
+HP9845B [F.Ulvi]
+Saturn ST-17xx series DVD players [Justin Kerk]
+ROLM 9751 [Brandon Munger]
+SGI IRIS Indigo (R3000) [MooglyGuy, Jan-Jaap]
+Philips CD-i 220 (Mono-II board) [MooglyGuy, Lord_Nightmare, balrog]
+Sansa Fuze 2 [David Haywood]
+ * need to establish if full firmware can be built from internal rom dump
+   and firmware updates
+Nokia 3310
+ * we only have firmware update files, probably need actual internal
+   roms / complete firmware dumps?
+Torch CF240 [Nigel Barnes]
+
+Various skeleton drivers for mechanical / non-video systems
+ - Ameri-Hockey
+ - Turbo Drive (ICE)
+ - Standard Change-Makers System 500 / 500E
+ - Awesome Toss'em (Lazer-tron)
+ - After Shock (Lazer-tron)
+ - Bozo's Pail Toss (v2.07)
+ - Ribbit Racing (Lazer-tron)
+ - Candy Crane (AGE)
+ - Clown Roll Down (Elwood)
+
+Various Player's Edge Plus sets [BrianT]
+ - Player's Edge Plus (X000006K+XK000001) Keno
+ - Player's Edge Plus (X000013K+XK000011) Keno
+ - Player's Edge Plus (PP0596) Spades Sequential Royal Double Bonus Poker
+ - Player's Edge Plus (PP0598) Hearts Sequential Royal Double Bonus Poker
+
+Various World Club Champion Football sets [f205v, ANY, MetalliC]
+ - World Club Champion Football Serie A 2002-2003 Ver. 2.12 (CDV-10002)
+ - World Club Champion Football Serie A 2002-2003 Ver. 2.34 (CDV-10008)
+ - World Club Champion Football European Clubs 2004-2005 (CDV-10013)
+ - World Club Champion Football European Clubs 2004-2005 Ver. 1.1 (CDV-10015)
+ - World Club Champion Football European Clubs 2004-2005 Ver. 3.22 (CDV-10015P)
+ - World Club Champion Football European Clubs 2005-2006 (CDV-10027)
+
+New clones marked as NOT_WORKING
+--------------------------------
+
+Mexico 86 (bootleg of Kick and Run) (set 2) [f205v]
+World Combat / Warzaid (ver UCD:B) [arcadecomponents.com]
+Dragon World (Korea, V040K) [Ryan Holtz, Smitdogg, The Dumping Union]
+Klax (set 2, bootleg) [ANY]
+Multi Game (Versione 3.8.6T - 1.5.6, 25-AUG-97) (V378?) [Tirino73]
+Hard Head 2 (v2.0, bootleg) [system11]
+
+New WORKING software list additions
+-----------------------------------
+megadriv.xml: Sega MegaDrive/Genesis cartridges
+ - Toy Story (prototype) [PtoPOnline]
+ - Stargate (prototype) [PtoPOnline]
+
+tutor.xml: Tomy Tutor & Pyuuta cartridges
+ - 4-nin Mahjan (Jpn) [Team Europe, SSJ]
+ - verified Bermuda Triangle as identical to Torpedo Terror [Team Europe, SSJ]
+
+New NOT_WORKING software list additions
+---------------------------------------
+
+gamate.xml: Bit Corp Gamate cartridges [Peter Wilhelmsen, Morten Shearman Kirkegaard]
+ * some of these work better than others
+ - Legend of Dragon Knight
+ - Fist of Thunder
+ - Jewelriss
+ - Mars Voyage
+ - Flying Goblins
+ - World Cup Soccer
+ - Punk Boy
+ - Famous 7
+ - Tough Guy
+ - Fantasy Travel
+ - QuizFighter
+ - Further Adventures of Hannibal the Cat
+ - Basketball
+ - Bao Qing Tian
+ - Robin Hood
+ - Riddle of the Ancient Tomb
+ - Insect War
+ - 4-in-1
+ - One Million Whys
+ - Dinosaur Park (redump)
+ - The Golden Pyramid (redump)
+
+saturn.xml: Sega Saturn CD-ROMs
+ * actually playable, but marked as not working due to driver state
+ - Rayman (Prototype 19950720) [D$wizz Taylor]
+
+supracan.xml: Funtech Super A'Can cartridges
+ * DMA issues make this not playable
+ - Formosa Duel [Team Europe, SSJ]
+
+gmaster.xml: Hartung Game Master cartridges
+ - 3-on-3 Soccer (Fuss-ball) [Peter Trauner, SSJ]

@@ -1,0 +1,108 @@
+0.106u11
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+kikstart0106u7gra [Canim]
+
+
+
+Source Changes
+--------------
+Changed XML output so that BIOS sets, ROM sets, and disks are output
+in the defined order. [MadSkunk]
+
+Fixed a couple of bugs in the new screenshot taking code.
+[Nathan Woods]
+
+Improved memory map and clock speeds for the MPU4 driver. [El Condor]
+
+Moved clipping into the core, rather than relying on the OSD layer to
+do the work. Removed the PUSH_CLIP and POP_CLIP primitives as they
+are no longer necessary. Added U/V coordinates to the primitives.
+[Aaron Giles]
+
+Fixed the rendering order so that overlays mixed with backdrops work
+as expected. Note that over-rendering backdrop pieces (like gollygho
+does) may not be supported in the future. [Aaron Giles]
+
+Changed DirectDraw behavior so that it will render to an offscreen
+system memory buffer if any blending is required, thus providing
+access to all the effects with a bit of slowdown in those cases.
+[Aaron Giles]
+
+Added a new command line option: -effect <filename>, which specifies
+a PNG file that is loaded and used as an RGB multiply overlay. This
+allows for scanline and RGB aperture mask effects. These overlays
+rotate with the game screens and only affect the game screens, not
+any of the other artwork. They also only run at the raw resolution
+of the render_target. This means in Direct3D or GDI modes, they
+map 1:1 to the pixels on your screen. In DirectDraw mode, they map
+1:1 to the source pixels of the image (for DirectDraw, you can use
+-prescale n if you want an n:1 mapping; for example, you would
+probably want -prescale 2 if using a 2-pixel-tall scanlines overlay).
+[Aaron Giles]
+
+Added brightness, contrast, and gamma controls per-screen in the
+on-screen display section of the UI. This requires a change to the
+OSD rendering code to use lookup tables when copying RGB data to
+textures. Default values can be specified via the -brightness,
+-contrast, and -gamma command line/configuration options. Note that
+these options only affect screen areas of the final output and have
+no effect on artwork or the UI. The values configured in the OSD are
+saved in the config file for each game. [Aaron Giles]
+
+Added full screen equivalents of the brightness, contrast, and gamma
+controls. Unlike the screens-specific options, these only work in
+full screen mode using DirectX, and apply globally, affecting 
+artwork and user interface as well. They are controlled via the
+-full_screen_brightness, -full_screen_contrast, and 
+-full_screen_gamma options. [Aaron Giles]
+
+Added generic pen changing notification callbacks to the palette
+system. [Aaron Giles]
+
+Removed vector intensity controls as they are redundant with the new
+contrast controls. [Aaron Giles]
+
+Added X and Y offset/scale controls for each screen. This allows you
+to control the actual position of the screen within its container. In
+order to see beyond the game-configured visible area, the game must
+have set up the screen size to be larger than the core visible area.
+The Williams drivers have been updated as an example. Eugene Jarvis
+mentioned that if you adjust your monitor, you can see the stack in
+Robotron off to the right, and now you can in MAME as well. The values 
+configured in the OSD are saved in the config file for each game.
+[Aaron Giles]
+
+Changed logic so that no rendering apart from the UI happens before
+MAME is in a running state. Until that time, a single pixel border
+will be displayed around the edges of each screen. [Aaron Giles]
+
+Added option_get_int_range() and option_get_float_range() functions
+which do added range checking on parameters, rather than requiring 
+the callers to do the work. Also changed the behavior on options
+parsing failure to set to the default value rather than defaulting
+to 0. [Aaron Giles]
+
+Changed behavior of secondary windows so that they are not created
+as children of the primary window. Please re-verify that multiple
+screens still work with this change on your setup. [Aaron Giles]
+
+Added new video option to move the user interface to secondary 
+screens. The selected screen is saved in the video configuration.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Emeraldia (World) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Magic Fly [Roberto Fresca]
+7 e Mezzo [Roberto Fresca]

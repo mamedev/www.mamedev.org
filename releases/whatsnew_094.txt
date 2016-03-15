@@ -1,0 +1,195 @@
+0.94
+----
+
+SPI update [Ville Linde]
+	preliminary sprite Alpha (no tilemap alpha)
+	added sprite / tilemap DMA
+	proper RTC emulation
+
+Removed SAMPLES support from sndhrdw/galaxian.c [Aaron Giles]
+
+Removed extraneous clipping when passing streams from one output to the 
+next input [Aaron Giles]
+
+Added macros for ROM_REGION64_LE and ROM_REGION64_BE [Aaron Giles]
+
+SegaPCM now does stream_update on reads/writes for slightly better 
+accuracy [Aaron Giles]
+
+Fixed System24 crash due to sound update [Aaron Giles]
+
+ADSP2100 big endian fix [Alex Eddy]
+
+Fixed Star Force crash [Aaron Giles]
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Galaxy Force 2 [Aaron Giles]
+Power Drift [Aaron Giles]
+Strike Fighter [Aaron Giles]
+Rail Chase [Aaron Giles]
+
+clones
+------
+
+Mortal Kombat (Yawdim bootleg) [Aaron Giles]
+
+
+0.93u3
+------
+
+Mini-update dedicated to the guys over at the Mame Italia Forum
+( http://www.mame.emuita.it/ )
+
+----
+
+Taito L driver update [Nicola Salmoria]
+	- Changed interrupt handling, this fixes test mode in Plotting
+	- Fixed champwr msm5205 playback, including volume.
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+Twinkle
+More More
+XESS - The New Revolution (SemiCom 3-in-1)
+	[Corrado Tomaselli / Mame Italia Forum, David Haywood]
+
+
+
+0.93u2
+------
+
+Only a few sound fixes this time, please continue testing but don't expect
+many changes in this department compared to u1 unless otherwise mentioned
+in this whatsnew.txt.  The majority of the changes here are other cleanups
+and additional sets.
+
+----
+
+m48t58 / m48t58y emulation, used by hornet and others [smf]
+	hooked up in slapshot / operation wolf 3 / itech32
+
+MESS specific usrintrf patch [Nathan Woods]
+
+Fixed -wavwrite [Derrick Renaud]
+
+0.93 link warning fixes [Lawrence Gold]
+
+Exzisus dipswitch fix [Nicola Salmoria]
+
+Fixed Return of Invaders Life display [Nicola Salmoria]
+
+Dipswitches + Description fixes in Great Swordsman [Nicola Salmoria]
+
+Fixed sound in Opeartion Wolf [Nicola Salmoria]
+
+Fixed 2 player game in Super Qix [Nicola Salmoria]
+
+
+New Games / Clones supported or promoted from GAME_NOT_WORKING status:
+----------------------------------------------------------------------
+
+PuzzLoop 2 [Andreas Thorsén, Razoola]
+
+clones
+------
+
+Additional SPI sets [Bladerunner, Flatliner, The Sheep & Tormod]
+Ring King (Woodplace version) [Pierpaolo Prazzoli]
+Pit Fighter (version 5) [Pierpaolo Prazzoli, MAN]
+
+
+0.93u1
+------
+
+Some quick fixes, please test with this build now.
+
+Do a clean compile or this won't work.
+
+----
+
+Sound system update fixes [Aaron Giles]
+* cninja games OKI frequency fixed
+* cps1 games OKI frequency fixed
+* cps1 QSound games properly remove the 2151
+* nemesis no longer references non-existant k005289
+* tnzs has missing 2203 interface reinstated
+* ay8910 no longer attempts to free memory allocated with auto_malloc
+* streams engine oversamples by averaging now
+* removed some obsolete code from the streams code
+* konamigx crash (R.Belmont)
+* fixed swapped left/right samples in Cyberball
+* fixed crash in Darius
+* made bbakraid mono again
+* fixed running with -nosound
+* fixed several issues with banking and playback in the OKI6295
+* removed obsolete macro in sound/streams.c
+* nbmj9195 crashes
+* adding missing memset when initializing the tms5110 and tms5220 structures;
+  should prevent the crashes
+* fixed signed/unsigned error in 5110 core
+* as an experiment, removed oversampling from namco.c now that the sound
+  core will do it for you
+
+10 Yard Fight driver update [Curt Coder]
+- converted to use tilemaps
+- cleaned up driver
+- conditional coinage doesn't work due to PORT_DIPCONDITION limitations
+- fixed rom names slightly
+- changed names to match title screen and flyer
+
+Flash ROM support update [R.Belmont]
+- Added support for arbitrary manufacturer and chip IDs instead of hardcoding
+- Added support for the extended chip ID protocol favored by AMD and Fujitsu
+- Bumped limit up to 8 chips
+
+Rebalanced Gyruss sound [Nicola Salmoria]
+
+UI Changes [Nicola Salmoria]
+- Now shows grouped consecutive identical CPUs and sound chips in the game 
+information screen, so games like Gyruss fit again.
+- Bumped the MAX dip switches that can be handled by the dip switch menu 
+to 256 (and adds bounds checking so it doesn't crash anyway).
+
+Fixed visible area in Steel Force driver [Pierpaolo Prazzoli]
+
+Misc compiler fixes [Lawrence Gold]
+
+Fixed Itech32 64-bit crash [R.Belmont]
+
+Input corrections in Bubble Bobble (dipswitches etc.) [Nicola Salmoria]
+
+Discrete Sound Update [Derrick Renaud]
+
+Discrete Sound Changes
+======================
+Various tweaks to the discrete modules and updated all
+drivers to use new code.
+* DISCRETE_COUNTER, DISCRETE_LFSR_NOISE, DISCRETE_NOTE
+- added different clocking types to be more flexable.
+* DISCRETE_COUNTER_FIX - removed and merged with
+DISCRETE_COUNTER.
+
+New Discrete Modules
+======================
+* DISCRETE_DIODE_MIXERx - Mixes signals through
+diodes.
+* DISCRETE_MULTIPLEXx - 1 of 2/4/8 signal multiplexer.
+* DISCRETE_RCDISC4 - Various charge/discharge
+circuits.
+
+Game Driver Changes
+===================
+* tank8 - added explosion gain control
+
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+
+Time Crisis 2
+	added to namcos23, skeleton rom loader, does nothing.

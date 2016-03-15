@@ -1,0 +1,122 @@
+0.111u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+tourtabl0111u1red [Nathan Woods]
+
+
+
+Source Changes
+--------------
+Amiga core system updates: [Ernesto Corvi]
+ - Updated 6526/8520 CIA to be able to set the value of the SP pin.  
+    This is needed to emulate the Amiga keyboard.
+ - Updated the custom chips emulation to delay for about 24 cycles 
+    the issuing of interrupts after a write to INTENA or INTREQ. 
+ - Fixed a bug where if INTREQ got cleared programatically, it would 
+    'forget' about pending CIA interrupts, causing the CIA to stop 
+    sending further interrupts.
+ - Fixed the interrupt delay logic. Now it properly delays firing 
+    the irqs, not the masking/disabling.
+ - Fixed return value for unused/invalid custom registers reads.
+ - Added Denise ID custom register to properly identify OCS, ECS and 
+    AGA
+ - Added reset to custom, autoconfig and cia when a RESET opcode is 
+    found.
+ - Resetting the custom chips will now clear INTENA, preventing 
+    further interrupts.
+ - Fixed a bug in the RBF interrupt request code check.
+ - Fixed a bug on the 6526/8520 CIA that prevented chained counters 
+    from working.
+ - Added support for the 'blitter-nasty' bit on the blitter. Fixes 
+    many games that displayed wrong graphics.
+
+Hooked up coin counter in Gun Fight. Also connected sounds properly 
+per schematics. Added proper watchdogs to invaders and invad2ct.
+[Derrick Renaud]
+
+Added missing initialization to the TMS5220 RNG. [Lord Nightmare]
+
+Taito JC driver improvements: [Ville Linde]
+ - Implemented MC68HC11 communications
+ - Added analog controls via MC68HC11
+ - Various bug fixes and some new opcodes to the TMS320C51 core
+ - Moved video hardware emulation to vidhrdw/taitojc.c
+ - Implemented 3D hardware emulation
+
+Cleaned up the 8080bw sound changes included with u1. [Robert]
+
+Changed 6532riot and tia code to only allow initialization at init 
+time. [Nathan Woods]
+
+Fixed several bugs in the old System 16 bootleg code. [Mamesick]
+
+Fixed SIM opcode in i8085 emulator. [Tomasz Slanina]
+
+Initial support for Unicode in the core and Windows OSD: [Nathan Woods]
+ - text file reading/writing now automatically handle UTF-8 conversion
+ - a number of Windows functions internally manage TCHARs
+ - new Windows compile-time option UNICODE can be used to build MAME
+    as a Unicode application (see windows.mak)
+
+Added new visible representation of physical DIP switches for drivers
+that have them defined. To see this, just pull up the DIP switch
+menu on drivers that have been documented. [Brian Oberholtzer]
+
+Corrected some incorrect DIP switch information in the 1942, toaplan2,
+and segag80r drivers. [Brian Oberholtzer]
+
+Added the remaining MESS CPU cores to MAME. They are disabled in the
+build, but will be maintained along with the MAME CPU cores as future
+changes are made. [Nathan Woods]
+
+Added support for multiple instances of the samples sound system.
+[Zsolt Vasvari]
+
+Converted input port definitions from code-based constructors to
+data-driven tokenized values. This reduces the overall MAME code size
+by a significant amount. Note that the tokenization is a bit
+different for 32-bit versus 64-bit builds, so hopefully somebody
+with a 64-bit system can verify that it works (mame -listxml should
+produce identical results to the 32-bit version). 
+[Atari Ace, Aaron Giles]
+
+Properly implemented sound interrupts in Night Slashers. [Aaron Giles]
+
+Improved cycle timings in the ARM CPU core. Altered the deco32 CPU
+clocks to be more realistic. [Aaron Giles]
+
+Updated copyright dates in header files and docs. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Dwarfs Den [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+JuJu Densetsu (Japan, bootleg) [David Haywood]
+New Tropical Angel [Stefan Lindberg]
+Circus (Sub-Electro bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Backgammon [Tomasz Slanina]
+Skat TV [Tomasz Slanina]
+Fashion Gambler [Tomasz Slanina]
+Pit Boss II [David Haywood]
+Super Bitboss [David Haywood]
+Pitboss Megastar [David Haywood]
+Megatouch 3 [David Haywood]
+Megatouch 5 [David Haywood]
+Touchmaster [David Haywood]
+Touchmaster 3000 [David Haywood]
+Touchmaster 4000 [David Haywood]
+Mahjong Shiyou [David Haywood]

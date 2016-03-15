@@ -1,0 +1,319 @@
+0.133u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03240: [Crash/Freeze] topracra: Error Message: devcb_resolve_read8: 
+         unable to find input port 'IN0L' (couriersud)
+- 03426: [Sound] wtennis: Missing ball sound (Tafoid)
+- 03422: [Graphics] porter: Missing in-game graphics (Tafoid)
+- 03421: [Crash/Freeze] samuraia, sngkace: Access Violation (hap)
+- 03420: [Crash/Freeze] espial, espialu, netwars: Access Violation 
+         (hap)
+- 03416: [Crash/Freeze] bradley: Exits with DISCRETE_ADJUSTMENT_TAG - 
+         NODE_88 has invalid tag. (couriersud)
+- 03418: [Crash/Freeze] dday, ddayc: Access Violation after coin 
+         insertion (M.A.S.H.)
+- 03025: [Sound] bzone, bzone2, bzonec: inaccurate sound effects 
+         (couriersud)
+- 03413: [Compiling] 64-bit compiler warnigs (Aaron Giles)
+- 03391: [Misc.] popn2 & bmclubmx: CHD version is V3 for the two new 
+         added sets (hap)
+- 03073: [Sound] scorpion, scorpiona, scorpionb: Sound Missing 
+         (couriersud)
+- 03075: [Sound] explorer: Sound Missing (couriersud)
+
+
+
+Source Changes
+--------------
+Discrete sound updates: [couriersud]
+ - Fix comments for DISCRETE_TRANSFORM
+ - FatalError if formula is bad
+ - Fixed two bugs in DISCRETE_RCDISC3
+ - Fix some ugly bugs around DISCRETE_FILTER_SW:
+    - No more iterations
+    - The CD4066 internal resistance largely determines sound 
+       amplitude. This may vary significantly depending on VCC and 
+       type (74HC, 74HCV, CD4066, ...). The current choice makes 
+       scramble sound "about right".
+ - Added some profiling code for discrete tasks
+ - Added DISCRETE_INPUT_BUFFER to use a stream to buffer an input 
+    node. For input nodes with a lot of writes this prevents a 
+    stream_update on the whole discrete module which is very 
+    ineffective. Instead, the data is buffered and the discrete 
+    emulation can process a lot of samples in one go later.
+ - Added disc_syc.c as a container for core modules (output, task) 
+ - Discrete wav and csv logs now are treated as nodes
+ - Added DISCRETE_START and DISCRETE_STOP functions to be called at 
+    device start/stop
+ - As a side effect, profiling measures log overhead as well
+ - DSO_TASK_END now builds it's own dependence list.
+    - now simply DSO_TASK_END() ends a task
+ - added node parameter to RC_(DIS)CHARGE_EXP
+ - added const where appropriate
+ - removed some dead code
+
+Color bprom verified correct Royal Card Pro v2. [Brian Troha]
+
+De-globalified sound.c and input.c. [Atari Ace]
+
+Improvements to Noraut Poker driver.... [Roberto Fresca]
+ * Corrected CPU clock to Xtal/8.
+ * Discovered 3 new I/O lines coming from PPI-2, PC0-PC2. They are 
+    mixed with the handshake ones.
+ * Added the READOUT button to noraut12 games.
+ * Splitted the main machine driver to cover 2 different Noraut 
+    systems.
+ * Added partial support for PPI-2, PC0-PC2 output lines on noraut11 
+    games.
+ * Figured out other remaining I/O lines.
+ * Added new handlers to simulate the handshake lines. Still need 
+    real support through PPI-2.
+ * Updated technical notes.
+ * Rerouted norautp and norautjp READOUT button to its own place.
+ * Routed the whole video RAM access through PPI-2.
+   (bypassed the handshake lines for now).
+ * Merged back the noraut machine drivers after the 3rd PPI connection.
+ * Added Low Level Hopper manual input.
+ * Added a new machine driver for extended hardware.
+   It has 2 jumpers that cut the a14 and a15 addressing lines.
+
+Fixed i386 carry/borrow flag in ADC/SBB [Gabriele Gorla]
+
+Fixes to the PIC16C5x CPU core: [Quench]
+ - Indirect addressing was not taking into account special purpose 
+    memory mapped locations.
+ - 'iorlw' instruction was saving the result to memory instead of 
+    the W register.                               
+ - 'tris' instruction no longer modifies Port-C on PIC models that do 
+    not have Port-C implemented.
+
+Added difficulty DIP to BigTwin. [Quench]
+
+Battery backed 2KB RAM, fixing the default high-scores in speedbal. 
+[Pierpaolo Prazzoli]
+
+Shogun Warriors - various fixes:
+ - Extracted tables required for Shogun Warriors to work 
+    [Tomasz Slanina]
+ - Decrypted + verified table data for Shogun Warriors [David Haywood]
+ - Marked 2 graphic roms in Shogun Warriors as BAD_DUMP [David Haywood]
+ - Temporarily added a hack to the collision function to only use the 
+    B.Rap Boys code if the game is B.Rap Boys until we have a single 
+    function that works with both [David Haywood]
+
+SuperFX updates [Anonymous]
+ - Fixed disassembly of LMULT/FMULT ops
+ - Fixed reads using LDW/LDB
+ - Fixed writes using STW/STB
+ - Fixed SBC carry behavior
+ - Fixed GETC ROM access behavior
+ - Some SuperFX games begin to show things in MESS
+ - At least partly fixed PLOT and RPIX behavior. This fixes many gfxs 
+    in Star Fox and Vortex, but no polys yet.
+
+Simplified kaneko16 decryption functions by working out what each of 
+the bits does and removing game specific references. Re-based the 
+decryption tables as a result. End result is verified to be the same. 
+[David Haywood]
+
+Added redumped u6 GFX rom to kaneko16, fixes Geisya and Sumo [Guru]
+
+Fix circus charly slowdowns: [couriersud]
+ - use SOUND_DAC device to "buffer" data and avoid 1 sample updates 
+    for discrete part
+ - this is related to "03401: circusc and clones: Slowdown in 
+    attract mode with DIP SW "Demo Sounds=ON"" though I do not 
+    consider it a bug, but a implementation optimization. 
+
+Fixed sound banking for Shogun Warriors [David Haywood]
+
+Added different TOD implementation for CIA6526 and CIA8520. [robiza]
+
+Fixed a small bug with kaneko16 graphic decoding and removed old 
+comment about bad sound banking. [David Haywood]
+
+SuperFX updates: [Harmony]
+ - Inlined a number of functions for possible speed increase
+ - Removed some memory buffering cruft, to be re-added later
+ - Fixed behavior of ASR opcode
+ - With additional MESS-side changes, Stunt Race FX is playable, and 
+    Vortex shows much more.
+ - Hooked up RAM and ROM buffering
+ - Inlined several more functions
+ - Removed debug spew
+ - Added the ability to define an external IRQ line callback, and 
+    hooked it up to the 65C816
+ - Fixed flag calculation for HIB opcode
+ - Hooked SuperFX chip up to the SNES machine driver
+ - Fixed carry handling in ADC, ADCI, SBC and SBCI opcodes. Fixes many
+    SNES SuperFX bugs.
+
+Added some basic cheat search functionality to the debugger, allowing
+searches on various memory sizes. [Sandro Ronco]
+
+Added 'Reload All' option to the cheat menu. [Pugsy]
+
+Enabled display of cheat comments from within the cheat menu. Press
+the SPACE key to toggle display. [Pugsy]
+
+Tweaked the shadows in twin16 to be slightly darker. [hap]
+
+Added new function mame_fclose_and_open_next() which will close a 
+file and then keep searching the searchpath for the next valid file. 
+Did some internal rearranging in fileio.c to make this work.
+[Aaron Giles]
+
+Changed cheat search so that it loads *all* cheat files in all search
+paths. Note that it is easy to end up with duplicate entries this way.
+Some currently disabled code is present which filters out duplicates,
+but the logic for doing this is quite unclear with the presence of
+text-only cheats, which is why the code is disabled for now.
+[Aaron Giles]
+
+M377xx: fix CLB/SEB when not in bank 0. [R. Belmont]
+
+Fixed numerous opcodes in the AVR8 core [Harmony]
+
+Enabled alternate register naming in the MIPS core [Harmony]
+
+Add loopback mode and counter/timer modes 3 and 6 to 68681 DUART, 
+self-tests now pass in dectalk in MESS. [Lord Nightmare]
+
+SNES updates: [R. Belmont, Harmony]
+ - Corrected ROM loading behavior for SuperFX games
+ - Added more ROM mirroring needed by certain SuperFX 2 games
+ - Corrected the behavior of certain bit-restricted SuperFX registers.  
+    Doom, Yoshi's Island, Dirt Trax FX and Voxel Demo show things now.
+ - Improved S-DD1 emulation, neither game using S-DD1 boots yet
+
+Added preliminary Zilog Z8 CPU core for MESS. [Curt Coder]
+
+Cleaned up drivers that write files which are not being actively 
+developed. Also, commented our or changed the printf-ing of some 
+messages to LOGERROR. [Tafoid]
+
+Made numerous corrections to SNES S-DD1 chip emulation, SFA2 and 
+Star Ocean still do not boot [Harmony]
+
+Golden Poker driver... [Roberto Fresca]
+ * Added 2 new Witch Card sets.
+ * Reworked inputs for Witch Card (german set 1).
+ * Created new inputs for Witch Card (english, witch game, lamps).
+ * Added and connected lamps for both sets.
+ * Added minimal bet and 50/60 Hz. switches to both sets.
+ * Added DIP switches info for Witch Card (german, set 2).
+
+Added missing rom to a GEI Poker set [Team Europe, Dumping Union]
+
+Naomi/Atomiswave video hardware update: [David Haywood]
+
+  Basically the region array is processed, and the data from the 
+  accumulation buffer where we render is now copied into the 
+  framebuffer depending on the tiles specified in the tile list.  
+  This isn't full 'tile-based rendering' as that would require more 
+  work on the preprocessing side, and writing out the data pointers 
+  and data in real formats, however it's a step in the right direction
+
+  Currently only 565 formats are supported for both framebuffer write 
+  and framebuffer read.  The accumulation buffer is alwys 8888, data 
+  is converted down to the specified format.  The real accumulation 
+  buffer is 32x32 and filled per tile, ours is still full screen.
+
+  The video update now just displays the framebuffer using the 
+  framebuffer read parameters specified (again only 565 is currently 
+  supported)  This allows the Atomiswave bios screens and the 
+  rendered output to co-exist.
+
+Added proms to scherrym [Team Europe]
+
+Jaguar updates: [Robbbert]
+ - Added RGB 24-bit pixels (for Iron Soldier)
+ - Added depth 0 and 1 to scaled bitmaps (for Val Disere Skiing)
+ - Preliminary work on PIT support
+
+Got vandykeb up and running. [iq_132]
+
+Added verbose debug logging for the little robin 'vdp' writes in
+preparation for looking at it further. [David Haywood]
+
+Improved the connect4 layout. [AGEMAME]
+
+Fixed the plane order in the gfx deodes for Black Touch '96 sprites, 
+and Poke Champ sprites. [David Haywood]
+
+Improveed the sprite emulation in Black Touch '96 (still wrong tho).
+[David Haywood]
+
+Fixed LOOP instructions in 16-bit mode in the i386 core. 
+[Gabriele Gorla]
+
+Added various notes + checksums for Chihiro board.
+[Alex's Rom Dumping Project, Mr Mudkips, Philip Burke]
+
+Fixed stupid unidasm bug that double-counted bytes. [Aaron Giles]
+
+Major Naomi/Atomiswave update:
+ - Emulated Atomiswave coin slots and standard Dreamcast controller.
+    Non-lightgun games without other problems are now playable. 
+    [R. Belmont]
+ - Added protection data to Moero Justice Gakuen, Heavy Metal 
+    Geomatrix, WWF Royal Rumble, Gigawing 2, Toy Fighter, and Guilty 
+    Gear X (all are now playable but still marked GAME_NOT_WORKING 
+    due to general Naomi concerns). 
+    [R. Belmont, Guru, Deunan Knute, Cah4e3]
+ - Completed partial dumps: Derby Owners Club II, Slashout, WWF 
+    Royal Rumble, Gigawing 2, Moero Justice Gakuen, Wild Riders, 
+    Virtua Fighter 4 (cartridge) [Guru]
+
+Rename osd_profiling_ticks() to get_profile_ticks(). Moved 
+implemention into inline functions in eminline.h and the ei* 
+functions. [couriersud, Aaron Giles]
+
+Added 'options' parameter to the CPU_DISASSEMBLE prototype. For now, 
+the debugger always passes 0 for this. unidasm has been updated to 
+accept a mode parameter, which is passed for the options. 
+[Aaron Giles]
+
+Added PORT_CROSSHAIR_MAPPER() allowing you to specify an alternate, 
+non-linear mapping function from the raw crosshair value to its 
+position onscreen. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Shogun Warriors / Fujiyama Buster 
+  [David Haywood, Tomasz Slanina, Luca Elia]
+Cal Omega - Game 7.4 (Gaming Poker, W.Export) 
+  [Roberto Fresca, Team Europe]
+Kero Kero Keroppi no Issyoni Asobou [Team Japump!!!, Hau]
+Dolphin Blue [R. Belmont, Guru]
+The Rumble Fish [R. Belmont, Guru]
+Knights of Valour: The Seven Spirits [R. Belmont, Guru]
+
+
+
+New clones added
+----------------
+Karate Champ (US, VS version set 2) [Siftware]
+Strong X (Strategy X bootleg) [Siftware]
+Mortal Kombat (Turbo 3.1 09/09/93, hack) 
+  [Jonathan Hughes, Patrick McCarron]
+Narc (Rev 2.0) [Volker Hann, Team Europe]
+Witch Card (english, witch game, lamps) [Roberto Fresca, Team Europe]
+Master Ninja (bootleg of Ninja Gaiden) [f205v, David Haywood] 
+  (NOT WORKING)
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mr. Driller 2 (DR22 Ver.A) [Guru]
+The House of the Dead 2 [Guru]
+Super Major League '99 [Guru]
+Gun Survivor 2: Bio Hazard Code Veronica [Guru]
+Club Kart: European Session [Guru]
+The King of Fighters Neowave [R. Belmont, Guru]
+Neo Geo Battle Coliseum [R. Belmont, Guru]

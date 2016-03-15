@@ -1,0 +1,147 @@
+0.117u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+joystickremap0117u1gra [Aaron Giles]
+mallocerror0117u1gra [Aaron Giles]
+mouse0117u1gra [Aaron Giles]
+newinterface0117u1gra [Aaron Giles]
+tapper0102gre2 [Ernesto Corvi]
+timber0100u3gre [Ernesto Corvi]
+tapper0102gre1 [Aaron Giles]
+timber099gre [Aaron Giles]
+mcr0103u3yel [Aaron Giles]
+dotrone0101u5yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Imola GP updates: [Phil Stroffolino]
+ - renamed from "monzagp"
+ - the leds are fully mapped
+ - fixes for blitter modes, that affect the "tunnel" area
+ - dipswitch/port fixes; game now starts in attract mode, rather 
+    than immediately starting
+ - placeholder (handpicked) colors
+
+Updated DIP switches for topland & ainferno according to their 
+manuals. [Fabio Priuli]
+
+More SH-4 core improvements: [Samuele Zannoli]
+ - fixes some problems in the disassembly and instruction execution 
+    from the previous patch
+ - adds interrupt management
+ - implements register bank switching
+ - adds RTC timer counters
+ - adds memory refresh timer
+ - adds three timers of the TMU
+ - adds a configuration structure that specifies the processor mode 
+    pin settings
+ - internal processor clock frequencies calculated from mode pins and 
+    cpu clock
+ - systems using the sh4 processor secify its configuration structure
+
+Fixed some DIP switches in littlerb. [Sonikos]
+
+Made some minor code quality changes across the code: [Atari Ace]
+ - avoided exporting a few global variables
+ - fixed variable names that conflicted with typedef names
+ - removed some shadow variables that were bugs or unnecessary
+ - removed extraneous #defines
+
+Fixed up sc61860 core, f3853 core, and pckeybd.c to work with new
+timing code. [Nathan Woods]
+
+More TIA improvements: [Wilbert Pol]
+ - fixed some minor missile graphics positioning issues
+ - moved some initialization code from tia_init to tia_reset
+
+Fixed a few errors related to headers in the source code. Added 
+missing self-includes, removed dead prototypes, and added location 
+comments in headers in mame/includes. In a few cases the audit 
+showed items that didn't need to be exported so they were made 
+static. [Atari Ace]
+
+Cleaned up the inputs in gdrawpkr and changed the hold buttons to 
+"discard" since they are in fact discard buttons. [Roberto Fresca]
+
+Added support for 14- and 16-segment LED displays to the MAME 
+artwork system. [Dirk Best]
+
+Fixed button 4 of player 2 inputs in bloodwar. [Barry Harris]
+
+Connected S14001A speech to the wolfpack driver. [Lord Nightmare]
+
+Fixed incorrect implementation of SSIO volume controls in the MCR
+driver. This makes the engine sound in Spy Hunter audible again,
+among other things. [Ernesto Corvi]
+
+Added support back for the "none" option for the various *_device
+options. [Nathan Woods]
+
+Fixed HD6309 dissaembly of the post-byte for ,W++ and ,--W.
+[Captain Ahab]
+
+Updated the 6532 riot interface to be more like the 6522via and 
+6821pia interfaces. [Wilbert Pol]
+
+Improved -listxml output to reflect new BIOS flag. New attribute
+isbios="yes" indicates that a given game is a BIOS. [Aaron Giles]
+
+Further tweaks to the game selection UI: [Aaron Giles]
+ - disabled the tab key
+ - added hook for general input configuration from the menu
+ - split set names from friendly names into left/right columns
+ - added a background to the descriptive names of clones
+ - if you start with the game selection menu, hitting Esc to exit
+    a game brings you back to the menu rather than quitting 
+    immediately
+ - fixed logic so that INI files are reloaded for each game
+
+Moved INI file handling fully into the core. As a side-effect of this 
+change, <exename>.ini is no longer parsed. Changed -createconfig to 
+always output mame.ini instead of <exename>.ini as a result. 
+[Aaron Giles]
+    
+Renamed run_game() to mame_execute(). The game driver is no longer
+specified as a parameter; rather, this information is extracted from
+the options via OPTION_GAMENAME. [Aaron Giles]
+
+Fixed raw input-based lightgun buttons. [Aaron Giles]
+
+Cleaned up options.c code. Added priority levels to options as they
+are set. New options are only accepted if they have greater or equal
+priority to a previous change. Added new function options_revert() to
+revert options below a given priority to their defaults. Changed 
+options_get_string() so that it always returns a valid string
+(never NULL). Invalid strings are returned as empty strings. 
+[Aaron Giles]
+
+Added new functions core_filename_extract_base() and 
+core_filename_ends_with() to corefile.h. [Aaron Giles]
+
+Changed menu rendering a bit. Added a background hilight to more
+strongly emphasize the current item. Added rendered arrows to indicate
+more items on the top/bottom and to indicate selection options in the
+DIP switch menus. Changed hilighting to be a bit less garish. Fixed
+repeat rates on keys to no longer be tied to the framerate.
+[Aaron Giles]
+
+Added support for page up/page down generically in menus. Also made
+pause toggle work while menus are visible. [Aaron Giles]
+
+Changed render_textures to allocate in a pool model, to avoid high
+memory overhead when allocating large numbers of textures (for example
+in the 14- and 16-segment LED displays). [Aaron Giles]
+
+Fixed a number of 64-bit compiler warnings. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+King Pin [Andrew Gardner]
+King Pin Multi-Game [Andrew Gardner]

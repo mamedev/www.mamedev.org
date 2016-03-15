@@ -1,0 +1,375 @@
+0.99
+----
+
+Note that the next version of MAME will be 0.100. If you have code that
+depends on there being only two digits after the decimal, you had better fix
+it before then!
+
+
+Source Changes
+--------------
+Fixed 1-bit errors in decryption keys for Crackdown and one of the D.D. Crew
+sets. [Nicola Salmoria, Chris Hardy]
+
+Hooked up NVRAM for World Class Bowling 1.40. [Brian Troha]
+
+Backed out some of the Arm core changes which broke several games.
+
+Fixed the f1superb sound rom loading in ms32.c so that it doesn't crash.
+[David Haywood]
+
+Fixed a graphics glitch in Osman. [David Haywood]
+
+Updated the Taito Z driver: [Nicola Salmoria]
+ - fixed road/sprite priority (cars no longer disappear when they go over a 
+   hill in Continental Circus)
+ - removed bogus contcirc ROM containing 1989 copyright year
+ - added PROMs
+ - other minor changes
+
+
+
+0.98u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+absoluteanalog098u2gra [Anssi]
+
+
+
+Source Changes
+--------------
+Improvements to the MCR games: [Aaron Giles]
+ - Hooked up cassette sample in Journey
+ - Fixed sprite colors in Journey
+ - Consolidated the MCR 1/2/3 drivers and documented all the PCBs
+
+Added pause/resume support for sample playback. [Aaron Giles]
+
+Bunch of changes/fixes to the deco156 drivers: [David Haywood]
+ - hooked up EEPROM correctly
+ - fixed sound ROM decoding and banking
+ - fixed tile banking
+ - fixed video priorities
+
+Fixed unaligned 32-bit reads in the ARM core. [Tomasz Slanina]
+
+Fixed several bugs in the ARM core which break Captain America but fix some
+other issues. [Bryan McPhail]
+
+Fixed sprite rendering in Double Wings. [David Haywood]
+
+Fixed the question roms reading for Phraze Craze and fixed some loading based 
+on new info discovered. [Pierpaolo Prazzoli]
+
+Fixed sound effects in The Next Space. [MASH]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Double Cheese [Aaron Giles]
+Chain Reaction [David Haywood]
+Magical Drop [David Haywood]
+Osman [David Haywood]
+Super Triv [Pierpaolo Prazzoli]
+Charlie Ninja [David Haywood]
+Romar Triv [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Cannon Dancer (Japan) [David Haywood]
+Cannonball set 2 [David Widel]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pit Boss [Pierpaolo Prazzoli]
+
+
+
+0.98u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+spidman098gre [Mamesick]
+astormj098u1gra [Mamesick]
+ehrgeiz097u4red [smf]
+rdft2us098u2red [Ville Linde]
+pc_bstar079u1yel [Mamesick]
+playch10c080u1gre [Mamesick]
+espial096u3gra [Mamesick]
+
+
+
+Source Changes
+--------------
+Added step in/out support to the Z80 disassembler. [Aaron Giles]
+
+Fixed subtle bug in ES5505/6 interpolation code. [Jarek Burczynski]
+
+Some more minor fixes to System 32 sprites. [Aaron Giles]
+
+Changed memory display in the debugger so that it doesn't lock to where the
+cursor is. Also fixed it so that it can align against odd addresses.
+[Aaron Giles]
+
+Some minor cleanup to the Police Trainer driver. [Aaron Giles]
+
+Some progress on Double Cheese, still not playable. [Aaron Giles]
+
+Fixed some problems in Power Spikes bootleg. [Weisse Eins]
+
+Fixed wrap around issue with sprites in the aerofgt driver. 
+[Pierpaolo Prazzoli]
+
+Fixed the sound banking in Raiden Fighters 2 - 2000. [Pierpaolo Prazzoli]
+
+Fixed unknown DIP switch in SAR. [Corrado Tomaselli]
+
+Fixed 4th player inputs and added 1 frame delay for sprites in goal92.
+[Pierpaolo Prazzoli]
+
+Added coin counter and fixed sound adding the 2 sample chips in Tecmo Bowl.
+[Pierpaolo Prazzoli]
+
+Cleaned up and fixed input ports for all games in the suprnova driver.
+[Mamesick]
+
+Fixed crash in MAME if 0-length data block was found in a WAV file.
+[Roman Scherzer]
+
+Changed the windows code so the map file isn't loaded unless the 
+profiler is enabled. This stops you running out of memory when the memory 
+tracking is enabled. [smf]
+
+Fixed unknown DIP switches in Merlin's Money Maze. [James Wallace]
+
+Corrected visible area in esckids. [Mamesick]
+
+Improvements to the S2650 core: [Manfred Schneider]
+ - Fixed LPSU opcode
+ - Changed cycle counts to match technical documentation
+
+Fully emulated deco 156 encryption. [David Haywood, Nicola Salmoria, 
+Olivier Galibert, Bryan McPhail]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Joe & Mac Returns [David Haywood, R. Belmont]
+Party Time: Gonta the Diver II [David Haywood]
+Ganbare! Gonta!! 2 [David Haywood]
+
+
+
+New clones added
+----------------
+Enduro Racer (YM2203, FD1089B 317-0013A) [Aaron Giles]
+E.D.F. : Earth Defense Force (North America) [Aaron Giles]
+
+
+
+0.98u2
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+pleiads061gre [MASH]
+47pie2077gra [Mamesick]
+
+
+
+Source Changes
+--------------
+Added new 'screen' parameter to the VIDEO_UPDATE callbacks. It is not
+currently used but is a placeholder for the future. [Aaron Giles]
+
+Replaced direct access to Machine->scrbitmap in the following drivers with
+the use of force_partial_update(): m92.c, m107.c, astrocde.c, battlera.c,
+snes.c. [Aaron Giles]
+
+Rewrote the Z80/Z180 daisy chaining logic to work a little closer to the
+hardware. Updated the Z80 CTC and PIO modules to support the new model.
+Changed the CTC module to not generate interrupts if there is an outstanding
+request on the same timer is currently in service; this allows Journey to 
+(finally) run with the correct CPU speed. [Aaron Giles]
+
+Partial rewrite of the MCR video system. Should still work roughly the same,
+just a little different under the covers. This is still very much a work in
+progress. [Aaron Giles]
+
+Fixed clipping in nemesis.c. [Fujix]
+
+Normalized names in Konami drivers according R. Belmont's wishes. [Mamesick]
+
+More PowerPC updates: [Nathan Woods]
+ - Moved update_counters() to be executed after the DRC epilogue code 
+    is appended; now behaves more like the non-DRC core
+ - Fixed some bugs in DRC exeception handling (SRR1 was not being set 
+    up properly, and not all MSR flags were being cleared)
+ - Refactored DRC core to call MMU hooks
+ - ISI exceptions will now be thrown if the MMU hooks report an 
+    unexecutable address in the DRC core
+ - Fixed a rounding error in the decrementer
+ - Added support for decrementer exceptions when the DEC register is 
+    written to in both cores
+ - Added support for ISI/DSI exceptions with setjmp()/longjmp() in 
+    the non-DRC core
+
+Significant rewrite of the Legend of Kage driver: [Phil Stroffolino]
+ - correct/added dipswitches
+ - converted to use pdrawgfx; affects stage#4
+ - a priority effect on the title screen has been mapped - this gives the 
+    foreground layer priority over all sprites, and screenshots now match 
+    those from arcade flyers.
+ - the "virtual palette" hack has been removed; it was an optimization from 
+    back when we used 8 bit color and hardware palettes.
+
+Cleaned up the Soungoku Mahjong driver, fixed colors, improved sound and 
+fixed the hang before the match started. Also I found the output for the 
+coins used to play the match. It's still missing something to enable / 
+disable the tilemaps. [Pierpaolo Prazzoli]
+
+Fixed the i386->z80 communication in the Seibu SPI driver. This fixes the 
+flash rom update and should also fix any remaining hangs/pauses. The flash 
+rom update should take around 5 minutes. Now all games should have proper 
+sample data. [Ville Linda, David Haywood]
+
+Some progress on the Deco 156 encryption. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Chuukanejyo [Luca Elia]
+PK Scramble [David Haywood]
+
+
+
+New clones added
+----------------
+AmeriDarts (set 2) [Aaron Giles]
+Flash Point (set 2) [Aaron Giles]
+Line of Fire (US) [Aaron Giles]
+Street Fighter Zero (Asia 950627) [Razoola]
+
+
+
+0.98u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+slither094u1red [Aaron Giles, with a hint from MASH]
+sf2accp2070u5red [Aaron Giles]
+nemesis097u1gre1 [Mamesick]
+nemesis097u1gre2 [Mamesick]
+karatblz137b4gre [Pierpaolo Prazzoli]
+mystwarr098gre [Mamesick]
+esckids076yel [David Haywood]
+spyhunt097gre1 [Aaron Giles]
+spyhunt097gre2 [Aaron Giles]
+turbotag097u3gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Changed how perodic timers are defined. Previously, you would specify a
+number which was interpreted either as Hz (if less than 50000) or as
+nanoseconds (if greater than 50000). Now, the time is specified as a period
+and you use the standard TIME_IN_HZ or TIME_IN_NS macros. [Aaron Giles]
+
+Turned on address error checking in the 68000 core. This slows things down a
+bit but is more accurate and allows correct behavior of a couple of badly-
+programmed games. [Aaron Giles]
+
+Fixed several issues with address error checking in the 68000 core.
+[Aaron Giles]
+
+Fixed 68000 bug that treated 8-bit branches with $FF offsets as illegal,
+rather than allowing them and generating an address error. [Aaron Giles]
+
+Created a new header file mamecore.h, which contains the core common useful
+macros and typedefs that were scattered throughout the header files. Also
+added endian swapping macros from MESS. [Aaron Giles]
+
+Fully deprecated the use of cpu_setbank(), which was long ago replaced with
+memory_set_bankptr(). [Aaron Giles]
+
+Did some major cleanup on the MCR drivers [Aaron Giles]
+- Implemented Super Sound I/O interrupts properly.
+- Filled out all memory maps according to schematics.
+- Fixed sound sync with various sound boards, allowing for kludges to be
+  removed from Power Drive and Star Guards.
+- Re-verified all connections from wiring diagrams.
+- Documented various lamp and driver boards from the games.
+
+Some makefile tweaks to hopefully catch variable declaration problems that
+kept creeping into builds. Switched gcc compiler standard to gnu89.
+[Atari Ace]
+
+Removed usage of dirent.h APIs on Windows builds. [Atari Ace]
+
+Corrected resolution to 256x256 in Stagger I, Red Hawk, Sen Jin - Guardian 
+Storm. All other games still have old visible area that is correct for them.
+[Mamesick]
+
+Fixed crash in Volfied and Operation Wolf due to improper timer usage.
+[Nicola Salmoria]
+
+Fixed one of the TC360 sprite blending modes (used in Pulirula round 2 and 
+Liquids Kids attract mode). [Bryan McPhail]
+
+Fixed sprite/tilemap placement in Legend of Kage. [Phil Stroffolino]
+
+PowerPC core update: [Nathan Woods]
+- Added infrastructure to generate DSI and ISI exceptions
+- Made the lbz/lbzu/lbzux/lbzx instructions properly clear out the 
+  high 24 bits in the results
+- Added SRR0 and SRR1 to the debug view
+
+Did some cleanups in the vamphalf.c driver. [Pierpaolo Prazzoli]
+
+Fixed speedbal again, after breaking it in the last update. 
+[Pierpaolo Prazzoli]
+
+Changed Nitro Ball to use the new deco16_tilemap_34_combine_draw function 
+Bryan added some time ago. [Pierpaolo Prazzoli]
+
+Added a sprite wrap around needed in Riot level 2. [Pierpaolo Prazzoli]
+
+Added sound to Dragon Bowl. [Pierpaolo Prazzoli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Born To Fight [Luca Elia]
+Lethal Enforcers [David Haywood]
+Koro Koro Quest (Japan) [Luca Elia]
+
+
+
+New clones added
+----------------
+Night Slashers (Japan) [Corrado Tomaselli]
+Crush Roller (Kural TWT) [Pierpaolo Prazzoli]
+Sand Scorpion (set 2) [Aaron Giles]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Wink [Pierpaolo Prazzoli]

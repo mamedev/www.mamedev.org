@@ -1,0 +1,88 @@
+0.115u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cidelsa0114u4gre [Aaron Giles, for real this time]
+pignewta0115u1gra [ShimaPong]
+gorf0115u1ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Merged in a couple of minor tweaks from MAME Plus! [MAME Plus!]
+
+Fixed China Gate high scores. [Robbert]
+
+Fixed Final Lap R/Speed Racer graphics. [Zsolt Vasvari]
+
+Added a new opcode for Match It 2. There still are 4 unknown opcodes 
+and the "no tiles" bug before it will be promoted to working status.
+[Pierpaolo Prazzoli]
+
+Changed the CRTC6845 emulator to optionally control the screen 
+configuration and video rendering. Updated the Qix and Spiders driver 
+to use the new functionality. Added notifications for when the
+display enable pin changes in order to drive blanking signals.
+[Zsolt Vasvari]
+
+New 74123 timer emulator. It supports different ways a 74123 can be 
+hooked up that affect the timing period. The old implementation was 
+incorrect in lots of respects. [Zsolt Vasvari]
+
+Removed the addressing order parameter from pia_config() and replaced
+it with dedicated write and read handlers. [Zsolt Vasvari]
+
+Rewrote nyny driver: [Zsolt Vasvari]
+ - Game speed should now be correct. It was way too slow before
+ - Added star field. The game can stop and reverse the direction of 
+    the star field by changing a delay counter
+ - General driver clean-up
+ - Fixed DIP switches and the voices
+
+Fixed bug in win_get_window_text_utf8() for when a window's text is 
+an empty string. [Nathan Woods]
+
+Fixed some page 1 opencode lengths in the 6309 dissasembler.
+[Tim Lindner]
+
+Added DIP switches to Master Boy according to the game manual.
+[ClawGrip]
+
+Added DIP switch information to the Poizone driver. [Luigi30]
+
+Changed png2bdc to support multiple input PNGs. [Aaron Giles]
+
+Fixed recently introduced bug in Astrocade driver relating to
+collision detection. [Aaron Giles]
+
+Added support for controlling the default scale/offset for screens
+at the driver level. This allows us to properly describe the screen
+width/height and blanking in the driver independent of specifying a
+good default size to crop the image to. [Aaron Giles]
+
+Added border support to the Astrocade driver. Extended the starfield
+generation out into it. Extended the blanking region out farther to
+match information from the flyers and set the default scale/offset
+of the games to crop appropriately. [Aaron Giles]
+
+Fixed the CDP1869 to fill the border area with the background color.
+Added cropping to the Cidelsa games. [Aaron Giles]
+
+Corrected speaker locations and placement for Gorf and Wizard of Wor.
+Added missing mux to Gorf's audio, which controls speech versus
+sound effects during the game. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Multi Game [Mariusz Wojcieszek]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Chameleon 24 [Mariusz Wojcieszek]

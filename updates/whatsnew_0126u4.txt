@@ -1,0 +1,318 @@
+0.126u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01958: [Crash/Freeze] skns: Segfaults on load (Pierpaolo Prazzoli)
+01817: [Crash/Freeze] intrepi2: Game stops at PCB test 
+       (Pierpaolo Prazzoli)
+02090: [Crash/Freeze] thedeep: Game didn't start (black screen). 
+       (Pierpaolo Prazzoli)
+02067: [Crash/Freeze] mustangb, tdragonb: Access Violation 
+       (Aaron Giles)
+02069: [Crash/Freeze] astrofl: Access Violation (Aaron Giles)
+02068: [Crash/Freeze] All sets in mhavoc.c: Access Violation 
+       (Aaron Giles)
+02070: [Crash/Freeze] atlantol: Access Violation (Aaron Giles)
+02066: [Graphics] All sets in mhavoc.c: all graphics is missing 
+       (Aaron Giles)
+02033: [Crash/Freeze] soccerss and clones: the romtest report 
+       two bad roms (robiza)
+02049: [Graphics] invaders: Built in red color overlay goes too low 
+       and shows on top line of invaders heads in Vista only. (robiza)
+02079: [DIP/Input] radr, radru: Dipswitch info (robiza)
+02056: [DIP/Input] pbobble, qzshowby, spacedx, spacedxj: Unable to 
+       enter coins (Fabio Priuli)
+02060: [Graphics] spinlbrk, spinlbru, spinlbrj: Priorities wrong in 
+       second level (robiza)
+
+
+
+Source Changes
+--------------
+Added information to the 1943 driver (video) about priorities encoded
+in PROM. [robiza]
+
+Minor optimization to the DISCRETE_INPUT modules. The node output is 
+now calculated when a discrete_sound_w() is called instead of each 
+step in the simulation. Also removed the Enable line from the 
+DISCRETE_ADJUSTMENT modules. They should never be disabled.
+[Derrick Renaud]
+
+Removed per-frame metadata support from chdman. Creating an A/V now
+simply requires an AVI file input. [Aaron Giles]
+
+Changed laserdisc support to parse white flags and other data from 
+the VBI data directly, rather than relying on the textual metadata. 
+Expanded video frame cache to 3. Changed the way frames are assembled 
+to decrease the likelihood of getting an interlaced weave. Fixed sound 
+creation so that it is done at reset time instead of device start, 
+when the sound devices aren't yet live. [Aaron Giles]
+
+Fixed bug in winwork that caused the creation of single work items to 
+return NULL, and thus lead to massive memory leaks when using A/V 
+CHDs. [Aaron Giles]
+
+Added new functions cputag_set_input_line() to assert input lines
+via CPU tag instead of index. [Aaron Giles]
+
+Disks opened by the romload module are no longer identified by index.
+Instead, they are identified by the region they were loaded in. This
+generally means one disk per region. get_disk_handle() now takes a
+region name in place of an index. Updated all callers to do this.
+The SCSI modules in particular posed a challenge to make this work,
+so watch out for potential bugs there. [Aaron Giles]
+
+Changed the IDE interfaces to default to choosing the region with the
+same tag as the device for its master disk (assuming no slave). Added
+support for specifying explicit master/slave disk regions as part of
+the configuration, though slave disks are still not supported yet.
+[Aaron Giles]
+
+Change the laserdisc interface to no longer require a disk number or
+a custom sound device. Both are now assumed to be tagged the same as
+the laserdisc device. Updated all drivers accordingly. [Aaron Giles]
+
+Merged memory maps for drivers: blmbycar, blockade, blockhl, blockout, 
+bombjack, boogwing, and bottom9. [Andrew Gardner]
+
+Added readmes for Galaga, The Outfoxies, Splatter House, Top Racer,
+Kyros No Yakata, Bombs Away, Meikyuu Hunter G, Crazy Kong, Moero Pro 
+Yakyuu Homerun Kyousou, Lucky & Wild, Match It, Country Club, 
+Enforce, Elevator Action, Chuka Taisen, The New Zealand Story, 
+Buck Rogers Zoom 909, Head On, Victorious Nine, Youma Ninpou Chou, 
+Pairs, Woodpecker, Slap Fight, Alcon, Tiger Heli, Superman, 
+WWF Superstars, Area 51, Animalandia Jr, Avengers In Galactic Storm, 
+Alien 3: The Gun, Aquajack, and Missile Command. [Guru]
+
+Fix region jumper on psikyo4 (loderndf). [David Haywood]
+
+Backported a bunch of FM OPN (YM2608/2612) fixes from Genesis Plus 
+GX.  All of this was verified on real hardware.  
+[Eke-Eke, Nemesis, Alone Coder, AamirM]
+ - implemented PG overflow, aka "detune bug" (Ariel, Comix Zone, 
+    Shaq Fu, Spiderman...)
+ - fixed SSG-EG support
+ - modified EG rates and frequency
+ - fixed EG attenuation level on KEY ON (Ecco 2 splash sound)
+ - fixed LFO phase update for CH3 special mode (Warlock, Alladin)
+
+Scanline exact rendering for dkong & clones [couriersud]
+ * Sprite limit of 16 sprites per scanline implemented from 
+    schematics.
+ * Proper wrap around from bottom to top
+ * Added some notes about sprite limits and hardware to dkong 
+    driver (thanks to R. Belmont)
+
+Added edge connector pinout info to flower.c. [Brian Troha]
+
+Some initial work on the adp driver. [robiza]
+
+Fixed window in shanghai and shangha2. [robiza]
+
+8257dma and z80dma devices now require device callback handlers 
+instead of machine handlers. Updated affected drivers accordingly.
+[couriersud]
+
+Improved Dsp56k CPU interrupt handling. Polygonet Commanders now 
+advances past its first dsp handshake. [Andrew Gardner]
+
+Added proper laserdisc support for MACH 3, Us vs. Them, and Cobra
+Commander (MACH 3 hardware). Old laserdisc hacks are now removed.
+The code now talks to the standard Pioneer PR-8210 interface. Also
+removed hacky "target list" from the MACH 3 ROMs; this information
+is now decoded on the fly from the right channel laserdisc audio.
+[Aaron Giles]
+ 
+Other Gottlieb cleanups: [Aaron Giles]
+ - fixed rev 2 sound again
+ - fleshed out memory maps and behaviors according to the schematics
+ - hooked up coin counters.
+ - moved sound inputs to audio/gottlieb and included them in
+    all relevant drivers
+ - ordered input ports and ROM definitions consistently
+ 
+Other laserdisc changes: [Aaron Giles]
+ - changed PR-8210 interface to work consistently for both Gottlieb
+    and Stern games
+ - added audio callback mechanism to allow drivers to peek at the
+    raw audio streams
+
+Set the initial 8253 timer output to 2 to indicate that it is 
+undetermined. [Wilbert Pol]
+
+Removed obsolete makemeta tool. Replaced it with new ldverify
+tool which walks through either an AVI or CHD capture from a
+laserdisc and ensures that there are no anomalies lurking in
+the VBI data. [Aaron Giles]
+
+Added new option to chdman, where if you use -createav with
+a special filename (either 2:2 or 3:2) it will create a fake
+laserdisc files with the equivalent cadence. This can be used
+for testing until full captures are available. Most games used
+2:2 apart from Dragon's Lair and Space Ace, which were 3:2.
+Note that even though these files are essentially blank, they 
+are Huffman-compressed, meaning that the maximum compression
+ratio you will get is 8:1, so they still end up ~5GB. [Aaron Giles]
+
+Moved error strings from chdman.c to chd.c, where they can be
+fetched from any caller via the new chd_error_string()
+function. [Aaron Giles]
+
+Updated vbiparse to improve Manchester code decoding. It now
+assigns a confidence level per bit based on how solid the
+data is. Also added a new function vbi_parse_all which parses
+the white flag and all three lines of metadata from a 
+laserdisc frame. It then compares line 17 and 18 against each
+other and selects the most likely candidate based on per-bit
+confidence and other factors. [Aaron Giles]
+
+Added frame number display to laserdsc.c. It is off by
+default, though most players can be configured to turn it on
+(not sure if any actually do). It can be manually toggled via
+the backslash key during playback. [Aaron Giles]
+
+Discrete sound core optimizations: [couriersud]
+ * moved a couple of exp(x) from _step into _reset where appropriate
+ * use tabulated function values for the transfer function in 
+    DSS_INVERTER_OSC
+
+Forced synchronization (stream_update()) before the YM2151 status is 
+actually read. [Jarek Burczynski]
+
+Added Discrete Sound to Fantasy, Nibbler and Pioneer Balloon.
+[Derrick Renaud]
+
+Fixed I/O watchpoints. [Aaron Giles]
+
+Changes to the cheat.xml format: [Aaron Giles]
+ - new tag <comment> (within <cheat>) is read and preserved 
+    when saved
+ - removed variable attribute from <parameter>; it is now 
+    assumed to be 'param'
+ - added default attribute for <parameter>
+
+Added new variable 'frame' accessible from cheat scripts. This
+can be used in the conditional to prevent execution on every
+frame, or for other effects (like displaying temporary messages).
+[Aaron Giles]
+
+Added new variable 'argindex' which is the index when processing
+an <argument> with a count attribute greater than 1. [Aaron Giles]
+
+Reinstated the cheat menu. It now displays all loaded cheats and
+allows for them to be activated. All known cheat behaviors should
+be working now. Cheats are toggled on/off with the left/right
+arrow keys. Oneshot cheats are activated by hitting enter. Pressing
+enter on other cheats resets them to their default values.
+[Aaron Giles]
+
+Continued the cleanup of inputs in drivers starting with C (the 
+remaining ones), D and E. Improvements include conditional dips 
+added to dynduke and diplocations for chinagat, chqflag, circus, 
+citycon, cloak, contra and dynduke. [Fabio Priuli]
+
+Added tags to EVERY input port in drivers starting with F->Z.
+[Fabio Priuli]
+
+Removed PORT_START macro. Renamed old PORT_START_TAG to PORT_START.
+All input ports must have tags. [Aaron Giles]
+
+Added support for DEL as well as BS for backspacing in the game
+select menu. Also limited input to ASCII characters. [Aaron Giles]
+
+Fixed Rim Rockin' Basketball to use the HD6309 core. [Tim Lindner]
+
+Added diplocations to bigrun, scudhamm, cischeat & f1gpstar.
+Removed the current hacky handling of f1gpstar coinage dips to use
+conditional ports instead. In order to do this, the possible
+conditions were extended to support less than/greater than 
+comparisons. [Fabio Priuli]
+
+Fixed bug that would break conditions on ports using the
+PORT_DIPUNKNOWN_DIPLOC macro. [Aaron Giles]
+
+Added diplocations to the following drivers: combatsc.c, copsnrob.c, 
+cosmic.c, crgolf.c, crimfght.c, crospang.c (here I also added service 
+dips to heuksun and bestri, which allowed me to verify locations), 
+crshrace.c, dambustr.c, darkseal.c, dassault.c, dblewing.c, 
+ddrible.c, deadang.c. Also added locations to the following games: 
+ddragon & ddragon2 on ddragon.c and docastle, dorunrun & dowild in 
+docastle.c. [Fabio Priuli]
+
+Verified CPU clocks for athena. [Corrado Tomaselli]
+
+Added module profiling to discrete sound core [couriersud]
+ * added DISCRETE_PROFILING macro to discrete.h
+ * Upon discrete_stop, the worst performing modules will be listed
+
+Verified and corrected CPS1 refresh rate. [Corrado Tomaselli]
+
+Changed sound cpu clock of Spinal Breakers to 5Mhz as verified on the
+pcb. [Corrado Tomaselli]
+
+Corrected MPU4 AY8910 output weightings. [James Wallace]
+
+Added word alternates for operators in expressions: [Aaron Giles]
+  +   plus
+  -   minus
+  *   times or mul
+  /   div
+  %   mod
+  !   not
+  ~   bnot
+  &&  and
+  &   band
+  ||  or
+  |   bor
+  ^   bxor
+  lt  <
+  le  <=
+  gt  >
+  ge  >=
+  eq  ==
+  ne  !=
+
+Changed cheat escaping to automatically escape && & < and <=
+to and band lt and le. [Aaron Giles]
+
+Decrypted Da Ban Cheng (dbc set in igs_blit.c) [Pierpaolo Prazzoli]
+
+Removed bad dumps from ad2083. [Pierpaolo Prazzoli]
+
+Fixed bug in aviio.c which could cause an infinite loop if attempting
+to read sound beyond the end of the file. [Aaron Giles]
+
+Added expression validation callback to verify names for CPUs and
+memory regions. Extended error codes to report incorrect memory 
+spaces, memory names, or memory sizes. Added verification callback
+to the debugger to validate CPU and memory region names, as well
+as verifying that a requested address space exists for a given
+CPU. [Aaron Giles]
+
+Restored previous behavior that allowed popmessage() messages to
+overlay menus and other UI. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Kyuukyoku no Othello [robiza, Fabio Priuli]
+S.O.S. [Alex, Max, Antro]
+
+
+
+New clones added
+----------------
+Indianapolis 500 Deluxe [Kris Anks]
+Champion Poker (v200G) [Luca Elia]
+Megatouch III (9255-20-01 RON) [Brian Troha]
+New clone: Crystal Castles (joystick version) [Guru]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Quiz Punch 2 [Luca Elia]
+Jingle Bell [Luca Elia]

@@ -1,0 +1,214 @@
+0.129u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02923: [Misc.] sonicbom: [debug] Writes extensively to the console 
+         (Aaron Giles)
+- 02930: [Compiling] cpu.mak typo and fix (emuman)
+- 02825: [Crash/Freeze] crossbow: Crash on "Crossing Bridge" stage 
+         (Aaron Giles)
+- 02949: [Documentation] chocomk: Year is 2002 and the manufacturer is 
+         Ecole Software. (incog)
+- 02950: [Documentation] bestri: Year of release is 1998. (incog)
+- 02958: [Documentation] magictg, magictga: The year is 1997 according 
+         to flyer (incog)
+- 02951: [Documentation] vgoalsoc, vgoalsca: The year is 1994. (incog)
+- 02952: [Documentation] nss_sten: Year is shown on title screen as 
+         1991. (incog)
+- 02955: [Documentation] parentj: Year is 1989 according to the title 
+         screen. (incog)
+- 02939: [Documentation] gp98: Year and manufacturer are 1998, Romtec 
+         Co. LTD according to the title screen. (incog)
+- 02938: [Documentation] mblkjack: Black Jack (Mirco) is actually 
+         Called 21 and the year is 1976. (incog)
+- 02956: [Documentation] bigkong: Year is 1981 according to the title 
+         screen. (incog)
+- 02962: [Sound] All Sets in thepit.c: No Audio (Aaron Giles)
+- 02954: [Crash/Freeze] sfiii: SFIII crashes when it hits the Capcom 
+         logo on load. (David Haywood)
+- 02944: [Crash/Freeze] mustangb, tdragonb: Access Violation 
+         (Phil Bennett)
+- 02946: [Crash/Freeze] pachifev: [debug] Assertion (Angelo Salese)
+- 02947: [Crash/Freeze] turbosb6, turbosb7: [debug] Assertion 
+         (Phil Bennett)
+- 02927: [Crash/Freeze] Many Sets using segaic16.c: Crash/Freeze while 
+         starting (Atari Ace)
+- 02943: [Crash/Freeze] majxtal7, mjelct3, mjelct3a, mjelctrb, 
+         mjelctrn, neruton : Unable to locate input port 'DSW2' 
+         (Fabio Priuli)
+- 01059: [Sound] brubber: Low pass filtering on engine and explosion 
+         sounds is not emulated in MAME. (couriersud)
+- 02935: [Crash/Freeze] All Sets in zn.c: Various Freeze/Hang/Reset 
+         Issues (smf)
+- 02920: [Crash/Freeze] tetrsark: devcb_resolve_read8 error 
+         (Fabio Priuli)
+- 02940: [Crash/Freeze] horshoes, plotting and clones: Game Hangs upon 
+         startup (Fabio Priuli)
+- 02937: [Sound] silkroad: Sound not playing. (Angelo Salese)
+- 02212: [Save/Restore] bzone: vector drawing corruption when using a 
+         save state (couriersud)
+- 02931: [Sound] Many sets using YM2151 Sound Core: Distorted or 
+         otherwise incorrect sound (Phil Bennett)
+- 02921: [Crash/Freeze] bkraidj, bkraidu, bkraiduj: [debug] 
+         Assertion (Phil Bennett)
+- 02924: [Crash/Freeze] frogs: [debug] Assertion (Phil Bennett)
+- 02929: [Sound] All sets using k007232.c Sound Core: Garbled Music 
+         (Phil Bennett)
+- 02928: [Sound] prehisle, gensitou: Many sound FX are missing 
+         (Phil Bennett)
+- 02922: [Crash/Freeze] Most sets in cave.c: Game Freeze during 
+         demontration/Intro (Phil Bennett)
+
+
+
+Source Changes
+--------------
+Fixed Pachi Fever ADPCM test regression. [Angelo Salese]
+
+Added ATTR_NOTNULL to DAC sound calls. [Nathan Woods]
+
+Decrypted new opcodes for Fire Barrel. [Chris Hardy]
+
+Fixed regressed rowscroll effect for Fire Barrel [Angelo Salese]
+
+Corrected gfx bitplane for Astro Wars [Angelo Salese]
+
+Device-ized the SID code. [Nathan Woods]
+
+Apache 3 improvements [Phil Bennett/Guru]:
+ * Experimental road layer emulation (currently disabled).
+ * Fixed text layer alignment.
+ * Corrected CPU clock frequencies.
+ * Fixed YM-2151 volume.
+ * Added road stripe PROM.
+
+Removed earom from bzone. [couriersud]
+
+Impemented CRCL command in hd63484 (used in skattv test mode).
+[robiza]
+
+Added save state support to tomcat, tempest, quantum, asteroid, 
+bwidow, mhavoc, omegrace. [couriersud]
+
+Device-ified the Atari mathbox. [couriersud]
+
+Device-ified the Atari vector generators. [couriersud]
+
+Added register SXFER (0x05) to the 53c810 - Nothing more. This reg 
+determines SCSI transfer speeds. scud / scuda now fatalerror with 
+writes to reg # 0x70. [couriersud]
+
+Added mtonic decryption. [Olivier Galibert]
+
+Provided color prom to Cow Race [Tomasz Slanina, Angelo Salese]
+
+Quick hack to delay installing the spu dma handler until the first 
+write to the spu as driver init is now called after the devices are 
+created. [smf]
+
+Added discrete filtering and fixing to bking.c. [couriersud]
+
+Added some missing robadv2 sets to sfbonus.c. [David Haywood]
+
+Partially fixed asurabld/asurabus sound regression. [Phil Bennett]
+
+XTAL and divisors for rocnrope verified in schematics. [couriersud]
+
+Added a debug viewer for the blitter-based gfxs in the itgambl3.c.
+[Angelo Salese]
+
+Added a debug viewer for the blitter-based gfxs in the itgambl2.c.
+[Angelo Salese]
+
+Renamed a number of commonly-used but confusing device tags. The plan
+is to move away from generic names like "main" to names that capture 
+the device type as well. This will allow searches for devices to be
+based on tags alone. Added validity checks to prevent the continuance 
+of this pattern (which I started :), and to ensure that all devices
+have unique tags, regardless of type. [Aaron Giles]
+
+  Changes:
+    CPU/"main" -> "maincpu"
+    CPU/"audio" -> "audiocpu"
+    CPU/"sound" -> "soundcpu"
+    SCREEN/main -> "screen" (since it's the only one)
+    SPEAKER/"left" -> "lspeaker"
+    SPEAKER/"right" -> "rspeaker"
+    SCREEN/"left" -> "lscreen"
+    SCREEN/"right" -> "rscreen"
+    SCREEN/"middle" -> "mscreen"
+    SCREEN/"center" -> "cscreen"
+
+Corrected rom names in tnzs.c for older TNZS sets. [Brian Troha]
+
+Hooked up the reel background colour writes to cherry master / new 
+fruit bonus '96 etc. [David Haywood]
+
+Fixed rom loading in secretab. [Angelo Salese]
+
+Added BellFruit Scorpion 1, Bellfruit System 85, Maygay M1B and 
+Maygay M2 systems from AGEMAME. MPU4 Mechanical improvements have been 
+made, making mpu4.c the mechanical driver, and mpu4drvr the non-
+mechanical one. This only leaves JPM impact (mechanical skeleton), 
+Maygay M2 and MPU3 (mechanical skeleton) to be ported from the 
+AGEMAME codebase. There's also been a cleanup sweep on Scorpion2, we 
+were declaring too many versions of the same function, and the reel 
+drawing code had stopped working. Both of these are now fixed.
+[James Wallace]
+
+Improved note about cherry master girl display [David Haywood]
+
+M79-Ambush - Added Discrete sounds, fixed DIPs and added Self Test 
+Lamp Output. [Derrick Renaud]
+
+Fixed oki frequency in galhustl. [Sonikos]
+
+Optimized the rendering loop in mcatadv. [Christophe Jaillet]
+
+Added missing static qualifiers to the code. [Atari Ace]
+
+Added correct ROMs for Super Triv III. [Smitdogg]
+
+Fixed mjelctrn DSW read handler to agree with new tags. [Fabio Priuli]
+
+Added support for the /PC output pin to the CIA emulation. [Dirk Best]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Monoshiri Quiz Osyaberi Macha [Yasuhiro Ogawa]
+Gals Panic S3  [Uki, David Haywood]
+  (see http://mamedev.emulab.it/haze/ for details)
+King Derby 
+  [Stefan Lindberg, Andrew Gardner, Angelo Salese, Roberto Fresca]
+Makaijan [Yasuhiro Ogawa]
+
+
+
+New clones added
+----------------
+The Pit Boss (set 4) [Brian Troha]
+Apache 3 (Kana Corporation license) [Guru]
+Great Sluggers 94 (Japan) (not working) [Yasuhiro Ogawa]
+Dangerous Dungeons (The Game Room) (newer?) [Smitdogg] 
+Automat (bootleg of Robocop) 
+  [Andrew Welburn, Philip Bennett, David Haywood]
+10's or Better [Gyrovision]
+Super Heli (Super Cobra bootleg) [Smitdogg]
+The New Zealand Story (World, old version, older pcb) [Corrado Tomaselli]
+Pipe Dream (World) [Corrado Tomaselli]
+U.S. Championship V'ball (US) [Smitdogg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gran Tesoro? [f205v]
+Heavy Unit (3 sets)  [Tomasz Slanina, Corrado Tomaselli]
+Kung-Fu Roushi [Angelo Salese, Roberto Fresca]
+Diamond Touch (E - 30-06-97, Local) [Heihachi_73]
+Adonis (A - 25-05-98, NSW/ACT) [Heihachi_73]
+Super Jolly [f205v]

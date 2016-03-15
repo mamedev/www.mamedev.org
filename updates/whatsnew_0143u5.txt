@@ -1,0 +1,149 @@
+0.143u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02700: [Speed] pocketrc: game runs too fast (hap)
+- 04477: [Documentation] naomi: Duplicate File entries in each set in
+         driver (Tafoid)
+- 04475: [Graphics] quizmeku: Missing gfx (M.A.S.H.)
+- 03641: [Graphics] sspirits, gground: Only half of the game's frames
+         are rendered. (M.A.S.H.)
+- 03195: [Gameplay] crkdown: graphic artifacts and speed drop during
+         gameplay (M.A.S.H.)
+- 00961: [Sound] raidena: Some music channels go out of sync after a
+         while. (Kold666)
+- 04397: [HLSL] MAME freezes with a hlsl .ini file. (MooglyGuy)
+
+Source Changes
+--------------
+Implemented double buffering and improved colors for 3d in Top Landing
+[Angelo Salese]
+
+naomi.c: Added rev "A" Japan BIOS, original Korean BIOS as well as rev
+"D" Korea [gamerfan, Smitdogg, BrianT, The Dumping Union]
+
+armedf.c: Verified correct sprite roms for Terra Force (Japan)
+[ShouTime]
+
+dday.c: Added dipswitch locations to the D-Day sets
+[Corrado Tomaselli, Brian Troha]
+
+m68k: Preliminary support for MC68340 (CPU32).  Reorganized to
+facilitate C++ conversion. [David Haywood]
+
+m68k: use 68340 instruction table for 68340, cpXXX instructions are
+020/030 only, add CINV, CPUSH stubs for 040 [R. Belmont]
+
+Add comment about new raiden2 rom combination, add missing pals as
+undumped, fix IC locations on several sets.
+[Lord Nightmare, Hammad, EdCosta]
+
+Various HLSL fixes: [Ryan Holtz, Bat Country Entertainment]
+ * Created two flags, -hlsl_ini_write and -hlsl_ini_read. The former
+    enables custom HLSL INI writing explicitly, the other enables
+    loading of the same.
+ * Fixed disappearing aperture effect when using custom INI files.
+ * Fixed diagonal seam on some games, for serious real this time
+ * Fixed phosphor simulation, now works as expected
+
+model3.c: Redumped Spikeout FE. Special thanks to Phil Bennett & Bart
+Trzynadlowski for verifying and testing the redumped roms. [Dr.
+Spankenstein, wild eyed, Paratech, Layne, Lord Flux, atchoo, cbt,
+gatt9, tormod, BrianT, The Dumping Union]
+
+only report samples audit result for sets with required samples
+[Fabio Priuli]
+
+fixed segfault when using -verifysamples [Fabio Priuli]
+
+floppy: Refactor slightly.  Name, descrition, etc are now an intrinsic
+property of converters. [O. Galibert]
+
+Added some Stern Whitestar older revisions [Miodrag Milanovic]
+
+Preliminary work at the projection calculation for 3d eye-space points
+in Air Inferno [Angelo Salese, Andrew Gardner]
+
+es5503: converted to modern device, improved IRQ timing [R. Belmont]
+
+C352: don't try to play zero-length samples [Phil Bennett]
+
+M377xx improvements
+ * Respect the restored mode bits for PUL [hap, R. Belmont]
+ * Proper cycle counts for PSH/PUL [R. Belmont]
+ * Fixed flags for multiply/division and divide by 0 interrupt [hap]
+ * Pass program bank to debugger hook so breakpoints work outside
+    of bank 0 [R. Belmont]
+ * Fixed interrupt flags for internal peripherals, corrected
+    BBC/BBS when running outside of bank 0 [R. Belmont]
+ * Several other interrupt timing and priority fixes [hap]
+
+whitestar: make modern, add sound system.  no work on main CPU part
+yet. [R. Belmont]
+
+floppy: Add brand-new MFI (MESS floppy image) support. [O. Galibert]
+
+mfi: Fix the format thanks to smf's help [O. Galibert]
+
+amigafdc: Modernize, but don't change a thing (yet) [O. Galibert]
+
+floppy: Change the internal format to use magnetic cells.  Temporarily
+move the full-track pll bit extraction in the amiga fdc. [O. Galibert]
+
+st_dsk: Add the easy ST formats [O. Galibert]
+
+tempest.c: Corrected the rom labels, description and documentation for
+the revised hardware rev 3 of Tempest. Added dipswitch locations for
+the Tempest sets. [Brian Troha]
+
+globalfr: filled in a little more of the memory map [R. Belmont]
+
+Yet more Neo-Geo work on game ROMs structures [Johnboy]
+ * Continued to document used pcb's for cartridges
+ * More removal of .bin extension in favour of chiplabel.socketlabel
+    naming convention
+ * Added correct v1 to pulstar
+ * Corrected layout of pgoal according to original cart
+Added redumped c1/c2 and v1 to quizdaisk [DsNo]
+
+Various changes and improvements to the Chihiro emulation
+[Samuele Zannoli]
+ * modifies the ide device (idectrl.c) so it supports cases where it
+    is not connected to an hard disk, but to some different hardware
+ * adds PC devices 8259 pic, 8253 pit, ide controller
+ * adds "chihiro" command with subcommands "jamdis", "dump_string",
+    "dump_process", "dump_list", "help"
+ * updates the smbus controller and adds stubs for the pic16lc,
+    cx25871, eeprom smbus devices
+ * updates the memory map for the newly added devices
+ * fixes the size of the "others" region
+ * adds hack for the missing dump of the smbus eeprom
+
+Decoded graphics in gigaman2 [iq_132]
+
+Hooked up sound, fixed layer offsets in ppan [iq_132]
+
+Fixed graphics glitches in speedspn on character select screen
+[iq_132]
+
+Fixed layer enable in cninjabl, giving it working status [iq_132]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Ridge Racer 2
+Free Kick [Charles MacDonald, The Dumping Union]
+
+
+New clones added
+----------------
+1943: Midway Kaisen (Japan, Rev B) [Foul]
+Rad Rally (Japan) [Arcadecomponents.com]
+The King of Fighters '97 (Korean release) [DsNo]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Fighting Bujutsu [Ville Linde, R. Belmont]

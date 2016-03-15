@@ -1,0 +1,298 @@
+0.148u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05112: [Crash/Freeze] (x68k.c) x68030: Access Violation (Olivier Galibert)
+- 05110: [Crash/Freeze] (multi16.c) multi16: Access Violation (Olivier Galibert)
+- 05124: [Crash/Freeze] (pc.c) t1000rl, t1000tl2, t1000tx: Access Violation (Olivier Galibert)
+- 05125: [Misc.] (vidbrain.c) vidbrain: Invalid read of size 4 (Firewave)
+- 05126: [Misc.] (ti990_4.c) ti990_4: Conditional jump or move depends on uninitialised value(s) (Firewave)
+- 05130: [Misc.] (nc.c) all nc.c sets: Conditional jump or move depends on uninitialised value(s) (Firewave)
+
+New System Drivers Supported:
+-----------------------------
+- NEC TK85. [Robbbert, Nama]
+- Chunichi ND-80Z. [Robbbert, Nama]
+- BINBUG [Robbbert]
+- DG680 [Robbbert]
+- LZ Color64 [Dantyr]
+- Dynacom MX-1600 [Dantyr]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+Skeleton drivers:
+-----------------
+- Atari PC-3 [rfka01]
+
+Software Lists:
+----------------
+-prof80: Added floppy software list. [Curt Coder] 
+
+-prof180: Added floppy software list. [Curt Coder]
+
+-sms.xml: Fixed banking setting for cso making it working. 
+ [Enik Land]
+
+-Added preliminary lists to MO-5, TO-7 and TO-770 [K1W1]
+
+-Added preliminary lists to Enterprise 64/128, Odyssey 2 and
+ G-7400, Interact and Kaypro II [LoganB]
+
+-Added software lists to MZ800, Osborne 1 and Sorcerer [LoganB]
+
+-Added software list to M20 [Fabio Priuli]
+
+-Added info to Amiga ECS list [LoganB]
+
+-psx.xml: Added dump from a real manufactured pirate disk
+ [Kaylee]
+
+-spectrum_flop.xml: Added more disks to the software list [Kaylee]
+
+-spectrum_flop.xml: added year/publisher info to the list [LoganB]
+
+-pet: Added add-on ROM software list. [Curt Coder]
+
+-msx1_cart.xml: added missing cart dumps. [Fabio Priuli]
+
+-ibm5170.xml: added 4 new dumps. [Kaylee]
+
+-pico.xml: added new Japanese dumps [TeamEurope]
+
+-tek4052: Added cartridge software list. [Curt Coder]
+
+-pico.xml: Added a few Brazilian dumps. [TeamEurope]
+
+-apple2gs.xml: Document some cracks and bad dumps [LoganB]
+
+-a800.xml: Added 3 new dumps, removed a confirmed bad 
+ dump and added more cartridge info [K1W1] 
+
+-amigaaga/amigaocs.xml: Added afew more dumps from CAPS releases [Kaylee] 
+
+-apfm1000.xml: Verified compatibility in some entries [Shideravan]
+
+Source Changes:
+----------------
+-Added Cardco CSD-1 floppy drive (C1541 clone). [Cowering]
+
+-g7400: Changed driver to use the i8244/i8245 device
+ implementation.  [Wilbert Pol]
+
+-minichief: Added WD1002A-WX1 ROM dump. [rfka01]
+
+-odyssey2, videopac: Updated drivers to use the i8244/i8245
+ device implementation.  [Wilbert Pol]
+
+-Refactored the Commodore 1581 floppy disk drive to use the
+ modern floppy system. Supports read-only access to D81 images.
+ [Curt Coder]
+
+-wd_fdc: Controller remains busy until the last DRQ has been served,
+ and the sector register can now be written more than once. [Curt
+ Coder]
+
+-esq5505: add MIDI In capability to all of these drivers.
+ [R. Belmont]
+
+-sms.c: Improved memory initialization on Japanese and Korean
+ consoles. This fixes softwre list entries alibaba and blockhol. 
+ [Enik Land]
+
+-Fix non-functionality of all Apple floppy drives. [R. Belmont]
+
+-flopimg: Added support for Commodore GCR encoding. [Curt Coder]
+
+-SMC-777: enabled to show the border area in MC6845 interface,
+ changed various video related function accordingly [Angelo Salese]
+
+-Enabled to show border area in Sharp X1, fixes Shilver Ghost
+ gameplay and Nobunaga no Yabou error display if a single floppy is in
+ [Angelo Salese]
+
+-Made major clean-ups to NEC PC-8801, Sharp MZ-2500, Sharp X1
+ and Sony SMC-777 drivers. This gives a nice speed boost to them
+ [Angelo Salese]
+
+-BINBUG : Added full implementation of DG640 video card.
+ Improved cassette. [Robbbert]
+
+-ESQ-1: Converted to n68681, hooked up MIDI I/O, mapped more
+ front panel buttons [R. Belmont]
+
+-Slotify playstation controller ports [Carl] 
+
+-Fix memory card and standard controller with v3 pad lib psx software [Carl]
+
+-Add Dualshock emulation [Carl]
+
+-make playstation memory cards load and save to a file [Carl]
+
+-floppy: Fixed write protected signal and added a callback for it.
+ [Curt Coder]
+
+-PlayStation: play XA audio at the correct speed [R. Belmont]
+
+-alphasma: added keyboard input and LCD emulation. [Sandro Ronco]
+
+-PlayStation: fix sample signedness and stream rate for CDDA
+ (redbook) audio [R. Belmont]
+
+-PlayStation: mirror main RAM, fixes Woody Woodpecker Racing
+ [R. Belmont]
+
+-dsk_dsk: Header size obvious fix [O. Galibert]
+
+-cat.c (Canon Cat): Reverse engineered 99% of memory map
+ including mirrors based on extensive hardware testing; Located
+ Printer, Modem and Floppy drive registers (not yet hooked up); Added
+ v1.74 firmware and SpellCheck ROMs. Added a lot of debugging
+ information. [Lord Nightmare, Balrog]
+
+-cat.c (Canon Cat): Got rid of a lot of hashtag lookups; fixed
+ the video enable bit location. Cleaned up comments a bit. More
+ debugging stuff added. [Lord Nightmare]
+
+-cat.c (Canon cat): Added the 6ms timer and its counter.
+ [Lord Nightmare]
+
+-cat.c (Canon Cat): implemented video invert bit, added notes
+ about what some of the registers are called in the original source
+ code [Lord Nightmare]
+
+-c64: Cleaned up input handling. Controllers are now connected
+ using the slot interface, and by default a joystick in port 2 is
+ present. [Curt Coder]
+
+-c128: Cleaned up input handling. Controllers are now connected
+ using the slot interface, and by default a joystick in port 2 is
+ present. [Curt Coder]
+
+-c64/c128: Implemented parallel joystick pot X/Y read. [Curt Coder]
+
+-esq5505: Use esqpanel base class for massive cleanup. [R. Belmont] 
+
+-kt76: Convert to modern 68681 and add MIDI I/O.[R. Belmont]
+
+-cdi: Modernized CD-i and removed tag lookups [MooglyGuy]
+
+-cdi: Modernize MCD212 device. [MooglyGuy]
+
+-gba: Cleaned up tag usage outside of the startup path. [MooglyGuy]
+
+-vic10: Cleaned up input handling. Controllers are now connected
+ using the slot interface, and by default a joystick in port 2 is
+ present. [Curt Coder]
+
+-vic20: Cleaned up input handling. Controllers are now connected
+ using the slot interface, and by default a joystick is present.
+ [Curt Coder]
+
+-De-tagged the Apple II series drivers [R. Belmont]
+
+-pet: Added datassette slot interface. [Curt Coder]
+
+-plus4: Cleaned up input handling. Controllers are now connected
+ using the slot interface, and by default a joystick is present.
+ [Curt Coder]
+
+-apple2: Support generic 6850 MIDI card (Yamaha, Passport, etc).
+ [R. Belmont]
+
+-apple2gs: Enable 6850 MIDI card.  Tested in MasterTracks Pro
+ and synthLAB. [R. Belmont]
+
+-gb.c: fixed support for Wisdom Tree games [Fabio Priuli]
+
+-isa_gus:  Enabled 6850 MIDI interface with a hopefully accurate clock,
+ and fixed a silly error with MIDI IRQs, and passes the MIDI transmit
+ IRQ test. [Barry Rodewald]
+
+-psxanalog: add analog joystick [Carl] 
+
+-SoundBlaster: MIDI Out support for single-byte, SB UART, and
+ MPU-401 UART modes. [R. Belmont]
+
+-pet2001: Rewrote the PET 2001 series. [Curt Coder]
+
+-pet: Moved the remaining PETs to the new driver. [Curt Coder]
+
+-isa_sblaster: working SB-MIDI In (tested w/MIDI Monitor for
+ Windows) [R. Belmont]
+
+-isa_sblaster: fully hooked up MPU-401 input and output for SB16
+ [R. Belmont]
+
+-megadriv.c: many updates to cart handling [Fabio Priuli]
+  * updated carts to be slot devices
+  * simplified loading and bankswitch mechanism
+  * added support for real Sonic & Knuckles lock-on emulation (you can
+    combine it freely with other carts, through the -cart2 slot which
+    gets added automatically)
+  * remove need for "pcb_type" feature from xml softlist, since the new
+    "slot" feature is enough
+  * moved SVP emulation to src/mess/ in view of conversion to a slot
+    device as well
+
+-Properly close the old image when swapping CHD-CDs [Steve Leung]
+
+-Added minimal cassette software lists for the Commodore
+ computers. [Curt Coder]
+
+-cat.c(Canon Cat): added another v2.40 romset dumped from two
+ original developer's machines and made it the parent set. Lots and
+ lots of documentation updates.
+ [Lord Nightmare, Dwight Elvey, Sandy Bumgarner]
+
+-pet: Added user and memory expansion ports. [Curt Coder] 
+
+-cbm2: Added user port. [Curt Coder] 
+
+-Apple II: General modernization, some tagmap cleanup, and prep
+ work to emulate IIe aux slot cards. [R. Belmont]
+
+-c64: Added CMD SwiftLink cartridge emulation. [Curt Coder]
+
+-c64: Added CMD Turbo232 cartridge emulation. [Curt Coder]
+
+-megadriv.c: more updates [Fabio Priuli]
+  * implemented correct ROM mirroring, based on research by Eke &
+    others
+  * emulated the protection in Ya Se Chuan Shuo, promoting it to work
+    state
+  * fixed cart type in Blockbuster World Video Game Championship II
+    (works for the first time in MESS)
+  * fixed cart type in HardBall III, Barver Battle Saga and Chao Ji Da
+    Fu Weng
+  * added support for unusual SRAM location in HardBall 95
+  * fixed a few regressions introduced in the previous commit
+  * fixed wrong driver class being used in 32x and SegaCD
+
+-gb.c: many updates to cart handling [Fabio Priuli]
+  * updated carts to be slot devices
+  * simplified loading and bankswitch mechanism
+  * fixed MMM01 emulation
+  * removed need for "mapper" feature from xml softlist, since the new
+    "slot" feature is enough
+
+-Apple II: Another pass on tagmaps, plus preliminary emulation
+ of the standard and extended 80-column cards for the IIe [R. Belmont]
+
+-Apple II: Support 8 meg AE RamWorks III card for IIe.
+ [R. Belmont]
+
+-flopimg: When generating a pc layout, don't write the gap3 after the
+ last sector [O. Galibert]
+
+-odyssey2/videopac: Improved palette.  [Dr. Venom]
+
+-c64: Added support for the VizaStar cartridge. [Curt Coder]
+
+-Apple II: Fixed incorrect handling of CE00/CF00 range for expansion
+ cards. [R. Belmont]
+
+-apple2gs: Added support for the AE Vulcan IDE controller. [R. Belmont]

@@ -1,0 +1,240 @@
+0.123u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+progear0123u1gra [stephh]
+
+
+
+Source Changes
+--------------
+csk.c driver improvements: [Mirko Buffoni]
+ * Added DIPLOCATION macros to all Dip Switches. All DSW are verified 
+    through test mode.
+ * Fixed custom_io_r which is used for protection but also for 
+    keyboard input.
+
+Fixed build with external zlib. [R. Belmont]
+
+Completed old-style colortable removal. Removed 
+MDRV_COLORTABLE_LENGTH macro. Updated uigfx to display new-style
+color tables if present. [Zsolt Vasvari]
+
+Reorganized/minor clean-ups to Mad Alien driver. [Zsolt Vasvari]
+
+Fixed Xenophobe sprite aligment. [Derek Ledbetter]
+
+Converted SNES (except debug code) to RGB32 as it was a serious 
+abuser of the palette system. [Zsolt Vasvari]
+
+Added colortable_palette_get_size() to emupal. Added some more 
+asserts to catch errors. [Zsolt Vasvari]
+
+Fixed Dip Switches (especially coinage) and inputs for 'mpatrol' and 
+'troangl' (and their clones). Tried to "unify" the two drivers (I 
+still think that some things can be merged). Added iremipt.h source 
+file (same purpose as taitoipt.h). Fixed Dip Switches and inputs for 
+'alpha1v'. The game is now more playable to me but I left the 
+GAME_NOT_WORKING flag as I think there are still some things to look 
+at). [stephh]
+
+Changed IREM cpu decryption to be 'real-time' (it's a feature of the 
+CPU). Moved decryption table setup to 'config' struct for the CPU.
+Added latest tables from robiza, making Risky Challenge playable, 
+promoted it to working. Told CPU core to not decrypt code after 
+brkn instruction, enabling it again on iret, allowing me to remove 
+several 'don't decrypt range' hacks in the code. Updated all drivers 
+accordingly. Currently the disassembly is a bit weird now, this will 
+need looking at. [David Haywood, robiza]
+
+Added and hooked up AICA (Naomi sound chip). Naomi boot sounds now 
+play. Since it's an SCSPx2 with ADPCM instead of FM it's already 
+feature-complete except filter envelopes. A bug in the ARM7 core 
+causes incorrect pan/level values to be computed in e.g. the Naomi 
+SOUND TEST menu. This is not a defect in the AICA.
+[ElSemi, Deunan Knute, kingshriek, R. Belmont]
+
+Fixed Dip Switches (especially coinage) and inputs for '10yard' (and 
+its clones). Tried to "unify" the driver with m52 and m57 drivers 
+(I still think that some things can be merged). [stephh]
+
+Fixed unaligned 32-bit reads in the ARM7 core. [R. Belmont]
+
+Fixed misaligned backgrounds in mpatrol caused by recent changes.
+[Zsolt Vasvari]
+
+Minor code cleanups. Added static/const where appropriate, plus some 
+include fixes. Reverted some of the changes to build.mak from u1 
+which made some MSVC builds fail, and adjusted/optimized an m10.c 
+gfx_layout. Added some missing cores to cpuintrf.c, sndintrf.c and 
+added some missing #if's to 5220intf.c. [Atari Ace]
+
+Fixed one or two dips in the mirage.c driver and found the "service" 
+switch and likely start of inputs. [Brian Troha]
+
+Removed expand_machine_driver(). Replaced with machine_config_alloc() 
+and machine_config_free(). Updated all call sites. Normalized info.c 
+style and simplified some of the code. [Aaron Giles]
+
+Renamed machine->drv to machine->config to reduce overloading of the
+term "driver". [Aaron Giles]
+
+Simplified collision detection in taitosj and tank8. [Zsolt Vasvari]
+
+New module: devintrf.c/.h. Implements a generic device interface 
+similar to the sound and CPU interfaces. [Aaron Giles]
+
+New module: mconfig.c/.h. Moved all machine_config and MDRV_* macros 
+here, out of driver.c/.h. Added MDRV macros for adding/removing/
+configuring devices. [Aaron Giles]
+
+Deprecated the following constants because global constants that 
+pretend to document things but which are only guesses are dumb:
+  - DEFAULT_60HZ_VBLANK_DURATION
+  - DEFAULT_30HZ_VBLANK_DURATION
+  - DEFAULT_REAL_60HZ_VBLANK_DURATION
+  - DEFAULT_REAL_30HZ_VBLANK_DURATION
+  - DEFAULT_60HZ_3S_VBLANK_WATCHDOG
+  - DEFAULT_30HZ_3S_VBLANK_WATCHDOG
+Updated all drivers to explicitly specify the equivalent bogus 
+times. Added comments for the "REAL" VBLANK durations to indicate 
+that they are not accurate. [Aaron Giles]
+
+Improved some DIP switches, added some DIP locations, replaced 
+IPT_COINx with IPT_SERVICE1 where appropiate, and simplified some 
+control definitions in the following drivers: alpha68k.c, actfancr.c,
+aeroboto.c, aerofgt.c, aliens.c, ambush.c, amidar.c, amspdwy.c,
+angelkds.c, appoooh.c, arabian.c, argus.c, arkanoid.c. [RansAckeR]
+
+Connected the Shadow Warriors buttons like they are wired on the 
+original pcb (which is jamma). [Corrado Tomaselli]
+
+Added DIP locations to: cclimbr2 , legion, terraf, ultennis, cheesech,
+stonebal, stoneba2,  scessjoe, ashnojoe, asteroid, llander, llander1,
+astdelux. [RansAckeR]
+
+Fixed multi-session crash with Namco System 2 games. [Atari Ace]
+
+Improved Print Club DIP switches. [Edward Swiftwood]
+
+Fixed a few corner cases in the 6840 emulation based on running the 
+MPU4 test ROMs, and added the ability to dynamically alter the 
+external clock frequencies in game. [James Wallace]
+
+Changed the 6850 core to allow dynamic RX and TX clock alteration, 
+to at least try to remove a few of the MPU4 timing problems.
+[James Wallace]
+
+Updated documentation of the MPU4 Video board. Added documentation of
+the Cosmic Chasm crystals, and merged the memory maps. [James Wallace]
+
+Fixed validation fail of '_mul_32x32_hi()' and '_mulu_32x32_hi()' 
+inline function when compiled GCC v3.3.5 with I686 optimization.
+[KO Myung-Hun]
+
+Verified clocks on Rainbow Islands and Rambo 3 and Raiden 2. Reverted 
+sound OSC of Truxton 2 to 27mhz/8 since the original OST runs at this 
+speed. The pcb I measured the previous clock was 28mhz/8 and it's a 
+different pcb version from the common one. Since mame doesn't support 
+multiple OSC I prefer to use the 27mhz one. [Corrado Tomaselli]
+
+Fixed some incorrect rom dumps for Double Dragon 3 (Some of the dumps 
+were based of the bootleg and not the original.) and updated the name 
+and location to actually match that of a real board. [Kevin Eshbach]
+
+Added DIP locations to Combatribes and Battletoads. [Kevin Eshbach]
+
+Added video_screen_update_now(int scrnum) to force a screen update up 
+to the current beam position. [Zsolt Vasvari]
+
+Pulled remaining vestiges of old-style colortables: [Aaron Giles]
+ * PALETTE_INIT no longer has a colortable parameter
+ * removed game_colortable and remapped_colortable from machine_config
+ * updated a few stragglers that still referenced these fields
+ * removed tile_draw_colortable from tilemap.c
+
+Changed the input port tokens to use a union instead of casting 
+everything to FPTR. In the future, C99-enabled compilers will be able 
+to achieve type safety with designated initializers. [Aaron Giles]
+
+Added i8749 CPU variant for MESS. [Curt Coder]
+
+Added missing SH4 instructions and bugfixed the FPU. Improved Naomi
+I/O board emulation and added working controls. [Samuele Zannoli]
+
+jedi.c improvements: [Zsolt Vasvari]
+ - Complete memory map
+ - Crystals
+ - Driver state structure
+ - Text layer is rendered at the same time as the background
+
+Reorganized Qix driver (driver state, decoupled audio section, etc.)
+[Zsolt Vasvari]
+
+Changed all drivers using the MC6845 chip to use the new device 
+interface. Removed mc6845_config. [Zsolt Vasvari]
+
+Reorganized Gameplan driver. Changed Trivia Quest use the Gameplan 
+video code. Added crystal for Gameplan pixel clock. [Zsolt Vasvari]
+
+Removed the unnecessary pen array lookup from some INDEXED16 drivers.
+[Zsolt Vasvari]
+
+Removed the per-screen palette_base. This was an idea that never
+really worked out, nor have we really needed it. [Aaron Giles]
+
+Defined a new device type VIDEO_SCREEN. Currently this has no
+live functionality, but merely serves as a placeholder/identifier
+for video screens. Eventually some of the screen management code
+may move into the start/stop/reset functions. [Aaron Giles]
+
+Changed MDRV_SCREEN_ADD to specify a screen type (RASTER, VECTOR,
+LCD for the moment). Removed the older VIDEO_TYPE_RASTER and 
+VIDEO_TYPE_VECTOR; this information is now determined by walking 
+the screen list. [Aaron Giles]
+
+Changed MDRV_SCREEN_* macros to build up VIDEO_SCREEN devices
+rather than storing values in the screen[] array. Removed the 
+screen[] array from machine_config. Modified all code referencing 
+Machine->config->screen[] and changed it to iterate over the devices 
+using the new video_screen_first() and video_screen_next() 
+functions. [Aaron Giles]
+
+Removed implicit screen #0. This means that ALL DRIVERS MUST
+EXPLICITLY DECLARE THEIR SCREENS. Updated all drivers to do
+so. While there, grouped all MDRV_SCREEN_* parameters together.
+Also removed unnecessary VIDEO_TYPE_RASTER and VIDEO_TYPE_VECTOR.
+Also removed VBLANK and bitmap format information from vector
+games. This was painful and very tedious. [Aaron Giles]
+
+Changed game information to display info about all screens. 
+[Aaron Giles]
+
+Changed Beathead driver to use partial updates instead of caching 
+scanline level information. [Zsolt Vasvari]
+
+Added state_save_combine_module_and_tag(). Its purpose is to create 
+a unique name for state saving purposes in modules that are tag 
+based (no index). [Zsolt Vasvari]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Champion Poker [Mirko Buffoni]
+Risky Challenge [robiza]
+
+
+
+New clones added
+----------------
+Fighting Soccer (Japan) [Yasuhiro Ogawa]
+Red Hawk (Excellent Co., Ltd) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Toy Fighter [Corrado Tomaselli]

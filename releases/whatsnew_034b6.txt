@@ -1,0 +1,291 @@
+0.34 BETA 6
+
+Note about the x86 asm 68000 core: several bugs have been fixed (most notably,
+it now runs under pure DOS) but it is still not complete. For example, the two
+Metal Slugs hang shortly after game start. They will work if you recompile
+using the C core.
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Qwak (prototye) [Mike Balfour]
+Superman [Howie Cohen, Brad Oliver]
+Zero Zone [Brad Oliver]
+The King od Dragons (2 sets) [Paul Leaman]
+Street Fighter 2 (2 sets merged) [Paul Leaman]
+Get Star [Luca Elia]
+Checkmate [Al Kossow]
+Ozma Wars [Al Kossow]
+Space Fever (B&W) [Al Kossow]
+Scion [Nicola Salmoria]
+Defense Command [David Winter]
+Mr. Do! (Yukidaruma) (merged) [Nicola Salmoria]
+Armored Car (set 2) (merged) [Nicola Salmoria]
+Bagman (Stern set 1) (merged) [Nicola Salmoria]
+Super Bagman (Valadon) (merged) [Nicola Salmoria]
+Moon War II (set 2) (merged) [Nicola Salmoria]
+Jungler (Stern) (merged) [Nicola Salmoria]
+Rygar (US set 1) (merged) [Nicola Salmoria]
+Jack Rabbit (set 2) (merged) [Nicola Salmoria]
+Jack Rabbit (special) (merged) [Nicola Salmoria]
+Midnight Resistance (Japan) (merged) [Bryan McPhail]
+Mega Man (merged with Rockman) [Santeri Saarimaa]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Accurate colors in Jungler. Also fixed char flipping and sprite alignment.
+  [Nicola Salmoria]
+
+- Improved Vastar. [Roberto Ventura]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Sound in Super Space Invaders. [Ernesto Corvi]
+
+- Added decay to Donkey Kong. [Andrew Scott]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Replaced the -fm option with -ym2203opl. Added -noym3812opl to use the
+  digital emulation of the YM3812 instead of the SoundBlaster OPL chip. Note
+  that with -noym3812opl you also need external drum samples. [Nicola Salmoria]
+
+- Clone sets are not reported as missing by -verifyroms if only the parent set
+  is present. [John Butler]
+
+
+Source:
+-------
+
+- [DOS] Now using version 1.05 of the SEAL audio library. This should fix
+  problems with the ENSONIQ AudioPCI and Creative PCI64 cards.
+
+- YM2610 emulator. This is used by the NeoGeo games. [Hiromitsu Shioya]
+
+- TMS9900 emulator. [Andy Jones, based on original code by Ton Brouwer]
+
+
+NeoGeo Support
+--------------
+
+This beta contains some major improvements to the neogeo emulation.  Work on
+this driver also uncovered several bad rom dumps, most of which you can correct
+yourself, existing bad rom dumps should still work but will give checksum and/or
+rom length errors on startup.
+
+How to:
+
+You need a zip file called neogeo.zip in your rompath.  It should contain at
+least three files:
+
+neo-geo.rom (128k)
+ng-sfix.rom (128k)
+ng-sm1.rom (128k)
+
+The rom 'ng-sm1.rom' is badly dumped in many archives, you will need one that is
+128k, see later for full details on bad roms.  Using a 256k rom will still work
+but will give a length & checksum error on every game.
+
+Important!  The bios zip file must be called neogeo.zip NOT neo-geo.zip, ie,
+there should be no dash in the middle.
+
+You also need to place the game zip in your rompath.  If you do not know what 8
+character filename the NeoGeo game you want to play has you can type:
+
+mame -listclones neogeo
+
+That will list the 8 character zip names of all currently supported games.
+
+What's New?
+-----------
+
+* FULL sound support, FM synth and ADPCM samples, on 90% of games using the
+YM2610 emulator.  The games without working sound should be fixed soon.
+
+- Optional rom loading of samples:  You may find games that worked before will
+not work now due to lack of memory as all the sound roms need to be loaded.
+Some games will require an extra 16 megabytes of memory to load the sound roms.
+You can force Mame NOT to load these samples if you specify no sound BEFORE rom
+loading takes place.  In Dos this means you must type:
+
+mame game -soundcard 0
+
+If you DO NOT specify soundcard 0 then all sound roms will be loaded and you may
+experience memory problems.
+
+* Improved graphics:
+
+- Auto-animations are supported, these are used in many games.  The Neogeo
+graphics hardware can cause animation without intervention from the main cpu.
+You can see this in the backgrounds of games such as Karnov's Revenge, Street
+Hoops, Samurai Shodown, King Of Fighters, etc.
+
+- Very accurate scaling support, including full screen zooms.
+
+- No more 'missing tiles' on zoomed graphics.
+
+- MAJOR speedup!  You should see at least 20-50% increase on all games.  The downside is
+you will see a black screen for a few seconds at the start of every game as
+the graphics are converted to a custom format.  There are many other
+optimisations in the video code too.
+
+- Fixed bug in y-flipped tiles glitched when y<0 (Thrash Rally)
+
+* All games for which rom dumps are available are now supported.  99% of them
+are working.
+
+* Several games have experimental 68000 idle cycle skipping, for these games you
+should see increases of between 5% and 20%.  Games currently using this method
+are:
+	Puzzle De Pon
+	Karnov's Revenge
+	Wind Jammers
+	Street Hoops
+	Neo Bomberman
+
+* SRAM save size has been reduced to 0x2000 bytes from 0x10000.  The NeoGeo
+has 8 memory frames and will store sram data for upto 8 games regardless
+of how many physical cartridges the machine can take.  The Mame emulation
+emulates a fixed 1 cartridge neogeo, therefore only the first 0x2000
+bytes of the SRAM should ever be used.  Due to bullet-proofed(!) memory
+handling there should be no more corrupt sram saves either.  Remember you can
+delete a game settings by deleting it's file in the 'hi' directory.
+
+Bug where SRAM states were reloaded upon every reset is fixed.
+
+Known Problems/To Do:
+---------------------
+
+Some games will give a piracy warning.  You can still play the games if you
+set them to run in Console (Home) mode.  For some games you can set the game
+back to arcade mode after the protection check is done and leave it that
+way (because some games leave a flag in SRAM as to whether the game has passed
+it's security check).
+
+Line (row) scrolling is not implemented.  This is used for the floor in
+Karnov's Revenge, special effects in Spinmasters, etc, and many others.
+
+The calendar chip is not yet implemented.
+
+This release should give a substantial speed boost over previous betas, and there
+are some more optimisation ideas to be tried.
+
+Bad Roms
+--------
+
+Several bad rom dumps have been found, this is where a rom has corrupt data
+and may also be the wrong size.  'Fixed' rom dumps will become available from
+the usual places in time.  The most common error is that a rom is twice the
+size it should be, and that the second half is either the same as the first or
+just has junk in it.  To be fix these roms you simply split them in half, and
+throw away the second half.  You should do a binary split, meaning your split
+program should not save any formatting information to the file.  As mentioned
+above bad rom dumps will continue to work but will give checkums and length
+errors.
+
+The Neorage team will support all fixes to the bad roms and make sure their
+emulator is compatible.  Most fixed romsets will work on Neorage already.
+
+If you wish to fix your romsets here is the last of bad roms:
+
+ALPHAM2.ZIP
+N082001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+AOF2.ZIP
+AOF2_P1.ROM                                     FIRST AND SECOND HALF IDENTICAL
+AOF2_V3.ROM                                     FIRST AND SECOND HALF IDENTICAL
+
+BLAZSTAR.ZIP
+BSTAR_P2.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+BSTARS.ZIP
+N042001A.478                                    FIRST AND SECOND HALF IDENTICAL
+N138001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+BSTARS2.ZIP
+STAR2_M1.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+CYBERLIP.ZIP
+N062001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+CYBRLIPA.ZIP
+CYBL_M1.ROM                                     FIRST AND SECOND HALF IDENTICAL
+
+FATFURY3.ZIP
+FURY3_P2.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+GALAXYFG.ZIP
+GALFI_C7.ROM                                    FIRST AND SECOND HALF IDENTICAL
+GALFI_C8.ROM                                    FIRST AND SECOND HALF IDENTICAL
+GALFI_V3.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+GOALX3.ZIP
+GOAL!_C3.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+GOAL!_C4.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+GPILOTS.ZIP
+N058001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+JOYJOY.ZIP
+N022001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+KABUKIKL.ZIP
+KLASH_V4.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+KOF95.ZIP
+KOF95_C5.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+KOF95_C6.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+KOF96M.ZIP
+KOF96_P1.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+LBOWLING.ZIP
+N050001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+MAGLORD.ZIP
+MAGL_M1.ROM                                     FIRST AND SECOND HALF IDENTICAL
+
+NCOMBAT.ZIP
+N046001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+PULSTAR.ZIP
+PSTAR_C7.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+PSTAR_C8.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+PSTAR_P1.ROM                                    FIRST AND SECOND HALF IDENTICAL
+PSTAR_P2.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+RIDHERO.ZIP
+N046001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+SAMSHO4.ZIP
+SAMS4_V3.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+SHOCKTRO.ZIP
+SHOCK_P1.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+SONICWI2.ZIP
+AFIG2_V2.ROM                                    FIRST AND SECOND HALF IDENTICAL
+
+STRHOOPS.ZIP
+SHOOP_C1.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+SHOOP_C2.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+SHOOP_C3.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+SHOOP_C4.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+SHOOP_V1.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+
+SUPERSPY.ZIP
+N138001A.478                                    FIRST AND SECOND HALF IDENTICAL
+
+TPGOLF.ZIP
+TOPG_M1.ROM                                     FIRST AND SECOND HALF IDENTICAL
+
+TWINSPRI.ZIP
+SPRIT_P1.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF
+SPRIT_V2.ROM                                    BAD NEOGEO DUMP - CUT 2ND HALF

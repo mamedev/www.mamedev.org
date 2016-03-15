@@ -1,0 +1,82 @@
+0.36 BETA 14
+
+Note: non volatile ram is now saved to a new directory, NVRAM (instead of
+the old HI). You must create that directory manually, otherwise the files
+will not be saved.
+
+New games supported:
+--------------------
+
+Hopping Mappy [Nicola Salmoria]
+Sky Kid Deluxe [Nicola Salmoria]
+Plump Pop [Nicola Salmoria]
+S.P.Y. (not playable due to protection) [Nicola Salmoria]
+Baluba-louk no Densetsu [Zsolt Vasvari]
+Super World Stadium '93 Gekitouban [Keith Wilkins]
+Streaking [Zsolt Vasvari]
+Black Hole [Zsolt Vasvari]
+Tank Force [Vernon C. Brooks]
+Soldam [Luca Elia]
+
+
+New clones supported:
+---------------------
+
+Pinbo (Jaleco)
+Cosmo Gang (US)
+Marvel Land (US)
+Galaga 88 (set 2)
+Pole Position (Namco)
+Jungle King (newer)
+Knockout (= Triple Punch)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Sprite multiplexing support in the Exidy440 games, this fixes Chiller's
+  start screen. [Aaron Giles]
+
+- Fixed the internal orientation of the Cinematronics games, if you use
+  artwork files for those games you'll have tomanually flip them (or
+  redownload).
+
+
+Other drivers changes:
+----------------------
+
+- Improved Capcom Avengers, the wrong colors are caused by the protection.
+  [Phil Stroffolino]
+
+
+Changes to the main program:
+----------------------------
+
+- Added noise generator to the Namco sound emulation. [Takahiro Nogi]
+
+
+Source:
+-------
+
+- Removed *rom_decode and *opcode_decode from struct GameDriver. Decryption
+  must now be handled by *driver_init. If opcodes and data are decrypted
+  separately, remember to allocate a larger chunk of memory in the ROM
+  declaration, decode the opcodes there, and call memory_set_opcode_base()
+  to tell the memory system where the opcodes are.
+  Note that this new system allows bank switching with encrypted ROMs, which
+  wasn't possible before. [Nicola Salmoria]
+
+- Removed *hiscore_load and *hiscore_save from the GameDriver structure. To
+  manage nvram/eeprom/cmos/etc the new *nvram_handler in struct MachineDriver
+  must be used. High score save is temporarily disabled. It will be added
+  again in a future release using an external .dat file. [Nicola Salmoria]
+
+- The struct GameDriver reorganization is finally complete. Drivers should now
+  use the GAME() and GAMEX() macros and not directly the GameDriver structure.
+  IMPORTANT FOR PORTERS: Note that the clone_of field now is not necessarily
+  0 even if the game is not a clone. If clone_of is not 0, to know if the game
+  is a clone you have to check (clone_of->flags & NOT_A_DRIVER) is 0.
+
+- Added OSD_FILETYPE_NVRAM.
+
+- MachineDriver->frames_per_second is now a float.

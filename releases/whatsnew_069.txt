@@ -1,0 +1,457 @@
+0.69
+
+Mainly a bugfix release for problems discovered with new features in 0.68,
+it also further clears the backlog.  Put together by David Haywood, 
+
+If you submit changes please make sure they're up to date with the latest
+source code, if not it means more work for us in sorting them out.
+
+Several people have asked about the SHA1Merger program for updating their
+own drivers, if you need this it should be on www.mame.net within a few
+hours of this release.
+
+Note, we are aware of some problems with the Direct 3D core which cause
+some games to function incorrectly (Rolling Thunder title screen, Hard
+Drivin' Dashboard, Puyo Puyo title screen raster etc.) if you have problems
+with games when using -d3d try them without before reporting a bug. (although
+please do report games broken with -d3d if you find them but make sure to
+specify the problem is with -d3d)
+
+The cause of this problem seems to lie somewhere in
+
+result = IDirect3D7_CreateDevice(d3d7, &IID_IDirect3DHALDevice, back_surface, &d3d_device7);
+
+however we don't know how to fix this nor why it happens, could the real problem
+be elsewhere?
+
+General Source Changes
+----------------------
+
+Fixed a problem with missing 'returns' in the PIC CPU core [Bryan McPhail]
+	src\cpu\pic16c5x\pic16c5x.c
+
+Fixed a few MCU simulation problems in bking3 [Angelo Salese]
+	src\drivers\bking2.c
+
+Various changes [Nathan Woods]
+
+	src/cheat.c:
+	- Minor change to the MESS specific code
+
+	src/datafile.c:
+	- DriverDataCompareFunc() is now declared with CLIB_DECL
+
+	src/hash.c:
+	- Removed strupr() in favor a manual implementation, because it
+	is non-ANSI
+
+	src/usrintrf.c:
+	- Minor tweaks within #ifdef MESS code
+	- UI code for discrete sound engine now encapsulated within '#if
+	HAS_DISCRETE'
+
+	src/ui_text.c:
+	src/ui_text.h:
+	- Changed some #ifdef MESS specific strings
+
+	src/windows/rc.c:
+	src/windows/rc.h:
+	- Fixed a potential crash that could occur if the last line in
+	an INI file was not terminated with a CRLF
+	- Added osd_rc_write(); which does the reverse as osd_rc_read()
+	(this is only used in the MESS Win32 port)
+
+	src/fileio.c:
+	src/fileio.h:
+	- New mame_fputs(), mame_vfprintf() and mame_fprintf() functions
+	(used in osd_rc_write()) above
+	
+	src/windows/fileio.c:
+	- Removed some no longer relevant MESS globals
+	- Unicode enabled (i.e. - compiles under #define UNICODE)
+
+	src/windows/winalloc.c:
+	- Added corresponding _msize implementation (this fixes a benign
+	but very subtle bug when debugging with VC)
+
+	src/idectrl.c:
+	src/idectrl.h:
+	- Added ide_controller_init_custom() (used by MESS)
+
+	src/fileio.c:
+	src/hash.c:
+	src/windows/fronthlp.c:
+	- Removed private prototypes of crc32(), in favor of #include <zlib.h>
+
+	src/windows/fronthlp.c:
+	- Minor tweaks within #ifdef MESS
+
+	src/sha1.h:
+	- Put #ifndef _STDINT_H around typedefs for uint32_t and uint8_t
+	(apparently these are already defined on the Mac)
+
+	src/windows/winalloc.c:
+	src/windows/winmain.c:
+	- Put CLIB_DECL in front of a few declarations
+
+
+Various Changes [Andrea Mazzoleni]
+
+	src/info.c
+	- Substitutes in the -listinfo output the strings "nodump" and "baddump"
+	  with "flags nodump" and "flags baddump".
+
+	src/sound/disc_mth.c
+	- Substitutes the _HUGE macro with the standard DBL_MAX value
+	
+	src/cpu/tms9900/9900stat.h
+	src/cpu/tms9900/99xxstat.h
+	- Adds a test for the GNU C compiler to skip some POWERPC inline assembler
+	  not compatible with the GNU assembler format.
+
+	src/x86drc.h
+	- Fixes some macros with arguments not used. Otherwise it doesn't compile
+	  with gcc 2.95.3.
+
+Auditing Fixes for cases where no good dump is known but a file is found [BUT]
+	src\audit.c
+	
+Improvements and Bug Fixes to the Direct 3D Blitting [Leon van Rooij]
+
+	-effect same as 0.68 and earlier, no effect on d3d module
+	-zoom or -z (default is 2) select zoom level, works for the ddraw code as well
+	find the smallest display mode that will fit an n times zoomed game image
+	(only used when no display mode is explicitly forced,
+	the d3d code takes the aspect ratio into account, ddraw behaviour is 
+	unchanged)
+	-cleanstretch or -cs only strecth to integer ratios, works for the ddraw 
+	code as well
+
+	-d3dfilter or -d3dflt select filtering algorithm
+	0 is none, 1 bi-linear, 2 flat bi-cubic, 3 gaussian bicubic, 4 anisotropic
+	-d3deffect behaves exactly the same as -effect, but only affects the d3d module
+	You can use all -effect parameters, so none, scan25, scan50, scan75,
+	rgb16, rgb6, rgb4, rgb3, and sharp work, they are identical at 2x zoom
+	scan75v and rgb4v also work, and are identical to scan75 adn rgb4
+	(as the d3d effects are automatically rotated already)
+	Additionally, all effects presets and auto work
+	none affects only the presets now.
+	The presets are renamed, in addition to the -effect presets, they are now:
+	rgbminmask,
+	dotmedmask,
+	rgbmedmask,
+	rgbmicro
+	rgbtiny
+	aperturegrille,
+	dotmedbright,
+	rgbmaxbright
+
+	-d3dscan scanline intensity, 100 is off
+	-d3dfeedback feedback intensity, 0 is off
+	-d3dsaturate oversaturation intensity, 0 is off
+	-d3dprescale AKA sharp.
+	-d3dcustom custom preset, as before
+	(anyone who wants to customise presets can, everybody else should ignore it)
+	-d3dexpert Normal users should not use this one, basically if you can't 
+	read the
+	source to figure out what it does, you have no business using it <g>
+	Behaves as -effect did in the previous updates, plus some new stuff;
+	disable disables all effects,
+	prescale lets you control prescale explicitly,
+	pixelcounter changes the scanline texture
+	(use mame whatever -z 4 -d3d -cs -flt 0 -d3dexpert pixelcounter),
+	norotate disables rotating effects
+	
+	It has it's own ini section and it handles priorities itself to ensure 
+	correct behaviour. For custom presets, patterns are no longer loaded from 
+	the effects directory, the name should just include the path.
+	
+	There are warning messages when you do e.g. -nod3d -d3dscan50, or -d3d 
+	-effect sharp (although the latter will work as it has up until 0.68). It 
+	tests all hardware capabilities it should (as far as I'm aware, at least). 
+	It won't chop textures in 256x256 blocks for old Voodoo cards. 
+	-texture_management is now enabled by default as leaving it off seems to 
+	have worse consequences for more people than having it on. I haven't added 
+	a workaround for cards that can't render to textures yet, other than that, 
+	any possible typos, etc. or any suggestions people may have, it should be 
+	good for 0.69.
+	
+	Apparently some videocards don't like the DX7 pageflip in combination with 
+	a triple buffer. (behaviour when triple buffering is unchanged from 0.67, 
+	that goes for the d3d code as well as the ddraw code).	
+	
+	src\windows\video.c
+	src\windows\video.h
+	src\windows\wind3d.c
+	src\windows\wind3d.h
+	src\windows\win3dfx.c
+	src\windows\win3dfx.h
+	src\windows\windraw.c
+	src\windows\windraw.h
+	src\windows\window.c
+	src\windows\window.h
+	src\windows\d3d_extra.h
+	src\windows\windows.mak
+	
+Added USA 2-Slot bios to NeoGeo Driver (recompile to use) also readded line removed
+by mistake, fixed coinage bug when using USA Bios []
+	src\drivers\neogeo.c
+	src\machine\neogeo.c
+	
+Added Asia Bios to NeoGeo Driver []
+	src\drivers\neogeo.c
+	
+Renamed Proms in Eggor [David Haywood]
+	src\drivers\pacman.c
+
+Fixed Demo Sound Dipswitch in sotsugyo [Fujix]
+	src\drivers\funkyjet.c
+
+Fixed Infinite Lives Dipswitch in qtono2 [BUT]
+	src\drivers\cps1.c
+	
+Various Fixes and Improvements to Chack'n Pop [BUT]
+	src\drivers\chaknpop.c
+	src\machine\chaknpop.c
+	src\vidhrdw\chaknpop.c
+	
+Fixed the Sound Loading in some Taito F3 Games [Paul Priest, Ryan Holtz]
+	src\drivers\taito_f3.c
+
+Corrected Dragon Master Dipswitches and Frequencies [David Silva, Guru]
+	src\drivers\drgnmst.c
+
+Added NeoGeo Mahjong control panel support [David Haywood]
+	src\drivers\neogeo.c
+	src\machine\neogeo.c
+
+Corrected sprite priority in brkthru and darwin and converted the driver to use
+tilemaps [Satoshi Suzuki, David Haywood]
+	src\drivers\brkthru.c
+	src\vidhrdw\brkthru.c
+
+Fixed a bug with -crconly which could cause options.debug_width to become
+corrupt [Paul Priest]
+	src\mame.h
+
+Fixed a problem where a NODUMP rom was reported as found even if it didn't
+exist in the rompaths [HobbesAtPlay]
+	src\fileio.c
+
+Corrected Colours in Progres & added 3rd Button for Aiming [Uki]
+	src\drivers\timelimt.c
+	
+Fixed Length of Proms in Main Event (SNK) TESTDRIVER [David Haywood]
+	src\drivers\mainsnk.c
+
+Fixed Merging of Sets in Shougi TESTDRIVER [Toby Broyad]
+	src\drivers\shougi.c
+
+Fixed Name of Mach Breakers (was Match Breakers) [MameTesters]
+	src\drivers\namconb1.c
+	
+Fixed Interrupt being triggered on Non-Existant CPU for TaitoSJ games with no
+MCU [Aaron Giles]
+	src\machine\taitosj.c
+	
+Added -bios option [Paul Priest]
+
+Adds the system option "bios". An integer that is valid where: 0 <= n < 15
+
+	Rom loading is now modified so that if any of the 4 bits in
+	ROM_BIOSFLAGSMASK of the rom flags are set, it will only be loaded if
+	the value+1 == options.bios
+
+	NeoGeo has been modified to take advantage of this as follows:
+	0 - "sp-s2.sp1"    - Europe, 1 Slot (also been seen on a 4 slot) (default)
+	1 - "sp-s.sp1"     - Europe, 4 Slot
+	2 - "usa_2slt.bin" - US, 2 Slot
+	3 - "sp-e.sp1"     - US, 6 Slot (V5?)
+	4 - "asia-s3.sp1"  - Asia S3 Ver 6
+	5 - "vs-bios.rom"  - Japan, Ver 6 VS Bios
+	6 - "sp-j2.rom"    - Japan, Older
+	
+	Note that using a value >6 and <15 will result in NO bios rom being
+	loaded (And a red screen in NeoGeo's case).
+	
+	src\common.c
+	src\common.h
+	src\drivers\neogeo.c
+	src\mame.h
+	src\windows\config.c
+
+Corrected Filenames for Steel Gunner 2 [Brian Troha]
+	src\drivers\namcos2.c
+	
+Fixed Scrolling bug in One Shot One Kill [Angelo Salese]
+	src\vidhrdw\oneshot.c
+
+Fixed Mcu Reset for Tiger Heli [Angelo Salese]
+	src\machine\slapfght.c
+
+Removed a graphic rom loading kludge in Yamato,which caused a bad gray square
+when launching missiles(yamato37b9gre);also fixed crashes in clone
+yamato2. [Angelo Salese]
+	src\drivers\yamato.c
+
+Removed NeoGeo Memory Card Manager RESET / CALL option from UI, this feature is
+only available on the AES console and should be in Mess (and probably won't be
+needed at all with a real AES bios) []
+	src\ui_text.c
+	src\ui_text.h
+	src\usrintrf.c
+
+Changed NeoGeo Framerate to 59fps based on Mametesters report about Kof98 Intro Sync
+It would be nice if somebody could give a real accurate measurement of this []
+	src\drivers\neogeo.c
+
+Fixed FM bug causing bad sounds in maglord and other games which was introduced in
+the last release [Jarek Burczynski]
+
+Discrete Sound update for several games [Derrick Renaud]
+
+	- Atari Baseball - added video invert (triples/home runs).
+	- Avalanche - changed to discrete sounds adding missing top rocks sound
+	(Aud0 trigger). (and yes the game is supposed to sound horrible)
+	- Dominos - added 60Hz ac signal (but it does not seem to affect anything).
+	- Drag Race - added discrete sounds.
+	- Night Driver - added discrete sounds and video invert during crash.
+	Motor/skid sounds are not 100% correct.
+	- Sprint 2 - switched player controls so they lined up under the proper
+	score color.
+	- Orbit - added discrete sounds.
+
+	- [but] fixed the 'no stereo' bug in src\sound\discrete.c
+	- I also fixed a minor bug in src\sound\discrete.h causing
+	DISCRETE_LOGIC_INVERT not to work.
+	- And did minor code cleanup to Basketball.
+	- Removed GAME_IMPERFECT_SOUND flag from Circus.  If correct samples are
+	used then it is ok, like all sample games.  (New accurate samples have been
+	posted at twisty's)
+	
+	src\machine\atarifb.c
+	src\drivers\avalnche.c
+	src\machine\avalnche.c
+	src\drivers\bsktball.c
+	src\drivers\circus.c
+	src\sound\discrete.c
+	src\sound\discrete.h
+	src\drivers\dominos.c
+	src\machine\dominos.c
+	src\includes\dominos.h
+	src\drivers\dragrace.c
+	src\drivers\nitedrvr.c
+	src\machine\nitedrvr.c
+	src\includes\nitedrvr.c
+	src\drivers\orbit.c
+	src\drivers\sprint2.c
+	
+Preliminary WIP Discrete Sound in Subs [Derrick Renaud]
+	src\drivers\subs.c
+	src\machine\subs.c
+	src\vidhrdw\subs.c
+
+Correct Colours in Clash Road [Luca Elia]
+	src\drivers\clshroad.c
+	src\vidhrdw\clshroad.c
+
+
+New games supported:
+--------------------
+
+Wolf Pack (prototype) [Stefan Jokisch]
+	graphic emulation might not be perfect, no sound
+	src\drivers\wolfpack.c
+	src\vidhrdw\wolfpack.c
+Naughty Mouse [Dave Widel]
+	src\drivers\pacman.c
+Broadwalk Casino / Atlantic City Action [Dave Widel]
+	this doesn't appear to be a gambling game
+	src\drivers\pacman.c
+	src\includes\pacman.h
+	src\machine\acitya.c
+Paradise [Luca Elia]
+	there seems to be a problem with the hi-score system
+	src\drivers\paradise.c
+	src\vidhrdw\paradise.c
+	src\includes\paradise.h
+
+New clones supported
+--------------------
+
+Metamorphic Force (Japan JAA) [GMB]
+	src\drivers\mystwarr.c
+GI Joe (Japan) [GMB]
+	src\drivers\gijoe.c
+Falcon (Phoenix bootleg) [Smitdogg]
+	src\drivers\phoenix.c
+Mr. Do's Castle (older) [Lee Taylor]
+	src\drivers\docastle.c
+Police Trainer 1.3B (Sharpshooter Hardware) [Brian Troha]
+	fails rom check, does so on original hardware too
+	src\drivers\policetr.c
+Street Fighter 2 (USA 911101) [David Haywood]
+	src\drivers\cps1.c
+	src\vidhrdw\cps1.c
+Make Trax (set 2) [Dave Widel]
+	src\drivers\pacman.c
+NewPuc2 (hack) [Dave Widel]
+	this hack was common in the arcades, it has intermissions between each
+	maze and a slot machine every 3 mazes.
+	src\drivers\pacman.c
+World Class Bowling (v1.66, v1.65) [Brian Troha]
+	v1.66 is now the parent
+	src\drivers\itech32.c
+Targ (cocktail?) []
+Rallys (bootleg? of Spectar) []
+	src\drivers\exidy.c
+Route 16 (set 2) []
+	src\drivers\route16.c
+Labyrinth Runner (World Ver. K) []
+	src\drivers\labyrunr.c
+The Main Event (2 Players ver. X) []
+	src\drivers\mainevt.c
+Quartet 2 (Japan) []
+Flash Point (Japan, bootleg) []
+	no, these have nothing to do with the system16 rewrite
+	src\drivers\system16.c
+Chopper [US set 2 & set 3] []
+	src\drivers\snk.c
+	src\vidhrdw\snk.c
+Tunnel Hunt (Atari Original) [David Haywood]
+	this is now the parent, old set is tunhuntc
+	src\drivers\tunhunt.c
+Arkanoid (US, older) [Stephane Humbert]
+	src\drivers\arkanoid.c
+	
+New TESTDRIVERS in source
+-------------------------
+
+Polygonet Commanders [R.Belmont]
+	only text layer is emulated, hangs waiting for network, DSP used for 3D
+	graphics isn't emulated
+	src\drivers\plygonet.c
+	src\vidhrdw\plygonet.c
+Mahjong Daireikai [David Haywood]
+Mahjong Channel Zoom In [David Haywood]
+Mahjong Kakumei [David Haywood]
+Mahjong Kakumei 2 - Princess League [David Haywood]
+	these just load the roms and decode the gfx for now, they might be
+	similar to nmk16.c just incase somebody wants to finish them.
+	src\drivers\jalmah.c
+Slipstream [David Haywood]
+	doesn't work due to unemulated v60 opcodes
+	src\drivers\system32.c
+Atlus Print Club (v1, v2, v4, v5)
+	mainly for reference, it might not be possible to emulate them as they 
+	need a camera + printer
+	src\drivers\segac2.c
+Portraits [Steve Ellenoff & Peo]
+	preliminary driver, still being worked on
+	src\drivers\portrait.c
+	src\vidhrdw\portrait.c
+Mustache Boy [Tomasz Slanina]
+	preliminary driver, gfx not fully decrypted, missing proms, no sound
+	src\drivers\mustache.c
+	src\vidhrdw\mustache.c
+	src\sndhrdw\seibu.c

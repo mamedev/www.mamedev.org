@@ -1,0 +1,99 @@
+0.121u3
+-------
+
+
+Source Changes
+--------------
+Fixed colors in loverboy. [David Haywood]
+
+Fixed buffer overflow in K054539. [BUT]
+
+SCSP improvements: [kingshriek]
+ - Added logarithmic envelope table
+ - Set envelope level to start at 0x17f in the ATTACK state 
+    (0x3ff-0x280) as per Neill's notes 
+ - Changed EG_SHIFT from 8 to 16 - more precision is needed to 
+    differentiate the longer decay envelope times 
+ - In the DECAY1-->DECAY2 transition, changed the "<=" to "<"
+ - Decreased the output of the effect out mixer a bit
+ - Fixed unaligned 16-bit samples
+ - Prevented keyoffs from killing slots when already in the release 
+    state 
+ - Envelope steps in the attack state are apparently exponential. To 
+    account for this, I change the envelope output to linear for 
+    attacks.
+ - Change the release rate calculation to use the decay table instead 
+    of the attack one.
+
+Fixed uninitialized variable in h6280 core. [Wilbert Pol]
+
+Added meter support to the Cobra games. Cleaned up some of the 
+steppers code. [James Wallace]
+
+Const-ified a number of data structures in the MAME system. 
+[Atari Ace]
+
+Added PowerPC 604 processor support. Moved PowerPC opcode tables to 
+the CPU context to allow multiple simultaneous processors with 
+different opcode tables. [Ville Linde]
+
+dkong driver updates: [couriersud]
+ - Added configuration switch to change palette between TKG02 
+    (radarscp conversion) and TKG04 (dkong 2board)
+ - Added speech support (samples) to radarsc1
+ - Fixed sound for drakton and strtheat
+ - Hooked up and written 8257 dma controller
+    All dkong and dkongjr based games now use the 8257
+    All epos and 2650 based games now use the 8257
+ - Fixed 2650 games to use dkong audio as well - only cpu replaced 
+    by addon board ...
+ - Updated game flags and added missing rom entries
+ - straightened memory maps
+ - Fixed bug in dkong3b memory map
+ - Externalized sound drivers to MACHINE_START in audio/dkong.c
+ - DAC Filter now uses lowpass sallen key filter
+ - Reorganized INPUT_PORTS
+ - Added Dip-Switch locations to 8ballact
+ - Fixed 8ballact according to conversion manual 
+ - Reorganized code
+
+Corrected a potential issue if more than one 8039/8035 is used by 
+a driver. Also should fix a potential inconsistency between saving 
+and loading a state. [couriersud]
+
+Added an assert to ensure that the sound clear latch value is only
+set at init time, since its value is not saved. [Aaron Giles]
+
+Modified src2html to sort by filename rather than assuming that the
+osd file finding routines would do so. [Aaron Giles]
+
+Fix memory system regression caused by recent optimization. Fixed
+another bug uncovered as a result in the decrypted opcode management.
+[Aaron Giles]
+
+More Zeus improvements. Converted over to 64-bit data and simplified
+the logic to work more like the hardware. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+The Block Kuzushi (JAPAN) [Guru, smf]
+Wrestle War (Mega-Tech) [Mame Italia]
+
+
+
+New clones added
+----------------
+Puzzle & Action: BoMulEul Chajara (Korea) [Guru, David Haywood]
+DaeJeon! SanJeon SuJeon (Korea) [Guru, David Haywood]
+Success Joe (World) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Stress Busters [Guru, David Haywood]
+Magical Zunou Power [Guru, David Haywood]
+Draw 80 Poker [Jim Stolis]
+1 on 1 Government (JAPAN) [Guru, smf]

@@ -1,0 +1,149 @@
+0.104u3
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: osd_exit is no longer called
+directly. Rather, your osd_init function should register the osd_exit 
+callback (if necessary) using add_exit_callback. Also, several global
+variables have been moved into the Machine structure:
+
+   mame_debug -> Machine->debug_mode
+   playback   -> Machine->playback_file
+   record     -> Machine->record_file
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+twinhawk0104u1gra [Alex Jackson]
+twinhawk0104u1gre [Alex Jackson]
+gtmr0100u1gre [Luigi30]
+armchmp20104u2gra [Luigi30]
+boothill0104gra [Luigi30]
+yiear0103u1gra [Luigi30]
+
+
+Source Changes
+--------------
+Cleanups to the taito_x driver: [Alex Jackson]
+ - Converted input ports to an INCLUDE/MODIFY tree.
+ - Fixed Lives DSW in twinhawk and twinhwku
+ - Removed Cabinet DSW from twinhawk and twinhwku; they are 2psim 
+    and do not support cocktail cabinets (the DSW does nothing).
+ - Fixed Coinage DSW in suprmanj
+ - removed MDRV_MACHINE_INIT(cchip1) from games that don't have a 
+    c-chip (all of them except superman)
+
+Fixed chdman to write the correct number of logical bytes when
+extracting something that is not an even number of hunks large.
+[Chris Hardy]
+
+Some Raiden 2 documentation and input port updates (still not 
+playable). [Olivier Galibert]
+
+Created new osd_tool file which is used by utility tools to do
+file access in an OS independent manner. [Nathan Woods]
+
+Fixed typo in Hyperstone core that led to false positive warning
+popups. [Pierpaolo Prazzoli]
+
+Added support for IDT-specific MIPS MUL instruction in the MIPS3
+core, recompiler, and disassembler. [R. Belmont, Aaron Giles]
+
+Replaced -high_priority with -priority, you can now specify from 
+-15 to 1. The default is -15 as this makes Dell laptop keyboards 
+work. It still won't raise the priority if running with the debugger,
+but it will lower it. Fixed a subtle bug at the same time as 
+-high_priority was only working when you used rdtsc. [smf]
+
+Added an optional xml_parse_options parameter to xml_file_read() 
+and xml_string_read(), to provide options for preserving whitespace,
+error reporting, and parser setup. [Nathan Woods]
+
+Added save states to 2 simple drivers - bombjack.c and blktiger.c. 
+[Adam Bousley]
+
+Improved graphics ROM loading order in fredmem. [Luigi30]
+
+New option -mngwrite, which records an MNG movie of the game from
+the get-go and allows you to specify a target filename. [Buddabing]
+
+Refactored/renamed/removed/added several core files: [Aaron Giles]
+ - renamed driver.c to mamedriv.c
+ - created a new driver.c containing functions defined in driver.h
+ - split common.c into video.c and machine/generic.c
+ - moved a number of mame.c functions to video.c
+
+New file debugger.h contains abstracted debugging interfaces for
+both debuggers. Added new call mame_debug_break() and a new macro
+DEBUGGER_BREAK to make it easier to hard-code breakpoints into code.
+Removed all old code that directly whacked debug_key_pressed or
+called debug_halt_on_next_instruction and replaced them with calls
+to DEBUGGER_BREAK. [Aaron Giles]
+
+Added #include "state.h" to driver.h. This means most driver files
+no longer need to explicitly include it. Went through and removed it
+from most drivers. [Aaron Giles]
+
+Reorganized the core initialization/exit sequencing to be "flatter"
+and more straightforward to understand. System cleanup is now no
+longer explicitly called by the code in mame.c. Rather, each init
+function is free to register an exit handler, which will be called
+in reverse order of registration upon a system exit. [Aaron Giles]
+
+Removed default registrations from config_init() into the init
+functions of the associated modules. Now each system that has config
+data can register its own callbacks to process it. [Aaron Giles]
+
+Renamed MACHINE_INIT to MACHINE_RESET to normalize the naming of the
+callbacks defined in the MACHINE_DRIVER structure. Added several new
+callbacks. The complete list is now:
+
+   DRIVER_INIT -- per-game init called once at startup
+   MACHINE_START/SOUND_START/VIDEO_START -- called once at startup
+   MACHINE_RESET/SOUND_RESET/VIDEO_RESET -- called each reset
+
+Save state registrations should be performed in DRIVER_INIT or 
+(preferably) in the _START callbacks; they should be avoided in the 
+_RESET callbacks if possible. [Aaron Giles]
+
+Removed VIDEO_DUAL_MONITOR flag. [Aaron Giles]
+
+Added a number of new properties to the debug views to allow for more
+flexibility in the way the views are displayed. Also added an option
+to the disassembly window to display encrypted opcode data on the
+right. [Aaron Giles]
+
+Save state changes: [Aaron Giles]
+ - Audited the use of save state registrations throughout the code,
+    switching most cases over to using the state_save_register_global
+    or state_save_register_item macros to simplify the code.
+ - Deprecated the save_state_register_<type> calls since nearly all 
+    cases can be automatically handled by the macros. For odd cases, 
+    there is now a save_state_register_memory call which is generic.
+ - Simplified the save state logic, allowing for unlimited instances
+    and reducing the complexity of the code. This breaks existing save
+    states. Sorry, I'll try not to do it again.
+
+Fixed save state support in Missile Command. [Aaron Giles]
+
+Added oversampling support to the CEM3394 emulator. [Aaron Giles]
+
+Added save state support to the CEM3394 and NES APU sound chips.
+[Aaron Giles]
+
+Added save state support to the jedi, balsente and dkong drivers. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Choko [Guru, Charles MacDonald]
+
+
+
+New clones added
+----------------
+Agress (English bootleg) [Pierpaolo Prazzoli]
+Tokio / Scramble Formation [Nicola Salmoria, Arzeno Fabrice]
+Bomb Kick [Pierpaolo Prazzoli]

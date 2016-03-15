@@ -1,0 +1,211 @@
+0.133u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03389: [DIP/Input] amspdwy: Both cars steer with Player 1 controls
+- 03120: [Color/Palette] nss_lwep: Wrong colors during gameplay 
+         (Angelo Salese)
+- 02701: [Core] z80.c: SCF CCF X and Y flags (hap)
+- 02959: [Crash/Freeze] kinstb: Killer Instinct (SNES Bootleg) no 
+         longer starts up, freezes at blank screen. (R. Belmont)
+- 03275: [Sound] gradius4: Gradius IV Fukkatsu sound has the wrong 
+         pitch (R. Belmont)
+- 03387: [DIP/Input] galmedes: Demo Sound Dip Inverted (Tafoid)
+
+
+
+Source Changes
+--------------
+Added a lot of new clones to multfish and cleaned up the driver. 
+[Vampirz, Fabio Priuli, Brian Troha]
+
+Further ROM name fixes and driver name changes [Yasuhiro Ogawa]
+ - renamed digdugb to digdug1 (it's a rev1, not a bootleg)
+ - renamed digduga1 to digdugat1
+
+SNES Updates: [Angelo Salese]
+ - Fixed direct color gfxs in mode 7
+ - Fixed direct color gfxs in mode 3/4
+ - Fixed a vram out-of-bounds bug
+ - Fixed a blending bug involving main/sub color maths
+ - Fixed interlace mode gfxs when not in gfx modes 5/6
+ - Fixed a GDMA boundary bug
+ - Made the OAM address reset more accurate.
+ - Fixed HDMA mid-frame inits.
+ - Added clip colors to black window function
+ - Converted color clipping to use struct entries
+ - Made dynamic H resolutions to be called only at vblank start and and fixed gfx mode switching 1/5 and 5/1
+ - Made the gfx mode switches more accurate.
+ - Corrected a bunch of SPC registers behaviour
+ - improved joypad read/write handling and fixed a serial port quirk.
+ - Fixed serial port for player 2 as well
+ - Improved cart mode 20 reserved access behaviour
+ - added OBJ interlace support
+
+ST-V: Improved timer 1 irq behaviour. Pebble Beach still have issues 
+with gameplay start though (writes lots of garbage for whatever 
+reason, really worked for random chances before). [Angelo Salese]
+
+Corrected name from Devil's Island to Devil Island. Filled in year 
+for Fruit Bonus 2006 SE & Bug Fever. [Brian Troha]
+
+Discrete sound update: [couriersud]
+ - removed global variable discrete_current_context
+ - discrete_info is now passed instead of device, we may get device by
+    using disc_info->device
+ - Added DISCRETE_IMPORT(*block): imports another discrete block
+ - Added DISCRETE_REMOVE(node1, node2): removes a range of nodes
+ - Added DISCRETE_REPLACE: next node replaces existing node, thus 
+    preserving run order
+ - Added DISCRETE_NOP(node): does nothing, to be replaced.
+ - Added a prescanning stage to build final block list after execution 
+    of the above.
+ - The additions provide an easy way to document subtle difference 
+    between boards. 
+ - Please see audio/galaxian.c for an example
+
+Galaxian sound updates: [couriersud]
+ - Moon Cresta and Galaxian now have their respective schematics 
+    emulated, i.e. Moon Cresta has a slightly different mixing stage.
+ - Cleaned up driver, added some section titles and comments, removed 
+    old code.
+ - Removed emu_timer, this was causing a stream of stream_updates only 
+    updating 3 samples
+ - Replaced with discrete timer module DSS_TIMER now.
+ - Use DISCRETE_NOTE for pitch generation; it is more accurate 
+    (within the one ms where the pitch changes :-) ) and saves a node
+ - Use DISCRETE_BITS_DECODE and save 2 nodes.
+
+YM2612/3834 updates [Eke-Eke, Nemesis]
+ - Split YM2612/3834 to a separate file to avoid disturbing other OPN 
+    chips
+ - SSG-EG, envelope, LFO, and CSM behavior all improved to better 
+    match tested behavior on real YM2612 chips
+    
+DSS_COUNTER updates: [couriersud]
+ - clock_node no longer needs to be static for DISC_CLK_IS_FREQ
+ - rewrote inc/dec logic to avoid loop
+
+Added DISCRETE_BIT(S)_DECODE: [couriersud]
+ - decodes individual bits from input values
+ - Updated drivers which had macro DISCRETE_BITSET (which was a bit 
+    misleading)
+ - This should be slightly faster than using DISCRETE_TRANSROM
+
+Discrete sound enhancements: [couriersud]
+ - Put some life into RCDISC5 enable mode. This now acts as a switch 
+    between R and C. Capacitor voltage will be preserved if disabled.
+ - Made galaxian use the above. Saved 2 nodes and increased accuracy.
+ - Added DISC_LFSR_FLAG_OUTPUT_SR_SN1 flag to shift register noise 
+    generator. This will output the value of the shift register to 
+    sub-node 1. This is needed for future bzone discrete sound 
+    emulation. BTW: RCDISC5 will be used as well. 
+ - Left a note on RCDISC3 on what is needed to be implemented for 
+    bzone.
+ - Optimized the LFSR a bit. LFSRs running at high frequency 
+    (> sample_freq) should benefit.
+
+Verified and fixed deniam.c M68K, Z80, YM3812 and OKIM6295 clocks 
+and OKI pin 7 for logic pro and logic pro 2.  Fixed visible area on 
+logic pro and logic pro 2 to match real PCBs. Add comment about what 
+ym3812 clone is used. Add note about missing graphical effect in 
+logic pro (screen dim on coin insert) and marked as 
+IMPERFECT_GRAPHICS. Add note about 4 pixels at left edge of screen.
+[Charles MacDonald, Lord Nightmare]
+
+Attempt to define an I64FMT string that can be used for printf'ing 
+64-bit integers. This is defined to be "I64" on MSVC and recent mingw 
+compilers, and "ll" for all others. Updated all instances of 64-bit 
+prints to use the new macro. [Aaron Giles]
+
+Added spacwalk extended time setting and DIP locations. [gregf, hap]
+
+Merged 5110intf into tms5110, and 5220intf into tms5220. [Aaron Giles]
+
+Z80 changes: [hap]
+- Fixed X/Y flags in CCF/SCF/BIT, ZEXALL is happy now
+- Simplified DAA, renamed MEMPTR (3.8) to WZ (same temp register as 
+   the officially named WZ in the 8080), added TODO
+
+8085 changes: [hap]
+ - fixed cycle deduction on unconditional CALL / RET, it took about 
+    half too many cycles
+ - added cycle tables and cleaned up source layout. This was done 
+    very carefully, it should be errorfree.
+ - removed HLT cycle eating (earlier, HLT after EI could theoretically 
+    fail)
+ - fixed parity flag on add/sub/cmp. Bug was caused by z80 overflow 
+    detection accidentally left in
+ - renamed temp register XX to official name WZ
+ - renamed flags from Z80 style S Z Y H X V N C  to  S Z X5 H X3 P V C
+    and fixed X5 / V flags where accidentally broken due to flag names 
+    confusion
+
+Fixed MSVC 64-bit compile errors. [Aaron Giles]
+
+Added rgb[a]int_sh[l|r] operations to the rgbutils. rgbvmx needs to be 
+updated. (Nobody is using them yet.) [Aaron Giles]
+
+Added color PROM for Triple Draw Poker. [David Haywood]
+
+Changed profiler to separate start/stop cases. [Christophe Jaillet]
+
+taito_z DIPSW fixes [kanikani]
+
+Added decryption key for Extreme Hunting 2. [Andreas Naive]
+
+Naomi update:
+  [R. Belmont, Deunan Knute, Alex, Mr. Mudkips, Frank Bukor]
+- Use new dump for ic31/32, ROM board test passes now
+- Add protection hookup for Marvel vs. Capcom 2, game is playable 
+   w/sound
+
+Added support TMS1000 family models TMS1000/1070/1100/1200/1270/1300.
+Added support for configuration of output PLA to the tms0980/tms1000 
+interface. [Wilbert Pol]
+
+Implemented transparent mode access for some 6845 model sy6845.
+[Roberto Lavarone]
+
+Verified clocks + Vsyncs on Downtown, Caliber 50 and Xmen (2-4 
+players). [Corrado Tomaselli]
+
+Changed to mono both Downtown and Caliber 50: these pcbs don't have a 
+stereo connector.  [Corrado Tomaselli]
+
+Verified and added correct xtals values for cps1 boards. Added correct 
+xtal and divisor for OKI6295 taken from Forgotten Worlds schematics.
+[Corrado Tomaselli]
+
+Decrypted several tables from the B-Rap Boys ROM. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+WOW New Fantasia [Irongiant, David Haywood]
+Island 2 (060529) [Vampirz]
+Pirate (060210) [Vampirz]
+Keks (several sets) [Vampirz]
+
+
+New clones added
+----------------
+Fruit Cocktail (060111) [Vampirz]
+Saulabi Spirits / Jin Saulabi Tu Hon (Korean release of Samurai 
+   Shodown II) [Guru / David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Colorama (english) [Roberto Fresca, Angelo Salese]
+Roulette V75 (spanish) [Roberto Fresca, Angelo Salese]
+Rabbit Poker (Arizona Poker v1.1?) 
+   [Roberto Fresca, Andreas Naive, Tomasz Slanina]
+Coinmaster Keno (Y2K, spanish, 2000-12-14) [Roberto Fresca]
+Coinmaster Keno (Y2K, spanish, 2000-12-02) [Roberto Fresca]
+Extreme Hunting 2 [Guru]
+Dirt Dash (Rev. DT2) [Guru]

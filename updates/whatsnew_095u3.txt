@@ -1,0 +1,106 @@
+0.95u3
+------
+
+Changes from Nathan Woods
+-------------------------
+* fixed crashes in NES games with new 6502 code
+* updated some M6502 variants in accordance with my recent M6502 changes
+* merged in 8255 PPI mode 2 functionality
+
+
+Changes from smf
+----------------
+* increased MAX_INSTANCES in src\state.c
+* increased FLASH_CHIPS_MAX in src\machine\intelfsh.h
+* merged 8 bit & 16 bit intelflash nvram handler & passes the chip number as 
+  a parameter
+* cycle accurate emulation of ADC0831/ADC0832/ADC0834/ADC0838 serial 
+  analogue to digital converters
+* hooked up konamigx.c to use adc083x.c
+* commented out logerror's in timekpr.c
+* added rudimentary support in artwork.c for resizing after a visible area change
+
+
+Changes from R. Belmont
+-----------------------
+* Made gradius 3 vis region symmetrical
+* Added dx/dy settings to K052109, similar to those
+  known to exist in the '156 and later chips
+* Fixed layer 2's X offset in gradius3
+
+
+Changes from Aaron Giles
+------------------------
+Williams driver rewrite
+* rederived all addressing from schematics
+* cleaned up banking mechanisms
+* fixed sound CPU clock in later games
+* simplified blitter code significantly
+* added timing to the blitter (just a guess right now)
+* implemented clipping circuits correctly
+* simplified palette handling significantly
+* rewrote video system to use tilemaps for later games
+
+
+Other changes
+-------------
+Fixed DIP switches in ghoshunt/tutstomb. [Sonikos]
+
+Fixed ROM names in Rastan. [Bryan McPhail]
+
+Sped up reading of input ports. [wpcmame]
+
+Fixed cycle counts for several 68000 instructions. [Andrew Seed]
+
+Updated tone sounds in Phoenix to use discrete system. [Derrick Renaud]
+
+Removed fake hack ports from Battlezone and Vindicators Part II. [Aaron Giles]
+
+Cleaned up DIP switches in the M90 games. [Brian Troha]
+
+Added graphics decryption to panicr. [Nicola Salmoria]
+
+Cleaned up error.log messages in atarijsa.c and marineb.c, and while displaying
+sound chip info. [Sebastien Volpe]
+
+Removed Phoenix sound from Pleiads. [Derrick Renaud]
+
+Fixed dipswitches in Pocket Gal Deluxe. [Sonikos]
+
+Fixed dipswitches in Vs. Sky Kid. [chaneman]
+
+Fixed gsword sprite palettes. [Nicola Salmoria]
+
+Added oki banking to Speed Spin driver. [Pierpaolo Prazzoli]
+
+Fixed clock speeds and refresh rate for crimfght. [Mamesick]
+
+Added samples to Kabuki-Z with a new redumped rom for cpu3 too and fixed the
+garbage colors at startup. [Pierpaolo Prazzoli]
+
+Fixed index addressing mode disassembly for HD6309. [Tim Lindner]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Flying Tiger [David Haywood]
+Thunder Dragon [Angelo Salese, Nicola Salmoria]
+Hacha Mecha Fighter [Angelo Salese]
+World Beach Ball Championship 1997 [Pierpaolo Prazzoli]
+
+
+New clones added
+----------------
+Operation Wolf (World) [Bryan McPhail]
+Great Swordsman (World?) [Nicola Salmoria, Corrado Tomaselli]
+Sharpshooter (Rev 1.2) [Brian Troha]
+Cascade (Avalanche bootleg) [David Haywood]
+Catt (Japan) [Pierpaolo Prazzoli]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Hollywood Action [David Haywood]
+Power Spikes (bootleg) [Pierpaolo Prazzoli]
+Aero Fighters (bootleg) [Pierpaolo Prazzoli]

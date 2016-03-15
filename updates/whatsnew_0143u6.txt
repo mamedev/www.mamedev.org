@@ -1,0 +1,158 @@
+0.143u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04483: [Compiling] sdlmame does not build in OpenBSD (R. Belmont)
+- 04488: [Sound] All games in ms32.c: Jaleco Mega System 32 is mono
+         only (Angelo Salese)
+- 03541: [DIP/Input] victlapw: Cannot insert coins. (hap)
+- 02543: [Color/Palette] raveracw, raveracj, raveracja: Sudden in-game
+         darkness. (hap)
+- 01949: [Graphics] cybrcycc: No background graphics when choosing
+         Hard course. (hap)
+- 00136: [Crash/Freeze] acedrvrw: I was passing the first checkpoint
+         on the first track and was heading off the track, it crashed.
+	 (hap)
+- 02008: [Crash/Freeze] acedrvrw, victlapw: The 2 Ace Drivers game
+         crash during attract mode (hap)
+- 04480: [Misc.] All sets in mpu4.c and mpu5.c: Running any sets cause
+         "validation checks failed" message (Tafoid)
+
+Source Changes
+--------------
+Replaced M1 rom with proper dump for nprsp (NeopriSP Retro Collection)
+[The Dumping Union]
+
+m68k: fixed another buffer overflow bug [Belegdol, R. Belmont]
+
+Added preliminary MCU handshake simulation sequence for astyanax,
+hachoo, jitsupro, plusalph, stdragon and removed ROM patches for those
+games [Angelo Salese]
+
+Implemented inputs for edfbl and monkelf [Angelo Salese]
+
+Fixed attract mode behaviour in Cybattler [Angelo Salese]
+
+Added MCU dumps for X-Multiply (m72) and Image Fight 
+[The Dumping Union]
+
+Removed deprecat.h usage from Jaleco Mega System 1 [Angelo Salese]
+
+Improved sprites in King Derby [Angelo Salese]
+
+Implemented default INIT register for MC68HC11 CPU core, necessary for
+Namco's 30 Test HC11 sub-variant to work properly [Angelo Salese]
+
+Implemented preliminary Free Running Counter timer for MC68HC11 CPU
+core [Angelo Salese]
+
+Added ROL EXT, ROL INDX, ROL INDY, STS DIR opcodes to the HC11 CPU
+core [Angelo Salese]
+
+Implemented save support to HC11 core [Angelo Salese]
+
+Added preliminary 7-seg artwork for King Derby [Angelo Salese]
+
+dogpatch - added shot sounds [Derrick Renaud, iritis]
+
+Yet more Neo-Geo work on game ROMs structures [Johnboy]
+ * Finished to document used pcb's for cartridges
+ * Finished removal of .bin extension in favour of
+    chiplabel.socketlabel naming convention
+
+Whitestar: added main CPU FIRQ, fixed main/DMD CPU comms, DMD VRAM is
+now populated [R. Belmont]
+
+Update raiden 2 driver with guru-style readme for raiden 2 pcb itself,
+based on the raiden dx guru-readme. [Lord Nightmare]
+
+Figured out BIOS loading in Super Kaneko Nova System
+[Joerg Hartenberger]
+
+model3: added drive board ROMs for Scud Race, Scud Race Plus, Sega
+Rally 2, and Daytona USA 2 [Andy Geezer]
+
+naomi: added drive board ROM for f355 [Andy Geezer]
+
+Whitestar: correct sample loading for games with 4Mbit ROMs
+[R. Belmont]
+
+Various Nibbler clean-ups:  [Tafoid]
+ * Set up Nibbler and clones to allow the Pioneer Balloon sound rom as
+    OPTIONAL as some board configurations has this rom on board.  If
+    it is missing from your romset, the game will be allowed to play
+    without the music is desired.
+ * Nibbler and clones have been reordered and renamed based on version
+    information.
+ * Added notes to the driver.
+
+Various wiz.c fixes :  [Tafoid]
+ * Fixed cocktail controls for scion and clone.
+ * Took ROM_LOAD_OPTIONAL out of ROM_START that uses the audiocpu rom
+    from scionc for scion.  The original scion audiocpu is not
+    emulated correctly, is a known issue, and was only covered up by
+    the use of this other dump from scionc.
+
+whitestar: correct sample ROM loading for games with 8Mbit sample ROMs
+[R. Belmont, Tafoid]
+
+Allow region tags starting with a : to mean "absolute" so devices can
+access the parent base driver's ROM regions [R. Belmont]
+
+Moved DECO BSMT2000 sound board out to a device shared between
+Whitestar and tattass [R. Belmont]
+
+WD17xx: Connected Side Select Output for variants that support it.
+[Curt Coder]
+
+More minor notes about different raiden 2 set sound roms and suspected
+(but as of yet unproven) version order. [Lord Nightmare, trap15]
+
+Update sp0256 core to use correctly ordered resroms; update sauro
+driver to use correctly ordered sp0256-al2 resroms.
+[Huygens, Lord Nightmare]
+
+namcos22.c updates [hap]
+ * fixed acedrvrw and victlapw crash from buffer overflow
+ * fixed dirtdash crash due to pointrom size, the game still doesn't
+    work though
+ * improved display fader (used in raveracw)
+ * cleaned up inputs and added default nvram where useful
+ * properly emulated step lock motor status for the skiing games
+
+Added basic PCB layout for Reel'N Quake! [Brian Troha]
+
+Further major organization, documentation and reordering of numerous
+(over 1700) gambling / Fruit machine titles covering multiple
+systems.  [David Haywood / James Wallace]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Bingo (set 1) [Roberto Fresca, EMMA Italian Dumping Team]
+Bingo (set 2) [Roberto Fresca, The Dumping Union]
+30 Test (Remake) [Angelo Salese, Yasuhiro Ogawa]
+Candy Candy
+  [Kevin Eshbach, ranger_lennier, B. Munger, bodger319, Brian Troha, Smitdogg, The Dumping Union]
+Deluxe 5
+  [Steetgames, bodger319, G. Mateo, M. Rodrigo, R. Weidinger, Brian Troha, Smitdogg, The Dumping Union]
+PEPSI Man [Luca Elia]
+Super Shot [Mariusz Wojcieszek, Team Europe & fallout]
+Umi de Poker / Marine Paradise [Angelo Salese, Yasuhiro Ogawa]
+Slot Poker Saiyuki [Angelo Salese, Yasuhiro Ogawa]
+
+
+New clones added
+----------------
+Ikari 3 (Japan) [ShouTime]
+Exvania (World) [Tormod, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Croupier (Playmark Roulette v.20.05) [Roberto Fresca]
+Video Poker (v1403) [Roberto Fresca]
+Funcube 3
+Mahjong Momotarou

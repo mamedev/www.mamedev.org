@@ -1,0 +1,102 @@
+0.122u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+hstennis0103u2gra [Brian Troha]
+edrandy0113gra [Brian Troha]
+robocop2_0106u3gra [Brian Troha, Bryan McPhail]
+mario0110u1gre [couriersud]
+sbrkout0118yel [R. Belmont, Adam Bousley]
+pestplce0122red [couriersud]
+funkyjet055yel [Bryan McPhail]
+liberate074u1gre [Bryan McPhail]
+tokiu056gre [Bryan McPhail]
+powerbls0112u4red [Pierpaolo Prazzoli]
+wwestern0115u1yel [Atari Ace]
+namcos1_0118u2yel [Atari Ace]
+victnine0116u2red [Pierpaolo Prazzoli]
+btoads0103gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixes clocks for Orbs. [David Haywood, Tomasz Slanina]
+
+Fixed various 64-bit GCC warnings. [R. Belmont]
+
+Improves accuracy and documentation of NSS/SNES DSP-1.
+[Andreas Naive, R. Belmont]
+
+Added new file xtal.h, documenting all known arcade PCB clock cystals.
+Drivers should be updated to use these as a basis for their clocks,
+and the list should be augmented as additional crystals are found.
+[Guru, Aaron Giles]
+
+suprloco improvements: [Pierpaolo Prazzoli]
+ * Fixed IC.34 memory test 
+ * Fixed 2nd player cocktail mode
+ * Changed coin3 to service1
+ 
+Cleaned up inputs/DIP switches in cninja driver. [Brian Troha]
+
+Rewrote mario.c: [couriersud]
+ - rewrote driver, separate MACHINE_DRIVER(mario_audio)
+ - palette from schematics
+ - video timing from schematics
+ - driver configuration switch Nintendo/Std Monitor
+ - got rid of COLORTABLE
+
+Fixed typo for IO1 irq callback in hyperstone core. 
+[Pierpaolo Prazzoli]
+
+Added memory_get_bank() function. Fixed logging in memory.c to to use 
+%p for pointer values. [Aaron Giles]
+
+Fixed save states in i8051 cpu core [Pierpaolo Prazzoli]
+
+Implemented a few SysCtrl, Maple, and PVR/HOLLY bits for Naomi. The 
+BIOS gets slightly further but is nowhere near starting up. 
+[R. Belmont]
+
+Zeus updates: [Aaron Giles]
+ * Better documented various bit latches.
+ * Hooked up crusnexo lamp board (added layout).
+ * Fixed year in MK4 startup test.
+
+Fixed TMS5110 tables. [couriersud, Lord Nightmare]
+
+Removed ui_popup(). Drivers should always be using popmessage() 
+instead (has been this way for a while). Augmented popmessage() so 
+that you can pass NULL to immediately dismiss any messages.
+[Aaron Giles, thanks to Oliver Stoneberg's suggestion]
+
+Added ATTR_PRINTF to a number of functions that have printf semantics.
+[Oliver Stoneberg]
+
+Rewrote sbrkout driver based on schematics: [Aaron Giles]
+ * XTAL-based timing
+ * Correct video timing
+ * Full memory map
+ * Correct memory usage ("zero page" RAM is shared with videoram)
+ * Removed all input hacks
+ * Fixed interrupt generation
+ * Connected coin counters
+ * Added save state support
+
+Fixed several UNICODE=1 issues in the debugger. Changed the Windows
+build process to always enable UNICODE=1 for 64-bit builds.
+[Oliver Stoneberg, Aaron Giles]
+
+Added save state support to btoads. [Aaron Giles]
+
+Fixed onna34ro mcu simulation properly. [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Mutant Fighter (World, EM-3) [Stefan Lindberg]
+The Simpsons (2 Players Asia) [Arzeno Fabrice]

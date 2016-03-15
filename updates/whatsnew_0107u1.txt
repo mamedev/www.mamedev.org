@@ -1,0 +1,96 @@
+0.107u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+timecrsa0100u1gra [Luigi30]
+inputduplication0106u7gra (nyny, joust, lghost, hyhoo) [Luigi30]
+lastduel0106u7gra [Luigi30]
+jdreddp0106u1gra [Luigi30]
+bzone0104u7gra [Aaron Giles]
+pturn0104u7gra [ShimaPong]
+tsamurai0103gra [Aaron Giles]
+pause0102gra [BUT]
+mameini0107ora [Aaron Giles]
+omegafc0107yel [Aaron Giles]
+s2650_0106u11ora [Minuous]
+syvalion0107yel [Aaron Giles]
+congo0107red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Removed hard core dependency on samples. [Andrew Gardner]
+
+Added what seems to be a proper fix for the background transparency 
+flag that was needed by champbwl to show the green background.
+[Pierpaolo Prazzoli]
+
+Updates to the MagicFly driver: [Robert Fresca]
+ - Figured out the MC6845 (mapped at $0800-$0801)
+ - Fixed the screen size based on MC6845 registers.
+ - Fixed the visible area based on MC6845 registers.
+ - Corrected the gfx rom region.
+ - Solved the NMI/vblank issue. Now attract works.
+ - Changed CPU clock to 625khz.
+ - Added new findings to the technical notes.
+ - Marked magicfly PAL as NO_DUMP (read protected).
+
+Fixed memory write ordering bug in the 68000 core. [Charles MacDonald]
+
+Added some PPC602 specific opcodes and registers. [Ville Linde]
+
+Removed NEW_RENDER definition and all support for the old rendering
+system from the core. Cleaned up a bunch of useless and deprecated
+code as a result. [Aaron Giles]
+
+Massively rewrote the user interface to rely on the new rendering
+systems. Broke the UI into multiple pieces (ui.c, uimenu.c, uigfx.c).
+The code is now verging on readable. [Aaron Giles]
+
+Renamed ui_popup to popmessage across the code, and implemented
+popmessage in mame.c. This breaks the dependency between the core 
+driver code and the user interface in almost all cases. [Aaron Giles]
+
+Added a red background to serious warning messages in the vain hope
+that people might take better notice. [Aaron Giles]
+
+Fixed vector game crashes with DirectDraw rendering. [Aaron Giles]
+
+Consolidated live screen parameters into a screen_state structure.
+Machine->visible_area[num] is now Machine->screen[num].visarea.
+Machine->refresh_rate[num] is now Machine->screen[num].refresh.
+[Aaron Giles]
+
+Added new function configure_screen() which can control the width,
+height, visible area, and refresh rate of each screen. This function
+allows for widths and heights larger than what were specified in the
+game driver, so you no longer have to specify the maximum width and
+height in the driver, but can instead specify a typical width and
+height. This function supercedes the old set_visible_area() and
+set_refresh_rate() functions. The former has been rewritten to call
+configure_screen(), while the latter has been removed entirely.
+[Aaron Giles]
+
+Changed the behavior for supporting overscan and other effects. The
+width and height of a screen control the overall bitmap size. The
+visible area of a screen specify its non-blanked boundaries (and 
+default visible area, as before). [Aaron Giles]
+
+Moved line-to-quad conversion routine into the core render.c as
+another utility function. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+TomCat (Star Wars hardware, prototype) [Mathis Rosenhauer]
+Poke Champ [David Haywood]
+
+
+
+New clones added
+----------------
+Dungeons & Dragons: Shadow over Mystara (Brazil 960223) [Brian Troha]

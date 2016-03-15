@@ -1,0 +1,79 @@
+[note: only important changes are listed]
+
+0.18
+----
+
+IMPORTANT NOTE: This will be the last version of MAME released by me (Nicola
+Salmoria). From now on, the project will be maintained by Mirko Buffoni
+(mix@lim.dsi.unimi.it). Contact him if you have material to submit for
+inclusion into MAME. Please don't send such material to me.
+
+
+Program:
+- Green Beret:
+  - The speed should now be VERY accurate. It also syncs correctly with the
+    music.
+  - Sound pitch should be correct as well (though it changes after you die
+    for the first time...)
+  - High score support.
+  - Fixed sprite clipping problem on the left of the screen.
+  - Fixed memory trashing bug in dirtybuffer handling
+
+- I finally added some lousy, very inaccurate, noise to the 76496 emulator.
+  This affects Lady Bug and Green Beret.
+
+- I also added the same lousy noise to Galaxian, Pisces, Moon Cresta, Moon
+  Quasar.
+
+- Fixed bug in the 8910 emulation which caused noise to be played in Crazy
+  Kong when you jumped over a barrel.
+
+- Zaxxon and Congo Bongo now save their high scores for real. The code had
+  disappeared from the drivers... I _did_ write it, since I had .hi files in
+  my directories ;-)
+
+- High score support in Space Invaders (Invaders only - not clones)
+
+- Bomb Jack is much faster on a 486. Now runs very well with -frameskip 1 on
+  my 486/100.
+
+- Sprite placement in Pac Man, Ms Pac Man and Crush Roller should now be
+  arcade perfect. Thanks to Richard Davies who verified it on a real machine.
+
+- Preliminary support for Jungle King / Jungle Hunt. Slow but playable. I
+  haven't the gfx bank selector, therefore you'll have to pick the correct
+  background graphics yourself. Use keys C and V to change it.
+
+- VERY preliminary support for Elevator Action. Not playable.
+
+- Preliminary support for Seicross, using the Crazy Kong driver. Not playable.
+
+- Marc Lafontaine fixed some problems in the Venture driver, and provided
+  drivers for Mouse Trap and Pepper II, which run on similar hardware (Pepper
+  II is not complete yet).
+  Note that the required Venture ROM set has changed - the other one was
+  missing one ROM.
+  Collision detection doesn't work - in Mouse Trap, you can use keys 7 and 8
+  to simulate a sprite-to-character and a sprite-to-sprite collision.
+
+- Rotated the controls for Q*Bert
+
+- Some changes to music tempo in Amidar, Pooyan, Time Pilot.
+
+- Added support for the original, Universal version of Mr. Do!. I renamed the
+  other, which has an additional Taito copyright notice, "mrdot".
+
+- Support for a version of Crazy Kong running on Scramble hardware
+
+- Mike Coates provided a Space Panic driver.
+
+- Fixed bugs in Jump Bug and Bagman sound drivers which caused page faults
+  when run under DOS.
+
+- Fabrice Frances submitted a much faster version of the 8086 emulation.
+  Q*Bert now runs at full speed with -frameskip 1 on my 486/100.
+
+Source:
+- Samples are now loadaed by the main engine, not the single drivers. This is
+  done via the new field samplenames in the GameDriver structure. Samples can
+  then be retrieved by the drivers in Machine->samples.

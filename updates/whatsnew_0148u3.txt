@@ -1,0 +1,181 @@
+0.148u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03873: [Misc.] (megaplay.c and megatech.c): Individual games
+  incorrectly writing an NVRAM file.  (Fabio Priuli)
+- 05139: [Color Palette): ryorioh: Wrong Colors (Angelo Salese)
+- 05179: [Interface] -burnin option not functioning  (Fabio Priuli)
+  
+
+
+Source Changes
+--------------
+-QT Debugger fixes:
+ * New memory windows start focused on the active CPU.
+ * Opening a utility window, closing it, and stepping no longer
+    re-opens the window. [Andrew Gardner]
+
+-shangha3.c: Added dipswitch locations to Shanghai III, Hebereke no
+ Ponpoon and Blocken. [Brian Troha]
+
+-m6502: Seriously untested multi-dispatch-table support [O. Galibert]
+
+-coolridr: work around miscompile on newer versions of Clang
+ [Phil Bennett]
+
+-Modernized k053260 device. [Andrew Gardner]
+
+-M740 CPU family updates: [R. Belmont, O. Galibert]
+ * Support for all T=1 instructions
+ * Added COM and the accumulator-only versions of INC and DEC
+
+-namcos2: Use the correct C68 (M37450) I/O MCU for Steel Gunner 2.
+ [R. Belmont, Guru, Charles MacDonald]
+
+-aristmk4.c:  [Heihachi73]
+ * Added Caribbean Gold (working), cleaned up comments and EPROM part
+   numbers for a handful of games. Caribbean Gold needs some trivial
+   input changes, as currently it has a logic door error on boot, however
+   if you hit the coin input the error goes away and allows you to key in
+   to perform a memory reset and finally coin up.
+
+ * Also, Caribbean Gold 2 [cgold2] now has passable graphics, by using
+   two of cgold's graphics ROMs (cgold u8 and u9 -> cgold2 u20 and u45)
+   the game is now playable instead of a garbled mess (there are only a
+   few tiles which differ between both games).
+
+ * Promoted Caribbean Gold II and Fortune Hunter (and clone) to working -
+   these had been working ever since eforest and arcwins were promoted
+   but the flags were never removed.
+
+-Add support for Mitsubishi M50740/50741 MCUs. [R. Belmont]
+
+-exidy.c: fixed an out-of-range access spot by gcc-4.9. [Juergen
+ Buchmueller]
+
+-beezer.c: fixed an out-of-range access spot by gcc-4.9.
+ [Juergen Buchmueller]
+
+-Expanded device_t constructor with parameters for short name and
+ source file location [Miodrag Milanovic]
+
+-spu: add cdda interrupts [Carl]
+
+-sf2m3, sf2m8 - fixed remaining gfx issues, marked as WORKING.
+ [Robbbert]
+
+-improved sf2m1, dinopic, dinopic2, punipic, punipic2, punipic3
+ [Robbbert]
+
+-shangha3.c: Corrected clock speed for Shanghai 3 and added misc
+ documentation. [Brian Troha]
+
+-Treat x & y coordinates as 11 bit signed, Ridge Racer Revolution
+ loading game sets unused bits. [smf]
+
+-M740: correct disassembly of bbs/bbc on A register. [R. Belmont]
+
+-tms5220.c: Added correct tms5200 chirp rom derived from decap; This is
+ now correctly used for 5200, 5220 and 5220c, improving the voice quality
+ significantly.
+ [digshadow, Sarayan, Lord Nightmare]
+
+-M740: Correct disassembly for seb x,A/clb x,A [R. Belmont]
+
+-Treat x & y coordinates as 11 bit signed on dots, lines & rectangles.
+ This fixes sprites in Zaynac X Zaynac (fc version) in MESS [smf]
+
+-QT Debugger: The memory view chunk size radio now reports proper
+ sizes. Fixed "ignore" command reporting incorrect invalid CPUs. Fixed
+ crazy code responsible for opcodes' crc32s in the comments system
+ (what was I thinking back then?). [Andrew Gardner]
+
+-315_5124.c: Small improvements to the palettes.  [Enik Land]
+
+-i960: Add cvtilr needed by Zero Gunner. [R. Belmont]
+
+-tms5220.c: Extremely minor fix for Speak External based on the 5220c
+ and 5200 decaps, and some small documentation updates.
+ [Lord Nightmare, digshadow]
+
+-gaplus.c: Corrected some issues between Galaga 3 & Gaplus sets.
+ [Brian Troha]
+
+-Reduced time before dma interrupt is fired, as it stops incorrect
+ textures being displayed in a few games and the pse bios v2.2. [smf]
+
+-psxgpu_device::update_screen clears the border area. [smf]
+
+-fixed GTE A1/A1/A3 flag calculation when the result exceeds the
+ maximum bounds. GPF & DPCT work with all values of sf & lm [smf]
+
+-namcos23: Update hardware readme [Guru]
+
+-drawd3d.c - Fixes performance issues with YIQ enabled and
+ prescale_x/prescale_y changes no longer impacts colors.
+ [Just Desserts, Robert Tuccitto]
+
+-Fixed GTE GPL & DCPL opcodes by porting over some changes from an old
+ tree [smf]
+
+-Added default NVRAM to royalcrdp, allowing to boot the game, and
+  promoted to working state. [Peter Ferrie]
+
+-Added default NVRAM to magicrd2b and magicrd2c, allowing to boot both
+  games, and promoted to working state. [Peter Ferrie, Roberto Fresca]
+
+-TMS5100 and 5200 series: document the decapping and verification of
+ chirp tables for the tms5100, tms5200, tms5220, and tms5220c.
+ The LPC tables are not verified yet. [digshadow, Lord Nightmare]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Bases Loaded (Prototype, PlayChoice-10) [Lost Levels]
+Sex Appeal (Version 6.02) [Brian Troha, The Dumping Union]
+Caribbean Gold (3VXEC449, USA)  [Heihachi73]
+Caribbean Gold II (3XF5182H04, USA)  [Heihachi73]
+Fortune Hunter (2XF5196I01, USA)  [Heihachi73]
+Fortune Hunter (2XF5196I02, USA)  [Heihachi73]
+Magic Card II (green TAB or Impera board)  [Peter Ferrie, Roberto Fresca]
+Magic Card II (blue TAB board, encrypted)  [Peter Ferrie, Roberto Fresca]
+Royal Card v2.0 Professional  [Peter Ferrie]
+
+New clones added
+----------------
+Virus (Dr. Mario prototype, PlayChoice-10) [Lost Levels]
+Hit The Six (Project) (set 3) [launton]
+(U.S.) Games V18.5 [Bad A Billy, Smitdogg, The Dumping Union]
+Magic Johnson's Fast Break (Arcadia, V 2.7)
+  [Kevin Eshbach, The Dumping Union]
+Hang-On (older?) [cmonkey]
+Daytona USA Special Edition (Japan, Revision A) [Ordyne]
+Daytona USA (Japan, Turbo hack, set 2) [Any, The Dumping Union]
+Gaplus (GP2) [Any, The Dumping Union]
+Side by Side (Ver 2.7 J) [Guru]
+Capcom Vs. SNK Millennium Fight 2000 (JPN, USA, EXP, KOR, AUS)
+  [Porchy, The Dumping Union]
+Raiden Fighters Jet (Single Board, set 1)
+  [Tormod, Smitdogg, The Dumping Union]
+Motocross Go! (MG1 Ver. A) [Any, The Dumping Union]
+The Pit Boss (2214-03, U5-1C) [Brian Troha, The Dumping Union]
+Riviera Hi-Score (2131-08, U5-2D) [Brian Troha, The Dumping Union]
+Forgotten Worlds (USA, B-Board 88618B-2, Rev. AA) [system11]
+Galaga 3 (GP3) [system11]
+Motocross Go! (MG1 Ver. A, set 2) [Any, The Dumping Union]
+Karnov (US, rev 6) [system11]
+Cycle Warriors, set 1 [system11]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Winning Streak (Version 1.1) (Coinworld) [albaki77]
+Fruit Star (encrypted) [Team Europe, Roberto Fresca]
+Crackin' DJ Part 2 [ShouTime, f205v, The Dumping Union, R. Belmont]
+Saturday Night Slam Masters (bootleg with PIC16C57)
+  [ANY, The Dumping Union, Robbbert]
+Mars TV [ShouTime, f205v, R. Belmont]

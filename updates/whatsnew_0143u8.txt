@@ -1,0 +1,267 @@
+0.143u8
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04505: [Graphics] airbustr and clones: Background scrolling is jerky
+         (hap)
+- 04497: [Crash/Freeze] spss4240: Hang during "Initializing.." routine
+         (Jim Stolis)
+- 04507: [Documentation] mmmbnk: Game description is just "Medal
+         Mahjong Moukari Bancho".
+- 04496: [Crash/Freeze] m1cluecb, m1przclu: Hang of application after
+         OK (R. Belmont)
+- 04441: [Crash/Freeze] Most sets in triforce.c: Crash/Assert before
+         OK (R. Belmont)
+- 04502: [Crash/Freeze] crtaxihr, mj2, mj3, outr2st: Stop before
+         "Initialization" completion (R. Belmont)
+- 04503: [Crash/Freeze] azumanga, initdv2jo, initdv3jb: Access
+         Violation during "Initializing" (R. Belmont)
+
+Source Changes
+--------------
+Improvements to magicfly.c [Roberto Fresca]
+ * Confirmed and fixed CPU clock for magicfly and 7mezzo.
+ * Rearranged the graphic ROMs addressing. Splitted both gfx banks.
+ * Created and minimized the color palette for both gfx banks.
+ * Fixed colors for magicfly and 7mezzo.
+
+Provided DVD dump for junai [alien_mame, The Dumping Union]
+
+lethalen: improved offset screen and gun in japan version; removed
+eeprom default values [Roberto Zandona']
+
+taito_z.c: Added PCB locations to the Aqua Jack sets [ShouTime]
+
+taitopjc: Preliminary text layer and I/O CPU hookup [Ville Linde]
+
+taitotz: preliminary text layer hookup [Ville Linde]
+
+viper: implemented timers and I2C interface on MPC8240 [Ville Linde]
+
+voodoo: preliminary Voodoo 3 support [Ville Linde]
+
+Wrote a basic core for Epson RTC-9701 device chip [David Haywood,
+Angelo Salese]
+
+Fixed various translitteration errors in csplayh5.c game name
+descriptions [Fujix]
+
+Fixed Juno First refresh rate and interrupt firing
+[Angelo Salese, Chris Hardy]
+
+Removed deprecat.h usage from higemaru.c [Angelo Salese]
+
+Removed deprecat.h usage from srmp6.c [Angelo Salese]
+
+naomi: fix various crashes for some GD-ROM sets [R. Belmont]
+
+Added tables from vlm5030 as verified by decap from ogoun. Adapted
+vlm5030 to use the tms5xxx common tables file. Some details have yet
+to be worked out for certain (how exactly the reflection coefficients
+beyond k=2 address the k2+ rom)
+[ogoun, Lord Nightmare, The Dumping Union]
+
+Adjusted the VLM5030 K3 thru K10 coefficients to be based not on
+reading the K2 rom but based on the index itself <<6 or 7. This makes
+the games sound much better and explains the very small ram size used
+for coefficients other than K1 and K2. This needs further
+investigation and figuring out of the die schematic to settle
+completely. [Lord Nightmare]
+
+Various gottlieb.c fixes [Tafoid]
+ * Verified through playtesting, manuals and in-game service modes all
+    dips in the driver.  Consolidated and added Dip Locations based on
+    all available information.
+ * Changed Q*bert and Q*bert's Qubes joystick layout to 8-Way to allow
+    for diagonals to be not only be mapped but used if desired.
+
+Optimzied SH4 core by using a single opcode jump table instead of
+nested switch statements [David Haywood]
+
+namcos22.c: improved flat shading and depth cueing [hap]
+
+Golden Poker driver improvements. [Roberto Fresca]
+ * Mapped the Dallas DS1210 for Video Klein sets that have one.
+ * Mapped the 2800-2fff range as RAM for the non-Dallas Video Klein
+    sets.
+ * Some minor fixes.
+
+Fixed colors to Witch Card (Video Klein CPU box, set 2)
+[Roberto Fresca]
+
+Novo Play Multi Card / Club Card improvements: [Roberto Fresca]
+ * Added proper button-lamps support and layout.
+ * Added default NVRAM, necessary to boot.
+ * Added technical notes.
+
+JPM IMPACT changes that make the display at least work now, and some
+more M1 set splitting [James Wallace]
+
+Preliminary emulation of the YMZ770 sound chip
+[R. Belmont, O. Galibert, MetalliC]
+
+Funworld driver: Documented hopper motor line (temporarily added as an
+extra lamp). Better documentation of output ports... Novo Play Multi
+Card: Added PIAs connections layout, added 'Allow Autohold' DIP
+switch. [Roberto Fresca, Rob Ragon]
+
+Various improvements to Magic the Gathering: Armageddon [Phil Bennett]
+
+Made some fixes/additions to the input system [kanikani]
+ * Added the possibility to press contradictory direction digital
+    joystick input at the same time (i.e. up-down, left-right);
+ * Added the possibility to set an arbitrary value for coin impulses;
+ * fixed a bug with loop lever routine
+ * fixed a bug with analog joystick routine
+
+Various fixes in tnzs.c driver [kanikani]
+ * Plump Pop
+ - update DIPSW item (collision between each players' child)
+ - added DIPLOCATION
+ * Extermination
+ * Arkanoid Revenge of DOH
+ * Dr.Toppel
+ * Kageki
+ * Chuka Taisen
+ * The Newzealand Story
+ - added DIPLOCATION
+ * Kabuki Z
+ - fixed difficulty DIPSW (EASY and MEDIUM is reversed)
+ - added DIPLOCATION
+ * Insector X
+ - fixed difficulty DIPSW (based on manual)
+ - added DIPLOCATION
+
+Various fixes in tmnt.c driver [kanikani]
+ * T.M.N.T.
+ - fixed visible area (garbage on each side is correct (verified on
+    PCB))
+ - fixed DIPSW
+ - added DIPLOCATION
+ * Golfing Greats
+ - fixed inputs
+ - fixed DIPSW
+ - added DIPLOCATION
+ * Trigon
+ * Cuebrick
+ * M.I.A.
+ * Punk Shot
+ - fixed DIPSW
+ - added DIPLOCATION
+ * Premiere Soccer
+ - added DIPLOCATION
+Various fixes in ninjaw.c driver [kanikani]
+ * Ninja Warriors
+ - added DIPSW notes
+ * Darius II
+ - fixed DIPSW
+ - fixed game description
+Various fixes in twin16.c driver [kanikani]
+ * Majuu no Oukoku
+ - fixed inputs
+ - fixed DIPSW
+ - added DIPLOCATION
+ * Gradius II
+ * Hard Puncher
+ * M.I.A.
+ * Cuebrick
+ - fixed DIPSW
+ - added DIPLOCATION
+
+Fixed DIPSW in Darius II [kanikani]
+
+Fixed DIPSW in Ninja Ryuukenden / Ninja Gaiden [kanikani]
+
+Various fixes in galaga.c driver [kanikani]
+ * Bosconian
+ - fixed DIPSW
+ - fixed DIPLOCATION
+ * Galaga
+ * Xevious
+ * DigDug
+ - fixed DIPLOCATION
+Fixed DIPSW and DIPLOCATION in segas24.c driver [kanikani]
+
+Fixed DIPSW and DIPLOCATION in segas18.c driver [kanikani]
+
+Fixed DIPSW in segag80r.c driver [kanikani]
+
+Fixed DIPSW in segag80v.c driver [kanikani]
+
+Fixed DIPSW in segald.c driver [kanikani]
+
+Fixed DIPSW in Ninjakun and Penguin-Kun Wars [kanikani]
+
+Various fixes in dec0.c driver [kanikani]
+ * Heavy Barrel
+ - fixed DIPSW
+ - fixed DIPLOCATION
+ * Birdie Try
+ * Dragon Ninja
+ * Fighting Fantasy
+ * Midnight Resistance
+ - fixed DIPSW
+ * Robocop
+ - fixed DIPLOCATION
+
+Fixed coinage DIPSW using Sega common setting in segaybd.c,
+segaorun.c, segaxbd.c, segahang.c, segae.c, segac2.c, segas16a.c and
+segas16b.c drivers [kanikani]
+
+Fixed coinage DIPSW using Konami common setting in chqflag.c, pooyan.c
+and rockrage.c drivers [kanikani]
+
+Various fixes in sega16b.c driver [kanikani]
+ * Ace Attacker
+ - added I/O board read routine
+ * Dunk Shot
+ - fixed DIPLOCATION
+ * Sukeban Janshi Ryuko
+ - added DIPSW
+ * Time Scanner
+ - fixed DIPSW
+
+Various fixes in sega16a.c driver [kanikani]
+ * Ace Attacker
+ - changed to use analog device
+ * Sukeban Janshi Ryuko
+ - added DIPSW
+ * Time Scanner
+ - fixed DIPSW
+
+Fixed / added comments in ninjakd2.c driver [kanikani]
+
+Made some video optimizations in toypop.c driver [kanikani]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Waku Waku Doubutsu Land TonTon [Angelo Salese, Yasuhiro Ogawa, Roberto
+Fresca]
+Kasino '89 [Roberto Fresca, Rob Ragon, Tomasz Slanina]
+Novo Play Multi Card / Club Card [Roberto Fresca, Rob Ragon]
+
+
+New clones added
+----------------
+Crash (bootleg of Head On) [f205v]
+Gunbuster (US) [ShouTime]
+Mustafa and 40 Thieves (Bootleg)  [f205v]
+Flyball (rev 2) [Siftware]
+Bad Lands (bootleg, alternate) [Tomasz Slanina]
+Witch Card (Video Klein CPU box, set 2) [Roberto Fresca, Team Europe]
+Alpha Mission 2 (prototype) [Brian Hargrove]
+Burning Fight (prototype) [Brian Hargrove]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Unknown TMS9980 Poker Game [Roberto Fresca, Team Europe]
+Jyunai 2 - White Love Story [alien_mame, The Dumping Union]
+Namco Stars [Yasuhiro Ogawa]
+Sega's Golden Poker Series "Joker's Wild" [Yasuhiro Ogawa]
+Real Puncher [Phil Bennett, Chris Hardy]
+Speed Driver [XingXing]
+Racing Jam DX [Tomas Dahlgren]

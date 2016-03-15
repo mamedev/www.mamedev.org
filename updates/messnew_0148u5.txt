@@ -1,0 +1,147 @@
+0.148u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05172: [Crash/Freeze] (megadriv.c) 32x and clones: [debug] Assertion 
+  `curlabel->m_codeptr == __null' failed. (hap)
+
+New System Drivers Supported:
+-----------------------------
+-Ensoniq ESQ-M [Anonymous]
+-15IE-00-013 [shattered]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+-D6800 [Robbbert]
+
+Skeleton drivers:
+-----------------
+-RCA COSMAC Microkit [Bill Degnan, Curt Coder]
+-SSE SoftBox [Mike Naberezny, Curt Coder]
+-V-Tech V-Smile (Germany) [TeamEurope]
+
+Software Lists:
+----------------
+-softlist: Added year and publisher info to most games in Amiga
+ OCS, ECS, AGA  and Atari ST softlist, fixed shortnames and
+ descriptions where needed, improved parent/clone relationships, made
+ better use of part_id features in multidisk sets. Also, re-ordered
+ sets in ZX softlist. [Anonymous, Fabio Priuli]
+
+-partner_cass.xml: fixed some descriptions and added more info [LoganB]
+
+-jaguar.xml: added some dumps surfaced since last update of the list. [LoganB]
+
+-bbca_cass.xml/bbcb_cass.xml: moved a few files in the proper
+ list and added some info. [Nigel Barnes]
+
+-mbc55x.xml: added a few more disks. [pete_j] 
+
+-m20.xml: added newly dumped CP/M 8000 disk [Christian Groessler]
+
+-x68k_flop.xml: added missing sets from TOSEC, plus a lot of new
+ disks dumped in the past seven years, plus lots of info
+ [Ashura, mek1, wushu, Starscream the 2nd, cpt. Misumaru Tenchi,
+ SuperDeadite, Anna Wu, Fabio Priuli]
+
+-Added software list for mc1502 [shattered]
+
+-megadriv.xml: added more pcb documentation. [sunbeam, gigadeath, nights]
+
+-vsmile.xml: added first cart dumps. [TeamEurope]
+
+-ibm5170.xml: added some more coverdisks. [Kaylee]
+
+-c64_cart.xml: Added Super Snapshot family. [Curt Coder]
+ 
+-v1050.xml: Added CP/M Plus BIOS 2.0. [Bill Degnan]
+
+-Added software lists for NorthStar Horizon/Advantage floppies. [Dave Dunfield]
+
+Source Changes
+--------------
+
+-aim65.c: added software list for software ROMs and hooked up to 
+ the driver. [K1W1, Fabio Priuli]
+
+-applix: The mirror is required for the system to size up the
+ ram correctly [O. Galibert]
+
+-esq1: preliminary emulation of analog stages (VCFs and VCAs) [O. Galibert]
+
+-electron.c: Added cartridge support.  [Wilbert Pol]
+
+-cp1: added layout and keyboard input. [Sandro Ronco]
+
+-psxmultitap: add multitap support [Carl]
+
+-D6800: Various improvements. Most games are playable. [Robbbert]
+
+-D6800: Cassette connected up, system marked as WORKING [Robbbert]
+
+-a7800.c - Red and Blue miscalculated proportions fixed.
+ [Robert Tuccitto]
+
+-pc: remove unused ibm5150_ppi8255_interface [shattered]
+ pc, ec1841: unbreak DBG_LOG macro
+ mc1502: FDC xtal freq is 16 MHz
+ asst128: another PC XT clone
+ ec1841: add softlist, set 'v2' as default BIOS to avoid resets
+
+-nes.c: greatly improved save state stability, by adding
+ registration of on-cart VRAM/WRAM. [Fabio Priuli]
+
+-gameboy/gbcolor: simplified video code by reducing the number
+ of memory pointers used, and added support for save state
+ registration. [Fabio Priuli]
+
+-slotify pc joystick [Carl]
+
+-Apollo updates: [Hans Ostermeyer]
+ * Added 4 and 8 plane color graphics board support
+ * Renamed dn3x00 to dn3x00_19i and dn3x00_15i to dn3x00
+ * Reworked video/apollo.c into class apollo_graphics
+ * Fixed recent regression where the arrow keys moved the mouse
+    pointer
+
+-v1050: Fixed floppy drive type. [Curt Coder]
+
+-cosmac: Added the original CDP1801 CPU variant and rewrote 
+ the disassembler. [Curt Coder]
+
+-sms.c: Change hcount calculation to use screen timings and move
+ it to the VDP.  [Enik Land]
+
+-pc_joy_sw: add MS Sidewinder pad [Carl]
+
+-a7800 - [huygens]
+ * Changed default difficulty switch setting to 'A' so Tower Toppler
+   loads the first level.
+ * Added 7 cpu cycle delay between hsync and Maria DMA (based on atari
+   docs).
+ * Rewrite of video code to emulate Maria line ram buffers.
+
+-a7800 : Rendering from line ram no longer uses maria write mode
+ bit (should only use read mode bits) [huygens]
+
+-com8116: Fixed frequency divisors. [Curt Coder] 
+
+-exp85, ob68k1a: Fixed terminal. [Curt Coder]
+
+-i8251: Implemented parity and 16X/64X clock modes. [Curt Coder] 
+
+-wmbullet, softbox, super6, xor100, sage2, mpz80, horizon: Refactored 
+ to use a serial terminal connected to an RS-232 port. [Curt Coder]
+
+-gameboy: modernized sound emulation and added save state
+ [Fabio Priuli]
+
+-lynx.c: modernized sound emulation, slightly simplified blitter
+functions and added save state to the driver. [Fabio Priuli]
+
+-wswan.c: updated rom banking mechanism to be save state friendlier 
+and added save state support to the driver. [Fabio Priuli]
+
+-ngp.c: added save state support to the driver. [Fabio Priuli]

@@ -1,0 +1,178 @@
+0.33 BETA 7
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+A lot of ROM renaming and moving around has been done. I know this is annoying
+  but it was necessary for ROM set merging. See merged.txt for details.
+
+Pioner Balloon [Juergen Buchmueller]
+Jackal/Top Gunner [Kenneth Lin]
+Contra/Gryzor [Carlos A. Lozano, Jose Tejada Gomez, Phil Stroffolino,
+  Eric Hustvedt]
+Solomon's Key [Mirko Buffoni]
+Round-Up [Zsolt Vasvari]
+Tehkan World Cup [Ernesto Corvi, Roberto Fresca]
+Tee'd Off (preliminary) [Ernesto Corvi, Roberto Fresca]
+Vindicators [Aaron Giles]
+Space Tactics [Frank Palazzolo]
+Polaris [Victor Trucco]
+The Main Event [Bryan McPhail]
+Devastators (not working) [Bryan McPhail]
+Dark Seal / Gate of Doom [Bryan McPhail]
+Golden Star [Mirko Buffoni]
+The Glob [Mike Balfour]
+Ninja Kid 2 [Jarek Parchanski]
+Bagman (original Valadon Automation version; the Stern version has been renamed
+  "bagmans") [Nicola Salmoria]
+Kicker [Nicola Salmoria]
+Tempest version 2 and 3 ("tempest" has been renamed "tempest1"; "tempest" is
+  now version 3) [Darrin Redick]
+Gladiator (Japan) [Nicola Salmoria]
+Zoo Keeper (alternate) [Nicola Salmoria]
+Two new Mikie sets (US/Japan). The old one was bad and has been removed.
+  [Nicola Salmoria]
+Moon Cresta (bootleg on Galaxian hardware) [Nicola Salmoria]
+Pengo (encrypted version of set 2. The unencrypted version has been renamed
+  "pengo2u") [Tim Lindquist]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- The CPS1 games, the System 16 games, Toki, World Cup 90, Super Space
+  Invaders, TMNT and Punk Shot use the dynamic palette system. [Aaron Giles]
+
+- Rastan and Rainbow Islands use the dynamic palette. [Nicola Salmoria]
+
+- Fixed colors in Crater Raider. [Aaron Giles]
+
+- Cocktail mode support in some games (invaders, btime, etc.).
+  [Martin Sandiford]
+
+- Inspired by Retrocade and Vector Dream, changed the vector games to use
+  translucent vectors. Color intensities had to be lowered, if it feels to dark
+  for you now, increase the gamma correction value. [Bernd Wiebelt]
+
+- Fixed sprite priorities and tile flip in Pinball Action. [Nicola Salmoria]
+
+- Accurate colors in Road Fighter. [Paul Swan]
+
+- Accurate colors in Slap Fight. [Keith Wilkins]
+
+- Fixed Motos High Score display. [Zsolt Vasvari]
+
+- Moon Cresta uses the original gfx ROMs, fixing graphics glitches on the title
+  screen.
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Sound in Toki. [Nicola Salmoria]
+
+- The YM3812 emulator still passes commands to the Sound Blaster OPL chip, but
+  it handles timers in software. osd_ym3812_status and osd_ym3812_read removed.
+  [Aaron Giles]
+
+- Emulated sound in Yie Ar Kung Fu (but you still need samples for speech)
+  [Nicola Salmoria]
+
+- Sound in Pinball Action. [Mirko Buffoni]
+
+- Partial sound in Midnight Resistance and Sly Spy. [Bryan McPhail]
+
+- Emulated music in Carnival, and support for a new set of samples.
+  [Peter Clare]
+
+- TMNT title music. [dayvee@rocketmail.com]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Vastar. [Dani Portillo]
+
+- Fixed Rygar (you'll have to delete your old .hi file) [Dani Portillo]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed hangs in Tapper, and hopefully other MCR games as well. [Aaron Giles]
+
+- Some fixes to Quantum. [Paul Forgey]
+
+- The default scores in Paperboy and Super Sprint are correct (though of course
+  you must delete the .HI files) [Aaron Giles]
+
+- Super Qix might be running at the proper speed now. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Close to accurate 68000 instruction timing. [Brian Verre]
+
+- Slightly improved speed of the 68000 emulator. [Darren Olafson]
+
+- The copyright disclaimer and driver credits screens are shown only the first
+  time a game is run. The game information screen is always shown since it may
+  contain important info.
+
+- Improved handling of 4 way joysticks. [Martin Sandiford]
+
+- [DOS] Modified the code so that to start a game you can use
+  a) the full game name as listed in "mame -listfull"
+  b) any ordered subset of the characters used in the full game name
+
+  So you can start Asteroids Deluxe like:
+
+  mame "Asteroids Deluxe"         !note the quotes!
+  mame astdelx
+  mame adlx
+
+  The less characters you use, the more likely you'll be surprised which
+  game actually gets choosen. [Bernd Wiebelt]
+
+- [DOS] To improve comaptibility, older VESA modes are back. If your card
+  doesn't work in VESA mode, try "vesamode=vesa2b" or "vesamode=vesa1" in
+  mame.cfg [Bernd Wiebelt]
+
+- [DOS] Slightly changed the resolution picker, so that when -vesa and
+  -noscanlines are requested, it will use e.g. 320x240 instead of 640x480
+  with pixel doubling, and 400x300 instead of 800x600 with pixel doubling.
+  If the lower res mode is not available, it automatically switches back to
+  the pixel doubled mode. [Nicola Salmoria]
+
+- [DOS] New -listclones command, which lists in two columns the clones and the
+  game they are clone of. [Nicola Salmoria]
+
+- Changed the AY8910 emulation to generate three separate audio streams for the
+  three channels instead of premixing them. This improves audio quality,
+  increases the volume, and doesn't seem to affect performance too much.
+  [Nicola Salmoria]
+
+
+Source:
+-------
+
+- [DOS] Included Neil Bradley's asm M6808 emulator. Note: you need NASM to
+  compile (the makefile defaults to NASMW, the Win32 version). [Alex Pasadyn]
+
+- The (*vh_update)() call has an additional parameter, full_refresh. When it
+  is 0, the driver may assume that the screen has not been altered by the main
+  engine since the last call, and do an incremental update instead of redrawing
+  the full screen.  [Brad Oliver]
+
+- For convenience, added some commonly used palette read/write fucntions to
+  vidhrdw/generic.c. [Nicola Salmoria]
+
+- Support for 16 bit samples in sndhrdw/samples.c.
+  IMPORTANT NOTE FOR PORTERS: for consistency with the sound libraries,
+  osd_play_sample_16() and osd_play_streamed_sample_16() now want the lenth in
+  _bytes_ of the array, instead of the length in _shorts_ as it was before.
+  [Peter Clare]
+
+- Added the I8039 to the debugger, using Mike Cuddy's disassembler.
+  [Andrea Mazzoleni]

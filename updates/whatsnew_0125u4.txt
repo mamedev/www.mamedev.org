@@ -1,0 +1,275 @@
+0.125u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01829: [Core] bermudat, gwar, ikari, victroad + clones: MAME freezes 
+       at "initializing" screen (Aaron Giles)
+01845: [Core] all games: cheats are broken (ShimaPong)
+01846: [Misc.] -CHEAT trigger causes MAME crash with PSX-type CPU 
+       drivers (ShimaPong)
+01843: [DIP/Input] Many Sets: Input Port Errors (Aaron Giles)
+01855: [Misc.] thayers, thayers: Fatal Error crash (Aaron Giles)
+01859: [Misc.] looping, loopinga, skybump: Fatal Error crash 
+       (Aaron Giles)
+01860: [Core] revx: -CHEAT trigger causes MAME crash (ShimaPong)
+00779: [Graphics] gunnail: After you kill a boss, always a number of 
+       vertical lines will appear. (Nicola Salmoria)
+00778: [Graphics] gunnail: The background in stage 5 is wrong. 
+       (Nicola Salmoria)
+00788: [DIP/Input] Problem about Joy Axis Input for Pedal. 
+       (couriersud)
+01853: [Gameplay] shadfrce, shadfrcj: Game doesn't start (Haze)
+01847: [DIP/Input] Various: Unable to construct input ports! 
+       (Nicola Salmoria)
+01840: [Interface] MAME 0.125u3 error in xml output (Nathan Woods)
+01699: [Sound] asteroid, asteroi1, asteroib, asterock, meteor, 
+       meteorts: Abnormal discrete sounds (couriersud)
+01844: [Core] compiling 125u3 with VS2008 64bit fails (Aaron Giles)
+
+
+Source Changes
+--------------
+Made it possible to pass a NULL errorbug to input_port_config_alloc().
+Fixes -listxml crashes. [Nathan Woods]
+
+Updated calomega driver with correct dumps. [Roberto Fresca]
+
+Sandii' games improvements: [Roberto Fresca]
+ - Switched the color system to RESNET calculations.
+ - Hooked the infamous bit7 of Input Port 0x3004 in parallel to DIP 
+    switch 1. This allow to use the PAYOUT button to trigger the 
+    Super Game instead of STOP 5.
+ - Demultiplexed lamps matrix.
+ - Added lamps support, but is still imperfect.
+ - Updated technical notes.
+
+Discrete sound update: [couriersud]
+ * added NODE_RELATIVE(NODE, offset) macro to discrete.h
+ * fix asteroid.c, canyon.c, skydiver.c and tank8.c to use this macro 
+    instead of adding directly to the node
+
+Fixed duplicate input port bits. 
+[Aaron Giles, Nicola Salmoria, David Haywood]
+
+Added simulaton of tecmosys protection. [nuapete]
+
+Improvements to gatron.c: [Roberto Fresca]
+ - Renamed the games to "Poker 4-1" and "Pull Tabs"
+    as shown in the ROMs stickers.
+ - Renamed the ROMs in each set according to their own stickers.
+ - Moved the driver into gametron.a group.
+ - Added the missing input port C to 8255 PPI I/O chip. Poker41 and 
+    pulltabs don't make use of it, but is present in the Test/Setting 
+    Mode.
+ - Updated technical notes.
+
+Added proper bankswitching to the dealer driver, validating a ROM
+previously thought to be bad. [nupete]
+
+Many improvements to the tecmosys video and sound emulation. 
+[David Haywood]
+
+Adjusted NamcoNA output rate to match pitch with F/A and Cosmo Gang 
+the Puzzle soundtrack CDs. [R. Belmont]
+
+Some Nintendo Minx cpu core updates: [Wilbert Pol]
+ - Styling changes
+ - Added instruction cycle counts.
+ - Added interrupt support.
+ - Added HALT support.
+ - Fixed INT instruction.
+ - Added incomplete support for DIV and MUL instructions.
+ - Fixed MOV [#nnnn],BA and MOV [#nnnn],HL instructions.
+ - Fixed interrupt handling.
+ - Fixed opcodes 45, 4D, 55, 5D, B5, B6, B7, FC, FD, and CF 70-7F
+ - Fixed flag results for INC, DEC, AND, OR, and XOR instructions
+ 
+Improvements to ampoker2 driver: [Roberto Fresca]
+ - Reworked the input system for Sigma Poker 2000.
+ - Promoted Sigma Poker 2000 to 'WORKING' state.
+ - Updated technical notes.
+
+Updated the 53c810 SCSI adapter to pass IRQ state with the IRQ 
+callback. [R. Belmont]
+
+Remove port_input_read_indexed in favor of the use of proper tags in 
+a number of drivers. [Fabio Priuli, couriersud]
+
+Upped max directory size for ST-V/Saturn driver. [R. Belmont]
+
+COP4xx updates: [Curt Coder]
+ - Added HALT opcode and halt mode to the COP410
+ - Added Microbus support, clock divisor selection, and CKO mode 
+    selection to the COP420
+ - Changed Thayer's Quest keyboard interface to at least slightly 
+    resemble the schematics
+
+Changed suprnova blending implementation a bit. Still not right.
+[David Haywood]
+
+Optimised tilemap_draw rowscroll case to avoid overhead when used 
+with clip rects smaller than the tilemap. This reduces by an order of 
+magnitude the time taken to render the bg in Gunnail stage 5.
+[Nicola Salmoria]
+
+PowerPC dynamic recompiler: [Aaron Giles]
+ - rewrote PowerPC implementation as a dynamic recompiler on top
+    of the universal recompiler engine
+ - wrote a front-end to analyze PowerPC code paths and register usage
+ - wrote a common shared module with C implementations of tricky
+    CPU behaviors
+ - added separate CPU types for the variants supported, instead of
+    relying on a hidden model enum
+ - rewrote the serial port emulation for the 4xx series to be more
+    accurate and not rely on separate DMA handlers
+ - rewrote the MMU handling to implement a software TLB that faults
+    in pages and handles changed bits appropriately
+ - implemented emulation of the PowerPC 603's software TLB, which
+    allows the model 3 games to run without a hack to disable the MMU
+
+Updated the PowerPC disassembler to share constants with the rest of
+the core, and to more aggressively use simplified mnemonics, 
+especially for branches. [Aaron Giles]
+
+Universal recompiler:
+ - fixed frontend to handle opcode widths different from bus width
+ - added several new opcodes:
+    * (D)GETFLGS - copies the UML flags to a destination operand
+    * FDRNDS - rounds a double precision value to single precision
+ - renamed several opcodes:
+    * SETC   -> CARRY
+    * XTRACT -> ROLAND
+    * INSERT -> ROLINS
+ - consolidated the following opcodes:
+    * LOAD?U -> LOAD
+    * LOAD?S -> LOADS
+    * STORE? -> STORE
+    * READ?U -> READ
+    * READ?M -> READM
+    * WRITE? -> WRITE
+    * WRITM? -> WRITEM
+    * SEXT?  -> SEXT
+    * FTOI?? -> FTOINT
+    * FFRI?  -> FFRINT
+    * FFRF?  -> FFRFLT
+ - removed some opcodes:
+    * FLAGS - can be done with GETFLGS/LOAD4/ROLINS
+    * ZEXT - can be achieved with AND
+    * READ?S - can be achieved with READ/SEXT
+ - updated C, x86, and x64 back-ends to support these opcode changes
+ - updated disassembler to support these opcode changes
+ 
+MIPS3 dynamic recompiler: [Aaron Giles]
+ - fixed Cause register for bad COP instructions
+ - updated to use new/changed opcode forms
+ - changed context switch so that it only swaps a single pointer
+
+Konami Hornet changes: [Aaron Giles]
+ - updated to new PowerPC configurations
+ - updated some memory handlers to be native 8-bit handlers
+ - cleaned up JVS implementation to work with new serial code
+ - added fast RAM for the work RAM to give a small speed boost
+
+Konami GTI Club changes: [Aaron Giles]
+ - updated to new PowerPC configurations
+ - updated some memory handlers to be native 8-bit handlers
+
+Konami Viper/ZR107 changes: [Aaron Giles]
+ - updated to new PowerPC configurations
+
+Sega Model 3 changes: [Aaron Giles]
+ - updated to new PowerPC configurations
+ - reimplemented/centralized interrupt handling
+ - these games are broken for the moment
+
+Fixed crasher due to some Konami games using 8 layers in
+the K056832 implementation, even though it was only written
+for 4. [Aaron Giles]
+
+Added fisttp opcode to i386 disassembler. [Aaron Giles]
+
+Verified clock frequencies on Air Raid/Cross Shooter.
+[Corrado Tomaselli]
+
+Introduced/updated some include files for files that export functions 
+whose apis will need to be changed to handle machine parameters 
+(cps1.h, decocrpt.h, ms32.h, pgm.h, fd1089.h, konami1.h). In the case 
+of konami.c, renamed the file konami1.c and changed the api and 
+callers to only require one function export. Pulled memory_region*() 
+calls out of for loops and folded the occasional duplicated call. The 
+compiler can't likely infer that the results are constant, so this 
+should be a minor performance win as well. [Atari Ace]
+
+Fixed some dips and added correct inputs for wpksocv2, despite still 
+missing the correct input for begin the left right movement the game 
+is almost playable. [Sonikos]
+
+Updated cheat system: [ShimaPong]
+ - Locked search region when malloc fails to allocate gigantic memory
+    instead of fatal error. Also locked zero malloc error in case of
+    search speed = all memory in 32-bit CPU. And added search region
+    range checker to lock a search region with a big risk
+ - Fixed a bug that old code is always converted to specified
+    separator in enable/disable menu
+ - Refined new cheat format.
+    * Rewritten cheat format again. newest format is
+       ":gamename::type::address::data::extend_data:
+        (description:comment)"
+       Expanded type field now requires 10 bytes (not 8 bytes) and
+       it divides internal cpu (2 bytes) and type (8 bytes) parameters
+    * Removed VWrite, VRWrite. The flag of Value Selection is merged
+       into expanded type field now.
+    * Added CBit (Condition Bit). This checks bit in read data then
+       set or clear bit in case of true.
+    * Rearranged cheat code viwer based on newest cheat format
+ - Fixed unworking Load Old Format option. If you want to load old or
+    older format code, set it (default is OFF)
+ - Renamed functions/structures based on coding guidlines
+    All structures and included parameters are completed
+ - Merged resize_*_no_dispose() into resize_*()
+ - Removed the hack of search region for SH-2 CPU because required
+    region is now set as expected without this hack
+
+Made duplicate input port bits an error now that all the warnings are
+fixed. [Aaron Giles]
+
+Added compile-time error if PTR64 is incorrectly set. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Deroon DeroDero [nuapete, David Haywood]
+Sigma Poker 2000 [Roberto Fresca]
+Touki Denshou -Angel Eyes- [nuapete, David Haywood]
+Black Touch (Korea) (bootleg / hack of Dragon Punch) [David Haywood]
+
+
+
+New clones added
+----------------
+Touki Denshou -Angel Eyes- (VER. 960427) [Tomasz Slanina]
+Raiden Fighters 2 (Taiwan, SPI) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Capitan Uncino (Ver 1.2) [David Haywood]
+Capitani Coraggiosi (Ver 1.3) [David Haywood]
+La Perla Nera (Ver 2.0) [David Haywood]
+La Perla Nera Gold (Ver 2.0) [Roberto Fresca]
+Europa 2002 (Ver 2.0, set 1) [Roberto Fresca]
+Top Blade V [David Haywood]
+Office Yeo ln Cheon Ha [David Haywood]
+Carta Magica (Ver 1.8) [Roberto Fresca]
+Laser 2001 (Ver 1.2) [Roberto Fresca]
+Magic Drink (Ver 1.2) [Roberto Fresca]
+Millennium Sun [Roberto Fresca]
+NtCash [Roberto Fresca]
+Super Space 2001 [Roberto Fresca]
+Unknown italian gambling game [Roberto Fresca]
+Wizard (Ver 1.0) [Roberto Fresca]
+Elvis? [Roberto Fresca]

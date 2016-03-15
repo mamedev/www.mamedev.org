@@ -1,0 +1,497 @@
+0.102
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+bbmanw0101u4red [Pierpaolo Prazzoli]
+dirtfoxj063gra [Mamesick, Pierpaolo Prazzoli]
+starblad0101u5yel [Aaron Giles]
+mouja0101u5gre [Hau]
+
+
+
+Source Changes
+--------------
+Fixed a few more remaining issues from the 0.101u1 update. 
+[Aaron Giles, Pierpaolo Prazzoli]
+
+Fixed some bad tiles in naname. [Pierpaolo Prazzoli]
+
+Fixed music tempo in T.N.K.3/T.A.N.K. [R. Belmont, Kold666]
+
+Began adding support for SCRIPTS programs to the 53C810 emulation.
+[Nathan Woods, R. Belmont]
+
+Fixed inputs in Passing Shot (Japan). [Ange Albertini, Barry Rodewald]
+
+Added some missing sounds to Wonder Stick and Search Eye. 
+[Pierpaolo Prazzoli]
+
+Fixed status flag from MCU in Taito SJ games, fixing the last digit of the
+score in Front Line. [Nicola Salmoria]
+
+Many fixes to the SHARC core and Konami PPC drivers. [Ville Linde]
+
+Updated the discrete thump sound in Asteroids to use component values
+instead of derived equations. [Hans Andersson, Derrick Renaud]
+
+Added Tilemap0 color banking to esd16. [Pierpaolo Prazzoli]
+
+Fixed save/restore of 8253 PIT. Also several updates to Top Gunner:
+[Mathis Rosenhauer]
+ * Removed shift register since it just seems to be needed to
+    compensate for different DAC speeds
+ * Added 8254 PIT from PC emulation
+ * Added state saving
+
+Fixed bug in PSX GTE flag settings. [Olivier Galibert]
+
+Fixed 6502 initialization so that all internal states are reset properly.
+[Nathan Woods]
+
+Changed the makefile so that debug objects are not compiled on non-debug
+builds. [Aaron Giles]
+
+Marked most gfx_layout and gfx_decode structures in the code as const.
+[Aaron Giles]
+
+Fixed handling of the FR bit in the Status register on MIPS3. This fixes a
+few problems in CarnEvil, and probably affects a few other games as well.
+Also fixed bug where TLB exceptions were not filling in the Context and
+EntryHi registers correctly. [Aaron Giles]
+
+Removed ROMREGION_SOUNDONLY. Since -nosound no longer disables sound CPUs or
+sound cores (and hasn't for a while), failing to load sound ROMs was only
+leading to crashes. [Aaron Giles]
+
+Implemented pixel-accurate dithering in the Voodoo emulation. [Aaron Giles]
+
+Renamed my_stricmp to mame_stricmp, converted all uses of stricmp in the
+code to call mame_stricmp, and #defined stricmp to something invalid to
+prevent code from using it in the future. [Aaron Giles]
+
+Fixed implementation of mame_stricmp. [William Krick]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Jockey Grand Prix [Mamesick]
+Gradius 4: Fukkatsu [Ville Linde]
+See See Find Out [Tomasz Slanina]
+Pang Pang Car [Tomasz Slanina]
+D-Day (Jaleco) [Tomasz Slanina]
+NBA Play By Play [Ville Linde]
+
+
+
+New clones added
+----------------
+Touch & Go (newer revision) [Corrado Tomaselli]
+Avengers In Galactic Storm (World) [Corrado Tomaselli]
+Metamorphic Force (ver EAA) [Stefan Lindberg]
+Rohga v5.0 Asia/Europe [Stefan Lindberg]
+Rohga v3.0 Asia/Europe (Alt) [Stefan Lindberg]
+Tricky Doc (Alt) [Stefan Lindberg]
+Vandyke (Jaleco lic. Alt set) [Stefan Lindberg]
+Varth - Operation Thunderstorm (World 920714) [Stefan Lindberg]
+Super Monaco GP (US, Rev B) [Arzeno Fabrice]
+DownTown (Set 2) [Stefan Lindberg]
+NFL Blitz (boot ROM 1.1) [Brian Troha]
+Martial Champion (ver EAB) [Stefan Lindberg]
+
+
+
+
+0.101u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+vf097u2gre [R. Belmont]
+daytona099u4gre [R. Belmont]
+memoryupdate0101u1red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added a FIFO for the sound commands in Sega Model 1 driver so they no longer
+get lost at startup. Fixed the CPU speed of the 68000. [R. Belmont]
+
+Several fixes and improvements to the C352 sound emulator.
+[hoot development team]
+
+Implemented several missing features in the Namco NA sound emulator. [cync]
+
+Added conditional dip switches and a missing dip switch to excelsr.
+[Pierpaolo Prazzoli]
+
+Fixed J. League protection workarounds so they work for 2 player games as
+well. Also fixed sonic so it works as well as the prototype version (still
+major graphics issues). [Anonymous]
+
+Marked several large arrays properly as const. [Atari Ace]
+
+Fixed 6805 core so that CLRA does not modify the carry flag. [Ernesto Corvi]
+
+Fixed sprites wrap around in st0016 (needed in nratechu). 
+[Pierpaolo Prazzoli]
+
+Model 3 update: [Ville Linde]
+ * Added Daytona USA 2 Power Edition
+ * Huge update to the video hardware, including:
+    - Transparency support (polygons and textures)
+    - Nearly perfect rendering order (something we never got right in 
+      Supermodel :-)
+    - Parallel lighting
+    - Texture coordinate mirroring
+
+Added very experimental rasterizer generator for the Voodoo emulator, which
+generates X86 assembly blitters optimized for each case. Unfortunately, it
+doesn't help performance much and they are still too buggy so they are
+disabled for now. Enable them in the makefile. [Aaron Giles]
+
+Made some of the hack optimizations runtime enableable in the Voodoo
+emulator, and added a frameskipper. Use Ctrl+1-6 to control frameskipping,
+Ctrl+F/H/Q to run at full/half/quarter resolution. [Aaron Giles]
+
+Rewrote most of the validity checks so the full set now completes in well
+under 1 second, minus I/O time from paging in data. Also added region
+size checking versus memory maps to the validity checks. Moved all validity
+checks to a new file validity.c. [Aaron Giles]
+
+Changed the AM_REGION() macro to store region/offset information instead of
+a pointer to simplify some of the region valdation code. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wonder Stick [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Atomic Robo-kid (Japan, Set 2) [Brian Troha]
+Raimais (Japan) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Ping Pong Car [David Haywood, Guru]
+Daytona USA 2 Power Edition [Ville Linde]
+
+
+
+
+0.101u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+flstory0101u3red [Aaron Giles]
+gottlieb0101u2yel [HobbesAtPlay]
+lelandsound0101u3yel [Aaron Giles]
+kamikcab101u2yel [Aaron Giles]
+segac0101u3red [Mathis Rosenhauer]
+spiders0101u3yel [Aaron Giles]
+drgnmst067gre1 [Pierpaolo Prazzoli]
+memoryupdate0101u1red  [Aaron Giles & others]
+missile0101u3red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed more games broken by the u1 changes. There are only a very small number
+of games that are still known to have issues. [Aaron Giles with contributions
+from Mathis Rosenhauer]
+
+Improved video rendering and fixed graphics corruption on the final level of
+Fairyland Story. [Nicola Salmoria]
+
+Updated the h6280 CPU to use the new address translation system. [Aaron Giles]
+
+Added MAME build information to the listxml output, and updated xml2info to
+handle the save state tag. [cutebutwrong]
+
+Updated PSX core to new save state and disassembler interfaces. Updated 
+dismips to handle the new disassemblers. [smf]
+
+Removed code that reset the timer when reading/writing on the mk48t08
+timekeeper chip. Updated the save state interfaces. Added new macro
+state_save_register_item_pointer() for dynamically allocated arrays. [smf]
+
+Updated R3000 core to the new disassembler interfaces. [Aaron Giles]
+
+Added coin counter/lockout and rowscroll banking to the drgnmst driver.
+[Pierpaolo Prazzoli]
+
+Added missing SC/LL opcodes to the MIPS3 interpreter. [R. Belmont]
+
+Updated Konami and R3000 disassemblers to new format. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+The J. League [Anonymous]
+
+
+
+New clones added
+----------------
+Kosmo Killer [David Haywood]
+Splash 1.0 [Corrado Tomaselli]
+Glass 1.1 [Corrado Tomaselli]
+Match It II [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Dwarfs Den [David Haywood]
+Trivia Quest [Pierpaolo Prazzoli]
+Wheels & Fire [David Haywood]
+
+
+
+
+0.101u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+bigkarnk0101u2gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Fixed a number of games that were broken with the u1 update. Just a few
+more cases remain. Most games are working at this point. [Aaron Giles, with
+contributions from El Condor, R. Belmont, Ville Linde]
+
+Added preliminary save state support to Missile Command and Battlezone.
+[Buddabing]
+
+Fixed some dips in Pop's Pop's. [Sonikos]
+
+Fixed inputs in Woodpecker. [Pierpaolo Prazzoli]
+
+Updated PowerPC core to use new disassembler style. [Nathan Woods]
+
+Merged in recent updates from MESS PC emulation code. [Nathan Woods]
+
+Fixed DTD in the -listxml output. [Oliver Stoneberg] 
+
+Added sprites banking, tile banking, sound banking, and a couple of
+DIP switches to Egg Hunt. [Pierpaolo Prazzoli]
+
+Updated 6502 family of disassemblers to the new disassembler style. Added
+internal memory maps for the m6510 and m4510 CPU cores. Updated m4510 to
+use address translation hooks. [Nathan Woods]
+
+Reduced how often the debugger display is refreshed if stepping and
+steps_until_stop is a high number.  This makes commands like 'step 
+#10000' a bit more usable. [Nathan Woods]
+
+Fixed MESS UI code that prevented P and Esc from being intercepted properly.
+[Lawrence Gold]
+
+Added check and failure for 0-sized mallocs. [Nathan Woods]
+
+Updated i86 and i286 cores to hook into the new i386 disassembler.
+[Nathan Woods]
+
+Added MMU support to the MIPS3 dynamic recompiler. Re-enabled it by default.
+Added direct fast RAM access to the dynamic recompiler, as well as optional
+hotspot optimizations. Most games should show a net speedup over the pre-MMU
+compiler. [Aaron Giles]
+
+Fixed FPU decoding and a few other minor issues in the i386 disassembler.
+[Aaron Giles]
+
+Added rudimentary hotspot detection to the debugger. Type "help hotspot" for
+details on how it works. [Aaron Giles]
+
+Cleaned up the way the debugger hooks into the memory subsystem. Now, on each
+CPU switch, the debugger queries the memory system for callbacks to be called
+on every read/write. This allows more efficient watchpoint tracking and allows
+for non-watchpoint debugging behaviors like the hotspot detection.
+[Aaron Giles]
+
+Changed the way encrypted CPU memory is allocated and managed. Previously,
+memory_set_opcode_base() was used to set a single pointer to the decrypted
+opcodes; however this presented a number of limitations. Now that all RAM and
+ROM-like regions are assigned banks, the memory system now tracks decrypted
+opcodes per bank. For implicit banks (marked RAM or ROM in the memory map),
+a new function memory_set_decrypted_region() configures which areas of the
+address space contain decrypted opcodes and where the decrypted opcodes live.
+For explicit banks, there is a new function memory_configure_bank_decrypted()
+which operates identically to memory_configure_bank() but specifies a pointer
+to the decrypted opcodes on a per-bank basis. Updated all drivers using the
+old mechanism to the new mechanism and removed the old system. [Aaron Giles]
+
+Thanks to the new opcode handling, removed "RAMROM" support from the memory
+subsystem altogether, and updated all drivers to simply limit their decryption
+to areas that the CPU decrypted. [Aaron Giles]
+
+Fixed activecpu_dasm() and cpunum_dasm() to detect the presence of an updated
+disassembler and wraps the calls to that rather than crashing. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Street Fighter EX 2 (ASIA 980312) [Corrado Tomaselli]
+Batsugun (set 2) [Parodier]
+Glass (Ver 1.0 set 2) [Corrado Tomaselli]
+Golden Tee Royal Edition Tournament (v4.02) [Brian Troha]
+
+
+
+
+0.101u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mgcrystl093u3gre [Pierpaolo Prazzoli]
+lastmisn096u3gre, part 1 [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Fixed time stamp counter in the Pentium core. [Ville Linde]
+
+Fixed Z80 behavior on cold versus warm reset. [Frank Palazzolo]
+
+Fixed a number of games that were broken due to the recent memory system
+changes. There are still more problems to fix; continue reporting them.
+[Aaron Giles]
+
+Added support for logical mapping to the CPU interfaces and debugger. CPUs
+that have an MMU now need to support several new interface bits, including
+a logical address mask and page size for each address space, as well as a
+new translate function. There is also a new disassembler interface that
+should be used going forward, which will make it much simpler to keep the
+disassemblers standalone and not dependent on MAME functions for opcode
+accesses. Converted the i386 core to use the new interfaces. [Aaron Giles]
+
+Added MMU support to the non-drc MIPS3 emulator. Converted the Killer
+Instinct, Seattle, Vegas, and Hyper Neo-Geo 64 drivers to a proper physical 
+memory layout. Disabled the drc MIPS3 core until MMU support is added there 
+as well. [Aaron Giles]
+
+Added save state support to the S2650 CPU. [Aaron Giles]
+
+Got rid of gross banking hack in the T11 core. Updated Atari System 2 drivers
+to accommodate the lack of the hack. [Aaron Giles]
+
+Imported a number of memory handler conversion helpers from MESS, placed 
+them in memconv.h. [Aaron Giles]
+
+Cleaned up i386 disassembler to produce Intel-standard output. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Gouketsuji Ichizoku (Japan, bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Alpine Surfer [R. Belmont]
+Area 51: Site 4 [Ville Linde]
+Psychic Force 2012 [Ville Linde]
+
+
+
+
+0.101u1
+-------
+
+WARNING: There is a significant change to the memory system in this version.
+It is likely that a number of games are broken. Please report these games
+to http://www.mametesters.org.
+
+
+MAMETesters Bugs Fixed
+----------------------
+galpanic0100u4yel [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Integrated 53C810 into the SCSI framework. [Tomas Karlsson]
+
+Balanced the sound in Final Tetris, Boogie Wings, B.C. Story, Metal Saver.
+[sonikos]
+
+Fixed Q*Bert knocker connection. [Kevin Jonas]
+
+Some improvements to M37710, C352 and NamcoNA sound. [cync]
+
+Corrected CPS1 frequencies based on measurements from a real PCB.
+[Philip Bennett]
+
+Significant change to the memory system. RAM areas are now no longer 
+allocated out of the memory_region for a given CPU. This means that drivers
+which assume that RAM is located at some offset to the base of the memory
+region will be broken. [Aaron Giles]
+
+Added save state information for streams so that dynamic volume changes
+get properly restored. Unfortunately this breaks all existing save states.
+[Aaron Giles]
+
+Added save state support to the HC55516 sound chip. Added save state support
+to the Williams sound boards. Added save state support to games in the
+mcr3.c and mcr68.c drivers, marking them as GAME_SUPPORTS_SAVE. [Aaron Giles]
+
+Changed timer_alloc_ptr-style timers so that the pointer parameter is
+supplied at allocation time and is not changeable. This makes these timers
+more easily supported in save states. [Aaron Giles]
+
+Fixed missing save state registrations in the m6809 CPU core. [Aaron Giles]
+
+Deferred state loading until all anonymous timers have cleared. This fixes
+issues where the timers would fire after the load and would clobber data 
+that was just loaded. [Aaron Giles]
+
+Cleaned up and fully mapped the Williams sound boards. Also added save state
+support to them. [Aaron Giles]
+
+Added save state support to the classic Williams drivers, marking them as
+GAME_SUPPORTS_SAVE. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Chewing Gum [f205v]
+
+
+
+New clones added
+----------------
+Puzz Loop (Korea) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Get Bass [Ville Linde, Guru]
+Scud Race Plus [Ville Linde, Guru]

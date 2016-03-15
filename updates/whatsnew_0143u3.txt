@@ -1,0 +1,246 @@
+0.143u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04443: [Sound] flower: hanging note in sound (hap)
+- 02505: [Sound] asurabus: Sound effects are looping. (hap)
+- 04319: [Sound] tengai, tengaij: Bomb sound effect drags on after
+         activating. (hap)
+- 04447: [Graphics] pblbeach: Incorrect sprite stretching during
+         gameplay (Angelo Salese)
+- 04446: [Graphics] kiwames: Sprites aren't drawn correctly 
+         (Angelo Salese)
+- 04448: [DIP/Input] warofbug, zigzag: Unable to coin. (hap)
+- 03301: [Crash/Freeze] polepos2a, polepos2b: Game does not 
+         start (hap)
+- 04444: [Graphics] navarone: Cocktail Player 2 shot offset (hap)
+- 04442: [Documentation] break: [possible] Wrong description
+- 04438: [Crash/Freeze] All sets in zn.c: Crash after OK (smf)
+- 04440: [Crash/Freeze] mquake: Crash before OK (smf)
+- 04436: [Sound] sasuke: snk6502 Custom Audio pitched too high (hap)
+- 04392: [Sound] polepos2, polepos2a, polepos2b: High-score music has
+         a hung note throughout. (hap)
+- 04434: [DIP/Input] hustler and clones: Missing Dip Switch (Tafoid)
+
+Source Changes
+--------------
+m68k: 040 fpu ops are somewhat available on a 030 when the fpu is
+added [O. Galibert]
+
+cothreads: fixed to run on PowerPC Mac OS X [R. Belmont]
+
+m68k: Added FSIN, FCOS, and FTAN using SoftFloat extensions
+[Stanislav Shwartsman, R. Belmont]
+
+Added socket support to windows osd [Miodrag Milanovic]
+
+Fixed initialization order for slot devices [Nathan Woods]
+
+Fix for the hlsl scanline jitter effect [nimitz]
+
+drmicro.c: Added dipswitch locations to Dr. Micro [Brian Troha]
+
+drtomy.c: Added dipswitch locations to Dr. Tomy [Brian Troha]
+
+m68k: Fixed instruction support table ("fixes" taitojc regression) 
+[O. Galibert]
+
+f1gp.c: Added dipswitch locations to F-1 Grand Prix [Brian Troha]
+
+Fix hlsl phosphor decay [nimitz]
+
+warpwarp.c: Added dipswitch locations to all games in driver  [Tafoid]
+
+h8: implemented LDM/STM, LDC/STC, double-shift versions of SHLL/SHLR,
+BIT immediate, ROTR.B and .L, and ROTXR.L.  Makes Epoch and Cybiko
+happy. [R. Belmont]
+
+h8: added SLEEP opcode [R. Belmont]
+
+tms9928a.c: Converted to a C++ device.  [Wilbert Pol]
+
+h8: Added peripheral and IRQ support for H8S/2xxx CPUs.
+[Tim Schuerewegen, R. Belmont]
+
+metro.c: Added additional documentation, added PCB layouts for Mouse
+Shooter GoGo, Bal Cube, Bang Bang Ball & Daitoride (YMF278B).
+Corrected misc dipswitches and settings. Added dipswitch locations to
+Bal Cube, Bang Bang Ball / Battle Bubble, Mouse Shooter GoGo, Blazing
+Tornado, Grand Striker 2, Daitoride, Dharma Doujou, Gun Master, Karate
+Tournament, Lady Killer / Moeyo Gonta!!, Last Fortress, Mahjong
+Doukyuusei, Mouja, Pang Pom's, Poitto!, Puzzli, Sankokushi, Pururun,
+Sky Alert and Toride II [Brian Troha]
+
+Default layout for 4 screens systems added [Robbbert]
+
+h8: fixed bset instruction [Tim Schuerewegen]
+
+h8: added the rest of the H8S double-shifts, fixed up some bit
+operations, and added 8-bit mulxs/divxs [R. Belmont]
+
+Removing MD5 support in ROMLOAD_* [Oliver Stoneberg]
+
+Various core and tools memory leaks fixes [Oliver Stoneberg]
+
+taito_b.c: Major input port restructure. Fixed several incorrect dip
+switches and coinage settings. Made use of PORT_INCLUDE and
+PORT_MODIFY for regional sets to add correct regional coinage as
+needed.  Added dipswitch locations all sets in the driver. [Brian Troha]
+
+flower.c: further improved interrupts [hap]
+
+H8: rewrote H8S/2xxx timers [Tim Schuerewegen]
+
+taito_h.c: Added dipswitch locations to the driver [Brian Troha]
+
+OS/2 build fixes [K.O. Myung-Hun]
+
+taito_f2.c: Fixed some incorrect dip switches. Made use of
+PORT_INCLUDE and PORT_MODIFY for regional sets to add correct regional
+coinage as needed.  Added dipswitch locations all sets in the driver.
+[Brian Troha]
+
+Updated romload so devices are loaded from separate files 
+[Miodrag Milanovic]
+
+Removed LOADBYNAME, since it is deprecated by using per device rom
+load_software_part_region [Miodrag Milanovic]
+
+Created makedev tool to generate array of devices, and created lst
+file according to current devices usage. [Miodrag Milanovic]
+
+Changed listxml command to output device roms too [Miodrag Milanovic]
+
+taito_l.c: Added dipswitch locations to all the games in the driver
+[Brian Troha]
+
+taito_x.c: Standardized dipswitch notation and style through greater
+use of PORT_INCLUDE and PORT_MODIFY.  Added dipswitch locations to
+Gigandes, Last Strijer / Kyuukyoko no Striker & Balloon Brothers.
+[Brian Troha]
+
+Fixed memory unmap if mirror/mask was used [hap]
+
+memory: Fix an endianness issue when doing a device mapping on a big
+endian bus [O. Galibert]
+
+Fixed DMA add values and a MVI condition shift flag bug in SCU DSP
+core. [Angelo Salese]
+
+metro.c: Add PCB locations to roms where possible. Corrected a few rom
+lables. Added basic PCB layout for Mouja. Changed clock speeds to
+values based on actual OSCs on the PCB. [Brian Troha]
+
+Fixed SCU DSP PC reads from SH-2 side. [Angelo Salese]
+
+cybertnk.c: Added dipswitches as per "Super" on MW forum & linked
+Manual [Brian Troha]
+
+karnov.c: Added dipswitch locations to Wonder Planet and the Chelnov
+sets. [Brian Troha]
+
+romident: format fix [O. Galibert]
+
+Provided memory map documentation for Sega Hikaru HW [Stefano Teso]
+
+Crystal descramble code for MPU4 [Project 'Amber']
+
+ymf278b.c improvements [hap]
+ * added status register BUSY and LD bits
+ * accurate timers (same as ymf262.c)
+ * added envelope attack rate
+ * added damping and pseudo reverb
+ * misc. fixes/cleanups
+
+fuukifg2.c: Added notes about the difference of dipswitch settings as
+reported by Service Mode and actual effect for Go Go! Mile Smile.
+Corrected a couple of dipswitches and added dipswitch locations to Go
+Go! Mile Smile & Gyakuten!! Puzzle Bancho [Brian Troha]
+
+galspnbl.c: Corrected dipswitches and added dipswitch locations to
+Gals Pinball & Hot Pinball [Brian Troha]
+
+fuukifg3.c: Corrected dipswitches and added dipswitch locations to
+Asura Blade & Asura Blaster [Brian Troha]
+
+Update Dwarf's Den/Electrocoin hardware pcb diagram and notes; Renamed
+"Dwarf's den" to "Draw Poker III / Dwarf's den", as that is the set
+currently in MAME (verified with working machine)
+[Balrog, Lord_Nightmare]
+
+funkyjet.c: Add dipswitch locations to Funky Jet & Sotsugyo Shousho
+[Brian Troha]
+
+flower.c: improved sound driver and fixed most of the hanging notes by
+adding channel effects [hap]
+
+Various aristmk4 fixes, that gets Enchanted Forest (12XF528902, US) and
+Arctic Wins (4XF5227H03, US) to be working [FrasheR]
+
+odin_dlx, solarwap, poleposn, sonstwar, wolfman, odisea (peyper.c)
+[stephh] :
+ * Improved and documented Dip Switches (after verification of the Z80
+    code and the manuals when they were found)
+
+freekick.c: Added dipswitch locations to all the games in the driver.
+[Brian Troha]
+
+funkybee.c: Added dipswitch locations to Funky Bee & Sky Lancer.
+[Brian Troha]
+
+firetrap.c: Added dipswitch locations to Fire Trap. [Brian Troha]
+
+pktgaldx.c: Added dipswitch locations to Pocket Gal Deluxe sets.
+[Brian Troha]
+
+Added dipswitches and locations for Dwarf's den set from manual. Added
+new dwarf's den romset with only card graphics. Corrected some errors
+on the power port pinout and other port descriptions.
+[Lord Nightmare, dox, bushjc, balrog]
+
+galpanic.c: Added dipswitch locations to Gals Panic, Fantasia, Super
+Model, New Fantasia, Fantasy '95, Miss World '96, Ms/Mr World '96,
+Fantasia II & Gals Hustler. [Brian Troha]
+
+pcktgal.c: Added dipswitch locations to Pocket Gal and clones.
+[Brian Troha]
+
+pbaction.c: Added dipswitch locations to Pinball Action and clones.
+[Brian Troha]
+
+paradise.c: Corrected a few dipswitch settings and names. Added
+dipswitch locations to Paradise (plus clones) and Target Ball.
+[Brian Troha]
+
+Major reorganization and clean-up of SMPC [Angelo Salese]
+
+mc146818: remove hacks [Hans Ostermeyer]
+
+sh2: fix fractional FRC increments [R. Belmont]
+
+fuukifg3.c: readded ymf262, used in the music for fm channels [hap]
+
+Fix sound in Sega Model 2a/2b/2c. [trap15, R. Belmont]
+
+Fix SHARC CPU in unidasm [trap15]
+
+Further major organization, documentation and addition of numerous
+(over 800) gambling / Fruit machine titles covering multiple
+systems.  [David Haywood]
+
+Various fixes to Aristocrat MK-V HW [Palindrome]
+ * Fixed NVRAM & random crashes
+ * Set default mode to game mode
+ * Added watchdog timer
+ * Dram emulator error fixed
+ * External Video Crystal Error fixed
+ * Fixed 2khz timer
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Enchanted Forest (12XF528902, US) [FrasheR]
+Arctic Wins (4XF5227H03, US)  [FrasheR]

@@ -1,0 +1,92 @@
+0.101u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+bigkarnk0101u2gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Fixed a number of games that were broken with the u1 update. Just a few
+more cases remain. Most games are working at this point. [Aaron Giles, with
+contributions from El Condor, R. Belmont, Ville Linde]
+
+Added preliminary save state support to Missile Command and Battlezone.
+[Buddabing]
+
+Fixed some dips in Pop's Pop's. [Sonikos]
+
+Fixed inputs in Woodpecker. [Pierpaolo Prazzoli]
+
+Updated PowerPC core to use new disassembler style. [Nathan Woods]
+
+Merged in recent updates from MESS PC emulation code. [Nathan Woods]
+
+Fixed DTD in the -listxml output. [Oliver Stoneberg] 
+
+Added sprites banking, tile banking, sound banking, and a couple of
+DIP switches to Egg Hunt. [Pierpaolo Prazzoli]
+
+Updated 6502 family of disassemblers to the new disassembler style. Added
+internal memory maps for the m6510 and m4510 CPU cores. Updated m4510 to
+use address translation hooks. [Nathan Woods]
+
+Reduced how often the debugger display is refreshed if stepping and
+steps_until_stop is a high number.  This makes commands like 'step 
+#10000' a bit more usable. [Nathan Woods]
+
+Fixed MESS UI code that prevented P and Esc from being intercepted properly.
+[Lawrence Gold]
+
+Added check and failure for 0-sized mallocs. [Nathan Woods]
+
+Updated i86 and i286 cores to hook into the new i386 disassembler.
+[Nathan Woods]
+
+Added MMU support to the MIPS3 dynamic recompiler. Re-enabled it by default.
+Added direct fast RAM access to the dynamic recompiler, as well as optional
+hotspot optimizations. Most games should show a net speedup over the pre-MMU
+compiler. [Aaron Giles]
+
+Fixed FPU decoding and a few other minor issues in the i386 disassembler.
+[Aaron Giles]
+
+Added rudimentary hotspot detection to the debugger. Type "help hotspot" for
+details on how it works. [Aaron Giles]
+
+Cleaned up the way the debugger hooks into the memory subsystem. Now, on each
+CPU switch, the debugger queries the memory system for callbacks to be called
+on every read/write. This allows more efficient watchpoint tracking and allows
+for non-watchpoint debugging behaviors like the hotspot detection.
+[Aaron Giles]
+
+Changed the way encrypted CPU memory is allocated and managed. Previously,
+memory_set_opcode_base() was used to set a single pointer to the decrypted
+opcodes; however this presented a number of limitations. Now that all RAM and
+ROM-like regions are assigned banks, the memory system now tracks decrypted
+opcodes per bank. For implicit banks (marked RAM or ROM in the memory map),
+a new function memory_set_decrypted_region() configures which areas of the
+address space contain decrypted opcodes and where the decrypted opcodes live.
+For explicit banks, there is a new function memory_configure_bank_decrypted()
+which operates identically to memory_configure_bank() but specifies a pointer
+to the decrypted opcodes on a per-bank basis. Updated all drivers using the
+old mechanism to the new mechanism and removed the old system. [Aaron Giles]
+
+Thanks to the new opcode handling, removed "RAMROM" support from the memory
+subsystem altogether, and updated all drivers to simply limit their decryption
+to areas that the CPU decrypted. [Aaron Giles]
+
+Fixed activecpu_dasm() and cpunum_dasm() to detect the presence of an updated
+disassembler and wraps the calls to that rather than crashing. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Street Fighter EX 2 (ASIA 980312) [Corrado Tomaselli]
+Batsugun (set 2) [Parodier]
+Glass (Ver 1.0 set 2) [Corrado Tomaselli]
+Golden Tee Royal Edition Tournament (v4.02) [Brian Troha]

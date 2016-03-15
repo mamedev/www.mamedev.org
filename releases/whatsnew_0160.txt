@@ -1,0 +1,210 @@
+0.160
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05846: [Core] ALT+TAB during ROM loading screen causes assert with -debug. (peterferrie)
+- 04138: [Crash/Freeze] (hornet.c) gradius4: "SHARC: PC Stack overflow !" doing MASKROM check (peterferrie)
+- 05862: [Crash/Freeze] (queen.c) queen: [debug] Assertion (peterferrie)
+- 05880: [Documentation] (sam.c) bbh_160 and clones: Year of production is '2010'. (Tafoid)
+- 05879: [Documentation] (sam.c) bdk_294 and clones: Year of production is '2008'. (Tafoid)
+- 05852: [Crash/Freeze] (mw8080bw.c) m4: Crashed after insert coin (Osso)
+
+Source Changes
+--------------
+-Enable OpenGL renderer on Windows. By default, run-time function
+ resolution is enabled. To resolve addresses, the code now first tries
+ GetProcAddress followed by wglGetProcAddress. [Couriersud]
+
+-Fix memory leak warning (autorelease pool) on OSX. [Couriersud]
+
+-improvements to monkelf (bootleg of avspirit), now playable [iq_132]
+
+- Neo-Geo documentation updates  [JacKc]
+ * kof96h - Tagged AES version
+ * kof98h - Tagged MVS and AES version
+ * ncomabth - Tagged MVS and AES version
+ * Updated game pcb info
+ * Misc Documentation update
+
+-OpenGL on windows now supports glsl options. This worked out of the
+ box with wine64 and on virtualbox windows7 (64bit). [Couriersud]
+
+-Fix mame restart (builtin game selector) in draw13.c. [CourierSud]
+
+-Fix clipping bug (e.g. apparent in neogeo) for video accel. Minor code
+ changes. [Couriersud]
+
+-Aligned monitor handling between sdl and baseline. [Couriersud]
+
+-thunderx.c: convert to bankdev, merge with gbusters.c, add notes and
+ correct various things based on schematics [Alex Jackson]
+
+-add dumped prom to 64street [system11]
+
+-Fix fullscreen toggle for the accel driver os OSX. [Couriersud]
+
+-Use measured clocks from brickzn PCB, fixes music tempo. [system11]
+
+-Figured out the additional protection the Brick Zone sets used on
+ the sound sample playback / selection. [system11, Luca Elia]
+
+-First step to move osd_printf_* into osd again. Callbacks are now
+ implemented using an interface and use a push/pop approach where the
+ pop can happen out of order of pushes. [Couriersud]
+
+-m6502: Fix icounting [Peter Ferrie]
+
+-Fix crashing on ARM Linux targets. [R. Belmont, rjosal]
+
+-Mad Alien documentation improvements [Andrew Welburn]
+
+-goldstar.c: overhaul of the Golden Star driver with improvements to
+ many games [Vas Crabb, Amanda King, Bad A. Billy]
+ * Fix GFX decode for pkrmast and crazybon, add PROMs from cmv4 to
+   get usable colours until real dumps are acquired [Amanda King]
+ * Identify board type for crazybon, connect sound, inputs and DIP
+   switches - now working [Amanda King, Vas Crabb]
+ * Split up machine state class into six classes for different
+   board families, reduce redundancy using derived machine configs
+   and input port includes [Vas Crabb]
+ * Identify, document and verify many inputs and DIP switches,
+   correct some game descriptions, add notes on PCBs and info
+   from manuals [Bad A. Billy]
+ * Verify and correct many DIP switches and inputs, add lamp and
+   coin counter outputs for most games [Vas Crabb]
+ * Hook up AY8910, DIP switches, VBLANK IRQ enable, lamps
+   coin counters and ticket dispenser on unkch hardware - all
+   four sets are now playable with sound [Vas Crabb]
+ * Add internal clickable control panel artwork for almost all
+   games with working lamp outputs [Vas Crabb]
+
+-segas32.c: Correct rom names for Sonic the Hedgehog and document the
+ FD1149 number & board types. [Brian Troha]
+
+-megasys1.c: fix status read for second OKI sound chip, fixes a lot of
+ samples in hachoo [Mamesick]
+
+-use dumped (from unprotected MCU) MCU rom on mrheli [Silvio Grazini]
+ * Japan warning screen is uploaded to tilemap but not shown due to
+   video emulation faults
+
+- hooked up decapped MCU to X Multiply (Japan, M72) after tidying the
+  driver a little [David Haywood]
+
+-OS/2 patches for SDLMAME 0.159 [KO Muyng-Hun]
+
+-debugwin.c: avoid race condition where debugger window update request
+ is made before debugger is initialised [Peter Ferrie]
+
+-font_windows.c: don't crash if no memory for bitmap [Peter Ferrie]
+
+-gradius4: avoid stack overflow when adsp21062 device is reset while
+ inside interrupt handler [Peter Ferrie]
+
+-queen: intercept OOB access to PIIX4 device [Peter Ferrie]
+
+-pinball2k: correct notes, install port handlers [Peter Ferrie]
+
+-mediagx: implement missing opcodes [Peter Ferrie]
+
+-tms6100.c: add the tms6125 4KiB VSM pinout [Lord Nightmare, plgdavid]
+
+-chelnov: simulate some protection instead of patching rom [iq_132]
+
+-iteagle: work-in-progress [Ted Green]
+ * Hooked up PCI devices and bridge correctly using new PCI subsystem
+ * Fixed BIOS selection
+
+-vrc4373: fix PCI target accesses. [Ted Green]
+
+- identified that Table Tennis Champions uses the same style DMA/blitter
+  as the recently added Spider, made some improvements, added sound, it 
+  isn't driven by PIC, role of PIC still unknown [David Haywood]
+
+- add basic hookups of internal peripherals to the V53, made it an actual
+  CPU type derived from the V33.  Most of these have come from the PC emulation
+  * DMA Controller (subset of uPD71071/uPD71037), clone of 8237A
+  * Serial Controller (modified uPD71051), clone of i8251
+  * Interrupt Controller (uPD71059 equivalent), clone of PIC8259
+  * Timer Unit (identical to uPD71054), clone of pit8253
+  [David Haywood]
+
+- hooked up ROM banking to Hyper Neogeo 64 Sound CPU, this, along with the
+  above V53 peripherals improves the code flow on the CPU significantly,
+  although the interrupt hookups, communication, and sound generation are still
+  not yet understood [David Haywood]
+
+- Improved some textures (billboards) in Xtreme Rally (Hyper Neogeo 64)
+ * some road parts now look worse however, so still needs work, might be
+   mirror flags too [David Haywood]
+  
+- Added / enabled save state support for the following drivers: argus.c, bbusters.c,
+ cabal.c, capbowl.c, cocoloco.c, deadang.c, fgoal.c, flyball.c, hotblock.c, ironhors.c,
+ jankenmn jchan.c, junofrst.c, mgolf.c, mosaic.c, nova2001.c, psychic5.c, pturn.c,
+ re900.c, realbrk.c, rltennis.c, sandscrp.c, shougi.c, shuuz.c, sidearms.c, speedbal.c,
+ srmp2.c, srumbler.c, ssozumo.c, ssrj.c, sstrangr.c, ssv.c, sub.c, subs.c, suna16.c,
+ supdrapo.c, suprgolf.c, suprloco.c, suprridr.c, tagteam.c, tankbatt.c, tankbust.c,
+ taotaido.c, tbowl.c, tgtpanic.c, timelimt.c, tryout.c, tsamurai.c, tugboat.c, vulgus.c,
+ wc90b xain.c, xtheball.c [Osso]
+
+-luaengine: clip screen coordinates to screen size [Luca Bruno]
+
+-ui: use per-container pixel aspect (LUA draw_text bugfix) [Luca Bruno]
+
+-docs: add initial documentation for luaengine API [Luca Bruno]
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Player's Edge Plus (X002111P+XP000038) 4 of a Kind Bonus Poker (with Seq
+  Royal Flush) [BrianT]
+Crazy Bonus 2002 [Amanda King, Vas Crabb]
+Castle Of Dracula [Caius, The Dumping Union, Luca Elia]
+New Cherry Gold '99 (bootleg of Super Cherry Master) (set 1) [Vas Crabb] 
+Spider [system11, The Dumping Union, David Haywood]
+Brick Zone (v1.1, Spinner) [Luca Elia]
+
+New clones added
+----------------
+Nitro Ball (World, set 2) [Bill D. / The Dumping Union]
+Brick Zone (v6.0, Joystick) [system11, The Dumping Union]
+New Cherry Gold '99 (bootleg of Super Cherry Master) (set 2) [Vas Crabb]
+Super Cherry Gold (bootleg of Super Cherry Master) [Vas Crabb]
+Grand Cherry Master (bootleg of Super Cherry Master) [Vas Crabb]
+Chouji Meikyuu Legion (Japan ver 1.05) [ShinobiZ & COY]
+Boot Camp (set 2) [chaneman]
+Frogger (videotron bootleg) [system11, The Dumping Union]
+Player's Edge Plus (PP0158) 4 of a Kind Bonus Poker (set 5) [BrianT]
+Player's Edge Plus (PP0190) Deuces Wild Poker (set 1) [BrianT]
+Player's Edge Plus (PP0203) 4 of a Kind Bonus Poker (set 4) [BrianT]
+Player's Edge Plus (PP0515) Double Bonus Poker (set 3) [BrianT]
+Player's Edge Plus (BE0014) Blackjack (International English/Spanish)
+  [BrianT]
+Player's Edge Plus (X000006P+XP000038) Standard Draw Poker [BrianT]
+Player's Edge Plus (X000042P+XP000038) 10's or Better [BrianT]
+Player's Edge Plus (X000764P+XP000038) 4 of a Kind Bonus Poker
+  [BrianT]
+Player's Edge Plus (X002010P+XP000038) Nevada Bonus Poker [BrianT]
+Player's Edge Plus (X002016P+XP000038) Full House Bonus Poker [BrianT]
+Player's Edge Plus (X002017P+XP000038) Full House Bonus Poker [BrianT]
+Player's Edge Plus (X002037P+XP000038) Nevada Bonus Poker [BrianT]
+Player's Edge Plus (X002039P+XP000038) Nevada Bonus Poker [BrianT]
+Player's Edge Plus (X002247P+XP000038) Standard Draw Poker [BrianT]
+Player's Edge Plus (X002386P+XP000038) 4 of a Kind Bonus Poker
+  [BrianT]
+Puzznic (bootleg) [cmonkey]
+Mahjong Electromagnetic Base [Dyq, XingXing, Luca Elia]
+Battle K-Road (Korean PCB) [Manuel Assoni]
+Adventure Quiz Capcom World 2 (Japan 920611, B-Board 91634B-2) [Bonky]
+Willow (World) [Jets (from Emu-france) and Layer (from Neo-arcadia)]
+The Combatribes (US, older) [Jets, Layer]
+Raiden II (France) [Jets, Layer]
+Golden Axe II (Mega Play) (original rev) [Jets, Layer] 
+Daioh (location test version) [CoolMod, trap15]
+Thunder Deity Biography (Chinese hack of Battle Garegga) [caius]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mahjong Ougon No Pai [Dyq, XingXing]
+

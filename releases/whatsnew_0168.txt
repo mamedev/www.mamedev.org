@@ -1,0 +1,275 @@
+0.168
+-------
+
+Special Thanks
+--------------
+
+Huge thanks to PVS-Studio's owners for giving us a temporary license in order to troubleshoot
+issues in our code.
+
+Also big thanks goes to JetBrains for giving us licenses for their ReSharper and CLion 
+projects that are helping us to improve MAME.
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 06083: [Core] cpu/z8000/z8000tbl.inc - wrong asmflags (Olivier Galibert)
+- 05958: [Graphics] (cclimber.c) toprollr: Some sprites are invisible (Osso)
+- 06075: [Graphics] (malzak.c) malzak, malzak2: Graphic issue (blank line) in title (Pernod)
+- 06071: [Documentation] (shadfrce.c) shadfrcej: Shadow Force (Japan Version 3) might be misnamed. 
+  Version is actually in English, not Japanese. (David Haywood)
+- 06070: [DIP/Input] (psikyosh.c) mjgtaste: Joystick mode does not fully work (David Haywood)
+- 06060: [DIP/Input] (a7800.c) a7800 [1on1u]: Cannot start a game in One-On-One Basketball. (David Haywood)
+- 05817: [Misc.] (mz700.c) mz700, mz700j: Emulation drastically slowing down after loading the basic! (Robbbert)
+- 06056: [Gameplay] (osborne1.c) osborne1: osborne1 banking doesn't work properly (Vas Crabb)
+
+Source Changes
+--------------
+
+-zx: Start of a hardware-correct rewrite [O. Galibert]
+
+-Aristocrat MKV driver: More accurate documentation. Also added some
+ technical notes. [Roberto Fresca]
+
+-osborne1 improvements [Vas Crabb]
+ * Bank low 16k according to schematics, passes memory test
+ * Handle memory mapped I/O addresses according to schematics
+ * Correct vectoring of IEEE488 interrupt
+ * Add serial port emulation
+ * Fix beeper frequency/timing
+ * Fix scrolling behvaviour in standard and SCREEN-PAC modes
+ * Implement RESET key (generates NMI, F12 by default)
+ * Show contents of video memory in F4 tilemap viewer
+ * Add configured banking and save state support
+
+-Osborne Vixen: fixed screen (thanks to OG who added M1 support to the
+ Z80). Various other fixes. Marked as Working [Robbbert]
+
+-n64: Simulation of cpu cycles from the skipped RDRAM initialization.  [Happy]
+ This allows later SI initialization to see something closer to an
+ expected value for the system uptime.
+
+-making logerror part of machine and device classes [Miodrag Milanovic]
+ display tag of device that logged message
+
+-naomi/triforce docs update [f205v]
+
+-peplus.c: Documentation update based on newly found PSR (Program
+ Summary Report). [Kevin N, BrianT]
+
+-TMS5xxx: Fix for occasional audio 'spike' instability/wraparound
+ glitches caused by improper truncation in the lattice filter
+ multiplier. This is not an optimal fix as it isn't correct to
+ hardware, but it works better than the previous approximation.
+ [Lord Nightmare]
+
+-Derived a new machine with improved memory map, remapped the roms
+ load, and created proper inputs set for Genie (ICP-1, set 2). Also
+ added technical notes and findings... [Roberto Fresca]
+
+-Goldnpkr.c driver: Added games and technical notes, and some
+ clean-ups... [Roberto Fresca]
+
+-Fix all instances of PVS-Studio warning V578, "An odd bitwise operation
+ detected. Consider verifying it". [MooglyGuy]
+
+-Sharp MZ series:
+ * MZ-700: Increased speed of basic (MT 06058) by using bankdev; [Robbbert]
+ * MZ-700: Fixed shift, ctrl, function keys;
+ * MZ-800: Fixed crash when ramdisk accessed;
+ * MZ1500: now starts up and can run some programs;
+ * MZ-800, MZ-80K, MZ-80A can load mzf tapes.
+
+-Fix some instances of PVS-Studio warning V501, "There are identical
+ sub-expressions to the left and to the right of an operator". [MooglyGuy]
+
+-hdc92x4: Fix ambiguity of ?: operator flagged by PVS-Studio [MooglyGuy]
+
+-Jack Potten's Poker (NGold, set 3) improvemente: Fixed wrong inputs /
+ coin lines through dedicated inputs. Also fixed graphics.
+ [Roberto Fresca]
+
+-Serial ports added to imds2 [F. Ulivi]
+
+-Fix PVS-Studio warning V562, "It's odd to compare a bool type value with
+ a value of 0/1" [MooglyGuy]
+
+-Fix PVS-Studio warning V564, "The &/| operator is applied to bool
+ type value. You've probably forgotten to include parentheses." [MooglyGuy]
+
+-goldnpkr.c driver improvements. [Roberto Fresca]
+
+-cmpacman: fix two DIP switches [Vas Crabb]
+
+-Added partial decryption to the ICP1 daughterboard games. (currently
+ only pokerduc set). Since it's just partial, commented out the code
+ for now.... [Roberto Fresca]
+
+-Added port impulse to the Golden Poker's second coin slot. This is
+ needed for both royale sets. [Roberto Fresca]
+
+-amstad: Transtape WIP support. [Barry Rodewald]
+
+-a7800.c - More accurately reflect '0x02XX' map per hardware
+ documentation and testing. [Mike Saarna, Robert Tuccitto]
+
+-TMS5220 and TMS5110: Add more verbosity to DEBUG_LATTICE
+ [Lord Nightmare]
+
+-namcos23: Better handle on the GPU comms [O. Galibert]
+
+-OSD/SDL: add missing header to fix build on NetBSD. [Thomas Klausner]
+ The file was removed from the other gmake.*/genie.make files. The
+ build/gmake.* files do not exist upstream, so this is a purely local
+ problem.
+
+-namcos23: port b bit 6 is also an input, handle accordingly.  Probably
+ JVS. [O. Galibert]
+
+-mc6845: fixed hd6845 rasters in interlace mode [Nigel Barnes]
+ * bbc now uses correct hd6845
+ * saa5050 outputs all 20 scanlines
+
+-a6809: Removed hack and fixed display for above saa5050 changes.[Robbbert]
+
+-bbc: softlist additions/changes [Nigel Barnes]
+ * added part_id to many items
+ * added original protected floppies (FSD)
+
+-bbc: preliminary support for FSD format. [Nigel Barnes]
+
+-naomi.c: added "NAOMI Development BIOS v1.10" [Andy Geezer, MetalliC]
+
+-Aristocrat MKIV driver: Changed the Fever Pitch input scheme and
+ artwork layout, since it seems that the game lacks of a gambling or
+ double-up feature. Also cleaned a bit the driver. [Roberto Fresca]
+
+-Aristocrat MKIV driver: Fever Pitch service input is just 'reserve'
+ feature/function. Changed the inputs and artwork layout accordingly.
+ [Roberto Fresca]
+
+-HLSL [ImJezze]
+ * removed duplicate prescale fields
+ * made visibility of HLSL options depending on screen type
+ * disabled scanlines for LCD screen type
+   Fixed reset of HLSL settings
+ * fixed bug that resets the HLSL settings when the screen size has
+    changed
+ * removed hardcoded HLSL presets
+ * updates HLSL readme
+ * fixed creation order of D3D and HLSL resources
+ * sliders will be hidden when toggled off and will be shown when
+    toggled on again
+ * screen adjustment (scale, offset) can now be handled by the
+    respective render API itself (default behavior is as before)
+ * D3D (if HLSL) is activated handles screen adjustment by itself
+    within the shader, which fixes the odd behavior of some effects
+    (e.g. round corners) when screen scale and offset is used
+ * fixed bug that resets the HLSL settings when switching between
+    window mode and fullscreen
+ * fixed changed screen adjustment for multi screens
+ * the vector renderer now tries to detect a invariabel vector
+    intensity and disables the calculation of a dynamic beam width
+ * fixed not used HLSL settings from <custom>.ini if MAME was started
+    without driver parameter
+ * removed default values from HLSL sliders, the defaults here are
+    more like null values to hint when an effect would be disable
+ * slightly changed default HLSL settings
+ * fixed missing shadow mask texture when switching between window
+    mode and full screen
+
+-z800x: Fix the disassembly [Oliver Lehmann]
+
+-ap2_dsk.c: support 36-track Apple II NIB images [Peter Ferrie]
+
+-wozfdc: Warp factor 4 Scotty (much less CPU usage now!) [O. Galibert]
+
+-vrender0: allow resolutions higher than 512x240 [Luca Elia]
+
+-Updated OS/2 support for GEnie and MAME [KO Myung-Hun]
+
+-mcatadv.c: Improved Nostradamus emulation [David Haywood]
+ * Sprite masking effect supported (stage 6 boss)
+ * Tilemap enable supported (flickering shadow for stage 7 boss)
+ * Priority 0 sprites now shown (final boss arms)
+ * BG colour changed to more likely pen (fade in/out on intro & end)
+
+-se3208: make sure the low bits of the stack pointer are always 0 [Luca Elia]
+
+-se3208.c: disallowed unaligned dword reads/writes, this allows
+ Donggul Donggul Haerong to function, although not 100% sure it's the
+ correct fix [David Haywood]
+
+-Allow for Emscripten compile to JavaScript out of the box. [Justin Kerk]
+ MAME can now be built using Emscripten's 'emmake' tool, e.g. like so:
+ emmake make SUBTARGET=pacman SOURCES=src/mame/drivers/pacman.cpp
+ This should produce a .js file which can be supplied to an HTML front-end.
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Fever Pitch? (2VXEC534, NSW, 90.36%) [Roberto Fresca, Matt B]
+Trivia R Us (v1.07) [J. Mathevet, Smitdogg, The Dumping Union, Luca Elia]
+Micro Engenho (Brazilian Apple 2 clone) [Felipe Sanches]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Forgotten Worlds (World, newer) [Bill D, The Dumping Union]
+Fighter's History (World ver 43-09, DE-0395-1 PCB) [coolmod, rtw, The Dumping Union]
+Genie (ICP-1, set 2) [Roberto Fresca, Matt B]
+Genie (ICP-1, set 2) [Roberto Fresca]
+Karate Blazers (World, set 2) [caius]
+Jack Potten's Poker (set 8, Australian) [Roberto Fresca, Matt B]
+Jack Potten's Poker (set 9, 'just 4 fun') [Roberto Fresca, Matt B]
+Player's Edge Plus (PP0045) 10's or Better (Las Vegas Rio) [BrianT]
+Player's Edge Plus (PP0104) Standard Draw Poker [BrianT]
+Player's Edge Plus (PP0197) Standard Draw Poker (set 5) [BrianT]
+Player's Edge Plus (PP0197) Standard Draw Poker (Cruise) [BrianT]
+Player's Edge Plus (PP0203) 4 of a Kind Bonus Poker (set 5) [BrianT]
+Player's Edge Plus (PP0221) Standard Draw Poker (set 2) [BrianT]
+Player's Edge Plus (PP0423) Standard Draw Poker (set 4) [BrianT]
+Player's Edge Plus (PP0454) Bonus Poker Deluxe (set 2) [BrianT]
+Player's Edge Plus (PP0550) Joker Poker (Two Pair or Better, set 2) [BrianT]
+Player's Edge Plus (X002178P+XP000119) Double Bonus Poker [BrianT]
+Sengoku Ace (Japan, set 2) [Alex Cmaylo]
+Bonne Chance! (Golden Poker prequel HW, set 2) [Roberto Fresca, ANY]
+Final Fight Revenge (JUET 990930 V1.100) [coolmod]
+Ripper Ribbit (Version 3.5) [coolmod, Ryan Holtz, The Dumping Union]
+1943: The Battle of Midway (US) [caius, The Dumping Union]
+Rolling Thunder (rev 3, hack) [caius]
+Super Galaxians (Silver Systems) [Robbbert]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Cherry Master '99 [hsialin,Vas Crabb]
+Chicken (RHG0730, Export, 92.588%) [Roberto Fresca]
+Enchanted Forest (MV4033, Export, 94.97%) [Roberto Fresca]
+Club Kart for Cycraft (GDS-0029A) [Guru, R. Belmont]
+Initial D Arcade Stage Ver. 3 Cycraft Edition (Rev. A) (GDS-0039A) [Guru, R. Belmont]
+Koala Mint (MV4137, Export) [Roberto Fresca]
+Magic Garden (AHG1211, Export, 88.26%) [Roberto Fresca]
+Sweet Hearts II (PHG0742, Export, 92.252%) [Roberto Fresca]
+Party Gras (MV4115/3, Export, touch) [Roberto Fresca]
+The Gambler (EHG0916, Export, 92.268%) [Roberto Fresca]
+Tropical Delight (PHG0625-02, Export, 92.25%) [Roberto Fresca]
+
+
+New clones marked as NOT_WORKING
+--------------------------------
+Super Treasure Island (Italy, v1.6) [Any]
+The Typing of the Dead [twistedsymphony]
+Super 98 (ICP-1) [Roberto Fresca, Matt B]
+Golden Pyramids (AHG1206-99, NSW/ACT, 87.928%) [Roberto Fresca]
+Margarita Magic (EHG1559, NSW/ACT) [Roberto Fresca]
+
+
+New WORKING software list additions
+-----------------------------------
+
+
+
+New NOT_WORKING software list additions
+---------------------------------------
+

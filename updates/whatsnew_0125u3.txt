@@ -1,0 +1,289 @@
+0.125u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01827: [Interface] galaga: DIP switch information is not being 
+         readded properly when .CFG is read. (Aaron Giles)
+- 01837: [DIP/Input] Missing input definitions (Aaron Giles)
+- 01039: [Interface] trog: Memory area limit of the cheat engine.
+         (ShimaPong)
+- 01690: [Graphics] goldstar, goldstbl: Damaged and partially missing
+         graphic. (Fabio Priuli)
+- 01153: [Speed] clshroad: The game is slow, the frame rate suffers, 
+         and even the calorie bar flickers. (Nicola Salmoria)
+- 00267: [Graphics] clshroad: Occasionally a cycler who's graphics are 
+         garbled will come along, (Nicola Salmoria)
+- 01692: [Graphics] athena: Corrupt sprites in game. (robiza)
+- 01834: [Graphics] fitegolf, countryc: Graphics corruption (robiza)
+- 01780: [Graphics] pingpong: Level select arrow's not displayed 
+         (Nicola Salmoria)
+- 01822: [Interface] OSD causes crash when try to show the Screen 
+         Refresh Rate menu. (Aaron Giles)
+- 01830: [DIP/Input] All sets in m58.c: Conditional coinage dip not 
+         visible/working for coin mode 1 (Aaron Giles)
+- 01836: [DIP/Input] qcrayon2: Conditional input not visible/working 
+         for dip game control joystick (Aaron Giles)
+- 01833: [Graphics] spikes91: missing text layer (David Haywood)
+- 01832: [DIP/Input] finalgdr: Cannot insert coins (all coin slots 
+         are disabled) (David Haywood)
+- 00240: [Gameplay] galaga88: Most of the time the shooting accuracy 
+         shown on the screen when the game is over is not computed 
+         correctly. (Nicola Salmoria)
+- 01741: [Graphics] ldrun4: Sprites are misplaced two pixels to the 
+         right. (Nicola Salmoria)
+- 01816: [DIP/Input] onetwo, onetwoe: credit problem and maybe sound 
+         problem (David Haywood)
+- 00245: [DIP/Input] tomahawk: There are no separate keys for player 
+         2 in cocktail mode. (Nicola Salmoria)
+- 01735: [Graphics] sf2m4, sf2m5, sf2m6, sf2m7, sf2yyc, sf2koryu: 
+         games with bootleg kludge doesn't work (Nicola Salmoria)
+- 00070: [Misc.] nettoqc: In-game message. (couriersud)
+- 01756: [Sound] 800fath, knockout, marine, triplep: No sound in game.
+         (couriersud)
+- 01825: [Interface] Toggling Tab menu works as F2 key in games with 
+         their service mode DIPs on the top of the menu. (Aaron Giles)
+- 00407: [Misc.] qtono2: At the game over scene, MAME reports "layer 
+         c000 contact MAMEDEV". (Nicola Salmoria)
+- 00237: [Sound] jumping: I have a Jumping bootleg and the music has 
+         the same tempo of the original rainbow islands. 
+         (Nicola Salmoria)
+- 00208: [Original Reference] monymony: I am measuring clocks on my 
+         Money Money pcb but I have a problem with the tms5200 clock.
+         (Nicola Salmoria)
+- 01776: [Misc.] pzloop2, pzloop2j: In-game message "write to CPS-A 
+         register 24 contact MAMEDEV" at startup. (Nicola Salmoria)
+- 01755: [Misc.] mmatrix, mmatrixj: CPS-B read port 10 
+         (Nicola Salmoria)
+- 01823: [Graphics] digdug, xevious, galaga + all clones: cocktail 
+         mode, player 2 has all sprites offset by an inch or two 
+         (couriersud)
+- 01826: [Graphics] All sets in mappy.c: All cocktail modes are 
+         displayed incorrectly for 2nd player (couriersud)
+- 01819: [Misc.] "Coinlock disabled coin x" message displayed upon 
+         startup (couriersud)
+- 01828: [DIP/Input] Most sets in taito_f3.c driver: Coin slots locks 
+         information does not disappear (couriersud)
+- 01719: [DIP/Input] bking, bking2, bking3: Player 1 and 2 Start 
+         mapped twice. (couriersud)
+
+
+
+Source Changes
+--------------
+Changed default DIP switches in onetwo.c. Common coinslot mode seems 
+broken, or our code is wrong. [David Haywood]
+
+Updated documentation in several drivers based on old readmes and 
+other data that might get lost. [Andrew Gardner]
+
+Fixed COP420 instructions JSRP, LBI, LQID, and SKT. Draco now has 
+sound. Also fixed COP420 instructions XAS and INIL. Fixed cycle count 
+for extended opcodes. Added CKO general purpose input. [Curt Coder]
+
+Improvements to American Poker II driver. [Roberto Fresca]
+ - Reworked the color routines switching to resnet system.
+ - Added a resistor network diagram.
+ - Switch to pre-defined crystal value.
+ - Changed the WATCHDOG_TIME_INIT to be based on miliseconds instead 
+    of hertz.
+ - Other minor cleanup/fixes.
+ - Updated technical notes.
+
+peplus driver changes: [Jim Stolis]
+ * Updated coin-in timing
+ * Extended memory address range of DUART
+ * Fixed overlapping input port bits
+
+Fixed PORT_IMPULSE handling. The old code would force inputs to be 
+asserted for at least the number of frames indicated, but keeping the 
+button pressed would keep the input asserted. Now the input is 
+asserted far exactly the number of frames indicated. [Nicola Salmoria]
+
+Fixed memory access in the 80286 cpu core which made i286.h obsolete. 
+Changed CPUINFO_INT_MAX_INSTRUCTION_BYTES to prevent crashes during 
+disassembly. [Wilbert Pol]
+
+Fixed behavior of toggle switches so that they don't lose their value
+when the UI is up. They also can now be used for multibit DIP switch
+settings in which case they toggle through all the options. Added
+new functions input_field_select_next_setting() and 
+input_field_select_previous_setting() which can be used to iterate
+properly through DIP switches. Fixed the behavior for cases where
+conditional ports are in play (you could get stuck). Changed uimenu.c
+to call these instead of implementing its own. [Aaron Giles]
+
+Changed uimenu.c so that hitting ENTER on a DIP switch resets it to
+its default value. This is analagous to how the OSD sliders behave.
+[Aaron Giles]
+
+Renamed EEPROM_* to eeprom_*. Updated all drivers accordingly. 
+Typedef'ed a real eeprom_interface structure. [Aaron Giles]
+
+Added a PORT_CUSTOM for the eeprom bit reading. Updated several
+drivers to use that by specifying it in their input ports instead
+of having a custom read handler that inserted the bit forcefully.
+Also added a PORT_CUSTOM for the ticket dispenser callback as well.
+Updated the dcheese driver to use it. Many more drivers can be updated 
+to use these new PORT_CUSTOMs in the future, eliminating hacky input 
+port read handlers. [Aaron Giles]
+
+Changed text used to specify a menu separator in uimenu.c, and added
+a #define for the new string. [Nathan Woods]
+
+Added TOKEN_SKIP_* macros to tokenize.h. [Aaron Giles]
+
+Changed error reporting during input port detokenization to fill a 
+buffer rather than fatalerror-ing immediately. Should now properly 
+skip over any invalid tokens. Enhanced error detection during input 
+port detokenization to catch duplicate bits. There are a lot of these!
+Updated initialization code to print errors and fatal only if the 
+input ports were unable to be constructed at all. [Aaron Giles]
+
+Fixed duplicate input port bits in pacman.c, gottlieb.c, cps1.c,
+megadriv.c, segae.c. [David Haywood]
+
+Added support for a NULL set of input ports, used by the empty driver.
+[Aaron Giles]
+
+Fixed cpu_getiloops() which was not returning the correct value.
+[Nicola Salmoria]
+
+Made gijoe not crash, but still don't understand what the original
+code was trying to do. [David Haywood]
+
+Moved suprpool to a better match hardware. Fixed the ROM load and 
+added a list of PCB components. [Roberto Fresca]
+
+Implemented autoload mode in 8257 DMA: [Miodrag Milanovic]
+ * added support for autoload mode
+ * fixed bug in calculating count
+
+Fixed duplicate input port bits in dkong.c. [couriersud]
+
+MIPS core changes: [Aaron Giles]
+ - renamed struct mips3_config -> mips3_config
+ - updated all drivers to the new names
+ - removed MIPS3DRC_STRICT_COP0 flag, which is no longer used
+ - a few minor cleanups
+ - moved implementation-specific state into a pointer hanging off of 
+   the core MIPS3 state
+ - removed large context in favor of a pointer to the large context 
+   to help improve context switch times
+
+Changed the behavior of the translate callback in the CPU interface:
+[Aaron Giles]
+ - added new 'intention' parameter to the translate callback to
+   indicate read/write/fetch access, user/supervisor mode, and
+   a flag for debugging
+ - updated all call sites to pass an appropriate value
+ - updated all CPU cores to the new prototype
+
+UML updates: [Aaron Giles]
+ - added new opcode SETC to set the carry flag from a source bit
+ - added new opcode BSWAP to swap bytes within a value
+ - updated C, x86, x64 back-ends to support the new opcodes
+ - updated disassembler to support the new opcodes
+
+DRC frontend changes: [Aaron Giles]
+ - fixed bug in handling edge case with the PC near the 0 or ~0
+ - added new flag to tag privileged instructions
+
+Added new option -snapname which lets you provide a template for how 
+snapshot names are generated. See config.txt for details. [Aaron Giles]
+
+Added new astring functions astring_del, astring_replace, and 
+astring_replacec. [Aaron Giles]
+
+Removed meaningless service_coin_lockout_w function. Updated the 
+zaxxon driver to correctly handle the coin enable lines. 
+[Nicola Salmoria]
+
+Fixed bug that caused DIP switches to be improperly read from game 
+cfg file in certain circumstances. [Aaron Giles]
+
+Added internal default tags for input ports when saving/loading.
+[Aaron Giles]
+
+Updated cheat sytem drastically: [ShimaPong]
+
+  * Supported (preliminary) new cheat format
+     - Added new operations
+        PDWWrite, RWrite, VRWrite, CWrite, Move, Branch, Loop, Popup
+     - Added new options
+        ValueSelectNegative, Return, AddressReadFrom, DataReadFrom
+     - Added cheat variables
+        You can store data with Write or Move operations and
+        read as an address or data from each fields
+     - Added condition check
+        for CWrite, Branch and Popup operations
+     - Added new custom codes
+        Separator, Layer
+     - Supported Shared Code [MESS ONLY]
+        different machine shares common code for a game
+
+  * Allowed mixed label-select or user-select with standard code
+
+  * Added label selector menu for label-selection code
+
+  * Added extend comment displayer for multi-line comments
+
+  * Added command menu for cheat list and watchpoint
+     Easy selectable cheat commands in this menu
+
+  * Added debug view menu [DEBUG BUILD ONLY]
+     It displays internal info to debug cheat system
+
+  * Supported unique separator by ui_draw_menu() in several menus
+
+  * Added user defined search region
+     You can set free memory range from cheat database
+
+  * Enhanced error check for cheat code to prevent from unexpected 
+     working. Error code is locked. If you select this code, the 
+     analyser works instead of the code activater
+
+  * Enhanced value input with keyboard-less
+     Cheat edit key gives new input system in several menus
+     Left/right keys moves the edit cursor and up/down keys changes a 
+     value
+
+  * Added cheat command save, reload, reset in option menu
+
+  * Supported address shift in searching
+     Now searchable default region in TMS340*0 cpu games (Trog, 
+     Smash T.V. etc)
+
+  * Refined cheat menu handling with function pointer called 
+     cheat_menu_handler
+
+  * Added format strings table to manage in an integrated fashion
+
+  * Deleted unused hacks of default search region for Neo Geo and 
+     TMS34010
+
+  * Refined code based on MAME coding guidelines
+     - Renamed many functions/structures/constants
+        But not complete due to too many items
+     - Converted small but often used functions to INLINE
+     - Fixed a comparison in case of 0 or NULL
+     - Added missing function prototype for several functions
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+beatmania THE FINAL (ver JA-A) [Chizzy]
+Player's Edge Plus (XP000112) White Hot Aces Poker [hammer300]
+ChuckECheese's Match Game [Exodus]
+Coronation Street Quiz Game [Phil Bennett]
+
+
+
+New clones added
+----------------
+Fred Flintstones' Memory Match (5 new sets) [Exodus]
+Mighty! Pang (Euro 001010) [Bonky]
+Dynamite Cop (USA, Model 2C) [The Guru]
+Atomic Boy (revision B) [Stefan Lindberg]

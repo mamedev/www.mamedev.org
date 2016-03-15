@@ -1,0 +1,59 @@
+0.35 RELEASE CANDIDATE 2
+
+New games supported:
+--------------------
+
+SAR - Search and Rescue [Bryan McPhail]
+Street Smart [Bryan McPhail]
+Demon's World / Horror Story [Darren Olafson]
+Rally Bike / Dash Yarou [Darren Olafson]
+Flying Shark / Sky Shark [Quench]
+Wardners Forest / Pyros [Quench]
+
+
+New clones supported:
+---------------------
+
+Terra Cresta (YM3526 set 2) [Nicola Salmoria]
+Indiana Jones and the Temple of Doom [Yasuhiro Ogawa]
+Makai-Mura (2 new sets) [Yasuhiro Ogawa]
+Mizubaku Daibouken (= Liquid Kids) [Yasuhiro Ogawa]
+
+
+Other drivers changes:
+----------------------
+
+- Added rotary control support to Top Gunner. This works in topgunbl *only* -
+  the gun turret cannot be rotated in jackal and topgunr, those games don't
+  support the rotary joystick. [Karl Stenerud]
+
+- Incresed the horizontal resolution for NeoGeo to 320. This looks strange with
+  some games, but it is definitely the correct value as I verified it on the
+  real thing. Games like Puzzle Bobble and Baseball Stars use the extra area,
+  while most of the other games draw just two bars in there. If a game looks
+  odd, adjust your monitor to send the extra area offscreen. [Nicola Salmoria]
+
+- Fixed the slapstic emulation in Gauntlet, Gauntlet II, Xybots, Empire Strikes
+  Back, Rampart. [Ernesto Corvi, Nicola Salmoria]
+
+- Fixed crashes in Demon, added analog controls to Tailgunner, fixed reset bug
+  in Space Wars, added glove control to Boxing Bugs, added color to War of the
+  Worlds and Boxing Bugs (seems to be wrong compared to Retrocade).
+  [Mathis Rosenhauer]
+
+- Added scroll to Pinball Action when you push button 4, but I'm not sure it's
+  correct. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Simplified the error message when ROMs are missing. It now gives a list of
+  all the missing ROMs, it doesn't stop at the first one. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- IMPORTANT FOR PORTERS: the "safety area" allocated by osd_new_bitmap() must
+  now be 16 pixels instead of 8. This is required by the NeoGeo driver.

@@ -1,0 +1,281 @@
+﻿0.170
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 06097: [Crash/Freeze] (viper.c) Most sets in viper.c: Crashing at start
+  (32-bit only) (Robbbert)
+- 06127: [DIP/Input] (m92.c) thndblst: "Continuous Play" dip switch 
+  value incorrectly labeled (kane)
+- 06126: [Crash/Freeze] (suna8.c) hardhea2b: Exception at start (Osso)
+- 04900: [Flip Screen/Cocktail] (battlex.c) battlex: Missing Title and 
+  Text while flipped (Osso)
+- 06117: [Multisession] (bfm_sc2.c) qntoond, quintoon: MAME crashed when 
+  switching games (Osso)
+- 02640: [Gameplay] (megasys1.c) kazan, iganinju: Multiple issues (slow graphic
+  rendering, missing graphics) (Angelo Salese)
+- 06114: [DIP/Input] (cps1.c) sf2m10: Kick inputs are not working LK MK HK (Osso)
+- 06090: [Crash/Freeze] (namcos10.c) mrdrilr2, mrdrlr2a: Crash during Init (Osso)
+- 06046: [Speed] Several drivers using mc6845.c: Speed is always 90-98% when 
+  throttled (crazyc)
+- 06104: [Gameplay] (x1.c) x1 [druaga]: druaga fails to get past 
+  loading screen (crazyc)
+- 06124: [Crash/Freeze] (phc25.c) phc25, spc1000, fc100: phc25, fc100 crash 
+  at start; spc1000 crash when a letter key is pressed (Osso)
+- 06122: [Crash/Freeze] (x68k.c) x68000 [ffight]: crashes with stack crawl (crazyc)
+
+Source Changes
+--------------
+-Added more accurate SSi S14001A speech chip emulation, written by one
+ of the people at SSi who originally laid out the S14001a silicon in
+ 1974/5! [Ed Bernard]
+
+-nokia_3310.cpp: started implementing the driver based on available
+ information. Also added dumps for various models. [Sandro Ronco]
+
+-Corrections to some ROM names and labels on Elevator Action based on
+ pcb pictures. [Lord Nightmare, brizzo]
+
+-tispeak.cpp: Dumped and added correct version of 1979 US Speak &
+ Spell. [Sean Riddle]
+
+-vicdual: rewrote carnival music board emulation, copy-pasted samples
+ handling from audio/pulsar.cpp. Kept sample names and function names
+ the same. [hap]
+
+-XAudio2 support [Brad Hughes]
+
+-Removed this == nullptr checks and fixed most of the resulting
+ crashes. [MooglyGuy, Tafoid]
+ 
+-psychic5.cpp: added SCREEN_RAW_PARAMS [Angelo Salese]
+
+-More configuration fixes [AJR]
+ * terrafb: remove unused NB1414M4
+ * segas16b.cpp: sanity check forgotten in last confix
+ * sega16sp.cpp: fix region width, make required (as last confix
+    allows)
+
+-psychic5.cpp: Fixed sprite disable for Bombs Away. [Angelo Salese]
+ 
+-Pass and return palette devices by reference, not as pointers [AJR]
+ * Add screen_device::has_palette()
+ * Require device_gfx_interface::gfx() and palette() to access members
+ * Getters for atari_vad_device return devices as references, not
+    pointers
+
+-Driver configuration fixes [AJR]
+- Implement found() method for object finders
+- a1200, cubo, midzeus2, etc.: remove spurious palette tags
+- bagman, sbagman & clones: correct PROM region lengths
+- atomicp, snapper: remove unused(?) sprite device w/no ROMs
+
+-taitotz: replace HLE rendering with actual chip emulation [Ville Linde]
+
+-NAOMI/Chihiro docs update [f205v]
+-document rest of Atomiswave registers [brizzo, MetalliC]
+-added dump of World Club Champion Football's camera sensor board [ANY]
+
+-tourvis.cpp: Added V4.0 BIOS to the Tourvision driver [system11]
+
+-OS/2 patch [KO Myung-Hun]
+
+-Arkanoid: Add note about the number of optical quadrature slots (24)
+ the arkanoid 1:20 geared spinner's quadrature wheel. [brizzo]
+
+-Arkanoid.cpp: Set YM2149 emulation to mix channels the same way the 
+ real pcb mixes them, by directly tying them together with no mixing 
+ resistors. This  introduces some distortion, but is more accurate 
+ to actual pcb audio. [Lord Nightmare]
+ 
+-40love.cpp: added global color select bank, fixes colors in later 
+ levels for Forty-Love [Angelo Salese]
+
+-spc1000: cassette tape motor fixed for working properly [Miso Kim]
+
+-arkanoid.cpp: Added emulation of the 68705 timer and timer interrupts. 
+ Fixed bugs with MCU port c ddr handling, latches and edge detection, 
+ added missing interrupt on Z80 write to MCU, and removed a boost 
+ interleave hack which was made unnecessary by these fixes. Switched 
+ the Arkanoid (older) sets to use original Taito A75 06 MCU code as 
+ opposed to the bootleg MCU code used until now. The 3 (newer) and 1 
+ Tournament sets still use hand-hacked bootleg MCU code until original 
+ MCU chips can be dumped and/or decapped. All 9 of the dumped Arkanoid 
+ MCU code roms now work, if hooked up to the appropriate drivers. Hooked 
+ the now-working 'deprotected Taito' MCU dump up to arkanoidjbl. Added an 
+ alternate gfx rom dumped from an original 'older' US board. [Lord Nightmare, Brizzo]
+
+-some fast invaders improvements [ANY]
+
+-Return std::string objects by value rather than pass by reference [AJR]
+  - strprintf is unaltered, but strformat now takes one fewer argument
+  - state_string_export still fills a buffer, but has been made const
+  - get_default_card_software now takes no arguments but returns a string
+
+-Some comments on TRS-01 'early radar scope' 5-PCB set. Fixed some ROM 
+ names based on PCB pictures from Superully. [Lord Nightmare]
+
+-segas18.cpp: Add documentation of a Laser Ghost test PCB [Arzeno Fabrice]
+
+-meadwttl.cpp: ROM labels update for Bombs Away (Meadows) [Stiletto, Andrew Welburn]
+
+-common osd path environment var expansion [Jeffrey Clark]
+
+-add lua console support back in [Jeffrey Clark]
+
+-pc9801_86: add pcm [Carl]
+
+-added official updater roms to the calspeeda set so that you can
+ update the hdd / game revision if you so please [mrsinister]
+
+-ts803: can display text and graphics, can boot from disk [Gabriele D'Antona]
+
+-dccons.c:
+  Dreamcast v1.022 "no MIL-CD" BIOS dumped [Leonard Oliveira]
+  Katana Set5 Dev.Box BIOS v1.001 found [MetalliC]
+  sorted out bioses/flashes, removed outdated comments [MetalliC]
+
+-apple2e: fix $c800 arbitration, fixes IDE and SCSI cards 
+ among others. [R. Belmont]
+
+-R9751: Clean up, add timer register, and add another system disk 
+ set to software list [Brandon Munger]
+
+-makedep.py: Finish making it python3-compatible [O. Galibert]
+
+-sfkick.cpp: Fill in missing dipswitches and added dip locations. [Brian Troha]
+
+-Added pre-compiled headers support to build system [Miodrag Milanovic]
+ 
+-improvements to hp9845b driver [F.Ulivi]
+
+-Increase debug console maximum parameters in debugcon.h [ConHuevosGuey]
+
+-m68k: fix 020+ bfins instruction results and flags [Till Harbaum]
+
+-fidelz80: redumped CC10B PRG ROM [Berger]
+
+-rf5c400: added external memory r/w function [Ville Linde]
+
+-marywu: Most of the hardware has been mapped by analysing the pcb tracks. [Felipe Sanches]
+ This set of commits include:
+	a video layout with all 30 LEDs 13 double-digit 7seg modules
+	an improved memory map hooking up the couple AY8910-3 chips, 2kb of Static RAM and the keyboard/display controller (an i8279 clone)
+	multiplexing signals for the 7seg displays
+	LEDs being controlled by the IO ports of the 2 AY8910-3 chips
+	8-bit set of DIP-Switches, a 2x16 keyboard and 4 push buttons mapped to the i8279 scanlines and return lines
+
+-Some more validity checking improvements: [AJR]
+	* The -validate command now accepts an optional string, validating only 
+	  matching drivers. This has proven useful for debugging. The default is
+	  to validate all drivers as usual.
+	* Devices' names are tracked when validating their auto-finders.
+
+-Have sound_stream::input_name return the std::string it constructs [AJR]
+
+-Added SteamLink initial support [Sam Lantiga, Miodrag Milanovic]
+
+-Refactored NTSC pass and added sliders [ImJezze]
+	* merged YIQ encode and decode pass into one NTSC pass
+	* fixed half texel offset
+	* re-added usage of A value
+	* re-added usage of P value
+	* re-added jitter of B value
+	* changed default O value to 0
+	* reduced sample count to 64
+	* removed duplicate YIQ settings definition
+	* added sliders for most NTSC settings
+	* fit B value jitter between a min/max range of 0 and 1
+	* fit A and B value between a min/max range of -1 and 1
+ Refactored color convergence pass
+	* color convergence is now independent from ratio
+	* color convergence is now limited to a maximum of 10
+	* the radial color convergence now "translates" the most outer 
+	  pixel as they would be translated by the linear color convergence 
+	  with the same amount
+	* added color convergence pass to vector rendering	
+ Misc.
+	* fixed half texel offset in pre-scale pass
+	* fit scan-line jitter between a min/max range of 0 and 1
+	* color convolution, defocus and phosphor pass will now be skipped 
+	  if all influencing parameters are 0
+	* added hum bar simulation based on [MooglyGuy's] GLSL port of the MAME shader pipeline
+	* added monochrome-chessboard.png
+	* added slot-mask-aligned.png (to simulate a TFT LCD
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Wing Force (Japan, prototype) [ShouTime]
+Snow Board Championship [Charles MacDonald, David Haywood]
+Waku Waku Marine [Ryan Holtz, Smitdogg, Shoutime, The Dumping Union]
+Il Galeone [f205v]
+Last Four (09:12 16/01/2001) [f205v]
+Samsung SPC-1500 [Miso Kim]
+TI-1250 [hap, Sean Riddle]
+Speak & Spell Compact (3 versions) [hap, Sean Riddle, Lord Nightmare, Kevin Horton, plgDavid(David Viens)]
+Ordisavant (France) [TeamEurope, dlfrsilver]
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Gun Dealer (bootleg) [Yrouel]
+Rambo 3 (bootleg of Ikari, Joystick hack) [Any]
+Laser Ghost (Japan) (FD1094 317-0164) [Charles MacDonald, ShouTime]
+Strider (USA, B-Board 90629B-3, Street Fighter II conversion) [system11]
+Nova 2001 (Japan, hack?) [system11]
+Stadium Hero '96 (USA, EAH) [Kevin Eshbach, The Dumping Union]
+Multi Game '96 (Italy) [system11]
+Sly Spy (US revision 4) [system11]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Sequential Circuits Prophet-600 [R. Belmont]
+Didact mp68a [Joakim Larsson]
+Didact md6802 [Joakim Larsson]
+Esselte 100 [Joakim Larsson]
+<unknown> Labeled 'WU- MARY-1A [Felipe Sanches]
+Various Tourvision (PCE bootleg) cartridges [system11, The Dumping Union]
+ - 1943 Kai, After Burner, Armed-F, Ballistix, Be Ball, Chōzetsurinjin Beraboh Man, Bomberman, 
+   Chuka Taisen, Coryoon, Daisenpu, Dead Moon, Devil Crush, Dodge Ball, Dragon Spirit, Final Blaster 
+   Final Match Tennis, Gunhed, Hana Taka Daka, Jinmu Densho, Kiki Kaikai, Legend of Hero Tonma 
+   Mizubaku Daibouken Liquid Kids, Mr Heli, Ninja Ryukenden, Operation Wolf, Override, Pac-Land 
+   PC Genjin Punkic Cyborg, Power Drift, Pro Yakyuu World Stadium '91, Psycho Chaser, Puzzle Boy 
+   Raiden, R-Type II, Saiga No Nindou - Ninja Spirit, Salamander, Shinobi, Side Arms, Skweek 
+   Son Son II, Tatsujin, Terra Cresta II, Toy Shop Boys, Veigues, Winning Shot, W-Ring, Xevious 
+   Doraemon Meikyuu Daisakusen 
+
+Unknown Tab Austria Poker [ANY]
+Roland TR-606 [hap, Kevin Horton]
+Pyon Pyon Jump [Ryan Holtz, Smitdogg, Shoutime, Roberto Fresca, The Dumping Union]
+Fidelity Voice Excellence [plgDavid, hap]
+Fidelity Sensory Chess Challenger 12-B [Berger]
+Dragon Treasure 3 (Rev A) (GDS-0041A) [Jorge Valero, rtw, The Dumping Union]
+
+New clones marked as NOT_WORKING
+--------------------------------
+Fidelity Voice Chess Challenger (Spanish) [Berger]
+Fidelity Voice Chess Challenger (German, French) [plgDavid, hap]
+Sega Bass Fishing Challenge Version A [gamerfan, brizzo, MetalliC, Smitdogg, The Dumping Union]
+Raizin Ping Pong (V2.01J) [Shoutime]
+Power Shovel ni Norou!! - Power Shovel Simulator (v2.07J, alt) [Shoutime]
+Desert Patrol (set 2) (Project Support Engineering (Telegames license)) [blinddog1, Paul Swan, gregf]
+Maniac Square (protected) [Charles MacDonald]
+Pacman Club (set 1, Argentina) [Roberto Fresca]
+Pacman Club (set 2, Argentina) [Roberto Fresca]
+
+New WORKING software list additions
+-----------------------------------
+tutor.xml: Tron (Jpn) [TeamEurope, Steve]
+snotec.xml: added 4 new cart dumps. [TeamEurope]
+Added 10 new cart dumps for PreComputer 1000. [TeamEurope]
+Added 2 new cart dumps for Ordisavant (France). [TeamEurope, dlfrsilver]
+c64_flop.xml: Added Little Knight Arthur. [Pasi Hytönen]
+c64_cart.xml: Added KoalaPainter. [Curt Coder]
+
+New NOT_WORKING software list additions
+---------------------------------------
+casloopy.xml: Loopy Town no Oheya ga Hoshii! [TeamEurope, Steve]
+casloopy.xml: Lupiton no Wonder Palette  [TeamEurope, Steve]
+database.xml: Leapfrog [TeamEurope & Steve]
+

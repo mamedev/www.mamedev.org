@@ -1,0 +1,190 @@
+0.161
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05721: [Misc.] (sms.c) sms, smspal: Failed on "SMS VDP Test" (Justin Kerk)
+- 05854: [Crash/Freeze] (ngen.c) 386i, ngenb38: [debug] Assertion (mahlemiut)
+
+
+New System Drivers Supported:
+-----------------------------
+-Bambino Basketball - Dribble Away [hap, Kevin Horton, Olivier Galibert]
+-TI SR-16 II [hap, Sean Riddle]
+-Speak & Read [hap, Sean Riddle, Kevin Horton]
+-Super Simon [hap, Sean Riddle]
+-Bandai Packri Monster [hap, Kevin Horton, Olivier Galibert] 
+-Bandai Zackman [hap, Kevin Horton, Olivier Galibert] 
+-Parker Brothers Q*Bert [hap, Kevin Horton, Olivier Galibert] 
+-Tomy Kingman [hap, Kevin Horton, Olivier Galibert] 
+-Tomy Tron [hap, Kevin Horton, Olivier Galibert]
+-TI-1000 [hap, Sean Riddle]
+-Kosmos Astro [hap, Sean Riddle]
+-Coleco Pac-Man [hap, Kevin Horton, Olivier Galibert] 
+-Coleco Ms.Pac-Man [hap, Kevin Horton, Olivier Galibert]
+-Coleco Donkey Kong [hap, Kevin Horton, Olivier Galibert]
+-Entex Space Invader [hap, Sean Riddle]
+-Bandai Frisky Tom [hap, Kevin Horton]
+-Mattel Star Hawk [hap, Kevin Horton]
+-Bambino UFO Master-Blaster Station [hap, Kevin Horton] 
+-Bandai Crazy Climber [hap, Kevin Horton] 
+-Tomy Scramble [hap, Kevin Horton] 
+-Tomy Caveman [hap, Kevin Horton]
+-Mego Mini-Vid Break Free [hap, Kevin Horton]
+-Bambino Knock-Em Out Boxing [hap, Kevin Horton]
+-VTech Invaders [hap, Kevin Horton] 
+-Bambino Soccer [hap, Kevin Horton] 
+-Bambino Safari [hap, Kevin Horton]
+-Epoch Invader From Space [hap, Kevin Horton] 
+-Epoch Football [hap, Kevin Horton] 
+-Epoch Galaxy II [hap, Kevin Horton] 
+-Tomy Cosmic Combat [hap, Kevin Horton] 
+-Gakken Heiankyo Alien [hap, Kevin Horton, Rik] 
+-Gakken Dig Dug [hap, Kevin Horton, Rik]
+-Gakken Crazy Kong [hap, Kevin Horton, Rik]
+-Parker Brothers Master Merlin [hap, Sean Riddle]
+-Gakken Poker [hap, Sean Riddle]
+-Entex Raise The Devil [hap, Sean Riddle]
+-Mattel World Championship Baseball [hap, Kevin Horton]
+-Gakken Jackpot: Gin Rummy & Black Jack [hap, Sean Riddle] 
+-Milton Bradley Big Trak [hap, Sean Riddle]
+-Bandai Machine Man [hap, Kevin Horton, Rik]
+-Coleco Head to Head Football [hap, Sean Riddle]
+-Bandai Dokodemo Dorayaki Doraemon [hap, Kevin Horton, Rik]
+-Coleco Head to Head Baseball [hap, Sean Riddle]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+-Coleco Galaxian [hap, Kevin Horton, Olivier Galibert]
+
+Skeleton drivers:
+-----------------
+(none)
+
+Software Lists:
+--------------
+-pet_rom.xml: Added McTerm 1.10. [Bo Zimmerman, Steve Gray, Mike Naberezny]
+
+-abc80: Added ABCDemo floppy and cassette to the software lists.
+ [Genesis Project]
+
+-softlist: Added new software lists for MSX2 tapes, MSX2+ disks
+ and MSX Turbo-R disks [Riley110, Fabio Priuli]
+
+-msx1_cart: added several new dumps of Korean games [Fabio Priuli]
+
+-msx1_cass: added hundreds of tapes from existing collections
+ [Riley110, Fabio Priuli]
+
+-c64_cart.xml: Added Diagnose64 cartridge. [Ray Carlsen]
+
+-pico.xml: added a few more Japanese dumps. [TeamEurope]
+
+-gameking.xml: added a new dump and two redumps. [SSJ & TeamEurope]
+
+-nes.xml: added three new dumps. [TeamEurope]
+
+-pet_rom.xml: Added KRAM 2.0. [Ville Laustela]
+
+-megadriv.xml: Added one new dump and documented several PCBs. [sunbeam]
+
+-cpc_cass.xml: completely revamped the software list, including
+ proper publisher info, correcting titles and adding new dumps.
+ [Fabio Priuli]
+
+Source Changes
+--------------
+-Adding support for the N64DD [Happy]
+
+-imds2.c: added basic usage info [fulivi]
+
+-gba: vblank at line 160, don't do HIRQ or HDMA during Vblank. 
+ This fixes raster effects and glitches in dozens if not hundreds of
+ games. [R. Belmont, endrift]
+
+-gba: Hblank IRQs do happen on all scanlines, just DMAs don't.
+ [R. Belmont, Endrift]
+
+-abc80: Added cassette sound. [Curt Coder]
+
+-pce/tg16: added default values for pre-formatted BRAM. you
+ could obtain the same result by launching PCE or TG-16 with the
+ CD-SYSTEM cart and entering the BRAM configuration menu (by pressing
+ Select), but it makes sense to be more user-friendly in this case.
+ [Fabio Priuli]
+
+-abc80: Emulated a 16KB RAM card. [Curt Coder]
+
+-abc80: Use Z80 PIO pb7_w. (nw)
+
+-abc80: Emulated the Scandia Metric ABC FD2 floppy controller.
+ [Curt Coder]
+
+-MT05721: Apply Enik Land's refresh rate workaround so that we
+ pass FluBBa's SMS VDP tests.  [Justin Kerk]
+
+-pet: Refactored the Commodore 8050/8250/SFD-1001 to use the new
+ floppy system. [Curt Coder]
+
+-gameboy: removed separate implementation of MBC-1 collection
+ cart, since it is just plain MBC-1 mapper with slightly different
+ address lines wiring. [Tauwasser]
+
+-c64. Added FSD-1 disk drive ROMs. [Ray Carlsen]
+
+-atlantis: added PCI9050 device skeleton. [R. Belmont]
+
+-upd1771: replace waveforms with waveforms extracted from
+ upd1771c-017 internal rom. [Lord Nightmare, plgdavid]
+
+-gameboy: added preliminary emulation of Sachen MMC-1 mapper,
+ based on reverse engineering by Tauwasser. Logo handling not emulated
+ yet (you have to select the "Skip BIOS check" in the System
+ Configuration menu to play the games). [Fabio Priuli]
+
+-gameboy.xml/gbcolor.xml: Added some recent dumps of Sachen
+ carts [Tauwasser, BigFred, taizou]
+
+-c64: Added ROMs for Indus GT floppy drive. [Ray Carlsen]
+
+-gameboy: added support for the simple multigame mapper used by
+ Mani 4 in 1 (DMG-601-CHN). [Fabio Priuli]
+
+-Completely hooked up 6845 in cardline driver. Documented asic
+ addresses. [Couriersud]
+
+-Implemented writing to Commodore d64/d67/d71/d80/d82 sector
+ images. [Curt Coder]
+
+-Added sector image format for the Commodore 8280 8" floppy 
+ drive. [Curt Coder]
+
+-victor9k: Added writing to sector dump disk images. [Curt Coder]
+
+-c4040: Added own sector dump disk format since it's different
+ from what the 1541 uses. [Curt Coder]
+
+-plus4: Default to the 1541 disk drive, since the 1551 is rare
+ and unreliable. [Curt Coder]
+
+-spc1000.c: cassette motor fix so that recording fuction is now working. 
+ [Miso Kim]
+
+-sms.c: misc improvements: [Enik Land]
+ * when GG runs in SMS compatibility mode, avoid access to the PSG
+    stereo register.
+ * implement the audio control that enables/disables the PSG chip on
+    Japanese SMS.
+ * play FM sound only when FM chip is enabled.
+ * remove mirrors of the IO and memory control ports on the GG driver,
+    fixing emulation of G-LOC Air Battle.
+
+-c8050: Added 901884-01 ROM. [Martin Hoffmann-Vetter]
+
+-fsd2: Added REX-DOS. [Julian Perry]
+
+-spc1000.c: Removed minor tape hack. To load tapes you *FIRST* press
+ PLAY on the tape drive (e.g. by pressing 'F2' in partial keyboard 
+ emulation mode), and *THEN* you type LOAD at the BASIC prompt. The
+ order of these operations matter. [Fabio Priuli]

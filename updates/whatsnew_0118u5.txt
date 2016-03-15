@@ -1,0 +1,115 @@
+0.118u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mappyc0118u1red [Aaron Giles]
+mappy0116u2gre [Aaron Giles]
+namcona1c057red [Atari Ace]
+9ballsh3097red [Atari Ace]
+
+
+
+Source Changes
+--------------
+Updated memconv.h to convert from basically any to any widths 
+(8/16/32/64), on both little and big endian. Also added macros to 
+create the stubs for the most commonly used mappings, both in the 
+1:1 fashion, or the LSB/MSB/LSW/MSW style. [Ernesto Corvi]
+
+CuboCD32/Amiga updates: [Ernesto Corvi]
+ - Finished implementing the CDROM controller, so now the games boot
+ - Moved the entire Akiko code to machine/cubocd32.c to make things 
+    a little more easier to work with
+ - Added CDDA audio support to the CDROM controller and driver
+ - Systems with the AGA chipset no longer connect bit 0 of the CIA 
+    that was previously connected to the Overlay pin not connected
+ - Made BLTDDAT return it's value. This is a readable register which 
+    we were not handling.
+ - Initialized the SERDATR register upon reset to reflect that the 
+    transfer buffer/shift reg is empty.
+
+Added support for the PowerPC 601. [Ville Linde]
+
+Fixed missing PLD region in -listxml. [MASH]
+
+Changed all comparison for CPU and sound chip types to compare 
+against CPU_DUMMY or SOUND_DUMMY instead of 0. Also updated usages
+of sndti_to_sndnum() so that they use sndti_exists() where appropriate.
+[Atari Ace]
+
+Removed CHD interface structure. CHDs now rely on the corefile 
+routines to perform file I/O. Updated the rest of the system to
+handle this reality. A side-effect is that "split" CHDs, which never
+got much play, have now been deprecated. [Nathan Woods]
+
+Added new core library utility module palette.c for managing palettes.
+Renamed emulator-specific palette code to emupal.c and restructured
+to live on top of the core library code. [Aaron Giles]
+
+Added support for attaching palettes to bitmaps in the core. Removed
+support for the 16-pixel bitmap "safety" zone by default, since most
+drivers do not need it. Added new function bitmap_alloc_slop() which
+supports creating bitmaps with caller-specified slop values.
+[Aaron Giles]
+
+Removed the gfx_element.colortable element and replaced it with a new
+element color_base which specifies the global color offset. This
+breaks an awkward dependency between the palette and graphics code,
+and removes a lot of odd pointer arithmetic in the system. 
+[Aaron Giles]
+
+Tagged Machine->pens, Machine->colortable, and 
+Machine->remapped_colortable as const to prevent their abuse. Fixed
+several abusing drivers, and tagged the remainder for future
+cleanup. [Aaron Giles]
+
+Added new colortable management functions in emupal.c. These functions
+can be used to manage a colortable on top of the core palette in
+cases where TRANSPARENCY_COLOR is currently used (essentially mapping
+to a pen mask for TRANSPARENCY_PENS). Updated pacman, mappy, toypop, 
+and several other drivers to use the new functions. [Aaron Giles]
+
+Vastly simplified the rendering code in docastle. [Aaron Giles]
+
+Fixed remaining errors and warnings when building under gcc 4.2.1.
+[Aaron Giles]
+
+Added new function render_target_set_max_update_rate() which allows
+the OSD layer to inform MAME of the target's refresh rate (or 0 if
+there is no maximum). This is used to allow for the dynamic speed
+adjustment parameter below. [Aaron Giles]
+
+Added new parameter -refreshspeed (-rs for short) which dynamically
+adjusts the -speed parameter to keep the effective refresh rate below
+that of the lowest screen refresh rate. [Aaron Giles]
+
+Added more opcode emitters to x86emit.h. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Last Fighting [Luca Elia]
+Bishou Jan [Luca Elia]
+Almond Pinky [Luca Elia]
+Mahjong Cafe Time [Luca Elia]
+Mahjong Comic Gekijou Vol.1 [Luca Elia]
+Super Eagle Shot [Tomasz Slanina, pSXAuthor]
+Date Quiz Go Go Episode 2 [Pierpaolo Prazzoli]
+Dancing Stage featuring Dreams Come True [smf]
+
+
+
+New clones added
+----------------
+X-Men: Children of the Atom (Japan 941222) [Nicola Salmoria]
+Quintoon (UK, Game Card 95-750-206) [James Wallace]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Super Real Mahjong Part 1 [Luca Elia]
+Dance Dance Revolution Extreme [smf]

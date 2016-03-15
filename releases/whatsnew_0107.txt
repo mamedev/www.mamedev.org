@@ -1,0 +1,1245 @@
+0.107
+-----
+
+NOTE: This is the first full release of MAME with the new rendering
+system. Before freaking out that things don't work the way you
+expected, please read the docs/newvideo.txt file that gives some
+suggestions for how to set up your base configuration. If you still
+encounter issues, then run your system with the -v option and post
+about your problem at http://mametesters.org.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+xxmissio0106u12yel [quzz]
+laser0106u10ora [gregf]
+kof10th0106u1ora [f205v]
+pignewt0106u3gra [Machone]
+cheatwatchpoint0106u11ora [ShimaPong]
+
+
+
+Source Changes
+--------------
+Fixed keyboard inputs in the Taito Wolf driver. [Ville Linde]
+
+Added tile flipx to tilemaps in yunsung16.c (bomb kick needs it) 
+and changed the DIP switches used for protection to real DIP 
+switches. [Pierpaolo Prazzoli]
+
+Fixed crash in the PGM driver. [David Haywood]
+
+Properly emulated the sprite overdraw effect in ninjakd2. Now you 
+can see the "opening" effect and the previously 2 bugged levels are 
+fixed. Converted the driver to use tilemaps as well.
+[Pierpaolo Prazzoli]
+
+Additional updates to the magicfly driver. Improved documentation
+and input port mapping. [Roberto Fresca]
+
+Fixed gamma and brightness ranges in the UI to match the limits from
+the command line. [Aaron Giles]
+
+Fixed default flicker value to 0. [Aaron Giles]
+
+Fixed scrolling in the palette view. [Aaron Giles]
+
+Fixed assertion when the MAME window was minimized. [Aaron Giles]
+
+Fixed bug that prevented resizing of secondary windows. [Aaron Giles]
+
+Rewrote Missile Command driver from schematics: [Aaron Giles]
+ * CPU speed now correct (slows down for lower 32 scanlines)
+ * proper frame rate and IRQ signal timing
+ * service mode works on some sets, fails on others due to 6502 bug
+ * accurate bitmap mapping and cycle counts for 3-bit accesses
+ * using bitmap access PROM for bit mode writes
+
+
+
+New clones added
+----------------
+Head On (Sidam bootleg) [David Haywood]
+Super Crash (bootleg of Head On) [David Haywood]
+Borderline (Sidam bootleg) [David Haywood]
+Lunar Rescue (Model Racing bootleg) [David Haywood]
+Agent X (prototype) [Aaron Giles]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Ripper Ribbit [Guru]
+Chicken Farm [Guru]
+Crazzy Clownz [Guru]
+Super Bubble 2003 [Pierpaolo Prazzoli]
+Legend of Heroes [Pierpaolo Prazzoli]
+Hidden Catch 3 [Pierpaolo Prazzoli]
+Pro Golf [Pierpaolo Prazzoli]
+Midnight Landing [David Haywood]
+
+
+
+0.106u13
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+resolutionrating0106u12yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Some more fixes for the DTD in the -listxml output. [Krick]
+
+Added more previously dumped PLDs to a number of games. [MASH]
+
+Fixed uninitialized variable in the debugger commenting code. Cleaned
+up allocations. [Nathan Woods]
+
+Improved multisession support with the new renderer. [Nathan Woods]
+
+Hooked up color PROM for schaser and fixed DIP switches.
+[Robert]
+
+Fixed bug that caused -prescale in Direct3D mode to fail in the last
+release. [Aaron Giles]
+
+Fixed bug that led to black crosshairs in lightgun games.
+[Aaron Giles]
+
+Reimplemented the sparkle circuit to bring back stars in Tempest.
+[Aaron Giles]
+
+Removed the background brightness in vector games by default. If you
+want to see the overlays faintly on vector games, increase the
+brightness a bit. [Aaron Giles]
+
+More Crystal Castles tweaks: [Aaron Giles]
+ * Connected EAROM correctly (passes POST now)
+ * Added a guess for what the "POTATO" chip does. If you're a CC fan
+    report to MAMETesters how MAME looks compared to the arcade when 
+    the screen scrolls up inbetween level 4 and 5.
+
+Rewrote Cloud 9 driver to mimic the Crystal Castles driver since it
+is obviously an early version of the same hardware: [Aaron Giles]
+ * Implemented video RAM banking correctly based on tracing out a
+    Firebeast PCB, which appears to be identical
+ * Traced out color mapping and implemented correctly
+ * Reduced EAROM down to 4 bits
+ * Fixed DIP switch definitions
+
+Some minor modernization of the xxmissio driver. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Firebeast (prototype) [F.J. McCloud]
+Digger Man (prototype) [MAME32Plus]
+
+
+
+0.106u12
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+gaelco20106u1ora [David Haywood]
+
+
+
+Source Changes
+--------------
+Added a large number of previously-dumped PALs to various games
+across the whole source base. [MASH]
+
+Some graphics improvements to the Magic Fly driver. [Roberto Fresca]
+
+Fixed the fire button INPUT_PORT of player2 in Lethal Enforcers.
+[Cananas]
+
+Changed the coordinates where for offscreen lightgun reloading, moving
+it from the upper-left to the upper-right for better compatibility.
+[Cananas]
+
+Fixed interrupt clearing function in 6840 module. [El Condor]
+
+Added multiple input controls in -listxml output for games with more 
+than one type. Added pedal control type. Added more info on analog 
+controls as defined in the driver: minimum, maximum, sensitivity, 
+keydelta, and reverse. This required the 'control' attribute in the 
+XML to be moved into an element. There can now be more than one
+'control' element in the input secction. [uRebelScum]
+
+Improved the description of screens in -listxml. Multiple screens
+are now listed, each with their own attributes. Rotation is now fully
+specified (rather than just vertical/horizontal). The width and 
+height now describe the raw game screen before any rotation.
+[Krick]
+
+Fixed bug that caused the UI to be impacted by command-line 
+brightness, contrast, gamma controls. [Aaron Giles]
+
+Fixed bug that prevented the contrast from pushing vector games to
+their maximum brightness. [Aaron Giles]
+
+Rewrote Crystal Castles driver from the schematics: [Aaron Giles]
+ * corrected clock speeds and frame rates
+ * reimplemented video system to use mixer PROM
+ * now using sync PROM to generate interrupts at correct times
+ * sync PROM is also used to determine proper visible area and
+    VBLANK timings
+ * implemented the VRAM write protection by using the WP PROM
+ * hooked up second player trackball properly
+ * fixed coin counters
+ * now computing palette based on resistor weights
+ * watchdog is now set for 8 VBLANKs to match the schematics
+ * added save state support
+ * mapped complete memory space according to schematics
+
+Fixed bug in JED parsing code that would checksum fuses beyond the
+number explicitly specified. Some programs write extra fuse data
+beyond the end and this should not be part of the checksum. Also made
+the checksum parsing more flexible to handle JED files with extra 0
+digits in the file checksum. [Aaron Giles]
+
+Removed xml2info utility. The -listinfo format was retired over 2 
+years ago. It is time to move on. [Aaron Giles]
+
+Changed the core makefile to put back specific rules for building
+EXEs to promote more commonality with platforms that don't put an
+extension on executable files. [Aaron Giles]
+
+Added gapless variants to the dual and triple screen layouts.
+[Aaron Giles]
+
+Removed 1 pixel border now that the Direct3D code is properly setting
+texture clamping. This should get rid of the gaps in the Darius
+layout, which were caused by bilinear filtering the last pixel on the
+screen with the black pixel border. [Aaron Giles]
+
+Fixed -effect none to longer produce an error message. [Aaron Giles]
+
+Removed the VIDEO_PIXEL_ASPECT_RATIO_* flags for drivers. These flags
+were used inconsistently, and can be effectively computed if 
+necessary from the screen width/height and orientation. [Aaron Giles]
+
+Changed the on screen display so that pressing ENTER resets a value
+to its default. [Aaron Giles]
+
+Moved all options to a single central location in windows/config.c.
+Cleaned up and reordered the options more logically. [Aaron Giles]
+
+Rewrote windows.txt to reflect all of the new options and to update
+the behavior of existing options to match the current implementation.
+[Aaron Giles]
+
+
+
+0.106u11
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+kikstart0106u7gra [Canim]
+
+
+
+Source Changes
+--------------
+Changed XML output so that BIOS sets, ROM sets, and disks are output
+in the defined order. [MadSkunk]
+
+Fixed a couple of bugs in the new screenshot taking code.
+[Nathan Woods]
+
+Improved memory map and clock speeds for the MPU4 driver. [El Condor]
+
+Moved clipping into the core, rather than relying on the OSD layer to
+do the work. Removed the PUSH_CLIP and POP_CLIP primitives as they
+are no longer necessary. Added U/V coordinates to the primitives.
+[Aaron Giles]
+
+Fixed the rendering order so that overlays mixed with backdrops work
+as expected. Note that over-rendering backdrop pieces (like gollygho
+does) may not be supported in the future. [Aaron Giles]
+
+Changed DirectDraw behavior so that it will render to an offscreen
+system memory buffer if any blending is required, thus providing
+access to all the effects with a bit of slowdown in those cases.
+[Aaron Giles]
+
+Added a new command line option: -effect <filename>, which specifies
+a PNG file that is loaded and used as an RGB multiply overlay. This
+allows for scanline and RGB aperture mask effects. These overlays
+rotate with the game screens and only affect the game screens, not
+any of the other artwork. They also only run at the raw resolution
+of the render_target. This means in Direct3D or GDI modes, they
+map 1:1 to the pixels on your screen. In DirectDraw mode, they map
+1:1 to the source pixels of the image (for DirectDraw, you can use
+-prescale n if you want an n:1 mapping; for example, you would
+probably want -prescale 2 if using a 2-pixel-tall scanlines overlay).
+[Aaron Giles]
+
+Added brightness, contrast, and gamma controls per-screen in the
+on-screen display section of the UI. This requires a change to the
+OSD rendering code to use lookup tables when copying RGB data to
+textures. Default values can be specified via the -brightness,
+-contrast, and -gamma command line/configuration options. Note that
+these options only affect screen areas of the final output and have
+no effect on artwork or the UI. The values configured in the OSD are
+saved in the config file for each game. [Aaron Giles]
+
+Added full screen equivalents of the brightness, contrast, and gamma
+controls. Unlike the screens-specific options, these only work in
+full screen mode using DirectX, and apply globally, affecting 
+artwork and user interface as well. They are controlled via the
+-full_screen_brightness, -full_screen_contrast, and 
+-full_screen_gamma options. [Aaron Giles]
+
+Added generic pen changing notification callbacks to the palette
+system. [Aaron Giles]
+
+Removed vector intensity controls as they are redundant with the new
+contrast controls. [Aaron Giles]
+
+Added X and Y offset/scale controls for each screen. This allows you
+to control the actual position of the screen within its container. In
+order to see beyond the game-configured visible area, the game must
+have set up the screen size to be larger than the core visible area.
+The Williams drivers have been updated as an example. Eugene Jarvis
+mentioned that if you adjust your monitor, you can see the stack in
+Robotron off to the right, and now you can in MAME as well. The values 
+configured in the OSD are saved in the config file for each game.
+[Aaron Giles]
+
+Changed logic so that no rendering apart from the UI happens before
+MAME is in a running state. Until that time, a single pixel border
+will be displayed around the edges of each screen. [Aaron Giles]
+
+Added option_get_int_range() and option_get_float_range() functions
+which do added range checking on parameters, rather than requiring 
+the callers to do the work. Also changed the behavior on options
+parsing failure to set to the default value rather than defaulting
+to 0. [Aaron Giles]
+
+Changed behavior of secondary windows so that they are not created
+as children of the primary window. Please re-verify that multiple
+screens still work with this change on your setup. [Aaron Giles]
+
+Added new video option to move the user interface to secondary 
+screens. The selected screen is saved in the video configuration.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Emeraldia (World) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Magic Fly [Roberto Fresca]
+7 e Mezzo [Roberto Fresca]
+
+
+
+0.106u10
+--------
+
+
+MAMETesters Bugs Fixed
+----------------------
+coininputs0106u6gra [Canim]
+champbwl0106u9gre [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Added dual screen support for the Dynax games, TX1, RockMS, some of
+the Nichibutsu mahjong games, and Subs. [David Haywood]
+
+Complete DIP switches for Pairs Love. [Roberto Fresca]
+
+Some misc bugfixes to the Taito JC system. [Ville Linde]
+
+Cleaned up screenshot taking code, and re-connected the debugger
+command that created them. [Nathan Woods]
+
+Added save state support to the centiped driver. Enabled save 
+states in the minivadr, zaxxon drivers. [Buddabing, Aaron Giles]
+
+Fixed PIA addressing regression in the Atari computer driver.
+[Nathan Woods]
+
+Added rudimentary progress displays during ROM loading and graphics
+decoding so you have something to look at instead of a black screen.
+[Aaron Giles]
+
+Added support for remembering the selected view, rotation, and
+artwork enabled states in the game's cfg file. [Aaron Giles]
+
+The renderer no longer displays non-UI elements prior to 
+initialization. [Aaron Giles]
+
+Fixed keyboard LEDs so they work again. [Aaron Giles]
+
+Added back support for full screen brightness correction. 
+[Aaron Giles]
+
+Added support for +/- keys in the palette view. Added "tick marks"
+when a large number of palette or gfx entires are displayed to 
+indicate which row/column the header refers to. [Aaron Giles]
+
+Made the UI keys for navigating the graphics/palette viewer
+configurable. [Aaron Giles]
+
+Fixed inheriting of artwork files from parent. [Aaron Giles]
+
+Updated dotron, skydiver, spacewar, gorf, atarifb, sspeedr, gollygho,
+and spyhunt drivers to support the new artwork system. [Aaron Giles]
+
+Made all solid single-color overlays standard pieces that can be
+easily reused. [Aaron Giles]
+
+Converted all the internal layouts into .lay files and updated all
+remaining drivers to use the new layouts. [Aaron Giles]
+
+Updated -listxml output to display information for multiple screens.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Cruisin' World (version 2.4) [Aaron Giles]
+
+
+
+0.106u9
+-------
+
+
+Source Changes
+--------------
+Fixed Address Error in Pairs Love (simulated 'buffered ram' 
+protection?) [David Haywood]
+
+Fixed Address Error in Grand Cross Pinball (it's caused by the 
+sound IRQ..but the music player was ripped out by Aaron ages ago, 
+related?)  I've disabled the IRQ rather for now rather than making 
+a new sound core. [David Haywood]
+
+Fixed crash in debug builds running the Deco MLC games.
+[David Haywood]
+
+Updated the Tecmo Bowl, Gaelco 2, X-Men 6p, and Megatech drivers to 
+support dual screens. [David Haywood]
+
+Changed VIDEO_UPDATE to return a set of flags. Only one flag is
+currently defined, indicating that video has not changed at all
+since the previous update. Most drivers should just return 0.
+[Nathan Woods]
+
+Changed the MSM5205 ADPCM decoder to no longer perform bounds 
+checking to prevent the signal from overflowing. The MSM5205 data 
+sheet clearly states that this isn't the case, and there is no 
+overflow protection in the chip. Also, the chip's internal DA 
+converter is just 10-bit, even if the processed signal is 12-bit.
+[Nicola Salmoria]
+
+Sega Model 2 driver update: [Ville Linde]
+ - i960 bugfixes
+ - SHARC improvements and bugfixes
+ - Added HLE of the geometry DSP for now
+ - Moved video hardware emulation to vidhrdw/model2.c and added 
+    preliminary 3D graphics emulation
+
+Taito JC driver update: [Ville Linde]
+ - Improved M68040 FPU emulation
+ - Improved the TMS320C51 core
+ - Added 2D graphics emulation
+ - Added inputs to all games
+ - Properly hooked up sounds in all games
+
+Added "fast forward" function (defaults to the INSERT key). While
+holding this key down, the frameskip is temporarily maxed out and
+throttling is turned off. This is useful for skipping over parts of
+the emulation. [Aaron Giles]
+
+Fixed some glitchiness in font displaying where they would switch in
+and out of scaled modes due to rounding errors. [Aaron Giles]
+
+Cleaned up handling of layout dependencies in the makefile.
+[Aaron Giles]
+
+Fixed bug when clipping quads in Direct3D mode. [Aaron Giles]
+
+Flipped Punchout and Playchoice drivers so that screen 0 is the 
+"main" screen. [Aaron Giles]
+
+Added "left half" and "right half" to the Darius layouts so you can
+stretch three screens over two, though you need to explicitly set 
+them either in the UI or using the -view0 and -view1 parameters on
+the command line. [Aaron Giles]
+
+Changed the initial UI screens to only compute their text a single
+time. This reduces the CPU usage greatly when displaying some of the
+"game doesn't work" warnings. [Aaron Giles]
+
+Added support for pausing/unpausing while showing graphics and 
+tilemaps. [Aaron Giles]
+
+Added get/set calls to control layers on a per-target basis. This
+allows for dynamic control of visibility of artwork layers and the
+option to crop to the screen. Added menu items to control these
+options. [Aaron Giles]
+
+Removed options.use_artwork from the global options. This is now
+directly configured by the OSD layer. [Aaron Giles]
+
+Fixed edge case where the extra pixel on non-wrapping textures would
+sometimes lead to exceeding the maximum texture size. [Aaron Giles]
+
+Added concept of maximum texture size to the core renderer to prevent
+giant textures from being requested if the OSD layer can't handle
+them. [Aaron Giles]
+
+
+
+0.106u8
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+listxmlvaridation0106u7ora [Aaron Giles, VGR]
+screenshot0106u5ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Changed -listxml to accept a wildcard gamename like most other
+frontend options to limit which games are output.
+[Aaron Giles, Buddabing]
+
+More generic 6840 module improvements. [El Condor]
+
+Moved MESS-specific Atari FDC code into a MESS specific file, in 
+addition to fixing bugs. [Nathan Woods]
+
+Updated the Psikyo4 and Backfire drivers to support multiple 
+screens. [David Haywood]
+
+Moved some common code into taito_en.c (taito ensoniq sound system).
+[David Haywood]
+
+Added 16-bit color support for the DirectDraw renderer (only used if
+switchres is off or in a window). Fixed 16-bit line rendering in the
+software rasterizer. [Aaron Giles]
+
+Fixed ddraw bug where switching views sometimes didn't clear out the
+edges of the screen. [Aaron Giles]
+
+The UI is now limited to a single screen. [Aaron Giles]
+
+Reimplemented the palette/graphics/tilemap viewer. It is still 
+connected to F4, but works differently. To switch between modes,
+press the ENTER key. Here are the new keys in each mode:
+
+ * Palette/colortable mode:
+    [ ] - switch between palette and colortable modes
+    up/down - scroll up/down one line at a time
+    pgup/pgdn - scroll up/down one page at a time
+    home/end - move to top/bottom of list
+    enter - switch to graphics viewer
+
+ * Graphics mode:
+    [ ] - switch between different graphics sets
+    up/down - scroll up/down one line at a time
+    pgup/pgdn - scroll up/down one page at a time
+    home/end - move to top/bottom of list
+    left/right - change color displayed
+    r - rotate tiles 90 degrees clockwise
+    - + - increase/decrease the number of tiles displayed per row
+    enter - switch to tilemap viewer
+
+ * Tilemap mode:
+    [ ] - switch between different tilemaps
+    up/down/left/right - scroll 8 pixels at a time
+    shift+up/down/left/right - scroll 1 pixel at a time
+    control+up/down/left/right - scroll 64 pixels at a time
+    r - rotate tilemap view 90 degrees clockwise
+    - + - increase/decrease the zoom factor
+    enter - switch to palette/colortable mode
+
+Note that both graphics and tilemap modes only display data at an
+integral scale factor so you are limited based on the resolution of
+your render target. For -video ddraw, you can get more pixels by
+using -prescale to scale the screen. For -video d3d, the render
+target is at your screen's native resolution already. [Aaron Giles]    
+
+Improved scaling calculations when running with -video ddraw and no
+hardware stretch to better approximate the real aspect ratio.
+[Aaron Giles]
+
+Added more internal texture reference tracking to ensure that stale
+data is not being referenced if the OSD layer holds onto a render
+list. [Aaron Giles]
+
+Moved cygwin-specific compiler options to windows.mak. [Aaron Giles]
+
+Removed screen aspect ratio specification from the machine driver.
+This information is now provided by the render/view system. Games
+with odd aspect ratios should include a game-specific layout to
+position the screens. [Aaron Giles]
+
+Screenshots are now properly rotated again. Also, MAME now saves one
+screenshot per visible screen for multi-screen games (i.e., cyberbal 
+will write two PNGs per snapshot taken if both screens are visible).
+[Aaron Giles]
+
+Changed the way built-in layouts are handled. There is now a new
+layout directory in the source which contains actual .lay files.
+These are converted at compile time into .lh files which are 
+#included by various drivers and then referenced. The built-in set
+of horizontal, vertical, and dual screen layouts are also handled
+this way now instead of being dynamically generated. In order to
+support things like "native" aspect ratios, a limited form of 
+variable substitution is now done on most of the XML attributes when
+they are read. [Aaron Giles]
+
+Improved default layout selection. For multiscreen games on a single
+monitor, the default layout will show all screens at the same time.
+For multiscreen games on multiple monitors, the default layouts will
+select one screen per game. [Aaron Giles]
+
+Converted the punchout driver to a proper dual screen game. Rewrote
+the video portion to use tilemaps. [Aaron Giles]
+
+Added dual screen support to the PlayChoice 10 and vsnes drivers.
+[Aaron Giles]
+
+Added MDRV_DEFAULT_LAYOUT to specify a default layout at the machine
+driver level. [Aaron Giles]
+
+Added triple screen support to the Darius and Ninja Warriors drivers,
+and dual screen support to the Warrior Blade driver. [Aaron Giles]
+
+Fixed palette for games which were using palette_set_brightness.
+[Aaron Giles]
+
+Changed logic so that trying to run more screens than you physically
+have in full screen mode will just display as many as will fit rather
+than fighting to put multiple full screen displays on a single
+monitor. [Aaron Giles]
+
+Added optimizations to figure out the minimal set of screen areas
+to clear, even with complicated views and multiple screens. 
+[Aaron Giles]
+
+
+
+0.106u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+namcond1_0106u3yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Improvements to the Sang Ho driver, making them somewhat playable.
+[David Haywood, Tomasz Slanina]
+
+Fixed off-by-one drawing error in the Pasha Pasha 2 driver.
+[Pierpaolo Prazzoli]
+
+Fixed some instruction forms in the 6309 diassembler to consume
+the correct number of bytes. [Nicola Salmoria]
+
+Added back support for DirectDraw. Unlike the old support, this 
+requires DirectX 7 or later. There is now a new option to control
+what video system is being used for rendering. Use -video d3d to use
+Direct3D. Use -video ddraw to use DirectDraw. And use -video gdi to
+force the use of GDI for rendering. Also added back the -hwstretch
+option to control whether or not DirectDraw does stretching. Added
+support for the -prescale option when using DirectDraw as well. It
+should also work ok with multiple screens. [Aaron Giles]
+
+Added a compile-time option to rendersw.c to prevent reads from the
+destination. This removes the ability to do a number of blends and
+effects, but allows you to point the software renderer at a video
+memory target and not kill performance. It also improves performance
+of software rendering in general by avoiding expensive alpha blending
+operations. [Aaron Giles]
+
+Improved font logic so that small fonts are scaled more appropriately
+at low resolutions. It's not perfect, but works well for most games
+when running with the new DirectDraw option, which always renders
+games at minimum resolution. [Aaron Giles]
+
+Fixed bug that messed up partial updating. Hopefully it all should be
+back to normal again. [Aaron Giles]
+
+
+
+0.106u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+wboysys2_0106u4gra [Canim]
+
+
+
+Source Changes
+--------------
+Minor fix for x64 compilation support with MSVC. [Malice]
+
+Updated astdelux and omegrace built-in overlays for the new render
+system.
+
+Fixed inputs in the mcr68 drivers. [Peale]
+
+Fixed new debugger support for custom register lists.
+[Tim Schuerewegen]
+
+Added workaround to make the V60 core work properly on GCC 4.x 
+(tested on 4.1.1). [R. Belmont]
+
+Fixed the drc blitters better. [Olivier Galibert]
+
+Improvements to Polygonet Commanders: [R. Belmont]
+ * Fixed Z80 IRQ/NMIs to go to the right CPU again
+ * Modernized memory map
+ * Added network status bit, so the initial test passes well enough 
+    to make the DSP56k crash on unimplemented opcodes
+
+Miscellaneous cleanups to the Atari/Max-A-Flex driver, attempting to 
+modernize it. [Nathan Woods]
+
+Updated Sega multi-32 driver to support multiple screens. 
+[Aaron Giles]
+
+Backed off of the multithreading for the moment in order to focus on
+getting the rest of the kinks out of the new renderer. All the
+infrastructure is still in place and can be re-enabled by flipping
+the ENABLE_THREADS flag in window.c. [Aaron Giles]
+
+Added support for "stretch to fit" when configuring a render target.
+Added back the "-keepaspect" option as a result. [Aaron Giles]
+
+Added clamping to the prescale effect so that it doesn't try to 
+create excessively large textures. Explicitly reset render states so
+that the prescale step is not filtered. Fixed StretchRect usage so
+that it doesn't filter on some video cards. [Aaron Giles]
+
+Fixed behavior of pixel aspect ratio when configuring render targets
+(was correcting in the wrong direction). [Aaron Giles]
+
+Moved thread priority logic out of ticker.c and into winmain.c where
+it really belongs. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pasha Pasha 2 [Pierpaolo Prazzoli]
+Rock Tris [Pierpaolo Prazzoli]
+Mahjong X-Tal 7 / Mahjong Diamond 7 [Luca Elia]
+Janputer '96 (Japan) [Luca Elia]
+Watashiha Suzumechan [Luca Elia]
+
+
+
+New clones added
+----------------
+Space Fury (revision B) [Highwayman]
+Double Point (Dong Bang Electron) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Red Corsair [David Haywood]
+Puzzle Star? (Sang Ho) [David Haywood, Tomasz Slanina]
+Sexy Boom [David Haywood, Tomasz Slanina]
+Super Free Kick [David Haywood]
+High Seas Havoc [David Haywood]
+Bombs Away [David Haywood, Andrew Gardner]
+
+
+
+0.106u5
+-------
+
+WARNING: Starting with this version, the MAME windows run on a
+separate thread. There may be issues relating to this, especially
+when running unthrottled. If you see any crashes or odd behavior
+under normal operation, be sure to report it to 
+http://mametesters.org.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+cheat_menu0106u3ora [Aaron Giles]
+cheat_file_option0106u3ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Cleaned up decocass driver: [Juergen Buchmueller]
+ - All hardcoded tables are gone now
+ - cexplore.pro 32 byte PROM reverse engineered
+
+Fixed windows.mak to support 64-bit builds. [Malice]
+
+Fixed bug where the gamename was reallocated out from under us by
+the new config system. [Nathan Woods]
+
+Added the ability to specify a callback when a given option is 
+parsed.  This is used on the MESS side to add system-specific
+command line options. [Nathan Woods]
+
+More generic 6840 improvements. [El Condor]
+
+Some improvements to the Pasha Pasha 2 driver. [Pierpaolo Prazzoli]
+
+Added experimental OSD locks: [Aaron Giles]
+ - osd_lock_alloc() allocates a lock
+ - osd_lock_acquire() acquires a lock, blocking until success
+ - osd_lock_try() tries to acquire a lock and returns whether or
+    not it succeeded
+ - osd_lock_release() releases a lock
+ - osd_lock_free() frees memory used by a lock
+If the OSD layer is not using multiple threads, these can just be
+stubbed out (return TRUE for osd_lock_acquire and fake the rest).
+
+Fixed ESC key not cancelling out of initial UI screens. [Aaron Giles]
+
+More rendering changes/fixes: [Aaron Giles]
+ - Added new render_view_item_get_state() function to return the
+    state of a given item
+ - Changed render_target_get_primitives to return a new structure
+    render_primitive_list, which contains the list of primitives
+    along with an osd_lock which must be held while the list is
+    being traversed
+ - Added "Rotate View" option to the video menu for dynamic in-game
+    rotation
+ - Moved window creation and management to a separate thread; this
+    means all software rendering and all Direct3D calls are done on
+    a separate thread from the main game, and will take advantage of
+    multiple CPUs/dual cores
+ - Changed throttling behavior to skip rendering if we are already
+    pending; this makes for a better "fast forward" effect
+ - Added -prescale option to pre-scale the game bitmaps before
+    rendering to the screen; this helps get rid of the "fuzzy" look
+    when running with -filter enabled, at the expense of some speed.
+    Note that only integral values are currently supported (no "auto")
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Hard Times [Pierpaolo Prazzoli]
+
+
+
+0.106u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+atarigt0106u3red [Aaron Giles]
+bestmatch0106u3ora [Aaron Giles]
+midyunit0106u3red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added new function mame_debug_is_active() which can be used by
+core code to identify when we are paused in the debugger.
+[Aaron Giles]
+
+Fixed crash when passing an invalid driver name on the command line.
+Centralized the approximate matching logic into driver.c so other
+ports can use it as well. [Aaron Giles]
+
+Now properly extracting path from driver name and adding it to the
+rompath so that drag & drop of ZIP files works once again.
+[Aaron Giles]
+
+More renderer updates: [Aaron Giles]
+ - Fixed feature detection bug that led to false-positive warnings
+    when starting up
+ - Removed extra vertex padding since some graphics cards could not
+    cope with it
+ - Added shims to support both Direct3D 9 and Direct3D 8; D3D9 is
+    the default, with an automatic fallback to d3d8 if not available
+ - New option -d3dversion can be used to specify preferred version
+    for testing
+ - Added 1 pixel black border around all textures to ensure filtering
+    on some cards doesn't result in garbage at the edge of the screen
+ - Enabled "do not wait" feature when unthrottled and using D3D9; this
+    greatly speeds up unthrottled games, but seems to only work in 
+    full screen mode
+ - Switched from triangle fans to triangle strips
+ - Ensured that render states are only being set minimally
+ - Added code to reset the device if lost, allowing application 
+    switching out of full screen mode and fixing multi-monitor mode
+    with resolution switching
+
+Added new function verbose_printf() which is used instead of checking
+the verbose global to print information to the screen. Changed all
+locations that were checking the global to use this new function.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Card Line [Tomasz Slanina]
+
+
+
+0.106u3
+-------
+
+WARNING: As of this build, the new rendering system is enabled by
+default. The primary focus at this point is compatibility, not
+performance. Compared to the old -ddraw system, it will appear
+slower when fully unthrottled because there is not a good mechanism
+to skip the render if the graphics hardware is still busy like we
+used to do. If you have any trouble getting a correct display or
+if you get warning messages printed out when starting MAME, please
+post about them on http://mametesters.org.
+
+SECONDARY WARNING: The command line and INI parsing code was
+rewritten. If you notice any problems with handling of parameters
+in either case, please report the bugs on http://mametesters.org.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+colmns970105gra [Mariusz Wojcieszek]
+
+
+
+Source Changes
+--------------
+Added a size parameter to osd_free_executable(). [Olivier Galibert]
+
+Fixed flash rom writes in dgpix games. [Pierpaolo Prazzoli]
+
+More fixes/improvements to jalmah.c DIP switches: [Roberto Fresca]
+ Kakumei:
+  - Added flip screen DIP switch.
+ Daireika, urashima & mjzoomin:
+  - Added flip screen DIP switch.
+  - Fixed test/service DIP switch.
+  - Fixed complete coinage.
+ 
+Added save state support to the 1942, 1943 and 1945kiii drivers. 
+[Lee Mitchell]
+
+Fixed blitters to work with 15-bit direct RGB modes. [Nathan Woods]
+
+Refactored resource tracking code, auto_malloc(), auto_strdup() 
+etc into a separate module, restrack.c. [Nathan Woods]
+
+Moved large stack buffers into heap buffers to work better on systems
+with small stacks. [Lawrence Gold]
+
+Fixed a subtle auditing issue when both parents and clones had
+NO_DUMP ROMs in their manifests. [Hobbes@Play]
+
+Tweaks to the MSVC compiler support: [AtariAce]
+ - Removed _MSC_VER specific #pragmas in nec.c
+ - Removed _MSC_VER specific #include <malloc.h> in winprefix.h
+ - Changed makefile to bootstrap vconv.exe with cl instead of gcc
+ - Changed calls to lib to use link /lib instead
+ - Updated vconv to only use /arch:SSE2 for VC71 and later
+ - Cleaned up the profiler code in winmain.c
+ - Removed the direct dependency of MAME on shell32 has been 
+ - Tweaked a couple of preprocessor definitions so we compile as far
+    back as MSVC 5.0
+
+Massive DIP switch update to the following drivers: actfancr,
+aliens, angelkds, argus, asuka, bwing, compgolf, cop01, dblewing,
+dec8, dogfgt, dooyong, fuukifg2, homedata, jcross, kaneko16, m92, 
+mainevt, megasys1, metro, ms32, nmk16, paradise, seta, seta2, 
+shisen, snk, ssv, system1, taito_b, taito_f2, taito_l, tecmo,
+thedeep, thepit, ultraman. [Brian Troha, Guru, Yasuhiro Ogawa]
+
+Added code in the debug build to put random data in allocated memory.
+[Aaron Giles]
+
+Removed remaining chunks of x86 assembly code, as well as references
+to NASM in the makefiles. [Aaron Giles]
+
+Rewrote the options parsing code to be more flexible and generic.
+A new core source file options.c provides the ability to add and
+maintain a database of key/value pairs, which can be queried at
+runtime. Reconnected all existing frontend options through this code. 
+Bounds checking on options for the old renderer is pretty loose, and 
+several more complicated options have been disconnected as a result. 
+If you are still running with the old renderer, be careful.
+[Aaron Giles]
+
+Reorganized fronthlp.c to be one step closer to universal. One more
+layer of abstraction and hopefully it will be able to move up into
+the core. [Aaron Giles]
+
+New options to control multiple screens in the new renderer:
+[Aaron Giles]
+ -numscreens specifies how many windows to create
+ -screen0/screen1/... specifies the name of the screen for each window
+ -resolution0/resolution1/... specifies resolution for each window
+ -aspect0/aspect1/... specifies aspect ratio for each screen
+ -view0/view1/... specifies starting view for each screen
+
+Deprecated osd_skip_this_frame() with the new renderer. osd_update()
+now returns TRUE if it wants to skip the following frame. [Aaron Giles]
+
+Fixes to the new rendering system: [Aaron Giles]
+ - Enabled new renderer by default
+ - Fixed crash at startup due to uninitialized memory
+ - Fixed crash at shutdown due to incorrect shutdown order
+ - Fixed rendering of 15-bit direct RGB games
+ - Fixed weird frameskipping issues
+ - Fixed off-by-one error on visible area
+ - Added proper clipping of quad primitives
+ - Optimized the clearing step to avoid redundant drawing
+ - Brought software-only case up to support all major blending types
+ - Added support for -filter option
+ - Reconnected snapshots, though they are unrotated and screen 0 only
+ - Fixed several UI problems with new video options menu
+ - More strongly defined the blending modes to produce correct effects
+ - Added a flag to indicate textures that are of screen bitmaps
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mario Lemieux Hockey (Mega-Tech) [David Haywood, Guru]
+Highway Chase (Cassette) [David Widel, Juergen Buchmueller]
+Critter Crusher [Mariusz Wojcieszek, gbluma]
+Daikaiju no Gyakushu [Tomasz Slanina, Guru]
+
+
+
+New clones added
+----------------
+Turtle Ship (North America) [Brian Troha]
+
+
+
+0.106u2
+-------
+
+
+IMPORTANT NOTE: The video system in this version has been completely
+upended and redesigned. The old video system is still the default;
+however, some features may be broken. These are not bug-worthy
+reports, as the old system will soon be deprecated. The new system
+can be compiled by setting the NEW_RENDER flag on in the makefile.
+
+THE NEW SYSTEM IS STILL WORK-IN-PROGRESS! Apart from video card-
+related issues (like it doesn't work on particular hardware or has
+an incorrect display), bugs are not being tracked at this time.
+There is already a laundry list of things that are broken at the
+top of render.c, and there are many other things that still need
+to be looked at.
+
+In order to run the new video system with hardware acceleration, 
+your machine will require DirectX 8 or later.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+suchipi0106u1gra [Roberto Fresca]
+
+
+
+Source Changes
+--------------
+Added support for circular buffering in the SHARC core, and fixed
+several minor bugs. [Ville Linde]
+
+Added color PROM support for Nintendo's Sheriff driver. 
+[Stefan Jokisch]
+
+Discrete sound updates: [Derrick Renaud]
+ - Typedef'ed external discrete sound structures to follow current 
+     structure use. Statically defined their use in most drivers to 
+     stop name pollution.
+ - Created new DISCRETE_555_VCO1 module.  This is the 555&Op-amp 
+    oscillator circuit used by Borderline.
+
+Added the new video rendering system. A new file render.c contains
+the bulk of the logic. Major changes include: [Aaron Giles]
+ - The OSD layer is now responsible for allocating one or more 
+    render_targets at osd_init time. The old osd_create_display 
+    and osd_close_display calls are not used with the new system, 
+    so initialization must take place at osd_init time.
+ - The old osd_update_video_and_audio call has now been replaced 
+    with a simple osd_update call. This update call passes a 
+    mame_time to the OSD layer, which is the current emulated time. 
+    Throttling and speed calculations should use this time instead
+    of the framerate.
+ - osd_update is responsible for calling the render system to 
+    request a list of primitives to be drawn on each render_target
+    for the current frame. The primitives are simple and include
+    clipping rectangles, lines, and rectilinear quads only.
+ - If it wishes, the OSD layer can call back to a software
+    rasterizer in MAME. The rasterizer code is provided as an
+    include module so it can be tuned and optimized for platform-
+    specific video modes. See windows/rendsoft.c for a usage
+    example.
+ - There is a new layout file format .lay, which is XML-based and
+    which replaces the old .art files. The .lay files describe how
+    to render to a render_target. Each layout file can contain
+    multiple "views", which describe one of many ways the various
+    elements can be drawn. These views can be selected at runtime
+    via the new "Video Options" menu.
+ - The built-in UI font can be overridden with any .BDF font. Simply
+    name the .BDF file "ui.bdf" and place it in the MAME directory.
+    If you run at decent resolutions, you should choose a large 
+    point size for this font so that the scaled results look nice.
+ - The windows implementation uses Direct3D 8 as the preferred
+    mechanism for rendering. By default, it will render at the
+    current resolution, rather than switching resolutions as before.
+    This can be changed by adding -switchres to the command line.
+ - There are still a number of imperfect/incomplete features with
+    the new renderer, which is why it is not on by default. An
+    incomplete list is given in render.c.
+
+
+
+New clones added
+----------------
+WWF: Wrestlemania (rev 1.20 08/02/95) [Corrado Tomaselli]
+Heavy Smash (Asia version -4) [Corrado Tomaselli]
+Mad Alien (Highway Chase) [Stefan Jokisch]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Pasha Pasha 2 [Pierpaolo Prazzoli]
+Trivia Madness [Pierpaolo Prazzoli]
+
+
+
+0.106u1
+-------
+
+IMPORTANT NOTE: Major video-related changes are beginning in the
+system. Attempts will be made to keep the existing video code
+working to a large degree, but some features may be broken or
+working improperly until the video changes are complete. Most
+notably, in this release, RGB effects are broken for non-Direct3D
+blitting. For the moment, do not report anomalies or problems in 
+the video system. If you like a nice, stable MAME, please stick 
+with the 0.106 release. You have been warned.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+gladiatr0105u4gra [Don Maeby]
+
+
+
+Source Changes
+--------------
+Updates to the taito_x driver: [AWJ]
+ - fixed sound problems in twinhawk
+ - fixed a couple of dipswitch mistakes introduced recently
+ - added PORT_DIPLOCATIONs for superman and twinhawk
+
+Improved MSVC compiler support: [Nathan Woods]
+ - modified vconv to support multiple versions of MSVC based on 
+    version info
+ - added support for more parameter translations
+ - makefile now displays compiling and linking messages when
+    building vconv
+
+Converted the Windows blitters to use the DRC engine for 
+generation. RGB effects are officially broken with this change.
+[Nathan Woods]
+
+Fixed a bug that caused a crash when the -debugscript command line 
+option was used with an invalid filename. [Nathan Woods]
+
+Corrected the ordering of the DIP_PORTLOCATION() macros to be
+consistent. Multi-bit DIP switches should be specified in LSB-
+first order. Added a comment to this effect in inptport.h.
+[AWJ, Aaron Giles]
+
+Fixed background color in the Deco cassette games.
+[Nicola Salmoria]
+
+Fixed potential crash in the micro3d driver. [MamePlus!]
+
+Improvements to CHD-CD support: [R. Belmont]
+ - additional RAW CD sector conversion support, so a game can request 
+    e.g. 2048-byte data sectors from a RAW CHD-CD and still get the 
+    right data
+- reversed CHDMAN error message - now non-RAW CHD-CDs are deprecated
+- susume now uses a RAW CHD-CD read directly from an original pressed 
+   Konami disc
+
+Some improvements to the Polygonet Commanders driver: [Andrew Gardner]
+ - adds change_PC() calls to the dsp56k core
+ - removed hacky dsp56k initialization, enabling, and disabling
+ - added preliminary implementation of banking hardware tied to the 
+    dsp56k in Polygonet Commanders
+
+Fixed MSB accesses and latch reading in the 6840 emulator. [El Condor]
+
+Improved N64 audio output: [R. Belmont]
+ - rewrote Audio Interface as a stereo DMADAC (which it actually is), 
+    greatly simplifying the code along the way
+ - fixed AI interrupt semantics
+
+Changed a number of games that were incorrectly using IPT_LIGHTGUN
+to use IPT_AD_STICK instead. [Aaron Giles]
+
+Some preparations for proper multiple screen support. The 
+visible_area and refresh_rate values in the Machine structure are
+now defined as arrays (1 per screen). The machine_config structure
+has been altered as well, removing the following fields:
+
+   frames_per_second
+   aspect_x, aspect_y
+   screen_width, screen_height
+   default_visible_area
+   vblank_duration
+
+These are all stored per-screen in a new screen_config structure. 
+[Aaron Giles]
+
+Reorganized the user interface code to better support the new render
+system. [Aaron Giles]

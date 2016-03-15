@@ -1,0 +1,84 @@
+0.24
+
+Program:
+- Nicola added support for Jr. Pacman.  Decryption method provided by
+  David Caldwell (david@indigita.com).  Colors should be 100% right too.
+  Hiscore saving not supported yet.  Nicola also thanks Lee Taylor for
+  help.
+
+- I'v found the decryption scheme for garbled chars of Lost Tomb which is
+  now playable.  Colors are still wrong.
+
+- Also, I'v finally fixed my problems with ADPCM decoding, so now Kung Fu
+  Master doesn't need separate samples anymore (I didn't distribuite them
+  because of copyright on sounds).  The samples are now calculated during
+  bootstrap of the game.
+
+- Again Nicola added Turpin (Another version of Turtles) support.  Also
+  colors are 100% correct the two games now.
+
+- Fabrice Frences added support for Qbert Qubes.  Only hitch with the
+  driver:  you have to reset (F3) the game at first time when the empty
+  supreme noser table appears, then the table will be correctly filled.
+  Alternatively, you can insert a coin before this empty table appears...
+  Hiscore save not supported yet.
+
+- New option in the setup menu: "CREDITS". It displays a list of the people
+  who contributed to the current driver. I have surely left out many people,
+  and apologize in advance for that. If you contributed to a driver and your
+  name doesn't appear in the list, please let me know.
+
+- Since many people asked for this and Bernd Wiebelt was so kind to do me
+  this gift for my birthday, MAME has now -rotate option.  You'll have to
+  turn your monitor (or your head (!) ;)
+
+- Nicola fixed definetively Kung Fu Master driver which has now 100% perfect
+  colors and sprite positioning.  Thanks to Paul Swan for color scheme.
+  Original version (copyright Irem) is now supposed to be in 'kungfum'
+  directory, while the bootleg (O.K.) is supposed to be in 'kungfub'.  Test
+  mode doesn't work for bootleg version (as is right to be).
+  Hi Score Support in each version as well.
+
+- In Seicross now shots are enabled.  REMEMBER TO DELETE PREVIOUS .DSW FILE,
+  AND SET "DEMO & DEBUG MODE" TO OFF, AND "SW7B" to 1.   Setting SW7B to 0
+  will cause to play the game without FIRE facility.
+
+- Marc LaFontaine provided drivers for Robotron, Splat, Defender, Joust,
+  Stargate, Bubbles, Blaster and Sinistar.  Bubbles doesn't start, and
+  Sinistar do weird things at startup.  The other games work very well,
+  though.  For this version I provide a set of fonts that can be used
+  to avoid jerkiness in williams games.  If you use zipped roms remember
+  to include them in the ZIP files.
+
+- Added SpaceZap support.  It is based mainly on WOW driver.  Mike Coates
+  provided a more stable driver too.
+
+Sources:
+- Bernd Wiebelt provided new Vesamodes:  320x240 and 512x384.  You can select
+  a mode either by -X (e.g. -640) or -XxY (e.g. -640x480).  Also fixed a bug
+  that caused -vesaskip 0 not to run properly.  Also added -rotate option.
+  Also, any vesa mode in combination with -noscanlines option can be used
+  to achieve correct aspect ratio on most monitors.  This method is of
+  course slower, and can work flawlessy on P166+ class.
+
+- Modifications to support Driver Description and Credits.
+
+- Nicola added a new mode in drawgfx: TRANSPARENCY_THROUGH.  When background
+  has a higher priority of sprites, it's a lot faster using this option than
+  draw sprites and then apply a bitmap with TRASPARENT_COLOR.
+
+- Fabrice Frances submitted a new faster I86 emulator.  The entire I86
+  directory is changed, and most of Gottlieb games are now faster.
+
+- Mike Coates provided a modification to COMMON.C to support multi bank
+  characters.  It uses bits 8-15 of the charset array (short int - so
+  hopefully at least 16 bits on all implementations) to signify bank number.
+
+- Changed the PAUSE key to Scrl-Lock key.  This permits to redefinite the
+  P key for playing.
+
+- TO ALL CONTRIBUTORS:  Please do not make use of C++ // comments in your
+  sources.  I loose a lot of time every release to adjust them.  Then use
+  official source release as a base for your next updates.  Use a comment
+  style like in Williams.c sources (this is actually my comment style and
+  almost clear to read). Thanks.

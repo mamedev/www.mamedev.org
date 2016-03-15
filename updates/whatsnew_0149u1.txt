@@ -1,0 +1,494 @@
+0.149u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05231: [Graphics] (namcos11.c) tekken2aa, tekken2ab, tekken2ub: 
+  There’s a problem with the graphics (hap)
+- 05228: [DIP/Input] (leland.c) cerberus: Player 1's buttons control 
+  Player 2's actions; Player 2's buttons do nothing (Fabio Priuli)
+- 03863: [Gameplay] (bking.c) All sets in bking.c: Gameplay doesn't 
+  mirror what graphics indicate (hap)
+- 05226: [Crash/Freeze] (mogura.c) mogura: Crashed after playing sound (hap)
+- 04841: [Crash/Freeze] (mpu4.c) m4exotic, m4jflash, m4madmnc, m4mmm, m4przrfm,
+  m4rhfev, m4spinbt, m4xch, m4xs, m4xtrm: [debug] Crash after OK (Robbbert)
+- 05219: [Misc.] (tetrisp2.c) tetrisp2: Priority RAM test fails. (hap)
+- 04466: [Graphics] (tx1.c) buggyboy, buggyboyjr, tx1, tx1a: Graphics totally 
+  missed, audio start and suddenly stop (Olivier Galibert)
+- 00419: dragngun: Hang at last boss (David Haywood)
+
+Source Changes
+--------------
+
+-arkanoid.c: added Arkanoid hardware documentation [Guru]
+
+-QT Debugger: Finished up the breakpoints window. [Andrew Gardner]
+ It now shows breakpoints for all CPUs and lets you sort by each field.
+
+-memory: Fix subunit reconfiguration [O. Galibert]
+
+-Allow more than one ide controller on the same device [smf]
+
+-tx1: The prom is accessed at 16bits, so load it as such [O. Galibert]
+
+-segas16a.c: Removed the wb35a clone set and merged correct rom dumps for the 
+ wb35 set by using correct dumps for program roms, tiles and sprites. Added 
+ newly created (software derived) 317-0086 key by Chris Hardy & Charles MacDonald.
+ [Brian Troha]
+
+-meritm.c: Corrected the dipswitch settings for the Pit Boss Superstar III 30 & 
+ the Pit Boss Supertouch 30 sets. [Brian Troha]
+
+-Modernized Konami 007232 sound device [Osso]
+
+-Modernized Taito PC080SN video device. [Osso]
+
+-Split hard drive emulation from the ide controller. [smf]
+
+-ata flash device derives from ide hdd device and adds pccard
+ interface, instead of using an ide controller. [smf]
+
+-es5510: Preliminary hookup to es5505/5506.  Samples are passed through
+ unchanged for now.  [Christian Brunschen]
+
+-Modernized Taito PC090OJ video device. [Osso]
+
+-Modernized Konami 056800 sound device. [Osso]
+
+-Build dependencies for files in src/emu [smf]
+
+-powervr2: Explode the core/ta registers [O. Galibert]
+
+-powervr2: Fix blc/blic [O. Galibert]
+
+-neogeo: clean up PVC protection. [Alex Jackson]
+
+-de_2:  Moved Laser War to de_2, as CPU Type 1 and Alphanumeric Type 1
+ are very much similar to Type 2.  de_1.c is no longer needed. Added
+ layout for Alphanumeric Type 3 games. [Barry Rodewald]
+
+-memory: Need moar tables [O. Galibert]
+
+-powervr2: Explode the dma registers [O. Galibert]
+
+-New Savage Quest bios dump, still marked bad as there are still issues
+ however they may be emulation related [Trevor Brown]
+
+-jackal.c: Corrected rom names and added PCB locations to them. Added
+ correct roms for the bootleg version. [Brian Troha]
+
+-wd_fdc: Do the on-reset restore slightly differently [O. Galibert]
+
+-Redumped Savage Quest Hard Disk [Trevor Brown]
+
+-chdman: -c would only overwrite the amount of compressions defined -
+ part of the default compressions might still have been used
+ [Oliver Stöneberg]
+
+-treesize in laserdisc CHD was uninitialized when input video had no
+ audio channels [Oliver Stöneberg]
+
+-m6809: Initially setting S with a 'TFR *,S' evidently should enable NMI [jedwidz]
+
+-mc6845: Add rudimentary support for 'interlace and video' mode [jedwidz]
+
+-Dumped S3 video BIOS in Savage Quest [Trevor Brown]
+
+-Modernized the TC0080VCO and the TC0100SCN video devices [Osso]
+
+-Modernized the Konami 053252 device [Osso]
+
+-1943.c: fix DIPLOCATIONs [Alex Jackson]
+
+-neocrypt.c cleanup part 1: simplify kf2k3pcb bios decryption, fix some
+ endian issues [Alex Jackson]
+
+-sec: Fix obvious typo [dgame]
+
+-Modernized phoenix custom sound device. [Osso]
+
+-Modernized MSM5232 device. [Osso]
+
+-chihiro: few updates to the i386 processor and chihiro driver.
+ [Samuele Zannoli]
+ * adds lots of mmx and sse opcodes to the i386 processor
+ * adds the fcomip x87 opcode
+ * adds a "UINT8 *memory(UINT32 &size)" method to the
+    naomi_gdrom_board device that returns the size and a pointer to
+    the decrypted gdrom data (used by chihiro) Then for the chihiro
+    driver:
+ * adds basic stuff for the Nvidia audio APU
+ * adds the "chihiro curthread" debugger command, shows information
+    about the current active thread
+ * adds the "chihiro irq,<number>" debugger command, to generate an
+    interrupt with irq number 0-15 by hand
+ * adds more patches to let the software run even if usb is not
+    implemented
+ * adds the Chihiro Type 1 baseboard/mediaboard features to let the
+    system load the gdrom games
+ * adds incomplete save state support
+ * adds support to the Nvidia 3d accelerator to draw primitives where
+    the vertex data is not stored in a vertex buffer but contained in
+    the command stream
+
+-IDE: Uses one timer instead of anonymous timers, so that resetting the
+ device will stop any outstanding work. BSY is always set when waiting
+ for the busy timer to fire. Implemented DASP & PDIAG functionality,
+ device 1 is detected during reset & if device 1 fails diagnostic then
+ device 0 sets bit 7 of it's diagnostic result. Ide cards now default
+ to 1 hard disk, otherwise device 1 without a chd will cause device 0
+ to report a controller error (AMIBIOS for example doesn't allow
+ booting from device 0 if device 1 fails). Timing of DASP & PDIAG is
+ set very short because of lack of wait states when accessing ATA bus.
+ Improved SRST functionality, which has meant viper needed to be
+ changed to trigger a hard reset instead of a soft reset. Writes to the
+ command register are now ignored with BSY or DRQ is set (packet
+ devices can accept the DEVICE RESET command but they are not supported
+ yet). [smf]
+
+-harddriv.c: converted to use modern n68681 device. [Osso]
+
+-Make the Python scripts line ending agnostic (fixes *IX/OS X build
+ from mamedev.org source zip)  [R. Belmont]
+
+-Modernized TC0280GRD/TC0430GRW and TC0360PRI devices [Osso]
+
+-DSP16 improvements. [Andrew Gardner]
+ * Fixed R=M disassembly
+ * Added flag formatting
+ * Shadow register is hooked up
+ * Opcode & flag fixes
+
+-toaplan2.c: bgaregga DSW3 really are dipswitches and not
+ "configuration". Also, make bbakraid inputs inherit from very similar
+ batrider [Alex Jackson]
+ 
+-Don't crash if pcap can't find a network interface's name [Richard L. Hamilton]
+
+-RSP SSE optimizations/changes: [MooglyGuy]
+ * Fixed load/store opcodes
+ * Added SSE versions of the following opcodes: VMADH, VADD, VSUB,
+   VADDC, VSUBC, VCH, VCR, VMRG, VAND, VNAND, VOR, VNOR, VXOR, and VNXOR
+
+-Modernization of the remainder of taitoic as well as the deco_bac06
+ device.  [Osso]
+
+-Modernized DECO16 IC device [Osso]
+
+-Sea Battle: added most of the graphics hardware and I/O [Mariusz Wojcieszek]
+
+-segas16b.c: Correct rom labels for Tetris (FD1094, 317-0092) set and
+ add Sega rom board ID# [The Dumping Union]
+
+-i86: modernize 80[1]86 [Carl, Wilbert Pol]
+
+-Modernize the Konami 037122 device.  [Osso]
+
+-Modernizing the seta01 device.  [Osso]
+
+-Modernization of decocomn device  [Osso]
+
+-Fixes for building MAME with Visual Studio 2013 preview [smf]
+
+-Modernized some others devices contained in konicdev.c: k007342,
+ k007420, k052109, k051960 and k05324x.  [Osso]
+
+-Modernized the x1_010 device.  [Osso]
+
+-Converted the tmp68301 to a device.  [Osso]
+
+-Added PAL16L8 dump to Commando (Bootleg set 2) [Kevin Eshbach]
+
+-shangha3.c: Added PCB layout for the Shanghai 3 PCB. [Brian Troha]
+
+-Improved Williams blitter logic and timing to match tests run on real
+ hardware. [Sean Riddle]
+
+-lindbergh: Skeleton of a skeleton [The Guru, O. Galibert]
+
+-Hooked up sprite enable in Air Raid [Angelo Salese]
+
+-Initial support for Fedora 19 / GCC 4.8.1 [R. Belmont]
+
+-imgtool/modules/bml3: fix uninitialized variable reported by gcc 4.4.7
+ [Lord Nightmare]
+
+-Converted tms34061 to be a device.  [Osso]
+
+-Modernized the following konicdev.c devices (k056832, k054000,
+ k053936, k051316, k051733).  [Osso]
+
+-Toaplan driver improvements [Alex Jackson, Guru]
+ * Reorganized hellfire clone sets and improved descriptions:
+    hellfire3 -> hellfire1  "Hellfire (1P set)"
+    hellfire2 -> hellfire2a "Hellfire (2P set, older)"
+    hellfire1 -> hellfire1a "Hellfire (1P set, older)"
+ * Reorganized outzone sets and improved descriptions:
+    outzonec  -> outzone  "Out Zone" (new parent)
+    outzone   -> outzoneh "Out Zone (harder)" (former parent)
+    outzonea  -> outzonea "Out Zone (old set)"
+    outzoned  -> outzoneb "Out Zone (older set)"
+    outzoneb  -> outzonec "Out Zone (oldest set)"
+ * Fixed dip switches and inputs (after verification of the M68000 and
+    Z80 code) in hellfire and outzone clones
+ * Made some more additions and fixed some errors in Stephh's notes
+ * Replaced truxton Z80 ROM with correctly sized one
+ * Replaced hellfire2a Z80 ROM with correct one from parent set
+ * Tagged outzonec Z80 ROM as BAD_DUMP and the set itself as
+    GAME_IMPERFECT_SOUND after discovering that this clone's
+    M68000 and Z80 ROMs are almost certainly mismatched,
+    causing wrong sound effects
+ * Corrected Z80 address map (RAM size is only 2KB)
+ * Corrected manufacturer name for zerowing2
+ * Corrected ROM names in twincobr and clones
+ * added correct PROMs to fsharkbla, fixed ROM names, inputs, and improved
+    descriptions of both Flying Shark bootleg sets
+ * Added documentation about Twin Cobra PCB and about TMS32010 MCUs used by
+    Toaplan games
+ * Removed outdated comments from slapfght.c
+
+-Modernized two more konicdev devices: 053251 and 054338.  [Osso]
+
+-Split up in their own files the remaining modernized devices contained
+ in konicdev.c.  [Osso]
+
+-Modernized the buggychl_mcu device.  [Osso]
+
+-Modernized the hyprolyb_adpcm device.  [Osso]
+
+-Added ds1204 nvram to Pit Boss Superstar (9221-12-01)
+ [Mariusz Wojcieszek]
+
+-Converted Seibu CRTC to a proper device [Angelo Salese]
+
+-meritm.c: Gave each Pit Boss series it's own dipswitches. Filled in
+ what could be determined through game play.  Added optional button for
+ some games to Clear High Score or Calibrate Touchscreen. Add
+ documentation about custom (regional) versions of Superstar /
+ Supertouch 30 sets.  Changed all Pit Boss series games to use the
+ ZXCVB key layout with N for "play" and M for "raise". [Brian Troha]
+
+-aristmk5: add GAL dumps [Heihachi_73]
+
+-CPS-1 update [Team CPS-1]:
+ * Fixed striderj, 1941r1 ROMs labels and locations, added
+    documentation and pcb infos to video\cps1.c
+ * Minor cosmetic reorder
+
+-Modernized the upd7759 sound chip.  [Osso]
+
+-Modernized trackfld and timeplt audio devices. [Osso]
+
+-viper.c: redumped wcombat memory card [Shoutime]
+
+-SH-2 CPU core timing changes  [notaz]
+ * JMP should be 2 cycles, according to the manual.
+ * OR #imm,R0 should be 1 cycle and OR #imm,@(R0,GBR) should be 3 to
+   match the manual and other ops.
+
+-Modernized the vlm5030 speech synthesizer chip.  [Osso]
+
+-Modernized the irem_audio device.  [Osso]
+
+-Modernized/converted nb1413m3 to a device.  [Osso]
+
+-Merged Cross Shooter (Taito version) with stfight.c HW [Angelo Salese]
+
+-Assorted code fixes including fixing some m6502 related compiler
+ output, adding a missing dependency for YM3526 and a text change to
+ the "RETURN" menu line.  [MAMESICK]
+
+-Modernized the m72 audio device.  [Osso]
+
+-Moved nb1413m3 configuration to inline config.  [Osso]
+
+-Modernized the k001604 video device.  [Osso]
+
+-remove the 'UNEMULATED PROTECTION' flag from Fighters History, for the
+ first time ever you can actually play it until the end (previously the
+ last 2 bosses would glitch because the protection results were
+ missing) [Charles MacDonald, David Haywood]
+
+-Fixed dip-switches in Street Fight driver [Angelo Salese]
+
+-CPS-1 update [Team CPS-1]:
+ * Verified dinoj ROMs labels and locations, added documentation and
+    pcb infos to video\cps1.c
+ * Added CK22B.1A PAL to chikij
+ * Added a note to wofr1 and wofa since they could not be original but
+   patched sets coming from desuicided boards
+
+-Modernized the Beezer sound device.  [Osso]
+
+-Modernized the namco sound device.  [Osso]
+
+-Modernized the TX1, HC55516 and Exidy 440 CVSD audio devices.  [Osso]
+
+-Split up the video devices contained in taitoic.c.  [Osso]
+
+-QS1000 sound core issue now not a mandatory include which allows tiny
+ builds to be built without it.  [MAMESICK]
+
+-Fixed some unknown DIPs and corrected others from manual examinations
+ for lethalj.c  [Bad A Billy]
+
+-Memory system: added endianness to the memory_share class.  [Aaron Giles]
+
+-Tilemap system: numerous changes:  [Aaron Giles]
+ * Moved remaining legacy macros and typedefs to tilelgcy.h. This
+    revealed a few drivers mixing and matching modern & legcy, which
+    have now been fixed.
+ * Changed get info callback signature to no longer pass the user_data
+    pointer, but instead pass a reference to the tilemap object
+    itself. Updated those few drivers using user_data to pull it out
+    of the tilemap object with the new user_data() getter method.
+ * Changed get info and mapping callbacks to be device_delegates so
+    that they can be described at config time.
+ * Added tilemap_memory object that is used internally for reading/
+    writing to memory that backs a tilemap. This object is used to
+    track a memory pointer that backs tilemap memory, and also is
+    designed to transparently handle all bus width and endianness
+    associated with reading and writing data in a tilemap.
+ * Incorporated two tilemap_memory objects (basemem and extmem) into
+    the tilemap object and added accessors to them, as well as
+    read/write handlers for reading/writing to entries stored in the
+    memory. This means that tilemap get info callbacks can now easily
+    read data out of the tilemap in a generic way.
+ * Rejiggered the initialization sequence for tilemap objects so that
+    the tilemap_manager is not required to be present at
+    instantiation.
+ * Created a new tilemap_device, which can be used to declare a
+    tilemap in the machine config, and which also is a tilemap object
+    itself. The tilemap device will look for shared memory regions
+    called "<tag>" and "<tag>_ext" and automatically plug them into
+    the tilemap. The device also provides write handlers that can be
+    used to write to the tilemap memory and mark tiles dirty, saving
+    the need for each driver to write their own.
+
+-Device system: moved required/optional device finders to a new header
+ devfind.h.  [Aaron Giles]
+
+-Atari drivers: removed all playfield and alpha memory and tilemap  [Aaron Giles]
+ variables, apart from those needed by atarivc-using games (this will
+ become a device in a future update). Updated all Atari 16-bit drivers
+ to use the new tilemap_device instead, which provides all the needed
+ functionality in a more generic way.
+
+-volfied.c: Added dipswitch locations to the Volfied sets. [Brian Troha]
+
+-thepit.c: Added dipswitch locations to The Pit, Round-Up / Fitter,
+ Intrepid and Dock Man / Port Man sets. Gave Desert Dan it's own
+ dipswitches and corrected them based on results of game play. [Brian Troha]
+
+-suna8.c: Added dipswitch locations to Rough Ranger / Super Ranger,
+ Hard Head, Spark Man, Star Fighter, Hard Head 2 and Brick Zone sets.
+ Correct default settings as per manuals. [Brian Troha]
+
+-stfight.c: Added dipswitch locations to the Empire City: 1931 / Street
+ Fight sets. [Brian Troha]
+
+-shanghai.c: Added dipswitch locations to Shanghai and Shanghai 2.
+ [Brian Troha]
+
+-itech32.c: Some minor corrections of dipswitches. Added a note about
+ the Japanese World Class Bowling trackball input is read at an 45
+ degree offset compared to normal orientation. [Brian Troha]
+
+-Data East Protection Work [Charles MacDonald, David Haywood]
+ * Complete new Data East 146 emulation based on extensive hardware
+   tests.  The following now use a single implementation rather than
+   incomplete per-game implementations
+   Edward Randy (60)
+   Mutant Fighter (66)
+   Captain America (75)
+   Lemmings (75)
+   Robocop 2 (75)
+   Super Shanghai Dragon's Eye (146)
+   Funky Jet (146)
+   Sotsugyo Shousho (146)
+   Nitro Ball (146)
+   Fighter's History (146)
+   Stadium Hero 96 (146)
+   Dragon Gun (146)
+   Lock 'n' Loaded (146)
+ * This fixes glitches in Fighter's History and Edward Randy in
+   addition to bringing Super Shanghai to a working state.
+ * Similar work has been started for the 104 based games, but no
+   complete table has been derived from real hardware yet.
+
+-Split the KonamiIC file into individual device files and moved all
+ implementations of each device into those files, started to unify
+ some code between the GX/Non-GX cases in addition to heavy cleanup of
+ variable usage / names.  [David Haywood]
+
+-tms1xxx.c, hcd62121.c, i4004.c, alph8201.c, apexc.c, am29000.c, arm.c,
+ arm7.c, ccpu.c, cop400.c, cp1610.c: Modernized cpu cores.  [Wilbert Pol]
+
+-Fixed Yamaha OPL key scale level orders [Alexey, Phil Bennett]
+
+-Further observations about how the DVI video roms map on Dragon Gun and
+ playback flags, fixed it not to hang at the last boss due to these
+ for now [David Haywood]
+
+-psikyo.c: Add dipswitch locations to all sets in the driver. Filled in
+ some unknown dipswitches from Battle K-Road. Moved Region settings into
+ the Game Configuration menu. Added a note about the Free Play mode in
+ the Strikers 1945 sets not working. [Brian Troha]
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wonder Boy III - Monster Lair (set 5, System 16A, FD1089A 317-0086)
+  [Chris Hardy, Charles MacDonald]
+Desert Dan [Alberto Grego, Mariusz Wojcieszek, hap]
+Super Shanghai Dragon's Eye (Japan) [Charles MacDonald, David Haywood]
+Pit Boss Superstar III 30 [Mariusz Wojcieszek, Brian Troha, The Dumping Union]
+Sea Battle [Mariusz Wojcieszek, hap]
+Hidden Catch 2000 (AT89c52 protected) [any, The Dumping Union]
+
+
+New clones added
+----------------
+Arcadia [system11]
+Dragon Gun (Japan) [M]
+Tetris (Japan, H-System) [Alex Meijer]
+Guardian Storm (Germany) [system11]
+Super Poker (v100xD03) / Formosa (not working) [any, Luca Elia]
+P-47 - The Freedom Fighter (Japan, Export) [Porchy, The Dumping Union]
+Snow Bros. - Nick & Tom (The Winter Bobble hardware bootleg)
+  [Alex Meijer]
+Mini Boy 7 (set 3) [Brian Troha, Cornishdavey, The Dumping Union]
+Shanghai 3 (US) [Brian Troha, The Dumping Union]
+Jackal (World, Rotary Joystick) [ShouTime, The Dumping Union]
+3 Wonders (bootleg) [Robbbert, Any, The Dumping Union]
+Street Fighter Zero (Asia 950605) [Smitdogg, The Dumping Union]
+Fighter's History (Japan ver 42-03, DE-0395-1 PCB)
+  [Smitdogg, The Dumping Union]
+Golden Tee 3D Golf (v1.9L) [Brian Troha, The Dumping Union]
+Pit Boss Superstar (9221-12-01) [Brian Troha, The Dumping Union]
+Knights of Valour 2 - Nine Dragons (ver 202) [69mustang, iq_132]
+Speed Up (Spanish bootleg of Pole Position) [Marcos75 (from AUMAP)]
+Zombie Raid (US & Japan release versions, prototype PCB) [Brian Troha, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Chaos Breaker (v2.02J) [Shoutime]
+Giga Wing Generations (v2.02J) [Shoutime]
+Homura (v2.04J) [Shoutime]
+Raiden III (v2.01J) [Shoutime]
+Spica Adventure (v2.03J) [Shoutime]
+Shikigami no Shiro III (v2.06J) [Shoutime]
+Raiden IV (v1.00J) [Shoutime]
+The King of Fighters '98: Ultimate Match (v1.00) [Shoutime]
+Trouble Witches AC (v1.00J) [Shoutime]
+Goketsuji Ichizoku: Matsuri Senzo Kuyou (v200906230) [Shoutime]
+Chase H.Q. 2 (v2.0.6.JP) [Shoutime]
+Samurai Spirits Sen (v1.00) [Shoutime]
+Naomi DIMM Firmware Update for CF-BOX (Rev A) (GDS-0042A)
+  [R. Belmont, The Dumping Union]
+Golden Tee Fore! 2002 (v2.01.04 UMV)
+  [R. Belmont, Smitdogg, The Dumping Union]
+Golden Tee Fore! 2002 (v2.00.00)
+  [R. Belmont, Smitdogg, The Dumping Union]
+Carnival King (v1.00.11) [Brian Troha, R. Belmont]

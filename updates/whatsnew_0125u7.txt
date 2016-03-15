@@ -1,0 +1,289 @@
+0.125u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01931: [Gameplay] sqix: [possible] sprites slowdown (couriersud)
+- 01631: [Core] sqixbl, perestro, perestrf: game resets after starting 
+         game (couriersud)
+- 01874: [Core] windheat: Game freeze (Aaron Giles)
+- 01905: [Misc.] Many Sets: Fatal Error crash - Fatal error: Input 
+         ports cannot be read at init time! (src/emu/inptport.c:1278) 
+         (Aaron Giles)
+- 01928: [DIP/Input] chplft, chplftb, chplftbl: Choplifter player 2 
+         video is upside down (couriersud)
+- 01712: [DIP/Input] exerizrb, skyfox: Coin 1 mapped twice. 
+         (couriersud)
+- 01886: [Graphics] gradius4: 3D gfx problem. (Aaron Giles)
+- 01927: [Misc.] Effects overlay showing in snapshots (Aaron Giles)
+- 01901: [Graphics] kinst13, kinst14, kinstp: Attract mode graphics 
+         regression (Aaron Giles)
+- 01916: [Misc.] srmvs: Assertion (Aaron Giles)
+- 01900: [DIP/Input] All sets in kinst.c: Mass coin input disables 
+         dipswitch access, and thus further coin input during a fight. 
+         (Aaron Giles)
+- 01709: [DIP/Input] startrek, tacscan, zektor: Duplicate P1 + P2 
+         Starts Mapped (couriersud)
+- 01715: [DIP/Input] ballbomb: Player 1 Left+Right and Button 1 mapped 
+         twice. (couriersud)
+- 01714: [DIP/Input] ssfindo: Player 2 Start mapped twice. 
+         (couriersud)
+- 01818: [DIP/Input] All sets in rastan.c: 2nd (unused) Service Mode 
+         DIP assigned. (stephh)
+- 01912: [DIP/Input] Various: Unable to construct input ports! 
+         (part 2) (Aaron Giles)
+- 01889: [DIP/Input] realbrk, realbrkk, realbrkj: Flip screen DIP 
+         switch doesn't work. (couriersud)
+- 01869: [DIP/Input] alienar, alienaru, splat: Duplicated Inputs 
+         (couriersud)
+- 01575: [DIP/Input] joust, joustr, joustwr: Player 1 and Player 2 
+         Start buttons are mapped twice. (couriersud)
+- 01866: [DIP/Input] gstream: Duplicated Inputs (couriersud)
+- 01903: [Graphics] mooncrst and most clones: 3rd+4th Wave have 
+         enemies that are corrupted. (couriersud)
+- 01908: [Misc.] Various: Access Violation when saving a snapshot 
+         (Aaron Giles)
+- 01911: [DIP/Input] nomnlndg: Unable to locate input port 'DSW'
+         (Fabio Priuli)
+- 01906: [Misc.] All sets in atartig1.c: Fatal Exception crash 
+         (Aaron Giles)
+- 01904: [DIP/Input] teetert: Player movement has slowed from 
+         previous MAME (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Fixed input port read at init time in grchamp.c. [Curt Coder]
+
+Fixed input port read validation. The previous check was way too 
+aggressive, and prevented CUSTOM_INPUT handlers from reading other 
+ports. This one sets an "all clear" flag as soon as the configuration 
+data is loaded. [Aaron Giles]
+
+GX era haradware: update video parameters to use actual values written 
+to the CCU. [Yasuhiro Ogawa]
+
+MultiPCM/315-5560 rewrite. All features are now supported including 
+PLFO and ALFO. [ElSemi]
+
+Fixed read from input port during VIDEO_START in namcofl.c.
+[couriersud]
+
+Cleaned up z80dma interface [couriersud]
+ * removed compatibility to old z80dma driver
+ * now uses std. callbacks (READ8_HANDLER, WRITE8_HANDLER)
+ * updated mario and dkong3 accordingly
+
+Implemented 8257 dma controller as proper device [couriersud]
+ * rewrote 8257dma.[ch]
+ * updated dkong.c accordingly
+
+dkong.c: Merge driver init code for drakton and strtheat [couriersud]
+ * made decryption for drakton and strtheat more compact
+ * moved decryption and driver init code into dkong.c
+ * deleted drakton.c and strtheat.c
+
+Added emulation of ST-0026 NiLe (sound). Added audio to Super 
+Real Mahjong P6. [Tomasz Slanina, R. Belmont]
+
+i8x41 improvements: [Wilbert Pol]
+ - Removed i8x41.ram hack from the i8x41 cpu core.
+ - Fixed disassembly for opcode 0x67.
+ - Added configurable i8x41/i8x42 subtype support.
+ - Fixed carry flag handling in ADDC A,#N instruction.
+ - Fixed carry flag handling in RLC A instruction.
+ - Updated the ram sizes. 8041 uses 128 bytes, 8042
+    8042 uses 256 bytes.
+ - Added support for re-enabling interrupts inside
+    an interrupt handler.
+ - Fixed cycle count for DJNZ instruction.
+
+Converted voodoo into a proper device. Updated drivers accordingly.
+[Aaron Giles]
+
+Cal Omega driver updates: [Roberto Fresca]
+ - Lots of improvements on the input system.
+ - Adjusted the CPU adressing to 14 bits for systems 903/904.
+ - Adjusted the CPU adressing to 15 bits for system 905.
+ - Rewrote all the ROM loads based on these changes.
+ - Defined CPU, UART and sound clocks.
+ - Splitted the sound interface to cover different systems.
+ - Splitted the PIAs interfaces to cover different systems.
+ - Added sound to system 905 games.
+ - Added MACHINE_START and MACHINE_RESET to initialize the devices 
+    properly.
+ - Documented the systems 903/904 UART connections.
+ - Traced and added PIAs connection diagrams for systems 903/904/905.
+ - Hooked the missing DIP Switches bank to the AY8912 for system 903.
+ - Added preliminary serial/UART support to systems 903/904.
+ - Hooked the missing DIP Switches bank to the ACIA 6850 for systems 
+    903/904. It allow to choose the proper transfer rate for UART.
+ - Fixed graphics ROM loads for different Hotline versions.
+ - Added support to Game 8.0 (Arcade Black Jack).
+ - Added support to Game 12.3 (Ticket Poker).
+ - Added support to Game 23.0 (FC Bingo (4-card)).
+ - Renamed all roms of each set according to the systems schematics and official list.
+ - Cleaned-up the sets.
+ - Cleaned-up the driver.
+ - Updated technical notes.
+
+Save state support: [Aaron Giles]
+ * added save state support to the MIPS3 recompiler
+ * added save state support to CAGE audio system
+ * added save state support to the voodoo emulator
+ * added save state support to the smc91c9x emulator
+ * added save state support to the kinst, seattle, and vegas drivers
+ * fixed core video handling of save states with dynamic screen resolutions
+ * added save state support to the SHARC CPU core
+ * added save state support to the PowerPC recompiler
+ * added save state support to the virtual TLB system
+ * added save state support to the RF5C400 sound core
+ * added save state support to konppc module
+ * added save state support to K056800 host controller
+ * added save state support to the Konami hornet driver
+
+SMC91C9x: [Aaron Giles]
+ * converted to proper device
+ * updated seattle and vegas drivers to allocate devices
+ * added separate 91C96 device for eventual 2049 use
+ * cleaned up code
+
+Added machine parameter to memory_region() and memory_region_length()
+functions. Cleaned up usage of these throughout the code to cache
+pointers rather than calling these functions repeatedly during loops.
+[Atari Ace]
+
+Fixed poor default CLUT handling in the voodoo driver. [Aaron Giles]
+
+Added additional Naomi BIOSes. [Brian Troha, Guru]
+
+DRC fixes: [Aaron Giles]
+ * Fixed WRITEM opcode on 64-bit to call through memory instead of 
+    directly. Solves assertions with gcc 4.3 and 64-bit linux.
+ * Fixed DCMP opcode on the 32-bit back-end
+ * Fixed LZCNT opcode in x86 and x64 back-ends
+ * Added support for flags in LZCNT and BSWAP opcodes on x86 and x64 
+    back-ends
+
+Changed debugger so it does not stop while we are waiting for a 
+pending event to occur. This eliminates some confusion during reset 
+and state loading. [Aaron Giles]
+
+Explicitly disabled overlays for non-native snapshots (native 
+snapshots already had them disabled). [Aaron Giles]
+
+Added more complete readmes for Konami PowerPC games. [Guru]
+
+Cleaned up system register access in Konami PowerPC games. Connected
+EEPROM in hornet driver (doesn't seem to affect much). Altered network
+IRQ timing to fix several problems. Most games are back to their
+previous "working" states. [Aaron Giles]
+
+Changed DRC frontend to pass a pointer to the previous instruction
+when describing. Updated PowerPC frontend to approximately take into
+account branch and CR logic folding in timing computations. 
+[Aaron Giles]
+
+Updated cheat system: [Shimapong]
+ - Merged 3 different search menu functions to search_main_menu()
+ - Added new cheat options, "Vertical/Horizontal Key Repeat Speed"
+     NOTE : delete all cheat options in the database before start
+            or reload default options (Shift + Reload key)
+            in cheat general menu
+ - Changed assignment of Entry for Activation Key and Pre-enable
+   command code. Now there are check the tag in comment field
+   instead of index number. But it's only for new format command
+   and old is as before
+ - Added tag output in save_activation_key() and save_pre_enable()
+ - Cleaned up save_cheat_options() to output description
+ - Changed memory read function in watchpoints
+   No longer "Debugger" watchpoint mis-hit "Cheat" watchpoint
+ - Fixed several reported/found bugs
+ - Renamed funcitons/enum based on coding guidlines
+   All functions are completed in this update
+
+Removed DEBUGGER flag from makefile and ENABLE_DEBUGGER macro from 
+the source code. All MAME builds now include the debugger, and it is 
+enabled/disabled exclusively by the runtime command-line/ini settings. 
+This is a minor speed hit for now, but will be further optimized going 
+forward. [Aaron Giles]
+
+Changed the 'd' suffix in the makefile to apply to DEBUG builds 
+(versus DEBUGGER builds as it did before). [Aaron Giles]
+
+Changed machine->debug_mode to machine->debug_flags. These flags now 
+indicate several things, such as whether debugging is enabled, whether 
+CPU cores should call the debugger on each instruction, and whether 
+there are live watchpoints on each address space. Redesigned a 
+significant portion of debugcpu.c around the concept of maintaining 
+these flags globally and a similar, more complete set of flags 
+internally for each CPU. All previous functionality should work as 
+designed but should be more robust and faster to work with.
+[Aaron Giles]
+
+Added new debugger hooks for starting/stopping CPU execution. This 
+allows the debugger to decide whether or not a given CPU needs to call 
+the debugger on each instruction during the coming timeslice. Also
+added new debugger hook for reporting exceptions. Proper exception 
+breakpoints are not yet implemented. [Aaron Giles]
+
+Added 360degree wheel (dial) input to GTMR, which is available when 
+the Controller dip is set to 'Wheel', and Controls dip is set to 
+'1P Side'. Note when Controls dip is set to 'Both Sides', 270degree 
+wheel (paddle) input is used. [Minwah]
+
+Verified clocks and adjusted sound volumes in Fairyland Story.
+[Corrado Tomaselli]
+
+More conversion to input_port_read: [Fabio Priuli]
+ * updated the whole mid*unit family of drivers + seattle & zeus 
+    which shared some input code.
+ * updated most namco systems + a couple of old drivers sharing the 
+    input handling, minus namcos22
+ * updated most of the M->Q drivers + finally removed indexed reads 
+    from megadriv.c (without breaking ssf2ghw)
+ * removed indexed read from drivers starting with r (and slightly 
+    simplify inputs in royalmah.c)
+ * unified nichibustu mahjong input ports (using common ports in 
+    nbmj9195.c as well as in the other drivers), removed indexed read 
+    and exploited tags to reduce complexity in a couple of handlers
+
+Fixed missing sha1 values in ampoker2.c, atarigx2.c, cabal.c, and 
+ksys573.c. [John Gilbert]
+
+Fixed a few build problems with the cpu/sound cores M65CE02, 
+ALPHA8201, TMC0285, TMS5200 and corrected the dependencies for
+the mips core. [Atari Ace]
+
+Finish the work on ddragon3: [Sonikos]
+ - Mapped the correct dip "SW1-8" before was incorrect
+ - Added "FBI Logo" dips in ctribe
+ - Fixed the dips condition's implementation to avoid the mame crash 
+    in ctribe
+ - Change the name of (Italian bootleg) in a better (bootleg Set 2)
+
+Set OKI 6295 pin 7 to high in gotcha driver. [Sonikos]
+
+Fixed make MSVC_BUILD=1 -j2 and corrected an oversight in the 
+cross-build support. [Atari Ace]
+
+Cleaned up most of the Machine stuff in src/emu/machine. There is
+a bit left to clean up, but it's mostly stuck at some interfaces now.
+[Oliver Stoeneberg]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Survival [nuapete]
+WonderLeague '96 [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cal Omega - Game 8.0 (Arcade Black Jack) [Roberto Fresca]
+Cal Omega - Game 12.3 (Ticket Poker) [Roberto Fresca]
+Cal Omega - Game 23.0 (FC Bingo (4-card)) [Roberto Fresca]

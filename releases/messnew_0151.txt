@@ -1,0 +1,236 @@
+0.151
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05348: [Crash/Freeze] (at.c) at586, at586x3: [debug] Crash before OK (Osso)
+
+
+New System Drivers Supported:
+-----------------------------
+- NTS DreamWriter 225 [robcfg, Curt Coder]
+
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+(none)
+
+
+Skeleton drivers:
+-----------------
+-Ensoniq EPS-16 Plus [R. Belmont]
+-Ensoniq MR-61 Workstation [R. Belmont]
+-Forward Technology FT-68M [Al Kossow, Robbbert]
+-MOLECULAR Computer [Al Kossow]
+-Dragon 200-E [robcfg]
+
+
+Software Lists:
+----------------
+
+-ibm5170.xml: Added some Windows, MS-DOS, PC-DOS, GEM, OS/2,
+ utilities and drivers, DR DOS 6.0, and Indianapolis 500. [Curt Coder]
+
+-ibm5170.xml: Added the remaining Riki coverdisks. [Kaylee]
+
+-ibm5170_cdrom.xml: Added CD-ROM software list with some Windows 
+ goodies and PC DOS 2000. [Curt Coder]
+
+-sat_cart.xml: added dump of Ultraman support cart [Team Europe]
+
+-c64_cart.xml: Added PK-232 driver cartridge. [Curt Coder]
+
+-pet_rom.xml: Added McTerm 1.20, BASIC Programmer's Toolkit for BASIC 4.0,
+ POWER, Oracle 3.03, Command-O for 8032, SORT, WordPro 3, Waterloo 
+ Structured BASIC, and Paperclip 2.84. [Mike Naberezny]
+
+-pet_rom.xml: Added McTerm 1.21. [Mike Naberezny, Stefano Santerini]
+
+-compis.xml: Added working System II and MS-DOS images. [Curt Coder]
+
+-pico.xml: added more dumps and more documentation. [Team Europe]
+
+-c128_rom.xml: Added KeyDOS support disk. [Curt Coder]
+
+
+Source Changes
+--------------
+
+-updated Acron A3010 roms labels and added battery management program
+ rom [robcfg]
+
+-a7800.c - Cleanup of address maps, high score maps added [Robert Tuccitto]
+
+-nes.c - Documented new PAL NES clone called "Golden China TV Game"  [kaylee]
+
+-c64: Emulated the PARTNER 64 cartridge. [Curt Coder]
+
+-cat.c: Switch swyft to use mc68008, split vram handler from cat
+ vram handler due to bus width differece. Hook up VIAs to swyft.
+ Further work on documenting the rom and ram layout of the swyft,
+ pending hardware tests to figure out the via hookups.
+ [Lord Nightmare, Dwight Elvey, Sandy Bumgarner]
+
+-mc1502: cassette output, printer WIP, serial WIP, minor
+ keyboard fix [shattered]
+
+-amstrad.c: fix gx4000 inputs [Alex Jackson]
+
+-pc: mc1502 fdc reset fix [shattered]
+
+-RSP SIMD changes: [MooglyGuy, Marathon Man]
+ * Converted high and middle accumulator slices into SIMD vectors.
+ * Converted flag registers into SIMD vectors.
+ * Fixed unaligned accesses in CFC2 opcode.
+ * Added SCALAR_GET_VS1, SCALAR_GET_VS2, and SET_ACCUM_H/M/L to act as
+    a passthrough to either the non-SIMD implementation or individual
+    element insert/extract ops in order to minimize #if USE_SIMD all
+    over the place.
+ * Ported SIMD implementations of VMUDL, VMUDM, VMUDN, VMUDH, VMACF,
+    VMACU, VMADL, VMADM, VMADN, and VMADH from CEN64 with permission
+ * Resulted in an overall speedup of approximately 50% for RSP-bound
+   scenes on a 2.5GHz i5.
+
+-apogee: sound support [shattered]
+
+-Refactored N64 RDP blender to use function arrays in order to [MooglyGuy] 
+ flatten inner-loop branch structures for potential  performance.
+
+-Broke blender steps into individual #defines in order to make the [MooglyGuy]
+ functional differences between RDP modes more apparent.
+
+-ec1841 updates: [shattered]
+ * Emulated the original keyboard
+ * DIP switches added
+ * Improved memory mapping
+
+-N64 RDP and RSP improvements [MooglyGuy, Marathon Man]
+ * Fixed an RSP DMA edge case when transfer count is greater than 1.
+ * Refactored the RDP blender implementation to use function pointers
+    rather than deep if/else structures in order to reduce branch
+    prediction penalties in the inner software rasterizer loop.
+ * Reduced the likelihood that bad triangle commands due to an RSP
+   crash will crash MESS.
+
+-N64 optimizations: [MooglyGuy]
+ * Converted PIF RAM from 8-bit array to 32-bit array
+ * Inlined color and alpha combiner equations
+ * Moved a number of calculations in span rendering to outer loops
+ * Flattened branch structure of texel fetching somewhat
+
+-cat.c: add v331 IAI swyft firmware roms, and add .jed file
+ dumps for the four swyft pals [Sandy Bumgarner, Lord Nightmare,
+ Balrog]
+
+-cat.c: further swyft documentation updates based on having the
+ board to look at directly [Lord Nightmare, Sandy Bumgarner]
+
+-Apple II: Initial non-working implementation of High Speed 
+ SCSI Card [R. Belmont]
+
+-isa_dectalk: add the dectalk pc device [Carl, Lord Nightmare]
+
+-c64: Fixed tape loading. [Curt Coder]
+
+-ibmpcjr: Fixed the software lists. [Kaylee]
+
+-dectalk.c: add DECtalk DTC-01 v1.8 firmware, add two new
+ DECtalk DSP firmwares (one which goes with v1.8, and one which goes
+ with later v2.0 units) [Al Kossow, Lord Nightmare]
+
+-dectalk.c: fixed the outfifo handler so the 'later 2.0'
+ -409/-410 dsp firmware works correctly; some minor documentation
+ updates as well, and added a compile-time feature to boost interleave
+ when the output fifo is about to run out. [Lord Nightmare]
+
+-dectalk.c: fixed 68k->dsp fifo, hooked up the old 1.8 dsp rom
+ version since it works with 1.8 with no glitching and also works with
+ 2.0 [Lord Nightmare]
+
+-vboy.c: improved loading from fullpath for non-2MB carts. [Fabio Priuli]
+
+-cat.c: more swyft comment updates, fixed the board location of
+ one of the pals. [Lord Nightmare]
+
+-allows you to change what is in the southbridge ide slots [smf]
+
+-amstrad: Allowed vpos counter to count past the active display.
+ This allows raster interrupts to be set on a non-visible scanline.
+ [Barry Rodewald]
+
+-ti99, geneve: Using the new SETOFFSET address map feature (split
+ access) [Michael Zapf]
+
+-ti99: Added guards to prevent access to special devices in new memory
+ access emulation. [Michael Zapf]
+
+-dim_dsk: add modern support [Carl] 
+
+-x68k: make floppies work again [Carl] 
+
+-compis: Emulated the keyboard. [Curt Coder, Marcus Comstedt]
+
+-compis: Added cassette, MPSC and RS-232 ports. Connected the FDC via 
+ the iSBX bus. [Curt Coder]
+
+-Misc. a2bus updates [R. Belmont]
+ * CFFA2: patch settings EEPROM to allow up to 13 partitions on both
+    IDE connectors
+ * SCSI: Much improved documentation
+
+-a7800.c  [Robert Tuccitto] 
+ Added Phase Shifts 24.7, 25.2, 26.2, 27.2. 
+ Phase Shifts 24.7 through 27.7 degrees with 0.5 degree increments
+ documented. Phase Shift 26.2 degrees made active. Fixed typo under 26.77$.
+
+-abc80: Added ROMs for the Scandia Metric FD2. [robcfg]
+
+-BBC Micro updates / fixes: [Nigel Barnes]
+ * implemented ram device, all models have default ramsize, model A is
+    16K/32K switchable.
+ * added additional bios options for OS0.1, OS1.0 in models A/B.
+ * added clones bbcb_de, bbcb_us for BBC B German and US export
+    models.
+ * added clones bbcmaiv, bbcmet, bbcmt, bbcm512, bbcmarm for other BBC
+    Master models.
+ * added clones bbcmc, bbcmc_ar for BBC Master Compact and Arabic
+    models.
+ * implemented BREAK key.
+ * fixed 8271 disk loading of ssd,dsd images.
+ * device mc146818 now accepts default CMOS RAM.
+ * added default CMOS RAM settings for all Master models.
+
+-abc800: Fixed the fast floppy controller. [Curt Coder]
+
+-Replaced hack code for saving nc200 ram with legacy nvram saving, you
+ can now shut down the emulation and start it up without losing
+ everything. However you must press the on button before exiting
+ (default END key). [smf]
+
+-adam: Fixed the 160KB floppy controller. [Curt Coder]
+
+-Modello T: Added keyboard and cursor. [Robbbert]
+
+-PT68K: Connected to a terminal, system works with bios 0. [Robbbert]
+
+-PP01: Added sound and uart. [Robbbert]
+
+-Vboy: Added fullpath support for small homebrews. [Robbbert]
+
+-Unior: Added devices and sound. [Robbbert]
+
+-Dolphin: Added cassette. [Robbbert]
+
+-Elektor: Added paste facility, and improved quickload. [Robbbert]
+
+-CD2650: Fixed quickload. [Robbbert]
+
+-Ravens: Fixed bugs in quickload. [Robbbert]
+
+-Instructor50: [Robbbert]
+ * Added various leds, keys and switches
+ * Added interrupt logic
+ * Fixed quickload
+ * Fixed mistakes in the memory map and cassette operation
+

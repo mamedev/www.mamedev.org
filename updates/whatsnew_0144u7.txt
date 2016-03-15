@@ -1,0 +1,181 @@
+0.144u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04610: [Crash/Freeze] Multiple sets in cave.c: Segfaults in various
+         places; sprites clipped in middle of screen. (Aaron Giles)
+- 04268: [Crash/Freeze] All sets using OKI6295 audio: Use of save
+         states eventually crashes MAME upon loading (R. Belmont)
+- 04629: [Crash/Freeze] topgunnr: [debug] Assert after OK 
+         (Aaron Giles)
+- 04630: [Crash/Freeze] skyraid: [debug] Assert after OK (Aaron Giles)
+- 03761: [Graphics] edrandy and clones: Do not see the clouds in the
+         background (hap)
+- 04508: [Graphics] charlien: Little graphic garbage (David Haywood)
+- 04623: [Timing] drivers that use SCREEN_VBLANK: change from
+         SCREEN_EOF to SCREEN_VBLANK regressed timing (hap)
+- 04637: [Graphics] chukatai: Garbage sprites on the left side of the
+         screen. (David Haywood)
+- 04633: [Graphics] rollerg and clones: Graphics corruption on right
+         side of screen (Aaron Giles)
+- 04638: [Graphics] All sets in hng64.c: Missing 3D graphics. 
+         (Aaron Giles)
+- 04639: [Graphics] wheelfir: Missing foreground layer. (Aaron Giles)
+- 04643: [Crash/Freeze] All sets in chsuper.c: [debug] Exception after
+         OK with debug build (Aaron Giles)
+- 04620: [Documentation] j6cpalb: In according with ACE flyer, the
+         exact release year is 1998.
+- 04606: [Graphics] mach3, cobram3: Missing and/or corrupted graphics
+         (Aaron Giles)
+- 04624: [Graphics] blswhstl, detawin: Missing graphics (hap)
+- 03600: [Gameplay] gberet: 30fps framerate seems abnormal (hap)
+- 04618: [Documentation] All sets in taito.c: All sets in this driver
+         are made by "Taito do Brasil".
+- 04617: [Documentation] rally: According to ipdb.org reports, the
+         exact release year is 1980.
+- 04616: [Documentation] radcl_l1 and clones: The correct description
+         is "Radical!..." with the exclamation point.
+- 04615: [Documentation] rackempp: The correct description is "Rack
+         'em Up! (Pinball)".
+- 04613: [Graphics] pballoon: Scrolling problem (hap)
+- 04612: [Crash/Freeze] All sets in aleck64.c: Crash before OK
+         (MooglyGuy)
+- 04611: [Crash/Freeze] galpanis galpanisj: both sets freeze on region
+         information (hap)
+- 04595: [Crash/Freeze] cryptklr: Crashes MAME before it can display
+         the disclaimer. (Curt Coder)
+
+Source Changes
+--------------
+Rewrote tilemap.c as a C++ class. For now kept the global functions
+and just inline mapped them to the class. Will do a pass soon to
+actually update drivers to use the C++ methods directly. Also, the
+tilemap callbacks are now delegates which should make for cleaner
+integrating into modern devices and drivers going forward. 
+[Aaron Giles]
+
+Add libjpeg; converted Sliver to decompress pictures on the fly
+[David Haywood, R. Belmont]
+
+Remove support for 4bpp packed graphics. These only manifested for
+drivers that used GFX_RAW support for 4bpp systems, and yet we had a
+bunch of extra code to support it. Updated these drivers to do without
+it and removed all the extra code for supporting it. [Aaron Giles]
+
+tagmap is just a C++ template now. Added iterators to it as well.
+Updated a few outlying uses. [Aaron Giles]
+
+VGA: Fixed Double Scan / Maximum Scan Lines condition, and removed a
+bunch of kludges [Angelo Salese]
+
+CGA: fixed display disable read flag [Angelo Salese]
+
+i386: BTR and page fault fixes [Carl]
+
+i386: basic implementation of FIST and FBLD FPU instructions. [Barry
+Rodewald]
+
+i386: Fixed BSR/BSF and CMPS based on test-i386 output. [Barry Rodewald]
+
+VGA: first attempt at adding proper refresh rates [Angelo Salese]
+
+i386: Fixed STR and SLDT instructions. [Barry Rodewald]
+
+Added Intersil IM6402 UART emulation. [Curt Coder]
+
+Added documentation (pinout/dips/chip ID) for popobear based on PCB
+picture and manual.  [Tafoid]
+
+i386: fixed a bug with JCXZ opcode [Carl]
+
+Changes for GCC 4.7 compatibility [Belegdol]
+
+Added FLAC (lossless audio) codec support plus experimental hooks in
+samples and chdman.  Bumped up CHD-CD hunk size to get better
+compression ratios on both zlib and flac. [David Haywood, R. Belmont]
+
+i386: Made stack limit checks better handle the difference between 16
+and 32-bit stacks in IRET and RETF. [Barry Rodewald]
+
+i386: Stopped IOPL from being changed by IRET when CPL is zero. [Barry
+Rodewald]
+
+ppu2c0x: converted NES PPU to be a modern device. [Fabio Priuli]
+
+Further Stepper clean-ups [J. Wallace]
+
+floppy: Do specific UI handling [O. Galibert]
+
+Added Pluto 5 technical notes about clocks, EPROM config, and
+addresses/data scrambling for different EPROM types on 16-bit mode.
+[Roberto Fresca]
+
+Move devices into a proper hierarchy and handle naming and paths
+consistently for devices, I/O ports, memory regions, memory banks, and
+memory shares. [Aaron Giles]
+
+Fixed pcap network device search [Carl]
+
+Converted Lemmings, Wizard Fire, Desert Assault, Rohga and Schmeiser
+Robo to use deco generic sprite device [David Haywood]
+
+Major overhaul of VGA memory handlers, added CGA, monochrome emulation and
+fixed text banking while at it [Angelo Salese]
+
+Rewrote i386 x87 emulation: [Phil Bennett]
+ * Use SoftFloat arithmetic functions
+ * Implemented tag word updates
+ * Implemented status word/exception flag updates
+ * Implemented stack underflow/overflow behaviour
+
+i386: Various protection mode fixes. [Carl]
+
+Fixed some dipswitch defaults and added diplocations to many Konami
+and Namco games. [kanikani]
+
+i386: added 32-bit operand size version of SMSW [Barry Rodewald]
+
+Fixed bad assumption by the (pre)GX video mixer [R. Belmont]
+
+ksys573: fix disk regions, games boot again [R. Belmont]
+
+taitogn: fix card region, games boot again [R. Belmont]
+
+Verified and corrected the Sega Security CPU number (317-xxxx) for one
+of the two unknown Turbo Out Run sets. [Brian Troha]
+
+oki6295: force creation of banks so loading a state from after the
+game has set a bank before the game sets the bank doesn't die
+[R. Belmont]
+
+SDL: don't show misleading message for .BDF UI fonts
+[R. Belmont, The Flying Ape]
+
+i386: Major update to segment limit and protection checking. [Carl]
+
+Fixed VGA memory map writes [Grull Osgo]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Steal See (& Get Land) [N. A. Jimenez, M. Krug, ShiggsUnderground, C.
+  Stefano, Ted Bailey, R. Mucciarelli, Smitdogg, The Dumping Union]
+
+
+New clones added
+----------------
+Carrier Air Wing (bootleg) [Bonky0013] (not working)
+Flying Shark (bootleg, set 2) [Bonky0013]
+Arcana Heart [Dumping Union]
+Rapid Fire v1.1 (Build 238) [Brian Troha, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Ichi Ban Jyan [Guru]
+Mushiking The King Of Beetle 2K3 2nd [f205v, The Dumping Union]
+Virtua NBA (prototype) [Arzeno Fabrice]
+Popo Bear [R. Mucciarelli, N. Francfort, Smitdogg, The Dumping Union]

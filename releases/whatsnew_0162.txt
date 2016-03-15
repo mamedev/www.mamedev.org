@@ -1,0 +1,372 @@
+0.162
+-------
+As of 0.162 the MAME and MESS projects have been combined into a single emulator. The changes listed below cover both.
+
+MAME is in the process of becoming a Free and Open Source project. If you have contributed code and we have not
+contacted you yet regarding this license change, or if you believe you are miscredited in the source code, please
+contact us.
+
+MAMETesters Bugs Fixed
+----------------------
+- 05940: [Documentation] (harddriv.c) harddriv: Wrong release year for parent set of Hard Drivin' (Tempora)
+- 05936: [Crash/Freeze] (sigmab98.c) sammymdl: Crash with exception (Robbbert)
+- 05935: [Crash/Freeze] (iteagle.c) iteagle: Crash/Exception after failed IDE detection (Robbbert)
+- 05910: [Crash/Freeze] (harddriv.c) racedriv: Reset causes segmentation fault (Alex Jackson)
+- 05911: [Core] (harddriv.c) harddriv, racedriv, steeltal, strtdriv, racedrivpan: GSP TIME OUT ERROR (Osso)
+- 04911: [Flip Screen/Cocktail] (darkseal.c) All games in darkseal.c: Flip Screen does not work at all (Osso)
+- 05924: [Crash/Freeze] (spectrum.c) spectrum: Infinite interrupt service routine loop bug (MetalliC)
+
+Source Changes
+--------------
+-m24: add z8000 apb support [Carl, Andreas Senk, rfka01]
+
+-gambl186: update communication with EEPROM [Peter Ferrie]
+
+-add more (undumped, needed) roms as NO_DUMP to the VT100 driver
+ after consulting later VT100 Tech manual. Correct one misnamed
+ undumped rom on the GPO board. [Lord Nightmare]
+
+-Add newer VT320 Firmware [Matt Burke]
+
+-Optimized some netlist devices. [Couriersud]
+
+-Added colour overlay to breakout. [Couriersud]
+
+-Add VT220 V2.1 ROMs and VT220 Character Generator Rom [Matt Burke]
+
+-Correct VT220 xtal, and add the romset listed in the schematics as NO_DUMP. [Lord Nightmare]
+
+-vt240.c: Add two DEC VT240 ROMsets and enable driver [Matt Burke, Balrog, Lord Nightmare]
+
+-Added 4 controller support for N64/N64DD, as well as rough mouse
+ support... [LuigiBlood]
+
+-miniboy7: fixed video emulation and added inputs. [Sandro Ronco]
+
+-pet_rom.xml: Added BASIC Programmer's Toolkit for BASIC 2.0
+ [Mike Naberezny]
+
+-DEC Rainbow updates: [Karl-Ludwig Deisenhofer]
+ * Hard disk R/W support and real-time clock support emulating
+    ClikClok card.
+ * wd2010: provides IRQ / (B)DRQ signals. Honors DRIVE_READY and WRITE
+    FAULT (DRDY / WF) now. Set WF to GND and DRDY to VCC in your
+    driver if signals are not serviced.
+ * ds1315 : Handle chip enable / chip reset / phantom writes to RTC.
+
+-Update 315_5124.c palette in TMS99x8 modes [nitrofurano]
+
+-Drop NO_SDL_GLEXT define on OSX [mbcoguno]
+
+-VT240: Map the T11 roms into cpu space in the correct
+ order/interleave [Lord Nightmare]
+
+-ibm5170.xml: Add disks from various sources:  [Justin Kerk]
+ * Make Original Diskettes images from an Acer hard drive recovery CD
+ * archive.org uploads from dashcloud
+ * Own Kryoflux reads
+
+- Added a lot of findings and docs to the WMS driver. These are video slots
+ identified as WMS 360 / 550. Also added the proper crystals, correct CPU,
+ frequency, preliminary memory map, 2 new sets, and technical info.
+ [Roberto Fresca]
+
+-Breakout: Hooked up antenna and free game dip switch as well. [Couriersud]
+
+-added Seiko Epson E0C6200 cpu emulation [hap]
+
+-started on Mitsubishi MELPS 4 cpu emulation [hap]
+
+- WMS driver... Hooked the Analog Devices ADSP-2105 CPU (still need
+ proper memory maps). Added technical notes. [Roberto Fresca]
+
+-gambl186: Worked a complete set of inputs + DIP switches, fixed the
+ CPU frequency, added findings and tech notes. Now the four games could
+ be selected. Roulette, Bingo and Black Jack are playable. Casino 10
+ (poker) needs the watchdog implemented to work properly. Also changed
+ the game name to Multi Game (Vxxx). [Roberto Fresca]
+
+-VT240 and VT320: add links to DEC-O-LOG service notes for
+ different firmware changes, add firmware version numbers.
+ [Lord Nightmare]
+
+-Netlist: [Couriersud]
+ * improved 9312 device ==> 20% speed increase
+ * remove netlist_state_t ==> no added value
+ * removed dead code in solver
+ * various minor modifications
+ * performance monitoring now also displays stats for subdevices
+ * fixed save-state issues
+ * fixed save state in 9312
+ * Added EXTCLOCK which can generate arbitrary timing patterns.
+ * Use two EXTCLOCKs to replace timing circuit (9316) in breakout. This
+   gives a speed increase from 60% to 75%.
+
+-Mini.Boy 7: Added lamps and a internal button-lamps layout based on
+ the cabinet pictures. Lamps are currently disabled due to other
+ unknown writes are happening on the same port. Need more
+ investigation. Also added the coin counter. [Roberto Fresca]
+
+-Multi Game (EGD): Sounds are 4-bit ADPCM driven by a NEC D7759GC.
+ Hooked preliminary sound routines. Needs more work. [Roberto Fresca]
+
+-gambl186: enable payout, improve EEPROM behaviour a bit so Poker is
+ somewhat playable [Peter Ferrie]
+
+-corrections to gtfore sets [Brian Troha]
+
+-n64 optimisation: [MooglyGuy]
+ * Improve blender performance.
+ * Improve RDP speed by eliminating some unneeded code.
+ * RDP - remove threaded waits to increase performance.
+
+-MAME now represents full build, for building MESS drivers only use
+ make SUBTARGET=mess, for building only Arcades
+ drivers only use: make SUBTARGET=arcade [Miodrag Milanovic]
+
+-Adjust breakout layout to fit screen boundaries. Changed lights to be
+ be circles. [Couriersud]
+
+-Downsizing ... Removed netlist_ttl_input_t and netlist_ttl_output_t.
+ The logic family is governed by the chip and defaults to TTL. However
+ individual devices may change the logic family of their inputs and
+ outputs as well. Implementing special output/input characteristics of
+ "S", "LS", "HC", ... you name it, devices is now pretty easy.
+ Theoretically e.g. a "LS_HighPrecision" proxy could be used to model
+ the output down to the transistor level. [Couriersud]
+
+-zaxxon.c: Use SN76489A for sound as shown on congo bongo
+ schematic [Lord Nightmare]
+
+-sigmab98.c: Implemented sprite rotation [Luca Elia]
+
+-HLSL shader improvements [Jezze]
+ * changed shadow mask implementation, shadow count XY now represent
+    the number of pixel the shadow UV sized tiles will take on the
+    screen
+ * implemented rotation of the shadow mask texture depending on the
+    default landscape or portrait view of the screen
+ * removed prescale and pixel border of the shadow mask texture
+ * added option to change the shadow UV offset, to reduce the color
+    bleeding of the shadow mask
+ * adjusted presets to work with the changed mask implementation
+ * reduced defocus offset
+ * improved downsampling for better blurring
+ * improved alignment of bloom layers (raster and vector)
+ * applied bloom effect to the render output of screenshot and AVI
+    recording
+ * changed curvature effect to fit screen size
+ * changed scanlines to be not rendered into bloom layers
+ * changed shadow mask to be not rendered into bloom layers
+ * changed color floor to not light the bloom layers
+ * changed shadow mask to not dark the color floor
+ * added image vignetting simulation and option
+ * added round screen corner simulation and option
+ * added screen light reflection simulation and option
+ * made usage of unused brightness offset (additive)
+ * removed unused pincushion option
+ * removed duplicate shadow count Y options
+ * removed artwork/adapture.png
+ * added artwork/adapture-grill.png
+ * added artwork/shadow-mask.png
+ * added artwork/slot-mask.png
+ * added hlsl/simple.fx
+ * removed unused shaders::blit() function
+ * added shaders::screen_pass() function, which handles the
+    (raster-)rendering on screen, into screenshot and AVI recording
+ * added effect:set_bool() function
+ * fixed usage of OrientationSwapXY shader parameter
+ * added RotationSwapXY shader parameters to consider the user defined
+    screen rotation
+ * added missing RotationSwapXY shader paramter
+ * fixed curvature zoom to fit the screen size in any aspect ratio
+ * fixed black border on the right and bottom side of the screen,
+    caused by the previously added rounded corners
+
+-gameking.xml: added dump of one multigame cart. [TeamEurope]
+
+-leapster.xml: added a few new dumps. [TeamEurope]
+
+-msx: started adding disk images to msx1_flop.xml and msx2_flop.xml,
+ based on preliminary partial work by Riley110 [Fabio Priuli]
+
+-Update palette in 315_5124.c [nitrofurano]
+
+-Netlist:
+ * Fixed soft reset due to wild BJT_SW oscillations
+ * Downsized nld_signal.h to one template
+ * Some minor changes improving performance by some notches.
+ * Always compile nl_asserts to avoid bit rot.
+ * Adjusted monitor gain for breakout. [Couriersud]
+
+-Finally got USE_DEACTIVE_DEVICE to work with breakout as well. This
+ adds about 10% to 20% performance. In addition, increased timing
+ accuracy for deactivated devices. However still, there may be timing
+ inaccuracies which certain circuits may not tolerate. Disabled for
+ now. [Couriersud]
+
+-clifront.c: Slightly optimized -romident so that each software list is
+ parsed only once instead of as many times as the number of drivers it
+ is attached to. Also, removed the implication that files with (size !=
+ power of 2) are to be skipped, since we now want to identify also
+ tapes and floppies and not only ROM binaries. [Fabio Priuli]
+
+-Added netlist-level parameter NETLIST.USE_DEACTIVATE. Device
+ deactivation optimisations can now be enabled within the netlist
+ provided the circuit can deal with them. [Couriersud]
+
+-Added truthtable implementations to a number of devices. The
+ combination of device activation, usage of GCC PMF extensions and
+ truthtables brings breakout to 95% speed up from about 75%. Fixed
+ NE555 initial state. [Couriersud]
+
+-abc802, abc806, abc1600: Fixed invalid data transmitted on
+ first keypress. [Curt Coder]
+
+-Some netlist bugfixes [Couriersud]:
+ * Savestate works
+ * Truthtable device deactivation fixed
+ * Truthtable ignore mask is now determined by a better approach
+    identifying more ignore possibilities.
+
+-savquest: WIP [Peter Ferrie]
+ * hooked up Voodoo 2 device
+ * switched to DS12885 device for proper CMOS size
+ * moved Voodoo register base to proper place
+ * implemented Voodoo-specific PCI registers to pass Glide validation
+ * increased frame-buffer size to enable 640x480 resolution
+ * hooked up ISA bus and SoundBlaster 16 device
+ * extended HASP emulation to return product information
+ * documented HASP behaviour
+
+-gambl186: further improvements to EEPROM behaviour [Peter Ferrie]
+
+-peplus.c: Added correct CG2228 graphics roms to the Multi-Poker
+ XM00008P set. [BrianT, PowderMaker]
+
+-wyvernf0.c: Fix text color and wrong sprite flip x based on game
+ footage [Luca Elia]
+
+-Removed all uses of setjmp.h in MAME. The only place where it is still
+ referenced is cpu/powerpc/ppc.c. I couldn't find any case in which
+ this file would be compiled using the current build system.
+ Nonetheless documented use using PPC_H_INCLUDED_FROM_PPC_C define.
+ [Couriersud]
+
+-TLCS-90 CPU: Fixed TRUN bit masking (timers start/stop)
+ [Rainer Keuchel]
+
+-More progress on SPICE to netlist conversion. nltool can now convert
+ simple SPICE netlists e.g. from LTSpice to netlist format.
+ [Couriersud]
+
+-abc806: Implemented flashing, double height, and underlined
+ characters by hooking up the RAD PROM. [Curt Coder]
+
+-gameboy: more updates to the cart emulation [Tauwasser]
+ * fixed some MBC1, MBC2 details
+ * added MMM01 notes on registers
+ * fixed Sachen MMC1 implementation so that Sachen logo is properly
+    displayed
+ * started work on the emulation of Sachen MMC2 mapper
+
+-Rewrote the MOS6532 RIOT.  [Curt Coder]
+
+-AVR8 CPU: fix I/O register mapping and improve logging [Felipe Sanches]
+
+-Bump version on *nix man pages. [Cesare Falco]
+
+-cgenie: Rewrote driver and removed lots of cruft [Dirk Best]
+ * Remove custom 6845 emulation and use our standard core
+ * Use the slot system for the parallel interface, fix and implement
+    the joystick as a slot device and create a printer slot device
+ * Add support for the RS-232 port
+ * Add support for the Break key (causes NMI)
+
+-abc80: Default to ABC 830 disk drive with fast controller. [Curt Coder]
+
+-Cocoa debugger: autosize controls for custom font size choice [Vas Crabb]
+
+-nascom: Clean up, add NASBUS emulation and make the floppy disc
+ controller a NASBUS card, convert to the new wdc emulation, add generic
+ socket emulation, add initial software list.
+ * Add support for the Advanced Video Card (AVC)
+ * Add support for the selectable restart address
+ * Add support for the CP/M version of the Nascom 2
+ * Add floppy softlist  [Dirk Best]
+
+-voodoo fixes [Ted Green]
+ * Fixed voodoo direct lfb reads from PCI memBase1 (non-3d)
+ * Fixed voodoo depth selection for pixel pipeline write
+ * Fixed voodoo depth selection for rasterizer
+ * Fixed depth biasing for fog selection
+ * Minor voodoo fix for color expansion in rasterizer
+ * Minor voodoo initialization changes so that address masks are correct
+ * Fixed voodoo_pci type selection
+ * Fixed voodoo_1 pci initialization
+
+- added / completed / enabled save state support in the following drivers:
+ alinvade.c, berzerk.c, bwing.c, cball.c, cchasm.c, darkseal.c, dynduke.c,
+ hvyunit.c, igs009.c, nbmj8688.c, nbmj8891.c, nbmj8900.c, ninjaw.c,
+ popobear.c, renegade.c, snk6502.c, usgames.c, videopin.c, wiping.c.
+
+-sms.c: few corrections to the driver [Enik Land]
+ * define the default offset setting for Light Phaser at only one place;
+ * add to the smsj the TH input handling that latches the HCounter, because the
+   /HL line is connected to the VDP;
+ * minor code/comments maintenance.
+
+-pet_flop.xml: Added SFD-1001 Test/Demo disk. [SPACETAXI]
+
+-abc80: Fixed VSYNC and de-interleaved the ABCDemo diskette. ABCDemo now runs
+ from both cassette and diskette. [Curt Coder]
+
+-camplynx: Added lower case letters for pasting
+           Added cassette load and save
+           Added TAP cassette support.
+           Most (but not all) programs are working. [Robbbert]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Milton Bradley Lightfight [hap, Sean Riddle]
+Entex Turtles [hap, Kevin Horton]
+Entex Stargate [hap, Kevin Horton]
+Breakout [Couriersud]
+Tamagotchi [hap, Digshadow, Natalie, segher]
+Mini-Boy 7 [Sandro Ronco]
+Race Drivin' Panorama (prototype, rev 2.1) [David Haywood]
+Player's Edge Plus (X002297P+XP000053) Jackpot Poker [BrianT, Kevin]
+Golden Tee Fore! [Ted Green]
+Golden Tee Fore! 2002 [Ted Green]
+Golden Tee Fore! 2003 [Ted Green]
+Golden Tee Fore! 2004 [Ted Green]
+Golden Tee Fore! 2005 [Ted Green]
+Golden Tee Fore! Complete [Ted Green]
+
+New clones added
+----------------
+Contra (US / Asia, set 3) [system11]
+Olympic Soccer '92 (set 3) [zozo] (not working)
+Player's Edge Plus (XMP00030) 5-in-1 Wingboard (CG2451) [BrianT]
+Entex Space Invader (COP400) [hap, Sean Riddle] (not working)
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Monty Plays Scrabble [Andrew Gardner, Rik]
+Master Monty [Andrew Gardner, Rik]
+Castle Toy Einstein [hap, Sean Riddle]
+Coleco Frogger [hap, Kevin Horton]
+Entex Color Football 4 [hap, Sean Riddle]
+Entex Basketball 2 [hap, Sean Riddle]
+Mattel Funtronics Jacks [hap, Sean Riddle]
+Mattel Funtronics Red Light Green Light [hap, Sean Riddle]
+Milton Bradley Plus One [hap, Sean Riddle]
+Tomy Break Up [hap, Sean Riddle]
+Hot Toppings (English) [Roberto Fresca]
+Leprechaun's Gold (Spanish) [Roberto Fresca]
+Royal Poker 2 [system11]
+Virtual Pool [The Dumping Union]
+Big Buck Hunter - Shooter's Challenge [The Dumping Union]
+Big Buck Hunter - Call of the Wild [The Dumping Union]
+Crazy Dou Di Zhu [Guru, bnathan]

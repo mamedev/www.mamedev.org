@@ -1,0 +1,23 @@
+[note: only important changes are listed]
+
+0.3
+---
+
+Program:
+- Donkey Kong support (wrong colors, no sound)
+
+- New definition of custom video modes, this will hopefully be compatible
+  with more systems.
+
+- Lady Bug and Crazy Climber should run a little faster on slow machines
+  (Crazy Climber is still too slow, I know).
+
+Source:
+- new general purpose readinputport() function used to handle reads of
+  input ports and dip switches. This saves some work when creating a
+  game driver. Required changes to struct MachineDriver.
+
+- struct GfxLayout now contains a planeoffset array instead of
+  planeincrement, to better support more than 2 bitplanes. I also fixed
+  (I hope) all the code which assumed 2 bitplanes. struct GfxDecodeInfo
+  had to be changed as well.

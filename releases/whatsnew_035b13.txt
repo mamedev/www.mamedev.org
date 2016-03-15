@@ -1,0 +1,114 @@
+0.35 BETA 13
+
+New games supported:
+--------------------
+
+Adventure Quiz 2 Hatena no Dai-Bouken [Nicola Salmoria]
+Cyberball 2072 (2 Players) [Aaron Giles]
+Rampart [Aaron Giles]
+Shuuz [Aaron Giles]
+Skull & Crossbones [Aaron Giles]
+Bad Lands [Aaron Giles]
+Grobda [Manuel Abadia]
+Phozon [Manuel Abadia]
+Genpei ToumaDen [Nicola Salmoria]
+The Return of Ishtar [Nicola Salmoria]
+Wanted [Zsolt Vasvari]
+Truxton / Tatsujin [Darren Olafson]
+Out Zone [Darren Olafson]
+Extermination [Nicola Salmoria]
+Minky Monkey [Zsolt Vasvari]
+Marine Boy [Zsolt Vasvari]
+Changes [Zsolt Vasvari]
+Springer [Zsolt Vasvari]
+Hoccer [Zsolt Vasvari]
+Funky Bee [Zsolt Vasvari]
+Sky Lancer [Zsolt Vasvari]
+Zodiack [Zsolt Vasvari]
+Dog Fight [Zsolt Vasvari]
+Moguchan [Zsolt Vasvari]
+Return of the Invaders [Jarek Parchanski]
+No Man's Land [Mike Coates]
+
+
+New clones supported:
+---------------------
+
+Ninja Kid 2 (set 3) [Nicola Salmoria]
+Rad Action (= Ninja Kid 2) [Jarek Parchanski]
+Crush Roller (Kural Samno) also note that the main set is now crush instead of
+  maketrax [Gerald Vanderick]
+Street Fighter II' (Red Wave)
+Shisensho (Joshiryo-Hen) (= Sichuan II) [Yasuhiro Ogawa]
+Mouse Trap (version 3 and 4) [Eric Hustvedt]
+Arabian (Sun Electronics) [Gerald Vanderick]
+Dangar (bootleg) [Nicola Salmoria]
+Bomb Jack (set 1) [Nicola Salmoria]
+Cruisin (=City Connection) [Nicola Salmoria]
+Hangly-Man (set 2) [Gerald Vanderick]
+Head On (set 2) [Nicola Salmoria]
+Quantum (prototype) [Zsolt Vasvari]
+Galaga '84 [Valerio Verrando]
+Zzyzzyxx (set 2) [Zsolt Vasvari]
+Pop Flamer (set 2) (note the different gameplay) [Gerald Vanderick]
+Hit'n Miss (version 2.0) [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Sound in Demolition Derby. [Bret Wallace]
+
+- Fixed sound in World Tennis. [Zsolt Vasvari]
+
+
+Other drivers changes:
+----------------------
+
+- Lots of improvements in the Atari drivers. [Aaron Giles]
+
+- Fixed all known problems in Xain'd Sleena. [Nicola Salmoria]
+
+- Fixed decryption in Treasure Hunt [Zsolt Vasvari]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] Enabled again the -triplebuffer option, and triple buffering is
+  disabled by default. Remember that -triplebuffer disables -vsync, so if
+  you absolutely want to use -vsync in VESA modes, don't use -triplebuffer.
+  [Nicola Salmoria]
+
+- Improved VLM5030 emulation. [Tatsuyuki Satoh]
+
+- Fixed a couple of bugs in the 68000 emulation (both asm and C). They affected
+  Power Spikes 2 and F1 Dream. [Mike Coates]
+
+- Improved uPD7759 ADPCM decode. [Juergen Buchmueller]
+
+- [DOS] -stretch 1024x768 can be used with Sichuan II and Golden Star.
+  [Nicola Salmoria]
+
+- Moved mixer control out of streams.c and into the new mixer.c. Now the On
+  Screen Display can be used to change the volume of any channel, not just ones
+  handled by streams.c. The configuration is also saved on exit and is
+  automatically reloaded the next time you start the game. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- The zlib library is required to build MAME, it can be downloaded from
+  http://www.cdrom.com/pub/infozip/zlib/.
+
+- PNG save support. save_screen_snapshot() may be called by osd_save_snapshot()
+  to save a standardized shot. Under DOS, .png files go go to the SNAP
+  directory. [Mathis Rosenhauer, Mike Haaland]
+
+- struct GameSample no longer has a volume field (since it is not stored in .wav
+  files), to replace that struct Samplesinterface has an additional volume field
+  which affects all samples played. [Nicola Salmoria]
+
+- Replaced osd_adjust_sample() with osd_set_sample_freq() and
+  osd_set_sample_volume(), and the OSD_PAN_xxx macros with MIXER_PAN_xxx.

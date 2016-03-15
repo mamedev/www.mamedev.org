@@ -1,0 +1,163 @@
+0.104u5
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: a new function 
+osd_create_directory is now required in order to create memcard
+subdirectories. This function was previously defined only for the
+MESS core, so if there is a MESS port already available, you can
+just import that function.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+exprraid0103u1red [Pierpaolo Prazzoli]
+asterix053gre [Pierpaolo Prazzoli]
+asterix_2055gre [Pierpaolo Prazzoli]
+asterix_3055gre [Pierpaolo Prazzoli]
+namcos10104u4red [Aaron Giles]
+rthunder0104u3ora [Aaron Giles]
+memorycard0104u2ora [Aaron Giles]
+pause0104u2ora [Aaron Giles]
+undrfire0104u4yel [Aaron Giles]
+wwallyj0104u4red [Aaron Giles]
+scorpion0104u4red [Aaron Giles]
+itech8c0104u4red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Hooked up missing language jumper in the Psikyo 4 games.
+[David Haywood]
+
+Added board notes to the Namco System 12 driver, hooked up the light
+gun in Ghouls Panic/Point Blank 2, and emulated Tekken Tag Tournament 
+DMA protection (still not playable). [Olivier Galibert, Duddie, smf]
+
+Fixed old debugger compilation on non-Windows platforms. Added
+mame_strnicmp along the way. [Lawrence Gold]
+
+Fixed compile errors under GCC 4.1. [Lawrence Gold]
+
+Changed the NES PPU interfaces to follow new struct conventions.
+[Nathan Woods]
+
+Updated disassembly comments support: [Andrew Gardner]
+ - fixed a 0-length comment bug (no more "// 0, " allowed)
+ - added comment output to the new debugger's dasm command
+ - changed the comment save path from /mame/comment to /mame/comments
+
+Added new debugger properties: logunmap, logunmapd, logunmapi which
+enable/disable logging of unmapped memory accesses. [Nathan Woods]
+
+Added save state support to the Astrocade driver. [Adam Bousley]
+
+Some small improvements to the Polygonet Commanders driver.
+[Andrew Gardner]
+
+Preliminary Thumb implementation for the ARM7 core. Many opcodes 
+present, but there are definite sign problems. [Ryan Holtz]
+
+Hooked up ARM7 protection CPU in KOV2. Boots but does not run or 
+play due to the Thumb sign problems. [R. Belmont]
+
+Fixed incorrect flags emulation in the 8080 CMA instruction.
+[Kopromaster]
+
+Added support for zero-length palettes (requires RGB direct mode) and
+several validity checks related to display variables. [Nathan Woods]
+
+Updated windows input code: [Derrick Renaud]
+ * Now using RAWMOUSE mode if available. This means you can now use 
+    multiple mice in Windows XP. Lightgun support has not been 
+    changed yet.
+ * Added back DX7 support for the windows input system to support 
+    multiple mice. It was set to DX5 in 104u2.
+ * Removed the system mouse from the list of available mice on 
+    non-XP systems. This allows you to now properly select the 
+    individual mouse.
+ * Modified the Analog Axes selection of the player controls to be 
+    more responsive.
+
+Cleaned up video system in Scorpion 2 driver. [El Condor]
+
+Converted asterix to use K056832 emulation. [Pierpaolo Prazzoli]
+
+Reduced encryption in Gaelco games down to equations. These still 
+need to be optimized, but the giant encryption tables are no longer 
+needed. [Nicola Salmoria]
+
+Cleaned up include files in CPU/sound cores. CPU cores should 
+generally only need to include cpuintrf.h. Sound cores should
+generally only need to include sndintrf.h. [Atari Ace, Aaron Giles]
+
+Fixed bug that caused a full set of validity checks even on release
+builds. [Aaron Giles]
+
+New debugger features: [Aaron Giles]
+ * new command "print" is a simple way to display the result of one 
+    or more expressions
+ * new command "symlist" displays all the symbols registered
+ * all save state registered scalar globals are now available as
+    symbols (prefixed by a '.')
+ * all save state registered global arrays are now available for
+    viewing/editing in the memory window
+ * all registered memory regions are also available for viewing/
+    editing in the memory window
+
+Made it a fatal error to request operations on invalid sound/CPU
+indexes. These have been logged to the error.log in the past, but
+really need to be cleaned up. Added a new function 
+safe_activecpu_get_pc() that can be used when logging PCs to smartly
+detect whether or not it is safe to call activecpu_get_pc().
+[Aaron Giles]
+
+Changed CPU init/reset callbacks. The init callback now accepts a
+number of parameters, including the CPU index, the clock, a generic
+configuration parameter, and a pointer to the IRQ callback. The reset
+callback no longer takes any parameters (the configuration parameter
+has been moved to the init callback). And the IRQ_CALLBACK getter/
+setter has been removed since this is now set up once at 
+initialization time. [Aaron Giles]
+
+Added mame_get_phase to determine which program phase (init/reset/
+running/exit) the system is in. This is intended primarily for
+assertions to enforce rules about when certain actions can be taken.
+[Aaron Giles]
+
+Rewrote winalloc to be more dynamic, and to ignore memory leaks in
+the runtime. [Aaron Giles]
+
+Fixed memcards properly. They are no longer hardcoded for the neogeo.
+The implementation has moved to generic/machine.c, and a callback
+handler very similar to NVRAM is now supported in the machine driver
+definition. Cards are created per-game, so the memcard directory now
+has a subfolder per game with each game's cards stored underneath.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Fighters Swords (Korean rel. of Samurai Showdown III) [Haze, Razoola]
+Art of Fighting 3 (Korean release) [Haze, Razoola]
+The Last Solider (Korean release of The Last Blade) [Haze, Razoola]
+Real Bout Fatal Fury 2 (Korean release) [Haze Razoola]
+Tekken 3 (TET2/VER.B) [smf]
+Soul Calibur (SOC11/VER.C) [smf]
+Point Blank 2 (GNB5/VER.A) [smf]
+Tekken Tag Tournament (TEG1/VER.B) [smf]
+Tekken Tag Tournament (TEG1/VER.A3) [smf]
+Golgo 13 Kiseki no Dandou (GLS1/VER.A) [R. Belmont]
+Pollux (set 3) [ClawGrip]
+Out Zone (set 4) [Tormod Tjaberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gamshara [smf]
+Taisen Hot Gimmick 4 Ever (Japan) [Guru, David Haywood]
+Taisen Hot Gimmick Integral (Japan) [Guru, David Haywood]
+Mahjong G-Taste [Guru, David Haywood]

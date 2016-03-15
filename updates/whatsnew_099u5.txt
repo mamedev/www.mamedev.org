@@ -1,0 +1,149 @@
+0.99u5
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+docastle093u2ora [Corrado Tomaselli]
+sindbadm37b2gre [Pierpaolo Prazzoli]
+mgakuen094u1gra [Roberto Fresca]
+tdfeverj087u4gra [Roberto Fresca]
+
+
+
+Source Changes
+--------------
+Completed renaming of core structures. Most pervasive change was "struct
+tilemap" is now just "tilemap". [Aaron Giles]
+
+Added save state support to the Cinematronics vector games. [Buddabing]
+
+Added blending to the alt tilemap code in psikyosh.c, fixing the final
+boss in Sol Divide. [David Haywood]
+
+Improvements to the Witch/Pinball Champ '95 driver: [Sebasten Hegon]
+ * The games now show some graphics (the palette seems OK) and play some 
+    music and sounds.
+ * Since the controls are not yet figured out completely, they are still 
+    mapped as dipswitches.
+ * An NVRAM reset is required the first time you launch Witch (via the 
+    associated dipswitch). Pinball Champ seems to automatically do this.
+ * The sound part required some patching in sound/es8712.c. I disabled 
+    the hardcoded inconditional looping, and made the sound start when 
+    writing at offset 0x06 (cf patch). vmetal does not seem to be affected.
+ * As far as gameplay is concerned, the ball will freeze (in game and 
+    demo mode), and I don't know why. The video hardware is not completely 
+    figured out and may be the culprit.
+ * The coin in/out mecanism needs some work too.
+
+Some improvements to Jolly Card: [Roberto Fresca]
+ * Added extra hardware info (pinouts and dips).
+ * Added the correct dipswitch to Jolly Card. Hopper and Points/pulse not 
+    tested due to preliminary driver state. The rest are working properly.
+    Remember to delete the nvram and reinitialize to see some changes.
+ * Added almost the same dipswitch to Magic Card II (Bulgaria).
+
+Significant changes to the save state system: [Aaron Giles]
+ * Added alternate save state pre-/post-load function types that take
+    integer or pointer parameters. Updated several sound cores and other 
+    files to take advantage of this.
+ * Made state handler registrations track like other scoped resources
+    (timers, memory) so that registrations can occur as late as 
+    MACHINE_INIT time.
+ * Added logic to detect registrations after MACHINE_INIT time and prevent
+    saves in that case.
+ * Added logic to detect when CPUs or sound chips haven't registered 
+    anything to save/load. When this happens, info is logged to error.log
+    and saves/loads are disallowed.
+ * Allocated timers are now automatically saved and restored as part of
+    the save state. The global time is now restored as well as a bunch of
+    CPU execution state. This should produce more reliable restores.
+ * Added logic to defer saves until all anonymous timers have cleared. If 
+    a driver uses many anonymous timers it may not be possible to ever 
+    successfully save, so the operation will time out after one second.
+ * Before restoring, the machine is now reset. This gives a more
+    consistent environment for the load to occur.
+ * Re-enabled save state support for YM2151.
+ * Added save state support to the classic Namco sound system.
+ * Added save state support to the samples sound system.
+ * Removed anonymous timer usage in machine/scramble.c.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Muroge Monaco [David Haywood]
+The First Funky Fighter [Luca Elia]
+
+
+
+New clones added
+----------------
+SAR - Search And Rescue (Japan) [Pierpaolo Prazzoli]
+American Poker II (set 4) [Roberto Fresca]
+
+
+
+0.99u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+quarth37b1gre [Pierpaolo Prazzoli]
+devilw36b10yel [Pierpaolo Prazzoli]
+vulcan137b1gre, part 7 [Pierpaolo Prazzoli]
+
+
+
+Source Changes
+--------------
+Added memory card and cheat menus back into the system. [Aaron Giles]
+
+Fixed MNG recording problem that was introduced in u3. [Aaron Giles]
+
+Fixed crash when running vector games that was introduced in u3.
+[Aaron Giles]
+
+Cleaned up/normalized the naming of several core structures in an
+attempt to impose some order on coding conventions in the core code:
+  struct InputPortDefinition   -> input_port_default_entry
+  struct InputPort             -> input_port_entry
+  struct RegionInfo            -> region_info
+  struct RunningMachine        -> running_machine
+  struct GameOptions           -> global_options
+  struct GameDriver            -> game_driver
+  struct InternalMachineDriver -> machine_config
+  struct MachineCPU            -> cpu_config
+  struct MachineSoundRoute     -> sound_route
+  struct MachineSound          -> sound_config
+  struct MachineSpeaker        -> speaker_config
+  struct RomModule             -> rom_entry
+  struct SystemBios            -> bios_entry
+  struct GfxLayout             -> gfx_layout
+  struct GfxElement            -> gfx_element
+  struct GfxDecodeInfo         -> gfx_decode
+Plus many others along the same lines (follow the pattern). Note that this
+work is not yet complete. In addition, a few of the more pervasive structs 
+(mame_bitmap, rectangle) will be left until a non-diff release (0.100).
+[Aaron Giles]
+
+Removed -skip_disclaimer since it automatically goes away after the first
+time execution. [Aaron Giles]
+
+Created new NMK112 ROM banking module and connected it up to a number of
+drivers that made use of it. Affected games are in cave.c, nmk16.c, 
+powerins.c, quizpani.c, toaplan2.c. [Alex W. Jackson]
+
+Added missing buttons to Showdown. [David Widel]
+
+Fixed the PULUW instruction on the 6309 disassembler. [Nathan Woods]
+
+Fixed the state save facility play better on multisession ports if 
+initialization fails. [Tim Lindner]
+
+
+
+New clones added
+----------------
+Plotting (US) [David Haywood]

@@ -1,0 +1,56 @@
+0.106u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+atarigt0106u3red [Aaron Giles]
+bestmatch0106u3ora [Aaron Giles]
+midyunit0106u3red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added new function mame_debug_is_active() which can be used by
+core code to identify when we are paused in the debugger.
+[Aaron Giles]
+
+Fixed crash when passing an invalid driver name on the command line.
+Centralized the approximate matching logic into driver.c so other
+ports can use it as well. [Aaron Giles]
+
+Now properly extracting path from driver name and adding it to the
+rompath so that drag & drop of ZIP files works once again.
+[Aaron Giles]
+
+More renderer updates: [Aaron Giles]
+ - Fixed feature detection bug that led to false-positive warnings
+    when starting up
+ - Removed extra vertex padding since some graphics cards could not
+    cope with it
+ - Added shims to support both Direct3D 9 and Direct3D 8; D3D9 is
+    the default, with an automatic fallback to d3d8 if not available
+ - New option -d3dversion can be used to specify preferred version
+    for testing
+ - Added 1 pixel black border around all textures to ensure filtering
+    on some cards doesn't result in garbage at the edge of the screen
+ - Enabled "do not wait" feature when unthrottled and using D3D9; this
+    greatly speeds up unthrottled games, but seems to only work in 
+    full screen mode
+ - Switched from triangle fans to triangle strips
+ - Ensured that render states are only being set minimally
+ - Added code to reset the device if lost, allowing application 
+    switching out of full screen mode and fixing multi-monitor mode
+    with resolution switching
+
+Added new function verbose_printf() which is used instead of checking
+the verbose global to print information to the screen. Changed all
+locations that were checking the global to use this new function.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Card Line [Tomasz Slanina]

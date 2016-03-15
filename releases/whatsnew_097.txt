@@ -1,0 +1,377 @@
+0.97
+----
+
+IMPORTANT: As of MAME 0.96, the source code license has changed.
+Please see the new file license.txt for details. The new license
+is based off the BSD license, with additional prohibitions against
+commercial usage. See http://mamedev.org for additional details.
+
+
+MAMETesters Bugs Fixed
+----------------------
+message096u4gre
+
+
+Source Changes
+--------------
+Fixed memory leak in hiscore system. [Nicola Salmoria]
+
+Fixed OKI banking in Pocket Gal Deluxe. [Sonikos]
+
+
+
+0.96u4
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+peggle096u2gre
+exidyc096u3gre
+spiders096u3red
+renegade096u2gre
+
+
+
+Source Changes
+--------------
+Added 4 different crosshair styles to differentiate different players'
+crosshairs. [Aaron Giles]
+
+Rewrote vidhrdw/wecleman.c to make the code more readable. [Aaron Giles]
+
+Fixed game reset in galaxian due to running out of timers. [Aaron Giles]
+
+Added thrash protection emulation to the NVRAM in coolpool.c. [Aaron Giles]
+
+Improved Windows-specific memory debugging to track file/line numbers for
+allocations. This required a couple of changes to the core makefile.
+[Aaron Giles]
+
+Fixed remaining memory leaks in the new debugger code, and one in the
+artwork system. [Aaron Giles]
+
+Cleaned up several video drivers that were using non-auto memory allocation
+functions for bitmaps and memory. [Aaron Giles]
+
+Rewrote the RF5C68 sound emulator from the specs, improving sound in the
+System 18 games. [Aaron Giles]
+
+Replaced some logerror()/exit(), printf()/exit() and fprintf()/exit() 
+combinations against an osd_die() call. [Firewave]
+
+Added logerror and memdump commands to the new debugger. [Nathan Woods]
+
+In the PowerPC core, implemented the SMI input line, and added a placeholder 
+for the TLBISYNC input line (doesn't do anything yet). Also implemented the 
+TBU special variable on the 603. [Nathan Woods]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Super Bishi Bashi Championship [David Haywood]
+
+
+
+0.96u3
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+openice096u2red
+1945kiii096u2gre
+capbowl096u1gre
+
+
+
+Source Changes
+--------------
+Fixed Wizz Quiz clone. [Pierpaolo Prazzoli]
+
+Added shadow effects to the SSV driver. [Luca Elia]
+
+Simplified additive path in slapstic code. This should not impact any games
+that use it, but it is worth verifying. [Aaron Giles]
+
+Improvements to The Couples driver: Improved the video hardware, added a 
+preliminary PPI8255 + inputs interface, added a better workaround of the 
+$b011 jump, and added sound. Now the game is somewhat playable, but there 
+are still some problems in the game. [Angelo Salese]
+
+Fixed DIP switches in several games:
+* Dream Soccer '94
+* Major Title
+* Seibu Cup Soccer
+* Caveman Ninja (World & US)
+* Spinal Breakers
+* Play Girl 2
+* Rohga
+* Shootout
+[Brian Troha]
+
+Added 'find' command to the new debugger for performing memory searches.
+[Aaron Giles]
+
+Adjusted sound balance in a few drivers. [David Haywood]
+
+Added preliminary video emulation to penocup.c. [David Haywood]
+
+Added better debugging support to the the MIPS and PPC cores. [Nathan Woods]
+
+Improved sound in Hot Shock and Explorer. [Pierpaolo Prazzoli]
+
+Hooked up light gun properly in Golgo 13. [R. Belmont]
+
+Fixed sprites, controls, colors, sound, many graphics problems in Panic Road,
+but still not working. [Tomasz Slanina]
+
+Fixed TMS34010 reverse blitters so they didn't perform extraneous source
+memory fetches. [Aaron Giles]
+
+Old debugger no longer forces the memory display to 16-bit words regardless 
+of the size specified with the M command. [Andrew Church]
+
+Fixed OKI sample rate in Dark Seal/Crude Buster. Attempted to fix Vapor Trail
+dropped sound commands. [Bryan McPhail]
+
+Changed trace and traceover commands so they can append to existing files by
+placing '>>' before the filename. [Nathan Woods]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+AmeriDarts [Aaron Giles]
+A. D. 2083 [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Welltris (World) [Aaron Giles]
+Express Raider (US set 2) [Joachim Bassmann]
+The Couples (Set 2) [Angelo Salese]
+Moon Shuttle (Japan set 2) [Corrado Tomaselli]
+Dungeons & Dragons: Tower of Doom (Euro 940113) [Razoola]
+Alien vs. Predator (Hispanic 940520) [Razoola]
+X-Men Vs. Street Fighter (Asia 960919) [Razoola]
+Street Fighter Zero 3 (Asia 980904) [Razoola]
+Giga Wing (Asia 990222) [Razoola]
+Hot Memory [David Haywood]
+Borderline [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cyber Tank [Angelo Salese]
+The Lost Castle In Darkmist [David Haywood/Tomasz Slanina]
+
+
+
+0.96u2
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+starforc095u5gre
+fghtbskt095u2red
+ncv1095gre
+paperboy095gre
+garyoret095u2yel
+alpine37b4gre
+bioatack080u1yel (this was already fixed)
+hwrace37b10gre
+piratpet060yel
+waterski37b5yel
+
+
+
+Source Changes
+--------------
+Added the ability to specify internal read/write handlers for CPUs so
+that the new debugger can view internal RAM. Hooked this up for the
+TMS32025 core. [Aaron Giles]
+
+Fixed window mode 1 in the TMS34010 core, as well as bugs that prevented
+misaligned stack accesses from working and a bug that didn't force the
+PC to be 16-bit aligned. [Aaron Giles]
+
+Fixed bug in MAC instructions in the TMS32025 core. Also fixed cycle
+counting 
+problems that led to inaccurate internal timers. [Aaron Giles]
+
+Fixed end-of-sprite list and flip screen in Hollywood Action.
+[Pierpaolo Prazzoli]
+
+Fixed colors in New Sinbad 7. [Pierpaolo Prazzoli]
+
+Several Taito SJ sprite fixes:
+- Fixed sprite priorites. This fixes several priority issues in Tin Star,
+  Elevator Action, High Way Race, and the car wrapping around in Elevator
+  Action at the end of a level.
+- Added sprite clipping at the sides of the screen. This was verified to
+  happen on the real board, and it affects bullets wrapping around in 
+  Elevator Action. I'm only 99% sure that the clipping is correct this 
+  way :)
+- Fixed sprite hardware collision detection. This fixes the last round in
+  Pirate Pete, bonuses in Alpine Ski, end of level 1 in Water Ski.
+[Nicola Salmoria]
+
+Fixed DIP switches in Rohga. [Yasuhiro Ogawa]
+
+Several Volfied fixes:
+- Fixed visible area.
+- Fixed rom names.
+- Improved c-chip simulation - accurate timing and correct colour data
+  for all levels.
+[Bryan McPhail]
+
+Added the ability to clear an input configure via the delete key.
+[Curt Coder]
+
+Added cocktail flip support to the Qix driver. [Nicola Salmoria]
+
+Fixed graphics in Hyper Crash. [Pierpaolo Prazzoli, David Haywood]
+
+Rewrote 8255 PPI mode 2 support, and hooked 8255 to buckrog properly.
+[Nathan Woods]
+
+Fixed a number of bugs and added support for more SCSI commands and
+modes. [R. Belmont, Ville Linde]
+
+Hooked up MSM5205 to Goal! '92 and to Euro League (bootleg), but it
+doesn't sound too good yet. [Pierpaolo Prazzoli]
+
+Cleaned up the decryption in the Epos games. [Nicola Salmoria]
+
+Changed xday2 to use default namcona1 joystick inputs. With those, if 
+you wait the initial test to finish, you can play it. [Sonikos]
+
+Fixed L button in mj4simai which was missing. [Pierpaolo Prazzoli]
+
+Added support for Single monitor Playchoice 10 BIOS. Since the core 
+doesn't allow you to change aspect ratio or remove dual monitor flag at 
+run-time, the game always runs in the upper part of the screen. 
+[Pierpaolo Prazzoli]
+
+Added a -debugscript command line parameter that invokes a debugger 
+script on startup [Nathan Woods]
+
+Modified the MIPS DRC core to disable optimizations when mame_debug is
+on. This makes it easier to run comparative traces when running both 
+with and without MIPS DRC enabled. [Nathan Woods]
+
+Simplified the decryption code in the sun8 driver, and made some
+improvements to the Brick Zone main set. [Nicola Salmoria]
+
+Patched the non-DRC PPC core to compile properly when not all PPC 
+cores (403, 602, 603) are enabled. Implemented fcmpo instruction.
+[Nathan Woods]
+
+Swapped On Screen Display and Config Menu items so that accidental
+key configuration changes don't kill your ability to get to the menu
+by default. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Cool Pool [Aaron Giles]
+9 Ball Shootout [Aaron Giles]
+Hot Mind [Pierpaolo Prazzoli]
+Hyper Crash [Pierpaolo Prazzoli]
+Multi Champ Deluxe [David Haywood]
+
+
+
+New clones added
+----------------
+Yellow Cab (bootleg) [Pierpaolo Prazzoli]
+Atomic Punk (US) [Pierpaolo Prazzoli]
+Gaiapolis (US) [Corrado Tomaselli]
+Rock 'n Rage (Prototype?) [Brian Troha]
+Cosmic Monsters 2 [David Widel]
+Varia Metal (New Ways Trading Co.) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Revenger [Pierpaolo Prazzoli]
+Mobile Suit Gundam Final Shooting [David Haywood]
+
+
+
+0.96u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+pinbo095u6yel
+demndrgn095u6gra
+gorf095gre
+gorf095u5gre
+cabal095gre
+starlstr095u2gra
+roldfrog095ora
+
+
+
+Source Changes
+--------------
+Added ADPCM utilities to OKIM6295.c and used those to hook up sound
+once again in the Seibu games. [Aaron Giles]
+
+Fixed PPC assembly code in the TMS99xx core. [Brad Oliver]
+
+Fixed ADC overflow condition in ADC083x code. [smf]
+
+Fixed big endian issues in Namco System 22 driver. [Brad Oliver]
+
+Fixed DIP switches for Schmeiser Robo. [Brian Troha]
+
+Fixed DIP switches for Sky Kid. [Brian Troha]
+
+Fixed big endian issues in the Arcadia driver. [Brad Oliver]
+
+Fixed big endian issues in the Model 3 driver, the old debugger,
+and the PPC core. [Brad Oliver]
+
+Added decryption for Gardia and Space Position. [Nicola Salmoria]
+
+Fixed big endian issues in Return of Lady Frog. [Brad Oliver]
+
+Fixed big endian issues in Seibu SPI flash code. [Brad Oliver]
+
+Fixed big endian issues in Namco System FL driver. [Brad Oliver]
+
+Fixed big endian issues in SemiCom games. [Brad Oliver]
+
+Added dynamic recompiler for PowerPC cores. [Ville Linde]
+
+Fixed graphic banking in dietgo. [Bryan McPhail]
+
+Fixed dipswitches in popbingo and cleaned up dooyong.c driver.
+[Sonikos]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Block Jongbou (Japan) [David Haywood]
+Space Position [David Haywood, Nicola Salmoria]
+Gardia [Nicola Salmoria]
+
+
+
+New clones added
+----------------
+Raiden Fighters 2 (Tuning License) [Brian Troha]
+Burning Rival (World) [David Haywood]
+Martial Champion (Asia ver AAA) [Gerald Coy]
+Kickle Cubele [Avedis Boyajian]

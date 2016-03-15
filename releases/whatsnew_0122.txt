@@ -1,0 +1,453 @@
+0.122
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+fightfev37b2gre [johnboy]
+shootgal0121u4red [couriersud]
+mk4_0121u4ora [Aaron Giles]
+tmnt2_0121u4ora [Aaron Giles]
+lcdlightgun0121u3gra [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Continued to add const qualifiers on remaining items in the project.
+[Atari Ace]
+
+Added explicit clears on Neo Geo initialization. [Haze]
+
+Neo Geo updates: [johnboy]
+ * Added Neo-Geo game pcb info
+ * Corrected a number of incorrect ROMs
+ * Added MVS VERSION tag to fightfva, renamed 'P'-rom
+ * Added MVS AND AES VERSION tag to joyjoy
+ * Added AES VERSION tag to kof99
+ * Added MVS VERSION tag to kof99a
+
+Cleaned up input ports for cave.c and rpunch.c. [Sonikos]
+
+Another big dkong.c driver update: [couriersud]
+ - wrote M58817 sound driver and hooked it up
+     Uses tms5110 speech synthesis. LPC format is identical, however 
+     coefficients seem to be different. Until coefficients are known, 
+     samples are used.
+ - changed dkong/radarscp based games to use hardware-conformant 
+    I8035 memory maps
+ - Added drakton clone drktnjr on dkongjr hardware
+ - moved address remapping proms to REGION_USER1 (hunchbkd & co)
+ - Service now adds credit 
+ - Hooked up coin_counters
+ - remove GAME_NOT_WORKING GAME_WRONG_COLORS from hunchbkd
+ - dkongjr: mapped more interface lines between sound and cpu boards
+ - tagged all inputs, all reads use tag names
+ - moved more static vars into dkong_state
+
+More major SCSP fixes: [kingshriek]
+ - Rewrote much of the interpolation code
+ - Improved key-rate scaling calculation
+ - Fixed playback of non-looping samples with a zero loop-end address
+ - Fixed backwards looping mode so that it initially reads forward 
+    until encountering the loop-start address
+ - Preliminary but reasonable-sounding FM support
+ - Fixed overflow in frequency calculation
+ - Improved FM, but it's disabled for now because it doesn't sound 
+    right yet
+ - Improved DSP wet/dry mix (should be correct now)
+ - Fixed a minor LPSLNK problem
+
+Fixed Hopper Empty and Coin-Out Timeout issues in the peplus.c driver.
+[Jim Stolis]
+
+Removed obsolete crosshair code. [Oliver Stoneberg]
+
+Fixed several minor memory leaks. [Oliver Stoneberg]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Orbs (10/7/94 prototype?) [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Soccer Brawl (set 2) [johnboy]
+Drakton (DKJr conversion) [couriersud]
+
+
+
+0.121u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+namcos22.c_0121u1red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added new option -update_in_pause which enables updating the screen
+bitmap while the game is paused. This is useful for debuggin in
+some scenarios (and gets in the way in others). [Olivier Galibert]
+
+Added new VIDEO_TYPE_NONE to indicate that there is no screen, and
+fixed internal UI displays to ignore resolution parameters if it is
+specified. [Dirk Best]
+
+Added missing consts to the files in the emu, lib, and osd 
+directories. [Atari Ace]
+
+Updated drivers to use const structs and arrays where possible. 
+[Atari Ace]
+
+shisen improvements: [Sonikos]
+ - added dips location
+ - added dips condition
+ - remove fake dips coinage
+ - fix tow dips in matchit
+
+Updated inputs in qrouka to support the 3rd and 4th stick. [Sonikos]
+
+Fixed crash in mngwrite if the game does not have a palette. 
+[Nathan Woods]
+
+SCSP updates: [kingshriek]
+ - Added effect-in mixer
+ - Added DSP floating-point support
+ - Added bounds check to the DECAY1 EG output
+ - Fixed the saw PLFO waveform
+ - Fixed loop points so loops no longer go out of tune/include 
+    garbage samples
+
+Fixed missing profiler call in video.c. [Christophe Jaillet]
+
+Implemented status flag in Star Wars matrix processor, which affects
+gameplay speed. [Mathis Rosenhauer]
+
+Changed M37710 CPU to use the CPU clock for its internal timer rather
+than a hard-coded value. Fixes tempo in Namco NA-1 games.
+[Phillip Bennett]
+
+Fixed accidentally included change that allowed MAME to run in
+windowed mode if switchres was off. [Aaron Giles]
+
+Midway Zeus improvements: [Aaron Giles]
+ * Cleaned up video code, removed unnecessary math
+ * Added bilinear filtering
+ * Removed perspective correction
+ * Added proper video timing configuration
+ * Added lightgun support to invasn
+ * Increased resolution on fixed point math to prevent overflows
+ * Fixed texture addresses to only count even rows
+ * Added missing U/V scale factors
+ * Added solid polygon rendering support
+ * Fixed screen clear trigger
+ * Implemented fade out effect
+ * Added Z offsets
+ * Added support for splitting model commands
+ * Hooked up FIFO empty IRQ to make invasn work nicely
+ * Correct PIC values for invasn
+ * Implemented per-quad texture offsets
+ * Hooked up writes to registers during model data processing
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mortal Kombat 4 [Aaron Giles]
+Shin Nihon Pro Wrestling Toukon Retsuden 3 Arcade Edition 
+   [R. Belmont, smf, Guru]
+Super World Stadium '98 [R. Belmont, smf, Guru]
+
+
+
+New clones added
+----------------
+Trivia Master (set 3) [Eric Marks]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Kaiun Quiz [R. Belmont, smf, Guru]
+Super World Stadium 2000 [R. Belmont, smf, Guru]
+
+
+
+0.121u3
+-------
+
+
+Source Changes
+--------------
+Fixed colors in loverboy. [David Haywood]
+
+Fixed buffer overflow in K054539. [BUT]
+
+SCSP improvements: [kingshriek]
+ - Added logarithmic envelope table
+ - Set envelope level to start at 0x17f in the ATTACK state 
+    (0x3ff-0x280) as per Neill's notes 
+ - Changed EG_SHIFT from 8 to 16 - more precision is needed to 
+    differentiate the longer decay envelope times 
+ - In the DECAY1-->DECAY2 transition, changed the "<=" to "<"
+ - Decreased the output of the effect out mixer a bit
+ - Fixed unaligned 16-bit samples
+ - Prevented keyoffs from killing slots when already in the release 
+    state 
+ - Envelope steps in the attack state are apparently exponential. To 
+    account for this, I change the envelope output to linear for 
+    attacks.
+ - Change the release rate calculation to use the decay table instead 
+    of the attack one.
+
+Fixed uninitialized variable in h6280 core. [Wilbert Pol]
+
+Added meter support to the Cobra games. Cleaned up some of the 
+steppers code. [James Wallace]
+
+Const-ified a number of data structures in the MAME system. 
+[Atari Ace]
+
+Added PowerPC 604 processor support. Moved PowerPC opcode tables to 
+the CPU context to allow multiple simultaneous processors with 
+different opcode tables. [Ville Linde]
+
+dkong driver updates: [couriersud]
+ - Added configuration switch to change palette between TKG02 
+    (radarscp conversion) and TKG04 (dkong 2board)
+ - Added speech support (samples) to radarsc1
+ - Fixed sound for drakton and strtheat
+ - Hooked up and written 8257 dma controller
+    All dkong and dkongjr based games now use the 8257
+    All epos and 2650 based games now use the 8257
+ - Fixed 2650 games to use dkong audio as well - only cpu replaced 
+    by addon board ...
+ - Updated game flags and added missing rom entries
+ - straightened memory maps
+ - Fixed bug in dkong3b memory map
+ - Externalized sound drivers to MACHINE_START in audio/dkong.c
+ - DAC Filter now uses lowpass sallen key filter
+ - Reorganized INPUT_PORTS
+ - Added Dip-Switch locations to 8ballact
+ - Fixed 8ballact according to conversion manual 
+ - Reorganized code
+
+Corrected a potential issue if more than one 8039/8035 is used by 
+a driver. Also should fix a potential inconsistency between saving 
+and loading a state. [couriersud]
+
+Added an assert to ensure that the sound clear latch value is only
+set at init time, since its value is not saved. [Aaron Giles]
+
+Modified src2html to sort by filename rather than assuming that the
+osd file finding routines would do so. [Aaron Giles]
+
+Fix memory system regression caused by recent optimization. Fixed
+another bug uncovered as a result in the decrypted opcode management.
+[Aaron Giles]
+
+More Zeus improvements. Converted over to 64-bit data and simplified
+the logic to work more like the hardware. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+The Block Kuzushi (JAPAN) [Guru, smf]
+Wrestle War (Mega-Tech) [Mame Italia]
+
+
+
+New clones added
+----------------
+Puzzle & Action: BoMulEul Chajara (Korea) [Guru, David Haywood]
+DaeJeon! SanJeon SuJeon (Korea) [Guru, David Haywood]
+Success Joe (World) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Stress Busters [Guru, David Haywood]
+Magical Zunou Power [Guru, David Haywood]
+Draw 80 Poker [Jim Stolis]
+1 on 1 Government (JAPAN) [Guru, smf]
+
+
+
+0.121u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+
+
+Source Changes
+--------------
+Added speedup hack to the mosaicf2 driver. [David Haywood]
+
+Fixed BCD math error in i8051 core. [stephh]
+
+Fixed the m6800 cpu core so that the cpu variants can be compiled
+independently once again. [Atari Ace]
+
+More formally separated the RSP core from the N64 driver. [Atari Ace]
+
+Fixed invalid dips in panicr and added dip locations. [Sonikos]
+
+Switched some #defines in the core over to enums. Also adjusted the 
+GAME macro so that it results in const data, and that it is defined 
+in terms of the more generic GAMEL macro. [Atari Ace]
+
+Converted some more unnecessary globals into statics. [Atari Ace]
+
+Fixes the M68008 data bus to properly use 8-bit accesses. [Curt Coder]
+
+Cleaned up the peplus.c driver. Added MACHINE_RESET to fix autohold
+option. Added layouts for several types of games. [stephh]
+
+Fix array overrun in get_num_dips. [Nathan Woods, Michael Zapf]
+
+Moved redundant check for bank switching out of inline code, which
+nets a small speedup in the midwunit driver. [Christophe Jaillet]
+
+Added save state support to a number of Konami custom chips. [Lei Wu]
+
+Add -pipe flag for GCC in makefile (GCC will pipe between cpp, cc and
+as rather than using temporary files, which speeds up compiling).
+[Vas Crabb]
+
+Cleanups to the inline functions: [Vas Crabb]
+ * Add attributes to functions in eigccppc.h and eigccx86.h to cause 
+    GCC to always inline them, and to treat them as arithmetic 
+    operators when appropriate (so GCC can identify loop invariants 
+    or common subexpressions involving these functions)
+ * Mark locals in functions in eigccppc.h and eigccx86.h as register, 
+    so GCC won't always allocate stack space even at O0 optimisation 
+    level
+ * Add dummy +m operands to atomic access functions in eigccppc.h so 
+    that GCC will not cache values across calls even if values are 
+    not volatile - this will cause GCC to allocate an additional 
+    register at O0 optimisation, but not if optimisation is on
+ * Don't include <altivec.h> in rgbvmx.h if __APPLE_ALTIVEC__ is 
+    defined, as this will cause a compiler warning.
+
+Cleaned up inputs in the System 24 driver: [Sonikos]
+ - Fixed dips in qrouka, sgmastc, sgmastcj, roughrac, qsww
+ - Fixed input in dcclub, sgmastc, sgmastj, qrouka (the last is still 
+    missing input for the 3rd & 4th player)
+ - Added more description for each game: region, system (rom or floppy
+    based), version
+    
+Removed useless pen_array in the midtunit driver, saving some memory
+and getting a small speed boost. [Christophe Jaillet]
+
+Added 3D glasses support to the tceptor driver. [BUT]
+
+Unified timer callbacks. All timer callbacks are now passed both a
+pointer and a parameter. The pointer can only be set at timer 
+allocation time; the parameter can be changed whenever the timer
+is adjusted. Removed most explicit uses of timer_*_ptr functions in
+favor of the more generic routines. [Aaron Giles]
+
+Deprecated cpu_yield* functions except for cpu_yield() itself, which
+yields for the current timeslice only. Drivers that relied on the
+other yielding functions should be updated to use 
+cpu_boost_interleave() instead, as it does not have the same negative
+side effects on time management. [Aaron Giles]
+
+Changed video_frame_update() internally to accept a debug parameter
+which forces updates and does not meddle with synchronization/time
+accountiing. [Aaron Giles]
+
+Some more internal improvements to the midzeus driver. [Aaron Giles]
+
+Removed the burgeoning list of architecture optimization options.
+Instead, if you want to make a build optimized for a specific 
+architecture, you explicitly specify the options in a new ARCHOPTS
+variable. You can control the name of the final executable via the
+existing PREFIX and SUFFIX variables, which are now documented.
+[Aaron Giles]
+
+MSVC-based builds now automatically get a 'v' prefix unless otherwise
+specified. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Maze Invaders (prototype) [Aaron Giles]
+Guts 'n Glory (prototype) [Aaron Giles]
+Jumbo Ozaki Super Masters Golf [Sonikos]
+
+
+
+New clones added
+----------------
+Sky Kid (Manufactured by Sipem) [Corrado Tomaselli]
+Next Fase (bootleg of Phoenix) [David Haywood]
+Hang-On (Rev A) [Tony Beason]
+Shooting Master (set 2, 8751 315-5159a) [Kevin Eshbach]
+Super Burger Time (World, set 2) [Patrik Styrnell]
+
+
+
+0.121u1
+-------
+
+
+Source Changes
+--------------
+Added an API to access the current amiga_machine_interface.
+[Nathan Woods]
+
+Added more static qualifiers to core files. [Atari Ace]
+
+Fixed reversed clock speeds in mexico86. [Brian Troha]
+
+Changed malloc tracking to be decided at runtime in a function 
+use_malloc_tracking(). This makes it easy to turn it on or off by 
+recompiling only a single file. [Nathan Woods]
+
+Split up MSVC inline assembler functions into MSVC specific headers, 
+and removed the assumption that Window's osinline.h would only be 
+used by MSVC. [Nathan Woods]
+
+Optimized the hyperstone core, gaining ~50% speed improvement in most
+games. Implemented clock prescaling and corrected interrupt priority
+handling. Then fixed the clock speeds on the most of the games and
+killed most of the speed gains in quite a number of them. (Sorry!)
+[Aaron Giles]
+
+Added explicit Core2 architecuture support to the makefile (CORE2=1).
+Note that gcc 4.2.0 doesn't understand core 2, so this is equivalent
+to compiling with pentium-m architecture and -sse3. Also note that
+compiling native on a Core2 is not what you want because native will
+think you are on a Prescott, which is P4-era hardware. [Aaron Giles]
+
+Changed alignment of rgbint values in the namcos22 driver to work
+around 32-bit gcc's lack of proper alignment handling. [Aaron Giles]
+
+Fixed attotime routines to use unsigned math for multiply/divide,
+solving problems with some games which errantly passed in -1 for the
+factor. The new behavior matches the original behavior. [Aaron Giles]
+
+Renamed colortable to colortable_t. Added a Machine->colortable
+entry to hold the global colortable for games that use it. Updated
+several more drivers to just use palettes directly rather than 
+hacking colortables. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Fighting Soccer (version 4) [Corrado Tomaselli]
+Stadium Cross (US) [Arzeno Fabrice]

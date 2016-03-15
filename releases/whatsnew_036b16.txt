@@ -1,0 +1,75 @@
+0.36 BETA 16
+
+New games supported:
+--------------------
+
+Bomb Bee [Nicola Salmoria]
+Cutie Q [Nicola Salmoria]
+Navalone [Juergen Buchmueller]
+Kaitei Takara Sagash [Juergen Buchmueller]
+SOS [Juergen Buchmueller]
+Fighting Soccer [Phil Stroffolino]
+Toryumon [Andrew Prime]
+Berlin Wall [Luca Elia]
+Kodure Ookami [Takahiro Nogi]
+
+
+New clones supported:
+---------------------
+
+Gee Bee (Namco)
+Crazy Cop (= Gang Busters)
+Champion Wrestler (Japan)
+Big Pro Wrestling (= Tag Team Wrestling)
+Guerilla War (version 1)
+Guevara (= Guerilla War)
+Bermuda Triangle (older)
+World Wars (= Bermuda Triangle)
+Great 1000 Miles Rally (set 2)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed shadow/highlight in the Namco System 1 games (check Dangerous Seed's
+  title screen!). [Vernon C. Brooks]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Sound in Warp Warp. [juergen Buchmueller]
+
+- Fixed sound in Sindbad Mystery. [Zsolt Vasvari]
+
+
+Changes to the main program:
+----------------------------
+
+- Added vector intensity control to the On Screen Display (for vector games).
+  [Mathis Rosenhauer]
+
+- Unified keyboard and joystick interface, now they are all assigned in the
+  "Input" menu and you can mix them at will. [Andrea Mazzoleni]
+
+- [DOS] MMX optimized video blitting functions. [Bernd Wiebelt]
+
+
+Source:
+-------
+
+- The transition to the GAME() macro is complete. struct GameDriver must no
+  longer be used. Alro removed the old ROM_REGION() and ROM_REGION_DISPOSE()
+  macros, and renamed ROM_REGIONX() to ROM_REGION().
+
+- The functionality of osd_skip_this_frame() is now more strictly defined (see
+  osdepend.h). Ports not complying with that must be updated, otherwise
+  problems with certain drivers might arise.
+
+- mixer.c now does all sound mixing, generating one single sample stream,
+  played using the new osd_XXX_audio_stream() functions.
+  All other OS dependant sample functions (osd_play_sample() etc.) have been
+  removed. This should standardize the sound output across ports, and allow
+  porters to write much cleaner sound code. [Aaron Giles]
+
+- Removed some obsolete fields from struct GameOptions.

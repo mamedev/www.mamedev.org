@@ -1,0 +1,51 @@
+0.121u1
+-------
+
+
+Source Changes
+--------------
+Added an API to access the current amiga_machine_interface.
+[Nathan Woods]
+
+Added more static qualifiers to core files. [Atari Ace]
+
+Fixed reversed clock speeds in mexico86. [Brian Troha]
+
+Changed malloc tracking to be decided at runtime in a function 
+use_malloc_tracking(). This makes it easy to turn it on or off by 
+recompiling only a single file. [Nathan Woods]
+
+Split up MSVC inline assembler functions into MSVC specific headers, 
+and removed the assumption that Window's osinline.h would only be 
+used by MSVC. [Nathan Woods]
+
+Optimized the hyperstone core, gaining ~50% speed improvement in most
+games. Implemented clock prescaling and corrected interrupt priority
+handling. Then fixed the clock speeds on the most of the games and
+killed most of the speed gains in quite a number of them. (Sorry!)
+[Aaron Giles]
+
+Added explicit Core2 architecuture support to the makefile (CORE2=1).
+Note that gcc 4.2.0 doesn't understand core 2, so this is equivalent
+to compiling with pentium-m architecture and -sse3. Also note that
+compiling native on a Core2 is not what you want because native will
+think you are on a Prescott, which is P4-era hardware. [Aaron Giles]
+
+Changed alignment of rgbint values in the namcos22 driver to work
+around 32-bit gcc's lack of proper alignment handling. [Aaron Giles]
+
+Fixed attotime routines to use unsigned math for multiply/divide,
+solving problems with some games which errantly passed in -1 for the
+factor. The new behavior matches the original behavior. [Aaron Giles]
+
+Renamed colortable to colortable_t. Added a Machine->colortable
+entry to hold the global colortable for games that use it. Updated
+several more drivers to just use palettes directly rather than 
+hacking colortables. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Fighting Soccer (version 4) [Corrado Tomaselli]
+Stadium Cross (US) [Arzeno Fabrice]

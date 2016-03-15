@@ -1,0 +1,160 @@
+0.127u8
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02522: [Graphics] cubeqst: Cubequest showing its laserdisc footage under 
+         black regular graphics in demo. (Aaron Giles)
+- 01867: [DIP/Input] plygonet: Duplicated Inputs (R. Belmont)
+- 01716: [DIP/Input] backfire, backfira: Coin 1+2, Service1 and Service 
+         Mode mapped twice. (Couriersud)
+- 00106: [DIP/Input] le2: Impossible to reload. (R. Belmont)
+- 01708: [DIP/Input] stargrds: stargrds duplicate inputs (Couriersud)
+- 02532: [DIP/Input] lunarba1: Unable to locate input port 'DSW2' 
+         (Aaron Giles)
+- 02533: [Crash/Freeze] nbapbp: CPU audio: PULSE_LINE used with level-
+         detected IRQ 1 (Aaron Giles)
+- 02530: [Crash/Freeze] Various: Assertion in cpuint.c (Couriersud)
+- 01821: [Crash/Freeze] lohtb2: Game stops at PCB test (Couriersud)
+- 02529: [DIP/Input] catch22: Credits do not register in game. (Couriersud)
+- 02528: [Core] xexex and clones: Game checks halt with "VERSION ERROR"
+         (R. Belmont)
+- 01447: [DIP/Input] propcycl: Analog input roll over problem. (R. Belmont)
+- 02211: [Sound] soldivid: missing music (R. Belmont)
+- 00978: [Graphics] columns2: There is some garbage on the place where you 
+         drop the 2 small squares at the bottom, after the Game Over 
+         image drops down. (David Haywood)
+- 02521: [Color/Palette] ichir and clones, tantr and clones: Some colors 
+         are missing and other graphics errors (David Haywood)
+- 02511: [Crash/Freeze] dkong: Donkey Kong crashes after quiting. 
+         (Aaron Giles)
+- 02512: [Misc.] dkong: Artwork and gameplay area are getting squished/
+         distorted. (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Updated Dip Switches and Inputs for 'yesnoj' (taito_f2.c driver).
+[stephh]
+
+Fixed several things in the jalmah.c driver: [Angelo Salese]
+ * Fixed Mahjong Daireikai pseudo-random number generator;
+ * Fixed Otogizoushi Urashima Mahjong to make it playable;
+ * Fixed a start-up crashing bug in mjzoomin/urashima/daireika
+
+Simplified expro02 decryption. [Nicola Salmoria]
+
+Completed general NeoGeo cleanup: [JohnBoy]
+ * Sorted OEM / bootleg sets
+ * Renamed roms on non OEM / bootleg sets to ONE naming sheme
+ * Renamed functions
+ * Cleaned up bootleg sets
+ * Added some comments
+ * Renamed sma in garou/garouo, added comment
+
+Changed Cube Quest laserdisc override logic. It's still a little hacky 
+but this works better than the previous attempt. [Aaron Giles]
+
+Updated segac2 driver to use updated megadriv code. [David Haywood]
+
+Moved fantasia -> expro02.c, however, the extra layer is misplaced on 
+it. Scroll regs probably differ from the original. [David Haywood]
+
+PsikyoSH: hook up VBL IRQ ack [R. Belmont]
+
+SH2: fix DRC's handling of internally generated IRQs, and fix 
+compiling in interpreter mode. [R. Belmont]
+
+Rewrote pmpoker.c driver (first part). [Roberto Fresca, Grull Osgo]
+ - Added discrete sound support to Golden Poker hardware games based 
+    on schematics.
+ - Added discrete sound support to Potten's Poker hardware games based 
+    on PCB analysis.
+ - Added discrete circuitry diagrams for both hardware types.
+ - Adjusted the CPU adressing to 15 bits for pmpoker/goldenpkr 
+    hardware.
+ - Adjusted the CPU adressing to 14 bits for pottnpkr hardware.
+ - Rewrote all the ROM loads based on these changes.
+ - Defined MASTER Xtal & CPU clock.
+ - Fixed the visible area based on M6845 registers.
+ - Improved the lamps layouts to be more realistic.
+ - Added Good Luck (potten's poker hybrid running in goldnpkr hardware).
+ - Added Buena Suerte (spanish) x 2 sets.
+ - Added set Royale.
+ - Added Witch Card and spanish variants.
+ - Added Super Loco 93 (spanish) x 2 sets.
+ - Renamed set goldnpkc to pottnpkr (parent Jack Potten's Poker set).
+ - Renamed set jokerpkr to potnpkra, since is another Jack Potten's 
+    Poker set.
+ - Added other 2 clones of Jack Potten's Poker.
+ - Renamed/cleaned all sets based on code/hardware analysis.
+ - Added intensity bit to the color system.
+ - Implemented the blue killer bit for Witch Card hardware.
+ - Implemented the extended graphics addressing bit for Witch Card 
+    hardware.
+ - Added proper visible area to sloco93.
+ - Rewrote the graphics & color decode system based on schematics. No 
+    more patched codes.
+ - Changed the char gfx bank structure and rom load according to the 
+    new routines.
+ - Adjusted the amount of color codes and PROM region size accordingly.
+ - Updated all notes.
+
+Large update to comments in smstrv.c for SMS Manufacturing boards. 
+Documented how the input/output ports are hooked up, and what the PALS 
+do, still need to document the video output port and add the smssshot 
+roms, and actually hook stuff up (like the z80) based on the comments.
+[Lord Nightmare]
+
+Removed speedups from sokyugrt, they break the game (make it too slow) 
+the SH2 DRC is sufficient. [David Haywood]
+
+Did most of the protection work for Double Dealer. It appears to use 
+a funky video register setting involving locations $8c1e0-8c1ef range 
+for cards movements so it isn't playable yet. [Angelo Salese]
+
+Added DIP LOCATIONS to items in the driver and cleaned up some of the
+comments mentioning duplicate dips configurations.  Not fully 
+understanding how the FREE PLAY was implemented, I left that not to 
+show a location. [Tafoid]
+
+cubeqst changes: [Aaron Giles]
+ * removed custom sound in favor of individual DACs
+ * simplified palette management logic
+ * hooked up the "disc on" signal
+
+Cleaned up Firefox video implementation: [Aaron Giles]
+ - proper sprite/tile priorities
+ - adjusted X offset to match screenshots
+ - converted to tilemaps
+
+Added cawing B-Board PAL dumps [Corrado Tomaselli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Daireikai [Angelo Salese]
+Otogizoushi Urashima Mahjong [Angelo Salese]
+Good Luck! [Roberto Fresca]
+Buena Suerte! (spanish) [Roberto Fresca]
+Witch Card (english) [Roberto Fresca]
+Super Loco 93 (spanish) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Matrimelee / Shin Gouketsuji Ichizoku Toukon (bootleg) [Kawaks]
+Jack Potten's Poker (2 sets) [Roberto Fresca]
+Witch Card (spanish)(2 sets) [Roberto Fresca]
+Buena Suerte (spanish, set 2) [Roberto Fresca]
+Super Loco 93 (spanish, set 2) [Roberto Fresca]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Royale [Roberto Fresca]

@@ -1,0 +1,120 @@
+0.132u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03288: [Sound] raiga, stratof: Sound is messed up (Mamesick)
+- 03185: [Interface] All games using Lightguns: [debug] Bitmap memory 
+         Leak (Firewave)
+- 02797: [Core] hangplt: Hang Pilot no longer boots since the new PPC 
+         DRC went in (Phil Bennett)
+
+
+
+Source Changes
+--------------
+mlanding: fixed sub CPU reset line,fixed main-to-sound CPUs comms, 
+added PORT_TOGGLE for the inputs and fixed color banking. Fixed analog 
+inputs. Added DSP and background graphics. [Angelo Salese]
+
+Added redumped sample ROMs to Hang Pilot. [Guru]
+
+Mapped Player 2 Start in Salary Man Champ [smf]
+
+Marked all beatmania iidx games as not working. [smf]
+
+mlanding: fixed foreground framebuffer graphics [Phil Bennett]
+
+Fixed AGA display window start and stop (fixes startup screen and 
+lsrquiz & lsrquiz2 missing graphics) [Mariusz Wojcieszek]
+
+Added PCB location to several rom sets in the asteroid.c driver.
+[Brian Troha]
+
+Added TMS0980 cpu core. [Wilbert Pol]
+
+mc68hc11 improvements: [Angelo Salese]
+ * Added STX DIR, STY DIR opcodes. 
+ * Fixed a bug with TAP opcode.
+ * Fixed internal RAM/internal I/O start-up state. 
+ * Fixed the I/O system by changing the has_io flag with a 
+    has_extended_io flag (switch between 0x40 and 0x100 I/O registers)
+    the latter is used by the Taito JC HC11 CPU only at the current 
+    time. 
+ * Fixed a register r/w to allow Skeet Shooter to put some gfxs.
+
+Added default monochrome amber and green palettes. [Curt Coder]
+
+Redumped m1 ROM of minasan [Team Japump]
+
+PPCDRC: fix flags on STWCX and fix FMULS to use the correct registers.
+[R. Belmont]
+
+Some improvements to the unkch romsets [David Haywood]
+
+Fixed Model 3 Real3D DMA source addressing. [Phil Bennett]
+
+Fixed a graphic bug with Saboten Bombers. [Angelo Salese]
+
+Fixed magtruck to use the alternate EEPROM. [R. Belmont]
+
+Updated drummania 2nd mix and 2nd mix power up ver chds. [smf]
+
+Adds latest US BIOS to the Naomi driver. Adds EPR-21577G, version 1.70
+[Gerald (COY), Dumping Union]
+
+Added kludges to get racin force / open golf past the initial check 
+screens with the TMS emulation enabled. [David Haywood]
+
+Fixed an assert when using the 80188 CPU. [Dirk Best]
+
+Verified/changed clocks on Black Heart. [Corrado Tomaselli]
+
+Model 3 driver updates: [R. Belmont]
+ - Interrupt controller improved
+ - Fixed chip IDs for magtruck and von254g
+ - Various notes for working out additional issues
+
+Removed old drawgfx APIs after converting the remaining drivers to
+the new ones. [Atari Ace, Aaron Giles]
+
+PPCDRC: Generate some FPSCR flags [Phil Bennett]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Hyper Bishi Bashi Champ (2 sets) [smf]
+Bass Angler 2 (GE865 VER. JAA) [smf]
+Laser Quiz [Mariusz Wojcieszek, stephh]
+Laser Strixx 2 [Mariusz Wojcieszek, stephh]
+Laser Quiz 2 [Mariusz Wojcieszek, stephh]
+Magic Number [Mariusz Wojcieszek, stephh]
+Magic Premium [Mariusz Wojcieszek, stephh]
+
+
+
+New clones added
+----------------
+E-Jan Sakurasou (v1.2) [The Guru]
+Bloody Roar 2 (World) [Brian Troha]
+Super Basketball (version I, encrypted) 
+   [Mr Goodwraith, Smitdogg, Dumping Union]
+Super Locomotive (Rev.A) [Team Japump]
+Mario Bros. (US, Revision F) [Mr Goodwraith, Smitdogg, Dumping Union]
+Pae Wang Jeon Seol / Legend of Warrior (Korean censored) [Guru]
+Fruits & Bunny (clone of Country Girl) [TeamEurope, Dumping Union]
+Lost World (older) [Team Japump]
+Cactus (clone of Saboten Bombers) 
+   [TeamEurope, Dumping Union, David Haywood]
+Sunset Riders (bootleg of Megadrive version) 
+   [Gatinho, Smitdogg, Dumping Union, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mahjong Shiseikatsu [mNyz49s8]
+Skeet Shot [Phil Bennett, Andy Welburn, Angelo Salese]
+Magical Truck Adventure [R. Belmont]

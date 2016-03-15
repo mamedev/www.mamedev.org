@@ -1,0 +1,393 @@
+0.133u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03352: [DIP/Input] cobram3: No demo (attract) sound (Xander)
+- 03354: [DIP/Input] cobram3: Infinite lives dip switch triggers 
+         service mode (Xander)
+- 02377: [Graphics] fourtrax: There are some graphics glitches 
+         (POSIRQ-related?). (hap)
+- 02645: [Gameplay] sbrkout: Super Breakout paddle not reaching left 
+         hand side (hap)
+- 03317: [Graphics] starblad: No Large polygons displayed (hap)
+- 02378: [Graphics] fourtrax: Sprite banking (for rear view mirror) 
+         isn't working. (hap)s
+- 01119: [Color/Palette] finehour: [possible] Some bigger enemies 
+         seems to have bad colors. (hap)
+- 03242: [Graphics] fantzone, fantzon1: Background scroll is 
+         completely broken. (hap)
+- 03314: [Documentation] mrdrillr, mrdrilr2: Title should be "Mr. 
+         Driller" (dot), not "Mr Driller" (Fabio Priuli)
+- 03349: [Sound] mpatrol, mpatrolw: Wimpy explosion sound (couriersud)
+- 03366: [Compiling] Default mametiny build no longer compiles 
+         (Fabio Priuli)
+- 02715: [Crash/Freeze] sokyugrt, shienryu: sokyugrt freezes after 
+         the loading and patent screens. shienryu allows coins but 
+         that's it. (Angelo Salese)
+- 03359: [Graphics] sonson: unsupported negative sprite positions 
+         (Angelo Salese)
+- 03358: [Misc.] sonson: Unimplemented coincounter (Angelo Salese)
+- 03348: [Graphics] jjsquawb: Background Graphics Incorrectly mapped 
+         (robiza)
+- 03320: [Sound] cliffhgr: dip switch setting reversed for demo sound 
+         play (Tafoid)
+- 03316: [Sound] burglarx: The main music is distorted (Osso)
+- 03313: [Misc.] cliffhgr, cliffhga: Missing parent/clone 
+         relationship (smf)
+
+
+
+Source Changes
+--------------
+Made cliffhga a clone of cliffhgr. [smf]
+
+ARM7 updates: [R. Belmont]
+ - Preliminary PXA255 support, including Intel-specific CP14
+ - Hooked up TLB
+
+Fixed player 2 input port in photon.c. Fixed bad CRC/SHA1 in photon.c.
+[Mariusz Wojcieszek]
+
+Naomi/AW updates: [Deunan Knute, CaH4e3, R. Belmont]
+ - DMA protection emulation for qmegamis, fixes in-game graphics 
+ - Correct decryption key for Extreme Hunting
+ - Added protection emulation for Cosmic Smash
+ - Added protection emulation for Capcom vs. SNK (cartridge ver)
+
+DIPSW fixes: [kanikani]
+ - argus: fixed service switch (was defined to port that does not 
+    exist), and fixed DIPLOCATION order.
+ - valtric: fixed note for how to enter test mode. coin1 and coin2 
+    were swapped, and fixed DIPLOCATION order.
+ - butasan: coin1 and coin2 were swapped, and fixed DIPLOCATION order.
+
+The 6532 RIOT timer should keep spinning after a timeout (regression 
+introduced in 0.126u2). [Wilbert Pol]
+
+Did the following changes to the tankbatt.c driver [Angelo Salese]:
+ * Cleaned-up the irq / nmi firing and fixed irq acks;
+ * Cleaned-up the memory map;
+ * Added coin counter, coin lockouts and added a second coin chute;
+ * Documented some unclear i/os;
+ * Flagged the game as GAME_IMPERFECT_SOUND since it uses samples 
+    instead of proper discrete sound emulation;
+
+Fixed DEMO_SOUND Dip assignment in cliffhgr to work correctly when 
+turned ON. [Tafoid]
+
+Improved colors in Merit Poker [Angelo Salese]
+
+Fixed the version number of 2 sound roms for Mortal Kombat 4 and 
+made U2 1MB in size which is correct. The actual rom type is a 27C800
+and has been verified on 2 seperate PCBs. All the rest of the roms 
+are 27C160 as per the driver. [Brian Troha]
+
+Added license information to the 2 Red Hawk sets (IE: the US & Italy).
+[Brian Troha]
+
+Added Screen Raw Params hook-up to the ST-V driver, fixes some of the 
+current issues [Angelo Salese]
+
+Added dip port locations to Glass, Alligator Hunt, Touch & Go, World 
+Rally 2: Twin Racing & Maniac Square [Brian Troha]
+
+Added dip port locations to Big Karnak, Biomechanical Toy, Maniac 
+Square (prototype), Squash & Thunder Hoop [Brian Troha]
+
+Updated many clone names to use more than 8 characters. 
+[Yasuhiro Ogawa, Brian Troha, Tafoid, Fabio Priuli]
+
+Added dip port locations to Sky Soldier, Time Soldiers and Paddle 
+Mania. [Brian Troha]
+
+39 in 1 improvements: [MooglyGuy, R. Belmont]
+ - Fleshed out some Intel PXA255 peripherals.
+ - Improved PXA255 DMA controller emulation.
+ - Fixed FBARx register accesses to wait until the current DMA 
+    transfer has completed before triggering another interrupt. 
+ - Hooked up 93C66 EEPROM.
+ - Fixed LCD DMA behavior
+ - Fixed EEPROM byte order
+ - Video, inputs, and flash data ROM hooked up
+ - Improved PXA255 LCDC, DMA and I2S emulation
+ - Working but not great CPLD protection simulation
+ 
+ST-V: Hand-tuned pixel-clock to match measured fps from the pcb 
+[Angelo Salese, Corrado Tomaselli]
+
+Improved hblank duration behaviour [Angelo Salese]
+
+Added PCB location to 4 roms in a Head Panic clone. [Brian Troha]
+
+Corrected rom names for Four Trax. Added the Guru's readme for Four 
+Trax. Derived all CPU clocks based on actual OSC timing. 
+[Guru, Brian Troha]
+
+Added basic PCB layout and added "U" locations to as many rom names 
+as I could identify in a hi-res pic of the PCB for G-Stream G2020.
+[Brian Troha]
+
+Updated sonson DIP locations and defaults to match those of the game 
+upgrade manual. [Tafoid]
+
+Added dip port locations to: [Brian Troha]
+ * Gaplus / Galaga 3 and clones
+ * Funny Bubble and clone
+ * Gang Busters and clones
+ * Green Beret plus clones and Mr. Goemon (also cleaned up)
+ * GI Joe and clones
+ * Gladiator and clones (also corrected to match factory settings)
+ * Ghosts'n Goblins and clones (also restated bonus descriptions)
+ * Goindol and clones
+ * Grand Champion
+ * MX5000 / Flack Attack
+ * Food Fight and clones
+ * Got-cha Mini Game Festival and clone
+ * Aquarium, Gun Dealer plus clones and Wise Guy plus clone
+ * Haunted Castles and clones
+ * The Main Event, Devastators and various clones
+ * Magical Cat Adventure, Nostradamus and various clones
+ * Multi Champ and clone (also added support for coinage mode 1 & 2)
+ * Dragon Master
+ * B-Wings and clones
+ * DECO Cassette System driver (also split out settings for specific
+    games where appropriate)
+ * Vandyke, Blackheart, Many Block, Task Force Harrier, US AFF 
+    Mustang, Hacha Mecha Fighter, Koutetsu Yousai Strahl, Bio-Ship 
+    Paladin, Acrobat Mission, Super Spacefortress Macross, Super 
+    Spacefortress Macross II, Thunder Dragon, Thunder Dragon 2, 
+    GunNail, Sabotan Bombers, Bombjack Twin, Nouryoku Koujou Iinkai, 
+    Guardian Storm
+ * Stagger I & clones, Bubble 2000, Fire Hawk and Spectrum 2000
+ * Air Attack, SS Mission and Twin Action
+ * Super Pac-Man, Pac & Pal, Grodbda, Phozon, Mappy, Tower of Druaga, 
+    Dig Dug II and Motos as well as clones
+
+Various improvements to Yumefuda / Alba ZG driver [Angelo Salese]
+ * Hooked up basic mc6845 crtc, fixing resolution and refresh rate;
+ * Hooked up the ppi8255;
+ * Hooked up some previously unemulated system inputs;
+ * Added coin counter / coin lockout and added proper flip screen bit;
+ * Corrected system clock;
+
+Added dip port locations to Bosconian, Galaga, Xevious Dig Dug and 
+clones. Added proper conditional bonus (based on number of starting 
+fighters) to Bosconian and Galaga [Brian Troha]
+
+More accurate program rom names for Polygonet Commanders (ver UAA) 
+set. [Brian Troha]
+
+Improved bonus verbiage for the galaga.c, gng.c, gberet.c & gbusters.c 
+drivers. Verbiage more like the actual manual. [Brian Troha]
+
+Various improvements to the Speed Attack driver [Angelo Salese]
+ * Hooked up basic mc6845 crtc, fixing resolution and refresh rate;
+ * Added the watchdog;
+ * Corrected system clock;
+ * Removed a video quirkness (tilemap h/w values were bigger than its VRAM) and cleaned up some other minor stuff;
+
+Redumped bingor2 gfx roms. [Team Europe]
+
+Simplified Atomiswave's decryption routine & keys. [Andreas Naive]
+
+Added Guardian Storm PCB layout [Brian Troha]
+
+funworld.c improvements [Roberto Fresca]
+ - Removed generic funworld DRIVER_INIT.
+ - Added partial PIAs connection diagram.
+ - Updated technical notes.
+
+Rewrite of NES PPU: [Robert Bohms]
+ - Ported ppu2c0x to use a device memory map
+ - Ported all rendering to access PPU address space through memory 
+    map
+ - Updated MAME drivers to install read handlers or memory banks in 
+    PPU memory map, as appropriate.
+ - Removed all mirroring and banking code from the ppu, as the backing 
+    memory is documented to be external
+ - Supplied replacement banking alternatives for all MAME drivers 
+    (vsnes.c, playch10.c, cham24.c, and multigam.c)
+
+Sound map cleanup for the taito_x.c driver. [Tafoid]
+
+Improved Irem sound: [couriersud]
+ - Better Moon Patrol sound
+ - Revisited schematics
+ - Found 10-Yard schematics as well
+ - Corrected a bug, some discrete values and added two RC nodes from 
+    schematics
+
+NMK16 driver clean ups. Merged some of the duplicated code in nmk16.c, 
+and attempting to handle the larger tilemaps used by Thunder Dragon 2, 
+Rapid Hero and Macross 2 in a more correct way. This has fixed some 
+glitches in the intro of Rapid Hero without breaking the ingame 
+graphics. [David Haywood]
+
+Added default input mappings for gambling / poker / slot games. 
+Converted many drivers to use the new mappings. [Fabio Priuli]
+
+Some improvements to the meadows driver: [robiza]
+ - set autocenter value to 0 in deadeye
+ - implemented correct inputs in bowl3d and removed not working flag
+
+Unified sets with unknown manufacturer to use all the same 
+manufacturer <unknown>. [Fabio Priuli]
+
+Decrypted progolfa. [robiza]
+
+Documented what the "language" dipswitch actually does for Rapid Hero.
+When set to "Japanese", the main characters text "talk" on the Stage
+Clear screens. When set to "English" you simply see "Stage 'x' Clear"
+(where 'x' is the current stage you just finished). [Brian Troha]
+
+Changed clocks on Trojan as verified on pcb. [Corrado Tomaselli]
+
+Changed quake CPU speed to 233MHz, added basic PC IO map, hooked up 
+8259, corrected year to 1998, added some TODO statements. [Luigi30]
+
+Moved priority_bitmap from a global into the running_machine struct.
+Updated all drivers accordingly. [Atari Ace]
+
+Changed Scud Hammer analog controls from paddle to accelerometer. 
+Previously, if you did nothing, the paddle control caused the hammer 
+to smash automatically. [hap]
+
+Verified and updated the vertical syncs on the following pcb:
+[Corrado Tomaselli]
+ - system18 motherboards
+ - ninja ryukenden
+ - tricky doc
+ - raiden
+ - Ninja Kid 2
+ - atomic robokid
+ - tiger road
+ - stv motherboard
+ - toki
+ - raiden 2 / raiden dx (same pcb)
+ - cabal
+ - blood bros
+ - tengai
+ - gng
+ - rally byke
+ - vimana
+
+Fixed some inconsistencies with bootleg manufacturer names, eg. using 
+Bootleg (big B), or using the original company if the rom is a 
+bootleg. [hap]
+
+Changed sound z80 of ghost and goblins from 3mhz to 1.5mhz as verified 
+on pcb. [Corrado Tomaselli]
+
+Documented lamps/motor usage for Night Striker [Angelo Salese]
+
+Made irqs more accurate in City Connection [Angelo Salese]
+
+Hooked up Cobra Command sound ROM. [Jim Hernandez, Aaron Giles]
+
+Fixed cobram3 dip switch. [Xander]
+
+Fixed a bug related to eating cycles during 68k cpu reset. Previously, 
+initial_cycles had a wrong value after reset, and if cycles were < 0, 
+it'd always return 0. This change also happens to fix a scrolling bug 
+in Fantasy Zone, introduced when that cycle eating thing was added. 
+[hap]
+
+Calc 3 update: [David Haywood]
+ - Shuffled a few things around based on new findings
+ - Added an extra decryption table used for the Brap Boys startup code
+    (still doesn't do anything interesting)
+ - Noted that one of the unknown parameters for the MCU Init command 
+    is where it reads / writes eeprom data from.
+ - Noted that an additional parameter in the MCU commands may cause 
+   further displacement of the writeback address, as BRap Boys seems 
+   to rely on this (needs further testing) - added a hack for now so 
+   that BRap Boys places the writeback address of the initial table 
+   somewhere that causes it to get executed.
+
+Marked graphics ROMs on Led Storm Rally 2011 (US) as bad, as they
+cannot possibly be the right ones for this set. [David Haywood]
+
+Properly added support for namcos2 multiple posirq anyway. Fixes
+the following issues:[hap]
+ - starblad polys
+ - fourtrax track and mirror
+ - dirtfoxj game start spotlight effect, game still locks up tho
+ - burnforc 'hiccup' glitches when scrolling left/right
+ - luckywld tunnel glitch (still a bit glitchy though)
+ - finehour bad sprite colors
+ 
+Changed vsyncs to the following games: truxton, demon's world, Pang, 
+super pang, block block, yie ar kungfu and kikikaikai. 
+[Corrado Tomaselli]
+
+Corrected sn76459 clock to Ye Ar Kungfu and verified the other clocks.
+[Corrado Tomaselli]
+
+Changed the main clock of Pang, Super Pang and Block Block.
+[Corrado Tomaselli]
+
+Switched galaxian LFO sound to use the long-disabled NEW_LFO. It's not
+entirely fixed, but it's closer. [hap]
+
+Minor MCR documentation changes: [Kevin Eshbach]
+ * Updated all of the TRON sets with location of the roms and the 
+    board they belong to
+ * Updated the name of the PROM on the Super Sound I/O board
+ * Added notes about PALs that need to be dumped (The same PAL part 
+    numbers are also  used on Xenophobe and probably other MCR II & 
+    III games.)
+
+Fixed chdman -update to leave the write protect state alone when 
+updating uncompressed CHDs. [Michael Zapf]
+
+Changed default key for Mahjong P1 Bet to '3', because '2' was 
+conflicting with P2 Start in 2 players Mahjong games. [Fabio Priuli]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Tetris (Photon System) [Miodrag Milanovic, Mariusz Wojcieszek]
+Touchmaster 2000 [Mike Green, Dumping Union]
+3-D Bowling [robiza]
+Panther [Angelo Salese, robiza, Mr. Do]
+39 in 1 [R. Belmont, MooglyGuy]
+
+
+
+New clones added
+----------------
+Royal Card Professional v2.0 [Team Europe / Dumping Project]
+  (not working)
+Guardian Storm [Christian Raftopol, David Haywood, Dumping Union]
+Outrun (original revision) [Guru]
+Touchmaster 5000 (v7.01 Standard) [Brian Troha, Dumping Union]
+Cruis'n Exotica v2.0 [Smitdogg, Guru, Dumping Union] (not working)
+Pinball Action (set 4, encrypted)  [Team Europe / Dumping Project]
+Kamakazi III (Galaxian Clone) [Darran]
+Enchanted Forest (2 sets) [Heihachi_73, AGEMAME] (not working)
+Soccer Superstars (ver JAC) [f205v] (not working)
+Dream Land / Super Dream Land (bootleg of Bubble Bobble) 
+  [Sean Clough, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Extreme Hunting [Guru]
+Photo Play [Klaus Sommers, Angelo Salese]
+Capcom vs. SNK Millenium Fight 2000 (000904) [Deunan Knute]
+Videotronics Poker [Angelo Salese, Siftware]
+Bingo Roll (4 sets) [Team Europe, Dumping Project]
+Space Walk [Siftware, David Haywood]
+'98 NeoPri Best 44 (Neo Print) [JohnBoy]
+Top Gear [Heihachi_73, AGEMAME]
+K.G. Bird (2 sets) [Heihachi_73, AGEMAME]
+Black Rhino [Heihachi_73, AGEMAME]
+3 Bags Full [Heihachi_73, AGEMAME]
+Phantom Pays [Heihachi_73, AGEMAME]
+Sweet Hearts II [Heihachi_73, AGEMAME]
+Golden Canaries [Heihachi_73, AGEMAME]
+Coral Riches II [Heihachi_73, AGEMAME]

@@ -1,0 +1,116 @@
+0.34 BETA 5
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Ring King / King of Boxer (merged) [Ernesto Corvi]
+Time Tunnel [Thierry Lescot]
+Bio Attack (no collision detection) [Thierry Lescot]
+Sea Fighter Poseidon (not working due to protection) [Nicola Salmoria]
+Top Gunner (bootleg; also fixed the original set) [Nicola Salmoria]
+Black Tiger (bootleg) (merged) [Marco Cassili]
+Pinball Action (set 2) (merged) [Marco Cassili]
+Exerion (Taito) (merged) [Nicola Salmoria]
+Space Trek (cocktail version) [Nicola Salmoria]
+Phoenix (IRECSA) (merged) [David Winter]
+Regulus (not encrypted) (merged) [Thierry Lescot]
+plus several Neo Geo games
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed sprite flipping in Super Qix. [Mirko Buffoni]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Partial sound in Punk Shot. [Nicola Salmoria]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Champion Baseball. [Howie Cohen]
+
+- Quantum. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Improved the user interface. Use "the key on the left of 1" (tilde on some
+  leyboards) to turn on the On Screen Display which lets you change Volume,
+  Gamma Correction, Brightess, and independently set the volume levels of the
+  sound chips. Tab still brings up the setup menu, which is now asynchronous.
+  [Nicola Salmoria]
+
+- [DOS] Improved the profiler. It now REQUIRES the Pentium-class RDTSC
+  instruction. It will not work on 486s, older Pentiums, and maybe other
+  non-Intel CPUs. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- x86 ASM 68000 core. This is a major speed improvement. [Mike Coates, Darren
+  Olafson]
+
+- YM3812 and YM3526 software emulator. In the DOS version it is disabled
+  because we are using the 100% compatible SoundBlaster OPL chip.
+  [Carl-Henrik Skårstedt]
+
+- A begginning for a YM2413 emulator. It pushes data through the YM3812.
+  [Paul Leaman, Ernesto Corvi]
+
+- I86 disassembler for the debugger, based on code by Robin Hilliard.
+  [Andrea Mazzoleni]
+
+- New functions install_mem_read_handler() and install_mem_write_handler().
+  They can be used to install special memory handlers (for example, to trap
+  busy loops, or to make small changes to the memory map for games running
+  on similar hardware). [Alex Pasadyn]
+
+- New field driver_init in the GameDriver structure. It's an optional function
+  which can be used to do some game specific initialization, for example by
+  adding memory handlers using the above functions. [Nicola Salmoria]
+
+
+Changes to the cheat system [Stephane Humbert]
+
+New in MAME 034b4 :
+  * Possibility of "circular" values in search method 1:
+     - if you press OSD_KEY_LEFT or OSD_KEY_DOWN when value is 0, it turns to
+0xFF
+     - if you press OSD_KEY_RIGHT or OSD_KEY_UP when value is 0xFF, it turns to
+0.
+  * Added the possibility of toggling the watches display ON (Insert) and OFF
+(Del) .
+  * Possibility to work on another cheat file (CHEAT.DAT is just the default
+one) by using option "-cheatfile xx"
+  * Added new types of cheats:
+     - 20-24 : same as 0-4 but they force bits to 1
+     - 40-44 : same as 0-4 but they force bits to 0.
+
+New in MAME 034b5 :
+* 15 active cheats instead of 10.
+* Free memory before the start of a new search.
+* Possibility of searches in CPUs other than 0 : a question is asked to the
+user to choose a CPU (0 default) when he starts a new search and the game has more
+than one CPU.
+* Possibility to view watches for CPUs other than 0.
+* CPU is displayed with the watches.
+* Possibility to change the CPU of a watch by pressing 9 (previous CPU) and 0
+(next CPU) .
+* Possibility to copy a cheat code by pressing F4.
+* Possibility to rename the cheat filename by pressing F5.
+* Possibility to save all the cheat codes to disk by pressing F6.
+* Possibility to remove all the cheat codes from the active list by pressing
+F7.
+* In the edit cheat, on the data line :
+    - Home sets the value to 0
+    - End sets the value to 0x80.
+* Possibility to use to use Home, End, PgDown and PgUp to select a cheat code
+in the list.
+* Data is saved on 2 hex digits (%02X) .

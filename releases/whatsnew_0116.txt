@@ -1,0 +1,484 @@
+0.116
+-----
+
+
+MAMETesters Bugs Fixed
+----------------------
+oscar0111u3yel [ShimaPong]
+toypop0115u4red [Aaron Giles]
+profpac0115u4gre [Aaron Giles]
+seawolf2_0115u2gra [Aaron Giles]
+konek0115u4yel [Aaron Giles]
+9ballsht0115u3gre [Aaron Giles]
+csuperas0104u7gre [ShimaPong]
+exerion0112u4yel [ShimaPong]
+
+
+
+Source Changes
+--------------
+Major Donkey Kong driver update: [couriersud]
+ - Implemented discrete sound from schematics: dkong, radarscp
+ - Implemented discrete background from schematics for radarscp and
+    various effects:
+    - blue to black to blue background
+    - exact priorities
+    - Grid will flip open and close, vertical flipping on hit.
+ - Changed inputs for radarscp
+ - Color generation from schematics (resistor mixer) for
+    radarscp, dkong, dkongjr and dkong3
+
+Added new components to the discrete sound system: [couriersud]
+ - Added a "inverter oscillator" component. This can also be used as
+    a raw sine generator - needed by radarscp.
+ - Added a "integration circuit" based on transistor and RC
+ - Added a "modulated RC discharge" component.
+
+Removed unused return value from VIDEO_START callbacks.
+[Zsolt Vasvari]
+
+Improved independence of CPU and sound core variants in order to make
+them more properly separated by the existing compile-time flags.
+[Atari Ace]
+
+More TIA updates from MESS: [Wilbert Pol]
+ - Rewrote drawing of playing graphics
+ - Improved handling of player graphics reset signals
+ - Improved handling of HMOVE signals
+
+Updates to Change Lanes: [Adam Bousley]
+ - fixed the broken graphics
+ - fixed the dipswitches
+ - hooked up the steering wheel controls
+ - made some changes to the sprite and text layers based on schematics
+
+Fixed up a number of places where malloc results weren't being checked
+correctly. [Atari Ace]
+
+Renamed palette_set_color() to palette_set_color_rgb(). 
+palette_set_color() now matches palette_get_color() and deals in
+rgb_t data only. Also changed palette_set_colors() to deal with rgb_t
+data instead of R,G,B triples. [Aaron Giles]
+
+Flattened colormap and palette in the 1942 driver. [Aaron Giles]
+
+Removed usage of unsigned char/short/int from the drivers code in
+favor of UINT8/UINT16/UINT32.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong G-Taste [David Haywood]
+
+
+
+New clones added
+----------------
+Buzzard [Zsolt Vasvari]
+
+
+
+0.115u4
+-------
+
+
+Source Changes
+--------------
+Fixed a number of games to explicitly use the SN76489 now that it
+behaves differently from the SN76496. [Lord Nightmare]
+
+Fixed inputs in Ace Attacker. [Barry Gemma]
+
+Fixed ledutil.c to work for USB keyboards again. [ahofle]
+
+Improved colors in Safari Rally. [Zsolt Vasvari]
+
+Fixed stobe light in Space Encounters. [Zsolt Vasvari]
+
+Refactored the Dooyong video hardware to take advantage of tilemaps.
+Also included priority fixes. [Vas Crabb]
+
+Astro Fighter driver update: [Zsolt Vasvari]
+ - Added memory map/interrupt/video timings from schematics
+ - Hooked up SN76477 to Tomahawk 777
+ - Switched the two Tomahawk 777 sets. The newer version is now the 
+    main set and the older has been renamed to tomahaw1
+ - General driver clean-up
+
+Removed unused return value from MACHINE_START and SOUND_START.
+[Zsolt Vasvari]
+
+Changed save state code to not save any palette information if no
+palette is used. [Zsolt Vasvari]
+
+Simplified a number of videoram write handlers by removing extraneous
+dirty checking. [Aaron Giles]
+
+Added support for scaling graphics layouts automatically. The X and Y
+scale factors are specified in the gfx_decodeinfo structures. Updated
+the MCR driver to use this feature. [Aaron Giles]
+
+Removed colortables from a number of drivers that didn't need them.
+Also converted pacman and mappy drivers to collapse the colortable
+and palette. [Aaron Giles]
+
+Removed a number of common but useless and/or frequently incorrect
+comment patterns throughout the code. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Asuka & Asuka (World) [Corrado Tomaselli]
+
+
+
+0.115u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+connect4_0115u1ora [Luigi30]
+
+
+
+Source Changes
+--------------
+Fixed PIA numbers in revamped Spiders driver. [Zsolt Vasvari]
+
+Updated TIA graphics code is the code from the MESS repository. Also
+updated tourtabl driver to accommodate the changes. [Wilbert Pol]
+
+Fixed Space Firebird so that the sprites are opaque with respect to 
+each other and bullets, but transparent with respect to the star 
+field. [Zsolt Vasvari]
+
+Fixed subtle behavior in handling of PIA port A. This allows for the
+removal of hacks in the Qix driver and the Williams driver.
+[Zsolt Vasvari]
+
+Cleaned up the tilemap get_info callbacks: [Atari Ace]
+ * regularized and clean up the existing callbacks
+ * changed some callbacks to use int tile_index as the parameter
+    so that all callbacks use consistent naming
+ * folded some direct uses of tile_info.flags into calls to 
+    SET_TILE_INFO()
+ * changed the Konami drivers to manipulate the tile_info global only 
+    within the tile_get_info callbacks
+ * replaced all the callback declarations with TILE_GET_INFO() 
+    wrappers 
+ * changed the interface to pass tile_info as a parameter and made
+    tile_info a static variable only accessible inside tilemap.c.
+
+Significant changes to the berzerk driver: [Zsolt Vasvari]
+ - Video timings, memory map and interrupt system implemented from 
+    schematics
+ - Hooked up colors according to the schematics as well. The colors 
+    changed significantly. For example the yellow robots are now 
+    more like a mustard color.
+
+More ARM wrestling: [R. Belmont]
+ - Fixed error in carry propagation on ALU opcodes of the form 
+    ALU r1, r2, r3 SHIFTEROP #imm
+ - Fixed Thumb ADD instructions where the PC is involved
+ - Fixed LDMIA to mask off bits 0 and 1 of the destination address
+ - MSR instruction now properly respects processor mode and field 
+    code flags
+
+Modernized the Beam Invaders, Clay Shoot, and Embargo drivers.
+[Zsolt Vasvari]
+
+Changed the sound balance in Thunder Dragon 2 to match the original 
+PCB. Also verified the 68000 clock. [Corrado Tomaselli]
+
+Fixed several more opcodes in the encrypted Irem CPU. [Robiza]
+
+Fixed disassembly of brset and brclr opcodes in the 68HC11 core.
+[Phil Skuse]
+
+Fixed tilemap colors in the Konami ZR107 driver. [Ville Linde]
+
+Fixed bug in INR/DCR opcodes in 8085 CPU core. [allentown_john]
+
+Updated PIA interfaces to support masks for port A/B inputs. This
+allows proper behavior of unconnected pins, according to the specs.
+Updated a number of games to use the new interfaces. [Zsolt Vasvari]
+
+Fixed bug that failed to initialize all IRQ states in the 6809 core
+on a reset. Also fixed cycle timing and removed obsolete code from
+the core. [Ernesto Corvi, Zsolt Vasvari]
+
+Cleaned up vec_mult implementation. [Nathan Woods]
+
+Improved toratora driver: [Zsolt Vasvari]
+ - added SN76477 from the schematics, but it sounds terrible; no doubt 
+    the schematics are incorrect in many places
+ - updated to the recent PIA changes
+
+Fixed input.c to use osd_ticks() instead of clock(). [Nathan Woods]
+
+Fixed bit calculation in 6526cia.c which broke joysticks in the C64
+driver in MESS. [Pete Rittwage]
+
+Improvements to the rd2tank driver: [Zsolt Vasvari]
+ - fixed colors, based on the Red Tank flyer
+ - added AY8910's, sounds fine, but how exactly they are hooked up 
+    to the PIA is not fully understood.
+ - hooked up CRTC properly
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wild Arrow [Zsolt Vasvari]
+G-Stream G2020 [David Haywood]
+
+
+
+New clones added
+----------------
+Multi Game (set 2) [Roberto Fresca]
+19XX: The War Against Destiny (Brazil 951218) [Nicola Salmoria]
+Thunder Dragon 2 (9th Nov. 1993) [Corrado Tomaselli]
+Flicky (128k Version, System 2, not encrypted) [Corrado Tomaselli]
+Flicky (64k Version, System 1, 315-5051, set 2) [Corrado Tomaselli]
+
+
+
+0.115u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cidelsa0114u4gre [Aaron Giles, for real this time]
+pignewta0115u1gra [ShimaPong]
+gorf0115u1ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Merged in a couple of minor tweaks from MAME Plus! [MAME Plus!]
+
+Fixed China Gate high scores. [Robbert]
+
+Fixed Final Lap R/Speed Racer graphics. [Zsolt Vasvari]
+
+Added a new opcode for Match It 2. There still are 4 unknown opcodes 
+and the "no tiles" bug before it will be promoted to working status.
+[Pierpaolo Prazzoli]
+
+Changed the CRTC6845 emulator to optionally control the screen 
+configuration and video rendering. Updated the Qix and Spiders driver 
+to use the new functionality. Added notifications for when the
+display enable pin changes in order to drive blanking signals.
+[Zsolt Vasvari]
+
+New 74123 timer emulator. It supports different ways a 74123 can be 
+hooked up that affect the timing period. The old implementation was 
+incorrect in lots of respects. [Zsolt Vasvari]
+
+Removed the addressing order parameter from pia_config() and replaced
+it with dedicated write and read handlers. [Zsolt Vasvari]
+
+Rewrote nyny driver: [Zsolt Vasvari]
+ - Game speed should now be correct. It was way too slow before
+ - Added star field. The game can stop and reverse the direction of 
+    the star field by changing a delay counter
+ - General driver clean-up
+ - Fixed DIP switches and the voices
+
+Fixed bug in win_get_window_text_utf8() for when a window's text is 
+an empty string. [Nathan Woods]
+
+Fixed some page 1 opencode lengths in the 6309 dissasembler.
+[Tim Lindner]
+
+Added DIP switches to Master Boy according to the game manual.
+[ClawGrip]
+
+Added DIP switch information to the Poizone driver. [Luigi30]
+
+Changed png2bdc to support multiple input PNGs. [Aaron Giles]
+
+Fixed recently introduced bug in Astrocade driver relating to
+collision detection. [Aaron Giles]
+
+Added support for controlling the default scale/offset for screens
+at the driver level. This allows us to properly describe the screen
+width/height and blanking in the driver independent of specifying a
+good default size to crop the image to. [Aaron Giles]
+
+Added border support to the Astrocade driver. Extended the starfield
+generation out into it. Extended the blanking region out farther to
+match information from the flyers and set the default scale/offset
+of the games to crop appropriately. [Aaron Giles]
+
+Fixed the CDP1869 to fill the border area with the background color.
+Added cropping to the Cidelsa games. [Aaron Giles]
+
+Corrected speaker locations and placement for Gorf and Wizard of Wor.
+Added missing mux to Gorf's audio, which controls speech versus
+sound effects during the game. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Multi Game [Mariusz Wojcieszek]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Chameleon 24 [Mariusz Wojcieszek]
+
+
+
+0.115u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+asserts0115ora [Aaron Giles]
+scregg0115red [Zsolt Vasvari]
+mysticri36rc2gre [Pierpaolo Prazzoli]
+m92c053gre2 [Pierpaolo Prazzoli]
+aerofgt.c0115ora [Roberto Fresca]
+midyunit0115red [couriersud]
+nekkyoku0115red [couriersud]
+exerion0112u4yel [Pierpaolo Prazzoli]
+dragngun067yel [R. Belmont, Ryan Holtz -- please verify]
+cidelsa0114u4gre [Aaron Giles]
+missile0115yel [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added support for playback of "extended" INP files that are commonly
+found on compete sites. [David Haywood]
+
+Added lswx and stswx opcodes to the PowerPC core. [Ville Linde]
+
+Changed DRIVER_INIT macro to prepend driver_init_* instead of simply
+init_* to be consistent with the other initialization functions.
+[Atari Ace]
+
+Corrected the pulse shape of the timer output in the MPU4 driver,
+and also correctly identified the AY sound chip as an AY8913.
+[James Wallace]
+
+Merged leprechn driver into the gameplan driver and added correct
+video timings. [Zsolt Vasvari]
+
+Cleaned up the dorachan driver. Replaced fake color map with actual
+color PROM decoding. [Zsolt Vasvari]
+
+Cleaned up the supertnk driver. [Zsolt Vasvari]
+
+Move Atari vector PROMs into separate regions. [Mathis Rosenhauer]
+
+Added DIP switches for Excite League. [Barry Harris, Yasuhiro Ogawa]
+
+Improved m92 sprite drawing. [Pierpaolo Prazzoli]
+
+Rewrote the magicfly driver: [Roberto Fresca]
+ - Figured out how the protection works.
+ - Removed the hacks/patchs that formerly allow boot the games.
+ - Figured out how the buffered inputs works.
+ - Demuxed all inputs for both games.
+ - Unified the memory maps from both games.
+ - Added NVRAM support to both games.
+ - Mapped DIP switches.
+ - Managed the planes to get the 3bpp GFX colors accurate.
+ - Renamed the ROMs acording to pcb pictures and ROM contents.
+ - Cleaned up and optimized the driver.
+
+Fixed throttle range in gforce2. [David Haywood]
+
+Moved Win32 UTF-8 wrappers into a new module (winutf8.c), and added 
+some new wrappers that Oliver Stoeneberg created for MAME32.
+[Nathan Woods]
+
+Aleck64/N64 update: [Ryan Holtz]
+ - RSP: some opcodes bugfixed plus should work on big-endian targets
+ - Real PIF ROM dump now used and required
+ - Various other fixes
+
+Fixed eeprom handling in surfplnt. [couriersud]
+
+Fixed carry flag calculation for SUB/SBC/CMP family instructions in
+the ARM core. [R. Belmont, Ryan Holtz]
+
+Improvements to the ARM7 core: [R. Belmont, Ryan Holtz]
+ - fixed 32-bit unaligned reads to "scramble" properly
+ - fixed carry flag calc for SUB/SBC/CMP family instructions
+ - fixed multiply-and-accumulate instructions
+ - added more instructions to the disassembler
+ - fixed logical and arithmetic shifts
+ - added more Thumb instructions
+ - fixed relative loads and stores
+ - fixed LSL/LSR with zero shift values
+ - fixed the disassembly of CMN
+ - verified behavior when ADD destination is the PC on real h/w
+
+Rewrote the Space Firebird driver: [Zsolt Vasvari]
+ - Added star field, matches with the screen shot perfectly
+ - Video timings/memory map/interrupts from schematics
+ - Added support for the color fade effect
+
+Identified a couple of new opcodes in the Irem V30 CPU which improves
+matchit2. [Pierpaolo Prazzoli]
+
+Significantly cleaned up the Spiders driver. [Zsolt Vasvari]
+
+Changed memory system behavior so that masks can be specified 
+independently of mirrors. By default if the mask is 0 and a mirror
+is present, the mask is implicitly ~mirror, just as before. But if a
+mask is specified, it is not limited to the non-mirrored bits. This
+allows you to independently control the mapping versus what is 
+returned to the read/write handler. [Aaron Giles]
+
+Rewrote Astrocade driver: [Aaron Giles]
+ - fully implemented all function generator modes
+ - implemented pattern board according to schematics, including timing
+ - fixed interrupt handling
+ - added crosshairs to SeaWolf II
+ - added stereo sound and panning to SeaWolf II samples
+ - rewrote Astrocade sound emulation according to patent
+ - sound generation now uses proper LFSR for noise effects
+ - added partial support for Ten Pin Deluxe, including sound board
+    emulation and internal layout
+
+Fixed sound in Inferno after all these years. Sadly, it required a
+hack. [Aaron Giles]
+
+Added correct video timings for the Williams games. [Aaron Giles]
+
+Added support for misaligned PIXBLT operations in the TMS34010 core.
+The code still needs cleanup but improves the new JPM driver.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magic Fly [Roberto Fresca]
+7 e Mezzo [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Captain Silver (World) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Ten Pin Deluxe [Aaron Giles]

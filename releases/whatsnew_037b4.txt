@@ -1,0 +1,117 @@
+0.37 BETA 4
+
+PORTERS: THERE ARE A FEW API CHANGES, READ CAREFULLY THE SOURCE SECTION.
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Background smoothing in Return of the Jedi. [Nicola Salmoria]
+
+- Greatly improved Star Fire / Fire One. [Aaron Giles]
+
+- Fixed final fireworks in Ajax. [Nicola Salmoria]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed sound in the Exidy games. [Aaron Giles]
+
+- Improved YM2413 emulation. [Paul Leaman]
+
+
+Source:
+-------
+
+- [DOS] The SEAL patch was bugged on mono sound cards, a new one is included.
+
+- Fixed save_screen_snapshot() to save VIDEO_PIXEL_ASPECT_RATIO_1_2 games with
+  the correct aspect ratio. Also introduced save_screen_snapshot_as(). Porters
+  are STRONGLY ADVISED to use one of these functions to save screen shots,
+  instead of providing their own. Note that osd_save_snapshot() now takes a
+  bitmap argument, so it must not be hardwired to save Machine->scrbitmap
+  (overlays wouldn't be saved otherwise). [nathan]
+
+- A few changes were made to allow run time changes to the visible area, and
+  to simplify the OS dependant code by moving some functionality to the core.
+  - Added visible_area to struct RunningMachine. Drivers must now use
+    Machine->visible_area instead of Machine->drv->visible_area. The field in
+    struct MachineDriver has been renamed default_visible_area and it should
+    normally be used by the core only.
+  - New function set_visible_area() that can be used by drivers to change the
+    active display area at run time.
+  - New function osd_set_visible_area() used to tell the OS dependant code the
+    portion of the bitmap that has to be drawn on screen. It is passed
+    coordinates relative to the actual bitmap, so no further processing is
+    required for rotated games. The OS dependant code is allowed to display a
+    smaller portion of the bitmap if necessary, but it must not draw a larger
+    portion (which might contain garbage).
+    The function must call set_ui_visarea() to tell the core the portion of
+    the bitmap which is actually visible (which might be smaller than
+    requested), so the user interface can be drawn accordingly.
+  - osd_update_video_and_audio() takes a bitmap parameter so must not be
+    hardwired to draw Machine->scrbitmap.
+  - New fields vector_width and vector_height in struct GameOptions. The OS
+    dependant code must initialize them to force different resolutions for
+    vector games. If left at 0, the default 640x480 is used.
+  - osd_create_display() must no longer create the screen bitmap, this is done
+    by the core. It must only create the display screen / window, and return 0
+    on success.
+    Note that the width and height parameters passed are now the dimensions of
+    the visible area, not of the bitmap as they were before; therefore the
+    function only has to create a screen / window of the requested size, without
+    further processing, and without peeking into the drv->visible_area field.
+    This applies to osd_set_display() as well.
+  - Changed osd_new_bitmap() and renamed it osd_alloc_bitmap() to avoid
+    confusion with old drivers. The function is the same as before but it must
+    not swap width and height for vertical games - this is done by the core.
+    osd_new_bitmap() and osd_free_bitmap() must not be called by drivers, they
+    are reserved to the core. Drivers must call the equivalent bitmap_alloc()
+    and bitmap_free() which take care of rotation for vertical games.
+  [Nicola Salmoria]
+
+- The meaning of the full_refresh parameter to vh_screenrefresh() has been
+  slightly extend. It usually means "don't make incremental updates to the
+  screen bitmap, redraw it completely", however if the driver wants it can also
+  mean "redraw all temporary bitmaps". This happens when using the functions
+  below. This way, drivers doing lots of memset(dirtybuffer,1) can be
+  simplified and schedule it just at the beginning of vh_screenrefresh.
+- Added some functions that make flip screen handling a little more eloquent:
+  flip_screen_x_w(), flip_screen_y_w(), flip_screen_w() to set the flip_screen
+  bits, and 3 variables flip_screen_x, flip_screen_y, flip_screen to read them
+  back. If the flipscreen changes, the funtions automatically set full_refresh
+  to true for the next call of vh_screenrefresh.
+  The functions also call tilemap_set_flip(ALL_TILEMAPS), so no further
+  operations are required when using TileMaps.
+  Finally, the functions also adjust the visible area, mirroring it, in case
+  it is asymmetrical. For example, rockola.c relies on this.
+- Also added 2 helper functions:
+  - void set_vh_global_attribute( data_t *addr, data_t data )    This takes a
+  pointer to any variable and a value, and sets the variable to the value.  In
+  addition, if the value has changed, it sets full_refresh to true by calling
+  the next function.
+  - void schedule_full_refresh(void)   This just sets full_refresh to true for
+  the next screenrefresh.  See vidhrdw/galaxian.c for examples on this and
+  set_vh_global_attribute.
+  [Zsolt Vasvari]
+
+
+New games supported:
+--------------------
+
+Victory [Aaron Giles]
+Hana Awase [Zsolt Vasvari]
+Hit the Ice  [Jarek Burczynski]
+Rambo III [Jarek Burczynski]
+Quiz Sekai wa SHOW by shobai [Jarek Burczynski]
+
+
+New clones supported:
+---------------------
+
+Rescue Raider (Stand-Alone)
+Pang 3 (Euro)
+Sangokushi II (= Warriors of Fate)
+Ashura Blaster (US)
+Exodus (= Defend the Terra Attack on the Red UFO)

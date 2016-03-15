@@ -1,0 +1,77 @@
+0.108u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mbrush067gre [robiza]
+bonzeadv0107u4red [robiza]
+
+
+
+Source Changes
+--------------
+Fixed some DIP switches in bigrun and wildplt, and changed UK region
+to Europe in f1gpstar and f1gpstr2. [Sonikos]
+
+TIA-MC1 improvements: [Eugene Sandulenko]
+ - More documentation
+ - fixed inputs
+ - fixed video framerate and VSYNC delay
+ - adjusted CPU freq according to documentation
+ - removed hack with off-board video RAM
+ - implemented sound
+ - added NO_DUMP PROMs
+
+Improved documentation in the asteroids and tempest drivers.
+[Brian Troha]
+
+Improved DIP switches and documentation in the Championship Bowling
+driver. [Brian Troha]
+
+Major cleanup/rewrite of the NES PPU rendering code. [Brad Oliver]
+
+Fixed protection in the world version of Virtua Bowling. [Brian Troha]
+
+Fixed collision detection in Halley's Comet '87. [Brian Troha]
+
+Added missing DIP switch to Hangman driver. [Wolfi]
+
+Added a callback to the 68000 emulator for the TAS instruction,
+which allows different implementations based on external hardware.
+[David Haywood]
+
+Namco System 22 update: [R. Belmont]
+ - Fixed ROM loading problems reported by Guru
+ - Hooked up Prop Cycle fan and lamp to the new output system
+
+Added new flag: VIDEO_ALWAYS_UPDATE, which causes the VIDEO_UPDATE
+callback to be called even on skipped frames. This should be used
+for games where the process of rendering has side effects such as
+collision detection that need to always be present. [Aaron Giles]
+
+Fixed the new scanline timing functions to compute things
+correctly and without using unnecessary timers. [Aaron Giles]
+
+Fixed inputs in the Sega G80 vector games which were broken in the
+last release cycle. [Aaron Giles]
+
+Began cleanup/rewrite of the Turbo driver: [Aaron Giles]
+ - proper video timings
+ - full memory map
+ - cleanup/simplification of the video code with better documentation
+ - some things are still broken, this is a WIP
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Space Bugger (set 2) [Tomasz Slanina]
+Reaktor (Track & Field Conversion) [Col Turner]
+
+
+
+New clones added
+----------------
+Ninja Ryukenden (Japan, set 2) [Patrik Styrnell]
+Silent Dragon (US) [Patrik Styrnell]

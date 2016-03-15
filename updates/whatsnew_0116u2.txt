@@ -1,0 +1,77 @@
+0.116u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+adk0116yel [Zsolt Vasvari]
+neodrvr0116u1red [Zsolt Vasvari]
+strhoop0116u1red [Zsolt Vasvari]
+wb3_0116u1gre [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed regressions in Gridlee and Gomoku. [Zsolt Vasvari]
+
+Fixed some unicode build issues in the Windows code.
+[Oliver Stoneberg]
+
+Updated a number of games to correctly use the SN76489 instead of the
+SN76496, which was a later design. [Justin Kerk, Lord Nightmare]
+
+Cleaned up the exports from a number of drivers, adding static
+qualifiers to functions and variables t hat don't need to be exported
+and have generic sounding names. [Atari Ace]
+
+Updated numerous drivers to remove the use of global Machine wherever
+possible. Also reviewed the clipping regions and made changes to
+ensure the passed-in cliprect was honored. [Zsolt Vasvari]
+
+Cleaned up the Dooyong driver: [Vas Crabb]
+ * Consolidated and streamlined tilemap callbacks
+ * Took better advantage of MAME's tilemap caching by building 
+    larger tilemaps so they don't need to be invalidated as often
+ * Interpreted sprite Y position as signed 9-bit value in 
+    rshark/superx (fixes some glitches)
+ * Added more explanatory comments to help others reading the code 
+
+Changed a number of mame timer objects from void * to mame_timer *.
+[Atari Ace]
+
+Fixed a couple more Irem CPU opcodes to improve Match It 2.
+[Robiza]
+
+Fixed collision detection bug in thunderX. [Shimapong]
+
+Initial cut at working CPS3 driver. Basically works but has a lot
+more work to be done to finish it up.
+[David Haywood, Andreas Naive, Tomasz Slanina, ElSemi, Philip Bennett]
+
+Fixed minor cycle timing issue in 6809 CPU core. [Ernesto Corvi]
+
+Neo-Geo updates: [Zsolt Vasvari]
+ * Fixed several regressions from previous update
+ * Added LED outputs
+ * Improved smaller visible area configuration
+
+Fixed some incorrect information in the Neo Geo ROMsets. [JohnBoy]
+ 
+Integrated platform-specific changes into the core makefile, mostly
+taken from the SDLMAME makefile. Changed the MAMEOS configuration
+variable to OSD, indicating which OSD layer is being compiled. Added
+a new configuration variable TARGETOS which specifies the target OS 
+platform. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Punch-Out!! (Italian bootleg) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mini Boy 7 [Roberto Fresca]

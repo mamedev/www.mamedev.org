@@ -1,0 +1,197 @@
+0.61
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed tilemaps in Sotsugyo Shousho. [Nicola Salmoria]
+
+- Fixed graphics in Pinbo. [Zsolt Vasvari]
+
+- Improved raster effects handling in NeoGeo games. [Razoola]
+
+- Improved gfx in HAL21. [Acho A. Tang]
+
+- Preliminary support for raster effects in CPS2 games. [Barry Rodewald]
+
+- Added alpha blending to Psikyo games. [Paul Priest]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed Y8950 confincting with YM3812/YM3526 in some SNK games.
+  [Jarek Burczynski]
+
+- Fixed sound in Spinal Breakers. [Nicola Salmoria]
+
+- Sound in HAL21. [Acho A. Tang]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed controls & gfx in Outrun and Space Harrier. [Bryan McPhail]
+
+- Simulated protection in S.P.Y. [Acho A. Tang]
+
+- Fixed Rip Cord. [Acho A. Tang]
+
+- Fixed collision detection in Labyrinth Runner and Fast Lane. [Acho A. Tang]
+
+- Fixed protection in Funky Jet [Bryan mcPhail, Stephane Humbert]
+
+- Several fixes to the F3 games. [Shiriru, Bryan McPhail]
+
+
+Changes to the main program:
+----------------------------
+
+- Light gun support. [Bryan McPhail]
+
+
+Source:
+-------
+
+- Important for porters: major redesign of the OS interface for display update.
+  - VIDEO_SUPPORTS_DIRTY flag removed
+  - osd_mark_dirty() removed
+  - osd_create_display() now takes an extra parameter rgb_components
+  - osd_set_visible_area() removed
+  - osd_allocate_colors() removed
+  - osd_modify_pen() removed
+  - osd_update_video_and_audio() now takes a mame_display pointer
+  - osd_debugger_focus() removed
+  - osd_set/get_gamma() removed
+  - osd_set/get_brightness() removed
+  [Aaron Giles]
+
+- Completely redesigned the artwork handling. Any game can now use artwork,
+  with no specific support in the driver. Configuration is done with external
+  .art files. [Aaron Giles]
+  -[no]artcrop -- crops artwork to the game screen area only
+  -[no]backdrop -- enables/disables backdrop art
+  -[no]overlay -- enables/disables overlay art
+  -[no]bezel -- enables/disables bezel art
+
+- The Windows version now rotates the screen at blit time instead of requiring
+  the core to do so. Since the new code is usually faster than the old one, and
+  it allows for great simplifications in the core, rotation at blit time will
+  probably be a requirement in next release. Porters are advised to begin
+  implementing it now. [Aaron Giles]
+
+- New YM-2413 emulator. [Fabio R. Schmidlin, Charles Mac Donald]
+
+
+MAME Testers bugs fixed (there are probably more)
+-----------------------
+
+mk3060gre
+ozmawars055gra
+alpine057gra     [Stephane Humbert]
+elevator057gra   [Stephane Humbert]
+tinstar36b4gra   [Stephane Humbert]
+kof94057gre      [RYO]
+tokib059red      [David Graves]
+dogyuun058yel    [Quench]
+battleg37B10gre  [Quench]
+batrider058gre   [Quench]
+cchasm1059red    [Paul Priest]
+dspirit37b6gre   [Acho A. Tang]
+rompers36rc2gre  [Acho A. Tang]
+rompers37b4gre   [Acho A. Tang]
+splatter336b6gre [Acho A. Tang]
+splatter336b9yel [Acho A. Tang]
+splatter137b5gre [Acho A. Tang]
+splatter237b5gre [Acho A. Tang]
+splatter057gre   [Acho A. Tang]
+dangseed060yel (needs checking)
+bjourney37b16gre [Acho A. Tang]
+ncombat36b3yel   [Acho A. Tang]
+ncommand37b2gre  [Acho A. Tang]
+overtop37b13red
+sdodgeb37b13yel (needs checking)
+iganinju37b14yel [Kale]
+iganinju37b1yel  [Kale]
+iganinju055yel   [Kale]
+scudhamm058gre   [Mike Herrin]
+adstick37b16gre  [Robin Merrill]
+pedal055yel      [Robin Merrill]
+toobin058yel     [Robin Merrill]
+
+
+New games supported:
+--------------------
+
+Super Slams [David Haywood]
+Macross Plus [David Haywood]
+Quiz Bisyoujo Senshi Sailor Moon - Chiryoku Tairyoku Toki no Un [David Haywood]
+Jump Kids [David Haywood]
+Toffy [David Haywood]
+Super Toffy [David Haywood]
+Battle Cross [David Haywood]
+Gulf War II [David Haywood]
+Bubble 2000 [David Haywood]
+4 Fun in 1 [David Haywood]
+Kick Goal [David Haywood, Nicola Salmoria]
+U.S. Games collections [David Haywood, Nicola Salmoria]
+Wily Tower [Nicola Salmoria]
+Lethal Crash Race [Nicola Salmoria]
+F-1 Grand Prix [Nicola Salmoria]
+Dog-Fight [Nicola Salmoria]
+Find Out [Nicola Salmoria]
+Golfing Greats [Nicola Salmoria]
+Sankokushi [Nicola Salmoria]
+Super Shanghai Dragon's Eye [Bryan McPhail]
+Mechanized Attack [Bryan McPhail]
+Beast Busters [Bryan McPhail]
+Thunder Zone / Desert Assault [Bryan McPhail]
+The Next Space [Bryan McPhail, Acho A. Tang]
+Bakutotsu Kijuutei [Acho A. Tang]
+Equites [Acho A. Tang]
+Bull Fighter [Acho A. Tang]
+The Koukouyakyuh [Acho A. Tang]
+Splendor Blast [Acho A. Tang]
+High Voltage [Acho A. Tang]
+Red Robin [Zsolt Vasvari]
+Net Wars [Zsolt Vasvari]
+Clay Shoot [Zsolt Vasvari]
+Mr. Kougar [Zsolt Vasvari]
+Car Polo [Zsolt Vasvari]
+Dingo [M*A*S*H, Zsolt Vasvari]
+Birdie King [M*A*S*H]
+Inferno [Juergen Buchmueller, Aaron Giles]
+Dribbling [Aaron Giles]
+Triple Hunt [Stefan Jokish]
+Orbit [Stefan Jokish]
+Monte Carlo [Stefan Jokish]
+Tube Panic [Jarek Burczynski]
+Roller Jammer [Jarek Burczynski]
+Kikiippatsu Mayumi-chan [Uki]
+Knights of Valour / Sango [ElSemi]
+Battle Bakraider [Quench]
+
+
+New clones supported:
+---------------------
+
+ESP Ra.De (International Ver 1998 4/22)
+ESP Ra. De. (Japan Ver 1998 4/21)
+The Outfoxies (Japan)
+Tactician (set 2)
+Battles (=Xevious)
+Power Spikes (World)
+Condor (= Phoenix)
+Grind Stormer (set 2)
+Battle Garegga (set 2)
+Hell Fire (1 player)
+Same! Same! Same! (2 players)
+Gravitar (prototype)
+Lunar Battle (= Gravitar)
+Super Cobra (Sega)
+S.P.Y. (World)
+Air Buster (English)
+Baraduke (set 2)
+Metro-Cross (set 2)
+Red Hawk (= Stagger I)
+Bagman (bootleg on Galaxian hardware)

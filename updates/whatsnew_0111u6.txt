@@ -1,0 +1,138 @@
+0.111u6
+-------
+
+
+Source Changes
+--------------
+Fixed the data fetch and scrolling calculation for almost all video 
+modes in the Amiga driver. [Ernesto Corvi]
+
+Emulated the trench circuit in Space Encounters. [Adam Bousley]
+
+Added win_output_debug_string_utf8(); a UTF-8 wrapper for
+OutputDebugString(). Changed code to use it. [Nathan Woods]
+
+Fixed the disassembly, operation, and cycle timing of many Thumb 
+instructions in the ARM7 core. [MooglyGuy]
+
+Defined new osd core function osd_is_absolute_path(). Changed behavior
+of core fileio so that absolute paths are identified and search paths
+ignored in that case. [Nathan Woods]
+
+Improved validity check for coinage order so that it prints out the
+correct order if an error is detected. [Ernesto Corvi]
+
+Fixed clocks and other details in Dream World based on new
+measurements. [David Haywood, Guru]
+
+Implemented video circuits in the Midway 8080 driver based on
+schematics. Note that this affected the visible area, so overlays will
+need to be adjusted. Standardized the visible area across all games.
+Implemented Phantom II cloud generator. [Zsolt Vasvari]
+
+Changed the contract of the tilemap_create() call so that it is
+guaranteed to succeed or die trying. Cleaned up code paths that 
+checked the result of this operation to be simpler as a result.
+[Atari Ace, Aaron Giles]
+
+Added preliminary support for the built-in effects DSP in the SCSP, 
+which lots of games use for reverb, QSound, and other effects. 
+[ElSemi]
+
+Removed archaic i8080_EXACT flag from the 8085 core. [Zsolt Vasvari]
+
+Updated Midway 8080 driver to use properly computed video timings and
+scanline interrupts. [Zsolt Vasvari]
+
+Fixed assertion in MPU4 driver. Fixed the mechanical meter operation,
+enabling coin entry in Connect 4. [James Wallace]
+
+Added mappings for break and pause keys. [Dirk Best]
+
+Incorporated changes to MESS CPU cores to fix asserts and improve
+Z80GB emulation. [Nathan Woods, Wilbert Pol]
+
+Correctly connected sound IRQ in GX400/Nemesis driver. [R. Belmont]
+
+Rewrote the SN76477 emulator from scratch. The main difference between 
+the old one and the new one is that it is based on measurements from a
+real chip. Also the emulator is fully analog, meaning that 
+timings/frequencies, etc. are based on voltage levels. This gives a 
+much more true-to-life emulation where the weird behavior of the real 
+chip comes emulated for free. The code itself is also a lot simpler 
+and more understandable. [Zsolt Vasvari, Derrick Renaud]
+
+Cleaned up stray variables from the crosshair drawing removal. Also
+removed some orphaned function declarations. [Oliver Stoneberg]
+
+Added the missing volume and frequency controls to the Berzerk driver
+and s14001a core. Fixed the issue with random words being spoken 
+instead of the proper ones. Word is now latched at the proper time.
+[Lord Nightmare]
+
+Implemented flickering of the strobe light in Space Encounters, to be
+eventually connected with artwork. [Zsolt Vasvari]
+
+Changed driver_add/find/remove functions to fatalerror if they cannot
+find their targets. [Aaron Giles]
+
+Added support for screenless drivers. [Aaron Giles, Nathan Woods]
+
+Fixed a couple of errors introduced in the OKI6295 pin shuffling.
+[David Haywood]
+
+Cleaned up DIP switches and added documentation to the Outrun driver.
+[Brian Troha]
+
+Fixed sound clock frequency in the NMG5 driver. [Brian Troha]
+
+Fixed sound clock frequency in Night Slasher. [Sonikos]
+
+Updated Sega System 16/18 drivers to be mono, and swapped button 1/2
+to match instruction card. [Corrado Tomaselli]
+
+Moved some of the tool sources to a new subdirectory tools.
+[Aaron Giles]
+
+Tweaked the main makefile to better support parallel builds.
+[Aaron Giles]
+
+Removed line array from mame_bitmap. Converted dozens of drivers over
+to using BITMAP_ADDR macros instead. [Aaron Giles]
+
+Changed automatic crosshairs so they are not quite so automatic.
+They now need to be explicitly specified by the driver in the input
+ports. Also changed the PORT_CROSSHAIR macro to take a shorter form
+of the axis name. Updated all lightgun drivers to have this macro in
+its default state. [Aaron Giles]
+
+Added sliders for debugging crosshair positioning (debug build only).
+[Aaron Giles]
+
+Changed xevious to use irq0_assert_line instead of irq0_pulse_line
+to prevent it from dropping interrupts. [Aaron Giles]
+
+Changed Gorf to use HOLD_LINE instead of PULSE_LINE for scanline
+interrupts. The timing is still off, but the game runs now.
+[Aaron Giles]
+
+Fixed time H/V position reporting during the first frame of execution
+using the new video routines. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Magical Tetris Challenge [Ville Linde]
+Star Soldier: Vanishing Earth [Ville Linde, Guru]
+Vivid Dolls [Ville Linde, Guru]
+Connect 4 [James Wallace]
+Martial Masters [MooglyGuy]
+Knights of Valour 2 [MooglyGuy]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Super Real Mahjong VS [Ville Linde, Guru]
+Tower & Shaft [Ville Linde, Guru]

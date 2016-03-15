@@ -1,0 +1,257 @@
+0.137u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02134: [Graphics] ffight2b: Graphics glitch (Angelo Salese)
+- 03396: [Crash/Freeze] nss_aten: Game does not progress past initial 
+         text screen (Angelo Salese)
+- 03397: [DIP/Input] nss_skin: Input is completely non-working 
+         (Angelo Salese)
+- 03116: [Crash/Freeze] nss_actr: Emulation hangs up after hitting start. 
+         (Angelo Salese)
+- 03227: [Debugger] When setting A register in 8080 CPU, it sets F 
+         register
+
+
+
+Source Changes
+--------------
+Hooked up default NVRAM and fixed sample rom loading order in
+Championship Bowling [David Haywood]
+
+snes.c: greatly simplified tile drawing routines, fixed a couple of
+small bugs in mosaic support, reworked debug functions to be detected
+properly in all games [Fabio Priuli]
+
+snes.c: improved VRAM accesses (they're invalid during active display)
+and DMA transfers (not all addresses can be accessed) [Fabio Priuli]
+
+snes.c: enabled PPU->CPU hdma transfer and moved hdma variables to
+snes_state [Fabio Priuli]
+
+snes.c: updated HDMA to init/update according to Anomie's docs
+[Fabio Priuli]
+
+namcos23: First extremely rough 3D hookup [O. Galibert]
+
+Changed the killing blade parent to the pgm bios. [smf]
+
+namcos23: Add some lighting. [O. Galibert, Naibo]
+
+namcos23: hooked up tilemap scroll, improved raster IRQ [R. Belmont]
+
+snes.c: enforced abus validity check on dma reads, fixed possible tile
+and vram out of bounds bugs [Fabio Priuli]
+
+Replaced Stocker dump with a good set [Kevin Eshbach]
+
+Hooked up default NVRAM for Golly Ghost / Bubble Trouble
+[David Haywood]
+
+namcos23: Add 3D model scaling [O. Galibert]
+
+Heavily improved the slot 72 - poker game, it's now known to be
+actually Poker Monarch. [Angelo Salese]
+
+m680x0 FPU updates: [R. Belmont]
+ * BCD packed decimal now supported, including k-factor
+ * Improved FSAVE/FRESTORE including FPU reset when restoring a NULL
+    frame
+ * FREM instruction supported
+ * Better disassembly of FPU instructions
+
+superfx.c: added save states to the CPU [Fabio Priuli]
+
+snes.c: moved some more variables to driver state, set a few addresses
+as open bus and slightly changed SuperFX handlers not to access SNES
+WRAM [Fabio Priuli]
+
+namcos23: c361 fixes and address auto-increment [O. Galibert]
+
+further snes.c wip: [Fabio Priuli]
+ * Fixed a bug in SPC7110 handlers (now Tengai Makyou Zero test
+    reaches RTC tests and fails them, instead of getting stuck at
+    MUL/DIV tests)
+ * Implemented very preliminary (and currently broken) SPC7110 RTC
+    emulation
+ * Updated DSP2 handlers to better reflect Overload's docs (problem
+    and fix actually found by byuu)
+- Updated add-on chips handlers to reflect byuu's findings
+
+snes.c wip: fixed reserved memory address read not returning open_bus;
+fixed a few add-on chip reads not returning open_bus [Fabio Priuli]
+
+Made input_device pointers non-volatile. Since we return pointers to
+them in response to input_device_add(), ensure that the pointers don't
+change after subsequent adds. [Aaron Giles]
+
+snes.c: fixed a SRAM size problem and moved PPU registers handling to
+video/snes.c [Fabio Priuli]
+
+ppu2c0x.c: added save states to NES PPU and performed some minor
+cleanups [Fabio Priuli]
+
+i386+ core updates: [Samuele Zannoli]
+ * Added CR4 register
+ * Added bswap instruction
+* Added support for 4MB pages
+
+chihiro.c: Minor memory map update for running the BIOS
+[Samuele Zannoli]
+
+Gun output cleanups/hookups [Howard Casto]:
+ * drivers\othunder.c:  Changed Operation Thunderbolt output names to
+    something more appropriate. (They were routed to LEDs.)
+ * video\rastan.c:  Hooked up output for Operation Wolf.
+ * machine\midwunit.c:  Hooked up outputs for Revolution X.
+ * machine\midyunit.c:  Hooked up outputs for Terminator 2.
+ * drivers\seta.c:  Hooked up outputs for Zombie Raid.
+
+i386/NEC disassembler updates: [Alex Jackson]
+ * Made "MOV AL, offset" etc (opcodes A0-A3) properly indicate a
+    segment override prefix.
+ * Corrected the disassembly of various NEC-only instructions (mainly
+    V25/V35-only instructions)
+ * Changed CPUINFO_INT_MAX_INSTRUCTION_BYTES on i86 and NEC from 15 to
+    8.
+
+Added correct ROMs to 'Dragon's Lair (Italian)' (dlital) [f205v]
+
+Improvements to supdrapo.c driver [Roberto Fresca]
+ * Reworked inputs to match the standard poker inputs names/layout.
+ * Hooked the payout switch.
+ * Hooked a watchdog circuitery, that seems intended to reset the game
+    and/or an external device.
+ * Added machine start & reset.
+ * All clocks pre defined.
+ * Added ay8910 interfase as a preliminary attempt to analyze the
+    unknown port writes when these ports are set as input.
+ * Figured out the following DIP switches: Auto Bet (No, Yes). Allow
+    Raise (No, Yes). Double-Up (No, Yes). Minimal Winner Hand (Jacks
+    or Better, Two Pair). Deal Speed (Slow, Fast). Aces Type (Normal
+    Aces, Number 1). Cards Deck Type (english cards, french cards).
+    Max Bet (5, 10, 15, 20).
+ * Added NVRAM support.
+ * Reorganized and cleaned-up the driver.
+
+hng64: Fix sound ROM loading. [Andrew Gardner]
+
+Reworked the entire Nintendo 64 renderer to be class-based.  More
+cleanup to follow. [Harmony]
+
+Removing texture_rectangle_32bit and fill_rectangle_32bit to hopefully
+generate a bug report which indicates any games using the modes.
+[Harmony]
+
+Applied some cppcheck fixes. [Oliver Stoneberg]
+
+Clear pending IRQ if the IRQ enable flag is disabled in the SNES
+driver [Angelo Salese]
+
+midtunit.c: Fixed TMS340 parameter [Alex Jackson]
+
+namcos23: Fix the zoom value [O. Galibert]
+
+namcos23: First stab at z-sorting [O. Galibert]
+
+[8080/8085 CPU] Fix of mametester bug 3227. [Robbbert]
+
+Moved the i/o update status inside a timer in the SNES driver
+[Angelo Salese]
+
+Disabled unused variables and code based on cppcheck and VS2008 Code
+Analysis [Oliver Stoneberg]
+
+Fixed some massive texturing issues in the new Nintendo 64 / RDP
+renderer. [Harmony]
+
+Disabled DRC versions of certain vector load/store operations in the
+RSP core in order to avoid geometry issues. [Harmony]
+
+Improved Rectangle drawing in the RDP core. [Harmony]
+
+poly.c: Make the parameter interpolation more robust [O. Galibert]
+
+namcos23: Push the zclip a little to avoid poly.c issues for now.
+[O. Galibert]
+
+Added boundary checks for MVN and MVP opcodes when in M mode in the
+G65816 CPU core [Angelo Salese]
+
+Added a new input type IPT_KEYPAD for MESS, to distinguish between
+fully featured keyboards and keypad controllers [Fabio Priuli]
+
+skyarmy (skyarmy.c)  [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+ * Updated memory map to partially handle screen flipping
+
+scobra, scobrase, scobras, scobrab, suprheli, moonwar, moonwara,
+armorcar, armorcar2, tazmania, anteater, calipso, losttomb, losttombh,
+spdcoin, superbon (galaxian.c driver + galdrvr.c)  [stephh] :
+ * Fixed Dip Switches and Inputs (after verification of the Z80 code)
+
+namcos23: Found "force poly to front" bit [O. Galibert]
+
+info.c: added keyboard and keypad controls to xml output 
+[Fabio Priuli]
+
+First step in supporting master cycle delays in the SNES driver
+[Angelo Salese]
+
+Basic implementation of the DMA master cycles steals in the SNES
+driver [Angelo Salese]
+
+Basic implementation of the memory map master cycle steals in the SNES
+driver [Angelo Salese]
+
+snes.c: fixed to the DMA issue with S-DD1 games [Fabio Priuli]
+
+1943.c: Corrected rom names [Bill D, The Dumping Union]
+
+segaybd.c: Redumped IC26 for Rail Chase, added PCB board ID numbers 
+and corrected the rom names for Rail Chase [ANY]
+
+Added gprof support to the makefile. [Bryan Ischo]
+
+Added a check for the OPTION_READCONFIG option before executing 
+the code which would attempt to incorporate configuration file
+settings into the current configuration, because if OPTION_READCONFIG 
+is set to false, then there is no reason to even try to do this as 
+every single configuration file will be ignored (because config files 
+have been turned off by OPTION_READCONFIG). [Bryan Ischo]
+
+Fixed small memory leak in mame.c. [Bryan Ischo]
+
+Fixed double-free error in render.c. [Bryan Ischo]
+
+Made core_strdup use osd_malloc instead of malloc. [Bryan Ischo]
+
+
+
+New clones added
+----------------
+Rail Chase (World) [Dumping Union]
+High Impact Football (rev LA2 12/26/90)
+  [A. Hoekman, tormod, Smitdogg, The Dumping Union]
+Shark Party (english, alpha license)
+  [Kevin Eshbach, Smitdogg, The Dumping Union]
+Touchmaster 8000 (v9.02 Standard) [Bill D., The Dumping Union]
+Ridge Racer (Full Scale, 1993-12-13, World)
+  [tormod, Smitdogg, The Dumping Union] (not working, incomplete boardset)
+Super Draw Poker (set 2) [Roberto Fresca, Team Europe, Dumping Union]
+Super Football Champ (Ver 2.4O) [Caius]
+Street Fighter (US, set 2) (protected) [Bill D & the Dumping Union]
+Thrill Drive (JAB) [The Dumping Union]
+Moon Base (set 2) [jmurjr, D. Maeby, Charles MacDonald, The Dumping Union] 
+Vapor Trail - Hyper Offence Formation (World revision 3?)
+    [f205v, Tirino73] 
+Cherry Bonus III (alt, set 2) [Anonymous]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Lucky Boy / Poker 72 [David Haywood]
+Print Club Pokemon B [Guru]

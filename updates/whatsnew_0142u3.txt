@@ -1,0 +1,211 @@
+0.142u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04320: [Crash/Freeze] Many sets in mpu4drvr.c: Crash: Integer Divide
+         by Zero (J. Wallace)
+- 01893: [Crash/Freeze] mk4: MK4 hangs in demo mode after about 5
+         mins/matches. (Phil Bennett)
+- 04334: [Graphics] wiz: Missing sprites makes game unplayable 
+         (Angelo Salese)
+- 04326: [Graphics] Many games in cave.c: Graphics corruption 
+         (Alex Jackson)
+- 03103: [Color/Palette] all sets in mrdo.c: The color of "SCENE4" is
+         inaccurate. (kunikuni)
+- 04325: [Documentation] madrace: Wrong production year. 
+- 04304: [Graphics] captaven: Color glitch on scrolling ocean on 
+         Stage 2 (David Haywood)
+
+Source Changes
+--------------
+Removed deprecat.h dependancy and updated irqs accordingly from the
+following drivers: [Angelo Salese]
+8080bw.c airbustr.c albazg.c argus.c aristmk4.c armedf.c atarifb.c
+avalnche.c battlex.c bigevglf.c bionicc.c bionicc.c bishi.c bladestl.c
+blockout.c blueprnt.c bmcbowl.c bogeyman.c bottom9.c bsktball.c
+bublbobl.c buggychl.c bwing.c changela.c chqflag.c circus.c cischeat.c
+cloak.c commando.c cosmic.c cshooter.c darkmist.c dbz.c deadang.c
+destroyr.c discoboy.c djmain.c docastle.c dogfgt.c dogfgt.c dooyong.c
+dorachan.c dragrace.c enigma2.c equites.c esd16.c espial.c exedexes.c
+exidy.c expro02.c fastfred.c finalizr.c firetrap.c flower.c flstory.c
+gberet.c gng.c goindol.c gsword.c gunsmoke.c itech32.c jack.c jack.c
+kyugo.c ladyfrog.c liberatr.c m72.c matmania.c megaplay.c meijinsn.c
+metlclsh.c mirax.c mjsister.c mlanding.c mouser.c namcos2.c namcos21.c
+naughtyb.c nbmj8688.c nbmj8891.c nova2001.c overdriv.c pacman.c
+paradise.c photon2.c polepos.c popper.c retofinv.c rollrace.c
+route16.c sbugger.c segag80r.c segas18.c seta.c shisen.c slapfght.c
+snk6502.c solomon.c sonson.c speedbal.c srmp2.c srmp2.c srumbler.c
+sstrangr.c strnskil.c suna8.c suprloco.c tagteam.c taito_l.c tomcat.c
+tsamurai.c tunhunt.c vastar.c vigilant.c vulgus.c wecleman.c
+wheelfir.c wiz.c xxmissio.c zn.c zodiack.c
+
+Fixed sprite regression in expro02.c [Angelo Salese]
+
+Converted Taito_L driver to use AM_SHARE macro [Angelo Salese] 
+
+Removed sound hacks in Evil Stone, fixing sound drop if you die at
+level 1 boss [Angelo Salese]
+
+intelfsh.c: Added support for Fujitsu 29DL16X. [Sandro Ronco]
+
+Fixed i86/i386 POP SP and POP ESP thanks to bug report for Xenix boot
+by bs666 [Miodrag Milanovic]
+
+Collapsed device_config and device_t into one class. Updated all
+existing modern devices and the legacy wrappers to work in this
+environment. This in general greatly simplifies writing a modern
+device. [Aaron Giles]
+
+psx.c: adjusted MDEC timing to avoid lockups. Most FMVs now have
+fluent video. [R. Belmont]
+
+Fixed Z80STI interrupts. [Curt Coder]
+
+Fixed I8255 interrupt enable. [Curt Coder]
+
+Fixed reset register bit masks in RP5C01 and RP5C15. [Curt Coder]
+
+Added 3.5" ED floppy drive type. [Curt Coder]
+
+Naomi / Triforce / Chihiro documentation update [f205v]
+
+Fixed protection read-back registers 0x07 and 0x0e / 0x0f in k051733
+math chip, finally fixing gameplay issues in Chequered Flag. 
+[Angelo Salese]
+
+konamigv: Documentation updates [Guru]
+
+diimage.c: fix uninitialized variables found by Valgrind [R. Belmont]
+
+mc146818: Fix uninitialized variable found by Valgrind [R. Belmont]
+
+Fixed inputs and removed digital hacks in Cisco Heat driver
+[Angelo Salese]
+
+Added MCCS1850 RTC emulation. [Curt Coder]
+
+Added shifter display to Cisco Heat driver [Angelo Salese] 
+
+Removed cheesy hack to F1 GP Star 2 irq communications [Angelo Salese]
+
+Fix second adpcm player in games using SEIBU_ADPCM [R. Belmont]
+
+Made k051733 RNG to behave like an adder, improves pseudo-random
+events in Fast Lane [Angelo Salese]
+
+Tentative experiment for Hot Chase gameplay speed ... still not 
+perfect though (especially noticeable with sound) [Angelo Salese]
+
+Reimplemented devcb using delegates and classes. Unified the logic for
+identifying targets and simplified the code. [Aaron Giles]
+
+naomi: Abstract the maple and jvs interfaces into a set of devices
+[O. Galibert, MetalliC, Tormod, D. Knute]
+
+Started unifying sprite implementations for setax001/x002 chips
+[David Haywood]
+
+drcbex64: Fix op_debug implementation [O. Galibert]
+
+Add Puzznic MCU dump and added a PAL as NO_DUMP. The MCU still needs
+to be properly hooked up. [Smitdogg, The Dumping Union, Lord
+Nightmare]
+
+naomi: Add jvs command 0x32, fixes Crazy Taxi and Virtua Tennis 2
+booting [O. Galibert]
+
+Added input button labels for Midway T-Unit driver [Joe Caporale]
+
+De-stateized the NB1414M4 routines, and converted the correlated Armed
+F text tilemap to be 8-bits [Angelo Salese]
+
+Hooked up NB1414M4 to Ninja Emaki, greatly improving gfxs in it
+[Angelo Salese]
+
+Implemented serial type scrolling for Youma Ninpou Chou bootlegs
+[Angelo Salese]
+
+Support for dynamic devices added to the core. [Miodrag Milanovic]
+ * Added slot and slot card interfaces
+ * Added SLOT_INTERFACE macros in order to simplify device adding
+ * Added new menu option "Slot Devices" and support to change device
+    in runtime
+ * Updated emuopts to support command setting of slot cards
+
+Update clifront and added listslots option to display available
+slots and device options for each one [Miodrag Milanovic]
+
+mpu4.c: Started adding support for the Crystal Gaming program card,
+and the link keys for setting parameters. [J Wallace]
+
+6840ptm.c: Fixed mode check in set_gate() [J Wallace]
+
+srcclean.c: srcclean should remove invalid chars only for source files
+which are not xml (softlists have UTF-8 characters) [Fabio Priuli]
+
+Hooked up proper sound program in Combat School bootleg [Angelo
+Salese]
+
+Moved format handling and all formats to separate library
+[Miodrag Milanovic]
+
+Converted PlayStation DMA to an internal device to the CPU core. DMA
+to external devices can be set in the machine config, the old calls
+are still there until the rest of the code is converted. [smf]
+
+Added support for default NVRAM in MCCS1850. [Curt Coder]
+
+Various Irem M92 / M107 fixes [Alex Jackson]
+ * Hooked up sound CPU interrupts properly, using the V35 builtin
+    interrupt controller, rather than generating the vectors in the
+    driver.
+ * Cleaned up ROM mirroring, using AM_REGION macros in the address
+    maps instead of memcpy()ing all over the place in the
+    DRIVER_INITs.
+ * Converted bankswitching to use configured banks. Only configure the
+    banks and install the bankswitch WRITE_HANDLER in the games that
+    actually use it (i.e. those with a full megabyte of program ROM).
+    This and the previous change make the drivers a lot less confusing
+    to look at... I hope.
+ * Converted both drivers to use a scanline timer device instead of a
+    hand-rolled one.
+ * Added save state support to m92.c. Everything necessary was already
+    saved, I just had to add the tag. However, presumably due to the
+    core emu_timer breakage (MT 4330, 4331) the save states don't
+    actually work at the moment. I've already reported this as MT
+    #4333
+ * Added GAME_MECHANICAL tag to wpksoc and clone
+
+Converted Ginga Ninkyouden to use proper 6840 PTM device
+[Angelo Salese]
+
+Fixed missing sprite regression in the Wiz driver [Angelo Salese]
+
+chdman: Handle track type 6 in .nrg files [R. Belmont]
+
+Compile fix for kFreeBSD [Christian Marillat]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Chequered Flag [Angelo Salese]
+Super Wing [Tomasz Slanina, Wulfman]
+
+
+New clones added
+----------------
+Witch Card (German, WC3050, 27-4-94) [Roberto Fresca, Team Europe]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Quizard Rainbow 4.0  [Team Europe]
+Frank 'n' Stein (unencrypted) [J Wallace]
+Mahjong Maina - Kairakukan he Youkoso [alien_mame, The Dumping Union]
+The Nanpa [alien_mame, The Dumping Union]
+Cospure Tengoku 7 - Super Co-gal Grandprix
+  [alien_mame, The Dumping Union]
+Fudol [alien_mame, The Dumping Union]

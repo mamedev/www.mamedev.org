@@ -1,0 +1,240 @@
+0.130u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01030: [Side-by-side] starjack: "Star Jacker" side-by-side test. 
+         (Aaron Giles)
+- 00983: [Graphics] pitfall2: Once you lose your last life, any object 
+         not in the background shows up on the high score and continue 
+         screens. (Aaron Giles)
+- 00984: [Graphics] 4dwarrio: The game resolution changes in the 2nd 
+         players turn in the cocktail mode. (Aaron Giles)
+- 00257: [Graphics] wbmlb, wbmljb: When the player sprite reaches the 
+         right side of the playfield, some garbage gfx appear on the 
+         left side. (Aaron Giles)
+- 00303: [Graphics] regulus: In cocktail mode when it is player 2's 
+         turn graphics from the top of the screen flash at the bottom 
+         of the screen (Aaron Giles)
+- 00256: [Graphics] seganinj: [possible] Sprites leaving on the left 
+         side on the screen aren't clipped properly. (Aaron Giles)
+- 03098: [Color/Palette] all sets in mcatadv.c: Palette regression
+         (Christophe Jaillet, Fabio Priuli)
+- 03087: [Graphics] daireika: Graphic artifacts on attract mode. 
+         (Angelo Salese)
+- 03093: [Graphics] mazinger: the boss of 4th level is black (robiza)
+- 03092: [Sound] spuzbobl: Some sound samples are being played 
+         indefinitely (David Haywood)
+- 01163: [DIP/Input] popbounc: [possible] MAME doesn't support paddle 
+         input. (Fabio Priuli)
+- 02187: [Documentation] All games of "Technos": Fix for manufacturer. 
+         (Fabio Priuli)
+- 02558: [Graphics] Graphic priority is not fully understood. 
+         (Angelo Salese)
+- 02557: [Graphics] All games in jalmah.c: There are square gaps 
+         during gameplay. (Angelo Salese)
+- 00598: [DIP/Input] popbounc: Regardless of whether the "paddle" or 
+         "joystick" option is activated in the dipswitch, the controls 
+         are broken. (Fabio Priuli)
+- 00947: [Graphics] batsugun: At the level 4 boss there's a sprite 
+         problem. (robiza)
+- 02562: [Interface] Ability to choose arbitrarily named crosshair 
+         pictures (Derrick Renaud)
+
+
+
+Source Changes
+--------------
+Crosshair update: [Derrick Renaud]
+ * Added Crosshair Options menu
+    - ability to individually enable/disable crosshairs
+    - ability for them to automatically disappear after a set amount 
+       of time (this is now the default)
+    - ability to select crosshair graphic
+    - all settings are saved in the cfg file
+ * Removed F1 toggle for crosshairs
+ * Added new command option -crsshairpath
+    - store all selectable graphics here
+    - see config.txt for further info
+
+Merged memory maps, renamed sets in the following drivers: vendetta,
+videopkr, wrally, vball, unico, tsamuri, triplhnt, toypop, tnzs,
+topshoot, topspeed, tecmo, tecmo16, tecmosys, terracre, thoop2,
+tunderx, tiamc1, timelimt, taito_z. [Aaron Giles]
+
+Added direct mode JVS command, used by the i/o for the later Naomi 
+games [ElSemi, Angelo Salese]
+
+hyprduel fix [Hau]
+
+Force cpu resyncs main<->protection on pgm. [David Haywood]
+
+trackfld cleanups: [Aaron Giles]
+ - derived clocks where possible
+ - complete memory maps from the schematics
+ - hooked up proper sound command latching
+ - reimplemented 6802-based ADPCM samples for the bootlegs
+ - merged memory maps
+ - extended NVRAM to the full RAM range (according to schematics)
+ - created common include file and modified drivers to use it instead 
+    of explicit externs
+
+Removed msb/lsb handlers from taitosnd. Updated all drivers to
+call the 8-bit versions directly from the address maps. [Aaron Giles]
+
+Did bulk replace of AM_READ/WRITE(SMH_NOP) -> AM_READ/WRITENOP.
+[Aaron Giles]
+
+Reverted recent TMS32025 timing change which busted Cool Pool sound.
+[Olivier Galibert]
+
+exctsccr update: [Uki]
+ - verified clock frequency (including 4KHz NMI)
+ - position 6A is not populated in JAPAN ver.
+ - sound tempo is wrong in all sets (with or without this change)
+ - clock for AY-3-8910 is 14.31818M/8 except for main melody
+
+taito_l input updates: [Fabio Priuli]
+ * added plgirls cheat dip-switch [found by Gatinho]
+ * added plgirls2 coin mode B
+
+Fixed crshrace coinage dips. [stephh, Fabio Priuli]
+
+Fixed mechattu coinage dips. [Fabio Priuli]
+
+Redumped GFX ROM of kakumei2. [Uki]
+
+Improved the Wave-DMA behaviour in Naomi, added PVR-DMA support. 
+[Angel Salese]
+
+Naomi video cleanups/reworking. [David Haywood]
+
+DIPSW update [kanikani]
+ - added DIP location to following drivers: djmain.c, fitfight.c, 
+    gaiden.c, hornet.c, namcos1.c, namcos86.c, nwk-tr.c, skykid.c, 
+    zr107.c
+ - enabled some DIPSW settings
+
+PGM update [XingXing]
+ - added video ram mirroring (fixes a glitch in kovsh)
+ - corrected some set names
+
+neogeo fixes: [Fabio Priuli]
+ * fixed popbounc controls bug (MT 598)
+ * removed use of sprintf
+ * added a note about service menu browsing when mahjong panel is ON
+
+Konami inputs improvements: [Fabio Priuli]
+ * Added source file konamipt.h to unify Konami inputs where possible 
+    (e.g. most 80s-90s games were using basically the same coinage 
+    settings and joystick inputs). 
+ * While at it, verified all 0x00 coinage effects in drivers which now 
+    use konamipt.h (fixing a few mistakes: hexion, mikie, crimfgtj...) 
+ * Added finalizb service coin. Removed roadf coin4 & asterix coin3 
+    (neither used by the games nor present in service mode). 
+ * Fixed gberetb coin inputs (they were switched). 
+ * Added port_condition to hcrash so that brake appears only when 
+    present in the chosen cabinet. 
+ * Cleaned up mystwarr.c & moo.c input handlers.
+ * Verified 0x00 coinage settings in remaining Konami drivers (and two 
+    Banpresto ones using same coinage settings)
+
+Fixed the priority system in the jalmah.c driver [Uki, Angelo Salese]
+
+Simulate 'keyoff' in the SPU. The envelopes aren't actually emulated, 
+but the sound is silenced after a key-off (by placing the sound in a 
+'release' state)  This prevents audiable sound from looping forever.
+[David Haywood]
+
+Build the IDE features table only when there is a CHD available.
+[Curt Coder]
+
+Added device-based implementations of the eeprom and i2c deevices.
+[Samuele Zannoli]
+
+Added diplocations to finalizr.c, gradius3.c, pandoras.c, rollerg.c 
+and ultraman.c based on Guru's notes (thanks to AJG, who fwded them 
+to me). [Fabio Priuli]
+
+Dumped 1 BPROM of suchipi [Uki]
+
+Changed Z80 cycle table definitions to be per-device. Removed
+old set_info constants for the tables; they are now set up via
+the z80_set_cycle_tables function. [Aaron Giles]
+
+m90: reduced volume for all games, removed wrong graphics flag and 
+added no cocktail flag for risky challenge. [robiza]
+
+Reduced volume for bombrman, added wrong graphics flag for quizf1.
+[robiza]
+
+Removed old hardcoded keyboard handling for Atari 8bit systems and 
+used more reasonable key matrix scan. No regressions expected in MAME 
+(tested maxaflex.c games). [Fabio Priuli]
+
+Many Naomi tweaks and improvements, plus a number of new sets added
+but with no credit specified. [David Haywood]
+
+Corrected names for Champion Italian PK boards (thank f205v for 
+spotting this). [Mirko Buffoni]
+
+Sega System 1/2 rewrite: [Aaron Giles]
+ * accurate collision detection in all games
+ * correct full memory maps
+ * hooked up 8255 and Z80 PIO correctly
+ * unified many hacked variants into common hardware models
+ * proper mixing using the mixing PROM
+ * converted to tilemaps
+ * fixed shtngmst sprites
+ * correct Z80 timing
+ * proper sound interrupt signaling and feedback
+ * full description of video hardware
+ * proper input hookup in dakkochn
+ * cleaned up rendering code
+ * fixed cocktail mode in pretty much all games
+ * fixed stuck sprites in some games
+ * partial 8751 simulation for choplift
+ * proper global muting (attract sound off works in older games)
+ * yes, the Pitfall 2 title is missing; more work to be done
+
+Put tables used for RGB utilities in a single object file rather 
+than compiling them as statics in every object that uses them.
+[Vas Crabb]
+
+Added small workaround to get Thunder Hoop 2 past the "bad 
+coprocessor" screen, but the game still has issues. [Peter Ferrie]
+
+Fixed incorrect DIP location for dealer in epos.c. [Tafoid]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Unknown Poker [robiza, Angelo Salese]
+
+
+
+New clones added
+----------------
+Exciting Soccer (Japan) [Uki]
+Super Megatouch IV Tournament Edition 
+  (9255-51-01 ROB, Standard version) [Brian Troha]
+Pit Fighter (rev 7) [Smitdogg]
+Chase H.Q. (US) [Smitdogg]
+Crush Roller (bootleg?) [Tafoid, f205v]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Key of Avalon 1.30 - Client [Alex's Rom Dumping Project]
+Key of Avalon 2.0 - Client [Alex's Rom Dumping Project]
+Sega Network Taisen Mahjong MJ 2 [Alex's Rom Dumping Project]
+Sega Network Taisen Mahjong MJ 3 (Rev D) [Alex's Rom Dumping Project]
+Triforce DIMM Updater [Alex's Rom Dumping Project]
+Virtua Fighter 4 Final Tuned (Rev D) [Alex's Rom Dumping Project]
+Virtua Fighter 4 Final Tuned (Rev A) [Alex's Rom Dumping Project]
+Initial D : Arcade Stage Ver. 3 (Japan) (Rev B) [Alex's Rom Dumping Project]
+Virtua Fighter 4 Evolution (Rev A) [Alex's Rom Dumping Project]
+Wangan Midnight Maximum Tune 2 (Japan?) [Alex's Rom Dumping Project]

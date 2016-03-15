@@ -1,0 +1,91 @@
+0.105u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mystston097u3yel [David Haywood]
+decocass0105u2yel [Aaron Giles]
+taitosj0105u2yel [Aaron Giles]
+vicdual0105u2gre [Aaron Giles]
+chqflag0105u2red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed and cleaned up the DIP switches in the dec0 driver.
+[Roberto Fresca]
+
+More improvements to the PGM video code. Also added hooks for halting
+the sound CPU which allows ddp2 to boot. [David Haywood] 
+
+Fixed incorrect lightgun names. [Derrick Renaud]
+
+Fixed Bonze Adventure levels 2 & 9. [Bryan McPhail]
+
+Refactored the 8530 CIA code from the Amiga into a separate module
+and made it support both the 6526 and 8530 variants. [Nathan Woods]
+
+Fixed/improved DIP switches in the megasys1, dietgo, and yunsun16
+drivers. [Twisty]
+
+Fixed some DIP switches and added controls for 2nd player in cocktail 
+mode in Lost Castle in Darkmist. [Sonikos]
+
+Fixed a number of issues in the Windows rendering code:
+[Giuseppe Gorgoglione]
+ * fixed blit_vectors so it used the dirty pixel array in D3D mode
+ * fixed blit_vectors rotation issue for dirty pixels as well
+ * changed -full_screen_brightness to -full_screen_gamma
+    (which is a more correct description)
+ * changed -d3dfilter to be a boolean, since the other filtering modes
+    are either obsolete or not applicable to MAME
+ * removed limitations on windowing position so you no longer need to
+    be aligned on an 8-pixel boundary
+ * cleaned up a number of unused global variables
+ * improved multi-monitor support to work in GDI mode as well as in
+    non-full-screen modes
+ * added missing documentation for the -screen parameter
+
+Fixed some remaining errors and inconsistencies in the content and 
+usage of MAME header files by comparing declarations against actual
+definitions. Removed many orphaned/duplicate declarations. Added
+#includes where appropriate, and moved a few declarations to another
+file when they were in the wrong location. [Atari Ace]
+
+Removed a number of unused ROM regions. Most (but not all) of the
+empty ROM region warnings are now taken care of. Also uncommented/
+added missing undumped ROMs/XORs in the Namco and CPS2 games.
+[Aaron Giles]
+ 
+More Amiga cleanups: [Aaron Giles]
+ * fixed dual playfield mode
+ * rewrote blitter code (fixes glitches in ar_bowl and others)
+ * changed Arcadia boot loading to use ROMtags instead of autoconfig
+ * swapped Kickstart 1.2 in for Arcadia BIOS (fixes ar_sdwr)
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Puzzle Star [XingXing]
+Marine Date [MAME32Plus]
+Speed Up [Aaron Giles]
+Up Scope [Mariusz Wojcieszek, Tomasz Slanina, Aaron Giles]
+Greyhound Poker (Version 50.02) [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+The Pit (Bootleg) [Brian Troha]
+Amidar (Bootleg) [Brian Troha]
+Moon Cresta (bootleg set 3) [Brian Troha]
+Xexex (ver AAA) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+The Gladiator [David Haywood]

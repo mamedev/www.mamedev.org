@@ -1,0 +1,325 @@
+0.29
+
+IMPORTANT: CONFIGURATION AND HIGH SCORE SAVE FILES HAVE BEEN MOVED. MAKE
+SURE YOU MOVE THE OLD ONES TO THE NEW DIRECTORIES "CFG" AND "HI". This will
+be done automatically by the provided batch file mov.bat, but PLEASE read
+on for details.
+
+NOTE: Bubble Bobble doesn't work in this release. We are aware of that. Use
+Bobble Bobble or Super Bobble Bobble instead, they work much better than
+Bubble Bobble ever did.
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Legendary Wings [Paul Leaman]
+Section Z [Paul Leaman]
+Cloak & Dagger [Dan Boris, Mirko Buffoni]
+Berzerk [Zsolt Vasvari, Christopher Kirmse]
+Coors Light Bowling [Zsolt Vasvari]
+Gunsmoke [Paul Leaman]
+Black Tiger [Paul Leaman]
+1943  [Mirko Buffoni, Paul Leaman, Nicola Salmoria]
+Champion Baseball (preliminary) [Nicola Salmoria]
+Silkworm [Nicola Salmoria]
+Sidearms (preliminary) [Paul Leaman]
+Defend the Terra Attack on the Red UFO [Nicola Salmoria]
+Pulsar [Mike Coates]
+Invinco [Mike Coates]
+Invinco / Head On 2 (dual game) [Mike Coates]
+Space Attack [Mike Coates]
+Motos [Aaron Giles]
+The Tower of Druaga [Aaron Giles]
+New Rally X [Nicola Salmoria]
+Radarscope (untested due to lack of good ROMs) [Nicola Salmoria]
+Rastan Saga. Note that Rastan requires some new ROMs as well, which were
+  missing from the previous release. [Brad Oliver]
+bootleg version of Pac Man running on Galaxian hardware [Nicola Salmoria]
+Bosconian (Namco) [Toninho]
+Mappy (Japanese) [Toninho]
+bootleg version of Donkey Kong Jr., with levels playing in the
+  order 1-2-3-4 instead of 1-4-1-3-4-1-2-3-4 [Nicola Salmoria]
+ORIGINAL version of Donkey Kong Jr. (Japanese), with levels playing in the
+  order 1-2-3-4 instead of 1-4-1-3-4-1-2-3-4 [Nicola Salmoria]
+Moon Cresta (Gremlin) [Valerio Verrando]
+Gyruss (Konami). Note that I renamed the other set (licensed to Centuri)
+  from "gyruss" to "gyrussce" [Nicola Salmoria]
+Super Bobble Bobble [Brad Oliver]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- accurate colors in
+
+  Donkey Kong Jr.
+  Congo Bongo
+  Phoenix
+  10 Yard Fight
+  Moon Patrol
+  Pop Flamer
+  War of the Bugs
+  Espial (not sure about this one - red and blue could be inverted)
+  Super Cobra
+  Yie Ar Kung-Fu
+  Mario Bros.
+  Super Basketball
+  Seicross
+  1943
+  Donkey Kong 3 (well, not really)
+  Gyruss
+  Crazy Kong.
+  Zaxxon is getting there (sprites are mostly correct, background isn't).
+  [Tim Lindquist, Nicola Salmoria]
+
+- accurate colors in Bagman and Super Bagman
+  [Tim Lindquist, Jarek Burczynski]
+
+- accurate colors in Naughty Boy (probably) [Virtu-Al, Nicola Salmoria]
+
+- Minor fix to Donkey Kong colors (black was dark blue). [Nicola Salmoria]
+
+- Clouds in Time Pilot are correct. [Edward Massey]
+
+- Lives left are correctly displayed in Burger Time, sprites are turned off
+  appropriately, and the switch test in test mode works correctly.
+  The hardware of this game is more similar to Eggs than I thought.
+  [Nicola Salmoria]
+
+- Some fixes to 10 Yard Fight. [John Butler]
+
+- The background was clipped too low in Phoenix. [Nicola Salmoria]
+
+- Added the missing scrolling background to Exed Exes. [Nicola Salmoria]
+
+- Fixed sprite/character priority in Gyruss. [Nicola Salmoria]
+
+- Fixed blinking in the Galaga starfield. [Martin Scragg]
+
+- Galaga supports rotation (-ror and -rol). [Nicola Salmoria]
+
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- All the Williams games. Samples are no longer needed and may be deleted.
+  [Steven Hugg, Mirko Buffoni, Nicola Salmoria]
+
+- Q*Bert Qubes. You just have to use Q*Bert's sound ROMs, they are the
+  same. [Fabrice Frances]
+
+- Tac/Scan (through samples). [Brad Oliver]
+
+- Fixed some sound problems in Asteroids. [Andrew Scott]
+
+- Added music to Kick. [Aaron Giles]
+
+- Improved the Galaxian background hum, it also is no longer incorrectly
+  played in Moon Cresta & others. [Andrew Scott]
+
+- Digital audio in the Taito games (used for some sound effects, most
+  notably Tarzan's yell in Jungle King). Also, music plays in Jungle King.
+  [Nicola Salmoria]
+
+- Moon Patrol, 10 Yard Fight, Kung Fu Master. [Aaron Giles]
+
+- Mario Bros (partial, through samples). [Brad Oliver, Shane Monroe]
+
+- Eggs. [Nicola Salmoria]
+
+- Fixed the sound in Omega Race. It was playing too slow.
+  Thanks to Stacy Joe Dunkle, Mike Cuddy and Al Kossow. [Bernd Wiebelt]
+
+- Congo Bongo (samples are needed to get full sound).
+  [Ville Laitinen, Tim Lindquist]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Moon Patrol, Rally X, Vanguard, Super Cobra, Turtles, Xevious,
+  Galaxy Wars. [Valerio Verrando]
+
+- Fixed Krull and Donkey Kong 3. [Nicola Salmoria]
+
+- Fixed Galaga. [Valerio Verrando]
+
+- Starforce, Jump Bug, Bagman, Super Bagman, Time Pilot 84, Warp Warp.
+  [Juan Carlos Lorente]
+
+
+Other drivers improvements:
+---------------------------
+
+- The attract mode of Galaga works correctly. Qix runs correctly and
+  without slowdowns. Test mode in Mr. Do's Castles & family works correctly,
+  (dip switches in Do's Castle still don't work).
+  All these changes are due to the interleaved CPU execution described
+  below. [Nicola Salmoria]
+
+- New fix to avoid lockup in Tempest after 150,000 points - this one should
+  really work. [Keith Gerdes]
+
+- Fixed the Fantasy driver. [Brian Levine]
+
+- Several fixes and enhancements to the Williams driver. [Aaron Giles]
+
+- Several fixes to the Williams driver: Blaster is finished, Sinistar is
+  playable but there are some blitter bugs, Bubbles is better but still
+  resets itself from time to time. [Marc Lafontaine]
+
+- Fixed bug in Naughty Boy coin insertion/start game handling.
+  [Nicola Salmoria]
+
+- Some fixes to the Star Wars mathbox. [Aaron Giles]
+
+- The hardware of the Taito games (Elevator Action, Jungle King, Wild Western,
+  Front Line) is emulated more faithfully. Playfield priority is accurate in
+  Jungle King, however this broke Wild Western - strange.
+  Front Line works.
+  Merged all the drivers into taito.c [Nicola Salmoria]
+
+- Tried to plug Triple Punch into the Scramble driver, but it doesn't work.
+  [Nicola Salmoria]
+
+- Support for New Rally X; colors are accurate in New Rally X ONLY - still
+  wrong in Rally X until we find the color PROMs. Sound should finally be
+  correct, both in Rally X and New Rally X. [Nicola Salmoria]
+
+- Video drawing optimization to Mappy, plus test mode now works both in Mappy
+  and Dig Dug 2. [Aaron Giles]
+
+- In some games (e.g. Pacman, Galaxian, Rally X) the NumLock and CapsLock
+  leds emulate the 1 player/2 players start lamps. [Sean Gugler]
+
+- Fixed dip switches in Missile Command. [Marco Cassili]
+
+- Early attempt at a Zookeeper driver, based on the Qix one, which
+  unfortunately doesn't work yet. [John Butler, Ed Mueller]
+
+- Moved the Hunchback driver into dkong.c, since that's where it belongs (but
+  it still doesn't work due to encryption). [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Added Gamma correction controls. Use Shift + Numeric pad +/- to change it.
+  There are some games which are too dark on the default setting, instead of
+  using the monitor settings use these controls to brighten the picture.
+  Gamma correction also affects colors, like the girders in Donkey Kong.
+  [Nicola Salmoria]
+
+- Added a "Pro Action Replay"-like cheat finder. It is only available when
+  -cheat is specified on the command line. [Marc Lafontaine]
+
+- Some optimizations to the 6809 emulator. [Tatsuyuki Satoh]
+
+- Some optimizations to the 6809, and modified it to always fetch opcodes
+  directly from RAM (much faster). The Ghosts 'n Goblins, Star Wars and
+  Williams drivers needed reworking to support that. [Aaron Giles]
+
+- Moved configuration and high score files to the CFG and HI subdirectories.
+  They are not stored in the games subdirectories.
+  I have provided a batch file (MOV.BAT) to automatically move your old
+  settings in the new directories. Just start it from inside the MAME
+  directory. It will spit out some error messages for missing files, don't
+  worry and let it finish its job. [Nicola Salmoria]
+
+  Having configuration files in a separate directory makes it easier to
+  keep ROMs in .zip files. This is already done by some front-ends, but
+  you can do it from the command line as well, just use this batch file.
+  PKUNZIP must be in your path. The .zip files must be in the MAME directory
+  and named after the game (i.e. pacman.zip).
+@echo off
+md %1
+pkunzip >nul: %1 %1
+MAME.EXE %1 %2 %3 %4 %5 %6 %7 %8 %9
+deltree >nil: /y %1
+
+  But even better, if you have ZipFolders or ZipMagic installed, MAME will
+  automatically look into the .zip or .zif directory.
+  ZipFolders and ZipMagic are trademarks of Mijenix Corporation. You can
+  download a trial version from www.mijenix.com. I am in no way associated
+  with Mijenix Corp. - I'm just a happy costumer.
+
+- Removed "-trak" and "-mouse" options. Mouse support is now enabled by
+  default. To disable it, use "-nomouse". [Bernd Wiebelt]
+
+- "-vesa" picks the best VESA mode available. The new "-vesa1" forces VESA
+  1.2. [Bernd Wiebelt]
+
+- "-vg" removed. It is on by default now. [Bernd Wiebelt]
+
+
+Source:
+-------
+
+- We are now using the "WIP 2.8" version of Allegro to compile the DOS
+  version. You can get it from http://www.talula.demon.co.uk/allegro/.
+
+- Two new OSD_KEY definitions: RCONTROL and ALTGR. CONTROL has been replaced
+  by LCONTROL.
+
+- Aligned to version 1.2 of Marcel de Kogel's Z80 emulator.
+
+- New memory handling functions, about 10%-30% faster than before. Moved the
+  memory code from cpuintrf.c to memory.c.
+  Banked ROMs can now be handled in a cleaner and faster way. Use the new
+  MRA_BANK1... types in the memory handler arrays, and cpu_setbank() to set
+  the current bank. The Z80 and M6809 emulators natively support bank
+  switching.
+  IMPORTANT: for 24 bit addressing (i.e. 68000) you cannot associate a memory
+  handler to a single byte. You must use four consecutive bytes, longword
+  aligned. This was done to speedup word (2 bytes) and dword (4 bytes)
+  operations.
+  [Tatsuyuki Satoh, Aaron Giles]
+
+- New ROM_LOADEVEN and ROM_LOADODD macros. [Aaron Giles]
+
+- CPU execution is interleaved. The cpu_slices_per_frame field in the
+  MachineDriver controls how often control is passed from one CPU to
+  another. 1 is the minimum, meaning that each CPU runs for the whole video
+  frame before giving control to the others. The higher this setting, the
+  more closely CPUs are interleaved and therefore the more accurate the
+  emulation is. However, an higher setting also means slower performance.
+  [Nicola Salmoria]
+
+- Removed osd_obtain_pen(), the palette is passed to osd_create_display()
+  instead. Also moved clearbitmap() to osd_clearbitmap(), which does a
+  slightly different thing from what clearbitmap() did: it sets the bitmap
+  to be generically "black", which doesn't necessarily imply filling it
+  with Machine->pens[0]. Avoid using osd_clearbitmmap() in drivers: use the
+  new fillbitmap(), instead, which accepts a pen number and a clip region.
+  [Nicola Salmoria]
+
+- Replaced file related functions (fopen(), fread() and so on) with osd_
+  equivalents. This avoids a good amount of hacking in the Mac port; plus
+  it allows some system specific extensions, like supporting
+  ZipMagic/ZipFolders under Windows 95. [Nicola Salmoria]
+
+- Tweaked input port code. Added new fields for analog controls - clip,
+  min, and max. Also added 2 new analog joystick types - IPT_AD_STICK_X and
+  IPT_AD_STICK_Y.
+  The new fields are packed into the same int field (arg) as the
+  sensitivity and as such they can only be in the range of 0-255. The clip
+  field clips the trackball/dial/stick deltas, a common callback routine
+  task. Min and Max are so far only used in the AD_STICK types. They limit
+  the range of motion for those sticks - used in Star Wars and Red Baron.
+  [Brad Oliver]
+  Additional tweaking of analog inputs, allowing them to be updated more
+  than once per frame. This is needed by some games. [Bernd Wiebelt]
+
+- removed osd_track_center(). We always use relative mouse movement now.
+  [Bernd Wiebelt]
+
+- Formalized support for dirty rectangles, via the function osd_mark_dirty().
+  [Aaron Giles]
+  It is mostly used by MacMAME, limited DOS support added by Bernd Wiebelt.
+
+- updated pokyintf.c to be more like 8910intf.c. Variable clock frequency,
+  port callbacks, a clipping parameter, variable updates per frame. Most
+  noticeably, Tempest has much improved sound with more frequent updates.
+  [Brad Oliver]

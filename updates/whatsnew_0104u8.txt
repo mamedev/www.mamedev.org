@@ -1,0 +1,86 @@
+0.104u8
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: osd_logerror is no longer
+used. Rather, for error logging you provide a handle to a mame_file
+in the options.logfile field. If you leave this set to NULL, no
+logging will be done.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+tmnt099u1gre1 [Pierpaolo Prazzoli]
+block056yel [David Haywood, Corrado Tomaselli]
+block085u2gre [David Haywood]
+ddenlovr0104u7ora [Aaron Giles]
+toutrun0104u7red [Aaron Giles]
+bounty0104u7red [Aaron Giles]
+maxaflex0104u7red [Aaron Giles]
+cclimber.c0104u7red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed hyhoo which was broken in the last round of changes.
+[Takahiro Nogi]
+
+Added emulation of the Alpha 8201/8301 MCU, and connected it to
+champbbj, champbb2, talbot, shougi, shougi2, and exctsccr.
+[Tatsuyuki Satoh]
+
+Added cpunum_set_clock_period(), a variation of cpunum_set_clock() 
+that takes subseconds_t, providing better granularity. [Nathan Woods]
+
+Fixed most of the remaining issues in Wink, though there is still
+some unemulated protection.
+[HIGHWAYMAN, Nicola Salmoria, Pierpaolo Prazzoli]
+
+Added save state support to the galaga.c and segaybd.c based games.
+Improved the "out of context" error message to indicate the source 
+of the problem. [Andre Hufschmidt]
+
+Moved logerror handling into the core. OSD ports should set 
+options.logfile to a mame_file handle for the output file. 
+[Aaron Giles]
+
+Fixed second SN76496 on Congo Bongo to have the correct frequency.
+[Aaron Giles, Chris Law]
+
+Hooked up Sega Universal Sound Board to Pig Newton. [Aaron Giles]
+
+Added -validate command to perform system-wide validation and exit
+with a proper errorcode. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Champion Baseball (Japan set 1/2) [Tatsuyuki Satoh]
+Champion Baseball II [Tatsuyuki Satoh]
+Exciting Soccer II [Tatsuyuki Satoh]
+Shougi [Tatsuyuki Satoh]
+Shougi 2 [Tatsuyuki Satoh]
+Talbot [Tatsuyuki Satoh]
+Paradise Deluxe [David Haywood]
+Sea Hunter Pengiun [David Haywood]
+
+
+
+New clones added
+----------------
+Star Fighter [Pierpaolo Prazzoli]
+News (set 2) [Ryan Ahn]
+Rave Racer (Rev. RV1, Japan) [Arzeno Fabrice]
+Final Lap R (Rev B) [Arzeno Fabrice]
+OutRunners (World) [Arzeno Fabrice]
+Wild West C.O.W.-Boys of Moo Mesa (ver AA) [Arzeno Fabrice]
+Slap Fight (bootleg) [David Haywood]
+Do! Run Run (Do's Castle hardware, set 2) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tappy & Rappy [David Haywood]

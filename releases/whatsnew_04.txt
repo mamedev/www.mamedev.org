@@ -1,0 +1,54 @@
+[note: only important changes are listed]
+
+0.4
+---
+
+Program:
+- Bagman support (wrong colors)
+
+- Early Wizard of Wor support (not playable).
+
+- New experimental AY-3-8910 sound emulation code provided by Andy Milne
+  (andy@canetics.com). This sounds better in some places and worse in others.
+  It is used by Crazy Climber, Crazy Kong and Bagman. Let me know what you
+  think.
+
+Source:
+- Optimizations in drawgfx(), Mr. Do!'s title screen and intermissions now
+  run faster, Crazy Climber and Crazy Kong benefit as well.
+
+- Use version 1.1 of Z80Em by Marcel de Kogel. Faster!
+  (note that I had to make a couple of changes to Z80.c to make Crazy
+  Climber work).
+
+- Handle IN and OUT instructions in the same way as memory accesses (table
+  of handler functions). The parameters of the functions are the same, so
+  the same function can be used both for memory and ports.
+  Had to change the driver structure, removed the pointers to _in and _out
+  functions and added port_read and port_write array pointers.
+  Also defined a generic interrupt_vector_w() function, this makes the Pac
+  Man driver tinier (look at pacman/machine.c, it's now there only to handle
+  the cheat).
+
+
+0.3
+---
+
+Program:
+- Donkey Kong support (wrong colors, no sound)
+
+- New definition of custom video modes, this will hopefully be compatible
+  with more systems.
+
+- Lady Bug and Crazy Climber should run a little faster on slow machines
+  (Crazy Climber is still too slow, I know).
+
+Source:
+- new general purpose readinputport() function used to handle reads of
+  input ports and dip switches. This saves some work when creating a
+  game driver. Required changes to struct MachineDriver.
+
+- struct GfxLayout now contains a planeoffset array instead of
+  planeincrement, to better support more than 2 bitplanes. I also fixed
+  (I hope) all the code which assumed 2 bitplanes. struct GfxDecodeInfo
+  had to be changed as well.

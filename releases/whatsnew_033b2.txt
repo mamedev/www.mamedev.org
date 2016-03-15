@@ -1,0 +1,93 @@
+0.33 BETA 2
+
+Well, you know that I usually don't celebrate recurrences, but we have just
+hit the 500th ROM set supported (OK, OK, I know that many of them don't work)
+and by pure coincidence it happens to be a very special one:
+
+                Faster, Harder, More Challenging Q*Bert
+
+This is a sequel to Q*Bert which was never released to the public. You can
+find its story, as recalled by the author, Warren Davis, at
+http://www.coinop.org/coinop/features/qbstory.html
+
+Thanks to everyone who made this possible.
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+Heavy Barrel (new, complete set). The old one has been renamed & modified to
+  include 4 ROMs which were missing. [Bryan McPhail]
+Magic Sword [Paul Leaman]
+Space Dungeon [Dan Boris]
+Slap Fight (preliminary) [Keith Wilkins]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed background layer colors in Trojan [Paul Leaman]
+
+- Fixed invisible ball in Champion Baseball. Some of the graphics are still
+  broken. The reason is unknown. [Nicola Salmoria]
+
+- Adjusted the brightess of the background in Popeye, which should make it
+  correct according to the schematics. Maybe now it's too dark?
+  [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed fuel alert sound in Lunar Lander. [Keith Wilkins]
+
+- Added speech to Champion Baseball. [Nicola Salmoria]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Swimmer, Pop Flamer [Brad Oliver]
+
+- Fixed Wonder Boy Deluxe [Chris Moore]
+
+
+Other drivers changes:
+----------------------
+
+- Heavy Barrel is playable to the end, but there are still some problems.
+  [Bryan McPhail]
+
+- Improved speed in the CPS1 games. [Paul Leaman]
+
+- Fixed speed in Berzerk/Frenzy [Zsolt Vasvari]
+
+- Adjusted timing in the vector games. [Bernd Wiebelt]
+
+- Some game information is displayed in the introduction screen.
+  [Nicola Salmoria]
+
+
+Source:
+-------
+
+- Further changes to the palette handling code.
+  - osd_create_display() no longer takes the total_colors, palette, pens
+  arguments. They are handled by osd_allocate_colors(), which is called after
+  osd_create_display().
+  - the convert_color_prom() functions now take a unsigned short *colortable
+  parameter instead of unsigned char *.
+  - Drivers for games which have a FIXED palette (i.e. they don't call
+  osd_modify_pen()) of more than 256 colors are now allowed to declare it as
+  such in the MachineDriver. The palette will be automatically shrinked to fit
+  in 256 colors. Note: this assumes that the palette is actually composed of
+  no more than 256 unique colors. This is currently the case in all the games.
+  Examples: Kung Fu Master, Lode Runner, Arkanoid, Popeye.
+  - instead of calling osd_modify_pen(Machine->pens[color],r,g,b), drivers
+  should call palette_change_color(color,r,g,b). Note that the function does
+  the Machine->pens[] mapping for you.
+
+- Added WatchPoint support to the debugger (i.e. check a RAM location and stop
+  execution whe it is changed). [Ernesto Corvi]
+
+- Fixed a bug in 6502/dasm.c (this only applies if you compile it to get a
+  standalone disassembler - it is not part of MAME) [Christophe Verre]

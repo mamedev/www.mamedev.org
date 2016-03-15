@@ -1,0 +1,452 @@
+0.138u2
+-------
+
+IMPORTANT NOTE: The way devices are handled internally in MAME has changed
+significantly. There are likely to be short-term compatibility and
+performance effects. Please report any errors or *significant* performance
+decreases (>20%) to mametesters.org. Full documentation on the new
+device handling is in progress at
+http://mamedev.org/devwiki/index.php/MAME_Device_Basics
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03878: [Crash/Freeze] mimonscr: Hangs at Post (Tafoid)
+- 02362: [Speed] block: Ball speed is erratic. (hap)
+- 03579: [Crash/Freeze] rbibb, rbibba, vsskykid: Severe graphic 
+         corruption/Access Voilation (Fabio Priuli)
+- 01839: [Color/Palette] battlex: Incorrect colors and/or palette (Tafoid)
+- 03747: [Graphics] ckong: One pixel gap is missing between Kong and 
+         level (hap)
+- 03866: [Graphics] prehisle, prehisleu, gensitou: Lack of graphics 
+         (David Haywood)
+
+
+
+Source Changes
+--------------
+A small update for the YM2610 core, which resets the PCM and Delta-T
+memory regions when the chip is reset.  This is needed for MESS, where
+being able to change the size and existence of the sample regions on
+the Neo Geo AES is necessary for the sound to work right, especially
+for games that don't have a specific Delta-T region.  [Barry Rodewald]
+
+Increased number of coinslots to 12, and tilt inputs to 4, required by
+in-progress gambling driver [David Haywood]
+
+Fixed various hangs and NVRAM init in the Model 2 driver
+[Angelo Salese]
+
+Add partial decrypt function for vortex (0x0000-0x1FFF is decrypted
+properly, 0x4000-0x5FFF is probably not), still much work to be done
+especially regarding memory maps (which are affected by the epoxy
+block address inverts as well). [Lord Nightmare, The Dumping Union]
+
+Fixed a warning in Visual Studio 2010 that was introduced by a
+previous commit.  [Oliver Stoneberg]
+
+Added some missing static qualifiers to MAME.  Also, renamed some
+generically named exports from segaic16.c.  [Atari Ace]
+
+batsugun: fixed layer-layer priorities; sprite-sprite priorities are
+wrong [robiza]
+
+dogyuun: fixed layer-layer priorities; sprite priorities are wrong
+[robiza]
+
+hal21: cabinet DIPSW was reversed btlfield: DIAL was used instead of
+rotary joystick [/SftiKDL0]
+
+namconb1.c: Replaced sound data rom for the Point Blank sets that was
+incorrectly dumped.  The new dump has been verified on 3 different
+PCBs. [Guru, Smitdogg, The Dumping Union]
+
+kongambl.c updates: [R. Belmont]
+ * Mapped ROMs correctly to processors
+ * Started mapping out Konami customs
+ * EEPROM hooked up
+
+lordgun.c update [Luca Elia]
+ * Implemented RAM based priorities
+ * Added multi-sprite, fixed sprite list end
+ * Corrected tilemap 2 size (wrong backgrounds in the final stage)
+ * Fixed crosshair position
+
+chdman/cdrom updates: [R. Belmont]
+ * CDRWIN .bin/.cue images now supported for both input and output
+ * Pregap and postgap information is now preserved in the format
+ * Output of CDRDAO images is significantly improved
+Existing CHD-CDs will continue to work fine and for data-only discs no
+action needs to be taken.  For mixed data/audio discs (e.g. analog
+573/Bemani games) they should be re-converted for better preservation.
+
+kongambl: Support unpaged 056832 VRAM access [R. Belmont]
+
+Hooked up ad sticks to Rail Chase 2 [Angelo Salese]
+
+Documented Drive I/O BD commands in Rail Chase 2 [Angelo Salese]
+
+Added a new cycle exact VMS interface to TMS5110 emulating M0, M1 and
+ADD1 to ADD8 lines. Added TMS6100 memory controller device. Also added
+TMSPROM device emulating bagman and ad2083 prom controlled speech
+logic. Switched bagman, ad2083 (scramble.c) and radarscp1 to use the
+new interface and devices. [Couriersud]
+
+buggychl: Improved sky, the in-game foreground statusbar and
+speedometer don't clip it anymore, and it's a gradient of
+azure->turquoise now instead of azure->black. [hap]
+
+Moved tms6100 code into emu/machine/tms6100.[ch]. Added pinouts for
+TMS6100 and M58819. [Couriersud]
+
+Added palette DAC handling, reel layers and removed NMI patch in Lucky
+Girl (Z180 HW) [David Haywood]
+
+Added clock information and timing from schematics to bagman.c
+Improved interrupt timing and handling to follow schematics.
+[Couriersud]
+
+SDL: remove problematic live render type toggle and default OS X to
+OpenGL [R. Belmont]
+
+Hooked up basic Drive i/o board CPU in Sega Rally [Guru, Angelo
+Salese]
+
+Adjusted default volumes to normalize audio and better present the
+original output for bagman.c  [Tafoid]
+
+Fixed dips in Dragon World [Luca Elia]
+
+Fixed NVRAM handling in Diamond Derby [Angelo Salese]
+
+Convert 7474 handlers to (READ|WRITE)_LINE_DEVICE_HANDLERS.
+[Couriersud]
+
+Added macros for inline device handler initialization to devcb.h.
+[Couriersud]
+
+Changed 7474 to only use devcb callbacks and handlers. Updated game
+drivers. [Couriersud]
+
+X2212 now uses device template. Also changed all handlers to use devcb
+prototypes. Default nvram contents should be in region named same like
+device tag. Hooked up X2212 in starwars. [Couriersud]
+
+Basic M6502 hook-up in Royal Gum [David Haywood]
+
+Moved Miracle Derby inside homedata.c driver [David Haywood]
+
+Removed r5h01_config. Memory region now has to have same tag as r5h01
+device. Update playch10 driver. [Couriersud]
+
+Addd documentation about tms5110 prom interface used by bagman and
+ad2083. [Couriersud]
+
+SDLMAME now compiles against SDL 1.3 up to HG rev 4464. Everything
+beyond that revision is completely broken since Sam ripped out
+multi-keyboard and multi-mice support. Further information in
+README_SDL13.txt [Couriersud]
+
+Splitted the ST-V protection handlings by per-game [Angelo Salese]
+
+Added proper RTC support to the ST-V driver [Angelo Salese]
+
+pcat_nit.c update [Mariusz Wojcieszek]
+ * added VGA emulation from MESS
+ * added INS8250 emulation from MESS
+ * added format decimal support to Microtouch
+ * added rom banking and inputs to pcat_nit games
+ * streetg(2) now boot properly
+
+Moved some common PC code to machine/pcshare.c [Mariusz Wojcieszek]
+
+vsnes.c: Reworked VROM banking  to avoid pointing beyond the last
+bank. Also, changed the use of memory_set_bankptr into
+memory_set_bank. [Fabio Priuli]
+
+Add Bonus Life dipswitches to Moon War (prototype on frenzy hardware)
+[Lord Nightmare, stephh]
+
+Improvements to Lucky Girl (newer Z80 based hardware): 
+[Roberto Fresca]
+ * Improved the input system, added missing buttons.
+ * Figured out the full coinage DIP switches. (Coins A, B, C, Key In)
+ * Found and documented the output ports.
+ * Added full lamps support.
+ * Created a new button-lamps layout.
+ * Hooked the coin and key in counters.
+ * Added technical notes.
+ * Figured out the following DIP switches:
+   * Auto Hold (No / Yes)
+   * Game Type (Hold Game / Discard Game).
+   * Adult Content (No / Yes).
+   * Minimal Winning Hand (Jacks or Better / 2 Pairs).
+   * Minimum Bet (1 / 5).
+   * Double-Up (Normal / Poker / Bingo / No D-Up).
+
+Massive Space Invaders related comment update, documenting various
+sets, and the various Taito PCBs used by Space Invaders/Tabletop
+SI/Tabletop SI Color/Tabletop SI II/etc.
+[Andrew Welburn, Lord Nightmare]
+
+Hooked up color prom in Kick Boy [Angelo Salese]
+
+Defined two new casting helpers: [Aaron Giles]
+
+  downcast<type>(value) should be used for safe and efficient
+  downcasting from a base class to a derived class. It wraps
+  static_cast<> by adding an assert that a matching dynamic_cast<>
+  returns the same result in debug builds.
+
+  crosscast<type>(value) should be used for safe casting from one type
+  to another in multiple inheritance scenarios. It compiles to a
+  dynamic_cast<> plus an assert on the result. Since it does not
+  optimize down to static_cast<>, you should prefer downcast<> over
+  crosscast<> when you can.
+
+Redefined running_device to be a proper C++ class (now called
+device_t). Same for device_config (still called device_config). All
+devices and device_configs must now be derived from these base
+classes. This means each device type now has a pair of its own unique
+classes that describe the device. Drivers are encouraged to use the
+specific device types instead of the generic running_device or
+device_t classes. Drivers that have a state class defined in their
+header file are encouraged to use initializers off the constructor to
+locate devices. [Aaron Giles]
+
+Removed the following fields from the device and device configuration
+classes as they never were necessary or provided any use: device
+class, device family, source file, version, credits. [Aaron Giles]
+
+Added templatized variant of machine->device() which performs a
+downcast as part of the device fetch. Thus
+machine->device<timer_device>("timer") will locate a device named
+"timer", downcast it to a timer_device, and assert if the downcast
+fails. [Aaron Giles]
+
+Removed most publically accessible members of running_device/device_t
+in favor of inline accessor functions. The only remaining public
+member is machine. Thus all references to device->type are now
+device->type(), etc. [Aaron Giles]
+
+Created a number of device interface classes which are designed to be
+mix- ins for the device classes, providing specific extended
+functionality and information. There are standard interface classes
+for sound, execution, state, nvram, memory, and disassembly. Devices
+can opt into 0 or more of these classes. [Aaron Giles]
+
+Converted the classic CPU device to a standard device that uses the
+execution, state, memory, and disassembly interfaces. Used this new
+class (cpu_device) to implement the existing CPU device interface. In
+the future it will be possible to convert each CPU core to its own
+device type, but for now they are still all CPU devices with a
+cpu_type() that specifies exactly which kind of CPU. [Aaron Giles]
+
+Created a new header devlegcy.h which wraps the old device interface
+using some special template classes. To use these with an existing
+device, simply remove from the device header the DEVICE_GET_INFO()
+declaration and the #define mapping the ALL_CAPS name to the
+DEVICE_GET_INFO. In their place #include "devlegcy.h" and use the
+DECLARE_LEGACY_DEVICE() macro. In addition, there is a
+DECLARE_LEGACY_SOUND_DEVICE() macro for wrapping existing sound
+devices into new-style devices, and a DECLARE_LEGACY_NVRAM_DEVICE()
+for wrapping NVRAM devices. Also moved the token and inline_config
+members to the legacy device class, as these are not used in modern
+devices. [Aaron Giles]
+
+Converted the standard base devices (VIDEO_SCREEN, SPEAKER, and TIMER)
+from legacy devices to the new C++ style. Also renamed VIDEO_SCREEN to
+simply SCREEN. The various global functions that were previously used
+to access information or modify the state of these devices are now
+replaced by methods on the device classes. Specifically:
+
+  video_screen_configure()             == screen->configure()
+  video_screen_set_visarea()           == screen->set_visible_area()
+  video_screen_update_partial()        == screen->update_partial()
+  video_screen_update_now()            == screen->update_now()
+  video_screen_get_vpos()              == screen->vpos()
+  video_screen_get_hpos()              == screen->hpos()
+  video_screen_get_vblank()            == screen->vblank()
+  video_screen_get_hblank()            == screen->hblank()
+  video_screen_get_width()             == screen->width()
+  video_screen_get_height()            == screen->height()
+  video_screen_get_visible_area()      == screen->visible_area()
+  video_screen_get_time_until_pos()    == screen->time_until_pos()
+  video_screen_get_time_until_vblank_start() ==
+                               screen->time_until_vblank_start()
+  video_screen_get_time_until_vblank_end() ==
+                               screen->time_until_vblank_end() 
+  video_screen_get_time_until_update() == 
+                               screen->time_until_update() 
+  video_screen_get_scan_period()       == screen->scan_period() 
+  video_screen_get_frame_period()      == screen->frame_period() 
+  video_screen_get_frame_number()      == screen->frame_number()
+
+  timer_device_adjust_oneshot()        == timer->adjust()
+  timer_device_adjust_periodic()       == timer->adjust()
+  timer_device_reset()                 == timer->reset()
+  timer_device_enable()                == timer->enable()
+  timer_device_enabled()               == timer->enabled()
+  timer_device_get_param()             == timer->param()
+  timer_device_set_param()             == timer->set_param()
+  timer_device_get_ptr()               == timer->get_ptr()
+  timer_device_set_ptr()               == timer->set_ptr()
+  timer_device_timeelapsed()           == timer->time_elapsed()
+  timer_device_timeleft()              == timer->time_left()
+  timer_device_starttime()             == timer->start_time()
+  timer_device_firetime()              == timer->fire_time()
+
+Updated all drivers that use the above functions to fetch the specific
+device type (timer_device or screen_device) and call the appropriate
+method. [Aaron Giles]
+
+Changed machine->primary_screen and the 'screen' parameter to
+VIDEO_UPDATE to specifically pass in a screen_device object.
+[Aaron Giles]
+
+Defined a new custom interface for the Z80 daisy chain. This interface
+behaves like the standard interfaces, and can be added to any device
+that implements the Z80 daisy chain behavior. Converted all existing
+Z80 daisy chain devices to new-style devices that inherit this
+interface. [Aaron Giles]
+
+Changed the way CPU state tables are built up. Previously, these were
+data structures defined by a CPU core which described all the
+registers and how to output them. This functionality is now part of
+the state interface and is implemented via the device_state_entry
+class. Updated all CPU cores which were using the old data structure
+to use the new form. The syntax is currently awkward, but will be
+cleaner for CPUs that are native new devices. [Aaron Giles]
+
+Converted the okim6295 and eeprom devices to the new model. These were
+necessary because they both require multiple interfaces to operate and
+it didn't make sense to create legacy device templates for these
+single cases. (okim6295 needs the sound interface and the memory
+interface, while eeprom requires both the nvram and memory
+interfaces). [Aaron Giles]
+
+Changed parameters in a few callback functions from pointers to
+references in situations where they are guaranteed to never be NULL.
+[Aaron Giles]
+
+Removed MDRV_CPU_FLAGS() which was only used for disabling a CPU.
+Changed it to MDRV_DEVICE_DISABLE() instead. Updated drivers.
+[Aaron Giles]
+
+Reorganized the token parsing for machine configurations. The core
+parsing code knows how to create/replace/remove devices, but all
+device token parsing is now handled in the device_config class, which
+in turn will make use of any interface classes or device-specific
+token handling for custom token processing. [Aaron Giles]
+
+Moved many validity checks out of validity.c and into the device
+interface classes. For example, address space validation is now part
+of the memory interface class. [Aaron Giles]
+
+Consolidated address space parameters (bus width, endianness, etc.)
+into a single address_space_config class. Updated all code that
+queried for address space parameters to use the new mechanism.
+[Aaron Giles]
+
+Fixed palette / priority handling in Lucky Girl (Newer Z180 hardware)
+[David Haywood]
+
+Update/Correct Space Invaders Comments, particularly regarding Midway
+Boards [Andrew Welburn, Lord Nightmare]
+
+Fixed priorities in Frog & Spiders [Angelo Salese]
+
+Fixed crash regression with spangbl / pangba [Angelo Salese]
+
+Updated galivan.c with DIP LOCATIONS and verified setting via Service
+Mode.  Added comments about missing text layer in Ninja Emaki and
+flagged those sets with missing protection emulation.  [Tafoid]
+
+Fix audio cpu banking in Raiden 2 (add a missing mirror to banking
+register) [trap15, R. Belmont]
+
+Corrected Raiden II audio banking - it's only at 401a [R. Belmont]
+
+Flash: 4k sectors should erase in 1/8th the time of 64k. extend core
+to support GBA chip types. [R.Belmont]
+
+Clean up profiling flags in the makefile. Removed GPROF flag, it is
+now just PROFILE. When enabled, automatically turn on basic symbols.
+Also added new SYMLEVEL option to control the symbols level (defaults
+to 2). [Aaron Giles]
+
+Dumped internal ROM for Pinkiri 8 [Charles MacDonald]
+
+Dumped internal ROM for Janshi [Charles MacDonald]
+
+Documentation update [Stefan Lindberg, Dumping Union] 
+ segas16b.c, taito_f2.c, taito_f3.c & taito_x.c: 
+  Corrected rom names and or added PCB locations to Ray Force, 
+  Arabian Magic, Liquid Kids, Twin Hawk. Added additional Sega game 
+  ID info for an Alien Syndrome set.
+
+model3.c: Correct sound rom loading for the Scud & Scud Plus sets
+[Alex's Blog]
+
+devlegacy.c,clifront.c,info.c [Miodrag Milanovic]
+ * Created legacy image device
+ * Moved opresolv implementation from MESS
+ * listmedia is option is available in MAME too
+ * listxml output now contains image devices
+
+-romident can now identify chd's [smf]
+
+Emulated protection check in Ron Jan [Angelo Salese]
+
+Added default NVRAM to G-Stream [David Haywood]
+
+Fixed default EEPROM for 1 on 1 Government [David Haywood]
+
+Added default EEPROMs for each Brave Blade region [David Haywood]
+
+Improvements to the Pinkiri 8 video emulation
+[David Haywood, Angelo Salese]
+
+emuopts - added support for image devices parameters
+[Miodrag Milanovic]
+
+Deviceized the VDP used by Pinkiri 8 HW [David Haywood]
+
+Fixes for OS X PowerPC compile [R. Belmont]
+
+Added color PROM of kickboy and corrected ROM filename
+  [Team Japump, The Dumping Union]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Alien Challenge (2 sets) [Luca Elia, XingXing]
+Lucky Girl (Z180-based HW)
+  [David Haywood, Angelo Salese, Charles MacDonald]
+Vortex [Lord Nightmare, David Haywood, Smitdogg, The Dumping Union]
+The Berenstain Bears in Big Paw's Cave [B Zeidler]
+Royal Queen [Charles MacDonald, Angelo Salese]
+Night Gal [Charles MacDonald, Angelo Salese]
+Night Bunny / Royal Night [Charles MacDonald, Angelo Salese]
+
+
+
+New clones added
+----------------
+Wai Wai Animal Land Jr.(Japan)[Team Japump, The Dumping Union]
+Phantoms II (Space Invaders hardware) [Andrew Welburn]  (enigma2b)
+Toki (US, set 2) [Corrado Tomaselli] (tokiua)
+Ooedo Fight (Japan) [Team Japump, The Dumping Union]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Battle Gear [R. Belmont]
+Battle Gear 2 [R. Belmont]
+Pop n' Music 5 [Guru]
+Unknown Meyco Game [Trevor Brown, Antwon Barajas] (unkmeyco)
+Puzzle Break [Smitdogg, The Dumping Union]
+Ron Jan [Charles MacDonald, Brian A. Troha]

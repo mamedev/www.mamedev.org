@@ -1,0 +1,116 @@
+0.107u4
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+mngrecording0107u1ora [Aaron Giles]
+vectorsnapshot0107u1red [Aaron Giles]
+tdfever087u4gra [Canim]
+quizmeku087u4gra [Canim]
+
+
+
+Source Changes
+--------------
+Fixed the dips for Apache 3 and Dark Mist. [Brian Troha]
+
+Added built-in overlays for clowns and maze. [Mr. Do!]
+
+Converted Final Romance 2 to be dual screen. [David Haywood]
+
+Converted the VFD display in the BFM games to use a second screen
+rather than hacking onto the main screen. [El Condor]
+
+Fixed detection of left/right modifier keys when paused. Also added
+support for recently added keys so they are detected by MAME when
+paused. [Ben Rudiak-Gould]
+
+Changed render_target_alloc() to take a bitmask of flags. In addition
+to loading a single file, targets can also be marked "hidden", and
+only non-artwork views can be made visible. [Aaron Giles]
+
+Added new render target layer config flag to disable screen overlays.
+[Aaron Giles]
+
+Changed snapshot taking code to render the particular screen to a
+temporary render target. This allows vector games to have snapshots
+again. [Aaron Giles]
+
+Normalized the naming of several functions in video.c, most 
+importantly: [Aaron Giles]
+
+   force_partial_update -> video_screen_update_partial
+   configure_screen -> video_screen_configure
+   set_visible_area -> video_screen_set_visarea
+
+Added new functions that do accurate per-screen timing based on
+video parameters: [Aaron Giles]
+
+   video_screen_get_hpos
+   video_screen_get_vpos
+   video_screen_get_hblank
+   video_screen_get_vblank
+   video_screen_get_time_until_pos
+
+Fixed bug that caused the VIDEO_EOF to be called repeatedly while in
+the debugger. [Aaron Giles]
+
+Split render.c into rendutil.c, rendlay.c, and render.c to keep the
+code more organized. [Aaron Giles]
+
+Abstracted the notion of outputs. A new module, output.c, now controls
+all outputs. Each output is tagged with a name; some standardization
+eventually needs to happen on these names, but at the moment it's
+fully open. The OSD layer can register with output.c to be notified
+when outputs change. From there, it is free to do what it wants. LEDs
+have now been converted to outputs with the name "led0", "led1", etc.
+[Aaron Giles]
+
+Added support for notifying external clients of changes in output
+states in the Windows OSD system. See windows/output.h for a list of
+messages that external clients can register to receive. Removed the
+built-in hacky LED support in the Windows OSD layer. Created a sample
+application ledutil.exe which subscribes to the external events and
+routes the "led0", "led1", and "led2" outputs to the keyboard LEDs
+just like before. If you want to continue to have LED support, simply
+copy ledutil.exe into your startup folder and let it run in the
+background. [Aaron Giles]
+
+Modified the Q*Bert driver to signal a "knocker0" output when the
+knocker is triggered. [Aaron Giles]
+
+Added new layout element component type "text", which lets you draw
+text in the built-in MAME font onto an element in a layout. This
+can be used for basic lamps and built-in layouts. See maxaflex.c for
+an example. [Aaron Giles]
+
+Added new layout element component type "led7seg", which constructs
+a 7-segment LED in an element in a layout. This is commonly used for
+external score and timer displays. See maxaflex.c for an example.
+[Aaron Giles]
+
+Added built-in layouts for Turbo, Subroc 3D, Buck Rogers, Atari
+Football, Atari Baseball, and Super Speed Racer using the new 
+primitives. [Aaron Giles]
+
+Fixed overflow computation in the S2650 core. [Aaron Giles]
+
+More Sega G-80 raster cleanup: [Aaron Giles]
+ * consolidated the video hardware implementations
+ * fixed cocktail mode video and controls in all games
+ * fixed Monster Bash (2 board version) video
+ * revived Sindbad Mystery and fixed sound chip frequencies
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Trivia Quest [Pierpaolo Prazzoli]
+SunA Quiz 6000 Academy [David Haywood]
+
+
+
+New clones added
+----------------
+Zero (set 2) [David Haywood]

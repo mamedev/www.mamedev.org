@@ -1,0 +1,110 @@
+0.159
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05844: [Core] (coco12.c) all coco drivers: crash to desktop when 
+  slot device Multi selected (Osso)
+- 04799: [Core] (kaypro.c) All sets in kaypro.c: Won't boot from 
+  Floppy (Robbbert)
+
+New System Drivers Supported:
+-----------------------------
+-Bank Shot [hap, Sean Riddle]
+-Tomy Alien Chase [hap, Kevin Horton]
+-Epoch Dracula [hap, Kevin Horton]
+-Tomy Tennis [hap, Kevin Horton]
+-Wildfire [hap, Sean Riddle]
+-Coleco Total Control 4 [hap, Sean Riddle]
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+-Slicer [Carl, Al Kossow]
+-Kaypro4 [Robbbert]
+-Omni II [Robbbert]
+-Hanimex Pencil II [Robbbert]
+
+Skeleton drivers:
+-----------------
+-Alesis MMT-8 [Sandro Roncko]
+
+Software Lists:
+--------------
+
+-pico.xml: Added more dumps from Brazilian and Japanese carts. [Team
+ Europe]
+
+-tutor.xml: Added dump for Marine Adventure. [Team Europe]
+
+Source Changes
+--------------
+-nes, snes: Working MIDI in and out for Miracle Piano [R. Belmont]
+
+-fixed missing file details [Oliver Stöneberg]
+
+-snes: converted input code to use slot devices. This means that
+ you now change the emulated controllers (Joypad, Mouse, Multitap,
+ Super Scope) via the Slot Device menu of the UI interface and not
+ anymore from the System Configurations menu. Also, changing controller
+ now requires to reset the system, so please take some timeto choose
+ the desired controller *before* starting the game, if you want to play
+ a game that uses special controllers. [Fabio Priuli]
+
+-snes: fixed Mouse emulation so that it does not jump back
+ erratically if you keep moving beyond the window border. [Fabio
+ Priuli]
+
+-snes: fixed Multitap Adapter emulation so games properly
+ recognize the device and inputs from all 5 controllers are accepted by
+ the games. [Fabio Priuli]
+
+-snes: added emulation of the Pachinko controller used by a few
+ pachinko games for Super Famicom. [Fabio Priuli]
+
+-snes: added emulation of the Yonezawa Twin Tap controllers,
+ which allow to play with up to 8 players a quiz games for Super
+ Famicom. [Fabio Priuli]
+
+-snes: added emulation of the Epoch Barcode Battler unit (even
+ if only as Super Famicom controller, and not as a standalone unit)
+ which is necessary to play Conveni Wars Barcode Battler Senki for
+ Super Famicom. [Fabio Priuli]
+
+-apple2: properly handle ProDOS-order Microsoft CP/M boot disk
+ [R. Belmont]
+
+-apple2 updates: [R. Belmont]
+ * Provide centralized DMA mechanism for slot cards
+ * Fixed 0.156 regressions for Z80 SoftCard, The Mill 6809, and
+    Mountain Computer Music System
+ * Provide debugger protection for slot-based foreign CPUs executing
+    from Apple II DMA
+
+-gl6600cx: documented CPU type. [TeamEurope]
+
+-advision.c: Change Adventure Vision MCU ROM names to better
+ reflect actual chip labels. [Lord Nightmare]
+
+-pencil2 : fixed cassette interface, system marked as working
+ [Robbbert]
+
+-zorba : system can boot from floppy, is now usable. [Robbbert]
+
+-kaypro10 : boots from floppy (it only has one floppy drive) [Robbbert]
+
+-wozfdc: Reduce the flux inversion pulse duration to the minimum
+ [Peter Ferrie, O. Galibert]
+
+-apple3: Implement 'smooth scrolling' feature for all video
+ modes. [R. Belmont]
+
+-apple3: Fixed text color to white to match h/w with an RGB 
+ monitor. [R. Belmont, based on h/w testing by robj]
+
+-gamate: audio emulation [Peter Trauner]
+
+-sms: improved the code for the Light Phaser, by simplifying the
+ routines and making them slightly faster. [Enik Land]
+
+-amstrad: added support for the Dobbertin Smart Watch. [Barry Rodewald]

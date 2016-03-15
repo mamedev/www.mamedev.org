@@ -1,0 +1,198 @@
+0.111u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+jspecter074gra [Robert]
+spcenctr36b16gre [Robert]
+spcewars0108u3red [Robert]
+invad2ct0110u4gre [Robert]
+mngrecording0110u1ora [Buddabing]
+ninjaw0104u2gre [robiza]
+orunners0105u4gre [robiza]
+twinbee0105yel [Mamesick]
+gwarrior0108u1yel [Mamesick]
+tst_galx0101u3 [Atari Ace]
+m660_0108yel [Atari Ace]
+shootouj0102red [Mamesick]
+
+
+
+Source Changes
+--------------
+Added more documentation for the 8080bw driver. It describes the ports 
+and bits for those games with no sound. In most cases, sample sounds 
+have been attached, in order to assist with further development. The 
+games modified are: invrvnge/invrvnga, rollingc, spcenctr, gunfight, 
+m4, gmissile, schasrcv, 280zzzap, lagunar, lupin3, phantom2, blueshrk, 
+desertgu, ballbomb, yosakdon/yosakdoa, and shuttlei. Two games were 
+marked NO_SOUND although they actually do have sound: these are cosmo 
+and dogpatch. [Robert]
+
+Moved a chunk of platform specific code out of chdcd.c and romcmp.c 
+into the osd_tool code. [Nathan Woods]
+
+Widespread cleanup of disassemblers and CPU interfaces across the 
+project: [Giuseppe Gorgoglione]
+ - removed from many disassemblers the dependency on eainfo.h. The 
+    output produced by those disassemblers has been checked to be the 
+    same as before.
+ - extensively rewrote the 6309dasm.c and 6809dasm.c disassemblers.
+ - fixed minor bugs in the v810 and hd6309 interfaces.
+ - removed m68000\cpudefs.h. This was used by the old assembly m68000 
+    core. Removed from m68kmame.c and m68kmame.h as well many 
+    references to the old core (e.g A68K0, A68K2, etc.)
+ - properly typedeffed the cpuinfo union, this affects cpuintrf.h and 
+    many, many, other files
+ - converted 8051dasm.c, m65ce02.c and t11dasm.c to use 
+    cpuintrf_temp_str() instead of local string pools
+ - moved the info.s = cpuintrf_temp_str() initialization to:
+    activecpu_get_info_string(), cpunum_get_info_string() and 
+    cputype_get_info_string(). This allows us to remove tons of 
+    info->s = cpuintrf_temp_str() statements from the xxx_get_info() 
+    accessors of every CPU core, making them more readable
+ 
+Fixed a problem with the chirp tables of both the tms5220 and the 
+tms5110. Also backported Jarek's PRNG implementation from tms5110.c 
+to tms5220.c so it no longer relies on rand(). [Lord Nightmare]
+
+Fixed two bugs in the m68000 core: [Alex Jackson]
+ - fixed a miscompilation issue with GCC4 that was first noticed in 
+    Altered Beast but also affected Moonwalker, Galaxy Force 2, and 
+    probably many other games.  
+ - fixed the core's compile-time self-configuration so that it uses 
+    the same code paths on LP64 platforms (64-bit Linux, etc.) as on
+    LLP64 (64-bit Windows) and 32-bit platforms.
+
+Added save state support to the magmax driver. [Svante Gerhard]
+
+Fixed music speed in perfrman. [Mamesick]
+
+Fixed implementation of da_a instruction in i8051 core. [Special LIU]
+
+Third round of numerous improvements to the cheat engine: [ShimaPong]
+NOTE : delete old command code and save it newly in Options menu.
+ * operation:
+   - Added preliminary direct Program Space accessor.
+     You can hack custom handling ROM code (eg encrypted segas16b.c
+     games). But it has several problems.
+     And added watchpoint display for Program Space.
+   - Added new operation, "Write if Match".
+     The cheat engine writes value only when read value matched
+     reserved value which is stored in extend data field.
+ * search menu:
+   - Added 3rd search mode, "Minimum Search Mode". It's more simple
+     than Classic Mode. Also added search memory initialize with
+     ui_clear key and extended value edit with arrow key in this mode.
+   - Added "View Last Results", "Restore Result", "Region Selection"
+     items to the advanced search menu.
+ * result viewer:
+   - Don't open this menu to avoid MAME crash in case of
+     no search region like sms.c in HazeMD.
+   - Added quick page switch by left/right arrow key.
+     Also changed functions for several keys in this menu.
+   - Improved no result page skip. But incomplete because
+     doesn't skip first or last page even if no result.
+ * code loading:
+   - Ignored to load old format code by default. If you need to
+     load, choose "Load Old Format" item in Options menu.
+ * input:
+   - Fixed activation key save on Enable/Disable menu.
+   - Fixed key handling for watch code addition from watch list
+     menu to cheat list. Now it works with ctrl + save cheat
+     key on the watch list menu.
+   - Enabled ui_clear key in editing a value (clear data)
+     and on watch list menu (reset all watchpoints).
+ * option:
+   - Added preliminary Debug option to check internal data.
+   - Added command code save. You can save command code with
+     save cheat key in Options menu.
+ * others:
+   - Added quick menu switch. It is assigned to ui_zoom in/out keys.
+     This function works in Enable/Disable, Add/Edit, Search and
+     Watchpoint menus.
+   - Rearranged several items on the menus.
+
+Converted some isolated parts of the Win32 OSD code to use 'TCHAR' 
+strings rather than simple 'char' strings. [Nathan Woods]
+
+Removed rom patches in the airbustr driver; hooked up watchdog 
+instead. [David Haywood]
+
+Reimplemented one-shot timer modes in the 6526 CIA (Amiga) emulation.
+[Ernesto Corvi]
+
+Added validity check for zero refresh rates. [Nathan Woods]
+
+Fixed DIPswitch defaults for Quartet and Quartet 2. [Alex Jackson]
+
+Fixed incorrectly drawn graphics in troangel. [Robiza]
+
+Fixed a few more assertions lurking with the new stricter disassembler
+checks. [Aaron Giles]
+
+Patched some protection checks in Funny Strip and Rebus. Neither game
+works yet. [Tomasz Slanina]
+
+Changed -createconfig to output the INI file using mame_file rather 
+than FILE. [Nathan Woods]
+
+Improved graphics emulation in the tetriunk driver. [Tomasz Slanina]
+
+Fixed copy/paste bug in the Irem sound hardware dealing with MSM5235
+chips. [Mamesick]
+
+Fixed visible area in Toki. [Mamesick]
+
+Added new Toshiba TMP90840/TMP91640 CPU core. [Luca Elia]
+
+Moved msm6242 real time clock to its own file. [Luca Elia]
+
+Implemented blitter rom banking in dynax driver. [Luca Elia]
+
+Added sound in Rapid Hero (samples banking is incorrect). [Luca Elia]
+
+Fixed reset problem in the tia emulation. [Nathan Woods]
+
+Adding remaining MESS sound cores to the core MAME sources.
+[Nathan Woods]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Ms. Pac-Man/Galaga - 20 Year Reunion [Nicola Salmoria]
+Mahjong If...? [Luca Elia]
+Mahjong Reach (bootleg) [Luca Elia]
+Mahjong Tenkaigen (bootleg) [Luca Elia]
+Live Quiz Show [Luca Elia]
+Pool 10 (Italia) [Roberto Fresca]
+Tortuga Family (Italia) [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Booby Kids (Italian manufactured graphic hack) [David Haywood]
+Air Buster: Trouble Specialty Raid Unit (bootleg) [David Haywood]
+Battle Balls (US) [Arzeno Fabrice]
+Darth Vader [Tomasz Slanina]
+R-Type (World) [Stefan Lindberg]
+Puzz Loop 2 (Euro 010302) [Razoola, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Moonwar (prototype on Frenzy hardware) [Lord Nightmare]
+BanBam [David Haywood, Brian Troha]
+Double Dealer [Tomasz Slanina]
+Sky Lancer [Luca Elia]
+Mahjong Tensinhai [Luca Elia]
+Mahjong Raijinhai DX [Luca Elia]
+Mahjong Tenkaigen Part 2 [Luca Elia]
+Mahjong Tenkaigen [Luca Elia]
+Cow Race [Luca Elia]
+Mongolfier New (Italia) [Roberto Fresca]
+Soccer New (Italia) [Roberto Fresca]

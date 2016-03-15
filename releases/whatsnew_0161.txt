@@ -1,0 +1,237 @@
+﻿0.161
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05680: [Graphics] (sigmab98.c) itazuram: During Test mode, graphics corruptions (Luca Elia)
+- 05903: [DIP/Input] (sf.c) sf sfj sfua: Street Fighter DIP Switch wrong value (Osso)
+- 05909: [Core] empty input tag on validity test error
+- 05922: [DIP/Input] (exidy.c) pepper2, pepper27: Incorrect DIP labels (Tafoid)
+- 05916: [DIP/Input] (dkong.c) dkongjr: Incorrect DIP labels (Tafoid)
+- 05679: [Crash/Freeze] (sigmab98.c) itazuram: After a time of demonstration,
+  game will reset and trash NVRAM (Luca Elia)
+- 03174: [Crash/Freeze] (cardline.c) cardline: Game doesn't start correctly (couriersud)
+- 05895: [Documentation] hlsl_write is incorrectly documented as a boolean (Tafoid)
+
+Source Changes
+--------------
+-mips3: Add integer divide-by-zero handling to MIPS III cores. [MooglyGuy]
+
+-segas32: Redumped oversized Stadium Cross ROMs at the correct sizes. [Guru]
+
+-aica.c: ADPCM looping (DC swirl sound) and address masking (Red Dog)
+ fixes [MetalliC, Wind]
+
+-segasp.c: basic system and IO hookup - BIOS is working,
+ Tetris Giant boots to title, other rom based games start loading
+ but hang due missing RFID reader [MetalliC]
+
+-atomiswave: more correct ROM board PIO access (fixes ggisuka, rumblef2
+ crash) [MetalliC, CaH4e3]
+
+-arm7: STM decrementing mode actually writes in incrementing mode on
+ real h/w.  Used heavily by GBA "Classic NES" carts.
+ [R. Belmont, endrift]
+
+-Some work towards "Unknown 186 Gambling Game". Shows some menus, but
+ it's nowhere near playable [Angelo Salese]
+
+-Moved build system to GENie [Miodrag Milanovic, Vas Crabb, Couriersud]
+
+-Added support for per-OSD mak files [qmc2]
+
+-mips3: Made fast RAM option common to both interpreter and DRC. [MooglyGuy]
+
+-Added proper sound comms for hng64 [Angelo Salese]
+
+-Fix SegaPCM volume register overflow [superctr]
+
+-netdev: fix race condition/crash when using the OSD to choose pcap
+ devices. [Rob Braun]
+
+-mtwins pal [Corrado Tomaselli]
+
+-goldstar.c DIP/input updates [Bad A. Billy]
+
+-More iteagle improvements: [Ted Green]
+ * PCI: allow BAR of 0; change "invalid" from 0 to -1
+ * vrc4373: implement bus-master DMA
+ * es1373: Do some processing and DMA, and issue IRQs
+
+-z80pio: Added individual write line handlers for port bits.
+ [Curt Coder]
+
+-Fix yuv texture conversion for opengl [O. Galibert]
+
+-Native CoreAudio sound output for OSX [Vas Crabb]
+ * Audibly lower latency than SDL sound output
+ * Allows selection of output device (-audio_output)
+ * Allows up to ten AudioUnit effects (-audio_effect0..9)
+ * New aueffectuitl tool to create/edit effects
+ * Also supports standard .aupreset effect files
+
+-6522via: Added device address map. [Curt Coder]
+
+-mos6530: Rewritten to support time travel. [Curt Coder]
+
+-Allow font face/size selection for Qt and Cocoa debuggers [Vas Crabb]
+
+-hexion.c: Document chip locations and xtal based on PCB pictures of
+ Konami PCB and bootleg PCB [Lord Nightmare]
+
+-Tidy MAME source files [Zoe Blade]
+
+-Replace simple_set with std::set [Vas Crabb]
+
+-Add the ability to mcs51 family processors to use port bits as inputs
+ which actually are used as outputs because a "0" has been written to
+ them. The CMOS chips in the family may be misused in this way when a
+ low impedance source is connected to them. [Couriersud]
+
+-Fixed cardline driver. [Couriersud]
+
+-Hooked up 6845 to cardline. [Couriersud]
+
+-sigmab98.c: fixed position of zoomed sprites and added sprite RAM
+ buffer. Emulated background color register. Removed some ROM patches
+ [Luca Elia]
+
+-exidy.c: brute force fix for m6502-related regressions [Alex Jackson]
+
+-extracted protection data for Ma Cheon Ru [system11]
+
+-Replace dynamic_array with std::vector [O. Galibert]
+
+-Completely hooked up 6845 in cardline driver. Documented asic
+ addresses. [Couriersud]
+
+-astring to std::string conversion [Miodrag Milanovic]
+
+-jwildb52a: dumped GFX roms [anonyMous]
+
+-Improve truthtable handling in netlist. Prepare per-game setting of
+ USE_DEACTIVE_DEVICE. [Couriersud]
+
+-Add 9312/DM9312 to netlist. [Couriersud]
+
+-Fix repetitive monitor updates. By design, MAME has an issue setting
+ aspect correctly on monitor resolution changes. This needs to be
+ addressed separately. [Couriersud]
+
+-Added 74192, 9316, 9310 and 74193 devices to netlist. Added breakout
+ (wip) netlist as well, but still have to implement three more devices
+ until work can really start. [Couriersud]
+
+-luaengine improvements [Luca Bruno]
+
+-Jump Bug (galaxian.c): Adjusted clock speed to have working audio
+ match that of video from PCB.  Added notes regarding missing audio and
+ flagged game  [Tafoid]
+
+-Properly document address deconding for GFX roms in cardline.
+ [Couriersud]
+
+-berzerk.c: Verified and corrected the rom labels for Berzerk (set 1)
+ [Brian Troha]
+
+-Some WIP for Cirrus Logic GD542x/3x video chipsets, and split from 
+ pc_vga.c into it's own file.  Hardware cursor is working, but other 
+ acceleration features still need a lot of work. [Barry Rodewald]
+
+-*nix man pages: Added new options to select debugger font face and
+ size [Cesare Falco]
+
+-SDLMAME v0.160 selects the first mode unconditionally as a best mode
+ when -switchres is used on SDL12 [KO Myung-Hun]
+
+-Fix build on OpenBSD [ibara]
+ 
+-Added / enabled save state support for the following drivers: aztarac.c,
+ bagman.c, bigstrkb.c, cheekyms.c, clshroad.c, headonb.c, invqix.c,
+ jackie.c, lwings.c, m107.c, m72.c, mainsnk.c, mirax.c, murogem.c,
+ murogmbl.c, niyanpai.c, pitnrun.c, portrait.c, powerins.c, ppmast93.c,
+ quizdna.c, rmhaihai.c, rotaryf.c, roul.c, route16.c, sauro.c, sbugger.c,
+ shangha3.c, shanghai.c, shangkid.c, shaolins.c, spcforce.c, splash.c,
+ spoker.c, spool99.c, ssfindo.c, stactics.c, thepit.c, toobin.c, truco.c,
+ tunhunt.c, unkhorse.c, vamphalf.c, victory.c, vigilant.c, vroulet.c,
+ warpsped.c, wiz.c [Osso]
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Table Tennis Championship [David Haywood, Angelo Salese]
+DoDonPachi Dai-Fukkatsu Black Label (2010/1/18 BLACK LABEL)
+  [Bicycle Repairman]
+Car Hunt / Deep Scan (France) [Ricky2001 (from AUMAP)]
+Minna Atsumare! Dodge Hero [anonyMous, Luca Elia]
+Itazura Daisuki! Sushimaru Kun [anonyMous, Luca Elia]
+Burning Sanrinsya - Burning Tricycle [anonyMous, Luca Elia]
+Transformers Beast Wars II [anonyMous, Luca Elia]
+Ma Cheon Ru [System11, David Haywood, The Dumping Union]
+
+New clones added
+----------------
+Stadium Cross (World, alt) [Guru]
+Hot Bubble (Korea) [system11, The Dumping Union]
+Daioh (93111A PCB conversion) [CoolMod, system11, trap15]
+Raiden Fighters (Japan set 3) [Artemio Urbina, The Dumping Union]
+Super Puzzle Fighter II Turbo (Euro 960529)
+  [fluxcore, idc/Team Avalaunch]
+Hexion (Asia ver AAA, bootleg) [system11]
+Berzerk (French Speech) [Arcade Vintage]
+Berzerk (Spanish Speech) [Bartolomé López Giménez, Rockman, Ricky2001]
+Mutant Fighter (World ver EM-2) [Simon Dennison]
+Super Champion Baseball (Japan) [Manuel Assoni]
+Total Vice (EBA) (not working) [arcademodbios]
+Player's Edge Plus (X002172P+XP000112) Ace$ Bonus Poker (The Fun Ships)
+  [BrianT]
+Player's Edge Plus (PP0542) One Eyed Jacks Wild Poker (CG2243)
+  [BrianT]
+Super Formula (Japan, set 2) [Paolo Venturi]
+Chuugokuryuu 3 Special (Japan, ver. 103) [arcademodbios]
+Puzznic (bootleg, set 2) [f205v]
+Red Hawk (Korea) [system11]
+Phelios [Stefano Rolleri]
+Player's Edge Plus (X000455P+XP000038) Joker Poker [BrianT]
+Player's Edge Plus (X002028P+XP000019) Deuces Wild Bonus Poker
+  [BrianT]
+Perfect Billiard (MC-8123, 317-5008) [PokeMame]
+Robocop 2 (US v0.10) [Bill D, The Dumping Union]
+Raiden Fighters (Germany) [Fabrice Arzeno, The Dumping Union]
+Fighter's History (US ver 42-06, DE-0395-1 PCB)
+  [Fabrice Arzeno, The Dumping Union]
+Boogie Wings (USA v1.7, 92.12.14) [Fabrice Arzeno, The Dumping Union]
+Amuse (Version 30.08A) [PokeMAME}
+Scramble (Centromatic S.A.) Spanish Bootleg [Manuel Giron]
+Double Dragon II (Japan) [caius] (NOT WORKING, incomplete dump)
+Area 51 (Time Warner license) [Brian Troha, The Dumping Union]
+Spatter (315-5099) [Andrea Palazzetti] (NOT WORKING, encrypted)
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Taiko no Tatsujin 7 (TK71-NA-A) [Guru]
+Taiko no Tatsujin 8 (TK8100-1-NA-A) [Guru]
+Zoids Infinity [Guru]
+Zoids Infinity EX Plus (ver. 2.10) [Guru]
+Go Go Strike [MikeDX, Smitdogg, The Dumping Union]
+Minna Ganbare! Dash Hero [anonyMous, Luca Elia]
+Sigma Super 8 Ways FC (Fruit combination) [anonyMous]
+Ultimate Arctic Thunder Update CD ver 1.950 (5/3/04)
+  [gamerfan, Smitdogg, The Dumping Union]
+Brick People / Block PeePoo (Ver 1.002) [Andy Geezer, MetalliC]
+Dinosaur King (USA)
+  [Mark F., Mr. CAST, Smitdogg, ANY, The Dumping Union]
+Dinosaur King -  Operation: Dinosaur Rescue (USA, Export)
+  [Hamster, MetalliC]
+Dinosaur King - D-Team VS. the Alpha Fortress (Export, Ver 2.500) (MDA-C0047)
+  [Andy Geezer]
+Love And Berry - 1st-2nd Collection (Export, Ver 1.003)
+  [Andy Geezer, MetalliC]
+Love And Berry - 1st-2nd Collection (Export, Ver 2.000)
+  [Andy Geezer, MetalliC]
+Love And Berry - 3rd-5th Collection (USA, Export, Ver 1.002) (MDA-C0042)
+  [Englishman, Hamster]
+Tetris Giant / Tetris Dekaris (MDA-C0076) [Andy Geezer]
+Tetris Giant / Tetris Dekaris (Ver.2.000)
+  [Andy Geezer, Soyandroid, MetalliC]
+Breakout [Couriersud, DICE Team]

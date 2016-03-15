@@ -1,0 +1,266 @@
+0.157
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05808: [DIP/Input] (cps1.c) sf2amf: Wrong input 'references'. (darq)
+- 05805: [Sound] (cps1.c) dinohunt: [possible] Unused YM2151 chip? (darq)
+- 05804: [DIP/Input] (cps1.c) dinohunt: Wrong P3 controls mapping  (darq)
+- 03659: [Crash/Freeze] (atarisy2.c) All Sets in atarisy2.c: Crashes
+  when loading autosave with "-str 2" (Osso)
+- 01591: [Graphics] (atarisy2.c) paperboy, paperboyr1, paperboyr2: 
+  Flashing text in service mode (Alex Jackson)
+- 00380: [Graphics] (atarisy2.c) 720: The sprites in 720 flicker/disappear 
+  sometimes in recent MAME versions. (Alex Jackson)
+- 05789: [DIP/Input] (prehisle.c) Wrong vblank IP_ACTIVE_HIGH value. (Alex Jackson)
+- 04648: [Flip Screen/Cocktail] (btime.c) All sets in btime.c: Misplaced
+  graphics for player 2 in cocktail mode (Alex Jackson)
+
+Source Changes
+--------------
+-dreamwld.c: Fill in dipswitches for Cute Fighter and PCB layout.
+ [Brian Troha]
+
+-Add missing Atari System 1 TTL Motherboard PAL.  [Kevin Eshbach]
+
+-Updated location/PAL information for Puzzle Bobble 3 (Japan) in
+ taito_f3.c.  [Kevin Eshbach]
+
+-Add more info to the GitHub readme to prevent confusion. [Justin Kerk]
+
+-add some Smashing Drive hw details [Demul Team]
+
+-redump / verify Fight Fever romsets [DsNo]
+
+-add communication MCU ROM (dumped from a prototype) to the Riding Hero
+ sets [Brian Hargrove]
+
+-atvtrack.c make Smashing Drive going somewhere instead of hang
+ emulator [MetalliC, Demul team]
+
+-renegade.c: replace custom sound with MSM5205 [Alex Jackson]
+
+-raiden2cop.c: Endian safety fix [Alex Jackson]
+
+-btime.c: fix flip screen [Alex Jackson]
+
+-naomi.c: use full M4 PIC16 dumps instead of partial "readouts", add
+ handmade 'dumps' with master keys for not yet properly dumped PICs
+ [rtw, MetalliC]
+
+-naomi.c: use full M4 PIC16 dumps instead of partial "readouts", add
+ handmade 'dumps' with master keys for not yet properly dumped PICs
+ [rtw, MetalliC]
+
+-Chihiro vertex programs update [Samuele Zannoli]
+
+-SDL: Fix build with non-framework SDL 2 issue on OS X [mbcoguno]
+
+-lindbergh: Fake pit and real pci bridges [O. Galibert]
+
+-pci: expansion rom management [O. Galibert]
+
+-lindbergh: Match card and video bios [O. Galibert]
+
+-Fix debugger memory display of little-endian memory regions
+ [Alex Jackson]
+
+-m68k: disassembler support for FTRAP. [R. Belmont]
+
+-luaengine: add API versioning [Luca Bruno]
+
+-viper.c: added NVRAM and dongle to Police 911 2 [Guru, dogpn]
+
+-pci: Fix some initialisations, valgrind stops complaining [O.Galibert]
+
+-pci: Autodetect multifunction devices [O. Galibert]
+
+-i82875p: toud display fix [O. Galibert]
+
+-redumped "Melty Blood Act Cadenza Version B (GDL-0039)" [rtw, ShouTime]
+
+-changed Melty Blood series game names as per title screen texts [metallic]
+  
+-igs009.c - Updated dips and added locations to comply with the manual
+ for Jingle Bell & Gran Prix '98. [Bad A. Billy]
+
+-82875p: Add overflow device, high smram [O. Galibert]
+
+-pci: Add more pci bridge registers [O. Galibert]
+
+-hikaru.c update add protecton keys for AirTrix and Planet Harriers
+ [CaH4e3, MetalliC] 
+
+-rom labels and ROM_LOADs corrections&cleanup [MetalliC]
+
+-Use consistent logical ID for joystick registration log [tomyun]
+
+-Bump version in *nix man pages [wallyweek]
+
+-Initial implementation of "Dona Barata" driver (brazilian whack-a-mole) [Felipe Sanches]
+
+-SH-2: added default SSR value, makes EGWord to boot [Angelo Salese]
+
+-Verified clocks for Yam! Yam!? and Last Day / D-Day [system11]
+
+-Do not check gl_lib() without OpenGL support [Tarnyko]
+
+-k053936.c: fix potential out-of-bounds memory access; remove some dead
+ code [Alex Jackson]
+
+-Attempt at fixing the new Stepper device to load correctly for AWP
+ games. This is part 1 of a plan to remove the stepper_interface for a
+ devcb2 setup.  [James Wallace]
+
+-debug: fix the gui for smaller fonts [Fabrice Bellet]
+
+-Using a font pointsize different from 11pt has a consequence that
+ fontWidth (in pixels) is not an integer anymore. [Fabrice Bellet]
+
+-debug: fix a string overflow in comments [Fabrice Bellet]
+
+-debug: dont update asm view in the start_hook() [Fabrice Bellet]
+
+-The curpc can be in the middle of an instruction being decoded, so it
+ is not pertinent to recompute the disassembly starting from thi s
+ address. [Fabrice Bellet]
+
+-debug: fix the avl trees logic [Fabrice Bellet]
+
+-The ancestor heights of a node were not updated properly. [Fabrice Bellet]
+
+-debug: better handling of duplicate memory access [Fabrice Bellet]
+
+-Don't remove and reinsert nodes that correspond to a duplicate memory
+ access, because tree rebalancing kills performances. Update the node's
+ element content instead. [Fabrice Bellet]
+
+-debug: fix wrong initial m_topleft.x value in memory view [Fabrice Bellet]
+
+-Significant change to Stepper motor device behaviour, using devcb2
+ interfaces. [James Wallace]
+
+-cpu: Rewrote Rockwell PPS-4 CPU core based on bitsavers.org
+ documents. Add led8seg_gts1 (Futaba) to rendlay.c/h and use
+ them in gts1.lay. Add Rockwell devices 10696, 10788 and A17xx
+ preliminary implementations [Juergen Buchmueller]
+
+- New functions added: 
+
+ MCFG_STEPPER_ADD(tag) - add a stepper device
+ MCFG_STEPPER_REEL_TYPE(type) - the equivalent of the first line in the
+ old interface, now also takes NOT_A_REEL for printer and similar
+ applications MCFG_STEPPER_START_INDEX(int index) - the old second line
+ of the interface, the position (in half steps) where the optic tab
+ first triggers. MCFG_STEPPER_END_INDEX(int index)  - the old third
+ line of the interface, the last position (in half steps) where the
+ optic tab triggers. MCFG_STEPPER_INDEX_PATTERN(int pattern) - a coil
+ pattern in hexadecimal that has to be on the motor for the index to
+ trigger (0 if no specific pattern is needed)
+ MCFG_STEPPER_INIT_PHASE(int phase) - starting phase of the motor
+
+ All drivers have been updated, testing done to all specific drivers -
+ Scorpion 4 was particularly complex. [James Wallace]
+
+-qt/debug: Device tree view.  Looks cool with mu100 or lindbios
+ [O. Galibert]
+
+-tms5110.c: implement output and read bit commands. [Lord Nightmare]
+
+-namcops2 updates:
+ * added BIOS and dongle for Time Crisis 4 [Guru]
+ * added dongle for Gundam vs. Gundam [Guru, Darksoft]
+
+-debug/qt: Add a per-device window [O. Galibert]
+
+-SDL2: Improved Alt-Enter functionality (now works on all screens at
+ once) and prefer upper-left placement of windowed mode windows.
+ [R. Belmont]
+
+-dinohunt: fixed player 3 inputs (MT05804) [darq]
+
+-luaengine: add memory-reading capabilities [Luca Bruno]
+
+-chihiro: added support for zbuffer and stencil plus render target
+ methods [Samuele Zannoli]
+
+-Fix "-mt" for SDLMAME windows build [Calamity, Couriersud].
+
+-Changed sdl_window_info to be closer to C++ [Couriersud]:
+ * Made some members private
+ * moved static functions into sdl_window_info
+ * extended work_param struct with constructors for better readability 
+ 
+-Fixed save state regressions in the following drivers [Osso]:
+* arcadecl.c, batman.c, eprom.c, foodf.c, liberatr.c, atarisys2.c, gstream.c,
+ pasha2.c, f-32.c, lastfght.c, bfm_sc1.c, bmcpokr.c, centiped.c, jangou.c, merit.c,
+ segas16a.c, asteroid.c, seibuspi.c
+
+-Started developing a CPU core for the series of processors based on the
+ ARCompact instruction set, namely the ARCtangent A-5.  This is still preliminary,
+ the disassembly is mostly complete but the output could still be tidied, and
+ many instructions are not yet implemented and based on code execution some of
+ the ones that are could be incorrect.  This is currently used by the 'leapster'
+ driver. [David Haywood]
+ 
+-m68k: generate the correct kind of stack frame for 68010 bus errors. [R. Belmont]
+ 
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Cute Fighter [system11, David Haywood]
+Su Ho Seong [system11, David Haywood]
+
+
+New clones added
+----------------
+Star Wars (set 3) [Andrew Welburn]
+Mortal Kombat (Yawdim bootleg, set 3) [Guru]
+Brick Blast (bootleg of Wall Crash) [Edcross & Rockman (from Aumap)]
+D-Day (Dooyong) (Korea) [system11]
+Yam Yam (Korea) [system11]
+Space Duel (version 1) [Mariusz Wojcieszek]
+Space Duel (prototype) [Mariusz Wojcieszek]
+Montana Choice (MG0183) Multi-Game [BrianT] (not working)
+Player's Edge Plus (X002478P+XP000154) Joker Poker - French [BrianT]
+Player's Edge Plus (X002479P+XP000154) Joker Poker - French [BrianT]
+Player's Edge Plus (X002478P+XP000154) Joker Poker (Aces or Better) - French
+  [BrianT]
+Player's Edge Plus (X002485P+XP000154) Standard Draw Poker - French
+  [BrianT]
+Guilty Gear XX #Reload (GDL-0019) [rtw]
+Melty Blood Act Cadenza (GDL-0028) [rtw, ShouTime]
+Ridge Racer V Arcade Battle (RRV2 Ver. A) [Guru, Darksoft]
+Atari Football II [Mariusz Wojcieszek]
+Super Street Fighter II Turbo (Asia 940223 Phoenix Edition) (bootleg) [Anonymous]
+F1 Exhaust Note (Japan) [ShouTime, The Dumping Union]
+Radikal Bikers (Version 2.02) [Ricky2001 (from AUMAP)]
+Dharma Doujou (World) [rtw]
+Dominos 4 (Cocktail) [Mariusz Wojcieszek]
+Super Breakout (Cocktail, prototype) [Mariusz Wojcieszek]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+House of the Dead 4 (Export) [soyandroid, Guru] 
+Virtua Fighter 5 (Export) [soyandroid] 
+After Burner Climax (Export) [soyandroid] 
+Let's Go Jungle (Export) [soyandroid] 
+Outrun 2 SP SDX  [soyandroid] 
+Power Smash 3 / Virtua Tennis 3 (Export) [soyandroid] 
+Virtua Tennis 3 (Japan) [Guru]
+Initial D4 (Rev D) [Guru] 
+Initial D4 (Rev C)  [Guru] 
+Sega Race-TV (Export) [soyandroid, Guru] 
+House of the Dead EX (Japan) [soyandroid] 
+Rambo (Export) [soyandroid, Guru] 
+Hummer Extreme  [soyandroid] 
+VBios updater [Guru] 
+2 Spicy  [Guru] 
+Ghost Squad Evolution [Guru] 
+Primeval Hunt [Guru]
+Star Horse Progress Returns (satellite) [CaH4e3]
+Pride GP 2003 (PR21 Ver. A) [Guru, Darksoft]
+Quiz Mobile Suit Gundam: Monsenshi (QG1 Ver. A) [Guru, Darksoft]
+Time Crisis 4 [Guru]
+Tekken 5 Dark Resurrection [Guru, Darksoft]

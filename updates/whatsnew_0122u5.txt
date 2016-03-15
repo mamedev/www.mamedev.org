@@ -1,0 +1,174 @@
+0.122u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+scorpion0111u5gra [couriersud]
+qbert37b14gre1 [Zsolt Vasvari]
+blktiger060gre [robiza]
+kinstc081u7gre [Aaron Giles]
+kinst2083gre [Aaron Giles]
+umk3059gre [Aaron Giles]
+umk3137b5gre [Aaron Giles]
+lasso056gre_1 [Zsolt Vasvari]
+lasso056gre_2 [Zsolt Vasvari]
+term20103u4gre [Aaron Giles]
+term20104u2gre [Aaron Giles]
+m72_0115u3yel [Mamesick, Aaron Giles]
+deadang0119u2red [David Haywood]
+tmnt095gre [Zsolt Vasvari]
+memleak0122u2ora [Atari Ace]
+junglek055gre [Zsolt Vasvari]
+
+
+
+Source Changes
+--------------
+Fixed flipped tilemap offset for scramble and clones (playable 
+cocktail mode). [couriersud]
+
+Changed Exidy driver to draws the background directly from memory 
+avoiding having to decode the gfx repeadately. [Zsolt Vasvari]
+
+Added machine and cpunum parameters to INTERRUPT_GEN callbacks. Fixed 
+several places that were not using INTERRUPT_GEN or OPBASE_HANDLER 
+macros. [Atari Ace]
+
+Minor bugfixes to the gfxlayout cleanups included in u4. [Atari Ace]
+
+Added code to debug 64-bit builds to allocate all address space below 
+4GB to help find 64-bit errors. Added environment variable 
+OSDDEBUGMALLOC which, if set, explicitly overrides the debug malloc 
+debug settings. Added environment variable OSDDEBUG4GB which, if set, 
+explicitly overrides the new 64-bit address space allocations. (Sadly 
+this is necessary due to some D3D drivers being 64-bit unclean....)
+[Aaron Giles]
+
+Fixed winwork to use proper tchar functions for getenv. [Aaron Giles]
+
+Fixed bug where the 64-bit DRC was not saving rbp. [Aaron Giles]
+
+Cleaned up the lasso driver. [Zsolt Vasvari]
+
+Simplified Y-unit DMA rendering, fixing bugs and removing the macro
+voodoo. [Aaron Giles]
+
+Removed a bunch of dead code from othunder.c. [Zsolt Vasvari]
+
+Implemented proper video timing and scanline interrupts in the m72
+driver. [Mamesick, Aaron Giles]
+
+mario.c improvements: [couriersud]
+ * discrete sound
+ * hooked up z80dma
+ * combined memory maps
+ * statics in mario_state struct
+ * fixed save state issues
+ * combine sh_* writes into one routine
+
+audio/dkong.c: [couriersud] 
+ * fixed LS123 constant to match TI datasheet diode circuit constant
+
+TX-1 improvements [Philip Bennett, Guru]:
+ * Fixed remaining arithmetic unit issues
+ * Added correct object colour pixel LUT PROM to tx1a
+ * Fixed x-flipping
+ * Added engine sounds
+
+Added correct DIP switch settings for Big Fight. Also corrected Cycle 
+Warriors DIP switches. [Philip Bennett]
+
+Changed and verified frequencies on Ikari Warriors h/w, Tnk3, Hyper 
+Sports, Jackal and S.A.R. [Corrado Tomaselli]
+
+Verified and corrected a lot of frequencies and oki6295 pin 7 on pcbs:
+Double Dribble, Chequered Flag, Diet gogo, Boulderdash, Sly Spy, 
+Psycho Nics Oscar, Captain Silver, Magical Cat Adventure, Raiden, 
+Superman, Twin Hawk, Vimana, Ghox, Dogyunn, truxton2, Pipi and Bibis, 
+Fix Eight and Money Money. [Corrado Tomaselli]
+
+Cleaned up brkthru/darwin memory maps. Changed both games to use 
+identical video timing parameters based on measurements of darwin.
+Guessed based on available information at the master clock and 
+derived all game clocks from it. [Aaron Giles]
+
+Reogranized and started to clean up the CVS driver. Added emulation
+of the speech CPU. Removed CVS BIOS entry. Removed unnecessary 
+patching. [Zsolt Vasvari]
+
+sauro.c: [couriersud]
+ * Hooked up sp0256 sound
+ * analyzed and commented some ports
+ * added palette_bank support without real success
+
+Reorganized the Raiden 2 driver.. a bit of extra documentation of the 
+'V33' based set, which has been renamed. Nothing new working.
+[David Haywood]
+
+Fixed scan functions for kickgoal background, which were swapped.
+[David Haywood]
+
+Fixed 2650 disassembly of the sense and flag bits. Fixed incorrect
+argument order in OUT instruction. Corrected spacing. [Zsolt Vasvari]
+
+Fixed hang/crash on empty config file. [Wilbert Pol]
+
+Cleaned up tceptor memory maps. [Zsolt Vasvari]
+
+Atari System 2 driver cleanup: [Aaron Giles]
+ * Proper video timing.
+ * Full memory maps.
+ * Save state support.
+ * Removed 720 sound CPU hack in favor of prepopulated EEPROM like 
+    the other games.
+
+Added support for outputting 64-bit target addresses in the i386dasm.
+[Aaron Giles]
+
+Added MESS PC-Engine emulatation system. Fixed MAME debug build under
+VC2003. [David Haywood]
+
+Unified memory maps in tmnt.c and twin16.c. Reversed ROM set names 
+of Cuebrick World and Japan versions. Changed some function names to 
+reflect parent set. [Zsolt Vasvari]
+
+Changed Konami drivers to allocate and decode graphics using the same
+layouts. Removed the layout parameter from the decodechar() calls.
+[Atari Ace]
+
+Fixed C++ compilation errors. [Dave Dribin]
+
+Made INPs compatible between 64-bit MAME and 32-bit MAME. [Chad]
+
+Complete taitosj memory map from Nicola's ancient notes. General code 
+clean-up. [Zsolt Vasvari]
+
+src2html improvments: [Aaron Giles]
+ - added line numbers
+ - added link to the raw file if the src and dst dirs are the same
+ 
+"Fix" for full screen switch, which makes no sense, but is included
+based on empirical evidence that is somehow works. [Emuman]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Name Club Ver.3 (J 970723 V1.000) [David Haywood]
+Blazing Lazers [David Haywood, Charles MacDonald, Mr. Do]
+
+
+
+New clones added
+----------------
+Lead Angle (Japan) [Guru]
+A Question of Sport (39-960-107) [Highwayman]
+Gee Bee (F.lli Bertolino license) [Corrado Tomaselli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Road Runner (Midway) [Zsolt Vasvari, Guru]
+Paranoia [David Haywood]

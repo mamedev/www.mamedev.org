@@ -1,0 +1,30 @@
+[note: only important changes are listed]
+
+0.5
+---
+
+Program:
+- Fixed some problems in the Wizard of Wor driver, but it is still far from
+  complete.
+
+- Support for:
+  Donkey Kong Jr. (wrong colors, no sound)
+  Galaxians and the plethora of clones (correct colors, limited sound)
+  Pisces (correct colors, limited sound)
+  "Japanese Irem game". I believe the colors are correct, but since I've
+    never seen the original game I can't know for sure.
+  War of the Bugs (wrong colors, limited sound)
+  Moon Cresta (wrong colors, limited sound)
+  The End (wrong colors, no sound)
+
+- By popular demand, reverted to the old AY-3-8910 emulation code.
+
+Source:
+- Changed readroms() to allow scatter loading of a single ROM. This was needed
+  for Donkey Kong Jr. Now the end of the RomModule array is marked by a size==0,
+  while name==0 means "continue loading the previous ROM at this address".
+
+- Some bug fixes and changes to reduce porting problems (thanks to Brad Oliver)
+
+- New function copybitmap() in common.c. Limited for now, will change in the
+  future.

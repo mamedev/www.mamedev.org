@@ -1,0 +1,285 @@
+0.156
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 05747: [Misc.] (apple2.c) apple2p, apple2e, apple2c (and probably others):
+  The "Diagnostics Test" failed. (R. Belmont)
+- 05157: [Crash/Freeze] (apple2.c) ace100: Access Violation with
+  "-debug -flop1 4080trkd -ramsize 12288" (R. Belmont)
+- 05158: [Crash/Freeze] (apple2.c) agat7: Access Violation with
+  "-debug -ramsize 16384" (R. Belmont)
+- 05715: [Crash/Freeze] (wswan.c) wswan, wscolor: It crash if executed
+  w/o cartridge mounted. (Fabio Priuli)
+- 05694: [Sound] All sets in coco12.c and coco3.c: audio output level
+  incorrect when Cassette/Cartridge selected on SC77526 chip
+- 05252: [Crash/Freeze] (megadriv.c) genesis [madden98]: Madden 98 -
+  black screen (David Haywood)
+- 05743: [Crash/Freeze] (dragon.c) tanodr64: The system is not working. (Osso)
+- 05660: [Misc.] (coco12.c) Coco 1, 2, 3: Implement virtual "Becker Port"
+  for DriveWire support (R. Belmont)
+- 05738: [Crash/Freeze] (vtech1.c) vz200de: The system is not working. (Robbbert)
+- 05730: [Misc.] (gb.c) gbcolor: The demo "Demotronic by 1.000.000 boys"
+  shows only a white screen. (Wilbert Pol)
+
+
+New System Drivers Supported:
+-----------------------------
+Simon [Sean Riddle, hap]
+
+
+Systems Promoted from GAME_NOT_WORKING:
+---------------------------------------
+Commodore 8296 [Curt Coder, Mike Naberezny]
+
+
+Skeleton drivers:
+-----------------
+LeapFrog Leapster [Team Europe]
+Convergent NGEN CP-001, B28/38, 386i [Al Kossow, Barry Rodewald]
+Siemens PC-D [Dirk Best, rfka01]
+EC-1842 [Shattered]
+TI Wiz-A-Tron [Sean Riddle, hap]
+Comp IV [Sean Riddle, hap]
+
+
+Software Lists:
+---------------
+pc98.xml: Added a large number of disk images, including a section
+of disks in currently unsupported disk formats (.FDD, .FIX, .NFD) so to
+document which games are available and which are not. Also, filled most
+of the information about release years and manufacturers. [Fabio Priuli]
+
+to7_cart.xml: added more dumps. [Riley110]
+
+included modern .dsk format among default supported
+formats. [Riley110]
+
+m5_cart.xml: Added new dump for Pit Chaser cart. [Ola Andersson]
+
+softlist: Added a Tandy MC-10 cassette softlist and added several
+images to Spectravision SVI-318/SVI-328 cassette list. [Riley110]
+
+softlist: Added new lists for Mikro-80, Tesla PMD-85 and Videoton TVC
+cassettes. [Riley110]
+
+softlist: Added new lists for Colour Genie, DAI Personal
+Computer and Jupiter Ace cassettes. [Riley110]
+
+compclr2_flop: Added a few additional images. [Riley110]
+
+softlist: Added new lists for Sord M5 and PTC SOL-20 cassettes. [Riley110]
+
+softlist: Added info in many Eastern Europe computer softlists. [Riley110]
+
+pokemini.xml: added some missing dumps. [Team Pokeme, Mityama]
+
+Added Psion Organiser I softlist.
+
+psion2.xml: documented more datapacks.
+
+x07: added cassette software list. [Anonymous]
+
+megadriv.xml: dumped Codemasters Cosmic Spacehead
++ Fantastic Dizzy 2-in-1 cart. [sunbeam]
+
+Add a software list for the Epson HX-20/PX-4/PX-8 systems
+
+Add AmigaOS 3.5 to workbench list
+
+apfimag: added software list for cassettes (they require you
+to mount the BASIC cart to be loaded, of course). [Fabio Priuli]
+
+pet_cass.xml: Added many new images, including the Cursor tapes. [Dagarman]
+
+amiga_workbench.xml: Added Workbench 1.3.3 (Rev. 34.34) [Guru]
+
+astrocde.xml: added a few prototypes dumped last year. [BallyAlley]
+
+ibm5170.xml: Added some PC game dumps.  [Justin Kerk]
+
+a800.xml: added some more cart dumps, including AtariScreiber, the extremely
+rare German version of AtariWriter. [K1W1]
+
+PC, AT: Hook up missing softlists to various drivers [Justin Kerk]
+
+ibm5150: add cassette softlist
+
+added software list for Samsung spc1000 tapes [Fabio Priuli]
+
+
+Source Changes
+--------------
+Renamed wizatron.c driver to ticalc1x.c, for TI tms1xxx-based calculators  {hap)
+
+i6300esb: Document more registers [O. Galibert]
+
+Improve Epson LX-810L and ActionPrinter 2000 up to a point where they
+actually work. Devices boot and enter main input loop, but input is
+not yet implemented. It is possible to run the printers' self test. [Ramiro Polla]
+
+dmv: added mouse input. (Sandro Ronco)
+
+gamecom : [Robbbert]
+- Fixed timer in solitaire. Centipede is somewhat playable.
+- Fixed calculator.
+- Replaced crosshairs with mouse pointer.
+
+ngen: mapped DMA controller, no idea what DMA channels map to what devices, yet.
+
+apple2: rewrote all 8-bit Apple II drivers with an aim towards
+modernity and improved runtime performance, improved correctness, and
+missing features.  Fixes MT #5157, 5158, 5747, and 5748. [R. Belmont]
+
+ngen: mapped i8254, connected channel 2 to the serial clock, added
+ RS232 ports and connected them to the uPD7201.
+
+mc1502: mark CGA unremovable from its slot.
+
+ngen: added basic display, and other little bits of WIP.
+
+made pla_device more generic
+
+ngen: hooked up CRTC and adjusted CRTC clock, resolution and refresh rate
+are set to expected values.
+
+pc9801_kbd: fix locks, add missing keys. [Octocontrabass]
+
+vtech1: fixed cassette recording (thanks to ubee for reporting the problem)
+
+mikrosha: add cartslot and one ROM cart
+
+Added tms0970 device [hap]
+
+Backport MBC1COL detection from GoodGBx  [Cowering]
+
+mc1502: re-add speaker output, add more BIOS versions
+
+mc1502: add more ROMs
+
+mc1502: re-add speaker output
+
+redo merlin layout
+
+added simon skillswitch, thanks to Simon from http://www.waitingforfriday.com for making a wiring diagram
+
+dvk_ksm: DEC VT52-compatible video terminal
+
+num9rev: add number 9 revolution 512x32 [Carl]
+
+small cleanup to merlin.c, it is very similar to simon.c
+
+px4: fix initial rs232 status after reset and add the dram test
+replacement roms
+
+px4: support clock reading & writing
+
+abc99: Identified unknown ROMs. [robcfg]
+
+px4: use nvram for main memory
+
+px4: clean ups
+
+amstrad: add CRTC Cursor signal to expansion bus, connected to PlayCity
+ which now has working NMIs.
+
+amstrad: made PlayCity output in stereo, add the device has its own stereo audio output.
+
+x820ii: Fixed ROM error. [Curt Coder]
+
+psionla: added bios v3.0
+
+Add zero() to (s)vga_device: zeroes all private variables but vtbls.
+The vga.memory is resized to 0.
+
+added preliminary emulation of the Bit Corp Gamate [PeT]
+
+amstrad: Added preliminary support for the PlayCity.
+
+x820: Emulated the ASCII keyboard (key repeat is not working yet). [Curt Coder]
+
+d88_dsk: Support some incorrect images [O. Galibert]
+
+nes: fixed NINA-06 mirroring, making Krazy Kreatures and
+Mermaids of Atlantis working, and fixing a few glitches in other games
+(e.g. the Robert Byrne's Pool Challenge proto). [Fabio Priuli]
+
+spc1000.c: documented hardware differences among
+models of the SPC-1000 series [zannylim]
+
+Use the same list of centronics devices everywhere (except the Amstrad CPC),
+ the list has been renamed as they aren't all printers. [smf]
+
+astrocade: converted the expansion bus to be a slot
+device, and converted RAM expansions to be slot cards. As a
+result you now specify the expansion you want by using e.g.
+	mess astrocde -exp blue_ram_32k
+or the Slot Devices menu of the internal UI, instead of using the
+DipSwitches menu. Check the -lslot output for a list of available
+expansions. [Fabio Priuli]
+
+ti85: use direct update handler to remove boot memory mapping hacks  [Jon Sturm]
+
+Correctly model the behavior of a real Coco for the Cassette input in
+ regards to audio (buzzing sound) coming from the port.  [Richard Goedeken]
+
+ap2_dsk: edd support [O. Galibert]
+
+ap2_dsk: Fix broken detection of dsk [O. Galibert]
+
+Assorted improvments to Russian-based computers [Shattered]
+ - besta: fix doubling chars
+ - ec1840: new BIOS ROM
+ - ec1840: add older revision of BIOS
+ - ec1841: change keyboard xtal freq, add speech synthesis swre
+ - ec1841: new softlist item
+ - ec184x: MDA clone
+ - ec184x, iskr103x: use custom set of ISA cards
+ - kb_ec1841: use correct clock frequency
+ - isa_hdc: ec1841 compatibility
+ - isa_hdc: implement WRITESBUFF command
+ - isa_hdc: add ioport for DIPs, make ROM optional (makes this device work with ec1841)
+ - isa_hdc: add DIPs, make ROM optional
+ - ie15: use utf-8 in keyboard layout description
+ - ie15: init palette, minor cleanup
+ - iskr103x: CGA clone
+ - poisk1: add newer revision of HDC BIOS
+
+spc1000: converted the expansion bus EXT1 to be a
+slot device, moved FDD expansion to be a slot card, added
+emulation of the VDP expansion as another slot card. This
+makes Gun Fright, TwinBee and Zanac playable if you launch
+them with "-ext1 vdp" option. If you want to emulate a
+SPC-1000 with floppy drive, you have to add "-ext1 fdd"
+instead. [Fabio Priuli]
+
+Convert PSX sio to use devcb. [smf]
+
+astrocde.c: added support for 256K and 512K carts
+with bankswitch. [Fabio Priuli]
+
+ti85: add basic support for the TI-84 Plus  [Jon Sturm]
+       *  Add known dump of TI-84 Plus which has been sent to a mess dev and
+       supports ennough asic functionality that it boots and runs.
+       *  Fixed up model enum to match style from the apple2 and used it to add
+       support for where the ti84p differs from the ti84pse.
+       *  Consolidated code for the 15Mhz calculators so there is less
+       duplicated code between the ti83pse, ti84pse and ti84 support code.
+
+spc1000: added emulation of joystick inputs [Fabio Priuli]
+
+spc1000: added support for tapes in .cas format [Fabio Priuli]
+
+x820ii: Added keyboard ROM. [Gabriele]
+
+spectum.c: remove weird loop range at border drawing, make Pentagon stereo,
+correct AY clock [MetalliC]
+
+TRS-80 CoCo: implement virtual "Becker Port" for DriveWire support.
+[Richard Goedeken]
+
+ti85.c:  [Jon Sturm]
+	* Improved support of TI83 Plus, TI83 Plus Silver Edition, and TI84 Plus,
+	and TI84 Plus Silver Edition by switching over to bankdev and adding
+	proper flash chips.  	They should be working now (press Q to power on).

@@ -1,0 +1,152 @@
+0.36 BETA 1
+
+New games supported:
+--------------------
+
+Champion Skill [Mirko Buffoni]
+Vapor Trail - Hyper Offence Formation [Bryan McPhail]
+Meteoroids [Zsolt Vasvari]
+Razzmatazz [Nicola Salmoria]
+Power Surge [Nicola Salmoria]
+High Way Race [Zsolt Vasvari]
+Blood Bros [Carlos A. Lozano, Phil Stroffolino, Richard Bush]
+Riot City [Andrew Prime]
+Body Slam [Andrew Prime]
+Quartet [Andrew Prime]
+Atomic Point [Andrew Prime]
+Moonwalker  [Andrew Prime]
+Shadow Dancer [Andrew Prime]
+Hang-On [Andrew Prime]
+Raiden [Oliver Bergmann, Bryan McPhail, Randy Mongenel]
+Hydra [Aaron Giles]
+Pit Fighter [Aaron Giles]
+Kick Start (not working due to protection) [Zsolt Vasvari]
+Sky Soldiers [Bryan McPhail]
+Time Soldiers [Bryan McPhail]
+Sky Adventure [Bryan McPhail]
+Gang Wars [Bryan McPhail]
+Gold Medalist (not working) [Bryan McPhail]
+Super Champion Baseball (not working) [Bryan McPhail]
+Hopper Robo [Zsolt Vasvari]
+Ikari III - The Rescue [Bryan McPhail]
+Cosmic Chasm [Mathis Rosenhauer]
+Munch Mobile [Phil Stroffolino]
+Marvin's Maze [Phil Stroffolino]
+
+
+New clones supported:
+---------------------
+
+Midnight Resistance (Japan) [Yasuhiro Ogawa]
+WBML (Japan) [Yasuhiro Ogawa]
+Wild Western (set 2) [Zsolt Vasvari]
+Pomping World (=Pang) [Yasuhiro Ogawa]
+Mario Bros. (Japan) [Nicola Salmoria]
+Altered Beast (Ver 1) [Andrew Prime]
+Golden Axe (Ver 1) [Andrew Prime]
+Shinobi (Sys16A Bootleg) [Andrew Prime]
+Tough Turf [Andrew Prime]
+Wonderboy 3 - Monster Lair [Andrew Prime]
+Cyberball (4 players) [Aaron Giles]
+Tournament Cyberball 2072 [Aaron Giles]
+Toobin' (version 2) [Aaron Giles]
+Toobin' (prototype) [Aaron Giles]
+Combat School (trackball) (not working) [Manuel Abadia]
+Boot Camp (= Combat School) (not working) [Manuel Abadia]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed hanging sound in 4D Warriors. [Zsolt Vasvari]
+
+- Added "Get Ready!" speech to Grobda. [Zsolt Vasvari]
+
+- Fixed sound in Ninja Kid 2. [Jarek Parchanski]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed bad tiles in some CPS1 games. [Paul Leaman]
+
+- Fixed sprite flipping in Xevious. [Nicola Salmoria]
+
+- Fixed title colors in Pinball Action. [Mirko Buffoni]
+
+- Improved sprite colors in Great Swordman. [Jarek Parchanski, Charlie
+  Miltenberger]
+
+- Sprite-sprite collision detection and other improvements in the Taito SJ
+  games. This fixes Bio Attack. Wild Western is now fully playable.
+  [Zsolt Vasvari]
+
+- Fixed Mega Zone high score display. [Chris Hardy]
+
+- Fixed text colors in Legend of Kage. [Phil Stroffolino]
+
+
+Other drivers changes:
+----------------------
+
+- Major improvements to the System 16 driver, most games are working now. Many
+  still lack sound though. [Andrew Prime]
+
+- Fixed controls and graphics in Commando (Sega), which is now fully playable.
+  This also fixes diagonal shots in Bosconian. Jungler shots are broken though.
+  [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- New digital YM3812/YM3526 emulator (in the DOS version, use -noym3812opl to
+  enable it). It doesn't support the rhythm section yet, but is overall better
+  than the old one. [Tatsuyuki Satoh]
+
+- [DOS] Triple buffer support in tweaked VGA modes. Warning: this is slower
+  than standard tweaked modes. [Brian Lewis]
+
+- [DOS] If you are using a HotRod, use the -hotrod switch to adjust the default
+  keyboard settings. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- [DOS] Compiled with Allegro WIP 3.9.23. IMPORTANT: there is a bug in
+  Allegro's new keyboard hangling, which will prevent numeric pad keys from
+  working properly when used together with ctrl and alt. Until it is fixed in
+  the main Allegro distribution, you will have to replace the source file
+  allegro\src\misc\pckeys.c with the provided one, and recompile Allegro.
+  [Nicola Salmoria]
+
+- [DOS] The new Allegro provides support for PSX and N64 pads (info here:
+  http://www.debaser.force9.co.uk/ccmame), and for the Wingman Warrior.
+  The names for the -joy parameter are
+  psxlpt1
+  psxlpt2
+  psxlpt3
+  n64lpt1
+  n64lpt2
+  n64lpt3
+  wingwarrior
+  [Nicola Salmoria]
+
+- Rewritten the OS dependant keyboard interface. A rewrite of the koystick
+  interface will follow. The OS dependant code now only has to provide four
+  functions:
+  osd_get_key_list()
+  osd_is_key_pressed()
+  osd_customize_inputport_defaults() [optional]
+  osd_wait_keypress() [optional]
+  everything else is handled by the main core.
+  [Nicola Salmoria]
+
+- New sprite manager, used in System 16, Ninja Gaiden, Shoot Out, Blood Bros.
+  [Phil Stroffolino]
+
+- Took the gfx drawing functions out of common.c into the new dragfx.c.
+  In preparation for further changes to the data structures, abstracted the
+  low level data copying and used macros to generate 8-bit and 16-bit
+  versions. [Nicola Salmoria]

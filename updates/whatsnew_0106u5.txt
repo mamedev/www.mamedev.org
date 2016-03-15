@@ -1,0 +1,74 @@
+0.106u5
+-------
+
+WARNING: Starting with this version, the MAME windows run on a
+separate thread. There may be issues relating to this, especially
+when running unthrottled. If you see any crashes or odd behavior
+under normal operation, be sure to report it to 
+http://mametesters.org.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+cheat_menu0106u3ora [Aaron Giles]
+cheat_file_option0106u3ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Cleaned up decocass driver: [Juergen Buchmueller]
+ - All hardcoded tables are gone now
+ - cexplore.pro 32 byte PROM reverse engineered
+
+Fixed windows.mak to support 64-bit builds. [Malice]
+
+Fixed bug where the gamename was reallocated out from under us by
+the new config system. [Nathan Woods]
+
+Added the ability to specify a callback when a given option is 
+parsed.  This is used on the MESS side to add system-specific
+command line options. [Nathan Woods]
+
+More generic 6840 improvements. [El Condor]
+
+Some improvements to the Pasha Pasha 2 driver. [Pierpaolo Prazzoli]
+
+Added experimental OSD locks: [Aaron Giles]
+ - osd_lock_alloc() allocates a lock
+ - osd_lock_acquire() acquires a lock, blocking until success
+ - osd_lock_try() tries to acquire a lock and returns whether or
+    not it succeeded
+ - osd_lock_release() releases a lock
+ - osd_lock_free() frees memory used by a lock
+If the OSD layer is not using multiple threads, these can just be
+stubbed out (return TRUE for osd_lock_acquire and fake the rest).
+
+Fixed ESC key not cancelling out of initial UI screens. [Aaron Giles]
+
+More rendering changes/fixes: [Aaron Giles]
+ - Added new render_view_item_get_state() function to return the
+    state of a given item
+ - Changed render_target_get_primitives to return a new structure
+    render_primitive_list, which contains the list of primitives
+    along with an osd_lock which must be held while the list is
+    being traversed
+ - Added "Rotate View" option to the video menu for dynamic in-game
+    rotation
+ - Moved window creation and management to a separate thread; this
+    means all software rendering and all Direct3D calls are done on
+    a separate thread from the main game, and will take advantage of
+    multiple CPUs/dual cores
+ - Changed throttling behavior to skip rendering if we are already
+    pending; this makes for a better "fast forward" effect
+ - Added -prescale option to pre-scale the game bitmaps before
+    rendering to the screen; this helps get rid of the "fuzzy" look
+    when running with -filter enabled, at the expense of some speed.
+    Note that only integral values are currently supported (no "auto")
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Hard Times [Pierpaolo Prazzoli]

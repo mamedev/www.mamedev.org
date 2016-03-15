@@ -1,0 +1,115 @@
+0.35 RELEASE CANDIDATE 1
+
+New games supported:
+--------------------
+
+Mars [Zsolt Vasvari]
+New Sinbad 7 [Zsolt Vasvari]
+Hot Shocker [Zsolt Vasvari]
+Levers [Zsolt Vasvari]
+Azurian Attack [Zsolt Vasvari]
+Saturn [Nicola Salmoria]
+Quiz Sangokushi [Nicola Salmoria]
+Spelunker [Nicola Salmoria]
+Freeze [Nicola Salmoria]
+Mahjong Gakuen [Nicola Salmoria]
+Mahjong Gakuen 2 Gakuen-chou no Fukushuu [Nicola Salmoria]
+Super Marukin-Ban [Nicola Salmoria]
+Poker Ladies [Nicola Salmoria]
+Capcom World [Nicola Salmoria]
+Quiz Tonosama no Yabou 2 [Nicola Salmoria]
+Pang! 3 [Nicola Salmoria]
+Appoooh [Tatsuyuki Satoh]
+The Legend of Kage [Phil Stroffolino]
+
+
+New clones supported:
+---------------------
+
+Tank [Roberto Fresca]
+Major Havoc (prototype) [Brad Oliver]
+Devil Fish [Zsolt Vasvari]
+Route 16 (original) [Zsolt Vasvari]
+Nebulous Bee (= Galaga) [Zsolt Vasvari]
+Block Block (Japan) [Nicola Salmoria]
+Street Fighter II' - Champion Edition (Accelerator Pt.II) [Nicola Salmoria]
+Snow Bros (Japan) [Nicola Salmoria]
+Qix (set 3) [Al Kossow]
+Cadillacs & Dinosaurs (Japan) [Santeri Saarimaa]
+Pleiads (original) [Eric Hustvedt]
+Dig Dug (Namco set 2) [Yasuhiro Ogawa]
+Dig Dug 2 (set 2) [Yasuhiro Ogawa]
+Alcon (= Slap Fight) (not working due to protection) [Marco Cassili]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed background colors in Great Swordsman. [Jarek Parchanski]
+
+- Fixed (hopefully) colors in Blue Print. [Nicola Salmoria]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Fixed Caveman Ninja. [Bryan McPhail]
+
+- Sound in Great Swordsman, fixed ADPCM playback in Great Swordsman and
+  Gladiator. [Tatsuyuki Satoh]
+
+- Fixed Street Fighter. [Nicola Salmoria]
+
+- Improved Nemesis/Gradius/Twinbee/Salamander. [Elestir]
+
+- Music in Block Block, Hatena etc. [Nicola Salmoria]
+
+- Fixed sound in LED Storm / Mad Gear. [Jarek Burczynski]
+
+
+Other drivers changes:
+----------------------
+
+- Added dip switches to the Atari System 2 games. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- The Pause key can be changed from the "Keys (defaults)" configuration menu.
+  [Nicola Salmoria]
+
+- Added a palette viewer to the gfx viewer (F4). [Nicola Salmoria]
+
+- [DOS] New video modes from CabMAME: low scanrate modes for connection to
+  NTSC/PAL and arcade monitors. -monitor NNNN selects the monitor type:
+  "standard" (default), "ntsc", "pal", "arcade". -centerx N and -centery N
+  each take a signed value (-8 to 8 for centerx, -16 to 16 for centery) and let
+  you shift the low scanrate modes around. -waitinterlace forces update of
+  both odd and even fields of an interlaced display for each game loop.
+  [Brian Lewis]
+
+- [DOS] Since there are now many tweaked VGA modes which may have compatibility
+  problems with some video cards / monitors, they are now off by default. By
+  default, VESA is used; the -vesa command line switch is no longer used.
+  Instead, there is a -tweak switch which enables the VGA tweaked modes.
+  [Nicola Salmoria]
+
+- [DOS] New tweaked VGA modes: 384x240 (for CPS1, Pang etc.), 384x256 (for Lode
+  Runner etc.), 336x240 (for Gauntlet and other Atari games), 320x240 (for
+  NeoGeo and others). They are used automatically, if your video card/monitor
+  can't handle them, use -notweak (or try adjusting the parameters in mame.cfg
+  if you know what you are doing). [Brian Lewis, Andrea Mazzoleni]
+
+- [DOS] Removed the -nodouble command line option. Use -nostretch instead. If
+  you are updating from an earlier beta, make sure to delete mame.cfg (or
+  manually update it) otherwise stretch will be disabled. [Nicola Salmoria]
+
+- Changed the analog port handling to avoid problems with keyboard control
+  (e.g. Arkanoid 2). [Nicola Salmoria]
+
+
+Source:
+-------
+
+- Added support for slave mode to the MSM5205 emulation. [Tatsuyuki Satoh]

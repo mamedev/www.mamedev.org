@@ -1,0 +1,208 @@
+0.129u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02963: [Documentation] All games in aristmk5.c: Added region info 
+         to all games (Heihachi_73)
+- 00015: [Sound] Noticeable static in OKI 6295 audio. (Aaron Giles)
+- 02698: [DIP/Input] royalmah.c: BET games: Bet button does not work 
+         by default. (Angelo Salese)
+- 02180: [Core] Corrupt archives are read without problems (couriersud)
+- 02694: [DIP/Input] demoderb, demoderm: Duplicated input definitions 
+         for P1 and P2 buttons. (couriersud)
+- 02983: [Crash/Freeze] racedriv and clones: Race Drivin' and clones 
+         loop after "downloading DSP" screen (Phil Bennett)
+- 02998: [Crash/Freeze] pkunwar, ninjakun, raiders5: These games don't 
+         make it through their rom checks. (Phil Bennett)
+- 02368: [DIP/Input] fourtrax: Controls are glitched (Phil Bennett)
+- 02996: [Crash/Freeze] hotchase: [debug] Access Violation 
+         (Phil Bennett)
+- 02894: [Graphics] cprosocc: Ingame graphics corruption. 
+         (Phil Bennett)
+- 02711: [DIP/Input] spacegun: EE-ROM error after gun calibration. 
+         (Phil Bennett)
+- 02478: [Graphics] finalapr, finalapo, finalapb, speedrcr: Some 
+         graphics are not displayed. (Phil Bennett)
+- 02877: [Sound] deadang, leadang, ghunter: Music drowns out sound 
+         effects (Phil Bennett)
+- 02995: [Crash/Freeze] liberate, dualaslt: Black screen shows after 
+         disclaimer (Phil Bennett)
+- 02994: [Crash/Freeze] labyrunr, labyrunk, tricktrp: Booting is never 
+         completed (Phil Bennett)
+- 02991: [Graphics] polyplay: Broken graphics when playing 
+         (Phil Bennett)
+- 02526: [Graphics] mahmajn2: Missing 'special' linescroll mode. 
+         (Olivier Galibert)
+- 02979: [Graphics] All sets in m10.c: Dialog box on all sets in m10.c 
+         (couriersud)
+- 02988: [Crash/Freeze] blswhstl, detatwin: ROM RAM EEPROM Check fails 
+         at startup (Phil Bennett)
+- 02980: [Documentation] wsbbgd: Year is listed as 200?, flyer 
+         confirms as 2001 (incog)
+- 02986: [Documentation] ggxx: Year listed as 200?, confirmed as 2002
+         (incog)
+- 02985: [Documentation] ggxxrl: Year is listed as 200?, confirmed as 
+         2003. (incog)
+- 02973: [Crash/Freeze] chmplst2: Access Violation (Phil Bennett)
+- 02964: [Sound] dingo: No Audio (Phil Bennett)
+- 02965: [Crash/Freeze] gradius, gwarrior, rf2, twinbee: Bootup 
+         process is never completed/No Sound (Phil Bennett)
+- 02909: [Original Reference] boothill: Specification of discrete 
+         filters for shot and hit sounds doesn't agree with schematic.
+         (Derrick Renaud)
+
+
+
+Source Changes
+--------------
+Added built-in layouts for a large number of games: 280zzzap, 
+buggyboy, buggychl, cbombers, changela, chasehq, chqflag, contcirc,
+dblaxle, finallap, grchamp, hotchase, lagunar, outrun, overdriv,
+pdrift, polepos, radr, roundup5, sci, slipstrm, stocker, superchs,
+topspeed, toutrun, turbotag, tx1, wecleman. [Mr. Do!]
+ 
+Merged memory maps in nemesis.c. [Aaron Giles]
+
+Scramble now is a lot closer to reports and recordings (background 
+sound, sound of bullets). [couriersud]
+
+Fixed descriptions of the games running on NAOMI series hardware,
+and NAOMI game list. [Yasuhiro Ogawa]
+
+Input ports clean-up for the jangou driver. [Angelo Salese]
+
+Finally low pass filtering on channel 2A in btime driver: [couriersud]
+ * Changed resistor to bill of material value
+ * Adjusted volume level and added more documentation
+
+Fixed regression (missing graphics) in ipminvad (m10). [couriersud]
+
+Added support for System 24 tilemap linescroll modes. 
+[Olivier Galibert]
+
+Various improvements to Heavy Unit:
+   [Angelo Salese, Tomasz Slanina, David Haywood]
+ - Added a VERY preliminary simulation of the protection, just enough to get the game to boot, not make it playable
+ - Corrected CPU communication, IRQ/NMI generation etc.
+ - Fixed some video emulation issues (added tilemap scroll etc.)
+ - Corrected GFX rom loading (at least for the graphics used in attract mode)
+
+Fixed King Derby sprite colors [Stefan Lindberg, Angelo Salese]
+
+Merged tetrisp2 memory maps. Renamed teplus2->tetrisp2j. [Aaron Giles]
+
+Merged labyrunr memory maps. [Phil Bennett]
+
+Added GAME_IMPERFECT_GRAPHICS to Tutankham & clones. [couriersud]
+
+Hooked up layer enables in goldstar.c driver, fixes 'girl' in Cherry 
+Master. [David Haywood]
+
+Scaled up renegade and mjkjidai ADPCM levels in line with recent 
+clock_adpcm() change. [Phil Bennett]
+
+Converted all drivers to the new device-based 6821 PIA. [Aaron Giles]
+
+Added new function memory_install_read_port_handler() to more
+easily allow you to install read handlers for ports based on tag.
+[Aaron Giles]
+
+Removed input_port_read_handler8/16/32/64 functions, since they
+were really only used for getting a memory handler for a port by
+tag, and this is no longer necessary. [Aaron Giles]
+
+Moved input port handlers to internal code in the memory system.
+[Aaron Giles]
+
+Added port names to the taito8741 device pending its proper
+devicification. [Aaron Giles]
+
+Removed all remaining uses of input_port_n_r() functions, and
+purged them from src/emu/machine/generic. [Aaron Giles]
+
+Removed device types from device queries that use tags, under the
+assumption that all device tags are unique. Specifically, the
+following no longer need to provide a device type:
+
+   AM_DEVREAD/WRITE
+   DEVCB_DEVICE_HANDLER
+   devtag_get_device
+   devtag_reset
+   device_list_find_by_tag
+
+as well as several device interfaces that referenced other devices.
+[Aaron Giles]
+
+Moved SH2 set info functions to direct calls. [Aaron Giles]
+
+Various improvements to the Zero Target / Counter Steer HW and 
+cleaned-up the driver. Fixed foreground & background colors and 
+hand-tuned sound in Zero Target based on a side-by-side test.
+Fixed sprite colors. [Angelo Salese]
+
+Fixed pedals in Final Lap 3. [Phil Bennett]
+
+Hooked up correct C75 MCU in namcofl.c (based on RB's namconb1.c 
+implementation) [Phil Bennett]
+
+Corrected Dip-Switch settings for Zero Target.
+[Yasuhiro Ogawa, Angelo Salese]
+
+maketms: Free strings on exit. [Olivier Galibert]
+
+tms57002 - don't abort on unimplemented instructions. 
+[Olivier Galibert]
+
+Changed eeprom erase command to write 0xff values. 
+[Pierpaolo Prazzoli]
+
+Fixed handling of corrupt archives: [couriersud]
+ * corrupt files in archives now generate an error
+ * archive files ending in "/" will not be tested for crc - skip path entries
+ * add new flag FILE_OPEN_NO_PRELOAD to skip decompressing on open
+   This is used in audit.c, which only tests whether files exist
+ * added error checking to all calls to load_file_zipped
+
+Added flags to the CHD metadata entries, encoded in the top bit. Right 
+now it is a no-op, but eventually will be used to indicate which bits 
+of metadata are included in the overall checksum. [Aaron Giles]
+
+Fixed gcc 4.4 compilation error. [Belegdol]
+
+Fixed auditing of ROM-less systems (for MESS). [Rene Reucher]
+
+Another round of static/const qualifier additions, plus a rename of 
+has_addon_chip to snes_has_addon_chip.  Notably a number of 
+z80ctc_interface are now const (devicification must have removed the 
+cases where it was dynamically modified). [Atari Ace]
+
+Added the correct gfx roms to jjsquawkers bootleg. [David Haywood]
+
+sfbonus version cleanups part 1. [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Great Sluggers 94 (Japan) [Phil Bennett]
+Daisyarin [Yasuhiro Ogawa]
+Mahjong Club [Yasuhiro Ogawa]
+
+
+
+New clones added
+----------------
+Violence Fight (Japan)
+Joker Poker (Version 16.03BI) [Jim Stolis] (not working)
+Scud Race (Japan) [Leif Hurst] (not working)
+Splatter House (World new version) [Andy Henderson]
+New clones: T-MEK (3 sets) [Lars Bull]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tokimeki Mahjong Paradise Doki Doki Hen [Uki]
+E-Jan Sakurasou [Uki]

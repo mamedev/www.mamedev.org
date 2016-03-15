@@ -1,0 +1,97 @@
+0.120u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+hornet0120u1red [Ville Linde]
+srmp6_0120u1ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Rewrote ACIA6850 implementation. [Curt Coder]
+
+Did a complete overhaul of the Mad Alien driver. [Stefan Jokish]
+ - merged memory maps and added mirror addresses
+ - doubled sound chip frequency
+ - implemented IRQ acknowledge for the sound CPU
+ - added stub functions for missing discrete sounds
+ - re-implemented tilemaps (now the tunnel walls scroll into view)
+ - hooked up 6845 CRT controller
+ - made several fixes related to color handling
+ - cleaned up inputs and added dip switch locations
+ - raised main CPU speed (guesswork)
+ - added save state support
+
+Repaired the IC24 timer behaviour to fix some of Deal 'Em's bugs, 
+and also added inputs. [James Wallace]
+
+Added save state support to skykid. [Mike Haaland]
+
+Fixed tiny.mak based on new source reorg. [Tiago Pierezan Camargo]
+
+Added support for CR-589 firmware to the System 573 driver. Made
+substantial changes to the SCSI support, making it require fewer
+hacks, and allowing one device to be derived from another. Also
+added save state support. [smf]
+
+Added SCI support to M6803/HD63701. [Curt Coder]
+
+Fixed several misnamed sound samples interfaces. [Atari Ace]
+
+Switched model1 lookup functions to be index based rather than
+requiring a linear scan. [Atari Ace]
+
+Added generic I2C bus memory support. Hooked up to the cubocd32
+driver. [smf]
+
+Cleaned up inline assembly support: [Aaron Giles]
+ * moved all inlinable functions into new module eminline.h
+ * defined a number of new inline functions, including:
+    - 32x32 -> 64 bit multiply
+    - fast approximate floating point reciprocal
+ * removed old inline definitions from osinline.h, osd_cpu.h, etc.
+ * eminline.h contains C implementations of everything
+ * new module eigccx86.h contains GCC-compatible x86/64 versions
+ * new module eigccppc.h contains GCC-compatible PowerPC versions
+ * eminline.h automatically detects GCC environments and includes
+    appropriate file
+ * osinline.h now only used in non-GCC environments
+ * updated osd/windows/osinline.h to contain MSVC-compatible versions
+
+Added NORM implementation to the TMS32031 core. [Aaron Giles]
+
+Created new rgbutil module which consists of inline functions for
+common RGB manipulation. This module can be accelerated with SSE2 or
+other SIMD operations. By default, only 64-bit Intel builds make use
+of SSE, since it can be assumed on those platforms. Reimplemented the
+namcos22 rasterizer in terms of these inline functions. Also updated
+the gaelco3d rasterizer to use this module for faster bilinear
+filtering. [Aaron Giles]
+
+Made some progress on the Midway Zeus-based system. The 3d command
+stream is now parsed and the format is partially understood, enough to
+display some polygons but with incorrect textures in Mortal Kombat 4. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Konami CD-ROM Drive Updater (700A04) [smf]
+Vs. Janshi Brandnew Stars [sonikos]
+
+
+
+New clones added
+----------------
+Eco Fighters (USA 940215) [Nicola Salmoria, Razoola]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Time Machine v2.0 [James Wallace]
+Jet Wave [Ville Linde, Guru]

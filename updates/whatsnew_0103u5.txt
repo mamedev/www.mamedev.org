@@ -1,0 +1,99 @@
+0.103u5
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+esb065gre [Mathis Rosenhauer]
+
+
+
+Source Changes
+--------------
+Undid fix for turbofrc37b1gre since it broke more things that it
+fixed. [Pierpaolo Prazzoli]
+
+Fixed minor color issue in Cookie & Bibi. [David Haywood]
+
+Updates to the Hyperstone core: [Pierpaolo Prazzoli]
+ - Removed nested delays
+ - Added better delay branch support
+ - Fixed PC seen by a delay instruction, because a delay instruction
+    should use the delayed PC (thus allowing the execution of software
+    opcodes too)
+
+Hooked up watchdog for NeoGeo games and removed a number of hacks.
+[David Haywood]
+
+Fixed hanging at the end of level 3 in klondkp. [Pierpaolo Prazzoli]
+
+Fixed inputs in Renju Kizoku, Neratte Chu, Mayjinsen 2 and some dips 
+in Neratte Chu, Mayjinsen 2. [Sonikos]
+
+Improved auto_malloc so it uses less memory and doesn't have a hard-
+coded limit on the maximum number of allocations. Also audited the
+use of auto_malloc in the code and removed unnecessary checks for
+NULL (since auto_malloc doesn't return if it fails). [Atari Ace]
+
+Fixed osd_fopen error reporting to return the correct value if you hit 
+MAX_OPEN_FILES. [Nathan Woods]
+
+Changed several byte operands in the i386 disassembler to be 
+diassembled as unsigned rather than signed. [Nathan Woods]
+
+Discrete sound updates: [Derrick Renaud]
+ - Added new DISCRETE_CSVLOG module that lets you log discrete nodes 
+    as CSV (comma separated values) data.
+ - Modified discrete core to use the clock specified in the 
+    MDRV_SOUND_ADD line.  If the clock is specified as 0, then the 
+    discrete emulation will default to the audio sample rate clock.
+ - Tweaked Phoenix Effect 2 sound to be more accurate matching 
+    oscilliscope data.  Changed the Phoenix discrete clock rate to 
+    a fixed rate of 120000 allowing the simulation to be more 
+    accurate with less alaising noise at the cost of speed. 
+ - Fixed the bug in the DISCRETE_NOTE module that produced notes 
+    1 count off.
+
+Added support for registers that are not to be displayed in the 
+register list. This is useful for registers like AX on i386, so that
+AX can be used in expressions but not represented on the register 
+list. Simply precede the register name with '~' to prevent display.
+[Nathan Woods, Aaron Giles]
+
+Added support for the various x86 8-bit and 16-bit derived 
+registers, as hidden registers in the i386 core. [Nathan Woods]
+
+Fixed background music in ESB. Updated IRQ frequency and divider to 
+match the schematics. [Mathis Rosenhauer]
+
+Improved dip switches for rocktrv2. [Chaneman]
+
+Separated the allocation of graphics data from the decoding. This fixes
+the crashes that were introduced in u4, and will allow for decoding
+progress to be reported eventually. [Aaron Giles]
+
+Made a clean-up pass over all the makefiles. rules.mak is gone now,
+replaced by cpu.mak and sound.mak. mame.mak has been reorganized. All 
+the makefiles are now commented and should be easier to follow. 
+[Aaron Giles]
+
+Rewrote artwork scaling function to compute accurate sum over all
+contributing pixels. This produces better results when scaling high
+resolution artwork down to lower resolutions. Kept existing bilinear
+filter for scaling low resolution art to higher resolutions. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Hidden Catch (World) [Pierpaolo Prazzoli]
+Fortress 2 Blue Arcade [Pierpaolo Prazzoli]
+
+
+
+New clones added
+----------------
+Several more NeoGeo bootlegs [Razoola, David Haywood]
+Jumbo Ozaki Super Masters Golf (Japan) [Team Japump]
+Miss Puzzle (Nudes) [Brian Troha]

@@ -1,0 +1,280 @@
+0.124u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+01571: [DIP/Input] stadhero: Player 1 and Player2 Start are mapped 
+       twice. (stephh)
+01673: [Graphics] sfjp: Game backgrounds replaced with other images
+       (Fabio Priuli)
+01567: [DIP/Input] megazona, megazonb, megazonc, megazone, megaznik: 
+       P2 button 1 key mapped twice and P2 button 2 missing (stephh)
+00458: [Misc.] NEC CPU debug bug (robiza)
+00029: [Sound] contcirc: Audio emits from one speaker on start up. 
+       (Nicola Salmoria)
+01609: [DIP/Input] Various - tested srmp4 (ssv.c), ttmahjng 
+       (route16.c), vsmahjng (vsnes.c), tokkae (konamigx.c), sf2 
+       (cps1.c): INP playback loses sync quickly (Aaron Giles)
+01680: [Graphics] area88, unsquad: [possible] DOT TEST in service mode
+       shows garbage chars (Nicola Salmoria)
+00761: [Speed] finalapr: Heavy performance hit. (couriersud)
+00352: [DIP/Input] spaceskr: The cabinet DIP setting is inverted, when 
+       you set it upright mode, control is separated for P1 and P2, 
+       the scre (Nicola Salmoria)
+01659: [Core] stereo balancing is wrong (Aaron Giles)
+01622: [Core] -refreshspeed has no effect (Aaron Giles)
+01663: [DIP/Input] Hat switches not working (couriersud)
+00250: [Graphics] 3wonders: Various graphic glitches. (Nicola Salmoria)
+00405: [Graphics] cawing: Text in the attract mode is garbled. 
+       (Nicola Salmoria)
+01021: [Side-by-side] dorunru2: Side-by-side test. (Nicola Salmoria)
+00404: [Graphics] 3wonders: a glitch when u insert your record name 
+       when game is over. (Nicola Salmoria)
+01552: [Graphics] 3wonders, 3wonderu: Another little graphic glitch 
+       on attract mode (Nicola Salmoria)
+01081: (partial): megaplay.c (all games): 1 Player Start and 2 
+       Players Start are duplicated. (couriersud)
+
+
+Source Changes
+--------------
+Changed the system to show a message if coin-lockout is active and 
+a coin key is pressed. [couriersud]
+
+Actually fixed -refreshspeed. [Aaron Giles]
+
+Reverted previous SCSI CD change which broke some games. [R. Belmont]
+
+Seibu COP cleanup, primarily sorting the code and identifying 
+similarities in different implementations. [David Haywood]
+
+Fixed an erroneous debug change which leaked into the last version of
+the namcona1 update. [Pierpaolo Prazzoli]
+
+Fixed marineb colors. [David Haywood, Tomasz Slanina]
+
+Rewrote INP recording from scratch, since all old INPs are broken 
+anyways. Header now includes timestamp, which overrides the default 
+time base for MAME's system time. Each frame recorded now gets a 
+timestamp. Analog ports are recorded once per frame and interpolated.
+Analog port calculations are all done in fixed point for consistent 
+results. A bunch of other minor tweaks in the input port code. 
+NOTE: There may still be a few changes to the final INP format.
+[Aaron Giles]
+
+Improved graphic decoding for Legionnaire, the BK3 tiles are now 
+correctly extracted from the TXT region, map screen has correct 
+tiles now. [David Haywood]
+
+Removed CPS1 tile kludges and replaced with per-game ROM mapping 
+tables. Ideally, the ROM mapping should be derived from mapping of 
+the PALs found on the B board. Note that this is a significant change 
+and some new bugs might be caused by it. Unlike previous bugs, 
+where extra garbage tiles would appear in the games, the new bugs 
+would be tiles or sprites MISSING--so they will be harder to notice. 
+This would happen because in some cases the 16x16 regions of the gfx 
+ROMs can be used by both scroll2 and sprites, while in other cases 
+they must be separated. [Nicola Salmoria]
+
+PSX updates: [smf]
+ - Fixed the SR masks for MTC0.
+ - Added ability to test the instruction/data cache ram. The 
+    scratchpad and BIU register are now handled internally to the CPU.
+ - All writes are performed with masks. SWL/SWR used to be implemented 
+    with two writes ( one byte and one word ) when writing three bytes,
+    now it only ever performs one. Byte and Word writes use masks as 
+    they leave the rest of the register on the bus, which can be 
+    picked up by larger registers.
+ - The read/write functions to use are cached when the SR bits are 
+    updated, as are the bad address masks.
+ - Added coprocessor 1 & 3 support, though they don't do anything 
+    useful.
+ - All loads now go through the delay pipeline, a lwl/lwr will grab 
+    the value out of the pipeline if it's updating the same register.
+ - Added undocumented behaviour of BLEZ/BGTZ. The comparison for zero 
+    can be changed by specifying an alternate register in the RT field 
+    ( the documentation says you should always use register 0 ).
+ - Restricted to 16 COP0 registers & generate an exception if any of 
+    the 5 for the MMU are used.
+ - Added BCF/BCT instructions, although I have found no conditions 
+    that affect them yet.
+ - Generates an exception if any MMU instructions are executed.
+ - Sets the CE instruction for all exceptions, not just those 
+    involving a coprocessor. The bits of the opcode that specify the 
+    coprocessor are grabbed no matter what the instruction.
+ - Added TAR register and BT bit in SR. When an exception occurs 
+    during a branch, BT determines whether it was taken or not. The 
+    TAR register gets set to the destination of the branch.
+ - Fixed the BD bit when you are in a branch delay slot and you didn't 
+    take the branch, this shows up in the pipeline as !pc.
+ - Fixed branches within a branch delay slot.
+ - Multiply & divide instructions can be aborted if you write to 
+    HI/LO before reading the result. Added data breakpoints, you 
+    don't appear to be able to set breakpoints on any of the 
+    addresses internal to the CPU.
+ - Multiply/divide/GTE instructions can execute when an exception is 
+    taken, although the EPC indicates that it hasn't. The BIOS avoids 
+    rerunning GTE instructions as they are destructive, so you have to 
+    make sure they run.
+ - Added bus error handling, PSXCPU is limited to 8mb of ram & any 
+    access outside this range will trigger an exception. I believe 
+    this is to be an internal limit.
+ - Added CXD8611R as a specific CPU type, System 12 appears to allow 
+    more than 8mb of ram & it's possible that this is different.
+ - Mapped out all instructions to either generate an exception or 
+    ignore bits.
+ - Updated the disassembler to match the decoding.
+ - Fixed disassembling of branch instructions in a branch delay slot.
+ - Lui checks for a ori/addiu following and will show you the result.
+ - Added step over/out support.
+ - Fixed standalone disassembler.
+ - Fixed SZ0 truncation.
+ - Fixed IRGB truncation and conversion to IR1/IR2/IR3
+ - Added IR1/IR2/IR3 saturation when calculating ORGB.
+ - Fixed OTZ sign extension
+ - Fixed reading from SXYP
+ - Fixed reading from IRGB
+ - Fixed writing to LZCR
+ - Fixed sign extension of GTE control registers
+ - Fixed writing to FLAG
+ - Fixed flag calculation in F macro.
+ - Fixed avsz3 & avsz4 flag & otz calculation.
+
+Fixed unicode crashing bug with input names. [Aaron Giles]
+
+Renamed input port functions: [Aaron Giles]
+  readinputport           -> input_port_read_indexed
+  readinputportbytag      -> input_port_read
+  readinputportbytag_safe -> input_port_read_safe
+Added machine parameter to input port functions. Updated
+many drivers to accomplish this.
+
+Bulk converted drivers explicitly calling input_port_n_r() with a 
+bogus offset to calling input_port_read_indexed() instead.
+[Aaron Giles]
+
+Memory map merges for drivers starting with U, V, W, and Z.
+[Andrew Gardner]
+
+Mostly fixed sound in N64-based games. [Adam Gashlin]
+
+Correct DMA functionality in N64-based games. [Ville Linde]
+
+Aerfboot improvements: [robiza]
+ - sprite offset are now correct
+ - split spriteram in two parts
+ - identified last sprite for the two parts
+ - promoted to "working" (no sound)
+ 
+Pallavol improvements: [robiza]
+ - fix for sprite's y-coordinate
+ - implement lookup table for convert sprite code in the real code
+ - change the name to "1991 Spikes (Italian bootleg)
+ - fix scroll
+ - fix offset
+
+Merged sonson memory maps. [Nicola Salmoria]
+
+Added mising TC0060DCA sound mixer to the Taito Z driver. Marked one 
+dblaxle ROM as BAD_DUMP. [Nicola Salmoria]
+
+Changed the 8237dma implementation into a device. [Wilbert Pol]
+
+Fixed wrong tile-sprite priority in m62 driver. [robiza]
+
+Fixed nec v30 dasm when a "real-time encrypted cpu" is used. Also
+fixed Execution Clocks for add,addc,and,or,xor,cmp,sub,subc 
+instructions. [robiza]
+
+Removed the hardcoded dependency on a 8254 device from the 8042kbdc 
+code. Changed the drivers using the 8042kdbc to define their own 
+8042kdbc - 8254 dependency. [Wilbert Pol]
+
+Rewrote core memory handlers as inline functions. These should be 
+easier to trace through in a debug build, yet should operate the same 
+as before. [Aaron Giles]
+
+Created a complete set of functions for all databus sizes (8,16,32,64) 
+and all endiannesses. A few functions are redundant, but it is now 
+very clear which functions to use in which scenarios. It is also now 
+possible to rely on being able to access values of 8, 16, 32 or 64 
+bits via the built-in accessors without fear of crashing. 
+[Aaron Giles]
+
+Updated all cores using 8-bit handlers to explicitly call the 8-bit 
+handlers with the appropriate endianness. [Aaron Giles]
+
+Fixed a few games which were calling n-bit handlers directly to use 
+the generic forms. In the future, this is all the access drivers will 
+have. [Aaron Giles]
+
+More opcodes fixed in gussun oyoyo and risky challenge. [robiza]
+
+Added tags and locations to dips for marvins.c and matmania.c.
+[Fabio Priuli]
+
+Enabled roz tilemap in emeraldia, but it's not centered in the right 
+position when it's not in its original dimension. [Pierpaolo Prazzoli]
+
+Fixed 'lghost*' Dip Switches. [stephh]
+
+Reduced the number of save state callback types from 3 to 1. The
+only remaining form is the one that takes a pointer parameter. Added 
+macros for STATE_PRESAVE and STATE_POSTLOAD to define common 
+functions. Added machine parameter to these functions. Updated all 
+drivers and CPU/sound cores  to use the new macros and consolidate 
+on the single function type. As a result pushed the machine parameter 
+through a few initialization stacks. [Aaron Giles]
+
+Removed unnecessary postload callbacks which only marked all tiles
+dirty, since this is done automatically by the tilemap engine.
+[Aaron Giles]
+
+Updates for the driver wc90b.c: [ClawGrip]
+ - Removed the second YM2203, it isn't present on the bootleg boards
+ - Changed the clocks according to the oscilators found on the board
+
+Added the running_machine* parameter to the function passed into 
+cpunum_set_irq_callback() and adds the IRQ_CALLBACK macro for 
+the callback function. [Oliver Stoenberg]
+
+Cleaned up the Machine usage in the osd/windows files and added the 
+running_machine parameter where possible. [Oliver Stoenberg]
+
+Various tweaks/fixes from MAMEPlus:
+ * save state support for FD1094 chips
+ * improved graphics in athena
+ * improved sound balance in armedf
+ * derived refresh rate for toaplan1 games
+ * improved sound balance in tmnt games
+ * derived clocks for suprridr
+ * tweaked xmen visible area
+ * derived clocks and refresh rate in twin16 driver
+ 
+CPS1: Verified some gfx ROM mapping tables against PAL dumps. Improved 
+understanding and emulation of palette related registers. 
+[Nicola Salmoria, Corrado Tomaselli]
+
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+1 on 1 Government (JAPAN) [smf]
+
+
+
+New clones added
+----------------
+Seibu Cup Soccer :Selection: (set 2) [Arzeno Fabrice]
+Super Monaco GP (set 1, Japan, Rev A, FD1094 317-0124a) 
+   [Corrado Tomaselli]
+Added Side by Side 2 (Japan) [Yasuhiro Ogawa]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Touchmaster 5000 (v7.10) [Brian Troha]
+Touch Master 7000 [Brian Troha]

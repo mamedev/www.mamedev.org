@@ -1,0 +1,87 @@
+0.118u2
+-------
+
+NOTE: If you are experiencing sound stuttering due to not being able
+to run your display at >60Hz, please give the -speed option a try.
+You should be able to run MAME at a small emulation speed decrease
+in order to get the game under your monitor's refresh rate.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+boogwing0118yel [Aaron Giles]
+starblad0113u3red [Atari Ace]
+mgakuen0106u1red [Atari Ace]
+
+
+
+Source Changes
+--------------
+Fixed recently introduced regression in nemesis driver. [Atari Ace]
+
+Improved fixes to the chdman CD creating code. [smf]
+
+Updated amspdwy.c driver to fix the DIP Switches for 'amspdwy' which 
+are slightly different than the ones for 'amspdwya' which were 
+correct. [stephh]
+
+Fixed HP Saturn CPU core disassembler. [Wilbert Pol]
+
+Fixed clock speed and colors in Trivia Genius. [Lord Nightmare]
+
+Cleaned up Taito drivers to use common defines for common input 
+ports across drivers. [stephh]
+
+Removed redundant hard-coded definitions for Pole Position pedals.
+[Alex Jackson]
+
+Improved DIP switches for bombjack. [stephh]
+
+Changed default layouts in BFM games to hide VFD by default since it
+is not visible. [James Wallace]
+
+Further improvements to the TMS5220 emulation and more unification
+with the TMS5110 core. [Lord Nightmare]
+
+Changed INI parsing to look for source file INIs in <inipath>/source
+first. This is to disambiguate INIs where the game name matches the
+source filename. If the INI file is not found in <inipath>/source,
+then it is looked for in the <inipath> as before. [Aaron Giles]
+
+Merged Raiden memory maps. Cleaned up the COP emulation code in 
+Raiden 2. [Aaron Giles]
+
+Added new experimental control for overall emulation speed. This
+lets you specify how fast/slow the gameplay should happen relative to
+the original. -speed 1.0 means run at normal speed. -speed 2.0 means
+run at 2x speed. -speed 0.5 means run at half speed. Note that the
+sound pitch is shifted as a result. If you are running early Namco
+games that normally run at 60.60Hz, you can run them at -speed 0.99
+and it should run at under 60Hz, which should prevent sound stuttering
+if your monitor is not capable of greater than 60Hz refresh rates.
+If this turns out to be useful, future versions may support a 
+-speed refresh parameter that automatically tweaks the speed to keep
+you under your monitor's refresh rate. [Aaron Giles]
+
+Fixed disassembly of V30 bit instructions. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+El Grande - 5 Card Draw [Roberto Fresca]
+
+
+
+New clones added
+----------------
+Kickman [Aaron Giles]
+Trivia ? Whiz (Edition 3 - Vertical) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Big Apple Games [Pierpaolo Prazzoli]
+Thayer's Quest [Andrew Gardner]

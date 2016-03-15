@@ -1,0 +1,52 @@
+0.115u4
+-------
+
+
+Source Changes
+--------------
+Fixed a number of games to explicitly use the SN76489 now that it
+behaves differently from the SN76496. [Lord Nightmare]
+
+Fixed inputs in Ace Attacker. [Barry Gemma]
+
+Fixed ledutil.c to work for USB keyboards again. [ahofle]
+
+Improved colors in Safari Rally. [Zsolt Vasvari]
+
+Fixed stobe light in Space Encounters. [Zsolt Vasvari]
+
+Refactored the Dooyong video hardware to take advantage of tilemaps.
+Also included priority fixes. [Vas Crabb]
+
+Astro Fighter driver update: [Zsolt Vasvari]
+ - Added memory map/interrupt/video timings from schematics
+ - Hooked up SN76477 to Tomahawk 777
+ - Switched the two Tomahawk 777 sets. The newer version is now the 
+    main set and the older has been renamed to tomahaw1
+ - General driver clean-up
+
+Removed unused return value from MACHINE_START and SOUND_START.
+[Zsolt Vasvari]
+
+Changed save state code to not save any palette information if no
+palette is used. [Zsolt Vasvari]
+
+Simplified a number of videoram write handlers by removing extraneous
+dirty checking. [Aaron Giles]
+
+Added support for scaling graphics layouts automatically. The X and Y
+scale factors are specified in the gfx_decodeinfo structures. Updated
+the MCR driver to use this feature. [Aaron Giles]
+
+Removed colortables from a number of drivers that didn't need them.
+Also converted pacman and mappy drivers to collapse the colortable
+and palette. [Aaron Giles]
+
+Removed a number of common but useless and/or frequently incorrect
+comment patterns throughout the code. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Asuka & Asuka (World) [Corrado Tomaselli]

@@ -1,0 +1,380 @@
+0.81
+
+General Source Changes
+----------------------
+
+Various ZN related updates [smf, R.Belmont]
+	several games now display more, for example primrag2 plays the intro movie
+
+i386 CPU core (used by the SPI driver) [Ville Linde]
+
+ST-V Improvements [Mariusz Wojcieszek]
+	gfx in colmns97 / sassisu / ejihon are improved
+
+CHDMan CHDCD creation fix [R.Belmont]
+
+Improved timing of several 68k instructions [Sebastien VOLPE]
+	these changes could do with being verified on a real 68k
+
+	m68kcpu.h, m68kcpu.c:
+	---------------------
+	A) scc (68000 only): CYC_SCC_R_FALSE was defined, not used, and misnamed as
+	   the extra 2 cycles happens when CC is true: now used and renamed to
+	   CYC_SCC_R_TRUE
+
+	m68kmake.c:
+	-----------
+	B) add/adda/and/or/sub/suba (68000 only): the 'extra 2 cycles' cases were not
+	   handled correctly: corrected to be effective on .l only, and also on register
+	   direct (previously, all sizes were affected, and only in immediate mode)
+
+	C) jmp d(An,Xn) / pea (An) (68000/68010): tables corrected
+
+	D) movem (68000/68010): generated basecount were incorrect in many cases, so I
+	   added a dedicated table
+
+	m68k_in.c:
+	----------
+
+	E) movem.l d(PC),reglist / movem.l d(PC,Xn),reglist (68000/68010): changed
+	   basecount
+
+	F) asr/asl/lsr/lsl/ror/rol/roxr/roxl (68000/68010): added '+2n' cycles where
+	   missing, as the shift/rotate memory is the only case where '+2n' does not
+	   apply, and is treated in a specific opcode handler.
+
+Fixed small v60 bug related to Aaron's recent changes [Olivier Galibert]
+
+Fixed several small Hyperstone CPU core bugs [Pierpaolo Prazzoli, Mooglyguy]
+
+Fixed a couple of compile warnings for other compilers [Lawrence Gold]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Gallop Racer [smf]
+Beastorizer [R.Belmont, smf]
+	both of these have very bad sound emulation
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Seibu SPI System (+ related hardware) [Ville Linde]
+	gfx are encrypted, sound communication not understood, help on this is welcome.
+	Senkyu / Battle Balls
+	Viper Phase 1
+	E-Jan High School
+	Raiden Fighters
+	Raiden Fighters 2
+
+D-Day (Jaleco) [Pierpaolo Prazzoli]
+	unemulated Jaleco protection chip
+
+
+0.80u3
+
+General Source Changes
+----------------------
+
+CHDCD / Konami GV update [R.Belmont]
+- Preliminary CD-ROM support for CHDMAN.  Input is from CDRDAO
+  .toc/.bin  images (cdrdao.sourceforge.net). CDRDAO comes with utilities
+  to convert CDRWIN .cue/.bin images to .toc/.bin format.
+- Intel Flash ROM emulation support
+- CDROM emulation primitives, including Red Book audio playback
+- CDROM support for the AM53cf96 SCSI controller
+- Konami GV System driver.  GV System is identical to a home
+  Playstation/PSOne console, except the CD-ROM is SCSI instead of 
+  proprietary.
+
+Stuff still in progress:
+- The SPU emulation needs a lot of help, especially on Wedding Rhapsody. 
+  smf is working on it.
+- The SCSI CD-ROM emulation needs to be separated out from the AM53cf96 if
+  we ever emulate other SCSI controllers or CD-ROM drives.
+- CHDMAN doesn't output anything useful when you extract a CHD-CD.  It
+  should write out a CDRDAO image.
+- Audio tracks on CDs are not compressed at present (or more accurately
+  they're gzip compressed, which is useless).  The plan is to use FLAC at
+  some point.
+
+Misc Fixes [Nathan Woods]
+	src/mame.c:
+	src/mame.h:
+	src/windows/config.c:
+	   - Changed options.savegame to be a string.  If this is a one 
+	character string, then the save state is loaded as before.  If it is a 
+	larger string, then cpu_loadsave_schedule_file() is used.
+
+	src/state.c:
+	src/state.h:
+	   - Added a state_save_check_file(); a call that front ends can use to 
+	validate a state save file
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Baby Phoenix/GV System [R.Belmont]
+	Powerful Baseball '96
+	Hyper Athlete
+	Susume! Taisen Puzzle-Dama
+	Wedding Rhapsody
+
+
+0.80u2
+
+General Source Changes
+----------------------
+
+Various Sega 16-bit game driver updaes [Charles MacDonald, http://cgfm2.emuviews.com]
+
+(03/18/04)
+- Added correctly dumped ROM set for eswat to replace the old one. Game is encrypted and unplayable.
+- Moved Ace Attacker to system16.c, it's not a System 18 game.
+- Added sound support for tturf, tturfu, tturfbl (no samples), fpointbl, fpointbj
+- Fixed toryumon RAM test
+- Cleaned up timscannr, toryumon drivers
+- Added Where's Wally? (wwally) Game is encrypted and unplayable.
+- Fixed System 18 sample ROM banking. This doesn't help the current working games, but will support others when/if they are decrypted.
+- Fixed RF5C68A clock (7.15 MHz -> 8.00 MHz).
+- Fixed Z80 clock (8.192 Mhz -> 8.00 MHz).
+- Cleaned up shdancbl sound hardware a little.
+
+(03/15/04)
+- Fixed 2nd 68000 ROM visibility in hangon, ROM test works.
+- Fixed sprite RAM, tile RAM, and shared RAM size in hangon, RAM test works.
+- Fixed shared RAM and road RAM visibility to hangon, road layer works again.
+- Added proper emulation of the I/O hardware in hangon, no patches needed and test mode doesn't crash anymore.
+- Migrated aurail, riotcity, bayroute to use sys16_sprite_shinobi.
+- Cleaned up altbeast, riotcity, bayroute, aurail drivers (no junk in error logs, took care of unused inputs/outputs, etc.)
+- Removed 'extra' RAM in some drivers and replaced with sys16_tilebank_w.
+- Fixed sprite zooming in sys16_sprite_shinobi (corrects sprite placement in Heavyweight Champ)
+- Fixed sprite list parsing (fixes output test progression in Heavyweight Champ)
+- Added Shadow Dancer (Rev.B)
+- Checked and fixed speed-ups for shdancer, shdancrj, shdancbl, shdancrb.
+- Added I/O chip and partial VDP emulation for shdancer, shdancrj, shdancbl, shdancrb, moonwlkb, astormbl.
+- Added Datsu bootleg sound hardware support for shdancrb and fixed sound crash.
+- Fixed shdancbl sprite loading.
+- Cleaned up shdancbl driver, now fully playable with only minor graphics problems.
+- Fixed sys16_paletteram_w and removed sys16_dactype.
+- Palette now generated using routines in res_net.h to properly make normal, shadow, and highlight colors.
+
+Discrete Sound System updates [Aaron Giles, Derrick Renaud]
+
+(Aaron)
+
+* major internal cleanup and reworking of how nodes are created
+* fixed bug in 555 timer that led to whiny noise in Hit Me
+* added new input port type for analog adjuster
+* changed osd interface for discrete sound adjusters to use the new input port type
+* changed NODE_ADJUSTMENT to get its value from an input port
+* adjuster values are now saved in the config file
+* changed all games using adjusters to use the new system
+
+(Derrick)
+
+Discrete Sound Changes
+======================
+* Continued cleanup of code to make it more readable
+
+New Discrete Modules Added
+==========================
+* DISCRETE_OP_AMP_OSCILLATOR - various op amp oscillator circuits that are
+entered using component values.
+* DISCRETE_OP_AMP_VCO - various op amp voltage controlled oscillator circuits
+that are entered using component values.
+
+Game Driver Changes
+===================
+* Finished updating games to use Aaron's DISCRETE_ADJUSTMENT changes.
+
+
+Misc Fixes [Nathan Woods]
+
+src/fileio.c:
+src/fileio.h:
+src/windows/fileio.c:
+    - Changed MESS specific file type from FILETYPE_CRC to FILETYPE_HASH
+
+src/hash.c:
+src/hash.h:
+    - Added hash_data_insert_printable_checksum() call
+    - Made things more const correct
+
+
+Nintendo 8080 based games update [Stefan Jokisch]
+
+All games:
+
+- fixed CPU speed
+- unified memory maps
+- changed ROM labels
+
+Space Fever / High Splitter / Space Launcher:
+
+- relabelled ROM sets:
+    Space Fever color => Space Fever
+    Space Fever b & w => Space Fever High Splitter
+- uncloned High Splitter from Space Fever
+- fixed High Splitter ROM loading (wrong sound ROM in one set)
+- color support (Space Launcher needs its color PROM dumped)
+- implemented red screen flash (when the player dies)
+- implemented red laser cannon flash (when the player shoots)
+- implemented UFO color cycling
+- properly hooked up SN76477 (needs to be verified)
+- properly hooked up I8035 sound CPU
+- added bonus life DIPs to High Splitter and Space Launcher
+- added cocktail mode
+- documented diagnostic ROM location
+
+Sheriff / Bandido:
+
+- fixed scheduling of SN76477 sound effects (shots + hits)
+- added second coin input in Bandido
+- removed unused cocktail mode controls from Bandido
+- properly hooked up I8035 sound CPU
+- removed fake color overlay from Bandido
+- added colours based on screenshots - PROM still needs dumping
+- implemented color effects (e.g. red heart after round 3)
+- implemented screen flashing (when the players dies)
+- documented diagnostic ROM location
+
+Helifire:
+
+- corrected bonus life DIP
+- fixed starfield pattern, confirmed by shots on the flyer
+- fixed starfield priority (no more stars in the water)
+- fixed video bugs related to pausing and frame skipping
+- properly hooked up sound CPU (different from the other games)
+- added partial support for cocktail mode
+- added IMPERFECT_GRAPHICS and NO_COCKTAIL flags
+
+- various audio and video effects are still missing, including a few
+which were previously implemented and which I hope to re-add soon
+
+Various Timer Fixes, correcting some problems with SlySpy etc. [Aaron Giles]
+
+Fixed some problems with the 32010 update [Quench]
+
+Misc bug fixes (HuC6280 problems) [Bryan McPhail]
+
+Some Task Force Harrier Improvements [Tomasz Slanina]
+
+- fixed sprite rendering
+- hacks for bg scrolling
+- patched some protection issues (sprites are rendered,
+  no more strange resets)
+Game is NOT playable (controls doesn't work).
+Maybe something is not mapped correctly or
+it's problem with protection (for example ,
+player2 buttons works durning boot - it's possible to enter
+service mode).
+
+ST-V update [Angelo Salese]
+fixes bitmap transparencies,adds the RBG0 layer(no scroll/roz effects yet)
+adds a really preliminary window effect(just for get tile-based sprites in shanhigw)
+and readded the VDP1 PTM register support which has been lost in the past.
+
+Cleaned up Capcom Bowling driver and fixed crash on reset [Aaron Giles]
+
+IREM GA20 Update [R.Belmont]
+adds the channel status readback for the GA-20,
+which fixes some occasional odd voice-stealing
+behavior I've heard playing R-Type Leo.
+
+Reverted some Star Wars code back to older working version
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Rock 'n' Roll Trivia (part 2) [Pierpaolo Prazzoli]
+Scooter Shooter [Pierpaolo Prazzoli]
+Dynamic Dice [Tomasz Slanina] - might be a gambling game
+Lovely Cards - doesn't actually appear to be a gambling game, just gambling themed
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+2020 Super Baseball (set 2) (2020bba) [HPMAN]
+Spinner (Spiders bootleg) [Pierpaolo Prazzoli]
+Gyrodine (Crux license?) [Pierpaolo Prazzoli / f205v]
+Griffon [Pierpaolo Prazzoli]
+Blaster (early 30 wave version)
+
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Various Non-working CPS2 clones
+Swinging Singles [Tomasz Slanina] - not much work done on it
+Taiwan Chess Legend [Tomasz Slanina] - only partially decrypted
+Parallel Turn [Tomasz Slanina] - Jaleco protection chip not emulated
+Change Lanes [Phil Stroffolino, Jarek Burczynski, Tomasz Slanina] - weird early Taito hardware
+Dragon World 3 - unemulated protection
+Zero Target [Bryan McPhail, Pierpaolo Prazzoli, David Haywood] - various things not yet understood
+Counter Steer [Bryan McPhail, Pierpaolo Prazzoli, David Haywood] - various things not yet understood
+
+
+0.80u1
+
+General Source Changes
+----------------------
+
+Improved Discrete Sound System / Sound in HitMe [Aaron Giles]
+	* new node type DISCRETE_LOGIC_DFLIPFLOP
+	* changed the way multichannel output is done; affects some existing drivers
+	* support for up to 16 channels of sound
+
+	Also included is a new Hit Me driver
+
+	* discrete sound support for Hit Me
+	* fixed incorrect video (missing scanlines and inverting logic)
+	* added controls to handle card width and game/sound speed
+	* cleaned up memory maps
+
+C89 compiler fixes [Lawrence Gold]
+
+Hyperstone Cleanups [Pierpaolo Prazzoli]
+
+Change for MESS [Nathan Woods]
+	src/inptport.c:
+	src/inptport.h:
+	    - Minor changes related to MESS's mouse device (within #ifdef MESS)
+
+Sound supoprt in Varia Metal [Quench]
+
+Dipswitch fixes in Varia Metal [David Haywood]
+
+Improvements to fitfight driver [Luis Faria]
+
+Fixed the opcode view which in some cases displayed too many bytes on 32 bit
+CPUs such as 68020 and Hyperstone [Bryan McPhail]
+
+ST-V fixes [Mariusz Wojcieszek]
+	- improved scaling tilemap backgrounds. Vfkids, colmns97 and vfremix backgrounds
+	  are better now.
+	- fixed a problem where entering and existing service mode during game causes master
+	 / slave communication to fail. It turned out that slave cpu should be reset when it
+	 is turned off and on. This helps all games in driver.
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Invasion (clone of invaders) [Pierpaolo Prazzoli]
+Super Earth Invasion (set 2) [David Haywood]
+Ninja Combat (set 2)
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Air Rescue
+	uses an unemulated math DSP and may also require emulation of two system32 boards
+	at once, not an easy task.
+Buriki One (Hyper NeoGeo 64)
+	very preliminary driver, loads and decodes the gfx, attempts to run some of the
+	code.  No Video or Sound emulation is done.  For now the GFX can be viewed with F4

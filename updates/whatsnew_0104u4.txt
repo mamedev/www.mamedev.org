@@ -1,0 +1,152 @@
+0.104u4
+-------
+
+IMPORTANT CHANGES FOR OSD DEVELOPERS: 
+
+1. osd_pause is no longer called directly. Rather, your osd_init 
+function should register the osd_pause callback (if necessary) using 
+add_pause_callback.
+
+2. osd_die is now handled by the core; you should remove this
+function from the OSD layer.
+
+3. logerror is front-ended in the core; it calls to a new OSD
+function osd_logerror which handles the OS-specific file and/or 
+debugger logging.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+memwindow0104u3red [Aaron Giles]
+i9600104u2ora [Aaron Giles]
+dietgo0104u2red [Aaron Giles]
+st0016_0104u3red [Aaron Giles]
+8751MCUgames0104u3 [Aaron Giles]
+warriorb0104u2gre [Pierpaolo Prazzoli]
+cheat0104u3ora [Ian Patterson]
+
+
+
+Source Changes
+--------------
+Added comments support to the debugger. You can now dynamically add
+comments that are visible next to the disassembly view. Comments are
+saved to an XML-based .cmt file in a 'comments' directory by default
+upon exiting. [Andrew Gardner]
+
+Added "wb+" disposition to osd_tool_fopen. [Nathan Woods]
+
+Fixed cheat timer to fire at the correct rate. Also fixed 
+initialization order to work around dependency on the video/UI
+system. [Ian Patterson]
+
+Added save states to 3 more drivers: arkanoid.c, system1.c, and
+taitosj.c, and to the SN76496 sound chip for system1. [Adam Bousley]
+
+Fixed a couple of small memory leaks and a crash bug found by 
+valgrind. [Lawrence Gold]
+
+Added save state support to the tetrisp2 driver. [Nathan Woods]
+
+Added save state support to Cloak and Dagger, Mario Bros, Crazy 
+Baloon, and the SN76477 sound chip. [Adam Bousley]
+
+Hooked up the R4650 properly in the MIPS recompiler. [R. Belmont]
+
+More Namco System 23 progress: [R. Belmont]
+ - Further hardware work
+ - Hooked up H8/3002 MCU and sound system
+ - Many notes added
+ - Final Furlong 2 (World and Japan sets) added
+
+Added sanity checking to the set_visible_area() call to ensure it is
+not set larger than the screen bitmap. [Nathan Woods]
+
+Added decryption of the BIOS for the Namco System 10 games using MEMN 
+ROM boards. [smf]
+
+Changed the ROM banking of the Bellfruit 'Adder' card to the new
+standard, as well as tidying up the MPU4 emulation with some new 
+information. [El Condor]
+
+A bit more progress on Raiden 2 sprite decryption. [Olivier Galibert]
+
+Added save states to Namco Classics Collection 1 & 2, Taito B System,
+and fixed save states in Operation Wolf. [Adam Bousley]
+
+Debugger changes/updates: [Aaron Giles]
+ - added new streaming text buffer system
+ - rewrote the console window to use the streaming text buffer
+ - added new log window (Ctrl+L) which displays live error.log output
+ - added disassembly view menu to control comments versus raw or
+    encrypted opcodes
+ - added disassembly menu to the main console window as well
+ - now detect expressions with assignment or ++/-- operators as
+    commands, do you can just say "pc=0" to modify registers instead
+    of needing to type "do pc=0"
+ - fixed bug that would sometimes lock the disassembly view to the
+    top line
+
+More global system cleanup: [Aaron Giles, Atari Ace]
+ - remapped osd_die to fatalerror, which cleans up behind itself and
+    returns to the osd code by returning from run_game
+ - removed a number of unnecessary includes from driver.h
+ - moved logerror into the core
+ - moved 68000-specific build rules to cpu.mak
+ - new function skip_this_frame, should be called by drivers instead
+    of osd_skip_this_frame
+ - removed includes of osdepend.h and osd_cpu.h from drivers; only the
+    core should include these
+
+More initialization/reset/pause cleanup: [Aaron Giles]
+ - new function add_pause_callback can be called by other modules to
+    register a callback for whenever MAME is paused/resumed
+ - converted all existing pause hooks to use the new system
+ - new function add_reset_callback can be called by other modules to
+    register a callback for whenever MAME is reset
+ - converted all existing reset hooks to use the new system
+ - removed machine_reset; replaced with mame_schedule_soft_reset
+ - new function mame_schedule_exit to force an exit cleanly from
+    external events
+ - removed all the "trying_to_quit" crap from the Windows code
+ - moved save/restore system out of cpuexec.c into mame.c
+ - moved core game loop out of cpuexec.c into mame.c
+ - added hard reset support (complete tear down and re-init)
+
+More core file shuffling: [Aaron Giles]
+ - split sndintrf.c into sound.c, sndintrf.c, and sndhrdw/generic.c
+ - added #include vidhrdw/generic.h to mamecore.h, and removed all 
+    explicit includes elsewhere
+
+Added save state support to the BSMT2000 sound emulator and the
+dcheese driver. [Aaron Giles]
+
+Fixed missing save state data in the dkong driver. [Aaron Giles]
+
+Updated the 68000 disassembler to use the new interfaces.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fred Flintstone's Memory Match [Aaron Giles]
+
+
+
+New clones added
+----------------
+Dragon Breed (M81 pcb version) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Crazy Fight [Pierpaolo Prazzoli]
+Search for the Magical Error [David Haywood]
+Final Furlong 2 [R. Belmont]
+Gekitoride-Jong Space [smf]
+Mr. Driller G [smf]
+Kotoba no Puzzle Mojipittan [smf]
+Star Trigon [smf]

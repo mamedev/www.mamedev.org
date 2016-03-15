@@ -1,0 +1,46 @@
+MAME 0.131
+
+<p>
+The official 0.131 release has been posted 
+<a href="http://mamedev.org/release.html">on the Latest Release page</a>.
+</p>
+
+<p>
+Those of you who haven't been keeping with the intermediate releases will need
+to take heed of the warning that came with MAME 0.130u1. I'm repeating it here
+just to be sure:
+</p>
+
+<p style="margin-left:20px">
+IMPORTANT NOTE: The CHD format has undergone a change with this
+release. The main reason for this change is to include some of the
+key metadata into the hashes for the CHDs. This ensures that the
+metadata is valid and prevents abuse.
+</p>
+
+<p style="margin-left:20px">
+The first impact you will find is that all of your CHD differencing
+files are invalid. Just delete your "diff" directory contents 
+entirely.
+</p>
+
+<p style="margin-left:20px">
+The second impact is that all your existing CHDs will warn you that
+they have incorrect hashes. This is expected. Your old CHDs should
+still work fine, so if you can live with the "bad ROM" warnings, you
+don't really need to do anything. However, if this bugs you or you
+want to be "clean", you can update your CHDs, using this command
+line:
+</p>
+
+<p class="code" style="margin-left:20px">chdman -update &lt;chdfile&gt; &lt;newchdfile&gt;</p>
+
+<p style="margin-left:20px">   
+for each one of your CHDs. This will take a while, but will produce
+CHDs that match the new checksums posted in the drivers.
+</p>
+
+<p>
+As always, make sure you report any issues over at <a href="http://mametesters.org/mantis">MAMETesters</a>.
+Have fun!
+</p>

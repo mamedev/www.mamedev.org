@@ -1,0 +1,94 @@
+0.144u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04546: [Graphics] pinbo, pinboa, pinbos: Background colour in wrong
+         (hap)
+- 04542: [Crash/Freeze] quiztvqq: mame crash after map screen 
+         (Fabio Priuli)
+- 04541: [DIP/Input] qdrmfgp : cannot start game (Angelo Salese)
+- 04538: [Crash/Freeze] Many sets: Crash on exit on 32-bit Windows XP
+         (-video d3d) (Antonio Giner)
+
+
+Source Changes
+--------------
+segas32.c: Corrected rom labels and added PCB locations to F1 Super
+Lap [The Dumping Union]
+
+Removed ugly functions interrupt_enable_w() and cpu_interrupt_enable()
+from the core, and updated all the drivers that used it accordingly.
+Full list of drivers changed by this can be found at 
+http://mamedev.emulab.it/kale/fast/files/cpu_irq_enable.zip
+[Angelo Salese]
+
+Fixed scratchy sound in Birdiy, unlike all other Pac-Man HW games irq
+mask is at $5001 instead of $5000, so fixing that fixed the sound as
+well [Angelo Salese]
+
+Fixed bogus IRQ/NMI mask bit in Yie Ar Kung-Fu (IRQ mask bit was
+masking BOTH lines before) [Angelo Salese]
+
+Fixed bogus irq mask to sound CPU in Syusse Oozumou [Angelo Salese]
+
+Fixed bogus irq mask bit in SNK6502 HW games (IRQ mask bit was masking
+BOTH lines before) [Angelo Salese]
+
+Removed deprecat.h usage from the following drivers: [Angelo Salese]
+* alpha68k.c
+* astrocorp.c
+* bartop52.c
+* beezer.c
+* cps2.c
+* maxaflex.c
+* namcos22.c
+
+Added proper sound to yieartf set [Angelo Salese]
+
+Written a generic RAMDAC device, hooked it up to the sfbonus.c,
+blitz68k.c, rltennis.c, chsuper.c drivers  [Angelo Salese]
+
+Added 3 opcodes (sfence,fstp,fild) to the i386 processor
+[Samuele Zannoli]
+
+Little modifications to ap2_dsk.c and gaelco3d.c/.h to compile with
+MSVC [Samuele Zannoli]
+
+Added a placeholder for ohci usb controller in chihiro plus relative
+hack to avoid an infinite loop. This allows chihiro to try to
+initialize direct3d and to use the nvidia 3d accelerator ...
+[Samuele Zannoli]
+
+Converted chsuper.c to ADDRESS_MAP_MODERN [Angelo Salese]
+
+Confirmed Gal Panic 3's clocks and xtals from original PCB
+measurements  [Corrado Tomaselli]
+
+Added Sound NMI mask to Alpha68k II / V HW games [Angelo Salese]
+
+Converted Beezer to proper vertical screen orientation, being
+originally a Galaxian conversion kit that's quite obvious as well
+[Angelo Salese]
+
+Converted Super Speed Race Jr video to be vertically oriented
+[Angelo Salese]
+
+CPS-1 update [Team CPS-1]:
+ * Identified and documented pang3n as a bootleg, added a note
+ * Fixed pang3, pang3j to use proper 128KB EPROM PA3_11.11F instead of
+    the one resized used by pang3n
+ * Dumped and added CD63B.1A PAL to dino, dinou (Kold666)
+ * Dumped and added Q-Sound PALs to dino, dinou, punisher, punisheru,
+    slammast, slammastu, wofu (3 of 4) (Kold666)
+ * Dumped and added PALs to pang3 (2 of 3), pang3r1, pang3j, pang3n
+    (Kold666)
+ * pang3n -> pang3b
+ * Minor cleanups and fixes
+
+
+New clones added
+----------------
+Space Gun (Japan) [ShouTime]
+Space Gun (US) [ShouTime]

@@ -1,0 +1,80 @@
+0.99u1
+------
+
+
+MAMETesters Bugs Fixed
+----------------------
+medlanes061gre [MASH]
+
+
+
+Source Changes
+--------------
+Undid a hack that was accidentally left in the MCR games in the last 
+release. [Aaron Giles]
+
+Fixed bug in spiders that caused bad video in cocktail mode.
+[Hans Andersson]
+
+Fixed several problems in the H8/3002 core. Improves sound in Namco System 
+12 and ND-1. [cync]
+
+Fixed sound banking in Go Go! Mile Smile. [Pierpaolo Prazzoli]
+
+Major improvement to the YMF271 sound core: [Ville Linde]
+ - Fixed timer A calculation
+ - Fixed note pitch calculation
+ - Added envelope generator
+ - Added stereo panning and fixed other volume calculations
+ - Added FM sound generation
+
+Fixed crash in mystwarr games. [R. Belmont]
+
+Figured out encryption key for Graplop (set 2). [MASH]
+
+Rewrote the configuration reader/writer code to be more generic and easier
+for other subsystems to plug into. This necessitated a rewrite of the way
+the existing code reads config data. As a result, your game.cfg files will
+be invalid after this update. Your default.cfg and existing controller-
+specific .cfg files should work fine. [Aaron Giles]
+
+Fixed all the mystwarr.c games so they pass their service mode mask ROM 
+tests, with the exception of Metamorphic Force (it gets hung up on the road
+generator ("LVC") test for some reason). [R. Belmont]
+
+Fixed Monster Bash (2-board version) so it works now, though the graphics
+are still not perfect. [David Haywood, MASH]
+
+Turned off -fomit-frame-pointer in optimized builds. It was leading to 
+crashes when used with setjmp/longjmp on Windows builds. [Aaron Giles]
+
+Fixed tilemap priorities and sprites in Flying Tiger. [Pierpaolo Prazzoli]
+
+Added green overlay to Meadows Lanes. [MASH]
+
+Various improvements to the simple Deco 156 games: [David Haywood]
+ - Modified video code to use the functions in deco16ic.c
+ - Changed Osman to default to 3 buttons as per Guru's eeprom dump.
+
+Namco System 22 update: [R. Belmont]
+ - Hooked up MCU/CPU communications properly
+ - The MCU now reads the controls in Prop Cycle, Alpine Racer, and 
+    Cyber Cycles
+ - Sound effects and music are now present in all Super System 22 games
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Lotto Fun 2 [Aaron Giles]
+Pit Boss [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Trivia ? Whiz [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Tic Tac Trivia [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Phraze Craze [Tomasz Slanina, Pierpaolo Prazzoli, Nicola Salmoria]
+Top Gunner [Mathis Rosenhauer]
+
+
+
+New clones added
+----------------
+Omni [Pierpaolo Prazzoli]

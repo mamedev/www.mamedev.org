@@ -1,0 +1,128 @@
+0.146u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04821: [Gameplay] (cd32.c) All sets in cd32.c:: All games fail 
+  to boot properly (R. Belmont)
+- 04892: [Misc.] (zaxxon.c) zaxxon, congo, congoa: INPs do not play 
+  back correctly (micko)
+- 04923: [Crash/Freeze] Many sets in bfm_sc2.c and bfm_sc4.c: Crash 
+  after OK (Tafoid)
+- 04759: [Crash/Freeze] (pinkiri8.c) All sets in pinkiri8.c: Crash 
+  after OK (David Haywood)
+
+Source Changes
+--------------
+- Added preliminary QS1000 sound emulation [Phil Bennett]
+
+- Readjusted visible area in the vamphalf.c driver based on tests
+  comparing emulation and original PCB observations. 
+  [David Haywood, Smitdogg]
+
+- Made the vdp map actually belong to the vdp, handling the palette
+  manually for pikiri8.c - fixes MT#04759  [David Haywood]
+
+- Added cycle-precise implementation of tms9980a; changed tms9900.c to
+  allow for subclassing tms9900 and tms9980a from a common parent.
+  [Michael Zapf]
+
+- limenko.c - Hooked up QS1000 [Phil Bennett]
+
+- SDL: Support newer Linux distros using GCC 4.7 [R. Belmont]
+
+- Two TMS32031 fixes: [Daniel Filner]
+  * Don't set underflow when doing a floating point subtract that
+    results in 0.
+  * Don't overwrite the exponent during a FIX operation.
+
+- CHD fixes: [jmak]
+  * Fixed uninitialized variables that were creeping into output
+  * Changed qsort() callback to never return "equal", working around
+    unstable system libc implementations
+
+- Allow for 2 seconds of emulation to boot up before applying quickload
+  for Jaguar  [Robbbert]
+
+- qix.c: Identified Set 1 as Rev 2 and corrected the rom names.
+ [Smitdogg, The Dumping Union]
+
+- cd32: fix so it can find the CD-ROM [R. Belmont]
+
+- seta.c: Fill in some missing PCB board numbers. Correct the board
+  numbers as they are silkscreened on the PCB. Corrected the rom names
+  for JJ Swuawkers. [Brian Troha]
+
+- taito_en.c: Corrected 68000 clock [Stefan Lindberg]
+
+- tx1.c: Add documentation about the TX-1 (Japan) PCBs. Added dipswitch
+  locations to TX-1 and Buggy Boy sets. [Brian Troha]
+
+- seta.c: Added dipswitch locations to Ultraman Club. [Brian Troha]
+
+- Verified dips for Space Firebird and clones (spacefb.c).  [Tafoid]
+
+- vegaeo.c - Hooked up sound in Crazy War [Phil Bennett]
+
+- Added PGM2 motherboard specs/notes to driver.  [xingxing]
+
+- midvunit.c: Added dipswitch locations to Cruis'n USA, Cruis'n World,
+  Off Road Challenge and War Gods sets. [Brian Troha]
+
+- eolith.c: Boost interleave for sound to correct syncing issues.
+  [David Haywood]
+
+- Replaced bitrotted rom for Mortal Kombat Turbo 3.0 (mkyturboe) which
+  caused hanging during demonstration.  [bulldawg]
+
+- upd7810.c: Fixed setting of flags in the ACI_[VABCDEHL]_xx functions.
+  Fixed handling of Carry flag in the DAA instruction.  [Wilbert Pol]
+
+- Updated labels.locations for all Crazy Kong PT 2 sets based on a
+  recently dumped board  [Smitdogg, Tafoid]
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Mahjong Janshin Plus (Japan) [Guru, Dyq, bnathan, Luca Elia]
+Mahjong Dai Touyouken (Japan) [Guru, Dyq, bnathan, Luca Elia]
+Return Of Sel Jan II (Japan, NM557) [Guru, Dyq, bnathan, Luca Elia]
+Linky Pipe [David Haywood]
+Offroad Challenge [Aaron Giles, Daniel Filner]
+Touryuumon [Tim Schuerewegen]
+Space Invaders Multigame (several versions)
+  [hap, Dave France, Scott Brasington]
+Super ABC (Pac-Man multigame kit) [hap, Guru, MiSFiTMAME]
+Fantasy Zone II (System 16C version) [David Haywood]
+Fishing (DECO Cassette). [SRI, Charles MacDonald, Team Japump!]
+
+
+New clones added
+----------------
+Mahjong Nenrikishu SP (Japan, V250J) [Guru, Dyq, bnathan, Luca Elia]
+TX-1 (Japan rev. B)
+  [hap, Mr. CAST, R. Hawkins, Tormod, Woodada, Kevin Eshbach, Phil Bennett, Smitdogg, The Dumping Union]
+War Of The Bugs (US)  [B. Stahl, Smitdogg, The Dumping Union]
+Raiden (Unknown) [Mr. CAST, Smitdogg, The Dumping Union]
+War Gods (HD 10/09/1996 - Dual Resolution)
+  [B. Stahl, N. Francfort, ranger_lennier, Smitdogg, The Dumping Union]
+War Gods (HD 08/15/1996) [alca]
+Dynamite League (US) [Mr. CAST, Smitdogg, The Dumping Union]
+Arkanoid (bootleg with MCU, set 2) [Smitdogg, The Dumping Union]
+U.S. Championship V'ball (bootleg of Japan set)
+  [Smitdogg, The Dumping Union]
+Touchmaster 4000 (v6.02 California)
+  [Mr. CAST, Smitdogg, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Wild Poker (ver. D 1.01) [Roberto Fresca, Team Europe]
+beatmania IIDX 2nd style (GC985 JA) [phillw]
+Triple Play (Ver. 1.10)
+  [Kevin Eshbach, Smitdogg, Luca Elia, The Dumping Union]
+Multipede [hap, JunoMan, Scott Brasington]
+Skins Game (1.08)
+  [Mr. CAST, M. Ponweiser, Mojo2000, Smitdogg, The Dumping Union, R. Belmont]
+Skins Game (unknown alt. version) [Guru, R. Belmont]

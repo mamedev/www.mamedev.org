@@ -1,0 +1,88 @@
+0.106u9
+-------
+
+
+Source Changes
+--------------
+Fixed Address Error in Pairs Love (simulated 'buffered ram' 
+protection?) [David Haywood]
+
+Fixed Address Error in Grand Cross Pinball (it's caused by the 
+sound IRQ..but the music player was ripped out by Aaron ages ago, 
+related?)  I've disabled the IRQ rather for now rather than making 
+a new sound core. [David Haywood]
+
+Fixed crash in debug builds running the Deco MLC games.
+[David Haywood]
+
+Updated the Tecmo Bowl, Gaelco 2, X-Men 6p, and Megatech drivers to 
+support dual screens. [David Haywood]
+
+Changed VIDEO_UPDATE to return a set of flags. Only one flag is
+currently defined, indicating that video has not changed at all
+since the previous update. Most drivers should just return 0.
+[Nathan Woods]
+
+Changed the MSM5205 ADPCM decoder to no longer perform bounds 
+checking to prevent the signal from overflowing. The MSM5205 data 
+sheet clearly states that this isn't the case, and there is no 
+overflow protection in the chip. Also, the chip's internal DA 
+converter is just 10-bit, even if the processed signal is 12-bit.
+[Nicola Salmoria]
+
+Sega Model 2 driver update: [Ville Linde]
+ - i960 bugfixes
+ - SHARC improvements and bugfixes
+ - Added HLE of the geometry DSP for now
+ - Moved video hardware emulation to vidhrdw/model2.c and added 
+    preliminary 3D graphics emulation
+
+Taito JC driver update: [Ville Linde]
+ - Improved M68040 FPU emulation
+ - Improved the TMS320C51 core
+ - Added 2D graphics emulation
+ - Added inputs to all games
+ - Properly hooked up sounds in all games
+
+Added "fast forward" function (defaults to the INSERT key). While
+holding this key down, the frameskip is temporarily maxed out and
+throttling is turned off. This is useful for skipping over parts of
+the emulation. [Aaron Giles]
+
+Fixed some glitchiness in font displaying where they would switch in
+and out of scaled modes due to rounding errors. [Aaron Giles]
+
+Cleaned up handling of layout dependencies in the makefile.
+[Aaron Giles]
+
+Fixed bug when clipping quads in Direct3D mode. [Aaron Giles]
+
+Flipped Punchout and Playchoice drivers so that screen 0 is the 
+"main" screen. [Aaron Giles]
+
+Added "left half" and "right half" to the Darius layouts so you can
+stretch three screens over two, though you need to explicitly set 
+them either in the UI or using the -view0 and -view1 parameters on
+the command line. [Aaron Giles]
+
+Changed the initial UI screens to only compute their text a single
+time. This reduces the CPU usage greatly when displaying some of the
+"game doesn't work" warnings. [Aaron Giles]
+
+Added support for pausing/unpausing while showing graphics and 
+tilemaps. [Aaron Giles]
+
+Added get/set calls to control layers on a per-target basis. This
+allows for dynamic control of visibility of artwork layers and the
+option to crop to the screen. Added menu items to control these
+options. [Aaron Giles]
+
+Removed options.use_artwork from the global options. This is now
+directly configured by the OSD layer. [Aaron Giles]
+
+Fixed edge case where the extra pixel on non-wrapping textures would
+sometimes lead to exceeding the maximum texture size. [Aaron Giles]
+
+Added concept of maximum texture size to the core renderer to prevent
+giant textures from being requested if the OSD layer can't handle
+them. [Aaron Giles]

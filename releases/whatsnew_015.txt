@@ -1,0 +1,79 @@
+[note: only important changes are listed]
+
+0.15
+----
+
+Program:
+- Jarek Burczynski submitted a sound driver for Bomb Jack.
+  The game is now a bit slow on my 486/100, -frameskip 1 is almost good but
+  not quite.
+
+- Sound support in:
+  Scramble
+  Super Cobra (note that the "scobra" rom set is wrong - ROMs 5c, 5d and 5e
+               must be 2k, not 4k. You can take them from one of the other two
+			   sets).
+  The End
+  Battle of Atlantis
+  Lost Tomb (very nice sound, pity the ROMs are corrupted)
+  Amidar
+  Turtles
+  Frogger
+  Pooyan
+  Time Pilot
+
+  All these require -frameskip 1 on my 486/100.
+
+  I have no idea how accurate the tempo and pitch is. If you can compare it
+  with a real machine, please let me know what's wrong.
+
+  Note: I discovered that the garbled sound I experienced in Scramble was
+  caused by a bad ROM. Therefore, if sound doesn't work, check your ROM
+  set. Note that I also changed one ROM name from "2c" to "2d".
+
+- Carnival is finally working! Many thanks to Richard Davies who understood
+  how to make it accept coins.
+
+- Brad Oliver deserves a prize for being the person who, alone, has
+  discovered more bugs than everyone else put together. This time the bug
+  was illegal memory acesses in games using 224x288 and 288x224 modes (Pengo,
+  Pac Man, Rally X).
+
+- Thanks to the invaluable help of Steve Scavone, I've been able to fix
+  many bugs in the Wizard of Wor driver.
+
+- Added support for a version of Galaxian which is known to be original. It
+  has Namco copyright and the code is slightly different from the other
+  Galaxian (which has Midway copyright). I called this version "galaxian",
+  and renamed the other "galmidw".
+
+- High score support in Pac Man, Ms. Pac Man, Crush Roller, Burger Time,
+  Zaxxon, Congo Bongo, Pooyan, Moon Cresta, Moon Quasar.
+
+- Support for a different version of Frogger ("frogsega").
+
+- Miscellaneous graphics fixes to Zaxxon and Congo Bongo. Also better colors
+  (especially in Congo Bongo), thanks to Marc Lafontaine.
+
+- Fixed most of the graphics problems with Moon Patrol. The video driver is
+  a gigantic kludge right now, but it works and at a reasonable speed
+  (though I can't reach 60fps on my 486/100).
+
+- Many people requested a way to syncronize with the video beam, to avoid
+  jerkiness. Here it is: -vsync. It should be used together with -noscanlines,
+  and possible -vgafreq to adjust the frame rate to be as close as possible
+  to 60fps (use F11 to check the actual frame rate). Note that this, unlike
+  the default timer based sync, will NOT downgrade nicely if your system is
+  not fast enough.
+
+- Bernd Wiebelt provided new code for -vesascan, and implemented the new
+  "-vesaskip n" mode. It uses a 640x480 screen instead of the 800x600 used
+  by -vesascan, and allows you to scroll the visible area using the PGUP and
+  PGDOWN keys.
+
+- Maintaining the endless list of ROM subdirectories was getting quite boring,
+  so I modified readroms() to make it automatically print the complete list of
+  required ROMs if one is missing. I think I should add a CRC check as well.
+  I also added a brief explanation of what ROMs are and why they are required -
+  hoping this will cut down the flow of e-mail asking "gee, I run your program
+  and it says 'unable to open file xxxx/xxxx', what should I do?"

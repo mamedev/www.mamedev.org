@@ -1,0 +1,134 @@
+0.33 BETA 6
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+Nova 2001 [Howie Cohen, Frank Palazzolo, Alex Pasadyn]
+Super Bond [Chris Hardy]
+Avalanche [Mike Balfour]
+Gladiator [Victor Trucco, Steve Ellenoff, Phil Stroffolino]
+Lazer Command [Juergen Buchmueller]
+Dead Eye [Juergen Buchmueller]
+Gypsy Juggler (preliminary) [Juergen Buchmueller]
+Fax [Mike Balfour]
+Heli Fire [Al Kossow]
+Space Fever [Al Kossow]
+Birdie King 2 (preliminary) [Ed Mueller, Mike Balfour]
+Lizard Wizard [Mike Balfour]
+TMNT (Japanese, 2 Players USA, 2 Players Jaèpanese) [Alex Simmons]
+Fighting Fantasy [Marco Cassili]
+1941 (Japanese) [Marco Cassili]
+Nemo (Japanese) [Sawat Pontree]
+Ghouls'n Ghosts (Japanese) [Marco Cassili]
+Magic Sword (Japanese) [Marco Cassili]
+1942 (alternate) [Nicola Salmoria]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed some wrong graphics in Lode Runner. [Nicola Salmoria]
+
+- Roadblaster uses the dynamic palette system. [Aaron Giles]
+
+- Double Dragon and Xain'd Sleena use the dynamic palette. [Nicola Salmoria]
+
+- Accurate colors, and many other fixes, in TNZS. [Richard Mitton]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Fixed bug in VLM5030 emulator which caused samples not to work.
+  [Tatuyuki Satoh]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- TNZS. [Santeri Saarimaa]
+
+
+Other drivers changes:
+----------------------
+
+- Fixed bug in the I8086 emulator which caused MACH3 not to work. MACH3 now
+  does the attract mode, but it will never be playable without the laser disc.
+
+- Fixed Snow Bros hanging after level 30. [Nicola Salmoria]
+
+- Removed the partially working protection emulation in Elevator Action, so
+  people will hopefully understand that it doesn't work and use the bootleg
+  instead. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- [DOS] New -listgames command, which lists all games along with production
+  year and manufacturer (data has not been entered yet so most of the fields
+  are ????)
+  Also -noclones option which removes clones from -list, -listfull etc. (clones
+  data has not been entered yet so this is not complete) [Nicola Salmoria]
+
+- Greater flexibility for ROM placement: ROMs are looked for both in the
+  directory named after the clone, and in the one of the original game.
+  Note that due to how zip support works, if the ROMs are zipped they can be
+  in subdirectories as well.
+  (clones data has not been entered yet so this is not complete)
+  IMPORTANT: due to this change, some ROM sets might require renaming to work
+  again.
+
+- [DOS] Fixed the NTSC mode. For feedback on this mode, please contact
+  sta@carinthia.com [Zerza]
+
+- [DOS] Allegro (3.0+diffmay) now supports SideWinders and Gravis Gamepad Pro's
+  and so does Mame. [Bud Crittenden]
+
+- Emulating analog devices via joystick no longer deactivates the mouse.
+  IMPORTANT NOTE FOR PORTERS: osd_analog_read() had to be changed.
+  The mame.cfg setting for joysticks was renamed to "joystick" instead of
+  "joytype". The numbering of joystick types has changed, look into
+  readme.txt [Bernd Wiebelt]
+
+
+Source:
+-------
+
+- [DOS] We are now using Allegro 3.0 + WIP (30th May).
+
+- [DOS] To improve portability, the makefile is more conservative, using the
+  -pedantic and -Wshadow switches. Note that to compile with these switches,
+  several changes had to be made to allegro.h, which is included.
+
+- Sygnetis 2650 emulator [Juergen Buchmueller]
+
+- Improved cycle counting in the 6809 emulator. [Mathis Rosenhauer]
+
+- Added new fields to the GameDriver structure:
+  "source_file" (set it to __FILE__, this is used to automatically generate
+  reference lists);
+  "clone_of", used to link clones to the main version of the game.
+  "year" and "manufacturer", for production year and company;
+  "flags", for future use.
+
+- Drivers using the VIDEO_SUPPORTS_16BIT mode can use the same API as
+  VIDEO_MODIFIES_PALETTE ones (palette_change_color(), palette_recalc()). The
+  old setgfxcolorentry() method is still supported but discontinued, and will
+  be removed when all the existing drivers are converted to the new system.
+  To use the new API, you must set BOTH the VIDEO_SUPPORTS_16BIT and the
+  VIDEO_MODIFIES_PALETTE flags. Removing the _16BIT flag is all it takes to
+  switch from 16-bit to dynamic mode, so you can quickly test if the palette
+  can be compressed (_16BIT is much slower, so don't use it unless absolutely
+  necessary). [Nicola Salmoria]
+
+- To help drivers in better optimizing video refreshes, palette_recalc() now
+  returns a pointer to an array indicating which colors have been remapped and
+  need a refresh. If you don't need it, you can still consider it a boolean
+  value (0 = no need to redraw). [Nicola Salmoria]
+
+- On the Mac, the dynamic palette uses 254 colors instead of 256. Due to this,
+  now ALL drivers using VIDEO_MODIFIES_COLOR and 256 colors must call
+  palette_recalc() like the others. [Aaron Giles]
+
+- [DOS] The average FPS is printed on exit. [Nicola Salmoria]

@@ -1,0 +1,184 @@
+0.145u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04704: [Gameplay] 25pacman: Unable to continue while playing Galaga
+         (Tafoid)
+- 04694: [Documentation] m5fmonty: The correct description is "Full
+         Monty (The) (Empire) (MPU5)".
+- 04692: [Documentation] j6kapang: The correct description is "Kapang!
+         (Crystal) (IMPACT)".
+- 04691: [Documentation] j6cpal and clone: The correct description is
+         "Caesars Palace (Whitbread / Crystal) (IMPACT, set 1)". The
+	 set 'j6cpala' is his clone.
+- 04693: [Documentation] m5cockdd: The correct description is "Cock A
+         Doodle Dough! (Empire) (MPU5)".
+- 04696: [Crash/Freeze] Crash when loading samples in certain games
+         (Aaron Giles)
+- 04697: [Compiling] Unable to compile LDRESAMPLE.exe tool (Aaron
+         Giles)
+- 04698: [Compiling] Unable to compile LDVERIFY.exe tool (Aaron Giles)
+
+
+
+Source Changes
+--------------
+chdcd: Fix crash when parsing bin/cue [R. Belmont]
+
+Rewrite INS8250 to use diserial, updated Microtouch to modern and made
+it serial device, updated connected drivers [Carl]
+
+Checksum the delay slot in single-instruction blocks in the MIPS3 and
+RSP DRCs. [Ryan Holtz]
+
+mc146818 - Set period even if timer is disabled, required for windows
+nt [Carl]
+
+diserial - added optinal rx and tx timers and callbacks [Carl]
+
+ins8250 - serial rx line high on start and fix for msr register [Carl]
+
+m68k: Add API to install a non-debugger instruction hook.  Usage is
+strongly NOT recommended except for dire cases.  [R. Belmont]
+
+Williams blits with bit 2 set take approximately 2x as long because
+they are bus-shared with RAM. Should impact some timing behaviors such
+as later levels in Robotron, where approximately 10% of the blits are
+done with bit 2 set. Further refinements may be necessary but this
+addresses the most significant issue. [Sean Riddle, Aaron Giles]
+
+i386: One more to fix cmpsb (dir /s in MS-DOS works now) and remove
+unused variables. [Carl]
+
+Improvements to Golden Poker driver [Roberto Fresca]
+ * Inputs from the scratch.
+ * Switched manufacturer 'Playman' to PM / Beck Elektronik, since it's
+    PM and Beck Elektronik/Computer/etc...
+ * Added technical and game notes.
+
+Added a trivial Y reject to triangle draw commands in the N64 RDP.
+[Ryan Holtz]
+
+N64: Various PIF fixes [Ryan Holtz]
+
+info.c: several fixes and additions to listxml output [Fabio Priuli]
+ * appended to xml info about devices which can be optionally mounted
+    to slots
+ * added a description attribute to slotoption to show which devices
+    can be mounted in each slot
+ * added to xml info of cpus/inputs/image/slots which are relative to
+    devices (e.g. CPUs or Dipswitches in the device itself)
+ * tags of elements directly attached to the root_device do not
+    display anymore the root colon (slot tags were already behaving in
+    this way); elements attached to optional devices use tags starting
+    with colon (to be interpreted as a relative tags which gets
+    appended to the device tag, when such a device is selected in a
+    slot)
+ * modified when necessary output routines to pass a root_device and a
+    root_tag as parameters, in order to simplify output of relative
+    devices and avoid duplicated code
+ * updated DTD according to the new elements and attributes These
+    changes allow frontends to know in advance how drivers can be
+    configured through the various slot options (by matching option
+    descriptions with device descriptions), without the need to run
+    -lx with the various slot combinations. This is especially of use
+    if a device adds e.g. dipswitches or image devices (like
+    additional floppy drives or additional slot expansions), but also
+    if one wants to know e.g. how many sound channels a soundcard
+    would add to a pc driver, or which kind of screen parameters would
+    be added by a specific choice of video card.
+
+i386: Added 32-bit versions of LMSW, and made LMSW only change the
+lower 4 bits of CR0. [Barry Rodewald] 
+
+Fixed Windows 95 blue screen. [Carl]
+
+Preliminary driver for Merkur's 'Mahn Oh-Mann'. German board game
+similar to Ludo, derivated from the indian game Parchisi. Coin-op
+machine for 1-4 players. No screen, just artwork and lamps.
+[Roberto Fresca]
+
+Removed need for *_dev.lst files  [Miodrag Milanovic]
+ * enforced short names for slot card devices
+ * updated validation, romverify and listxml output accordingly
+
+N64: Force mtc0 opcodes that initiate to-RSP DMAs to end recompile
+sequences to force a code check. Fixes certain microcodes from
+executing garbage code after DMA. [Ryan Holtz]
+
+N64: Don't flush the RSP DRC cache on DMA. Fixes Mario 64 and others.
+[Ryan Holtz] 
+
+N64: Miscellaneous machine fixes [Ryan Holtz]
+ * Increase the amount of time consumed by PI DMA, makes certain RSP
+    microcodes that test DMA speed land in the correct window.
+ * Force the main CPU to yield when the RSP reads its atomic
+    semaphore.
+ * Force the RSP to yield when PI DMA completes.
+ * Flush the RSP DRC cache when touching IMEM with SP DMA.
+
+i386: Prevent page faults when returning to same privilege and
+unmapped pages are above the stack.  Windows 95 boots now. [Carl]
+
+Documentation of the video data on Dragon Gun.  [David Haywood]
+
+N64: Fix audio sync issues in Super Mario 64 and probably others, and
+also bring PI DMA speed into the realm of reality. [Ryan Holtz]
+
+N64: Change PI DMA speed from 3 cycles/word to 5.08 cycles, as
+average PI speed is between 2.53 and 2.55 cycles/byte. [Ryan Holtz]
+
+i386: LOCK prefix should depend on IOPL on 386.  Windows NT beta
+boots. [Carl]
+
+gticlub: Rewrote the 3D renderer. Implemented gouraud shading,
+lighting and fog. [Ville Linde]
+
+Create a new device_mixer_interface, derived from
+device_sound_interface, which mixes all its inputs to a single output
+stream. Redefined the SPEAKER device to use this and remove the
+duplicate underlying logic. The main purpose of this new interface is
+to allow device-ification of an entire sound board, which can itself
+become a mixer of all of its sound components to a single output
+stream. This stream can then be routed by the device's owner to the
+appropriate speakers. A real-life example will show up soon. [Aaron
+Giles]
+
+Better management of FLAC block sizes, aiming to keep them around 2k
+samples. Increased CD sectors per hunk to 8 for better compression.
+[David Haywood]
+
+Re-did the non-CD FLAC codec to be "smart" in that it can choose
+either big-endian or little-endian on the fly and uses the best one.
+Added FLAC as a default codec for hard disks, which helps a lot for
+certain disks. [Aaron Giles]
+
+Added missing proms for Fax and Fax 2. [W. Belk, Smitdogg, The
+Dumping Union]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Casino Poker (Ver PM86LO-35-5, German) [Roberto Fresca, Team Europe]
+
+
+New clones added
+----------------
+Altered Beast (FD1094 317-0069)
+  [Stefan Lindberg, Chris Hardy, The Dumping Union]
+PuzzLoop 2 (Japan 010226) [idc/Team Avalaunch]
+Street Fighter II': Champion Edition (Japan 920322) 
+  [idc/Team Avalaunch]
+Mortal Kombat (Yawdim bootleg - Set 2) 
+  [ScheissNussen, Smitdogg, The Dumping Union]
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mann, oh-Mann [Roberto Fresca, Team Europe]
+NFL Classic Football (NCF3 Ver.A.)  [Smitdogg, The Dumping Union]
+Area 51: Site 4 (September 11, 1998)  [ninjakid]
+Pot O' Gold  [Bicyclerepairman]

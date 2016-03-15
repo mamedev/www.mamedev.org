@@ -1,0 +1,44 @@
+[note: only important changes are listed]
+
+0.10
+----
+
+Program:
+- Centipede support. This is the first 6502 game supported by MAME. I'm
+  currently using Marat Fayzullin's engine.
+
+- Nibbler support. This is the second 6502 game supported by MAME ;-)
+  Interesting hardware: no sprites, two playfields, and it uses RAM for
+  character generation (redefining the characters to animate the worm).
+
+- I had also broken Pleiades, fixed. That's the drawback of emulating more
+  than 60 games, I can't check them all before releasing a new version ;-)
+
+- Ville Laitinen provided a Congo Bongo driver! The colors are terrible ;-),
+  but it's playable.
+
+- Thanks to Valerio Verrando, now -noscanlines works on Pac Man and the other
+  games using a 224x288 screen. If you have problems with the default video
+  mode try this one, it will hopefully solve them.
+
+- I received no less than three different palettes for Donkey Kong Jr., from
+  Brad Oliver, Marc Vergoossen and Richard Davies. The one included is from
+  Marc.
+
+- Thanks to Gary Walton and Simon Walls, we now have 100% accurate colors in
+  Crush Roller and Uniwars/Japirem. Moon Cresta and Moon Quasar might be
+  correct as well, but I'm not sure.
+
+- Fixed a small graphics glitch in the background of Bomb Jack's third level.
+  Thanks to Philip Chapman for the report.
+
+Source:
+- Support for 6502 CPU. From a driver writer point of view, it is used just
+  like the Z80, the only difference being that you have to specify CPU_M6502
+  instead of CPU_Z80 in the MachineDriver definition.
+  Multiple CPUs are still NOT supported.
+
+- New function in common.c: decodechar(). It was originally part of
+  decodegfx(), and is used to convert one single char from the machine format
+  to the one used by the emulator. This function was needed by the Nibbler
+  driver to dynamically convert the graphics at runtime.

@@ -1,0 +1,206 @@
+0.139u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 03969: [Crash/Freeze] All sets and drivers using OKI audio: 
+         Eventual crash using Save States (Aaron Giles)
+- 03981: [Crash/Freeze] bosco, xevious and clones: Game reboots or 
+         hangs (Alex Jackson)
+- 03977: [Graphics] tceptor2: Graphics are incorrect, the top and 
+         bottom roads are displayed with grids and it looks like 
+         there should be 4 instead of 2. (Phil Bennett)
+- 03964: [Documentation] shangonro: Year is wrong (Smitdogg)
+
+
+
+Source Changes
+--------------
+raiden2.c: Add missing "VOICE2" sample rom to Raiden 2 sets where it
+was missing.  Corrected rom names for MASK roms soldered to the PCB.
+[Brian Troha]
+
+Southern Systems Joker Poker: Added missing CPU IO map to the machine
+driver. This allow boot the game and enter into the attract mode.
+[Roberto Fresca]
+
+Mini Boy 7 improvements: [Roberto Fresca]
+ * Added a new complete set. Now set as parent.
+ * Corrected Xtal frequency.
+ * Mapped the PIA MC6821 (not wired since is not totally understood).
+ * Preliminary attempt to decode the color PROM.
+ * Mapped the AY-3-8910, but still needs ports and some checks.
+ * Added debug and technical notes.
+
+New driver for Mega Double Poker, from Blitz System Inc.
+[Roberto Fresca]
+ * Initial release.
+ * Preliminary memory map.
+ * Hooked both PIAs, but need more analysis to confirm the offsets.
+ * Accurate graphics and color decode.
+ * Added main PCB and daughterboard layouts.
+ * Added partial docs and diagrams about the CPU/MCU/ROMs addressing.
+ * Added debug and technical notes.
+
+Added Magic Train, from Subsino. Since it's driven by a HD647180X0CP6
+(Subsino - SS9600) plus SS9601 and SS9602 (for video and I/O
+respectively), it's possible that needs to be moved to a new driver in
+a near future. Also added technical notes. [Roberto Fresca]
+
+mpu4drvr.c: Fixed mid-screen palette updates [David Haywood]
+
+segas16b.c: Documented the Sega game ID for the Heavyweight Champ rom
+board as well as corrected the rom names. [Brian Troha]
+
+Return to type safety. Changed address maps back into functions that
+build up the definition, rather than the whole tokenizing system,
+which lost type checking. Added a new module addrmap.c which
+implements the address map classes, and changed the macros to call
+methods on the address_map and address_map_entry classes which are
+strongly typed. Fixed a few incorrectly specified memory map entries 
+along the way in twincobr.c, lordgun.c, galaxold.c. [Aaron Giles]
+
+More API cleanup: [Aaron Giles]
+ * removed cputag_clocks_to_attotime() and cputag_attotime_to_clocks()
+    in favor of just expanding the class
+ * same for cputag_suspend() and cputag_resume()
+
+Fix crash when exiting the debugger if breakpoints are set. 
+[Aaron Giles]
+
+The dsp561xx CPU core now generates accurate disassembly for Konami
+Polygonet hardware (verified against Motorola's reference
+disassembler). [Andrew Gardner, Stiletto]
+
+Fixed image device error handling [ShimaPong, Miodrag Milanovic]
+
+Defined new class driver_data_t, which all driver_data classes must
+derive from. Updated all class definitions to inherit from the new
+class, and to call it in the constructor. Also changed the alloc()
+signature to return a driver_data_t pointer instead of a void *.
+Renamed and hid machine->driver_data as machine->m_driver_data. Added
+a new templatized method machine->driver_data<class> which returns a
+properly downcast'ed version of the driver data. Updated all code
+which looked like this:
+
+  mydriver_state *state = (mydriver_state *)machine->driver_data;
+
+to this:
+
+  mydriver_state *state = machine->driver_data<mydriver_state>();
+
+The new function does a downcast<> which in debug builds dynamically
+verifies that you're actually casting to the right type. [Aaron Giles]
+
+Changed atarigen_state to be a base class from which all the related
+Atari drivers derive their state from. [Aaron Giles]
+
+Removed global variables from gaelco, namco, and nile sound cores.
+[Atari Ace]
+
+Converted seta.c, seta2.c, and ssv.c to driver_data. [Atari Ace]
+
+Updated SAA5050 to form 12x20 chars as noted in documentation.
+Updated malzak driver to support SAA5050 changes. [Miodrag Milanovic]
+
+taitotz: add HDD image for Battle Gear 2 (2.04J) [gtbb08, R. Belmont]
+
+namcoic.c: Fixed incorrect road colours in tceptor2, finallap and
+others [Phil Bennett]
+
+Fixed road transparency in Thunder Ceptor [Phil Bennett]
+
+Fixed Z80 SIO interrupts by clearing them at constructor time so Z80 
+daisy chain works properly and doesn't stall on a non-existant IEO 
+condition. [Curt Coder]
+
+Z80 DMA changes: [Curt Coder]
+ - Fixed DMA by re-adding a status update call to ENABLE DMA command
+ - Allowed illegal mode 0 DMA operation since trs80m2 in MESS is 
+    abusing this
+ - Fixed ready signal handling by adding a check for ready condition 
+    on each byte
+
+Started converting the Toaplan2 VDP into a device [David Haywood]
+
+dsp56k : Hooked up new execution engine. [Andrew Gardner]
+
+plygonet.c : Updates Polygonet driver to use driver_data class.
+[Atari Ace]
+
+More refactoring to the Toaplan 2 / GP9001 VDP device [David Haywood]
+
+CPS-1 update [Team CPS-1]:
+ * Expanded and updated games table in video\cps1.c
+ * Confirmed B-Board # for 3wondersu, varth
+ * Fixed labels in ghouls, ghoulsu to match real pcbs
+ * Removed 14.bin in dynwarj, it was a bad dump
+ * Marked nm_23.12b in nemoj BAD_DUMP
+ * Removed knightsja set (roms were split & hacked to work on a
+    suicided board)
+ * Added roms relationship between parent/clones where missing
+ * Fixed some incorrect notes added in previous update
+ * dynwaru -> dynwara forgottnua -> forgottnu, forgottnu -> forgottnua
+    wofhfb -> wofhfh as real name Huo Feng Huang
+ * Reordered some sets
+ * Minor cleanups
+ * Fixed sf2ceua labels and added pcb infos
+ * Fixed sf2ceub labels and added pcb infos, removed 1 incorrect rom
+    and replaced with proper redump done by Dumping Union
+ * Fixed punisher, punisheru Q-Sound labels and added D-Board PALs
+
+dsp56k.c : Remove globals from dsp56k cpu core. [AtariAce]
+
+cps1.c: Documentation update for some CPS1 sets (B-Board chip
+information) verified via Team Japump PCB photos. [Brian Troha]
+
+Improved memory banking in Puzzle Star (Sang Ho Soft)
+[Mariusz Wojcieszek]
+
+Fixed term2 (rev. LA4) freeze during the Cyberdyne stage opening
+cinematic [Phil Bennett]
+
+Merged aladbl.c and ssf2md.c to create genesisb.c [Sonikos]
+
+video/astrocde.c: Limited the number of timers potentially produced by
+astrocade_trigger_lightpen() [ranger_lennier]
+
+cps1.c: Set correct B-Board mapper for "resale" kits.  This fixes
+missing graphics in Area 88 (Japan Resale). [Brian Troha]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pacman - 25th Anniversary Edition (V2.0) [Sara S.]
+The Last Starfighter (prototype) [Phil Bennett, Ken Van Mersbergen]
+Air Race (prototype) [Phil Bennett, Ken Van Mersbergen]
+
+
+
+New clones added
+----------------
+Clash-Road (Data East license) [Tirino 73]
+Quizard v1.2 [Team Europe, The Dumping Union]
+Quizard Rainbow 4.2 [Team Europe, The Dumping Union]
+Super Megatouch IV Turnier Version (9255-51-50 ROA, Bi-Lingual ENG/GER version)
+  [bodger319, Smitdogg, The Dumping Union]
+Megatouch 5 Turnier Version (9255-70-50 RON, Bi-Lingual ENG/GER version)
+  [bodger319, Smitdogg, The Dumping Union]
+Knights of the Round (Japan 911127, 91634B-2 B-Board)
+  [Team Japump, The Dumping Union]
+Area 88 (Japan Resale Ver.) [Team Japump]
+Ms. Pac-Man/Galaga - 20th Anniversary Class of 1981 Reunion (V1.00)
+  [Mark F.]
+Ms. Pac-Man/Galaga - 20th Anniversary Class of 1981 Reunion (V1.03)
+  [Sara S.]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Mini Boy 7 (set 1) [Roberto Fresca, Siftware]
+Mega Double Poker (conversion kit) [Roberto Fresca, ChrisQC, Smitdogg]
+Magic Train [Roberto Fresca]
+Gundam Seed: Federation vs. Z.A.F.T. (SED1 Ver. A) [Guru, Smitdogg]

@@ -1,0 +1,161 @@
+0.129u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 02810: [DIP/Input] hanaroku,hanaawas: Input keys are 
+  inconsistent with other hanafuda games [Sonikos]
+- 02852: [Known Issues/To-Do's] cloak and clones: Message "SLAVE 
+  COM BAD" flashes before game startup (Phil Bennett)
+- 02847: [Crash/Freeze] all cloak.c and midzeus.c sets: [debug] 
+  Access Violation (Phil Bennett)
+- 02842: [Graphics] logger: gfx issue (Aaron Giles)
+
+
+
+Source Changes
+--------------
+Fixed compilation errors if HAS_SAMPLES is 0. [Nathan Woods]
+
+Stop crash/assert when trying to decrease the debugger memory window 
+bytes per line to 0. [Phil Bennett]
+
+Improved implementations for undocumented instructions 63, 67, 6f, 73, 
+77, 7b, 7f, 9c, 9e, ab, e3, e7, ef, f3, f7, fb, and ff in the n2a3 
+cpu core. [Wilbert Pol]
+
+Force recalculation of screen parameters when only the MC6845 input 
+clock changes. [Wilbert Pol]
+
+Seibu CRTC part 1: [Angelo Salese]
+ * Merged Sengoku Mahjong & Good e Jong video HWs
+ * Added correct scrolling functions for Sengoku Mahjong
+ * Removed some positioning kludges in both drivers
+
+Fixed Sengoku Mahjong hopper error after first winning match. 
+[Angelo Salese]
+
+Removed deprecat dependancy from Good e Jong, one irq wasn't needed 
+at all (points to a reti). [Angelo Salese]
+
+Fixed cpu reset for upd78c06. [Wilbert Pol]
+
+Added new #define ENDIANNESS_NATIVE, which maps to either 
+ENDIANNESS_LITTLE or ENDIANNESS_BIG based on the LSB_FIRST definition. 
+Unlink LSB_FIRST, ENDIANNESS_NATIVE always exists and can be used in 
+expressions without invoking the preprocessor. [Aaron Giles]
+
+Added macro ENDIAN_VALUE_LE_BE() which selects one of two values based
+on the endianness passed in. Also added NATIVE_ENDIAN_VALUE_LE_BE()
+which calls ENDIAN_VALUE_LE_BE with ENDIANNESS_NATIVE. [Aaron Giles]
+
+Updated a number of drivers and call sites to use these macros in 
+favor of #ifdef LSB_FIRST. [Aaron Giles]
+
+Removed some stray ADDR2BYTE/BYTE2ADDR macros that have been replaced 
+by inline functions. [Aaron Giles]
+
+DRC frontends must now do their own opcode fetching unfortunately. 
+Updated all DRC cores to do this. Also tweaked a few oddities in the 
+SH2 DRC. [Aaron Giles]
+
+drw80pkr changes: [Jim Stolis]
+ - Added bankswitching to program memory
+ - Partial graphics support
+ - Partial sound support
+
+Preliminary ADPCM hook-up to Jantotsu, it plays something but it's 
+not yet right. [Angelo Salese]
+
+Removed redundant config parameter from SND_START. [Aaron Giles]
+
+Fixed gfx regression with 18 Holes Pro Golf and added proper memory 
+map for the second cpu. [Angelo Salese]
+
+Sound cores no longer allocate their own tokens. Instead they return 
+a new integer value indicating the size of token they want, and the 
+core allocates it for them. This mirrors the standard device behavior.
+[Aaron Giles]
+
+SRMP5 update [tsBTN0640]
+ - sound pitch is low with current st0016 driver.
+
+Fixed Perfect Soldiers input (added missing button3) [a3SEybxT0]
+
+Added missing key for sfiiij and sfiii2j [swzp1Dp/0]
+
+Tidied up the micro3d driver and fixed sound. [Phil Bennett]
+
+Increased Cloak & Dagger interleave quantum to eliminate 'SLAVE COM 
+BAD' startup message. [Phil Bennett]
+
+Major cleanup to IGS poker games [Mirko Buffoni]
+ - Renamed csk driver to igspoker.  This includes Champion Poker, 
+    Champion Skill, New Champion Skill
+ - Converted drivers to tilemap system and unified video section
+ - Unified memory maps and checked all input ports
+ - Removed obsolete palette handlers and made use of generic handlers
+ - Added layout for lamps handling
+ - Added hopper simulation
+ - Added New Champion Skill (different set, maybe original 
+    international release) and renamed current igs_ncs to igs_ncs2 
+    (2000 version for italian market)
+ - Promoted igs_ncs2 to working state, but set GAME_IMPERFECT_GRAPHICS 
+    (missing initial notice screen)
+ - Moved Jackie to a separate driver (it's a slot machine game)
+ - Made some progress on Jackie which now boots (toggle mode to play, 
+    but work still needs to be done)
+
+Virtual Combat and Shadow Fighters update. [Phil Bennett]
+ * Fixed framebuffer handling & screen parameters.
+ * Added sound.
+ * Corrected RAM sizes to match what is present on the PCBs.
+ * Hooked up NVRAM.
+
+Fixed clamping to 12 bit range to Okim6376, and adjusted volume
+attenuation accordingly. [Mirko Buffoni]
+
+Fixed TMS5220 speech in Turbo Sub [Phil Bennett, Jay Gallagher]
+
+adp improvements: [robiza]
+ - implemented p1 inputs in skattv and fashiong (service mode is 
+    working)
+
+Defined ROM_LOAD64_WORD/ROM_LOAD64_WORD_SWAP in emu/romload.h.
+[Phil Bennett]
+
+cb2001: mapped two more opcodes. [robiza]
+
+Fixed Soul Calibur (vs. Inferno) [4oj9/xJ+0]
+
+Added custom 3-screen layout to Stepping Stage driver. [Naibo Zhang]
+
+Changed yunsung8 oki xtal to 400khz, verified on pcb. Unfortunately 
+I couldn't verify the main xtal which was missing on my pcb.
+[Corrado Tomaselli]
+
+Restored previous cycle eating behavior in gstream. [Mamesick]
+
+Changed device start routines to no longer return a status. Instead,
+if a device needs to delay its initialization pending the startup
+of another device, it must call the new function device_delay_init().
+[Olivier Galibert]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Give us a Break (2 sets) [Phil Bennett]
+Ten Up (2 sets) [Phil Bennett]
+Himeshikibu (Japan) [Uki]
+Super Othello [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+Cannon Ball (Yun Sung) (vertical) [David Haywood]
+Sega Water Ski (Japan, Revision A) [Smitdogg Jones]
+Raiden Fighters 2 (USA, SPI) [Arzeno Fabrice]
+Stepping 3 Surperior [Naibo Zhang]

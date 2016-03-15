@@ -1,0 +1,124 @@
+0.111u3
+-------
+
+OSD porters take note of the changes to the OSD core routines.
+
+
+
+Source Changes
+--------------
+Added save state support to the tubep driver. [Svante Gerhard]
+
+Added save state support to the steppers module. [James Wallace]
+
+Added the remaining input pins to the SN76477 Interface. If these 
+pins are constant, they can now be defined in the structure as 
+opposed to having to call functions in an init routine. Modified all 
+the drivers that use a 76477. [Zsolt Vasvari]
+
+Removed file I/O functions from osd_tool.h in favor of the ones in
+osdepend.h. Updated tools accordingly. Added new flag
+OSD_FLAG_CREATE_PATHS to the open command. [Nathan Woods]
+
+Moved OKIM6295 pin 7 state (internal divider) to internal structure. 
+Updated all drivers to specify pin state when setting the interface. 
+Added comments for all cases where the original frequency wasn't / 132 
+or /165 as the real pin state is unknown. [David Haywood]
+
+Updated Toki driver to display visual DIPs for the game.
+[Brian Oberholtzer]
+
+Added sprite X flip and removed unneeded hack in wheelfir driver.
+[Tomasz Slanina]
+
+Fixed several issues with the new Unicode support. [Nathan Woods]
+
+Changed uimenu.c to allow displaying DP switch banks which have 
+gaps (unused switches) in them. These switches are now grayed out.
+[Zsolt Vasvari]
+
+Another Amiga update: [Ernesto Corvi]
+ - Fixed blitter in line mode
+ - Modified Copper to run on odd memory bus cycles
+ - Fixed screen delay offset when display data fetch is not word 
+    aligned
+
+Fixed cheat searching. [stephh]
+
+Replaced CPS2 CHDs with preliminary decryption function.
+[Andreas Naive, Nicola Salmoria]
+
+Added code to validate that banks are only set to point to memory
+that has been allocated via auto_malloc(). Currently disabled
+pending further review. [Nathan Woods]
+
+Updated input port tokenization for MESS. Added support in MAME
+for "configuration" switches which are separate from DIP switches.
+These can be used to configure aspects of the game that don't
+correspond to DIP switches. Modified pacman.c to use configurations
+to control the speedup options. [Nathan Woods, Aaron Giles]
+
+Fixed invalid array access in the taito_l driver. [Atari Ace]
+
+Made a fix minor compiler compatibility tweaks to the source.
+[Atari Ace]
+
+Fixed several glitches and crashes related to the input port and
+unicode changes from u2. [Aaron Giles]
+
+Separated "core" OSD function definitions to osdcore.h. Added more
+extensive documentation. [Aaron Giles]
+
+Created a new library called osdcore, which is now built and linked
+to each executable. Moved all definitions of expected components of
+osdcore into new header file osdcore.h, and added consistent
+documentation for them all. Removed osd_tool.c, and moved the 
+necessary parts of its functionality into osdcore. [Aaron Giles]
+
+Defined a new set of interfaces for osdcore which creates an
+abstract interface for queueing work items to be potentially executed
+on a secondary thread. Implemented the Windows versions of these
+routines, but have not done any testing yet. [Aaron Giles]
+
+Separated Windows OSD core routines into individual files, as
+folows:
+  windir.c  - directory-related core OSD functions
+  winfile.c - file-related core OSD functions
+  winmisc.c - miscellaneous core OSD functions
+  winsync.c - synchronization-related core OSD functions
+  wintime.c - timing-related core OSD functions
+  winwork.c - threading-related core OSD functions
+[Aaron Giles]
+
+Created new osdmini directory with minimal implementations of all the 
+OSD core routines. These can be used to stub in functionality or as
+a starting point for new ports. [Aaron Giles]
+
+Cleaned up chdman, normalizing its behavior and improving error
+reporting. [Aaron Giles]
+
+More updates to the laserdisc emulation, based on more complete
+understanding of how the discs are encoded and how they will 
+eventually be stored. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Thunder Heroes [Guru]
+
+
+
+New clones added
+----------------
+Dharma Doujou (Korea) [Guru, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Cobra Command [Andrew Gardner]
+Gals Panic II - Quiz Version (Japan) [Guru, David Haywood]
+Gals Panic II' - Special Edition (Japan) [Guru, David Haywood]
+Monster Zero [Pierpaolo Prazzoli]
+Unknown SemiCom Quiz [Guru, David Haywood]

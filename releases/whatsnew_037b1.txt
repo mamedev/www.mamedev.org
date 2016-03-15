@@ -1,0 +1,94 @@
+0.37 BETA 1
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Background in Exerion. [Aaron Giles]
+
+- Artwork support in Space Encounters. [Zsolt Vasvari]
+
+- Fixed sprite colors in the MCR2 games, however overlapping sprites are still
+  wrong. [Aaron Giles]
+
+- Fixed colors and stars in the Astrocade games (Gorf, Wizard of Wor, etc.).
+  [Nicola Salmoria]
+
+- Fixed front layer in Turbo Force. [Nicola Salmoria]
+
+- Fixed colors in Lupin III. [Zsolt Vasvari]
+
+
+These drivers have improved SOUND:
+----------------------------------
+
+- Emulated saucer sound in Space Invaders - sample no longer used (the other
+  samples are still required). [Zsolt Vasvari]
+
+- Completed sound in Splash. [Manuel Abadia]
+
+- Samples support in Got-Ya. [Zsolt Vasvari]
+
+- Sound in Berlin Wall. [Luca Elia]
+
+
+Changes to the main program:
+----------------------------
+
+- Support for 24-bit artwork. [Mathis Rosenhauer]
+
+
+Source:
+-------
+
+- Support for a priority buffer, updated by tilemap.c, which can be used to
+  draw sprites using the new function pdrawgfx(). This allowed to fix many
+  tile/sprite priority bugs e.g. in Ajax, Lightning Thunder, Simpsons,
+  Vendetta, Punk Shot, Gradius III and others.
+  [Phil Stroffolino, Nicola Salmoria]
+
+- Change the API for tilemap_mark_tile_dirty() and the get_tile_info hooks,
+  now a single parameter tile_index is used instead of (col,row). A function
+  passed to tilemap_create() does the (col,row)->tile_index mapping, two
+  standard functions are provided for the common cases.
+  All drivers have been converted to the new API except for namcos2.c, which
+  is therefore broken at the moment. [Phil Stroffolino]
+
+- New GAME_UNEMULATED_PROTECTION flag.
+
+- 6803/63701 external port writes no longer set to 1 the bits that are set as
+  inputs in the DDR register. Instead, they are set to the value returned by a
+  read from the port. [Tatsuyuki Satoh]
+
+- Updated all memory handlers to the new READ_HANDLER()/WRITE_HANDLER() macro
+  declarations. The old "function(int offset,int data)" style must not be used
+  anymore.
+
+
+New games supported:
+--------------------
+
+Air Duel [Nicola Salmoria]
+Pound for Pound [Nicola Salmoria]
+Rabio Lepus / Rabbit Punch [Aaron Giles]
+Super Volleyball [Aaron Giles]
+Funky Fish [Zsolt Vasvari]
+Mr. Jong / Crazy Blocks [Takahiro Nogi]
+Karate Blazers [Nicola Salmoria]
+Spinal Breakers [Nicola Salmoria]
+Thundercade [Luca Elia]
+Twin Eagle [Luca Elia]
+DownTown [Luca Elia]
+U.S. Classic [Luca Elia]
+Arbalester [Luca Elia]
+Meta Fox [Luca Elia]
+Zing Zing Zip [Luca Elia]
+War of Aero [Luca Elia]
+
+
+New clones supported:
+---------------------
+
+Ninja Ryukenden (= Ninja Gaiden)
+Spy Hunter 2 (revision 2)
+R-Type (Japan)
+Dyger (set 2)

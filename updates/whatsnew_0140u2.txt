@@ -1,0 +1,221 @@
+0.140u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04027: [Crash/Freeze] All sets in 20pacgal.c: Game does not 
+         successfully boot (Aaron Giles)
+- 04111: [DIP/Input] timesold, timesold1, btlfield: Coins are not 
+         reacting correctly (MCU problem) (stephh)
+- 03879: [Crash/Freeze] pbst30, pbst30b, pitbossm, pitbossma: Game 
+         does not boot (Mariusz Wojcieszek)
+
+
+
+Source Changes
+--------------
+Fixed problems with i2cmem. Cubo CD32 games now save and load settings
+properly. [Mariusz Wojcieszek]
+
+Cleaned up many duplicate inputs and fixed others in a number of
+drivers.  [Tafoid]
+
+SDL: Support -uifont for using arbitrary TrueType fonts on Linux/BSD
+builds. This takes full pathname/filename to the font, and the name 
+can have styles appended as in Windows: [b] for bold, [i] for italic, 
+[s] for strikethrough, and [u] for underlined.  Fonts are rendered at 
+a size of 120 points and scaled down by the core, which looks superb 
+on high-res displays.  (Liberation Sans that comes with most recent
+distros looks really good). [R. Belmont]
+
+   Warning: Linux/BSD builds now require SDL_ttf 2.x.  On Fedora the
+   required package names are "SDL_ttf" and "SDL_ttf-devel".
+
+tms7000: Corrected two opcodes: typo in inv_b and JPZ was wrong in
+official TI document. [Gilles Fetis]
+
+SDL: -uifont now can also look up system font families like Windows
+[R. Belmont]
+
+Take some driver_device classes that cover multiple drivers and 
+split them so that each driver gets their own driver_device class.  
+In most cases, these drivers got entangled because of audio/mcu code 
+that was shared between multiple drivers: [Atari Ace]
+
+ * espial/marineb/zodiak
+       - common code duplicated
+ * m52/m57/m58/m62/travrusa
+       - common code in audio/irem.c
+ * junofrst/pooyan/rallyx/rocnrope/timeplt/tutankm
+       - common code in audio/timeplt.c
+ * hyperspt/sbasketb/trackfld/yiear
+       - common code in audio/trackfld and audio/hyprolyb.c
+ * 40love/bking/buggychl/msisaac
+       - common code in machine/buggychl.c
+
+SDL: OS X support for -uifont [Tim Lindner]
+
+SDL: Build fixes for Ubuntu, -uifont non-ASCII rendering fix
+[R. Belmont, Barry Rodewald]
+
+SDL: Mac compile warning fix [Wilbert Pol]
+
+Added bare bones irq support to V810 CPU [Miodrag Milanovic]
+
+Updated Naomi's M2/M3 decryption. On the fly decryption of Virtua
+Striker III is now possible. [Andreas Naive]
+
+Fixed interrupt handing in V810 core,and flag position in PCW
+[Miodrag Milanovic]
+
+SDL: add ptty (*IX/OS X) and sockets (all SDL builds) capability
+[Tim Lindner, R. Belmont]
+
+Added Button 3 to the original Yie Ar Kung-Fu boardsets.  While not
+shown in manual, there is function for these buttons and the emulation
+should account for this possibility. Mapping is off by default.
+[Tafoid]
+
+CPS-1 updates [Team CPS-1]:
+ * Added The King of Dragons (World 910805) and set as new parent
+ * Minor cleanups and fixes
+ * Added Mega Man: The Power Battle (CPS1, USA 951006) and set as new
+    parent
+ * Fixed slammast, slammastu labels, added D-Board PALs and pcb infos
+ * mercs -> mercsr1, mercsua -> mercs
+ * Added Street Fighter II: The World Warrior (World 910228)
+ * Added missing notes about roms sockets to megaman
+ * Confirmed B-Board # for forgottnua, willowje, cawingu, fixed their
+    labels where wrong and added pcb infos to video\cps1.c
+ * Removed incorrect roms relationship between parent/clones in
+    ffightj, ffightj1, ffightj2 and cawingj
+ * Minor cleanups and fixes
+
+Replaced smgolfb with correct dump
+[D. Beneke, M. David, Smitdogg, The Dumping Union]
+
+MESS fixes: [Miodrag Milanovic]
+ * Fixed issue with image empty slot
+ * Default for writeconfig is now 0 for MESS since it is not needed
+    anymore
+ * Fixed handling of mounted devices on hard reset
+ * Unified some emuopts code, and removed ifdefs
+
+Corrected several rom names in the Sega System32 driver.  Most notably
+the correct revision for Spider-man & Golden Axe II US sets.
+[The Dumping Union]
+
+Hooked up MSM5205 sample playback routines to Rougien, disabled by
+default because sample start write handler is still a mystery
+[Angelo Salese]
+
+Updated Naomi/Naomi2 M2/M3 encryption. [Andreas Naive]
+
+Fix F4 shortcut so it explicitly labels the address as a number by
+preceding it with "0x". This allows F4 to work properly, for example,
+on the 68000 stepping to address a6, which also happens to be a
+register name. [Aaron Giles]
+
+More updates to Naomi/Naomi2 M2/M3 decryption. [Andreas Naive]
+
+Added proper sample playback in Rougien [Andrew Welburn, Angelo
+Salese]
+
+Split the screen device into a separate module. Converted global video
+routines into a video_manager. Moved video manager initialization
+earlier in startup. [Aaron Giles]
+
+Allowed the use of either decimal or hexadecimal values for <dataarea>
+size, <rom> size, and <rom> offset in software lists. [Curt Coder]
+
+Fixed array bounds problems found by GCC 4.5.x [qmc2, R. Belmont]
+
+Fixed BSD compile [ElBarto]
+
+m680x0: Many FPU and PMMU fixes and enhancements [Hans Ostermeyer]
+
+Various device fixes/enhancements [Hans Ostermeyer]
+ * mc146818: Add UTC mode, various enhancements and fixes
+ * 68681: Fixes for loopback mode
+ * 6840ptm: Status register update fixes
+ * pic8259: IRQ semantics fixes
+ * 8237dma: Added memory-to-memory transfers
+
+CPS-3 update [Team CPS-1]:
+ * Added JoJo's Venture USA bios rom CD version
+ * Reordered some CPS sets per release date in mamedriv.c
+ * Minor cleanups and fixes
+
+Updated the Space Stranger overlay layout by adding the overlay for
+the Upright version, which looks different to the Cocktail. 
+[M.A.S.H.]
+
+Added support for Karateco's "Super Double" to the goldnpkr driver. 
+[Gerrit Volkenborn]
+
+Improved PGM Video RAM mirroring [David Haywood]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Pac-Slot [Bicycle Repair Man, Luca Elia]
+Super Double (French) [Gerrit Volkenborn]
+
+
+
+New clones added
+----------------
+The King of Dragons (World 910805) [cacis, Smitdogg, The Dumping Union]
+Mega Man: The Power Battle (CPS1, USA 951006) 
+  [john666, gamerfan, Smitdogg, The Dumping Union]
+Street Fighter II: The World Warrior (World 910228) 
+  [Layne, Smitdogg, The Dumping Union]
+Super Space Invaders '91 [Irongiant]
+Megatouch III (9255-20-06 ROD, California version)
+  [f205v, Smitdogg, The Dumping Union]
+Megatouch IV (9255-40-01 ROB, Standard version)
+  [Kevin Eshbach, Smitdogg, The Dumping Union]
+Super Megatouch IV (9255-41-01 ROG, Standard version)
+  [N. Francfort, Smitdogg, The Dumping Union]
+Mortal Kombat (prototype, rev 4.0 07/14/92) [xDisciplex]
+Mortal Kombat II (rev L1.1) [TerryMasters]
+Buccaneer [Gerald (COY), Smitdogg, The Dumping Union]
+Jungle Boy [Andrew Welburn]
+Bee Storm - DoDonpachi II (ver 101) [JackC] (not working)
+Sunset Riders 2 (bootleg) [f205v, Smitdogg, The Dumping Union]
+Buck Rogers: Planet of Zoom (not encrypted, set 2)
+  [Smitdogg, The Dumping Union]
+Time Killers (v1.21) [Gnoppi, Smitdogg, The Dumping Union]
+Dogyuun (test location version) [Andrew Welburn]
+Pit Boss Megatouch II 9255-10-01 R0E [Smitdogg, The Dumping Union]
+JoJo's Venture (USA 990108) [Layne, Smitdogg, The Dumping Union]
+JoJo's Venture (USA 981202) [Layne, Smitdogg, The Dumping Union]
+Moon Shuttle (US? set 2) [robcfg]
+Also from previous submit: [tafoid]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Virtual On Oratorio Tangram M.S.B.S. ver5.66 2000 Edition [Anonymous] 
+Ringout 4x4 [Anonymous] 
+Inu no Osanpo [Anonymous] 
+King of Route 66 [Anonymous]
+Barroom Baseball (prototype) [Mariusz Wojcieszek]
+Samba de Amigo ver. 2000 [Anonymous]
+Derby Owner's Club 2000 [Anonymous, f205v]
+Shootout Pool Medal [Anonymous]
+Dream Crown [Charles MacDonald, Smitdogg, The Dumping Union]
+X Tom 3D [Guru]
+NeoPrint V1 [ANY]
+World Kicks [The Dumping Union]
+Shakatto Tambourine Cho Powerup Chu [The Dumping Union]
+Dirty Pigskin Football [Cah4e3]
+Outrun 2 Special Tours [Heywood Floyd, The Dumping Union]
+Crazy Taxi High Roller [The Dumping Union]
+Ridge Racer V Arcade Battle [Guru]
+Smash Court Pro Tournament [Guru]
+Funny Fruit (Version 1.13) [Luca Elia, Smitdogg, The Dumping Union]
+Dragon World II (ver. 100X, Export) [Arzeno Fabrice, zozo]

@@ -1,0 +1,188 @@
+0.129u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 01017: [Sound] nslasher: The music stops at some points in the game 
+         when fighting bosses and some points in level 2. (Mamesick)
+- 02862: [Graphics] Many sets in taitosj.c: During the scroling the 
+         lower part of the screen becomes black (Aaron Giles)
+- 02860: [Crash/Freeze] mach3, usvsthem: Error at the start 
+         (Aaron Giles)
+- 02880: [Original Reference] stactics: Scratchpad RAM is too large 
+         (currently 2 KB, should be 256 bytes with mirroring). 
+         (chowell)
+- 02843: [Original Reference] schaser, schasrcv, polaris: Only half 
+         the color RAM is emulated. (chowell)
+- 02884: [Original Reference] kopunch: CPU is specified as a 4 MHz 
+         8080 when it should be a 4 MHz Z80. (Tomasz Slanina)
+- 02888: [Graphics] All sets in megaplay.c: Large black box obscuring 
+         game (Aaron Giles)
+- 02827: [Compiling] 64-bit build fails (Phil Bennett)
+- 02804: [Documentation] dkongf: In game information: year should be 
+         2004, not 1981. (Fabio Priuli)
+- 02803: [DIP/Input] dkongf: "5 Coins/1 Credit" coinage dipswitch is 
+         freeplay. (Fabio Priuli)
+- 02719: [DIP/Input] arkbloc2, arkgcbl, paddle2: you can't go to the 
+         left (Fabio Priuli)
+- 02697: [DIP/Input] hkagerou: Inputs apparently incorrectly mapped or 
+         not mapped (Fabio Priuli)
+- 02574: [DIP/Input] yumefuda: Game controls are not fully implemented 
+         (Fabio Priuli)
+- 02873: [Graphics] Many sets in system1.c: Missing text layer 
+         (David Haywood)
+- 02866: [Misc.] bublbobl and clones: Bubble Bobble vertical sync value 
+         seems slightly off (Phil Bennett)
+- 02792: [DIP/Input] Missing HARDDIP settings in 'STANDARD_DIPS' for 
+         DIP's 4,5 and 6 ("COMM Setting") (Fabio Priuli)
+
+
+
+Source Changes
+--------------
+Cleaned up and remapped Big 10 inputs. Updated the game notes. Added 
+other minor changes. [Roberto Fresca]
+
+Improved the sound in Double Wings by appling the same handling of 
+Night Slashers (they are actually similar if not same memory map) 
+[Angelo Salese]
+
+Fixed scrolling layer in Magic's 10 [Angelo Salese]
+
+Added NO_DUMP for the H8/330 MCU for Magic's 10 2, Super Pool, Hot 
+Slot and Magic Colors. [Angelo Salese]
+
+Several discrete sound refinements, mainly targeted at mario:
+[couriersud]
+
+ * Use formula derived from figures 2 and 3 in LS624 datasheet. 
+   Coefficients were calculated using least square approximation.
+   This approach gives a bit better audible results compared to the 
+   prior approach.
+
+ * Fixed energy calculation for LS624
+
+ * Use energy values as input for XOR. This seems to better reflect 
+   the superimposition of the two signals. On the long term, both 
+   LS629 and the XOR need to be converted into a custom module to 
+   properly model mixing if the two frequencies are close to each 
+   other. 
+  
+ * Adjusted C41 to 60% for skid sound.
+
+Fixed the remaining CPS3 sets that were left broken from the previous 
+half-done set renames. Also reworked the code a bit to make it harder 
+for somebody to break it in future (removed the config table & moved 
+keys to driver inits, define region sizes, allocate memory in init 
+for CD based games.) Should be no functional changes, although it 
+might be a fraction of a % faster due to there being less region 
+lookups. [David Haywood]
+
+Added preliminary sound for the Aero Fighters bootlegs (aerfboot & 
+aerfboo2) [Angelo Salese]
+
+Added some 'new fruit bonus '96' sets, unsure what they are.
+[David Haywood]
+
+Added a mess of sets marked as 'time dog' to the goldstar driver. 
+These seem to be mismatched, and some lack program roms. One set has 
+encrypted code, the other appears to have plain code. These will need 
+some tidy-up work. I've added them, because there is no doubt at 
+least one valid set in here but the dumps contain no useful info at 
+all. [David Haywood]
+
+Preliminary protection hook-up for Sexy Gal/Sweet Gal [Angelo Salese]
+
+Fixed colors, visible area and soft resets in the Magic Card 68k 
+version. Started to convert the Magic Card 68k version driver with 
+proper infos & added some basic video registers. It actually runs on 
+more or less modified Philips CD-i architecture. [Angelo Salese]
+
+Imported Archimedes code from MESS. [R. Belmont]
+
+Fixed foreground tilemap colors in Diamond Derby [Angelo Salese]
+
+Added new module devcb, which can generically handle conversions 
+between device read/write functions and various other types of 
+functions. Introduced new structures and macros to make this possible:
+[Aaron Giles]
+
+  To take advantage of this, a device must change its interface to 
+  replace any read/write callbacks with the new devcb_read/write 
+  structures. During device start time, the device then uses this new 
+  devcb module to resolve the information in the devcb_read/write 
+  structures into a more efficient form. When the device needs to call 
+  one of the callbacks, it uses the inline devcb_call_read/write 
+  functions.
+
+  Once a device has defined its callbacks as devcb_read/write 
+  structures, users of the device must use the DEVCB_* macros to 
+  specify the type and information about the handler to use:
+
+    DEVCB_NULL = no handler
+    DEVCB_HANDLER = a standard device read/write handler
+    DEVCB_MEMORY_HANDLER = a memory address space read/write handler
+    DEVCB_DEVICE_HANDLER = a device read/write handler for a different 
+                             device
+    DEVCB_INPUT_PORT = an input port
+
+Converted the 8255PPI device to use this new structure, and updated all 
+users to use the DEVCB macros, removing some unnecessary trampoline 
+functions along the way. [Aaron Giles]
+
+Added calculation for caps >= 100pf to buck rogers LS626 frequency 
+calculation. Formula was derived from figure 6 of LS624/628/629 & 
+625/626/627 datasheet. "BUCK ROGERS" is now centered and big ship 
+appears centered over br's ship. [couriersud, Guru]
+
+Converted 6821new device to use devcb. Updated Williams drivers to
+remove trampoline functions. [Nathan Woods]
+
+Improvements to norautp.c driver: [Roberto Fresca]
+ - Merged GTI Poker (gtipoker.c) with this driver.
+ - Added new memory map and machine driver for gtipoker.
+ - Hooked 2x PPI 8255 to gtipoker.
+ - Hooked the video RAM access ports to gtipoker.
+ - Changed norautpn description from Noraut Poker (No Payout),
+   to Noraut Poker (bootleg), since the game has payout system.
+ - Some clean-ups.
+
+Fixed encryption in Cabaret and added sound emulation [Mirko Buffoni]
+ - Moved to a separate driver
+ - Not fully playable, press reset to exit from pitfalls
+
+Implemented a few more H8/3xx instructions, and added funcube to 
+seta2.c [Luca Elia]
+
+Added a default backup ram for the jolyc980 set, to get it boot to 
+the end-user. [Angelo Salese]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Big 10 [Angelo Salese, Roberto Fresca, Tomasz Slanina]
+Bottle 10 (italian, 2 sets) [Roberto Fresca]
+Super Poker (v116IT) [Mirko Buffoni]
+Casino Five [Mariusz Wojcieszek]
+Big Apple Games [Mariusz Wojcieszek]
+Funcube 2 [Luca Elia]
+Funcube 4 [Luca Elia]
+
+
+
+New clones added
+----------------
+Turbo Sub (prototype rev. TSC7) [Jay Gallagher]
+Noboranka (Japan) (NOT WORKING, undumped 8751 MCU)
+Battle Bakraid - Unlimited Version (U.S.A.) [Josh W.]
+Armed Police Batrider (several versions) [Josh W.]
+Mortal Kombat (prototype, rev 8.0 07/21/92) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Jansou
+Noraut Poker [Roberto Fresca, Angelo Salese]

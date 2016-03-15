@@ -1,0 +1,108 @@
+0.104u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+upsidedown0103yel [Takahiro Nogi]
+mgion0104u6yel [Takahiro Nogi]
+hyouban095u2red [Takahiro Nogi]
+model1.c_0104u5yel [Aaron Giles]
+ohmygod0104u6red [Aaron Giles]
+stv.c_0104u5red [Aaron Giles]
+ad2083_0104u5red [Aaron Giles]
+gauntdl0104u6red [Aaron Giles]
+zwackery0104u3red [Aaron Giles]
+triviaes0104u6ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added simulation of protection to the Parallel Turn driver.
+[Tatsuyuki Satoh]
+
+Added missing demo sounds DIP switch to spelunk2. [Roberto Fresca]
+
+Fixed key input problems in many of the Nichibutsu mahjong drivers.
+[Tatsuyuki Satoh]
+
+Updated the Dragonball Z games to use the K056832 chip emulation,
+fixing color offsets and priorities. [Pierpaolo Prazzoli]
+
+Updated raw mouse support for Windows XP: [Derrick Renaud]
+ * Reversed the RAWMOUSE device list. RAWMOUSE reports the last 
+    installed mouse as the first device. I now place new mice at the 
+    end.
+ * Added clipping to RAWMOUSE support so the cursor does not leave 
+    the game area in Windowed mode. Also fixed the non-RAWMOUSE 
+    Windowed mode clipping I broke by my last changes.
+ * You can now see the names of the mice attached by using -verbose.
+ * Changed Lightgun functionality if using XP.  You no longer need 
+    to use -lightgun or -dual_lightgun. Use -mouse and multiple (2+) 
+    "HID-compliant mouse" lightguns will be detected. Lightgun 
+    support in Win98/Me remains unchanged. -offscreen_reload can 
+    still be used on Win98/Me/XP. See windows.txt for further info.
+
+Fixed indirect palettes in the System 32 driver. This fixes Sonic
+graphics finally. [Anonymous]
+
+Fixed window resizing bug when running in a window. [Wilbert Pol]
+
+Switched MDEC decoding input from CbCrY to CrCbY, and switched MDEC 
+15bit output from rgb to bgr. [smf]
+
+Removed unnecessary #includes from a number of files. Added #includes
+to files that were defining items that were declared in the header. 
+Better documented where items are defined in the header files from 
+the includes directory. [Atari Ace]
+
+Fixed some crashes in the debugger if you tried to set breakpoints
+while the game was running and there was no active CPU. 
+[Nathan Woods]
+
+Fixed crash when calling fatalerror before the system was ready for
+it. [Nathan Woods]
+
+More improvements to the Sega universal sound board. Star Trek is
+almost identical to the samples. Tac/Scan is not that far off, 
+surprisingly. [Aaron Giles]
+
+Added new function input_port_set_changed_callback() which lets you
+receive a change notification when certain bits in an input port
+have changed. See sega.c for an example. [Nathan Woods, Aaron Giles]
+
+Added new PORT_CUSTOM() macro which allows you to specify a callback
+to return the value of bits in an input port. This saves you from
+needing to intercept the port read and modify the bits there. See
+sega.c for an example. [Aaron Giles]
+
+Added new PORT_DIPLOCATION() macro which allows you to specify the
+physical PCB location of a DIP switch and the switches that correspond
+to the bits in the DIPSETTING. See sega.c for an example.
+[Aaron Giles]
+
+Updated the i8039 disassembler to the new interface. [Aaron Giles]
+
+Moved read/write handlers for input ports, watchdog, and interrupt
+enable out of the core and into machine/generic.c. Moved generic
+palette hanlders out of the core and into vidhrdw/generic.c. Clarified
+the names of many of the palette handlers and simplified the code.
+[Aaron Giles]
+
+Added code to the UI to sort the per-game inputs in a standard order.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Crystal Gal (Japan 860512) [Takahiro Nogi]
+Crystal Gal 2 (Japan 860620) [Takahiro Nogi]
+
+
+
+New clones added
+----------------
+Circus Charlie (Selectable level set 2) [Brian Troha]
+Mahjong Hana no Momoko gumi (Japan 881125) [Takahiro Nogi]

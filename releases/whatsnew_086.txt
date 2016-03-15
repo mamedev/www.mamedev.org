@@ -1,0 +1,273 @@
+0.86
+----
+
+While there are no new working games in this release it remains
+interesting from a technical and development point of view mainly
+due to the new PPC core as well as the Hyperstone and 37710 fixes.
+It should also be a fairly stable release after the many input changes
+which have taken place recently.
+
+Driver Improvements:
+--------------------
+
+M37710, NamcoSS22 and C352 improvements [R.Belmont]
+	M37710 changes (m37710.diff):
+	- Data bus is actually 16 bit, not 8
+	- Fixed saving of status register on interrupts
+	- Fixed errors in PHB, PHT, PLT, and ANDB opcodes
+	- Added XAB, PLB, and ROLB opcodes
+	- Fixed IRQ dispatch errors
+	- Various get_info fixes
+
+	NamcoSS22 changes (s22.diff):
+	- All CPU clocks changed to measured-by-Guru values
+	- Handle the changed M37710 bus width
+	- Temporarily disconnect shared RAM.  There's a
+	problem where the 68020's shared RAM test wipes out
+	the 37710's work variables and causes it to crash.  I
+	suspect there's a register that halts or resets the
+	37710.  (note: Prop Cycle has no POST and doesn't
+	cause this problem, but all the other games do).
+
+	C352 change (c352.diff):
+	- Remove debug printf that accidentally snuck in
+
+SPI Improvements [Ville Linde]
+	- Improved (but not yet correct) tilemap decryption
+	- Preliminary sprite priority support
+
+PowerPC 403 core [Ville Linde, Bart Trzynadlowski, Stefano Teso]
+	This is basically SuperModel (Sega Model 3 emu)'s PPC
+	core minus the FPU and 6xx-series specific
+	instructions (that stuff isn't ported to MAME yet). 
+	As such, it's passed all manner of synthetic PPC
+	torture tests and should be quite reliable for any
+	PPC403-based hardware.
+	
+Virtua Racing improvements [Olivier Galibert, Andrew Gardner]
+
+Hyperstone CPU Core Improvements [Tomasz Slanina, Pierpaolo Prazzoli]
+	Tomasz Slanina 
+	- interrputs after call and before frame are prohibited now
+	- emulation of FCR register
+	- Floating point opcodes (preliminary) 
+	- Fixed stack addressing in RET/FRAME opcodes
+	- Fixed bug in SET_RS macro
+	- Fixed bug in return opcode (S flag)
+	- Added C/N flags calculation in add/adc/addi/adds/addsi and some shift opcodes
+	- Added writeback to ROL
+	- Fixed ROL/SAR/SARD/SHR/SHRD/SHL/SHLD opcode decoding (Local/Global regs)
+	- Fixed I and T flag in RET opcode
+	- Fixed XX/XM opcodes
+	- Fixed MOV opcode, when RD = PC
+	- Fixed execute_trap() 
+	- Fixed ST opcodes, when when RS = SR
+	- Added interrupts
+	- Fixed I/O addressing 
+
+	Pierpaolo Prazzoli
+	- Fixed fetch
+	- Fixed decode of e132xs_xm opcode
+	- Fixed 7 bits difference number in FRAME / RET instructions
+	- Some debbugger fixes
+	- Added generic registers decode function
+	- Some other little fixes.
+
+Jaleco Mahjong Driver update [Angelo Salese]
+	some games are *almost* playable but still have protection issues
+	
+Adjusted Top Speed volume balance
+
+Changes to the main program:
+----------------------------
+
+Misc Fixes [Nathan Woods]
+	src/inptport.c:
+	src/inptport.h:
+	- Fixes PORT_INCLUDE by making the final IPT_END appended within 
+	input_port_allocate()
+	- Added some MESS specific defaults
+	- Spelling fix in IPT_BILL default
+
+Fixed some Multisession win32 bugs [Chris Kirmse]	
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+none
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+Field Goal (different) [Andy Welburn]
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Various Konami PPC based games [Ville Linde]
+	gticlub, gradius4, sscope, sscope2, racingj, racingj2, thrilld
+	midnrun, windheat
+	These are to demonstrate the PPC core in action, they contain only very
+	preliminary emulation and do nothing more than display the initial test
+	screens.
+Cool Riders [David Haywood]
+	skeleton driver, to be continued at a later date
+Pit Boss
+	added to merit driver, not investigated the issues yet
+Tatakae! Big Fighter [Tomasz Slanina]
+ 	serious protection issues
+Cool Mini
+	Hyperstone based game, incomplete set
+
+
+0.85u3
+------
+
+Driver Improvements:
+--------------------
+
+- Improved video performance in suprnova games. [Carlos Santillan]
+
+- Improved sound balance for nyanpani, citybomb, topspeed.
+
+- Fixed visible area and controls in hanaawas. [Pierpaolo Prazzoli]
+
+- Additional input port cleanup. [El Condor]
+
+- Fixed sound board error in Tapper. [B.S.Ruggeri]
+
+- Fixed numerous problems in Return of Lady Frog. [Pierpaolo Prazzoli]
+
+- Added preliminary sound to Return of Lady Frog. [R. Belmont]
+
+- Fixed colors in usclssic. [David Haywood]
+
+- Fixed music tempo in athena. [unzu]
+
+
+Changes to the main program:
+----------------------------
+
+- Incorporated bugfix to the zlib code that was missing from the
+  official distribution. [smf]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+Field Goal [Stefan Jokisch]
+Robo Wres 2001 [Tomasz Slanina]
+Jumping Pop [David Haywood, Guru, R. Belmont]
+
+
+
+0.85u2
+------
+
+Driver Improvements:
+--------------------
+
+- Turned off autocentering by default in warlords, sbrkout, and
+  destroyr. There are probably others that should have this as well.
+  Please post on www.mametesters.org if you have suggestions.
+  [Aaron Giles]
+
+- Fixed a number of recent errors introduced into the input port
+  definitions of several drivers. [El Condor]
+
+- Fixed various stuff with the jalmah.c driver, including suchipi
+  booting, improved the video emulation a bit & attempted to add
+  controls. [Angelo Salese]
+
+- Updated Namco Super System 22 driver to use preliminary M37710
+  core, but it doesn't do anything useful yet. [R. Belmont]
+
+- Added conditional coinage to snowbros. [Inigo Luja]
+
+- Fixed backwards controls in ckong. [Inigo Luja]
+
+
+Changes to the main program:
+----------------------------
+
+- Renamed PORT_CENTER to PORT_RESET to more accurates describe what
+  it does. Also added PORT_CENTERDELTA(x) to control the autocentering
+  behavior. [Aaron Giles]
+
+- Added a WIP Mitsu M7700 series CPU core, specifically targeting 
+  the M37710. [R. Belmont]
+
+- Removed the static MAX_DATAFILE_ENTRIES define, by retrieving the 
+  game count at runtime. [Rene Single]
+
+- Fixed bug that prevented the mixer from loading data unless all
+  channels had been modified. [Aaron Giles]
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+The Return of Lady Frog [David Haywood]
+Virtua Fighter 1 [Andrew Gardner, Olivier Galibert]
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+Twin Cobra 2 (World) (2 sets) [Brian Troha]
+Counter Run (bootleg set 1) [Tomasz Slanina]
+
+
+
+0.85u1
+------
+
+Driver Improvements:
+--------------------
+
+- Fixed input port definition errors in megasys1. [Mamesick]
+
+- Fixed input port definition errors in tnzs. [Inigo Luja]
+
+- Fixed input port definition errors in taitosj, galaxian.
+  [Aaron Giles]
+
+- Changed 720' controls to use an analog joystick instead of a
+  dial so that the original controller motion can be replicated.
+  Thanks to MAME Analog+ for the logic. [Aaron Giles]
+
+- Fixed the colors in the Status trivia games. [Stefan Jokisch]
+
+- Conditional DIP switches in rallyx, mcatadv, galpanic.
+  [Inigo Luja]
+
+
+Changes to the main program:
+----------------------------
+
+- Fixed loading of ctrlr files so that they actually take effect now.
+  [Aaron Giles]
+
+- Fixed bug preventing saving of lightgun control changes.
+  [Aaron Giles]
+
+- Changed all the analog mapping defaults back to 'keyboard' as the
+  default values were confusing people. [Aaron Giles]
+
+- Added the ability for analog axes to return "invalid" as a value
+  from the OSD layer, allowing them to dynamically disable themselves.
+  Using this feature, the Windows version now autodetects analog
+  versus digital axes and dynamically disables the analog values if
+  it thinks you are using a digital axis. Note that this even works
+  if you have a "switchable" gamepad. [Aaron Giles]
+
+- Fixed debugger crash when using F10 with the i960 core. [R. Belmont]
+
+- Cleaned up some #ifdef MESS and united the two definitions of 
+  my_stricmp. [Rene Single]
+
+
+New Non-Working games / clones supported
+----------------------------------------
+Party Time: Gonta the Diver II [Brian Troha]
+Versus Net Soccer (ver JAB) [Brian Troha]
+Phraze Craze [Pierpaolo Prazzoli]
+Tic Tac Trivia [Pierpaolo Prazzoli]
+Trivia Whiz [Pierpaolo Prazzoli]
+Trivia Whiz II [Pierpaolo Prazzoli]

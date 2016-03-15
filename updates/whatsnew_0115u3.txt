@@ -1,0 +1,110 @@
+0.115u3
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+connect4_0115u1ora [Luigi30]
+
+
+
+Source Changes
+--------------
+Fixed PIA numbers in revamped Spiders driver. [Zsolt Vasvari]
+
+Updated TIA graphics code is the code from the MESS repository. Also
+updated tourtabl driver to accommodate the changes. [Wilbert Pol]
+
+Fixed Space Firebird so that the sprites are opaque with respect to 
+each other and bullets, but transparent with respect to the star 
+field. [Zsolt Vasvari]
+
+Fixed subtle behavior in handling of PIA port A. This allows for the
+removal of hacks in the Qix driver and the Williams driver.
+[Zsolt Vasvari]
+
+Cleaned up the tilemap get_info callbacks: [Atari Ace]
+ * regularized and clean up the existing callbacks
+ * changed some callbacks to use int tile_index as the parameter
+    so that all callbacks use consistent naming
+ * folded some direct uses of tile_info.flags into calls to 
+    SET_TILE_INFO()
+ * changed the Konami drivers to manipulate the tile_info global only 
+    within the tile_get_info callbacks
+ * replaced all the callback declarations with TILE_GET_INFO() 
+    wrappers 
+ * changed the interface to pass tile_info as a parameter and made
+    tile_info a static variable only accessible inside tilemap.c.
+
+Significant changes to the berzerk driver: [Zsolt Vasvari]
+ - Video timings, memory map and interrupt system implemented from 
+    schematics
+ - Hooked up colors according to the schematics as well. The colors 
+    changed significantly. For example the yellow robots are now 
+    more like a mustard color.
+
+More ARM wrestling: [R. Belmont]
+ - Fixed error in carry propagation on ALU opcodes of the form 
+    ALU r1, r2, r3 SHIFTEROP #imm
+ - Fixed Thumb ADD instructions where the PC is involved
+ - Fixed LDMIA to mask off bits 0 and 1 of the destination address
+ - MSR instruction now properly respects processor mode and field 
+    code flags
+
+Modernized the Beam Invaders, Clay Shoot, and Embargo drivers.
+[Zsolt Vasvari]
+
+Changed the sound balance in Thunder Dragon 2 to match the original 
+PCB. Also verified the 68000 clock. [Corrado Tomaselli]
+
+Fixed several more opcodes in the encrypted Irem CPU. [Robiza]
+
+Fixed disassembly of brset and brclr opcodes in the 68HC11 core.
+[Phil Skuse]
+
+Fixed tilemap colors in the Konami ZR107 driver. [Ville Linde]
+
+Fixed bug in INR/DCR opcodes in 8085 CPU core. [allentown_john]
+
+Updated PIA interfaces to support masks for port A/B inputs. This
+allows proper behavior of unconnected pins, according to the specs.
+Updated a number of games to use the new interfaces. [Zsolt Vasvari]
+
+Fixed bug that failed to initialize all IRQ states in the 6809 core
+on a reset. Also fixed cycle timing and removed obsolete code from
+the core. [Ernesto Corvi, Zsolt Vasvari]
+
+Cleaned up vec_mult implementation. [Nathan Woods]
+
+Improved toratora driver: [Zsolt Vasvari]
+ - added SN76477 from the schematics, but it sounds terrible; no doubt 
+    the schematics are incorrect in many places
+ - updated to the recent PIA changes
+
+Fixed input.c to use osd_ticks() instead of clock(). [Nathan Woods]
+
+Fixed bit calculation in 6526cia.c which broke joysticks in the C64
+driver in MESS. [Pete Rittwage]
+
+Improvements to the rd2tank driver: [Zsolt Vasvari]
+ - fixed colors, based on the Red Tank flyer
+ - added AY8910's, sounds fine, but how exactly they are hooked up 
+    to the PIA is not fully understood.
+ - hooked up CRTC properly
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Wild Arrow [Zsolt Vasvari]
+G-Stream G2020 [David Haywood]
+
+
+
+New clones added
+----------------
+Multi Game (set 2) [Roberto Fresca]
+19XX: The War Against Destiny (Brazil 951218) [Nicola Salmoria]
+Thunder Dragon 2 (9th Nov. 1993) [Corrado Tomaselli]
+Flicky (128k Version, System 2, not encrypted) [Corrado Tomaselli]
+Flicky (64k Version, System 1, 315-5051, set 2) [Corrado Tomaselli]

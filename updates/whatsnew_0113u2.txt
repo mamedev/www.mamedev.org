@@ -1,0 +1,185 @@
+0.113u2
+-------
+
+Note to OSD porters: several OSD-related changes are in this build.
+Many options in the system are now defined by the core and looked up
+using the options_* functions. This should allow a bunch of code to
+be removed from most OSD ports. In addition the mame_file_error type
+has been renamed to file_error, so a little search & replace action
+is necessary.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+neogeo0113u1red [Zsolt Vasvari]
+
+
+
+Source Changes
+--------------
+Updated a number of Sega games to use the new video timing code.
+[Zsolt Vasvari]
+
+Added very preliminary SSP1610 CPU core. [Pierpaolo Prazzoli]
+
+Created a utility call win_is_gui_application() to determine if the 
+current process is a console or a non-console application. Added a 
+call to direct error output to message boxes if MAME is running as a 
+windows application (such as MAME32). This will allow MAME32 failures 
+to be reported to the user rather than silently fail. [Nathan Woods]
+
+Updated NeoGeo driver to the new video timing code and raw screen
+parameters. [Zsolt Vasvari]
+
+Firebeat driver updates: [Ville Linde]
+ - Fixed the hardware error in Keyboardmania 2nd mix
+ - Added iButton for Keyboardmania
+ - Hooked up inputs for Pop'n Music 7
+
+Updated Gridlee and Bally/Sente driver to use new video timing code
+and raw screen parameters. [Zsolt Vasvari]
+
+Created a UTF-8 wrapper for the Win32 API GetModuleFileName().
+[Nathan Woods]
+
+Updated Voodoo-based games to use the new video timing code and newer
+MAME timers. [Zsolt Vasvari]
+
+Major cleanup/rewrite of the Ultra Tank driver. [Stefan Jokisch]
+
+Update to Sprint 4. This fixes the gear shift levers which were broken
+with a recent previous change, and improves a few other bits.
+[Stefan Jokisch]
+
+Added back joystick deadzone handling behind a compile-time define as
+a pattern for other OSD ports. [Derrick Renaud]
+
+Implemented the mw8080bw interrupt generation more to how the real 
+hardware works (equivalent result as before). Added detailed 
+description of the video timing and the interrupt generation systems.
+[Zsolt Vasvari]
+
+Fixes cdp1869 double width mode (for MESS). [Curt Coder]
+
+Removed stupid sprite hack from Riddle of Pythagoras. [David Haywood]
+
+Updated Starfire driver to use video timing from schematics. 
+[Zsolt Vasvari]
+
+Some more 8080bw fixes: [Zsolt Vasvari]
+ - fixed Lupin III crash due to invalid sample.
+ - added video timing from mw8080bw. This caused the visible areas of 
+    most games to change, so they will fail regression.
+ - Shuttle Invaders display is shifted off screen now – but the PCB 
+    notes confirm that it’s a different hardware, so it will need its 
+    own driver anyhow.
+ - created a new file for MB14241, which is the shifter IC used by 
+    Invaders hardware games.
+
+Renamed mame_file_error to file_error, since it is used throughout
+the code including the utilities. [Aaron Giles]
+
+Added stronger priority boosting when sleeping on Windows in the hopes
+of getting more consistent frame rates. [Aaron Giles]
+
+Added remaining Unicode characters up to 0100h in the built-in font.
+[Aaron Giles]
+
+Added a 'flags' parameter to osd_work_item_queue() and defined one
+new flag: WORK_ITEM_FLAG_AUTO_RELEASE, which means that the work item
+should be automatically released when completed. [Aaron Giles]
+
+Changed the Windows OSD work code to only allocate events for items
+when necessary, in order to conserve system resources. [Aaron Giles]
+
+Changed refresh and VBLANK timing parameters throughout the system to
+be specified in subseconds_t instead of as floating point frequencies.
+[Aaron Giles]
+
+Updated video timing in the Midway V-unit driver. [Aaron Giles]
+
+Changed gaelco3d driver to use osd_work_items for rendering, allowing
+multi-CPU systems to shift most of the rendering burden to a second
+CPU. [Aaron Giles]
+
+Moved support for the following options into the core: [Aaron Giles]
+  -state <x>
+  -autosave
+  -playback <file>
+  -record <file>
+  -mngwrite <file>
+  -wavwrite <file>
+  -rotate
+  -ror
+  -rol
+  -autoror
+  -autorol
+  -flipx
+  -flipy
+  -artwork_crop
+  -use_backdrops
+  -use_overlays
+  -use_bezels
+  -brightness <x>
+  -contrast <x>
+  -gamma <x>
+  -pause_brightness <x>
+  -antialias
+  -beam <x>
+  -flicker <x>
+  -sound
+  -samples
+  -volume <x>
+  -ctrlr
+  -log
+  -debug
+  -debugscript <file>
+  -bios <x>
+  -cheat
+  -skip_gameinfo
+
+Cleaned up the Food Fight driver, giving it complete memory maps,
+finished implementing sprite/playfield priorities, and corrected
+timing - sort of. [Aaron Giles]
+
+Cleaned up initialization paths in mame.c. Tried to organize things
+a bit more logically. Removed a number of return codes in favor of
+more descriptive fatalerror messages. [Aaron Giles]
+
+Changed throttling behavior to only throttle on non-skipped frames.
+This should give a little better performance on games where
+frameskipping is necessary. [Aaron Giles]
+
+Added srcclean tool to the tools directory. This is the tool that is
+run over the source before each release to do some minor code tidying.
+[Aaron Giles]
+
+Added new driver flag VIDEO_SELF_RENDER which indicates that the
+driver will talk to the renderer on its own in its VIDEO_UPDATE
+callback. Added the flag to all the laserdisc game drivers. Changed
+the logic in the core video to only empty screen containers when
+doing the final render, rather than emptying them at the start of
+each frame. [Aaron Giles]
+
+Changed pause behavior so that on non-debug builds, we simply keep
+the most recent list of primitives and re-render that. Debug builds
+keep the current default behavior which is to run the VIDEO_UPDATE
+code each frame even while paused in order to help identify issues
+in the emulation. [Aaron Giles]
+
+
+
+New clones added
+----------------
+ParaParaParadise v1.1 [Ville Linde]
+Sky Robo [Stefan Lindberg]
+Captain America and The Avengers (US Rev 1.4) [chaneman]
+Hex Pool (Senko) [Pierpaolo Prazzoli]
+Daytona USA (With Saturn Adverts) [Guru, David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Motoraid [Guru, David Haywood]

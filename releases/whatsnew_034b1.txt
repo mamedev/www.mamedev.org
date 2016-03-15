@@ -1,0 +1,107 @@
+0.34 BETA 1
+
+IMPORTANT: now most games load the color PROMs from disk. You'll have to add
+the missing files to the archives.
+
+
+New ROM sets supported (in no particular order):
+------------------------------------------------
+
+HigeMaru [Mirko Buffoni]
+Sega Ninja / Ninja Princess (merged) [Jarek Parchanski, Nicola Salmoria]
+My Hero [Jarek Parchanski]
+I'm Sorry [Nicola Salmoria]
+Flicky [Nicola Salmoria]
+TeddyBoy Blues [Nicola Salmoria]
+Star Jacker [Nicola Salmoria]
+Mister Viking [Nicola Salmoria]
+Future Spy [Nicola Salmoria]
+Avengers (two sets merged) (not working due to protection) [Paul Leaman]
+Bionic Commando [Steven Frew, Phil Stroffolino, Paul Leaman]
+Dynasty Wars (not working) [Paul Leaman]
+Varth [Paul Leaman]
+Electric Yo-Yo (not working due to protection) [Al Kossow]
+Tag Team Wrestling [Steve Ellenoff, Brad Oliver]
+Gridiron Fight [Nicola Salmoria]
+several Neo Geo games (UNTESTED) [Allard van der Bas]
+King & Balloon [Brad Oliver]
+Super Mouse [Brad Oliver]
+Intrepid [Zsolt Vasvari]
+Moon War II [Brad Oliver]
+Calipso [Brad Oliver]
+Hard Hat [Al Kossow]
+Psychic 5 [Jarek Parchanski]
+Great Swordsman [Steve Ellenoff]
+Max RPM (no sound due to missing ROMs) [Aaron Giles]
+The Tin Star (not complete) [Nicola Salmoria]
+several 8080 games [Al Kossow]
+Pot of Gold [Nicola Salmoria]
+M79 Ambush [Al Kossow]
+Twin Cobra (preliminary) [Quench]
+Kick (upright version) (merged) [Nicola Salmoria]
+Golden Castle (merged with gladiatr) [Steve Ellenoff]
+Speak & Rescue ("speakres") [Al Kossow]
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Fixed colors in Fast Freddie (sorry... this slipped by in 0.33 final).
+
+- In Mario Bros., the screen bounces when you hit POW. [Brad Oliver]
+
+- Improved Slap Fight. [Christoff Feldtmann]
+
+- Accurate colors in Money Money and Jack Rabbit. [Nicola Salmoria]
+
+- Enemies in TNZS are now visible, using the gfx ROMs from a new set (which is
+  not supported yet). [Chris Moore]
+
+- Fixed sticking sprites in Pnickies and Nemo. [Paul Leaman]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Sound in Gladiator. [Steve Ellenoff]
+
+
+These drivers have HIGH SCORE support:
+--------------------------------------
+
+- Pinball Action. [Dani Portillo]
+
+
+Other drivers changes:
+----------------------
+
+- The original Elevator Action now works, using the 68705 mcu ROM which was
+  missing. Since there is one additional CPU to emulate, it is slower than the
+  bootleg version. [Nicola Salmoria]
+
+- Replaced Front Line with the complete set containing the 68705 code. It
+  still doesn't work though. [Nicola Salmoria]
+
+- Replaced Golden Star with the original, encrypted set. [Mirko Buffoni]
+
+- Improvements to the System 8 driver. [Nicola Salmoria]
+
+
+Changes to the main program:
+----------------------------
+
+- Fixed a bug in the NOT instruction of the 68000 core. [Mike Coates]
+
+- You can proceed from the "press OK to continue" screen by pushing left then
+  right. You can also immediately quit by pressing ESC. [Nicola Salmoria]
+
+
+Source:
+-------
+
+- Moved the Sega encryption code used by Flicky, Future Spy, and many others,
+  to machine/segacrpt.c. [Nicola Salmoria]
+
+- Added memory_region_length field to the RunningMachine structure. This could
+  be useful for drivers which handle several games on similar hardware.
+  [Nicola Salmoria]

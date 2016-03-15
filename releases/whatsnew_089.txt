@@ -1,0 +1,761 @@
+0.89
+----
+
+General Improvements
+--------------------
+
+
+Misc. Sega Improvements
+	Improved inputs in DDCrew, all 4 players can now be used, although only
+	the service coin works. [David Haywood]
+
+	Hooked up Nitro button in Turbo Outrun [smf]
+
+	Improved GPRider Sound [R.Belmont]
+
+	Fixed Cotton, Turbo Outrun filenames [deadscreem]
+
+	Fixed Thunderblade filenames
+	
+Namco System 1 update [Nicola Salmoria]
+
+	- added a new function tilemap_draw_primask(). This takes an additional 
+	parameter, which is ANDed with the contents of priority_bitmap before ORing 
+	it with the specified priority. Essentially, the old tilemap_draw() is 
+	equivalent to tilemap_draw_pribuffer(..., 0xff). The two should probably be 
+	unified. This new handling of priority_bitmap allows a more intuitive 
+	handling of pdrawgfx(), and more layers to be used (up to 31, instead of 
+	just 5 - Namco S1 needed 8).
+	NOTE: to implement this change, I had to disable the asm optimized routines 
+	PDT16 and PDO16 in windows/oslinline.h. If they are useful for performance, 
+	they should be updated and reenabled.
+	
+	- fixed sprite handling and removed all the nonsense hacks from the video 
+	update
+	- made sprite/tilemap priorities orthogonal (not sure if it was needed).
+	- also updated System 86 (which uses the same sprite hardware) to the latest 
+	code. Curiously, this introduces sprite/sprite priority issues in Wonder 
+	Momo. I'm puzzled by this.
+	- vastly improved the key custom emulation, shrinking it down to three basic 
+	types. This also fixed issues with pistoldm (e.g. bomb explosions, and other 
+	random events).
+	- pistoldm061yel
+	- fixed DAC sounds in berabohm and faceoff, two sounds at the same time were 
+	causing severe slowdowns.
+	- fixed Namco logo in Dangerous Seed
+	- cleaned up input ports, using PORT_INCLUDE
+	- found some more debug dip switches
+	- dspirit061gre
+	- added support for visibility window, this fixes countless issues with 
+	partial video updates and the intro of Rompers
+	- namcosx36rc2gre
+	- fixed berabohm inputs
+	- better ROM loading, closer to the hardware (though it uses more memory)
+	- toggling the test mode dip switch is enough to enter test mode - no need 
+	to reset
+	- removed the galaga88 set: it was a hacked version removing the key custom 
+	checks and disabling ROM checksum tests
+	- cleaned up the CUS30 wavedata/sound command/RAM interface, put it all in a 
+	single function
+	- splatter061gre: I don't think this is a bug
+	- splatter061gre2: I don't think this is a bug, just dark brown would look 
+	black on an arcade monitor
+	- splatter061gre3: please verify if this still applies / I don't think it is 
+	a bug
+	- splatter061gre4: please verify if this still applies
+	- namcos1c070u5gre: I don't think this is a bug, attract mode plays back a 
+	few seconds from the last game played. In bootup, there is no previous game, 
+	so no demo play. I agree it's awkward, though.
+
+
+Discrete Sound Update [Derrick Renaud]
+	Discrete Sound Changes
+	======================
+	* Modified Discrete core node inputs to use pointers to the data, instead of
+	moving the data into the inputs at each step.  This speeds up discrete emulation.
+	* modified all current modules and drivers to use new code.
+
+
+	New Discrete Modules Added
+	==========================
+	* DISCRETE_555_ASTABL has been modified to remove control voltage support.
+	  DISCRETE_555_ASTABL_CV has been added if control voltage is used.
+
+
+	Game Driver Changes
+	===================
+	* frogs-  Removed discrete tongue sound for now.  Added sample support.
+	The buzz sound of flys is constant because it can't be emulated properly until
+	full discrete support is added.  Samples are from the ones posted by Twisty.
+
+	
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Super Masters Golf [Phil Bennett, Chris Hardy, David Haywood]
+	controls not hooked up yet
+	
+Hyper Crash
+	preliminary, not investigated much yet
+	
+Super Monaco GP (2 new sets, Japan and US, without logos) [Charles MacDonald, David Haywood]
+	same problems as the other sets (lack of controls)
+	
+
+0.88u7
+------
+
+General Improvements
+--------------------
+
+Many improvements to Sega System Pre16,16a,16b,18 drivers [Aaron Giles]
+	Drivers cleaned up
+	
+	Most known video issues are now fixed
+	Alien Storm, DDCrew, Clutch Hitter, Laser Ghost, Cotton and
+	many others have greatly improved video.
+	
+	Alien Storm is fully playable
+	
+	DD Crew is fully playable but requires inputs to be fixed
+	 (currently only service coin and controls for 1 player work)
+	
+	Laser Ghost would probably be playable if the controls were
+	correctly hooked up
+
+	Moonwalker requires improvements to the MCU emulation
+	
+	We will now accept bug reports at Mametesters.org for any games
+	running on the following drivers
+		segas16a.c, segas16b.c, segas18.c
+	Most of the bootlegs are still running on system16.c, please do
+	not report bugs for these, nor for outrun or afterburner hardware.
+	
+	
+More Sega sets decrypted [Chris Hardy]
+	mvpj, dcclubfd etc.
+	
+Cleanups in bublbobl driver [Curt Coder]
+
+M6803 Patch [Nathan Woods]
+	src/cpu/m6800/m6800.h:
+	src/cpu/m6800/m6800.c:
+	- Modified M6803 CPU core to use an internal memory map
+
+Fixed colours in Super Stingray with new proms [Pierpaolo Prazzoli]
+
+Improved sample support for rockola driver [Mame32Plus]
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+M.V.P (Japan) [Various, see sega update notes]
+Dynamic Country Club (US, Encrypted, Floppy Disk) [Various, see sega update notes]
+Vanguard (Japan) [Mame32Plus]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Wizz Quiz (Konami) [Pierpaolo Prazzoli]
+	bad program rom
+
+Several Sega S16 sets
+
+
+0.88u6
+------
+
+General Improvements
+--------------------
+
+More Sega S16 improvements [Aaron Giles]
+	video improvements, cotton title screen looks better but game
+	currently suffers from other issues
+
+Further improvements to S16 decryption code [Nicola Salmoria]
+
+Support for Extra Effects in Taito F2 driver [Bryan McPhail]
+	Transparent sun in 1st level of Metal Black.
+	Special effect on Metal Black level 5 boss who slides in under the bottom
+	tilemap.
+	All known effects in Gun Frontier (see the attract mode).
+	The highlight effect in Quiz Crayon 2 map.
+	
+	The update also provides full 5 tilemap layer priority support in Metal
+	Black (was previously 4 due to pdrawgfx limitation), and fixes priority
+	problems in Ninja Kids (ninjak058gre).
+
+Improved sound in ring rage [Pierpaolo Prazzoli]
+
+Minor MESS specific patch [Nathan Woods]
+
+Fixed tinklepit p2 input [Pierpaolo Prazzoli]
+
+PPmast93 driver cleanups [Pierpaolo Prazzoli]
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Bullet
+MVP (Japan)
+	not decrypted
+
+
+0.88u5
+------
+
+General Improvements
+--------------------
+
+Added flower proms (not used yet)
+
+New Debugger Improvement [Aaron Giles]
+Improved the drawing code on the Windows side so that the background color changes
+align properly (mostly noticeable when using the cursor in the memory view).
+
+Another jalmah.c update [Angelo Salese]
+
+Fixed some filenames in track and field & scramble drivers [ShinobiZ]
+
+Fixed hyperstone compile error [Brad Oliver]
+
+i8x51 cpu core [Steve Ellenoff]
+
+SCU DSP update [Angelo Salese]
+
+Various Sega S16 decryption improvements [Nicola Salmoria, Charles MacDonald]
+	several more cpus read, improvements to decryption made based on those
+
+Sega S16 driver updates [Aaron Giles]
+	some bits better, some bits worse for now
+
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Title Fight (US)
+Plotting (set 2) [Pierpaolo Prazzoli]
+WWF Wrestlefest (bootleg) [Pierpaolo Prazzoli]
+Tiger Road (bootleg) [Pierpaolo Prazzoli]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+GP Rider
+Turbo Outrun (upgrade kit)
+Super Monaco GP
+	decrypted (thanks to Charles MacDonald) but still have many issues
+
+
+0.88u4
+------
+
+General Improvements
+--------------------
+
+Fixed Sprint2 watchdog issues [Stefan Jokisch]
+
+Fixed nmg5.c crash [Pierpaolo Prazzoli]
+
+Fixed nitrobal inputs [Sonikos]
+
+Jalmah.c updates [Angelo Salese]
+Fixed various stuff with the protection in the first version of this HW.This includes
+perfect color protection emulation,preliminary sound & preliminary tile transfer emulation
+
+Various Sega system 16/18 updates (moonwalker decryption keys etc.) [Chris Hardy]
+ * note moonwalker needs a cpu core for the mcu (i8051 core?) before it will work
+
+Fixed a bug in the fd1094dp.c and fd1094.c decryption to allow for cotton to be decrypted [Nicola Salmoria]
+
+Added other hyperstone models, converted vamphalf driver to use 16-bit version [Pierpaolo Prazzoli]
+
+
+Discrete Sound Update [Derrick Renaud]
+
+	Discrete Sound Changes
+	======================
+	* Removed the memory mapping system from the discrete inputs.  It served no
+	purpose and was never functional.  It only added a layer of confusion to the
+	code by forcing it's use on all current drivers that do not need it.  If
+	memory mapped inputs are needed in the future (not likely), then they can be
+	added with a DISCRETE_INPUT_MAP function.
+	* Now the discrete inputs are written to by their node name only.
+	  eg: discrete_sound_w(NODE_xx, data)
+	* DISCRETE_INPUT and DISCRETE_INPUTX have been removed in favour of new
+	easier to use input modules.
+	* modified all current drivers to use new code.
+	* moved discrete sound code from drivers and put in sndhrdw\
+	
+	New Discrete Modules Added
+	==========================
+	* DISCRETE_INPUT_DATA(node)  - accepts 8-bit data from discrete_sound_w.
+	Output at reset is 0.
+	* DISCRETE_INPUT_LOGIC(node) - 0 if data=0; 1 if data=!0.  Output at reset
+	is 0.
+	* DISCRETE_INPUT_NOT(node)   - 0 if data=!0; 1 if data=0.  Output at reset
+	is 1.
+	
+	* DISCRETE_INPUTX_DATA(node, gain, offset, init)
+	* DISCRETE_INPUTX_LOGIC(node, gain, offset, init)
+	* DISCRETE_INPUTX_NOT(node, gain, offset, init)
+	                             - same as above, but will modify the output by the
+	                               given GAIN and OFFSET.  At reset the output will
+	                               be INIT modified by GAIN and OFFSET.
+	
+	Game Driver Changes
+	===================
+	* skydiver -  added proper watchdog.  Merged memory map and added proper
+	mirroring.  Fixed coin input bug skydiver078u3yel.  It's not a 100% accurate
+	fix, but will work until I get the exact interrupt time.  The current
+	interrupt time was 100% off.  It is now less then 25% off.  :-)
+	
+	
+	
+	
+	
+Windows Debugger Updates
+------------------------
+
+Fixed some compile errors [Nathan Woods]
+
+Misc updates [Aaron Giles]
+* Added a "PC" register to the I386 core so that it should work in the new debugger
+* Cleaned up stepping code
+* Now refresh the display and all debugger windows after each step while stepping
+* When running with the debugger window open (F5 or 'go'), now update the debugger views
+4 times per second
+* Can now break into the debugger even if you are focused on a debugger window
+* Memory/disasm windows now come up with the currently active CPU selected by default
+* added a new command: focus <cpunum>, which is equivalent to ignoring all 
+other CPUs
+* changed ignore and observe to support multiple parameters so you can say "ignore 2,3,4"
+* changed ignore so that you are not allowed to ignore the last CPU
+* fixed ignore behavior so that other CPUs are truly ignored
+* fixed register window so that change hilights are maintained during scrolling and updates
+* changed debug memory accessors so they don't log on invalid memory accesses
+* tweaked the help text to indicate that help <command> works
+* added a new text attribute DCA_CURRENT, which is separate from DCA_SELECTED -- the main
+visible difference is that the memory view editing cursor is now hilighted red instead of
+yellow
+
+In-line memory editing is now supported. To do this, I added a generic 
+cursor concept to the view system. Each view can handle it however they 
+want. Right now only the memory view supports a cursor. [Aaron Giles]
+
+Click in the memory view to place the cursor. Type over nibbles with 0-F, or 
+use the arrow keys to navigate around. Tab cycles between the edit box and 
+the memory editor. [Aaron Giles]
+
+updated psx core to show more registers [smf]
+
+
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Woodpecker [Tomasz Slanina, Pierpaolo Prazzoli]
+
+Max-A-Flex driver [Mariusz Wojcieszek]
+	Astro Chase (Max-A-Flex)
+	Bristles (Max-A-Flex)
+	Flip & Flop (Max-A-Flex)
+	Boulder Dash (Max-A-Flex)
+
+Cotton [Chris Hardy, Lodewijk, Asure, Nicola Salmoria, David Haywood]
+	many gfx problems, no sound yet
+	
+	
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Jr Pacman (bootleg on pengo hw) [smf]
+Shinobi (set 3, 317-0049) [Chris Hardy]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Raiden Fighters Jet (US SPI, Asia SPI)
+	incomplete tile/sprite decryption
+
+Twin Squash
+	protection issues
+	
+Wonderboy 3, System 16a [Chris Hardy]
+	incomplete s16a emulation
+
+
+0.88u3
+------
+
+General Improvements
+--------------------
+
+More FD1094 improvements, a program to produce the key tables from dumped state data
+is now included as etc/fd1094dp.c, please note the key table format has changed
+slightly to reflect some new findings [Nicola Salmoria]
+
+Various fixes to prevent crashes in X86-64 compiles [Hans de Goede]
+
+Misc Fixes [Nathan Woods]
+	src/cpuintrf.c:
+	src/cpuintrf.h:
+	    - Adds a MESS specific CPU core
+	
+	src/inptport.c:
+	    - Fixed a few input group declarations on MESS specific input types
+	
+	src/sound/astrocde.c:
+	    - Moved some variable declarations to the tops of their respective groups.
+	  
+Converted mermaid.c to tilemaps [Curt Coder]
+	* Mermaid
+	drivers/mermaid.c
+	vidhrdw/mermaid.c
+	
+	- tilemap conversion
+	- cleaned up driver
+	- merged memory map
+	- removed fake input port
+
+Improvements to the Liberator driver, correct proms now used [Aaron Giles]
+
+Fixed addc, subc, mulu, muls in Hyperstone Core [Tomasz Slanina]
+	(fixes title screen objects in suplup, and bullets in misncrft)
+
+Hyperstone updates [Pierpaolo Prazzoli]
+- Fixed software opcodes when used as delay instructions
+- Added nested delays
+
+Improvements to SPI decryption [Ville Linde]
+
+Jr Pacman driver cleanups [Aaron Giles]
+
+New Windows based debugger [Aaron Giles]  
+----------------------------------------
+
+Note: The new debugger is enabled as the default debugger for the next few u
+releases (in a debug build only) to allow feedback, it can be disabled by
+changing the makefile
+
+(description of 1st update)
+
+There are some new behaviors and new ways of doing things you should be 
+aware of. By default the debugger no longer "auto hides". This was a remnant 
+of the way the old debugger worked that I have gotten rid of. If you want to 
+hide all the debugger windows, just close the "main" debug window. It will 
+return if you break in the debugger at a future time.
+
+The "main" window has four panes: a register list on the left, a disassembly 
+around the current PC at the top, a console output window in the middle, and 
+an input line at the bottom. The input line supports full editing features, 
+and you can also use up arrow/down arrow to cycle through recently typed 
+commands.
+
+Hitting Enter on a blank line in the console is equivalent to single 
+stepping once. You can also do that with F11. To run, either use the "go" 
+command or hit F12 (or close the "main" window). To run until the next CPU, 
+either use the "next" command or hit F6.
+
+You can bring up multiple independent memory and/or disassembly windows by 
+using the Debug menu. Each window can look at a different address space on 
+any CPU. You can enter any expression (including those using registers from 
+the CPU) into the entry line at the top of these windows in order to specify 
+which address to begin displaying at.
+
+I've implemented a number of useful commands in the console. Type "help" to 
+navigate the extensive online documentation for a number of examples on how 
+to use these features. You can do some really cool stuff now with the 
+conditional watchpoints and breakpoints.
+
+This is a work-in-progress, but it's pretty good now (IMHO) and stable for 
+common debugging operations. Let me know what you like/dislike about it and 
+what sorts of features you feel are still lacking.
+
+(description of 2nd update)
+
+F12 now means "run and hide the debugger". I found this was too useful to 
+get rid of entirely.
+F5 just means "run", keeping the debugger visible.
+
+Enabling the debugger now forces window mode and prevents you from switching 
+to full screen mode.
+
+(description of 3rd update)
+
+* Added step over/step out functionality. F10 or "over" steps over an 
+instruction. Shift+F11 or "out" steps out of a subroutine or exception 
+handler. Note that this feature relies on the disassembler to produce some 
+flags indicating which instructions which need to be stepped over (generally 
+CALLs and TRAPs) and which instructions end a step out search (generally 
+RETURNs).
+* Modified the 680x0 and MIPS3 disassemblers to support these features.
+* Changed the disassembly view to back up 3 instructions when resetting 
+(that is, the current PC should appear on the 4th line instead of the 1st 
+line). This is not perfect, but works pretty well overall and should help 
+see the previous couple of instructions when, say, a watchpoint is hit.
+* Improved filtering of keypresses so that they don't leak into the game 
+when you are typing in the debugger.
+
+
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Super Lup Lup Puzzle [Tomasz Slanina, Pierpaolo Prazzoli]
+Mission Craft [Tomasz Slanina, Pierpaolo Prazzoli]
+	these now run due to cpu core fixes being made
+	
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Hot Rod (4 player, Japan) [Chris Hardy]
+Meteorites (italian clone of asteroids) [Pierpaolo Prazzoli]
+Liberator (set 2) [Aaron Giles]
+Street Fighter EX Plus (USA, 970407) [Brian Troha]
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Raiden Fighters Jet (Single Board, US) [J. Rodman]
+
+Sega Y-Board skeleton driver
+	Galaxy Force 2, Power Drift, G-Loc, Strike Fighter, Rail Chase
+	*only* the driver file, no video has been ported yet so nothing works
+
+Woodpecker (2 sets)
+
+Yachtsman
+
+
+0.88u2
+
+General Improvements
+--------------------
+
+Further improvements to the FD1094 decryption, this is now almost fully understood,
+additional FD1094 cpus are needed to work out the remaining details.  Keys are now
+stored in the romsets as they should be a close representation of the data stored in
+the FD1094 CPUs [Nicola Salmoria]
+
+Fixed a few things which missed the Namco update in u1 [Phil Stroffolino]
+
+Corrected some rom names in Crowns Golf [ShinobiZ]
+
+Corrected some rom names in Pengo [Gerald]
+
+Improvements in Mighty Warriors Driver [Pierpaolo Prazzoli]
+	Added sprites buffer which fixed the "invisible" sprites
+	Fixed text tilemap scrollx offset
+	Haze added palette brightness
+
+Improvements to Twin Brats [Pierpaolo Prazzoli]
+	Fixed sound banking
+	Changed service switch button
+	Changed visible area
+	Merged memory map
+
+Moved gamename prefixes to end in pc10, nss and megatech [Aaron Giles]
+
+Fixed Joystick Axis problem [Aaron Giles]
+
+Discrete Sound Improvements [Derrick Renaud]
+
+	Discrete Sound Changes
+	======================
+	* DISCRETE_555_ASTABLE - added option to use quick charge diode (will be
+	needed for frogs.)  Added option to disable oscillation if R1 (charge) is out
+	of circuit (will be needed by invaders.)
+	* DISCRETE_555_CC - modified to discharge cap due to natural losses if there
+	is no charging current (needed by frogs.)  This makes it more accurate then
+	the current perfect cap that will retain a charge forever.
+	* modified all current drivers to use new code.
+	
+	New Discrete Modules Added
+	==========================
+	* DISCRETE_555_MSTABLE - 555 Monostable simulation
+	
+	Game Driver Changes
+	===================
+	* frogs - added sound hooks.  Added discrete "tongue" sound effect.
+
+Fixed bug in discrete code [Brad Oliver]
+
+Improvements to Astrocade driver [Frank Palazzolo]
+	- Professor Pacman Driver - works but fails 2 self-tests yet
+	- Fixed collision detection in all games
+	- Added NVRAM handling to robby (and profpac) - still not working 
+	always but self-tests pass.
+	- Fixed bugs in astrocade sound code
+	- Switched astrocade sound to stream system
+	- Support stereo in wow, robby, gorf, profpac (Sounds great now!!)
+	- Leds and coin counters added
+	- All activecpu_get_reg() calls from astrocde games have been
+	  replaced with proper 16-bit Z80 port support through memory system
+	- Renamed sndhrdw/astrocde.c to sndhrdw/wow.c since it is game-
+	specific
+
+Fixed NMI handling in NEC cores [Bryan McPhail]
+
+Cleaned up Twins driver and changed to use V20 [Pierpaolo Prazzoli]
+
+Some hyperstone debugger cleanups [Pierpaolo Prazzoli]
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Bonks Adventure [Sebastien Volpe]
+	some gfx/sound issues
+
+Professor Pacman [Frank Palazzolo]
+
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Superman (Japan) [Fabrice Arzeno]
+
+Gun Ball [Bryan McPhail] *edit - actually i missed this one from driver.c, it'll be in u3
+
+Hot Bubble [David Haywood]
+
+Force Break [Pierpaolo Prazzoli]
+
+New Non-Working games / clones supported
+----------------------------------------
+
+Super Lup Lup Puzzle
+	hyperstone CPU core bugs
+
+Raiden Fighters Jet
+	encrypted gfx
+	
+Born to Fight
+	gfx emulation problems
+
+
+0.88u1
+
+General Improvements
+--------------------
+
+Namco Update [Phil Stroffolino]
+	Fixes priority in the NB1 games.
+	POSIRQ support for Namco System 2 games no longer requires game-specific hacks.
+	Hack for Metal Hawk tile size is no longer needed.
+	Screen blanking (window) support added for System 2 hardware.
+	Sprite-tilemap orthogonality for System 2 rendering.
+
+	Mametesters bugs:
+	  nebulray066gre (kludge, real behavior not understood)
+	  namcosx36rc2gre (for system2)
+	  finehour053gre
+	  ordyne080u1gre
+	  rthun237b16gre
+
+i960 fix [R.Belmont, Stephan Cecchinel]
+	Fixed errors in atanr and logepr
+
+Improvements to FD1094 emulation [Charles MacDonald, Nicola Salmoria]
+	more sets now run (eswatu, fpoint, goldnaxc, cltchitr)
+
+Fixed scroll offset and rain priority in mwarr [Pierpaolo Prazzoli]
+
+Added EEprom support to Steel Force [Pierpaolo Prazzoli]
+
+Misc Fixes [Curt Coder]
+	* 1943
+	drivers/1943.c
+	vidhrdw/1943.c
+
+	- Converted to use tilemaps
+	- Cleaned up driver
+	- Merged memory maps
+	- Fixed inputs/dips based on manuals
+	- Renamed 1943j to "1943: Midway Kaisen (Japan)"
+	- Renamed 1943kai to "1943 Kai: Midway Kaisen (Japan)"
+
+	* Gun.Smoke
+	drivers/gunsmoke.c
+	vidhrdw/gunsmoke.c
+
+	- Converted to use tilemaps
+	- Cleaned up driver
+	- Merged memory maps
+	- Fixed inputs/dips based on manuals
+	- Removed GUNSMOKE_HACK and fake dips
+
+	* Blue Print
+	drivers/blueprnt.c
+	vidhrdw/blueprnt.c
+	
+	- fixed clocks per schematic, sound pitch now higher
+	- tilemap conversion
+	- merged memory maps
+	- fixed inputs/dips per manual
+	- fixed rom names per schematic
+	- clean up
+	- correct 2H/4H clocks
+	
+	* Night Driver
+	drivers/nitedrvr.c
+	machine/nitedrvr.c
+	vidhrdw/nitedrvr.c
+
+	- removed gear/track display hack
+	- merged memory map
+	- fixed clock per schematic
+	- added early revision roms info
+	- fixed rom names per schematic
+	- clean up
+
+	* 1942
+	drivers/1942.c
+	vidhrdw/1942.c
+	
+	- merged memory maps
+	- fixed inputs/dips per manual
+
+
+Confirmed Libble Rabble Custom IO chip numbers [Shaun Stephenson]
+
+jalmah.c improvements [Angelo Salese]
+	Further improved the first version protection.Now you can boot in
+	urashima/mjzoomin/daireika,with wrong colors(data is extracted from MCU
+	code) and wrong tilemap positioning(these games uses the RANGE
+	register,which needs further investigation).
+
+
+New Games supported or promoted from GAME_NOT_WORKING status:
+-------------------------------------------------------------
+
+Twin Brats [Pierpaolo Prazzoli]
+	incorrect sound banking
+	
+B.C. Story [David Haywood]
+
+Clutch Hitter [Charles MacDonald, Nicola Salmoria, David Haywood]
+	incomplete sound emulation, some gfx problems	
+
+D. D. Crew [Charles MacDonald, Nicola Salmoria, David Haywood]
+	incomplete sound emulation, still some serious gfx problems in places
+	
+Ping Pong Masters '93 [David Haywood]
+	sound not yet emulated
+	
+New Clones supported or promoted from GAME_NOT_WORKING status:
+--------------------------------------------------------------
+
+Flash Point (Japan, Original) [Charles MacDonald, Nicola Salmoria]
+
+Senkyu (set 2) [Fabrice Arzeno]
+
+
+New Non-Working games / clones supported
+----------------------------------------
+
+several system18 sets

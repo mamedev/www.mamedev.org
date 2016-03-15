@@ -1,0 +1,60 @@
+0.36 BETA 15
+
+New games supported:
+--------------------
+
+Great 1000 Miles Rally [Luca Elia]
+Shanghai [Nicola Salmoria]
+Gee Bee [Juergen Buchmueller]
+
+
+New clones supported:
+---------------------
+
+Wiz (Taito)
+Tora eno Michi (= Tiger Road)
+Super Volley '91 (= Power Spikes)
+
+
+These drivers have improved GRAPHICS:
+-------------------------------------
+
+- Enabled raster effets in Metal Slug 2 (needed for the dunes at the beginning)
+  [Sebastian Ojeda]
+
+- Fixed System 16 games in 16-bit video modes. With -depth 16, shadows are also
+  color accurate, otherwise the old gray scale shadows are used. [Andrew Prime]
+
+- Fixed colors in Side Pocket. [Nicola Salmoria]
+
+- Fixed colors in Cosmic Alien. [Zsolt Vasvari]
+
+
+These drivers have new or improved SOUND:
+-----------------------------------------
+
+- Added samples to Star Cruiser. [Frank Palazzolo]
+
+
+Other drivers changes:
+----------------------
+
+- Added collision detection to Star Cruiser. [Frank Palazzolo]
+
+- Simulated the protection in the original version of Side Pocket.
+  [Bryan McPhail]
+
+
+Source:
+-------
+
+- stream_init() and stream_init_multi() no longer have a sample_bits parameter.
+  Sound emulators are required to generate 16-bit samples. Also removed
+  osd_play_streamed_sample() and mixer_play_streamed_sample(): only the 16-bit
+  version is available now.
+
+- Added gain support to mixer.c, through the new MIXERG() macro (extension of
+  MIXER()). Removed the gain filed from AY8910, YM2204, YM2610 structures.
+
+- make68k.exe now requires as parameter the path of the comptab.asm include
+  file (see makefile).

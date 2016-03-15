@@ -1,0 +1,150 @@
+0.103u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+midres056gre [Bryan McPhail]
+ddragon077u3red [Bryan McPhail]
+airbustr37b9gre [Pierpaolo Prazzoli]
+turbofrc0103gre [Pierpaolo Prazzoli]
+turbofrc37b1gre [Pierpaolo Prazzoli]
+
+Source Changes
+--------------
+
+Fixed sound bug in Phoenix sound effect #2 [Hans Andersson]
+
+NeoGeo updates [http://neosource.1emulation.com/forums/]
+ * Fatal Fury 2 - Emulated Protection
+ * King of Fighters 10th Anniversary - Added code to update SRAM tiles on the fly
+ * CCTHD2k3 - Fixed GFX / Colours
+ * Added code to support remaining NeoGeo sets
+
+Fixed Mat Mania dipswitches [Roberto Fresca]
+
+Fixed some Leap Year calculates [William Krick, smf]
+
+Sync Refresh / Waitvsync / Triplebuffer changes [Alan Kamrowski II]
+
+ * It changes the waitvsync code to wait for the beginning of the vertical
+blank.  The previous code simply checked if it was in the vblank and only
+waited if it wasn't.  This caused 2 problems.  The first is that when using
+syncrefresh, if there was enough time, more than one frame can be rendered
+during a single vblank.  This is why syncrefresh would have odd behavior
+such as the game speeding up or slowing during during less cpu intensive
+sequences.  The second problem is that the retrace line could sometimes be
+seen because while the code checked to see if it was in the vblank, it did
+not check where in the vblank it was so it might be at the end of the vblank
+and by time the frame is rendered the monitor could be out of the vblank.
+
+ * It removes the waitvsync only if game speed is above 95% restriction.
+This restriction would only cause waitvsync to vacillate between on and off
+depending on game speed.  If someone enables waitvsync and it is too slow,
+then it is.
+
+ * When syncrefresh and triplebuffer are used, MAME would run the waitvsync
+code anyway.  The triplebuffer code takes care of this and having MAME wait
+for the retrace in the waitvsync code anyway is a waste of time and causes
+timing issues on some hardware.  If triplebuffering is enabled, then there
+is no need to run the waitvsync code because triplebuffer already does.
+
+Fixed typo in monzagp.c [Brad Oliver]
+
+Documentation cleanups in ddenlovr.c [Brian Troha]
+
+SS Mission and Air Attack dipswitch fixes [Brian Troha]
+
+Improvements to the Data East 156 (ARM) based games [Various]
+ * Added Sound to Night Slashers [Tomasz Slanina]
+ * Added Sound to World Cup Volleyball '95 and BackFire! [Pierpaolo Prazzoli]
+ * Fixed sprite flipping in the Data East MLC driver, this fixes the
+   graphics in Avengers in Galactic Storm [Tomasz Slanina]
+ * Modified ARM CPU core to allow World Cup Volleyball '95 to
+   start [Tomasz Slanina]
+ * Added BCD opcodes to 156 / ARM co-processor, needed by the above [David Haywood]
+ * Fixed Sound in Data East MLC games [David Haywood]
+ * Split BackFire! into a separate driver and improved the graphics, and
+   added dual screen support [David Haywood]
+ * Corrected sound decoding in BackFire! [David Haywood] 
+ * Cleanups to the ARM core [Bryan McPhail]
+
+Fixed fileio.c buffer overrun [Lawrence Gold]
+
+i486 CPU patch [Nathan Woods]
+ src/cpu/i386/cycles.h:
+ src/cpu/i386/i386.c:
+ src/cpu/i386/i386dasm.c:
+ src/cpu/i386/i386ops.h:
+ src/cpu/i386/i486ops.c:
+    - Implemented the XADD, INVLPG and CMPXCHG instructions
+    - Made the opcode table const correct
+
+H6280 updates [Rob Bohms]
+ src/cpu/h6280/h6280.c:
+ src/cpu/h6280/h6280.h:
+ src/cpu/h6280/h6280ops.h:
+ src/sound/c6280.c:
+ src/sound/c6280.h:
+    - Added T-flag emulation
+    - Fixed read calls
+
+Debugger Improvements [Nathan Woods]
+ src/debug/debugcmd.c:
+ src/debug/debugcpu.c:
+ src/debug/debugcpu.h:
+ src/debug/debughlp.c:
+    - Added a 'gtime' command; like the "go" command, but breaks after a specified delay 
+
+Corrected Frequencies in WWF Superstars [Phil Bennett]
+
+Added sample banking to spec2k [Pierpaolo Prazzoli]
+
+Various improvements in Airbuster driver [Pierpaolo Prazzoli]
+
+Updated Namco NA-1 to use the real bios [R.Belmont, Charles MacDonald]
+
+M37710 fixes [R.Belmont]
+ * Added another addressing mode for SBCB
+ * Fixed MPY to clear the carry flag
+ 
+Fixed some Endian issues in the Namco drivers [R.Belmont]
+
+Merged Lovely Cards / Lovely Poker drivers [El Condor]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+World Cup Volley '95 [Bryan McPhail, David Haywood]
+Hoops '96 / Hoops / Dunk Dream '95 [Bryan McPhail]
+Quintoon [ReAnimator / AGEMame]
+Pokio [ReAnimator / AGEMame]
+Slots [ReAnimator / AGEMame]
+Paradice [ReAnimator / AGEMame]
+Pyramid [ReAnimator / AGEMame]
+Golden Crown [ReAnimator / AGEMame]
+Rock'n Tread 1 (bootleg) [Justin Lee Turner]
+Rock'n Tread 2 (bootleg) [Justin Lee Turner]
+Rock'n Tread 3 (bootleg) [Justin Lee Turner]
+Rock'n Tread 4 (bootleg) [Justin Lee Turner]
+Twin Action [Luca Elia, David Haywood]
+Arm Champs II [Luca Elia, The Guru]
+Mahjong The Mysterious World [Luca Elia]
+Air Attack [Pierpaolo Prazzoli]
+SVC Chaos [http://neosource.1emulation.com/forums/]
+King of Fighter 2003 [http://neosource.1emulation.com/forums/]
+Samurai Shodown 5 [http://neosource.1emulation.com/forums/]
+
+New clones added
+----------------
+Alien 3: The Gun (US) [Arzeno Fabrice]
+Magic Crystals (World, newer) [Uncle Tom]
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Last Fighting [R.Belmont]
+The Crystal Maze [AGEMame]
+Turnover [AGEMame]
+Skill Trek [AGEMame]
+The Mating Game [AGEMame]

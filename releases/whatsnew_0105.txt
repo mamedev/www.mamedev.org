@@ -1,0 +1,1039 @@
+0.105
+-----
+
+NOTICE: The official Windows binaries are no longer compressed with
+UPX. This means that when you extract the files, the main MAME .EXE
+file will be much larger than you are used to. This is normal. The
+code has always been that big. Leaving it uncompressed will allow MAME
+to use less memory when run (ironically).
+
+IMPORTANT CHANGES FOR OSD DEVELOPERS: There have been several changes
+this cycle that impact you. Please scan this file in detail for the
+details.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+sys24savestate0104u4red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added the Dev 1.061 and early Japan bioses for ST-V. [zozo]
+
+Added sound to Jump Kids. [f205v]
+
+Corrected DIP switches for Honey Doll and Cookie & Bipi 3. 
+[Brian Troha]
+
+Some progress on Little Robin. [David Haywood]
+
+Fixed crash in System 16 games introduced by last update.
+[Aaron Giles]
+
+
+
+0.104u9
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+cerberus0104u7yel [Aaron Giles]
+carnevil0104u7gre [Aaron Giles]
+raveracw0104u7red [Aaron Giles]
+f1en097u1gre1 [Anonymous]
+
+
+
+Source Changes
+--------------
+Added decryption of kof2003 p3 ROM. [iq_132]
+
+Changed comment prefix in debugger command scripts from '#' to '//'.
+[Nathan Woods]
+
+Fixed makefile to allow command-line override of MAMEOS and TARGET
+variables. [smf, Aaron Giles]
+
+Fixed gsword, which was broken in an earlier update. [Tatsuyuki Satoh]
+
+Cleaned up error logging so that it is callback driven, allowing more
+than one potential output source. Fixed the -oslog option in the
+Windows build. [Nathan Woods]
+
+Fixed "do" command in the debugger. [Aaron Giles]
+
+Had to undo the use of timers to trigger save/restore of states. This
+leads to one less timer in the system, and hence will break the save
+states from previous versions. The current save state system is
+extremely sensitive to such changes, unfortunately. This will be
+addressed in a future version. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Joshi Volleyball [Tatsuyuki Satoh]
+Toppy & Rappy [David Haywood]
+
+
+
+New clones added
+----------------
+Toride II Adauchi Gaiden (German) [Corrado Tomaselli]
+River Patrol (Orca) [David Haywood]
+Get Star (bootleg, set 2) [David Haywood]
+Slap Fight (set 2) [David Haywood]
+Puzzle Uo Poko (International) [Corrado Tomaseli]
+Final Fight (US 900613) [Murray Melvin]
+Ninja Kazan (World) [Stefan Lindberg]
+Eyes (Zaccaria) [David Haywood]
+Power Drift (World Set 2) [Uncle Tom]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Stepping Stage [David Haywood]
+Tobe! Polystars [Ville Linde]
+Battle Tryst [Ville Linde]
+Heat of Eleven '98 [Ville Linde]
+Evil Night [Ville Linde]
+Sega Rally 2 DX [Uncle Tom]
+
+
+
+0.104u8
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: osd_logerror is no longer
+used. Rather, for error logging you provide a handle to a mame_file
+in the options.logfile field. If you leave this set to NULL, no
+logging will be done.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+tmnt099u1gre1 [Pierpaolo Prazzoli]
+block056yel [David Haywood, Corrado Tomaselli]
+block085u2gre [David Haywood]
+ddenlovr0104u7ora [Aaron Giles]
+toutrun0104u7red [Aaron Giles]
+bounty0104u7red [Aaron Giles]
+maxaflex0104u7red [Aaron Giles]
+cclimber.c0104u7red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed hyhoo which was broken in the last round of changes.
+[Takahiro Nogi]
+
+Added emulation of the Alpha 8201/8301 MCU, and connected it to
+champbbj, champbb2, talbot, shougi, shougi2, and exctsccr.
+[Tatsuyuki Satoh]
+
+Added cpunum_set_clock_period(), a variation of cpunum_set_clock() 
+that takes subseconds_t, providing better granularity. [Nathan Woods]
+
+Fixed most of the remaining issues in Wink, though there is still
+some unemulated protection.
+[HIGHWAYMAN, Nicola Salmoria, Pierpaolo Prazzoli]
+
+Added save state support to the galaga.c and segaybd.c based games.
+Improved the "out of context" error message to indicate the source 
+of the problem. [Andre Hufschmidt]
+
+Moved logerror handling into the core. OSD ports should set 
+options.logfile to a mame_file handle for the output file. 
+[Aaron Giles]
+
+Fixed second SN76496 on Congo Bongo to have the correct frequency.
+[Aaron Giles, Chris Law]
+
+Hooked up Sega Universal Sound Board to Pig Newton. [Aaron Giles]
+
+Added -validate command to perform system-wide validation and exit
+with a proper errorcode. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Champion Baseball (Japan set 1/2) [Tatsuyuki Satoh]
+Champion Baseball II [Tatsuyuki Satoh]
+Exciting Soccer II [Tatsuyuki Satoh]
+Shougi [Tatsuyuki Satoh]
+Shougi 2 [Tatsuyuki Satoh]
+Talbot [Tatsuyuki Satoh]
+Paradise Deluxe [David Haywood]
+Sea Hunter Pengiun [David Haywood]
+
+
+
+New clones added
+----------------
+Star Fighter [Pierpaolo Prazzoli]
+News (set 2) [Ryan Ahn]
+Rave Racer (Rev. RV1, Japan) [Arzeno Fabrice]
+Final Lap R (Rev B) [Arzeno Fabrice]
+OutRunners (World) [Arzeno Fabrice]
+Wild West C.O.W.-Boys of Moo Mesa (ver AA) [Arzeno Fabrice]
+Slap Fight (bootleg) [David Haywood]
+Do! Run Run (Do's Castle hardware, set 2) [David Haywood]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Tappy & Rappy [David Haywood]
+
+
+
+0.104u7
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+upsidedown0103yel [Takahiro Nogi]
+mgion0104u6yel [Takahiro Nogi]
+hyouban095u2red [Takahiro Nogi]
+model1.c_0104u5yel [Aaron Giles]
+ohmygod0104u6red [Aaron Giles]
+stv.c_0104u5red [Aaron Giles]
+ad2083_0104u5red [Aaron Giles]
+gauntdl0104u6red [Aaron Giles]
+zwackery0104u3red [Aaron Giles]
+triviaes0104u6ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Added simulation of protection to the Parallel Turn driver.
+[Tatsuyuki Satoh]
+
+Added missing demo sounds DIP switch to spelunk2. [Roberto Fresca]
+
+Fixed key input problems in many of the Nichibutsu mahjong drivers.
+[Tatsuyuki Satoh]
+
+Updated the Dragonball Z games to use the K056832 chip emulation,
+fixing color offsets and priorities. [Pierpaolo Prazzoli]
+
+Updated raw mouse support for Windows XP: [Derrick Renaud]
+ * Reversed the RAWMOUSE device list. RAWMOUSE reports the last 
+    installed mouse as the first device. I now place new mice at the 
+    end.
+ * Added clipping to RAWMOUSE support so the cursor does not leave 
+    the game area in Windowed mode. Also fixed the non-RAWMOUSE 
+    Windowed mode clipping I broke by my last changes.
+ * You can now see the names of the mice attached by using -verbose.
+ * Changed Lightgun functionality if using XP.  You no longer need 
+    to use -lightgun or -dual_lightgun. Use -mouse and multiple (2+) 
+    "HID-compliant mouse" lightguns will be detected. Lightgun 
+    support in Win98/Me remains unchanged. -offscreen_reload can 
+    still be used on Win98/Me/XP. See windows.txt for further info.
+
+Fixed indirect palettes in the System 32 driver. This fixes Sonic
+graphics finally. [Anonymous]
+
+Fixed window resizing bug when running in a window. [Wilbert Pol]
+
+Switched MDEC decoding input from CbCrY to CrCbY, and switched MDEC 
+15bit output from rgb to bgr. [smf]
+
+Removed unnecessary #includes from a number of files. Added #includes
+to files that were defining items that were declared in the header. 
+Better documented where items are defined in the header files from 
+the includes directory. [Atari Ace]
+
+Fixed some crashes in the debugger if you tried to set breakpoints
+while the game was running and there was no active CPU. 
+[Nathan Woods]
+
+Fixed crash when calling fatalerror before the system was ready for
+it. [Nathan Woods]
+
+More improvements to the Sega universal sound board. Star Trek is
+almost identical to the samples. Tac/Scan is not that far off, 
+surprisingly. [Aaron Giles]
+
+Added new function input_port_set_changed_callback() which lets you
+receive a change notification when certain bits in an input port
+have changed. See sega.c for an example. [Nathan Woods, Aaron Giles]
+
+Added new PORT_CUSTOM() macro which allows you to specify a callback
+to return the value of bits in an input port. This saves you from
+needing to intercept the port read and modify the bits there. See
+sega.c for an example. [Aaron Giles]
+
+Added new PORT_DIPLOCATION() macro which allows you to specify the
+physical PCB location of a DIP switch and the switches that correspond
+to the bits in the DIPSETTING. See sega.c for an example.
+[Aaron Giles]
+
+Updated the i8039 disassembler to the new interface. [Aaron Giles]
+
+Moved read/write handlers for input ports, watchdog, and interrupt
+enable out of the core and into machine/generic.c. Moved generic
+palette hanlders out of the core and into vidhrdw/generic.c. Clarified
+the names of many of the palette handlers and simplified the code.
+[Aaron Giles]
+
+Added code to the UI to sort the per-game inputs in a standard order.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Crystal Gal (Japan 860512) [Takahiro Nogi]
+Crystal Gal 2 (Japan 860620) [Takahiro Nogi]
+
+
+
+New clones added
+----------------
+Circus Charlie (Selectable level set 2) [Brian Troha]
+Mahjong Hana no Momoko gumi (Japan 881125) [Takahiro Nogi]
+
+
+
+0.104u6
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+thunderx0104u1yel [Pierpaolo Prazzoli]
+baraduke.c_0104u5red [Aaron Giles]
+m62.c_0104u5yel [Aaron Giles]
+model1.c_0104u5yel [Aaron Giles]
+rthunder0104u5red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Fixed various problems introduced in the last set of changes.
+[Aaron Giles, Nathan Woods, Ville Linde]
+
+Fixed dip-switches in Action Fighter. [Chaneman]
+
+Improved samples support for Congo Bongo. [Chris Law]
+
+Some improvements imported from MAME Plus!
+ * added save state support to pd4990a device for neogeo
+ * fixed crash in nitrobal/gunball (stage 4, right route) [xvi]
+
+Got Polygonet Warriors back to the POST screen. [Andrew Gardner]
+
+Reduced global namespace pollution by marking many global functions
+explicitly static, especially in the CPU cores.
+[Atari Ace, Aaron Giles]
+
+Some improvements to Magical Error. Title and attract works. No 
+sound. Hangs in game. Problems with shared mem and main-sub cpu 
+communciation. [Tomasz Slanina]
+
+Added validity checks to ensure CPU core completeness. [Nathan Woods]
+
+Added DIP switches for Agress. [Roberto Fresca]
+
+Added the missing commands and proper maker/device ids to the flash
+memory handlers for Fujitsu MBM29F016A, used by Konami FireBeat.
+[Ville Linde]
+
+Added preliminary support for the Jaleco color blending hardware 
+found in Psychic 5, Argus, and Valtric. (Some functionality is still 
+unknown). [Andrew Gardner]
+
+Major update to the Aleck64 driver. Still not fully working yet.
+[Ville Linde]
+
+Fixed comment display for processors which use an ADDRBUS_SHIFT.
+[Andrew Gardner]
+
+Added accessors to return output values for the 6821 PIA.
+[Nathan Woods]
+
+Added movie recording time to the internal profiler. [Nathan Woods]
+
+Added oversampling support to the Exidy custom sound and to the DAC
+sound system. [Aaron Giles]
+
+Sega vector game updates: [Aaron Giles]
+ - Rewrote vector generator from schematics. Yes, it is supposed to
+    be that jumpy on zooms!
+ - Corrected CPU speeds and cleaned up memory maps.
+ - Connected AY-8912 to Zektor for missing sound effects.
+ - Added emulation of the Universal Sound Board -- not yet perfected,
+    but gets rid of the need for samples in Star Trek and Tac/Scan.
+    Tac/Scan sounds pretty wretched now, but Star Trek is close.
+ - Fixed CPU clock speed on the speech board, but it appears to be a
+    bit too slow now.
+ - This is still work-in-progress. Don't report bugs yet.
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Canvas Croquis [David Haywood]
+Parallel Turn [Tomasz Slanina]
+
+
+
+New clones added
+----------------
+SDI - Strategic Defense Initiative (System 16B) [Arzeno Fabrice]
+Trivial Pursuit (Spanish Edition) [Manuel Abadia]
+Multi Champ (World) [Brian Troha]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Solar Assault [Ville Linde]
+
+
+
+0.104u5
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: a new function 
+osd_create_directory is now required in order to create memcard
+subdirectories. This function was previously defined only for the
+MESS core, so if there is a MESS port already available, you can
+just import that function.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+exprraid0103u1red [Pierpaolo Prazzoli]
+asterix053gre [Pierpaolo Prazzoli]
+asterix_2055gre [Pierpaolo Prazzoli]
+asterix_3055gre [Pierpaolo Prazzoli]
+namcos10104u4red [Aaron Giles]
+rthunder0104u3ora [Aaron Giles]
+memorycard0104u2ora [Aaron Giles]
+pause0104u2ora [Aaron Giles]
+undrfire0104u4yel [Aaron Giles]
+wwallyj0104u4red [Aaron Giles]
+scorpion0104u4red [Aaron Giles]
+itech8c0104u4red [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Hooked up missing language jumper in the Psikyo 4 games.
+[David Haywood]
+
+Added board notes to the Namco System 12 driver, hooked up the light
+gun in Ghouls Panic/Point Blank 2, and emulated Tekken Tag Tournament 
+DMA protection (still not playable). [Olivier Galibert, Duddie, smf]
+
+Fixed old debugger compilation on non-Windows platforms. Added
+mame_strnicmp along the way. [Lawrence Gold]
+
+Fixed compile errors under GCC 4.1. [Lawrence Gold]
+
+Changed the NES PPU interfaces to follow new struct conventions.
+[Nathan Woods]
+
+Updated disassembly comments support: [Andrew Gardner]
+ - fixed a 0-length comment bug (no more "// 0, " allowed)
+ - added comment output to the new debugger's dasm command
+ - changed the comment save path from /mame/comment to /mame/comments
+
+Added new debugger properties: logunmap, logunmapd, logunmapi which
+enable/disable logging of unmapped memory accesses. [Nathan Woods]
+
+Added save state support to the Astrocade driver. [Adam Bousley]
+
+Some small improvements to the Polygonet Commanders driver.
+[Andrew Gardner]
+
+Preliminary Thumb implementation for the ARM7 core. Many opcodes 
+present, but there are definite sign problems. [Ryan Holtz]
+
+Hooked up ARM7 protection CPU in KOV2. Boots but does not run or 
+play due to the Thumb sign problems. [R. Belmont]
+
+Fixed incorrect flags emulation in the 8080 CMA instruction.
+[Kopromaster]
+
+Added support for zero-length palettes (requires RGB direct mode) and
+several validity checks related to display variables. [Nathan Woods]
+
+Updated windows input code: [Derrick Renaud]
+ * Now using RAWMOUSE mode if available. This means you can now use 
+    multiple mice in Windows XP. Lightgun support has not been 
+    changed yet.
+ * Added back DX7 support for the windows input system to support 
+    multiple mice. It was set to DX5 in 104u2.
+ * Removed the system mouse from the list of available mice on 
+    non-XP systems. This allows you to now properly select the 
+    individual mouse.
+ * Modified the Analog Axes selection of the player controls to be 
+    more responsive.
+
+Cleaned up video system in Scorpion 2 driver. [El Condor]
+
+Converted asterix to use K056832 emulation. [Pierpaolo Prazzoli]
+
+Reduced encryption in Gaelco games down to equations. These still 
+need to be optimized, but the giant encryption tables are no longer 
+needed. [Nicola Salmoria]
+
+Cleaned up include files in CPU/sound cores. CPU cores should 
+generally only need to include cpuintrf.h. Sound cores should
+generally only need to include sndintrf.h. [Atari Ace, Aaron Giles]
+
+Fixed bug that caused a full set of validity checks even on release
+builds. [Aaron Giles]
+
+New debugger features: [Aaron Giles]
+ * new command "print" is a simple way to display the result of one 
+    or more expressions
+ * new command "symlist" displays all the symbols registered
+ * all save state registered scalar globals are now available as
+    symbols (prefixed by a '.')
+ * all save state registered global arrays are now available for
+    viewing/editing in the memory window
+ * all registered memory regions are also available for viewing/
+    editing in the memory window
+
+Made it a fatal error to request operations on invalid sound/CPU
+indexes. These have been logged to the error.log in the past, but
+really need to be cleaned up. Added a new function 
+safe_activecpu_get_pc() that can be used when logging PCs to smartly
+detect whether or not it is safe to call activecpu_get_pc().
+[Aaron Giles]
+
+Changed CPU init/reset callbacks. The init callback now accepts a
+number of parameters, including the CPU index, the clock, a generic
+configuration parameter, and a pointer to the IRQ callback. The reset
+callback no longer takes any parameters (the configuration parameter
+has been moved to the init callback). And the IRQ_CALLBACK getter/
+setter has been removed since this is now set up once at 
+initialization time. [Aaron Giles]
+
+Added mame_get_phase to determine which program phase (init/reset/
+running/exit) the system is in. This is intended primarily for
+assertions to enforce rules about when certain actions can be taken.
+[Aaron Giles]
+
+Rewrote winalloc to be more dynamic, and to ignore memory leaks in
+the runtime. [Aaron Giles]
+
+Fixed memcards properly. They are no longer hardcoded for the neogeo.
+The implementation has moved to generic/machine.c, and a callback
+handler very similar to NVRAM is now supported in the machine driver
+definition. Cards are created per-game, so the memcard directory now
+has a subfolder per game with each game's cards stored underneath.
+[Aaron Giles]
+
+
+
+New clones added
+----------------
+Fighters Swords (Korean rel. of Samurai Showdown III) [Haze, Razoola]
+Art of Fighting 3 (Korean release) [Haze, Razoola]
+The Last Solider (Korean release of The Last Blade) [Haze, Razoola]
+Real Bout Fatal Fury 2 (Korean release) [Haze Razoola]
+Tekken 3 (TET2/VER.B) [smf]
+Soul Calibur (SOC11/VER.C) [smf]
+Point Blank 2 (GNB5/VER.A) [smf]
+Tekken Tag Tournament (TEG1/VER.B) [smf]
+Tekken Tag Tournament (TEG1/VER.A3) [smf]
+Golgo 13 Kiseki no Dandou (GLS1/VER.A) [R. Belmont]
+Pollux (set 3) [ClawGrip]
+Out Zone (set 4) [Tormod Tjaberg]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Gamshara [smf]
+Taisen Hot Gimmick 4 Ever (Japan) [Guru, David Haywood]
+Taisen Hot Gimmick Integral (Japan) [Guru, David Haywood]
+Mahjong G-Taste [Guru, David Haywood]
+
+
+
+0.104u4
+-------
+
+IMPORTANT CHANGES FOR OSD DEVELOPERS: 
+
+1. osd_pause is no longer called directly. Rather, your osd_init 
+function should register the osd_pause callback (if necessary) using 
+add_pause_callback.
+
+2. osd_die is now handled by the core; you should remove this
+function from the OSD layer.
+
+3. logerror is front-ended in the core; it calls to a new OSD
+function osd_logerror which handles the OS-specific file and/or 
+debugger logging.
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+memwindow0104u3red [Aaron Giles]
+i9600104u2ora [Aaron Giles]
+dietgo0104u2red [Aaron Giles]
+st0016_0104u3red [Aaron Giles]
+8751MCUgames0104u3 [Aaron Giles]
+warriorb0104u2gre [Pierpaolo Prazzoli]
+cheat0104u3ora [Ian Patterson]
+
+
+
+Source Changes
+--------------
+Added comments support to the debugger. You can now dynamically add
+comments that are visible next to the disassembly view. Comments are
+saved to an XML-based .cmt file in a 'comments' directory by default
+upon exiting. [Andrew Gardner]
+
+Added "wb+" disposition to osd_tool_fopen. [Nathan Woods]
+
+Fixed cheat timer to fire at the correct rate. Also fixed 
+initialization order to work around dependency on the video/UI
+system. [Ian Patterson]
+
+Added save states to 3 more drivers: arkanoid.c, system1.c, and
+taitosj.c, and to the SN76496 sound chip for system1. [Adam Bousley]
+
+Fixed a couple of small memory leaks and a crash bug found by 
+valgrind. [Lawrence Gold]
+
+Added save state support to the tetrisp2 driver. [Nathan Woods]
+
+Added save state support to Cloak and Dagger, Mario Bros, Crazy 
+Baloon, and the SN76477 sound chip. [Adam Bousley]
+
+Hooked up the R4650 properly in the MIPS recompiler. [R. Belmont]
+
+More Namco System 23 progress: [R. Belmont]
+ - Further hardware work
+ - Hooked up H8/3002 MCU and sound system
+ - Many notes added
+ - Final Furlong 2 (World and Japan sets) added
+
+Added sanity checking to the set_visible_area() call to ensure it is
+not set larger than the screen bitmap. [Nathan Woods]
+
+Added decryption of the BIOS for the Namco System 10 games using MEMN 
+ROM boards. [smf]
+
+Changed the ROM banking of the Bellfruit 'Adder' card to the new
+standard, as well as tidying up the MPU4 emulation with some new 
+information. [El Condor]
+
+A bit more progress on Raiden 2 sprite decryption. [Olivier Galibert]
+
+Added save states to Namco Classics Collection 1 & 2, Taito B System,
+and fixed save states in Operation Wolf. [Adam Bousley]
+
+Debugger changes/updates: [Aaron Giles]
+ - added new streaming text buffer system
+ - rewrote the console window to use the streaming text buffer
+ - added new log window (Ctrl+L) which displays live error.log output
+ - added disassembly view menu to control comments versus raw or
+    encrypted opcodes
+ - added disassembly menu to the main console window as well
+ - now detect expressions with assignment or ++/-- operators as
+    commands, do you can just say "pc=0" to modify registers instead
+    of needing to type "do pc=0"
+ - fixed bug that would sometimes lock the disassembly view to the
+    top line
+
+More global system cleanup: [Aaron Giles, Atari Ace]
+ - remapped osd_die to fatalerror, which cleans up behind itself and
+    returns to the osd code by returning from run_game
+ - removed a number of unnecessary includes from driver.h
+ - moved logerror into the core
+ - moved 68000-specific build rules to cpu.mak
+ - new function skip_this_frame, should be called by drivers instead
+    of osd_skip_this_frame
+ - removed includes of osdepend.h and osd_cpu.h from drivers; only the
+    core should include these
+
+More initialization/reset/pause cleanup: [Aaron Giles]
+ - new function add_pause_callback can be called by other modules to
+    register a callback for whenever MAME is paused/resumed
+ - converted all existing pause hooks to use the new system
+ - new function add_reset_callback can be called by other modules to
+    register a callback for whenever MAME is reset
+ - converted all existing reset hooks to use the new system
+ - removed machine_reset; replaced with mame_schedule_soft_reset
+ - new function mame_schedule_exit to force an exit cleanly from
+    external events
+ - removed all the "trying_to_quit" crap from the Windows code
+ - moved save/restore system out of cpuexec.c into mame.c
+ - moved core game loop out of cpuexec.c into mame.c
+ - added hard reset support (complete tear down and re-init)
+
+More core file shuffling: [Aaron Giles]
+ - split sndintrf.c into sound.c, sndintrf.c, and sndhrdw/generic.c
+ - added #include vidhrdw/generic.h to mamecore.h, and removed all 
+    explicit includes elsewhere
+
+Added save state support to the BSMT2000 sound emulator and the
+dcheese driver. [Aaron Giles]
+
+Fixed missing save state data in the dkong driver. [Aaron Giles]
+
+Updated the 68000 disassembler to use the new interfaces.
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Fred Flintstone's Memory Match [Aaron Giles]
+
+
+
+New clones added
+----------------
+Dragon Breed (M81 pcb version) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Crazy Fight [Pierpaolo Prazzoli]
+Search for the Magical Error [David Haywood]
+Final Furlong 2 [R. Belmont]
+Gekitoride-Jong Space [smf]
+Mr. Driller G [smf]
+Kotoba no Puzzle Mojipittan [smf]
+Star Trigon [smf]
+
+
+
+0.104u3
+-------
+
+IMPORTANT CHANGE FOR OSD DEVELOPERS: osd_exit is no longer called
+directly. Rather, your osd_init function should register the osd_exit 
+callback (if necessary) using add_exit_callback. Also, several global
+variables have been moved into the Machine structure:
+
+   mame_debug -> Machine->debug_mode
+   playback   -> Machine->playback_file
+   record     -> Machine->record_file
+
+
+
+MAMETesters Bugs Fixed
+----------------------
+twinhawk0104u1gra [Alex Jackson]
+twinhawk0104u1gre [Alex Jackson]
+gtmr0100u1gre [Luigi30]
+armchmp20104u2gra [Luigi30]
+boothill0104gra [Luigi30]
+yiear0103u1gra [Luigi30]
+
+
+Source Changes
+--------------
+Cleanups to the taito_x driver: [Alex Jackson]
+ - Converted input ports to an INCLUDE/MODIFY tree.
+ - Fixed Lives DSW in twinhawk and twinhwku
+ - Removed Cabinet DSW from twinhawk and twinhwku; they are 2psim 
+    and do not support cocktail cabinets (the DSW does nothing).
+ - Fixed Coinage DSW in suprmanj
+ - removed MDRV_MACHINE_INIT(cchip1) from games that don't have a 
+    c-chip (all of them except superman)
+
+Fixed chdman to write the correct number of logical bytes when
+extracting something that is not an even number of hunks large.
+[Chris Hardy]
+
+Some Raiden 2 documentation and input port updates (still not 
+playable). [Olivier Galibert]
+
+Created new osd_tool file which is used by utility tools to do
+file access in an OS independent manner. [Nathan Woods]
+
+Fixed typo in Hyperstone core that led to false positive warning
+popups. [Pierpaolo Prazzoli]
+
+Added support for IDT-specific MIPS MUL instruction in the MIPS3
+core, recompiler, and disassembler. [R. Belmont, Aaron Giles]
+
+Replaced -high_priority with -priority, you can now specify from 
+-15 to 1. The default is -15 as this makes Dell laptop keyboards 
+work. It still won't raise the priority if running with the debugger,
+but it will lower it. Fixed a subtle bug at the same time as 
+-high_priority was only working when you used rdtsc. [smf]
+
+Added an optional xml_parse_options parameter to xml_file_read() 
+and xml_string_read(), to provide options for preserving whitespace,
+error reporting, and parser setup. [Nathan Woods]
+
+Added save states to 2 simple drivers - bombjack.c and blktiger.c. 
+[Adam Bousley]
+
+Improved graphics ROM loading order in fredmem. [Luigi30]
+
+New option -mngwrite, which records an MNG movie of the game from
+the get-go and allows you to specify a target filename. [Buddabing]
+
+Refactored/renamed/removed/added several core files: [Aaron Giles]
+ - renamed driver.c to mamedriv.c
+ - created a new driver.c containing functions defined in driver.h
+ - split common.c into video.c and machine/generic.c
+ - moved a number of mame.c functions to video.c
+
+New file debugger.h contains abstracted debugging interfaces for
+both debuggers. Added new call mame_debug_break() and a new macro
+DEBUGGER_BREAK to make it easier to hard-code breakpoints into code.
+Removed all old code that directly whacked debug_key_pressed or
+called debug_halt_on_next_instruction and replaced them with calls
+to DEBUGGER_BREAK. [Aaron Giles]
+
+Added #include "state.h" to driver.h. This means most driver files
+no longer need to explicitly include it. Went through and removed it
+from most drivers. [Aaron Giles]
+
+Reorganized the core initialization/exit sequencing to be "flatter"
+and more straightforward to understand. System cleanup is now no
+longer explicitly called by the code in mame.c. Rather, each init
+function is free to register an exit handler, which will be called
+in reverse order of registration upon a system exit. [Aaron Giles]
+
+Removed default registrations from config_init() into the init
+functions of the associated modules. Now each system that has config
+data can register its own callbacks to process it. [Aaron Giles]
+
+Renamed MACHINE_INIT to MACHINE_RESET to normalize the naming of the
+callbacks defined in the MACHINE_DRIVER structure. Added several new
+callbacks. The complete list is now:
+
+   DRIVER_INIT -- per-game init called once at startup
+   MACHINE_START/SOUND_START/VIDEO_START -- called once at startup
+   MACHINE_RESET/SOUND_RESET/VIDEO_RESET -- called each reset
+
+Save state registrations should be performed in DRIVER_INIT or 
+(preferably) in the _START callbacks; they should be avoided in the 
+_RESET callbacks if possible. [Aaron Giles]
+
+Removed VIDEO_DUAL_MONITOR flag. [Aaron Giles]
+
+Added a number of new properties to the debug views to allow for more
+flexibility in the way the views are displayed. Also added an option
+to the disassembly window to display encrypted opcode data on the
+right. [Aaron Giles]
+
+Save state changes: [Aaron Giles]
+ - Audited the use of save state registrations throughout the code,
+    switching most cases over to using the state_save_register_global
+    or state_save_register_item macros to simplify the code.
+ - Deprecated the save_state_register_<type> calls since nearly all 
+    cases can be automatically handled by the macros. For odd cases, 
+    there is now a save_state_register_memory call which is generic.
+ - Simplified the save state logic, allowing for unlimited instances
+    and reducing the complexity of the code. This breaks existing save
+    states. Sorry, I'll try not to do it again.
+
+Fixed save state support in Missile Command. [Aaron Giles]
+
+Added oversampling support to the CEM3394 emulator. [Aaron Giles]
+
+Added save state support to the CEM3394 and NES APU sound chips.
+[Aaron Giles]
+
+Added save state support to the jedi, balsente and dkong drivers. 
+[Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+Choko [Guru, Charles MacDonald]
+
+
+
+New clones added
+----------------
+Agress (English bootleg) [Pierpaolo Prazzoli]
+Tokio / Scramble Formation [Nicola Salmoria, Arzeno Fabrice]
+Bomb Kick [Pierpaolo Prazzoli]
+
+
+
+0.104u2
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+zwackery0104u1gre [Aaron Giles]
+typo0104ora [Aaron Giles]
+x86compile0104u1ora [Aaron Giles]
+
+
+
+Source Changes
+--------------
+Hooked up MCU ROM properly in the System 23 games. [R. Belmont]
+
+Fixed tilemap sizes in Nitroball. [Bryan McPhail]
+
+Fixed Panic Road color PROMs. [Nicola Salmoria]
+
+Added save state support to Night Driver (still needs save state
+support in the discrete core to be 100%). [Oshah]
+
+Miscellaneous cleanups to the 8255 PPI code; changed some 'int' types 
+to 'offs_t' and 'UINT8'. Added ppi8255_get_portA/B/C() functions. 
+Also fixed some formatting problems. [Nathan Woods]
+
+Updates to the M37710 core: [R. Belmont]
+ - Fixed LDM behavior when executing outside of bank 0
+ - Fixed various global bugs when executing outside of bank 0
+ - Fixed so top 8 bits of X & Y are preserved when in 8-bit index mode
+ - Fixed some disassembly errors
+ - Added save state support
+ - Added M37702 alias for documentation purposes
+
+Updates to the Namco System 22 driver: [R. Belmont]
+ - Necessary changes to System 22 games to use the real C74 BIOS for 
+    music/sound
+ - Added system controller register to boot the C74
+ - Speedup cheat for the CPU board C74
+ - Promoted Ace Driver from NO_SOUND to IMPERFECT_SOUND
+
+Made declarations and variables in a number of drivers static and 
+const to reduce global namespace pollution. Fixed a number of 
+multiply-defined global variables. [Atari Ace]
+
+Added state save support to the Jaleco MegaSystem 32 and YMF271
+sound core. [Nathan Woods]
+
+Fixed Windows rendering code bug where -waitvsync had no effect when 
+using -nohws -nod3d -notb. [Derrick Renaud]
+
+Hooked up preliminary support for the text layer and palette in the
+Namco System 23 driver. [R. Belmont]
+
+Deprecated the use of multimon.h in the Windows build, which is only
+necessary for producing Windows 95 and NT 4.0 compatible binaries.
+Windows 98 is now the minimum version of Windows supported for MAME.
+[Aaron Giles]
+
+Made a few minor tweaks to the Windows sources to support the latest
+build tools. See http://mamedev.org/tools if your tools are out of
+date. [Aaron Giles]
+
+Added assert_always macro which asserts even in a release build, and
+requires a friendly message. [Aaron Giles]
+
+Added new function xml_read_string, which allows for parsing of
+internal strings into XML trees. [Aaron Giles]
+
+Removed artificial gamma correction in nemesis driver. [Aaron Giles]
+
+Removed scrbitmap and memory_region from the global Machine structure.
+There is no need for non-core systems to access these directly.
+[Aaron Giles]
+
+Removed a ton of hacks that were checking for Machine->sample_rate==0,
+which is now guaranteed to never be true. [Aaron Giles]
+
+Split out ROM management from common.c and moved to a new file
+romload.c. [Aaron Giles]
+
+Added save state support to the POKEY emulator. [Aaron Giles]
+
+Cleaned up structs/unions in the debugger and Windows code to match 
+the new core conventions. [Aaron Giles]
+
+Added new function state_save_register_bitmap to simplify bitmap
+saving. [Aaron Giles]
+
+
+
+New games added or promoted from NOT_WORKING status
+---------------------------------------------------
+The Lost Castle In Darkmist [Tomasz Slanina, Nicola Salmoria]
+
+
+
+New clones added
+----------------
+Super Glob (Pac-Man hardware) German [Chaneman, David Widel]
+Burning Force (Japan old version) [Team Japump]
+
+
+
+0.104u1
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+esb0104gre [Mathis Rosenhauer]
+
+
+
+Source Changes
+--------------
+Updated the old debugger recognize ~ prepended registers.
+[Juergen Buchmueller]
+
+Fixed new makefiles to be more friendly to non-x86 builds.
+[Lawrence Gold]
+
+Improved Star Wars sound synchronization. [Mathis Rosenhauer]
+
+Hooked up 16-segment writes to the bfm_adr2 driver. [El Condor]
+
+More improvements to the darkmist driver. [Tomasz Slanina]
+
+Fixed default gun location for a number of lightgun games. [SilverFox]
+
+Altered the way MESS interacts with the core config system.
+[Nathan Woods]
+
+Added save state support to the T-11, Hu6280, and ADSP-21xx CPU 
+cores. [Buddabing]
+
+GTI Club updates: [Ville Linde]
+ - Improved K001604 tilemap emulation
+ - Very preliminary K001005 & K001006 3D graphics emulation
+ - Added some more SHARC opcodes
+
+Separated various Z80 peripherals (CTC, PIO) into separate modules.
+Added SIO module, hooked it up to NFL Football. Still no visible
+progress. [Aaron Giles]
+
+
+
+New clones added
+----------------
+Ikari 3 (Normal Joystick) [Tormod Tjaberg]
+Thunder Cross (Set 3) [Stefan Lindberg]
+Space Harrier (8751 317-0063?) [Zozo]
+Fortress 2 Blue Arcade (ver 1.01) [Pierpaolo Prazzoli]
+
+
+
+New games marked as GAME_NOT_WORKING
+------------------------------------
+Hang Pilot [Ville Linde]
