@@ -4,9 +4,6 @@
 $rootpath = $_SERVER['DOCUMENT_ROOT'] . '/';
 $releasespath = 'releases/';
 
-// Point to where you downloaded the phar
-include('./httpful.phar');
-
 function safe_filesize($size)
 {
 	if ($size!=0)
@@ -15,7 +12,6 @@ function safe_filesize($size)
 		return 0;
 }
 // And you're ready to go!
-//$response = \Httpful\Request::get('https://api.github.com/repos/mamedev/mame/releases/latest')->send();
 $filename = "latest";
 $myfile = fopen($filename, "r");
 $contents = fread($myfile, filesize($filename));
@@ -83,6 +79,7 @@ $title = 'MAME | Latest MAME Release';
 					mirrors, selected at random, which may require a temporary redirect to the mirror site in order to
 					download the file.
 					</p>
+					<p><b>Statistics are updated each 5 minutes</b></p>
 					
 					<div class="panel panel-primary">
 					  <div class="panel-heading">MAME 0.<?php echo $version ?> Official Binaries</div>
