@@ -152,7 +152,7 @@ $title = 'MAME | Latest MAME Release';
 
 						<tr>
 							<td class="link">
-							<a href="<?php echo $releasespath . $whatsnew ?>">
+							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $whatsnew ?>">
 							<?php echo $whatsnew ?>
 							</a></td>
 							<td class="number"><?php echo $whatsnew_size ?> KB</td>
