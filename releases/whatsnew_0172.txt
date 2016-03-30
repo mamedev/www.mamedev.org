@@ -1,0 +1,514 @@
+0.172
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 06168: [Crash/Freeze] (neogeo.c) kof10th: Unable to start/Fatal error (ajrhacker)
+- 06159: [Crash/Freeze] (triforce.c) triforce: Crash/Exception before OK (Osso)
+- 06144: [Crash/Freeze] Running with -video d3d -numscreens 2 and above crashes MAME
+- 06152: [Interface] "Show mouse pointer" option stays off (dankan1890)
+- 06147: [Sound] (model2.c) daytona: Some songs can not be played and cause audio 
+  to halt (R. Belmont)
+- 06145: [DIP/Input] (astrocde.c) gorf and clones: Gorf Outputs missing Quark Laser 
+  (Joystick) Lamp Output (David Haywood)
+- 06143: [Documentation] They are "Master Sets", NOT "Originals" (dankan1890)
+- 02389: [DIP/Input] (nbmj8688.c) housemnq, housemn2, bijokkog, bijokkoy: Inputs 
+  slightly wrong for the LCD games. (cuavas)
+- 06156: [Interface] a5200,a7800,smspal,sms1,sms1pal,aes,vectrex,a400,a800,c64,c128: 
+  GUI software list cartridge picker fails to select cartridge
+
+Source Changes
+--------------
+
+-Added data-driven shader system for BGFX renderer [Ryan Holtz]
+
+ * Allows an arbitrary number of passes, with arbitrary connections
+   between passes.
+ * Ships by default with three effects: default, unfiltered, and hlsl
+   * default: Simple bilinear stretch
+   * unfiltered: Simple nearest-neighbor stretch
+   * hlsl: A close reimplementation of the Direct3D HLSL shaders. Does
+           not currently support bloom or vectors.
+ * Select the "shader chain" you wish to use with -bgfx_screen_chains
+ * Adjust the settings to your liking with slider controls, saving and
+    loading settings and presets will be added in a future version.
+ * See bgfx/chains/hlsl.json ans bgfx/hlsl/blit.json for JSON format
+    rules.
+ * For additional information, see the official MAME documentation.
+
+-Improved Scanline Simulation [ImJezze]
+
+ * Changed the amount of scanline darkness, a setting of 1.0 now
+    becomes fully black (to get the same result as before, halve your
+    current setting)
+ * Scanline height now depends on the brightness of the underlying
+    color
+ * The amount of the scanline brightness and overdrive now depends on
+    the scanline darkness
+ * Renamed 'Scanline Screen Height' to 'Scanline Screen Scale' and
+    'Scanline Indiv. Height' to 'Scanline Height'
+ - Fixed Bloom Level Alignment
+   * Fixed target dimensions of bloom levels, which results in much
+      better alignment, especially for games with very low resolutions.
+      Therefore, current bloom settings might appear less intense than
+      before.
+ - Quality and Performance improvements
+   * HLSL now uses non-power-of-two-sized target surfaces (breaks
+      compatibility with graphics cards based on R300/R400/NV30 and older)
+   * HLSL target surfaces now have the size of the screen canvas
+   * Removed HLSL pre-scale factor
+   * HLSL now uses a sharp bilinear interpolation to pre-scale textures
+      to screen canvas size, based on [Themaister]'s implementation
+   * Improved overall performance. Based on the previously required
+      pre-scale factors, speedups range 5-50% depending on graphics
+      hardware, more if a higher prescale factor was used.
+   * Improved shadow mask quality (pixel-perfect) in screen-mode
+   * Fixed half source texel offset of bloom level alignment
+   * Removed ./hlsl/artwork_support folder
+   * All shaders after pre-scale are now based on screen coordinates
+      (workaground until both raster and vector passes can work on texture
+      coordinates)
+   * Disabled distortion shader for more than one screen and for
+      artworks in full mode, does not affect artworks in cropped mode
+      (workaground until both raster and vector passes can work on texture
+      coordinates)
+
+-at: Created at motherboard device and split PCI and PS/2 machines into
+ own files [Carl]
+
+-UI [Maurizio Petrarota]
+ * Enabled user interface navigation through UI_CONFIGURE button (tab
+    key by default).
+ * Added support for "covers" images collection.
+ * Added support for "gameinit.dat".
+ * Improved ROM-less checking at startup.
+ * Improved vertical orientation rendering.
+ * Fixed missing mouseover highlight.
+ * Fixed search in software lists.
+ * Fixed DATs reload after path changes.
+ * Fixed software load failure from BIOS submenu.
+ 
+-Bloom refactoring [ImJezze]
+ * Calculation of bloom dimensions is now done only once, when render
+    target is created.
+ * Reduced blur width for non-vector screens.
+ * Implemented shadow UV option for source tile mode.
+
+-apple2gs.cpp: Dumped the 341-0749 ROM and confirmed the 341-0728 Apple
+ IIGS ROMs. [Brian Troha]
+
+-Type-safe C++ printf analog and vector-backed iostreams [Vas Crabb]
+ * Supports most C99, glibc, SUS and MSVCRT format specifications
+ * Allows formatting any object with stream output operator with %s
+ * Replaces strformat, strprintf and strcatprintf
+ * Move to type-safe templates for logerror and popmessage
+ * Remove now-unnecessary I64FMT from calls to logerror/popmessage
+ * Eliminate core_i64_format functions for the most part
+
+-Modernised much of the file handling code [Vas Crabb]
+ * Made core_file, osd_file, and avi_file and polymorphic classes
+ * Moved osd_file implementations to shareable OSD module code
+ * Made zip/7z implementations of archive_file with common API
+ * Prefer destructors over explicit close functions
+ * Made APIs supply smart pointers
+ * Pass std::string though lots of APIs rather than C string pointers
+ * Added methods for flushing user-space file buffers
+ * Made archive_file create/destroy thread-safe
+ * Fixed buffer overrun when walking zip ECD
+ * Fixed some resource leaks in file handling code
+ * Fixed edge cases where incorrect error code was returned on Windows
+ * Added Solaris PTY implementation
+ * Support ~/$FOO/${BAR} expansion with SDL OSD
+ * Made emu_file handle zip and 7z archives identically
+ * Search archives with CRC+path, CRC+partial path, CRC, path, partial
+    path when loading ROMs/artwork/cheats/etc.
+ * Added support for 7z archives via zippath API
+ * Support 7z archives for fullpath loading and media file manager
+ * Made romcmp tool support 7z archives
+
+-Improved OSD font API [Vas Crabb]
+ * Release font handles on destruction
+ * Moved font enumeration into OSD, implement for SDL, Windows, OSX
+ * Fixed drawing characters outside Unicode BMP with sdl_ttf
+ * Support TTC fonts with sdl_ttf
+ * Separated font display names from configuration names
+ * Made OSX font configuration name the PostScript face name
+ * Made sdl_ttf configuration name Family|Style
+ * Supply ui_small font as a BDF file with Adobe glyph names
+
+-Fixed stack smash bugs in INP read/write and better encapsulate the INP
+ header I/O code (thanks Tafoid for reporting), fix divide-by-zero in
+ pathological case of zero-frame recording [Vas Crabb]
+
+-Fixed file naming issue when creating new image from internal file
+ manager with media loaded (thanks BIOS-D for reporting) [Vas Crabb]
+
+-Fixed many mismatched free() / delete / delete [] errors [Vas Crabb]
+
+-Cleaned up primary.fx [ImJezze]
+ * Split primary.fx into 3 techniques for vector buffer, screen
+    and UI pass
+ * Moved register_texture() for shaders outside of texture_info
+    creation
+ * Added render_primitive parameter to register_texture(); currently
+    unused
+ * Removed other unused register_texture() definition
+
+-IGS009 driver improvements: Added both missing PPI8255 devices and
+ routed all inputs/outputs through them. Derived a memory map for Grand
+ Prix '98, that seems to lacks of these devices. [Roberto Fresca]
+
+-Rewrote input routines as modules [Brad Hughes]
+
+-Reparented all sets of IGS Jingle Bell. Added technical information
+ about the hardware [Roberto Fresca]
+
+-Few miscellaneous N64 changes / improvements [Happy]
+ * Changed MemPak formatting code to better document actual format.
+ * Avoid adjusting screen timings when VI blank video mode set.
+ * Fixed: PIF reportedly only clears top bit of status byte.
+ * Fixed: DD read fail needs to mask against head as well as track.
+
+-Fixed flipped sprite positioning in toypop [Katsuhiko Kagami]
+
+-crazybon improvements [Vas Crabb, Ioannis Bampoulas]
+ * Updated DIP switch descriptions/defaults according to manual
+ * Hooked up reel stop buttons and add to layout
+
+-Added original Dyna Cherry Master '99 QL-1 V9B.00 set [Vas Crabb, Ioannis Bampoulas]
+ * Renamed existing set to cmast99b - it's hacked to remove Dyna name
+ * Added DIP switch settings and defaults from manual, nothing confirmed
+ * Confirmed correct ROM loading
+ * Added notes, including how to reach input test
+
+-newbrain: Dumped the COP internal ROM. [Chris Despinidis] 
+
+-newbrain: Rewrote the driver to modern standards. [Curt Coder] 
+
+-cop400: Implemented the MICROBUS interface. [Curt Coder]
+
+-peplus.cpp: Added dump of cap1144.u50 [Badbaud]
+
+-segam1audio: Fixed ROM mapping (MT6147) and corrected authorship. [R. Belmont]
+
+-Butterfly Dream 97: Created its own machine driver. Perfectly decoded
+ graphics for gfx bank 1. [Roberto Fresca]
+
+-Butterfly Dream 97: Decoded graphics for gfx bank 2. [Roberto Fresca]
+
+-NoteTaker: Documented more multiprocessor related addresses, fixed some
+ address map issues. [Lord Nightmare]
+
+-HLSL presets [ImJezze]
+ * Added general presets for raster and vector screens
+ * Added special presets for Game Boy (monochrome LCD) and Game Boy
+    Advance (color LCD)
+
+-ibm5170.xml: Added SICOS mouse driver and SICOS Paint. [Curt Coder]
+
+-Super Poker: Added the missing PPI 8255s and routed the involved
+ inputs/outputs through them. 3super8 has PPI initialization
+ routines, but seems to be a leftover since it lacks them. Also
+ cleaned up the driver and added technical notes. [Roberto Fresca]
+
+-Added layout for Frankie Dettori's 7th Heaven [John Parker]
+
+-NoteTaker: Hooked up more of the IOCPU I/O registers. Separated reset
+ functions for IOCPU and EmulatorCPU. [Lord Nightmare]
+
+-NoteTaker: Updated documentation further. Added commented out I/O map
+ for the EmulatorCPU [Lord Nightmare]
+
+-Rewrote Super Cross II driver due to relicensing [Angelo Salese]
+
+-NoteTaker: Implemented the DAC, DAC Timer, and DAC FIFO, the BIOS now
+ beeps on boot. Fixed several wrong polarity status bits. Documented
+ where the framebuffer lives. Better documented the boot process.
+ Hooked up the VSync Interrupt. [Lord Nightmare]
+
+-Updated Frankie Dettori layout to MAME 'dark' style [John Parker]
+
+-svi318: Rewrote driver. Supported are the SVI-318 and SVI-328
+ systems, and a slot system which adds support for the following
+ expander slot options:
+ * SV-601 Super Expander
+ * SV-602 Single Slot Expander
+ * SV-603 Coleco Game Adapter (no controller support yet)
+ The slot expander cards enable support for the standard
+ Spectravideo expansion slots. Of those, the following
+ cards are fully emulated:
+ * SV-801 Disk Controller (with 2 disk drives)
+ * SV-802 Centronics Printer Interface
+ * SV-803 16k memory expansion
+ * SV-805 RS-232 Interface
+ * SV-806 80 column card
+ * SV-807 64k memory expansion [Dirk Best]
+
+-NoteTaker: Hooked up screen framebuffer. Hacked the Odd/Even interrupt
+ so screen drawing happens. [Lord Nightmare]
+
+-NoteTaker: Fixed another typo in BIOS 1.5, no longer runs off into the
+ weeds and actually tries to load from floppy now. Needs FDC hooked up
+ still. [Lord Nightmare]
+
+-r9751 improvements [Brandon Munger]
+ * Fixed more DMA issues and added more logging
+ * Moved PDC floppy command trigger to correct register
+
+-Added common debugger commands to global menu bar in OSX [Vas Crabb] 
+ Also fixed occasional crash in Copy Visible.  Note that copy
+ visible, paste, toggle breakpoint, and view options still require you
+ to use context menus in windows.  Debug/Run menus only work when a
+ debugger window has focus, so Break is less useful than it could be.
+
+-floppy: Fixed subtle interaction between wd_fdc initial restore and floppy reset [O. Galibert] 
+
+-IGS Super Poker: Decrypted all the US/UA sets. They are still not
+ working due to hardware differences with the former ones laying in the
+ driver. I/O are driven through IGS custom IC's instead of 2x PPI8255
+ devices. [Roberto Fresca]
+
+-NoteTaker: Attached FDC and floppy drive. [Lord Nightmare]
+
+-NoteTaker: Began to hooking up DiskReg register. [Lord Nightmare]
+
+-netlist updates: [Couriersud]
+ * First steps to move towards c++11.
+ * Based plist on std::vector
+ * Replaced pstack with std::stack
+ * Removed pnamed_list
+ * Use c++ "for each" in a number of places
+ * Fixed two "time bombs" 
+
+-Implemented integer scaling in core renderer [Calamity]
+ * Moved -unevenstretch option to core renderer.
+   -unevenstretch:   fractional stretching (default)
+   -nounevenstretch: integer scaling
+ * Added new options to core renderer:
+   -unevenstretchx:  fractional stretching on horizontal axis, integer
+                     scaling on vertical axis
+   -intscalex:       horizontal integer scale factor, default is 0 (auto)
+   -intscaley:       vertical integer scale factor, default is 0 (auto)
+
+-Symbolics 3600: Added more documentation of the FEP PCB from PCB pictures.
+ [Lord Nightmare]
+
+-Symbolics 3600: Fixed ROM mapping, add a few more PLD/PLA/PAL labels.
+ [Lord Nightmare]
+
+-A lot of TTF fonts (including C/J/K fonts like unifont) do not have a
+ type attribute "Regular". This fix will load the first font found if
+ no "bold" "bold italic" "italic" or "regular" attribute was found.
+ [Couriersud]
+
+-Neo-Geo updates: [JacKc]
+ * Added correct ROM labels and locations for ASOII and Burning Fight
+    early prototypes
+ * Added ROM locations for Last Resort prototype
+ * Marked alpham2p AES VERSION
+ * Marked burningfp AES VERSION
+ * Marked lresortp MVS VERSION
+
+-Converted shanghai.cpp to use the non-legacy hd63484 video device.
+ [Angelo Salese]
+
+-Rewrote overly complex rawinput_device_improve_name function for
+ rawinput module, plus fixing some other defects in input modules as
+ detected by coverity. [Brad Hughes]
+
+-Added support for Raspberry Pi cross-compile [Miodrag Milanovic]
+
+-pcat_dyn: Added sound and marked toursol working [Carl]
+
+-Symbolics 36xx: Renamed driver from s3600 to s3670 to better reflect
+ the actual model of what we're trying to emulate. Added more memory
+ maps from the patent, but these do not seem to match the 3670 exactly,
+ more investigation is required. [Lord Nightmare]
+
+-Added additional sanity checking to the tms9927/crt5027 core.
+ [Lord Nightmare]
+
+-Software List cart added (crvision): Tennis (Dick Smith, earlier, 6k
+ Cart  [Luca Antignano, Herman Heritage]
+
+-apple3 updates: [R. Belmont, robj]
+ * RAM is always present at FFCx, eliminated previous need for hack
+ * VIAs are clocked by PRE1M (1 MHz), fixes Confidence Test
+ * Fixed joystick reading; works in Sandman and Atomic Defense
+ * Hooked up HBlank input to VIA 1 PB6
+ * Support raster splits; Atomic Defense is playable (pick joystick B)
+ 
+-symbolics.cpp: Added model list of the various Symbolics Inc. Lisp
+ machines [Ian F./trintr0n]
+
+-NAOMI/Triforce/Chihiro: Updated documentation [f205v, MetalliC]
+
+-Implemented integer scaling in core renderer [Calamity]
+
+-Coco Loco: Added technical notes [Roberto Fresca]
+
+-nbmj8688 improvements [Vas Crabb]
+ * Improved mapping of start buttons in two-player cocktails with LCDs
+ * Flipped Player 2 view in two-player games with LCDs to better represent
+    what they see from their side of cocktail cabinet
+ * Added DIP locations for  and
+    livegal
+ * Documented DIP switch functions/locations for bijokkoy, bijokkog,
+    housemnq, housemn2, livegal, mcitylov, iemotom, ryuuha, kanatuen,
+    kyuhito and idhimitu
+ * Made analyser switch a toggle for many games
+
+-Corrected ROM names in seganinj set [Mathieu Patard]
+ * Also added correct 'rev A' sprite ROM (the program ROMs were rev. A,
+    looks like this ROM was missed when it was dumped before)
+
+-Netlist: code maintenance [Couriersud]
+ * Renamed netlist_analog_t to analog_t
+ * Straightened object model
+ * Reduced access to member variables
+ * Use pvector<analog_net_t::list_t> for groups.
+ * Simple coverity fixes.
+
+-Symbolics 3670: Added a lot more notes about the FEP/NFEP board PALs and
+ PROMs noting where the equations for various PALs/PROMs are in the
+ patent [Lord Nightmare]
+
+-Symbolics 3670: Traced out more of the FEP v24 I/O memory map based on
+ the PALs from the patent [Lord Nightmare]
+
+-apple3: Started filling in the software list. [R. Belmont]
+
+-Improved documentation for SMS software and input devices [Enik]
+
+-apple2: Started reverse-engineering the AE PC Transporter card [R. Belmont]
+
+-Initial work to make MAME work on Android [Miodrag Milanovic]
+
+-sliders.cpp: Made Alt+Arrow minimize or maximize value. [Ryan Holtz]
+
+-Swapped the endianess of the md_slot device bus to big endian, fixing
+ megadriv cheats  [Pugsy]
+
+-Initial Z80SCC baudrate generator support [Joakim Larsson]
+
+-svga_s3: Fixed potential crash when hardware pointer is at the edge of
+ VRAM, and fixed viewport scrolling in XF86_S3. [Barry Rodewald]
+ 
+-atarittl.cpp: Bugle ROM redumped for Steeplechase. [Andrew Welburn]
+
+
+Translations added or modified
+------------------------------
+Chinese (Traditional / Simplified) [YuiFAN]
+Dutch [Wilbert Pol]
+French (Belgium) [Mevi]
+German [RafTacker, rootfather]
+Greek [BraiNKilleRGR]
+Italian [AntoPISA, Angelo Salese, Fabio Priuli]
+Japanese [Katsuhiko Kagami, Vas Crabb]
+Portugese (Brazil) [Ashura-X]
+Russian [MetalliC]
+Serbian (Latin/Cyrillic) [Damjan, Miodrag Milanovic]
+Spanish [A.Viloria]
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Lock On (Philko) [marcus, David Haywood]
+Chicken Draw (2131-04, U5-01) [Kevin Eshbach, The Dumping Union]
+Fire Ball (FM Work) [Team Europe, David Haywood]
+Android (early build?) [Ryan Holtz, David Haywood]
+Magical Touch [Carl]
+Tournament Solitaire (V1.06, 08/03/95) [Carl]
+Conic Electronic Football [hap, Sean Riddle]
+Gakken FX-Micom R-165, aka Tandy Radio Shack Science Fair Microcomputer Trainer
+  [hap, Sean Riddle]
+Castle Toy Einstein [hap, Sean Riddle]
+Coleco Head to Head Basketball/Hockey/Soccer [hap, Sean Riddle]
+Bandai Burger Time [hap, Kevin Horton, Rik]
+Bandai Pengo [hap, Kevin Horton, Rik]
+Bandai Zaxxon [hap, Kevin Horton, Rik]
+Gakken Jungler [hap, Kevin Horton, Rik]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Batsugun (Korean PCB) [Alex Cmaylo]
+Player's Edge Plus (X002252P+XP000050) Shockwave Poker [BrianT]
+Player's Edge Plus (X002309P+XP000038) Triple Double Bonus Poker
+  [BrianT]
+Pleiads (Niemer S.A.) [pako ikarihardmods, Roberto Fresca]
+Armed Police Batrider (Hong Kong) (Mon Dec 22 1997)
+  [Trap15, The Dumping Union]
+Jingle Bell (EU, V141) [Roberto Fresca, Ioannis Bampoulas]
+Knock Out!! (bootleg, set 3) [Paul Hogger]
+Cabal (UK, Trackball) [caius]
+Hipoly (bootleg of Hyper Olympic) [Roberto Fresca, Peter Weuffen]
+Last Resort (prototype) [Chris Ransley]
+Crazy Climber (Spanish, Rodmar bootleg) [A.R.P.A.]
+Buccaneers (set 3, harder) [system11]
+My Hero (bootleg, 315-5132 encryption) [Andrew Welburn]
+Coco Loco (set 2) [AUMAP, Roberto Fresca]
+Major Title 2 (World, alt sound CPU) [Mathieu Patard]
+Pac-Man (SegaSA / Sonic) [A.R.P.A.]
+Come Come (Petaco SA bootleg of Puck Man) [Manuel Giron]
+Come-Cocos (Ms. Pac-Man) ('Made in Greece' Herle SA bootleg) [Heckler]
+Moon Cresta (SegaSA / Sonic) [Roselson (from AUMAP)]
+Pac-Man (Moon Alien 'AL-10A1' hardware) [caius, Joachim Puster]
+Wave Runner GP (original, Rev A) [Arzeno Fabrice]
+Spartan X (Tecfri hardware bootleg) [farzeno, rockman, David Haywood]
+Toki (US, prototype?) [Kevin Eshbach]
+M.A.C.H. 3 (set 2) [Matt Ownby]
+M.A.C.H. 3 (set 3) [??]
+Apple IIgs (ROM03 late prototype?) [Brian Troha]
+Super Bishi Bashi Championship (ver KAB, 3 Players) [Skate]
+Pac-Gal (set 2) [kurobee]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Lucky Bar (W-4 with mc68705 MCU) [Roberto Fresca, Ioannis Bampoulas]
+Cherry Angel (encrypted, W-4 hardware)
+  [Roberto Fresca, Ioannis Bampoulas]
+Sharp Wizard OZ-750 [Sandro Ronco]
+Butterfly Dream 97 / Hudie Meng 97 [Roberto Fresca, Ioannis Bampoulas]
+Super Poker (v306US) [Roberto Fresca, Ioannis Bampoulas]
+Symbolics 3600 [trinitr0n/Ian F., Lord Nightmare]
+Cherry Master '99 (V9B.00) [Vas Crabb, Ioannis Bampoulas]
+Konami Contra (handheld) [hap, Sean Riddle]
+Super Game (Sega Master System Multi-game bootleg) [Astroblaster] (incomplete dump)
+Game Tree (PSE) [Andrew Welburn]
+
+New clones marked as NOT_WORKING
+--------------------------------
+
+Coco Loco (set 3) [AUMAP, Roberto Fresca]
+various Super Poker sets 
+ - (v205US), (v203US), (v200UA), (v102UA) [Roberto Fresca, Ioannis Bampoulas]
+ - (v114IT) [Mirko Buffoni, Roberto Fresca]
+ - (v116IT-MX) [MiX, Roberto Fresca]
+various Jingle Bell sets 
+ - (US, V157), (EU, V155), (EU, V153) [Roberto Fresca, Ioannis Bampoulas]
+Sega Ninja (315-5113) [Mathieu Patard]
+
+New WORKING software list additions
+-----------------------------------
+
+tutor.xml:
+Super Bike (Jpn) [Jim]
+Battle Fighter (Jpn) [Jim]
+4-nin Mahjan (Jpn, set 2) [Jim]
+
+crvision.xml
+Tennis (Dick Smith, earlier, 6k Cart)  [Luca Antignano, Herman Heritage]
+
+apple3.xml
+Atomic Defense [R.Belmont]
+Tic-Tac-Toe [R.Belmont]
++ more
+
+New NOT_WORKING software list additions
+---------------------------------------
+
+gamate.xml:
+GP Race [Peter Wilhelmsen]
