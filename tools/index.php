@@ -72,9 +72,17 @@ git config --global user.name <span class="pl-s"><span class="pl-pds">"</span>Fi
 <h2><a id="user-content-updating-build-tools" class="anchor" href="#updating-build-tools" aria-hidden="true"></a>Updating build tools</h2>
 
 <p>Similar to package managers on Linux like apt-get, yum etc. MSYS2 can automatically update packages for fixes, security updates etc.
-To update all installed packages to current:</p>
+To update all installed packages to current, from a regular Windows console run the following:</p>
 
-<div class="highlight highlight-source-shell"><pre>pacman -Syu</pre></div>
+<div class="highlight highlight-source-shell"><pre>pacman -Sy<br/>
+
+pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
+
+<p>Next, exit the console and restart Msys2.</p>
+
+<p>Finally, once back at the console, execute:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -Su --noconfirm</pre></div>
 
 </a><p><a name="user-content-updating"></a><a name="user-content-advanced"></a></p><a name="user-content-advanced">
 
