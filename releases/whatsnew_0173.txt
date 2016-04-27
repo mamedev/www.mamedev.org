@@ -1,0 +1,440 @@
+﻿0.173
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 04965: [Interface] Games with no screen produce no "final.png" with -STR (Osso)
+- 04919: [Flip Screen/Cocktail] (dynduke.c) All sets in dynduke.c: Most of background 
+  missing on Flip Screen (Osso)
+- 06181: [Documentation] (vicdual.c) tranqgun: The correct description is 
+  "Tranquillizer Gun" (M.A.S.H.)
+- 06170: [Compiling] OpenMP: OpenMP-enabled builds of MAME 0.172 fail to compile (Jindřich Makovička)
+- 05897: [Misc.] (hornet.c) gradius4: "MASK ROM CHECK" in service mode fails (Ville Linde)
+- 06176: [Crash/Freeze] (ksys573.c) All sets in ksys573.c using CD: Unable to boot (crazyc)
+- 06019: [Interface] Wrong default bios outputted with -listxml command. (dankan1890)
+- 06174: [DIP/Input] (twincobr.c) fshark, skyshark, hishouza, tp84, tp84a, tp84b: Dipswitch info
+- 01792: [DIP/Input] (subsino2.c) bishjan: Keyboard mode does not work (Luca Elia)
+- 06175: [Misc.] (apple2.c) apple2jp: Ctrl-T = Inverse kana ? (R. Belmont)
+- 06182: [Core] (cgenie.c) All sets in cgenie.cpp: Crashing upon starting! (Fabio Priuli)
+- 06163: [Misc.] (apple2e.c) apple2e: XPS Diagnostic IIe test failed! (R. Belmont)
+- 06074: [DIP/Input] (glasgow.c) glasgow: Mouse no longer able to move chess pieces (Robbbert)
+- 06173: [Core] All software saving SRAM: Software loaded outside of software list 
+  (e.g. -cart PATH_TO_ROM) fails to save SRAM (dankan1890)
+- 06172: [DIP/Input] (sms.c) Default input mapping for two paddle devices causes a conflict (AJR)
+- 06178: [Crash/Freeze] liblrabl: Reset during second loop of attract mode. (Angelo Salese)
+
+Source Changes
+--------------
+-new Android icon images [JacKc]
+
+-Compressed internal layouts [David Haywood]
+
+-TMS5220/5110 merge Part 1 [Lord Nightmare]
+
+-Crystal Colours (Ver 1.02): Added default NVRAM. Also added more
+ technical notes [Roberto Fresca]
+
+-Added dedicated inputs for both Crystals Colours sets. Also added more
+ technical notes. [Roberto Fresca]
+
+-Iterate over core classes C++11 style [AJR]
+
+-borrow string processing code from ui.cpp so that £ works in layouts
+ (using UTF-8 encoding at least) [David Haywood]
+
+-updated sc4fd7tha.lay with UTF8 encoding of £ sign [Krick]
+
+-Recognize the full range of controller inputs [AJR]
+
+-redump leapstertv [Team Europe]
+
+-Initial Catalan translation [jmallach]
+
+-naomi.c: add Derby Owners II protection key [MetalliC]
+
+-Reduce the incidence of required_device<palette_device> in subdevices [AJR]
+
+-UML: Added FCOPYI and ICOPYF instructions to pass raw data between
+ integer and floating-point registers. [Ville Linde]
+
+-mips3: Fix behavior for 32/64 bit mode floating point register
+ aliasing.[Happy]
+
+-Magic10 driver: Added technical notes, game status, defined clocks,
+ fixed inaccurate notes, and some driver cleanups. [Roberto Fresca]
+
+-screen: svg rendering from inside the rom. [O. Galibert]
+
+-Updated Portuguese (Brazil) [Ashura-X]
+
+-luaengine: add plugin options menu [Carl]
+
+-Major Havoc: Updated Gamma CPU address decoding/mirroring from the
+ schematic [Lord Nightmare]
+
+-FB01: fix ROM label to match actual chip [anonymous]
+
+-Magic Crystals: Improve ROM labeling for Japan set based on PCB
+ picture, and noted that the Japan set we have is revision 2, but a
+ revision 0 exists, undumped [Lord Nightmare]
+
+-TMS5220: add a 'combined rs/ws write' function for systems which
+ require both pins to change at exactly the same time and not to reset
+ the chip. [Lord Nightmare]
+
+-Revert software-installed slot/image options when changing software [AJR] 
+ Remove emu.h's stealth include of emuopts.h through mconfig.h;
+ reduce dependency on emuopts.h in other headers and source files.
+ MCFG_CPU_FORCE_NO_DRC is now a CPU configuration parameter rather than
+ a global one; it still works to override the -drc option setting.
+
+-fix some missing gfx in bbusters / mechatt [dink]
+
+-Make overscan on integer scaled targets optional (add option -intoverscan). [Calamity]
+
+-luaengine: direct and region accessors [Carl]
+
+-This one documents what I think is a real bug of the Japanese game
+ Sports Pad Soccer: part of the player 2 input is read from player 1
+ input instead. Also, reorganized code of the Japanese Sports
+ Pad controller device and replace some PORT_CUSTOM/PORT_CHANGED
+ callbacks with PORT_READ_LINE/PORT_WRITE_LINE. [Enik]
+
+-Add experimental cheat lua plugin [Carl]
+
+-Improvements to tape driver of hp9845b [F. Ulivi]
+
+-info.cpp: Improved documentation of input devices in the -listxml
+ output, since having just a generic 'number of buttons' is rather
+ pointless in the context of home systems with configurable controllers
+ (being them keyboards, keypads or joypads). Now the various
+ controllers are listed separately with the number of buttons they
+ have. Frontend authors who relied on the "buttons" attribute of the
+ input node for any kind of filter shall now scan all available
+ controllers and take the maximum among their "buttons" attribute
+ (possibly discarding keyboards and keypads if they want) to recover
+ the old value. [Fabio Priuli]
+
+-info.cpp: Started to acknowledge PORT_16WAY inputs in -lx, since they
+ were reported as 8-ways so far. [Fabio Priuli]
+
+-Devfind revision phase 1, cleaning out some legacy stuff [AJR]
+ * Eliminate the cached device_t::m_region pointer and its region()
+    getter method. Devices that need to bind to a region with the same
+    tag should use optional/required_memory_region or
+    optional/required_region_ptr with DEVICE_SELF as the subtag; this
+    improves error checking. (DEVICE_SELF has been moved to device.h
+    for greater visibility in the source.)
+ * Allow required/optional_region_ptr to specify a specific length
+    which must match that of the region found.
+ * Implement finder_base::finder_tag() getter for diagnostic purposes.
+ * Perform some (not very efficient) validity checks on memory region
+    finders instead of allowing them to automatically pass.
+ * Privatize device_memory_interface::m_addrspace.
+
+-Magic 10 driver: Added technical notes and a missing PLD dump. [f205v]
+
+-Added m62(kidniki) to nl.lua. Started some experiments around parallel
+ solving of linear equations. This code is not active. Fix kidniki
+ audio performance. [Couriersud]
+
+-plugins/timer: add sample plugin for game time [Carl]
+
+-info.cpp: first attempt to fix the longstanding issue about inputs
+ owned by devices being always tagged as P1 inputs in -lx.
+ [Fabio Priuli]
+
+-plugins/cheatfind: start lua cheat finder library [Carl]
+
+-apple2: Additional work on the PC Transporter [Peter Ferrie, R. Belmont]
+
+-Basic TCP server based on libuv [Inaki Baz Castillo,Miodrag Milanovic]
+
+-intv: Converted controller inputs to be slot devices. [Fabio Priuli]
+
+-intvecs: Converted hand controllers, keyboard and synth to be slot
+ devices, by using a temporary hack to workaround the impossibility to
+ plug the same device into 2 different slots as these keyboard require.
+ [Fabio Priuli]
+
+-Skeleton implementation for Universal windows main app classes. [Brad Hughes]
+
+-String Translate for Chinese (Traditional / Simplified) [YuiFAN]
+
+-diimage.cpp: Allow image devices to be configured with a fixed (not
+ user selectable) piece of software and updated a few options and menu
+ to acknowledge such possibility. [Fabio Priuli]
+
+-macs.cpp: Converted to use generic cartslot with fixed software
+ configuration. Cleaned up loading and banking systems in the driver as
+ a result. [Fabio Priuli]
+
+-Added extra bit as delay between bytes to make 1 stop bit work [Joakim Larsson]
+
+-apple2: Further PC Transporter work.  V30 now boots. [Peter Ferrie, R. Belmont]
+
+-mips3: Fixed DMULT and DMULTU in both interpreter and DRC modes. [marathonman]
+
+-ng_aes.cpp: converted AES controllers to work through slot devices.
+ Also, separated more clearly the CD component by the base unit.
+ [Fabio Priuli]
+
+-am9517: add clone with the non-standard mask behavior of the PC
+ Transporter ASIC [Carl, R. Belmont]
+
+-apple2: updated PC Transporter to use alternate DMAC emulation & fixed
+ V30 clock. [Peter Ferrie, R. Belmont]
+
+-apple2: PC Transporter: halt V30 properly on startup, XT has 8-bit
+ ISA, improved 6502 CGA framebuffer writes. [R. Belmont]
+
+-screen: Fix alpha handling, cdkong looks good now [O. Galibert]
+
+-bgfx: Add data-driven render target clearing [Ryan Holtz]
+
+-Significant speed improvement:
+ * added a new solver using compressed row format
+ * fixed sorting
+ As a result, netlist performance on kidniki nearly doubled. The
+ performance increase is mainly due to the fact that sorting decreases
+ the number of operations for gaussian elimination of the kidniki
+ matrix from ~7800 to 707. In addition, compressed row format improves
+ L1 usage. [Couriersud]
+
+-Eliminate device_t::static_config, a type-unsafe legacy feature. [AJR]
+
+ *Rewrite or remove every last instance of MCFG_DEVICE_CONFIG and its
+  two aliases, including within comments and dead code.
+
+ *Make the Z80/Z180 daisy chain an interface that interfaces with the
+  existing interface. Z8000 has been hooked up to this as well (p8000_16
+  already configures it), but currently does nothing with it.
+
+-mips3: Fixed interpreter bug where BADCOP exceptions would execute the
+ faulting opcode twice. [Ryan Holtz]
+
+-Update strings.po [aviloria]
+
+-Update German GUI translation [rootfather]
+
+-Added ImGui based debugger.  [Barry Rodewald]
+
+-apple2e: fix C800 internal ROM reading [R. Belmont]
+
+-New PlayChoice-10 BIOS (Single Screen, Freeplay fix, Newer?) [Firehawke]
+
+-apple2: fixed inverse text drawing. [R. Belmont]
+
+-Added HQ2x, HQ3x and HQ4x shaders.  [MooglyGuy,Jules Blok,Cameron Zemek,Maxim Stepin]
+
+-soft is hard and hard is soft. Two is one and one is two. No wonder
+ "-video accel" has substandard performance if opengl is disabled.
+ [Couriersud]
+
+-These init calls all returned false. No need for a return value in
+ this case. [Couriersud]
+
+-Iterate over devices C++11 style [AJR]
+
+ Replace the old device_iterator and its specialized versions with
+ functionally equivalent classes that use standard operators to yield
+ references to devices/interfaces rather than pointers. With
+ range-based for loops, they no longer have to be stored in named
+ variables, though they can also be reused concurrently since the
+ iteration state is now maintained by a subclass.
+ Add a few more typical getters to device_t::subdevice_list.
+
+-bgfx: Added SuperEagle shader. [Ryan Holtz]
+
+-Refactored distortion pass [ImJezze]
+ * separated curvature parameter into distortion, cubic_distortion and
+    distort_corner
+ * distortion and cubic_distortion can be negative, to compensate each
+    other
+ * distort_corner is intependent from the image distortion
+
+-neogeo: reworked inputs to work through the slot device interface. you
+ can now configure the 15-pin ports available in the multicart driver
+ (neogeo) with the -crtl1 and -ctrl2 options. Thus, if you want to launch 
+ janshin in neogeo with the mahjong control panel you shall now prescribe
+    -edge "" -ctrl1 mahjong
+ and set accordingly the dipswitch (the first option disables inputs
+ from the edge connector). When you run single game drivers (e.g. mslug, 
+ or kof94, etc.), instead, a unique controller is available and cannot 
+ be modified. In particular, the janshin driver already comes 
+ pre-configured in the proper way. [Fabio Priuli]
+
+-Refactor OSD window.  [Brad Hughes]
+ Unified renderer in osd_window as std::unique_ptr
+ Made windows all std::shared_ptr<window_type> Made window lists
+ std::list<std::shared_ptr<window_type>> Updated OSD SDL worker_param
+ to not use malloc (not compatible with smart pointers) Made renderer
+ pointer to window a weak reference. May not be available during
+ destruction of the window.
+
+-Alta Tensione: Added technical notes, game status, and patched the
+ boot protection. [Roberto Fresca]
+
+-Split UI and frontend part from core [Miodrag Milanovic]
+
+-Implemented dynamic loading of precompiled solver code. [Couriersud]
+
+-saturn.cpp: converted controllers to work through slot devices,
+ cleaning up the related code. [Fabio Priuli]
+
+-saturn.cpp:  Added support for SegaTap adapter (4 controllers) and 
+ Sega Multitap adapter (6 controllers). Saturn Bomberman can now be
+ played as intended. [Fabio Priuli]
+
+-softlist.cpp: add support for "rom_ignore". [Fabio Priuli]
+
+-itgambl2.cpp driver: Added technical notes and some clean-ups
+ [Roberto Fresca]
+
+-apple2: fixed Apple II J-Plus text drawing, and updated notes
+ [R. Belmont]
+
+-r9751: add more floppy debugging and fix DMA masking
+ [Brandon Munger]
+
+-ioport.cpp: extended core input to support up to 10 players.
+ [Fabio Priuli]
+
+-dumped Dreamcast bios MPR-21933, confirmed match MPR-21931 [CoolMod]
+
+-sf.c: does not have COIN3, and protection MCU on sfj is an i8751 [Yu]
+
+-cgenie.cpp: expanded .cas support so that also files created by
+ Genieous emulator can be loaded. [Fabio Priuli]
+
+-Added "selection" parameter to chain input sampler [ImJezze]
+ * if specified all textures (.png) within the same directoy of the
+    given texture will be selectable via slider in the UI
+ * also added slider for "shadow mask tile mode" to HLSL chain
+
+-bgfx: Ported xBR shaders from libretro. [Ryan Holtz, Hyllian]
+
+-Archive handling improvements [Vas Crabb]
+ * Improve error handling in 7zip file I/O code
+ * Fix reading 7zip files >=4GB on LP32/LLP64 targets
+ * Update to LZMA SDK to 15.14, supports new 7zip features
+ * Stop relying on local hacks to LZMA SDK
+ * Support most ZIP64 features excluding directory compression
+ * Support LZMA-compressed files in ZIP archives
+ * Support Info-ZIP UTF-8 file name fields
+ * Fix phantom files/directories when browsing archives
+ * Report archive handling errors
+
+-Update to expat 2.1.1 for security and bug fixes [Vas Crabb]
+
+-xbox\chihiro: usb is now partially usable [Samuele Zannoli]
+ * control,bulk,interrupt transfers work
+ * started hle simulation of usb devices on chihiro baseboard
+ * there is a first implementation of xbox game controller
+ * the chihiro bios can now enter system configuration menu
+
+-hp9845: added capabilty to load option ROMs [F. Ulivi]
+
+-ti99: Several code changes [Michael Zapf]
+ * GROMs with clock input line and improved timing behavior
+ * TMS9928A delivers GROMCLK if configured
+ * TI-99/8 mainboard: implemented custom chips (vaquerro, 
+   mofetta, amigo) for low-level emulation
+ * fixed HOLD feature of TMS9995
+ * moved v9938 from console to EVPC where it belongs, dropped videowrp,
+ * fixed issues with paged37x cartridges
+ * fixed issues with Horizon Ramdisk
+
+-n64: Do SI dma transfer after delay, not before [Happy]
+
+-tourvis.cpp: changed to use Software Lists, trimmed all ROMs to
+  correct sizes, confirming that the majority match exactly the
+  PCE roms (only 3 differ, Gomola Speed which could be an alt
+  revision, R-Type II which has been hacked, and Be Ball where there
+  is an unknown single byte change. [David Haywood]
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+New 2001 (Italy, Ver. 2.00N) [f205v]
+Ultraman Monster Battle [hap, Kevin Horton, Rik]
+Crystals Colours (Ver 1.02) [Roberto Fresca, f205v]
+Android (newer build?) [Chris Hardy]
+Fidelity Sensory Chess Challenger 9 [hap, Berger]
+Dragon's Heaven (development board) [Brian Hargrove]
+Tiny Toon Adventures (prototype) (PlayChoice-10) [Tony Swann]
+Tiger Copy Cat (2 versions) [hap, Sean Riddle]
+Sushi Bar [colour thief, Ryan Holtz, Smitdogg, JordanRom, Mucci, F. Marsaud,
+  King Hanco, Sonic, B. Munger, R. Gatto, Bigster, Dullaron, Brizzo, Shoutime,
+  MetalliC, The Dumping Union]
+Touch & Go (Korea, unprotected) [system11]
+Pokonyan (Japan 940322) [sylphia]
+Last Hope (bootleg AES to MVS conversion, no coin support)
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Operation Wolf (Japan, prototype) [caius]
+Majestic Twelve - The Space Invaders Part IV (US)
+  [Artemio Urbina, The Dumping Union]
+Kamikaze (Potomac Games) [Blair Quinney]
+Major Title 2 (World, set 2) [Porchy]
+Atomic Robo-kid (set 2) [Alex Cmaylo]
+Beast Busters (Japan, Version 2) [ShouTime]
+Mystic Warriors (ver AAB) [Bill D / The Dumping Union]
+Raiden DX (Japan, set 2) [Alex Cmaylo]
+Vs. Excitebike (set EB4-3 E) [Matt Osborn]
+Spelling B (1979 version) [hap, Sean Riddle]
+Dragon Saber (World, DO2) [Layer from jammaplus]
+1945k III (older, OPCX1 PCB) [system11]
+Bestri (Korea, set 2) [system11]
+DoDonPachi Dai-Ou-Jou (2002.10.07 Black Ver., bootleg Knights of Valour Super Heroes conversion)
+Ketsui: Kizuna Jigoku Tachi (2003/01/01. Master Ver., bootleg cartridge conversion)
+Espgaluda (2003/10/15 Master Ver, bootleg cartridge conversion)
+Champion Number (V0.67) [Roberto Fresca, f205v]
+Unitron 1024 [Felipe Sanches]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Konami Gradius (handheld) [hap, Sean Riddle]
+Luna Park (ver. 1.2) [Roberto Fresca, f205v]
+Jungle (VI3.02) [f205v]
+Konami Lone Ranger (handheld) [hap, Sean Riddle]
+Sonik Fighter (encrypted) [Roberto Fresca, Ioannis Bampoulas]
+Fidelity Phantom [hap, Lord Nightmare]
+Alta Tensione (ver. 2.01a) [Roberto Fresca, f205v]
+Euro Double Star Record (ver.1.2) [Roberto Fresca, f205v]
+Nu, pogodi! [hap, Igor]
+Print Club 2 2000 Summer [Bill D, The Dumping Union]
+Print Club 2 Kobe Luminaire '99 (Print Club Custom 3) (J 991203 V1.000) [Ryan Holtz, Bill D, The Dumping Union]
+Print Club 2 Vol. 6 Winter (J 970121 V1.200) [Ryan Holtz, Bill D, The Dumping Union]
+Print Club 2 Vol. 8 Summer (J 970616 V1.100) [Ryan Holtz, Bill D, The Dumping Union]
+Print Club 2 Vol. 9 Autumn (J V1.100) [Ryan Holtz, Bill D, The Dumping Union]
+Print Club Winnie-the-Pooh Vol. 2 (J 971218 V1.000) [Ryan Holtz, Bill D, The Dumping Union]
+Print Club Winnie-the-Pooh Vol. 3 (J 980406 V1.000) [Ryan Holtz, Bill D, The Dumping Union]
+Various Aristocrat MK5 and MK6 sets
+Polaroid Instant Memories [Alex Cmaylo]
+
+New clones marked as NOT_WORKING
+--------------------------------
+Wonder Boy (system 2, set 2, 315-5176) [Silvio Grazini]
+
+
+New WORKING software list additions
+-----------------------------------
+coco_flop: Donkey Kong Remix [Sock Master]
+megadriv.xml: F1 - World Championship Edition (US, Prototype) [oliverthepig]
+neogeo.xml: Last Hope
+lynx.xml: Zaku
+
+New NOT_WORKING software list additions
+---------------------------------------
+pce_tourvision.xml: Dragon Saber - After Story of Dragon Spirit [system11]
+pce_tourvision.xml: Bull Fight - Ring no Haja [system11]
+pce_tourvision.xml: Parasol Stars
+
+
+
+
