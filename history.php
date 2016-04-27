@@ -398,7 +398,7 @@ $title = 'MAME | Project History';
   releases earlier with new development tools).</td>
  </tr>
  <tr>
-  <td class="date" width="10%">01 Dev 07</td>
+  <td class="date" width="10%">01 Dec 07</td>
   <td></td>
   <td>New server for mamedev.org.</td>
  </tr>
@@ -432,7 +432,7 @@ $title = 'MAME | Project History';
   <td>mamedev.org renovated.</td>
  </tr>
  <tr>
-  <td class="date" width="10%">21 Dev 08</td>
+  <td class="date" width="10%">21 Dec 08</td>
   <td class="version" width="15%">0.128u7</td>
   <td>Internal (source) changes: Global Machine pointer eliminated, CPUs are
   &quot;devices&quot;.</td>
@@ -511,7 +511,7 @@ $title = 'MAME | Project History';
   <td>Project (MAME and MESS) moved to SVN.</td>
  </tr>
  <tr>
-  <td class="date" width="10%">07 Dev 12</td>
+  <td class="date" width="10%">07 Dec 12</td>
   <td></td>
   <td>Support for Python (and new dev tools).</td>
  </tr>
@@ -557,7 +557,7 @@ $title = 'MAME | Project History';
  <tr>
   <td class="date" width="10%">20 Oct 14</td>
   <td></td>
-  <td>Project (alson) on GIT.</td>
+  <td>Project (also) on GIT.</td>
  </tr>
  <tr>
   <th colspan=3>2015</th>
@@ -583,7 +583,7 @@ $title = 'MAME | Project History';
   <td>More HLSL changes.</td>
  </tr>
  <tr>
-  <td class="date" width="10%">30 Dev 15</td>
+  <td class="date" width="10%">30 Dec 15</td>
   <td class="version" width="15%">0.169</td>
   <td>Modernized core to C++14. First release to build clean in Raspberry Pi 2
   and other ARM Linux targets.</td>
