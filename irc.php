@@ -39,12 +39,6 @@ directed to <b>#mame</b>. This channel DOES require nickname
 registration. See <a href="http://freenode.net/kb/answer/registration">
 the instructions</a> on nickname registration for further details.
 					</p>
-
-                 	<h2>Web-based IRC client</h2>
-                    <p>
-freenode has a web-based IRC client <a href="http://webchat.freenode.net/">
-here</a> that you can use if you'd prefer not to use a IRC client on your PC or phone.
-                    </p>
 <br/><br/>                         
 	</div>
     <!-- /.container -->
