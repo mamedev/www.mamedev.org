@@ -1,0 +1,278 @@
+0.174
+-------
+
+MAMETesters Bugs Fixed
+----------------------
+- 03753: [Crash/Freeze] (psikyosh.c) daraku: [debug] Assert in debug build (Tourniquet)
+- 06209: [Core] Window is always on top after ALT+ENTER from Full Screen in Direct3D (Jezze)
+- 06218: [Sound] (holeland.c) holeland: Missing speech synthesis chip (system11)
+- 05932: [Interface] Joysticks Using PPJOY Driver Do not work anymore (Quench)
+- 01617: [Graphics] (segag80v.c) elim2, zektor: Missing left graphics line from the boarder. (Olivier Galibert)
+- 06169: [DIP/Input] (ninjaw.c) ninjawu: Credit count is wrong on coin slot 2 (Osso)
+- 05871: [Crash/Freeze] (pacman.c) puckman: Double-free starting up puckman when using -mt (Robbbert)
+- 05831: [Crash/Freeze] all: mame hangs when command bench is higher than 299 (Robbbert)
+- 06206: [Crash/Freeze] (astrafr.c) Most sets in astrafr.c: Crash/Exception at Initialization (Robbbert)
+- 04935: [Flip Screen/Cocktail] (jailbrek.c) jailbrek and clones: Offset right 1/2 Screen when Flip Screen is on (Osso)
+- 04920: [Flip Screen/Cocktail] (esd16.c) multchmp, multchmpk: Flip Screen contents need proper mirroring (Osso)
+- 04912: [Flip Screen/Cocktail] (dblewing.c) dblewing: Flip Screen offset down + "Split" sprites (Osso)
+- 06190: [Color/Palette] (iteagle.c) Most sets in iteagle.c: Palette changes when using machines with MIPS DRC (Carl)
+- 06188: [Documentation] (1942.c) 1942h: Year should be 1991 (Tafoid)
+- 06198: [Crash/Freeze] (advision.c) advision: If launched without a cartridge image, MAME crashes (AJR)
+- 06189: [Misc.] (trs80.c) All sets in trs80.cpp: Current disk emu supports only SSSD ! (Robbbert)
+
+
+Source Changes
+--------------
+-chdman.cpp: fix for code that expects to be able to dereference a
+ pointer that it knows may be null [Vas Crabb]
+
+-redumped Atomiswave BIOS, confirmed good, added information
+ [Brizzo, MetalliC]
+
+-screen: Add svg shapes pre-computation [O. Galibert]
+
+-plugins/layout: layout embedded script helper plugin [Carl]
+
+-h8: Add dtc, dma, watchdog (WIP) [O. Galibert] 
+
+-h8: Fixes, lots of [O. Galibert] 
+
+-cybiko: Make work a little emore, add v1 flash [O. Galibert]
+
+-a5200: fixed regression when loading headerless carts from fullpath.
+ [Fabio Priuli]
+
+-neogeo.cpp: huge clean up of the cartslot code in order to better 
+ exploit slot devices: [Fabio Priuli]
+ * moved cart-specific components to the carts itself removing the
+    fake protection devices from the main system, since they never
+    belonged there
+ * removed hacky rom region destruction/construction when a new cart
+    is inserted, replacing it with proper bank pointers to the carts
+    (except for ymsnd and ymsnd.deltat region which will require
+    modernization of the ym devices)
+ * started re-organization of bootleg boards emulation, so to reduce
+    the need of collapsing everything into a single cart type with
+    multiple protection devices, more work is needed
+
+-neopcb.cpp: moved to a separate source file the emulation for JAMMA
+ PCB versions of a few neogeo games, since they don't have a cartslot.
+ [Fabio Priuli]
+
+-neogeo.xml: added information about Japanese titles and release dates
+ to the software list and aligned the list to the driver. [Fabio Priuli]
+
+-cybiko: Remove the ram mirror, it hides when the code fails [O.Galibert]
+
+-vector: Move clipping to avgdvg, the only user.  Simplify [O. Galibert]
+
+-nes.cpp: removed configuration settings to enforce sprite limit and to
+ turn off drawing of top/bottom 8 lines: the code to make these work
+ was removed before 0.106 and the option were doing nothing since then.
+ [Fabio Priuli]
+
+-dumped program rom for Gigas (MC-8123, 317-5002) Gigas set, works now
+ [Corrado Tomaselli]
+
+-Make watchdog timer a separate device [AJR]
+
+-A few addition to A800 software lists [K1W1]
+
+-megadrive: added custom X24C02 emulation to NBA Jam cart, making
+ finally possible to save records at exit. Hopefully, this will help
+ finding the problem in our core emulation. [Fabio Priuli]
+
+-Sonik Fighter (encrypted): Decrypted the program, changed the game
+ description adding version, and corrected year. [Roberto Fresca]
+
+-megatech: updated to use fixed slot config. [Fabio Priuli]
+
+-skns: add the Korean modbios [system11]
+
+-dumped Wangan Midnight Maximum Tune 1/2 card reader-printer firmware
+ [winteriscoming]
+
+-dumped Initial D card reader-printer firmware [Smitdogg]
+
+-NetBSD fix, from pull request #852 [Thomas Klausner]
+
+-sv8000.cpp: inputs are more appropriate as IPT_KEYPAD. [Fabio Priuli]
+
+-model1.cpp: Some modernization and cleanup. [Ryan Holtz]
+
+-Update to LZMA 16.0 [Vas Crabb]
+
+-metlfrzr encryption is the same as cshooter.cpp [Peter Wilhelmsen]
+
+-metlfrzr.cpp [Angelo Salese]
+ * Added IRQ, ROM banking and base color
+ * Fixed decrypted opcodes hookup
+ * Preliminary T5182 hookup
+ * Added base sprites
+ * Fixed sound comms (reversed semaphore access wrt darkmist), coins and
+  sound now fully working
+ * DIPs are still not fully functional - but the game operates/plays fine
+
+-New Lucky 8 Lines / New Super 8 Lines improvements
+ [Roberto Fresca]
+ * Proper inputs. DIP switches: Coin A settings, Key In default (W-4 / Witch Bonus)
+ * Player 2: not supported by game (W-4 / Witch Bonus)
+ * Created/added new layout for 1 player only (set 3, W-4 / Witch Bonus)
+ * Fixed parent/clone relationship (all sets)
+
+-Added game versions to IGS Champion League sets. [Roberto Fresca]
+
+-Flaming 7 improvements [Roberto Fresca]
+ * Added more descriptive notes and boot instructions.
+ * Documented some wire hacks and the DS2401 sillicon serial number device.
+ * Name convention. Change the set name according with the two custom graphics
+  sets.
+ * Added proper machine driver and memory map.
+ * Added D-Up, Take, Bet, Start, Main Door switch, Logic Door switch,
+  Cash Door switch, Coin A, Coin B, Coin C, Reset, Stats/Setup, and GFX
+  selectable DIP switches.
+ * Stats/Setup needs PORT_TOGGLE.
+ * Maximum Bet, Reels Speed, Payout Type, Coin-In Timeout DIP switches.
+ * Key In input.
+ * Identified Button Lockout input, all the Holds, Big, Low.
+ * Identified all the Coin-In and Change lines, WT RXD & COUT RTS lines.
+  Added other active lines.
+ * Marked as unknown the $d801 port lines. They seem unused.
+ * Marked as unknown also the $d802 port lines.
+ * Standardization of all active inputs.
+ * PORT_DIPLOCATION for the first bank of DIP switches.
+ * Second DIP switches bank: Coin A coinage, Coin B coinage and Credits per
+  Bill, plus diplocations.
+ * Third DIP switches bank: Denomination and Progressive Sign, plus
+  diplocations.
+ * 4th DIP switches bank: Button Lockout and Lockout Polarity, Printer
+  Type, plus diplocations. Added notes about 1 active line.
+ * Unknown DIP switches and diplocations.
+
+-Continuing work to move object initialization from start to
+ constructor. Removed family_t. All of this can be determined at
+ runtime from object as well. As part of this, the "template" to write
+ devices has changed. Converted a number of devices to use the new
+ template. [Couriersud]
+
+-All netlist devices now follow new syntax. Removed dead code. All sub
+ devices are now forced to be initialized in the constructor. Device
+ setup now completely in constructor. Removed start call. [Couriersud]
+
+-apple2c updates: [R. Belmont]
+ * Writing to VBLDIS also lowers the VBL IRQ if it's active
+ * Support for "Mockingboard4C" add-on by request of French Touch
+
+-Change SMS/GG master clocks to match service manuals. [Enik]
+ 
+-Fix TH handling and audio control of the SMSJ, based on Charles' findings. [Enik]
+
+-ti99: New per-chip system ROMs; fixed gromemu and mbx cartridge types,
+ multi-cart extender now allows cartridge switch without emulator reset 
+ [Michael Zapf]
+
+-Corrected ROM filenames for holeland.zip, enabled SPO256 to resolve missing
+ speech, verified and measures all the clocks - updated comments at the top
+ re: remaining priority issue.  Fixed MT Bug #06218  [system11, Osso]
+
+-unixpc: switched to bankdev, started filling out the skeleton [R. Belmont]
+
+-gamecom: all but 2 games are now working [Robbbert]
+
+-pockchal: renamed the system to "Pocket Challenge W" as documented on
+ Jpn Wikipedia, renamed accordingly the software list [Fabio Priuli]
+
+-Added software list for Saturn Video CD carts, to preserve dumps made
+ by zyrobs in 2013/2014. The carts cannot currently be used in the
+ driver, but at least dumps won't be lost. [Fabio Priuli]
+
+-aristmk6.cpp: Added proper descriptions to most sets and removed a few 
+ duplicated sets. [Heihachi_73]
+
+-pockchalw.xml: added more dumps [TeamEurope]
+
+-pockchalw.xml: added proper info and PCB documentation (the latter
+ courtesy of TeamEurope pictures) [Fabio Priuli]
+
+-gameking.xml: Added six new dumps. [TeamEurope]
+
+-spc1500.cpp: added a cassette software list with some images, courtesy
+ of Anna Wu [Fabio Priuli]
+
+-Added tons of Thomson software to softlists. [Reagan Roush]
+
+-apple2: update software list to include 4am clean cracks A-L as of
+ Sep. 2015 [R. Belmont, B2K24]
+
+-gameboy.xml: Finally started documenting Game Boy PCBs, based on
+ no-intro and Tauwasser's pictures [Fabio Priuli]
+
+-gba.cpp: Added preliminary support for the 3D Matrix Memory Controller
+ used by 64MB video cartridges. Disney Collection 2 works, while other
+ dumps still fail (possibly due to reason unrelated to the mapper
+ emulation...) [Fabio Priuli]
+
+-emumem: Get rid of the install_* return value [O. Galibert]
+
+-UML: Added TZCNT instruction (Trailing Zero Count) [Ville Linde]
+
+-ti99_cart: Updated softlist to per-chip dumps; removed some broken dumps 
+ [Michael Zapf]
+
+-r9751.xml: Add CBX 9005.2.79 software  [Brandon Munger]
+
+-r9751: Fix race condition in PDC device. Multi disk load now possible.
+ [Brandon Munger]
+
+-DirectInput8: Correct joystick polling methods to better support older
+ joysticks which previously only worked with DirectInput7 [Quench]
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Metal Freezer [Arcade Addict, Smitdogg, The Dumping Union, Angelo Salese]
+Crossed Swords 2 (bootleg of CD version) [David Haywood]
+Math Marvel [hap, Sean Riddle]
+Iowa Premium Player (2131-21, U5-1) [Brian Troha, The Dumping Union]
+Idol Mahjong Final Romance 2 (bootleg of CD version) [Robbbert]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+X-Men Vs. Street Fighter (Japan 961023)
+Extermination (US, Romstar) [farzeno]
+The J.League 1994 (Japan, Rev A) [Alex Cmaylo]
+Pit Fighter Rev 2  [R. Coltrane, Lord Nightmare, Sean Sutton, Smitdogg, The Dumping Union]
+Triki Triki (Lover Boy bootleg)  [Rafael Alonso (from ARCADE VINTAGE)]
+Street Fight (Germany - Benelux)  [caius]
+Mercenario (Commando bootleg)  [Rockman]
+Hyper Street Fighter II: The Anniversary Edition (Japan 040202)  [ShouTime]
+Champion League (v220I, dual program, set 1) [Roberto Fresca, f205v]
+Champion League (v220I, dual program, set 2) [Roberto Fresca, f205v]
+Holeland (set 2) [AUMAP]
+New Lucky 8 Lines / New Super 8 Lines (W-4, Lucky97 HW) [Roberto Fresca, Ioannis Bampoulas]
+Shogun Warriors (Korea?) [TeamEurope, Ryan Holtz, The Dumping Union]
+Rage of the Dragons (NGH-2640?)
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+Force Computers ISCSI-1 VME board [Joakim Larsson Edstrom]
+Master's Golf [MooglyGuy, ShouTime]
+Microbee Premium Plus [Robbbert]
+IBM3153 Terminal  [Robbbert]
+Road Burners (ver 1.04)  [ShouTime]
+Flaming 7 - Hollywood Nights [Roberto Fresca, Ioannis Bampoulas]
+Sharp PC-G815 [Robbbert]
+Electronic Battleship [hap, Sean Riddle]
+House of the Dead 4 (Export) (Rev B)  [Layer]
+
+
+Notable New WORKING software list additions
+-------------------------------------------
+pce_tourvision.xml: Cyber Core, Download, Vigilante [system11]
+nes.xml: Venice Beach Volleyball (Gluk Video) [sewave]
+nes.xml: Happily Ever After [Sean McGee, NintendoPlayer]
+megadriv.xml: Sega Channel (Jpn), two revisions [Kiddo Cabbusses, RetroJunkie]
+m5_cart.xml: Dream Shopper [Ola Andersson]
+

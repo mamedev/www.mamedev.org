@@ -23,6 +23,13 @@ $title = 'MAME | Previous Releases';
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
+				<td class="date">0.174</td>
+				<td class="date">25 May 2016</td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174s.zip">mame0174s.zip</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174b.exe">mame0174b.exe</a></td>
+				<td class="link"><a href="releases/whatsnew_0174.txt">whatsnew_0174.txt</a></td>
+			</tr>
+			<tr>
 				<td class="date">0.173</td>
 				<td class="date">27 Apr 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0173/mame0173s.zip">mame0173s.zip</a></td>
