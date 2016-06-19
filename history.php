@@ -246,7 +246,7 @@ $title = 'MAME | Project History';
   Feb 12</td>
   <td>0.145u1</td>
   <td>7zip support and change in
-  CHD format.</td>
+  CHD format (CHD v5).</td>
  </tr>
  <tr>
   <td>20
@@ -330,7 +330,7 @@ $title = 'MAME | Project History';
   Mar 09</td>
   <td>0.130u1</td>
   <td>Major change in CHD file
-  format.</td>
+  format (CHD v4).</td>
  </tr>
  <tr>
   <td>26
@@ -554,6 +554,12 @@ $title = 'MAME | Project History';
   added.</td>
  </tr>
  <tr>
+  <td>21
+  Dec 03</td>
+  <td>0.77u1</td>
+  <td>(internal release) CHD v3. "hdcomp" tool, got replaced by "chdman".</td>
+ </tr>
+ <tr>
   <td>11
   Nov 03</td>
   <td>0.77</td>
@@ -573,6 +579,12 @@ $title = 'MAME | Project History';
   <td>0.72</td>
   <td>First emulation of the
   SP0250 speech chip.</td>
+ </tr>
+ <tr>
+  <td>12
+  Jun 03</td>
+  <td>0.70u1</td>
+  <td>CHD v2.</td>
  </tr>
  <tr>
   <td>05
@@ -597,6 +609,12 @@ $title = 'MAME | Project History';
   CPU core added: MIPS3.</td>
  </tr>
  <tr>
+  <td>12
+  Jan 03</td>
+  <td>0.63</td>
+  <td>First actual CHD (Wargods).</td>
+ </tr>
+ <tr>
   <td>04
   Jul 02</td>
   <td>0.61</td>
@@ -610,6 +628,12 @@ $title = 'MAME | Project History';
   <td>Removed SoundBlaster FM
   support as software-based emulation finally became better in almost all
   cases.</td>
+ </tr>
+ <tr>
+  <td>22
+  Mar 02</td>
+  <td>0.59</td>
+  <td>Aaron Giles implements CHD (Compressed Hard Disk - later Compressed Hunks of Data).</td>
  </tr>
  <tr>
   <td>24
@@ -730,12 +754,6 @@ $title = 'MAME | Project History';
   MESS.</td>
  </tr>
  <tr>
-  <td>10
-  Jun 98</td>
-  <td>0.33b5</td>
-  <td>First CHD.</td>
- </tr>
- <tr>
   <td>03
   May 98</td>
   <td>0.33b1</td>
@@ -851,7 +869,7 @@ $title = 'MAME | Project History';
   <td>0.1</td>
   <td>MAME 0.1 released.</td>
  </tr>
-<tr>
+ <tr>
   <td> </td>
   <td> </td>
   <td> </td>
