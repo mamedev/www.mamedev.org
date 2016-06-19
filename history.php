@@ -851,7 +851,15 @@ $title = 'MAME | Project History';
   <td>0.1</td>
   <td>MAME 0.1 released.</td>
  </tr>
+<tr>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+ </tr>
 </table>
+<p>
+This page has been heavily modified and enriched in May and June 2016, by <a target="_blank" href="http://blog.ilogic.gr">NLS</a>, using historical data from various sources. A big thanks to Fujix for the original chart idea and <a target="_blank" href="http://www.progettosnaps.net/">AntoPISA</a> for his "renameSET" detailed files that helped immensely to build the statistics.
+</p>
 </div> 
 		
 <!--	Original Table for reference
@@ -883,7 +891,6 @@ $title = 'MAME | Project History';
 -->
 
 <br/>
-This page has been heavily modified and enriched in May and June 2016, by <a target="_blank" href="http://blog.ilogic.gr">NLS</a>, using historical data from various sources. A big thanks to Fujix for the original chart idea and <a target="_blank" href="http://www.progettosnaps.net/">AntoPISA</a> for his "renameSET" detailed files that helped immensely to build the statistics.
 <br/>
 </div>
 
