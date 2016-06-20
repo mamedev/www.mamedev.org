@@ -142,6 +142,12 @@ $title = 'MAME | Project History';
   <td>Massive addition of mechanical games.</td>
  </tr>
  <tr>
+  <td>10
+  Oct 14</td>
+  <td>0.155</td>
+  <td>Raiden II / DX finally working.</td>
+ </tr>
+ <tr>
   <td>23
   Jul 14</td>
   <td>0.154</td>
@@ -535,6 +541,12 @@ $title = 'MAME | Project History';
   reorganization around streams.</td>
  </tr>
  <tr>
+ <td>15
+  Feb 05</td>
+  <td>0.92u1</td>
+  <td>Raiden Fighters 2 (et al) finally working.</td>
+ </tr>
+ <tr>
   <td>13
   Feb 05</td>
   <td>0.92</td>
@@ -555,9 +567,9 @@ $title = 'MAME | Project History';
  </tr>
  <tr>
   <td>21
-  Dec 03</td>
+  Nov 03</td>
   <td>0.77u1</td>
-  <td>(internal release) CHD v3. "hdcomp" tool, got replaced by "chdman".</td>
+  <td>CHD v3. "hdcomp" tool, got replaced by "chdman". (internal release)</td>
  </tr>
  <tr>
   <td>11
