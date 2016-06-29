@@ -1,0 +1,610 @@
+0.175
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 06244: [Speed] (namconb1.c) machbrkr, outfxies: Degraded performance speed (Osso)
+- 06241: [Crash/Freeze] Most sets in neodriv.hxx: cheats enabled cause MAME to crash (cuavas)
+- 06235: [Graphics] (pacman.c) pacman: X and Y flip bits are ignored when sprite is rendered at top of screen due to vertical wrapping (Robbbert)
+- 06234: [DIP/Input] (nbmj9195.c) mscoutm, imekura, mjegolf: Incorrect inputs in some mahjong games (Tourniquet)
+- 03321: [DIP/Input] (mario.c) mario: Dip switch titles for bonus life don't match gameplay (anikom15)
+- 06225: [Crash/Freeze] (midtunit.c) mk, mk2: Game doesn't start - crash while loading (cuavas)
+- 06196: [Interface] Window mode, can't set window size anymore (bradhugh)
+- 06222: [Graphics] Artwork + HLSL + Vector Game = Cropped Screen and Wrong Screen Position (Jezze)
+- 06195: [Crash/Freeze] -video BGFX is crashing after selecting 'Select New Machine' and launching another machine (Ryan Holtz)
+- 06223: [Crash/Freeze] (ataxx.c) All sets in ataxx.cpp: Fatal error: Missing some required objects, unable to proceed (Tafoid)
+- 06221: [Interface] PLUGINS: pluginspath option not fully recognized (crazyc)
+- 06236: [Misc.] (ptcsol.c) sol20: SVT format file names problem! (Robbbert)
+- 05783: [Misc.] (ptcsol.c) sol20: SVT format differs from Solace emu! (Robbbert)
+- 06215: [Misc.] (sorcerer.c) sorcererd: Refuse to load some cpm programs! (Robbbert)
+
+
+Source Changes
+--------------
+-Further improvements to the Patinho Feio driver & CPU [Felipe Sanches]
+
+-atarigen: Remove the slapstic direct update handler, which hasn't been
+ necessary since direct access has been enhanced to work correctly on
+ handlers, years ago [O. Galibert]
+
+-sloop: Direct update handler unneeded too [O. Galibert]
+
+-esb: Direct update for slapstic gone too [O. Galibert]
+
+-gameboy: Improved support for M161 and MMM01 mappers. [Tauwasser]
+
+-n64dd: Change N64DD to use harddisk device instead of quikload device.
+ Updated checksum for Randnet disk, previous conversion was faulty. [Happy]
+
+-West Story improvements: the NMI story [AJR]
+ * Thoroughly reworked weststry memory map based on M68000 code
+ * FG tilemap scrolling implemented for weststry
+ * Sound hooked up, but doesn't fully work (YM3812 stops sending IRQs)
+ * Various things documented in other bloodbro.cpp games
+
+-Added color proms to Ozma Wars. [MASH]
+
+-Merged ataxx.cpp into leland.cpp as they had a completely shared main
+ header file (leland.h).  [Tafoid]
+
+-ui refactoring [Vas Crabb]
+ * Make ARRAY_LENGTH cause a compile error if used with a pointer/vector
+ * move menu classes into ::ui namesapce and reduce scope of many symbols
+ * Clean up text input code, move common operations to inline
+    templates
+ * Fix numerous one-byte buffer overruns
+ * Don't flat-out ignore input beyond the C1 hole
+ * Fix decoding of SDL text input
+
+-Added highly experimental SHARC recompiler (disabled by default)
+ [Ville Linde]
+
+-psx.xml: Added more information and small fixes to Japanese discs.
+ [Fabio Priuli]
+
+-Tetris + Cherry Master (+K, Canada Version, encrypted) hidden switch
+ documentation... [Ioannis Bampoulas]
+
+-Merit Match Games driver: [Roberto Fresca]
+ * Added technical notes and corrected CRT 810 layout + old notes.
+ * Some cleanup for coding standards, and fixed Coinage DIP switches.
+
+-Magic Fly driver: Refactored PCB layout and pinout with new findings
+ and PCB trace. Also added some technical notes [Roberto Fresca].
+
+-Major Poker: [Roberto Fresca]
+ * Added missing G2 gal16v8d.
+ * Added missing PLDs, plus technical notes.
+
+-Royal Card (Austrian, set 8): [Roberto Fresca]
+ * Added mirrored VRAM to $4000/$5000.
+ * Worked and added a default NVRAM. The game now is working properly.
+
+-Buena Suerte: Completed the Protel PCB set. Rearranged the graphics
+ ROMs to get accurate gfx banks. Discrete sound needs to be traced.
+ Game is working properly. [Roberto Fresca]
+
+-Buena Suerte (Protel PCB): Added technical notes and a WIP edge
+ connector and mech counters pinout. [Roberto Fresca, Gaby]
+
+-Flaming 7: [Roberto Fresca]
+ * Added new technical notes.
+ * Flaming 7: Decrypted the graphics ROMs & fixed the gfxdecode.
+    Bipolar PROM decode is still wrong.
+ * Graphics Bank 1 is color-accurate. Added some technical notes
+    about the missing extra layer for bonus graphics with the
+    related VRAM used range
+ * Dedicated inputs + DIP switch bank #1.
+ * DIP switches bank #2: bonus pay & internal progressive.
+ * DIP switches bank #3: Maximum Bet, Coin-In Timeout, Denomination,
+    and Progressive Sign.
+ * DIP switches bank #2: Notes about Bonus Pay...
+ * DIP switches bank #3: Added Progressive Sign notes...
+ * Added a DIP switches table ASCII layout...
+ * Added Pay Table Diagram...
+ * Added Pinout Diagram...
+ * Documented the Cyberdyne Printer Harness circuitry.
+ * Fixed the bipolar PROM load. Also improved both graphics banks
+    colors. Colors now are close, but still imperfect.
+
+-Flaming 7 (Taiwanese): Splitted a new machine driver, and added proper
+ gfxdecode. Improved the GFX bank #2. Still needs work... [Roberto Fresca]
+
+-Flaming 7 (W-4 hardware): [Roberto Fresca]
+ * Added hand made electronic serial DS2401 dump, as a start of
+    electronic serial number support. Added technical notes.
+ * Added electronic serial DS2401 device. Still remaining the
+    connection and read routines.
+ * Connected the electronic serial DS2401 device to the proper
+    PPI8255 (PC6) line.
+
+-Flaming 7 (W-4 hardware): correct DS2401 hookup and reverse-engineer
+ protection to get required serial number [Vas Crabb]
+
+-Commodore PET Joysticks and Sound Device [Ken White]
+
+-sun2: Preliminary MMU implementation, still has issues. [R. Belmont]
+
+-sun2: MMU fixes, both VME and Multibus variants now POST and show
+ something. [R. Belmont]
+
+-gbcolor.xml: Documented more Game Boy Color PCBs, based on no-intro
+ pictures [Fabio Priuli]
+
+-vboy.xml: Documented a few Virtual Boy PCBs, based on no-intro
+ pictures [Fabio Priuli]
+
+-Ignore cylinders, heads and sectors from identify device data, based
+ on the ATA 5 specification. [smf]
+
+-Added CHS and LBA limits when the chd doesn't contain identify device
+ data [smf]
+
+-Fix NeoGeo CD P2 inputs [fuzzbop]
+
+-Update rainbow.cpp [Bavarese]
+
+-Added comlist and commit commands to debugger. 
+ comlist prints available comments in debugger console, commit will do 
+ a bulk comadd and comsave operation. [Angelo Salese]
+ 
+-Don't use AM_MASK on ram, you end up with an incorrect allocation size [O. Galibert]
+
+-rainbow: led polarity [Baverese]
+
+-sun2: fixed more MMU issues, added serial ports. [R. Belmont]
+
+-Fix TGP parser crashing in Model 1 [SailorSat]
+
+-Fixed network output to include all data [headkaze]
+
+-naomi docs: 'Samba de Amigo Rev.A' cartridge contents identical to
+ already dumped Rev.B [f205v, ShouTime]
+
+-lk201: fix 6805 clock to verified value [Lord Nightmare]
+
+-sun3 updates: [R. Belmont]
+ * Split sun3 and sun3x archiectures, they're different enough
+ * Sun3 MMU and unique hardware implemented, all models now POST 
+   including 3/2xx [R. Belmont]
+
+-sun4 updates: [R. Belmont]
+* Preliminary implementation of sun4c MMU and related hardware.
+
+-gba.xml: documented some more Game Boy Advance PCBs. [Fabio Priuli]
+
+-gba.cpp: several improvements [Fabio Priuli]
+ * Implemented emulation of the  "General Purpose I/O" port (GPIO) of
+    GBA.
+ * Hooked up S-3511 RTC emulation through the GPIO port. This allows
+    to avoid the "Internal battery has run dry [...] clock-based
+    events will no longer occur" messages in Pokémon Emerald / Ruby /
+    Sapphire. This also promotes Sennen Kazoku to working state.
+ * Hooked up Boktai Light Sensor emulation through the GPIO port. This
+    allows to avoid the "Solar Sensor is broken" message in Boktai /
+    Bokura no Taiyou, which is now playable and to recharge your
+    weapons in all three games of the series. Light level has to be
+    chosen via the "Machine Configuration" menu, until we get some
+    kind of camera input.
+ * Hooked up Warioware Twist Gyroscope emulation through the GPIO
+    port. This allows to play the minigames, even if in some case the
+    input sensibility might need a few tweaks.
+ * Hooked up Warioware Twist & Drill Dozer Rumble emulation through
+    the GPIO port. MAME will now output a "Rumble" output bit (0 for
+    Rumble=OFF and 1 for Rumble=ON) whenever the games try to access
+    the Rumble component… third party applications can now listen to
+    the output and redirect it to some hardware that can "rumble" in
+    sync with the gameplay.
+
+-gba.cpp: implemented emulation of the Tilt sensor used by Yoshi’s
+ Universal Gravitation / Yoshi Topsy-Turvy / Yoshi no Banyuuinryoku
+ (and by Koro Koro Puzzle). Note that the calibration can seem a bit 
+ tricky at first, because the emulated screen does not turn as the GBA
+ would... In order to properly calibrate the sensor, just keep pressed
+ right for a few seconds when requested to calibrate right inclination 
+ (first calibration screen in Yoshi Universal Gravitation) so to get
+ the full right range; then keep pressed for left for a few seconds
+ when requested to calibrate left inclination (second calibration
+ screen in Yoshi Universal Gravitation) so to get the full left range.
+ [Fabio Priuli]
+
+-gb.cpp: Added Rumble emulation to the MBC-5 Game Boy Color games which
+ supported it. MAME will now output a "Rumble" output bit (0 for
+ Rumble=OFF and 1 for Rumble=ON) whenever the games try to access the
+ Rumble component… third party applications can now listen to the
+ output and redirect it to some hardware that can "rumble" in sync with
+ the gameplay. [Fabio Priuli]
+
+-gb.cpp: Added partial RTC emulation to the MBC-3 Game Boy Color games
+ which supported it. Clock proceeds a bit too fast during gameplay, but
+ at least it is not stuck anymore to the time of first configuration.
+ [Fabio Priuli]
+
+-Netlist changes [Couriersud]
+ * Introduced HINT(device, hint) to clarify that hints are inheritent
+    and not specific to devices.
+ * Added improved profiling support to netlist. Statistics output now
+    proposes devices for which whole device activation/deactivation be
+    disabled. No significant improvement for pong, but breakout
+    experiences a 10% improvement.
+ * Introduced perftime_t and perfcount_t for gathering statistics.
+    These templates do not create any code if statistics are not kept.
+ * Make help2man ./nltool produce usuable output.
+ * Replaced shared_ptr by unique_ptr.
+ * Better seperation of setup_t and netlist_t.
+ * Fixed bugs in rdtsc code. Refactored timer code.
+ * Moved options code from include to cpp file.
+ * More truthtable refactoring. Removed half-finished code for
+    internal state support. As implemented, this would have had no
+    support for timing delays. 
+ * All netlist device setup is now done in the device constructor. This
+    significantly increases readability and stability and allowed to remove
+    init_object calls and start calls.
+ * Removed a significant amount of dead code.
+ * Remove ATTR_HOT and ATTR_COLD. Refactored netlist_time.
+ * More STL usage and c++11.
+ * Get rid of nl_math. Remove nl_util.h and moved contents to
+    plib/putil.h.
+
+-Major refactoring of debugger core [Ryan Holtz]
+ * Eliminate globals/file statics
+ * Remove lots of stuff from global scope
+ * Use std::function for custom command registration
+ * Eliminate some trampolines
+ * Build fixes from Vas Crabb and balr0g
+
+-n64.cpp: Disabled fast RAM, as it prevents watchpoints from working
+ and doesn't gain much on the interpreter core. [Ryan Holtz]
+
+-rainbow.cpp: add 23-090b1 z80 arbitrator PROM dump [Lord Nightmare]
+
+-Small update of italian traslation [AntoPISA]
+
+-Fix keyboard shortcuts for disassembly comments pane [Vas Crabb]
+ * Win32 previously recognised Ctrl+N but menu incorrectly showed
+    Ctrl+M
+ * Qt showed Ctrl+C but it was swallowed by text editing and didn't
+    work
+ * Ctrl+N is now shown/used by Win32 and Qt (matches Cmd-N on OS X)
+
+-Fix git version [Vas Crabb]
+ * git version is set by top-level make, not just when GENie runs
+ * can set IGNORE_GIT=1 for make to ignore git
+ * git ignored/unavailable uses "unknown" in version string
+ * mark modified trees as dirty
+ * note that version now comes from makefile
+
+-A little change to device_image_interface::call_display to better
+ decouple UI fronted and image devices [F.Ulivi]
+
+-Rom for GameKing 3 [PeT, James]
+
+-Introduce dynamic_module [Giuseppe Gorgoglione]
+
+-Remove Direct3D abstraction layer [Giuseppe Gorgoglione]
+
+-Reverse-engineered Moto Frenzy security FPGA and implemented decryption code
+ [Morten Shearman Kirkegaard, Samuel Neves, Peter Wilhelmsen]
+
+-Make filesel current path clickable [Nathan Woods]
+
+-fmtowns_cd.xml: added more info, based on Breiztiger's research [Fabio Priuli]
+
+-fmtowns_flop.xml: added a new software list for floppy-only FM Towns
+ games (boot disks for CDs remain in the CD list, for easier
+ launching). Many thanks to r09 and Breiztiger for help with info and
+ images. [Fabio Priuli]
+
+-gameboy: Added DMG v0 boot rom. [gekkio]
+
+-abc80x: Added ROM version 1.05 for the 55-21046 disk controller. [Anders Sandahl]
+
+-sdk80: Added correct monitor ROM. [Nigel Barnes]
+
+-imds2: Added monitor versions 1.1 and 1.2. [Nigel Barnes]
+
+-terminal: Fixed Color configuration. [Nigel Barnes]
+
+-Memory fun [O.Galibert]
+ * Added AM_SELECT/addrselect field.  Replaces the old
+    AM_MIRROR/AM_MASK combo used to mirror a handler and get the
+    mirrored bits in the offset.
+ * Removed mask and/or mirror from where it didn't belong.  Simplified
+    a lot of instances of mask that just weren't needed, especially in
+    bus handlers.  Used the short forms of install handlers where
+    possible.
+ * Replaced the 60s hippy, "It's cool man" range parameter handling in
+    map_range that tried to guess what was meant when the values
+    passed were not entirely sensible, by a cranky, diner
+    waitress-turned IRS auditor curmudgeon.  Main control function has
+    a series of 14 tests just to find a reason to fatalerror out your
+    requests.  You have been warned.
+
+-Fixed double hyphen in -pipe [belegdol]
+
+-abc802,abc806: Added LUXNET BIOSes. [Anders Sandahl]
+
+-Added command strobe callback interface for LDV1000, and hooked it up
+ to esh.cpp driver. [Angelo Salese]
+
+-raiden2cop.cpp: Fixed BCD overflow score bug in Godzilla 
+ [Angelo Salese]
+
+-eeprom: Not a device_memory_interface [O. Galibert]
+
+-cdi.xml: added info about original disks. [Fabio Priuli]
+
+-intelfsh, i2cmem: Not a device_memory_interface either [O. Galibert]
+
+-aristmk5.cpp improvements: [Heihachi_73]
+ * reorganized sets based on their actual description.
+ * Added proper descriptions to most sets.
+ * unified rom naming and added a few sets that were missing.
+
+-aristmk6.cpp improvements: [Heihachi_73]
+ * reorganized sets based on their actual description and removed a
+    few sets which were hacked or incomplete, compared to their
+    parents
+ * unified rom naming and fixed loading offset in games which use the
+    expansion board. Also added a few sets that were missing.
+
+-aristmk6.cpp: fixed BIOS loading and some BIOS naming; removed an
+ overdumped BIOS and moved qnilese base PCB ROMS to the BIOS set.
+ [Heihachi_73, Fabio Priuli]
+
+-decwritr.c: update the la120 driver documentation a bit, fixed memory
+ mirror related issue [Lord Nightmare] decwritr.c: documented the Caps
+ Lock key being a physical toggle [NeXT]
+
+-emumem: Handlers on different subunits of the same address with
+ different address masks are now supported. [O. Galibert]
+
+-Add basic SPARCv7 core [Ryan Holtz]
+
+-halleyc: Some steps towards a better readability of the video code [O. Galibert]
+
+-megadriv: improved description of many taiwanese unlicensed titles +
+ added dump of Ju Ji Ma Jiang II by Sun Green. [Fabio Priuli]
+
+-emumem: Fix some issues [O. Galibert]
+
+-newbrain fdc: fix mirrors w.r.t mask [O. Galibert]
+
+-Added correct ROM labels to helifire [Porchy, Muddymusic, The Dumping Union]
+
+-apollo: install the unmapped handler in the correct post-trampoline range [O. Galibert]
+
+-l9nibble: If it's a tms9900, put one, because the 9980 address space
+ is too small [O. Galibert]
+
+-prox180x,pve500: Map fix [O. Galibert]
+
+-tms57002: I hadn't yet understood some of the, err, subtleties of the
+ memory subsystem [O. Galibert]
+
+-improve SPARC disassembler: [Vas Crabb]
+ * Support SPARCv9
+ * Allow plug-in ASI comments
+ * Fix format of some opcodes
+ * Produce clr synthetic
+ * Allow running in v7, v8 and v9 modes
+ * Fix addcc/andcc in SPARCv7 mode and simplify integer op tables
+ * Allow ASI descriptions to be supplied with MCFG macro
+ * VIS I (UltraSPARC) and II (UltraSPARC III) support
+ * VIS 2+, VIS 3 and VIS 3B support
+ * Add several SPARC models to unidasm
+
+-banctec: If it's a 6803, then use a 6803, duh [O. Galibert]
+
+-M2COMM: hook up comm board in model2 (W.I.P.) [Ariane Fugmann]
+
+-seibucop.cpp: Prevent cop_angle to overflow byte range. Fixes III to I
+ quadrant movements in Legionnaire and Heated Barrel. [Angelo Salese]
+ 
+-sun4: add SPARC ASI descriptions [Vas Crabb]
+
+-mac: Fix interactions between mirror and range [O. Galibert]
+
+-Rewrite SPARC emulation based on detailed descriptions from SPARC manual [Ryan Holtz]
+
+-galpani3.cpp: Added correct supplemental graphics roms to the Gals
+ Panic 3 (Hong Kong) set. [Brian Troha, The Dumping Union]
+
+-dec_lk201: keyclick [Bavarese] 
+
+-Added "return to origin point (0,0)" feature to Tilemap Viewer (tied
+ with HOME key) [Angelo Salese]
+
+-Improved workaround for missing cbegin/cend in glibstdc++ [Alex Miller]
+
+-sg1000.cpp: many improvements [Enik Land]
+ * Create a SG-1000 expansion slot.
+ * Hook up the SG-1000 expansion slot to sg1000.cpp and sms.cpp
+    (sg1000m3).
+ * Split the sk1100 code from sg1000.cpp and attach it to the new
+    expansion slot.
+ * Create a new FM Sound Unit device and attach it to the new
+    expansion slot.
+ * For the sc3000 driver, re-add sk1100 as a fixed SG-1000 expansion
+    device.
+ * Add sg1000 software list to sg1000m3 and Japanese/Korean SMS
+    drivers.
+
+-sms.cpp: implemented some new findings [Enik Land]
+ * Remove some mirrors for ports $DC/$DD on SMSJ based on Charles' hw
+    tests.
+ * Add basic C-Sync callback to 315_5124.cpp, based on Charles' hw
+    tests.
+ * Add built-in Rapid Fire (uses C-Sync) for SMSJ and Korean SMS1
+    drivers.
+ * Add new SMS drivers due to XTAL differences: sms1br - Tec Toy
+    Master System I (Brazil) sms2br - Tec Toy Master System II
+    (Brazil) smsbr - Tec Toy Master System III Compact (Brazil)
+    sms1paln - Tec Toy Master System I (PAL-N) sms2paln - Tec Toy
+    Master System II (PAL-N) smspaln - Tec Toy Master System III
+    Compact (PAL-N) Brazil is PAL-M TV system, but I decided to call
+    it by the country name, seems to be better recognizable and for
+    emulation looks more like a NTSC system. PAL-N is used in
+    Argentina, Paraguay and Uruguay and looks closer to the European
+    PAL system when compared to PAL-M.
+
+-Load save state preparations [Nathan Woods]
+ * A number of changes and refactorings in preparation for a new
+    load/save state menu. Most notably, I am C++-ifying osd_directory
+    (now osd::directory) and changing osd_stat() to return
+    std::unique_ptrosd::directory::entry
+ * Take note that this change completely omits POSIX support, simply
+    because I lack a development environment to support it. This will
+    have to be done by someone else.
+	
+-POSIX implementation for new directory read features, cleanup of
+ Windows implementation, return directory handle as smart pointer, fix
+ full build [Vas Crabb]
+
+-cop: nicer sorting routine [O. Galibert]
+
+-Supply modified time for files in archives [Vas Crabb]
+
+-Fix LDUH, LDSH, LDUHA, and LDSHA opcodes in the SPARC core [Ryan Holtz]
+
+-ImGui debugger improvements  [Barry Rodewald]
+ * Memory views now control their own position, removing the scrollbar,
+   allows finer control of large memory areas.
+ * Pressing Enter on an empty debugger console input now does a single
+   step.
+ * Disassembly and Memory expression inputs now auto-select all.
+ * Fix various key inputs.
+ * Send character inputs to views, allowing memory editing to be possible
+   in a memory window.
+ * Show a rectangle around the view with focus.
+ * Add history functionality (press up/down in the debugger console input
+   widget)
+ * Allow log windows and debugger console scrollbars to stay at their
+   maximum value, if moved there.
+
+-Flaming 7 (original): Fixed the Paytable DIP switches. [Roberto Fresca]
+
+-Add older version SPARCstation IPX (Sun 4/50) ROM as an alt bios, and
+ add ROM locations [Lord Nightmare]
+
+-trs80: fixed loss of keyboard control on some games. [Robbbert]
+
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Tektronix 4404 [R. Belmont, Al Kossow]
+Entex Electronic Soccer [hap, Sean Riddle]
+U.S. Games Super Sports-4 [hap, Sean Riddle]
+Reversi Sensory Challenger [hap, yovan]
+iSBC 80/10 [Nigel Barnes]
+iSBC 80/10A [Nigel Barnes]
+iSBC 80/10B [Nigel Barnes]
+iSBC 80/30 [Nigel Barnes]
+Flaming 7 (Red, White & Blue 7's + Hollywood Nights) [Roberto Fresca, Vas Crabb, Ioannis Bampoulas]
+Super 9 Sensory Chess Challenger [hap, anonymous]
+Fidelity Elite Avant Garde (model 6117-9) [anonymous]
+Moto Frenzy [Morten Shearman Kirkegaard, Samuel Neves, Peter Wilhelmsen]
+Kyuukoukabakugekitai - Dive Bomber Squad [Andy Welburn, ShouTime, Smitdogg, David Haywood, Imhotep, 
+  Ryan Holtz, hap, Zhivko Dimitrov, spogghi, ANY, Arjen Hoekman, Arcade Addict, krick, Dullaron, 
+  Eddie, f205v, rtw, Rod_Wod, Fabien Marsaud, InsertMoreCoins, Jan Stuhler, trap15, Macaw, 
+  Team Japump, Brandon Munger, Juan Manuel Gutierrez, abelardator2, Jordi Bosch Creus, haynor666, 
+  Nestor Acebo Jimenez, Carl Perry, Jeremy McElroy, Steven Boswell, JJaVMeTaL, Steven LeMaire, 
+  Matthew Shultz, Mark Riley has no toaster, Carlos Gutierrez, Bjorn Stahl, Aldo Vittorio De Luca, 
+  Bruno Celsi, Philip Zumbrun, cornishdavey, Stefano De Dionigi, motoschifo, Mamesick, 
+  Daniel Hitchcock, Patrick Wheeler, bisus, desodeso, Swos, Don Zaucker, Tox Nox Fox, Zak0077, 
+  giuppo, Moket, Frankie, robindan77, biasini, Dr_Zero, motoschifo, Mameremember, John Wilke, 
+  Sean Sutton, Renato Mucciarelli, Berlioux Julien, Lior Aouate, The Dumping Union]
+1943: Battle for Midway Mark II (US) [Gracious Anonymous Donor, caius, The Dumping Union]
+
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Super Street Fighter II: The Tournament Battle (Japan 931005) [ShouTime]
+Electronic Battleship (1982 version) [hap, Sean Riddle]
+Lethal Weapon 3 (2.07 USA) [Zab]
+Side by Side (Ver 2.6 J) [ShouTime, The Dumping Union]
+Side by Side 2 (Ver 2.6 OK) [ShouTime, The Dumping Union]
+Mutant Warrior (Altered Beast - Datsu bootleg)  [gmx, The Dumping Union]
+Ufo Robo Dangar (4/07/1987) [ShouTime, The Dumping Union]
+Ufo Robo Dangar (9/26/1986, Japan) [ShouTime, The Dumping Union]
+Out Zone (Zero Wing TP-015 PCB conversion) [caius, The Dumping Union]
+Astro Combat (Proel bootleg, encrypted) [Any]
+Space Invaders (CV Version, smaller roms)  [Andrew Welburn]
+Scramble (Model Racing, Italian bootleg)  [Piero Andreini, PaTrYcK]
+Metamorphic Force (ver EAA - alternate)  [caius]
+Major Poker (3 different sets with Micro Manufacturing intro) [Roberto Fresca, Ioannis Bampoulas]
+Lucky Poker (bootleg/hack of Major Poker) [Roberto Fresca, Ioannis Bampoulas]
+Royal Card (Austrian, set 8) [Roberto Fresca, Ioannis Bampoulas]
+Super Pacman (v1.2) + Cherry Master (Corsica, v8.31, set 1) [Roberto Fresca, Ioannis Bampoulas]
+Galaxian (bootleg, set 4) [Dyno Dastardly, Janniz]
+Marvel Vs. Capcom 2 New Age of Heroes (USA) (Rev A) [rtw, Ryan Holtz, Tourniquet, Smitdogg, The Dumping Union]
+River Patrol (Japan) [ShouTime]
+E.D.F. : Earth Defense Force (Japan, prototype) [ShouTime]
+Flaming 7 (Custom Hardware, Egyptian Gold, 2000 Bonus)  [Roberto Fresca, Ioannis Bampoulas]
+Flaming 7 (Taiwanese Hardware, unknown version)  [Roberto Fresca, Ioannis Bampoulas]
+Teenage Mutant Hero Turtles - Turtles in Time (4 Players ver EAA) [Nomax]
+Buena Suerte (Spanish/Portuguese, set 23) [Roberto Fresca]
+Hyper Bishi Bashi (GE876 VER. KAA) [Guru, smf]
+Varth (bootleg) [Robbbert]
+
+
+New machines marked as NOT_WORKING
+----------------------------------
+V-Tech V-Smile Pro  [TeamEurope]
+World Club Champion Football Serie A 2001-2002 Ver. 2 (CDP-10001C) [any, f205v, ShouTime, rtw]
+World Club Champion Football Serie A 2001-2002 DIMM FIRM Ver.3.03 (CDP-10003) [any]
+World Club Champion Football Serie A 2002-2003 Drive Checker (CDV-10007) [any, f205v, ShouTime, rtw]
+Flaming 7 (Custom Hardware, Main, 50) [Roberto Fresca, Ioannis Bampoulas]
+Flaming 7 (Custom Hardware, Main, 500) [Roberto Fresca, Ioannis Bampoulas]
+Flaming 7 (Custom Hardware, Main, 2000) [Roberto Fresca, Ioannis Bampoulas]
+Fidelity Elite A/S Challenger [hap, anonymous]
+Alesis QS-7 [Felipe Sanches]
+CPU-30 [Joakim Larsson Edstrom]
+
+
+New clones marked as NOT_WORKING
+--------------------------------
+Magic Card (H8, English) [Yrouel]
+
+
+New WORKING software list additions
+-----------------------------------
+
+-bbcb_cass.xml: Added various recently dumped games. [Nigel Barnes]
+
+-bbcmc_flop.xml: Added various educational titles. [Nigel Barnes]
+
+-megadriv.xml: Chaoji Majiang Club / Super Mahjong Club (Tw) 
+ [system11, Fabio Priuli]
+
+-pce_tourvision.xml:  Out Run [system11, kebrank]
+
+-pet_cass.xml: 
+ * Added Supermon (Toronto PET User Group) [Ken White]
+ * Replaced bad dump of Side B of Squiggle, Big Time / Monitor (the m
+    command in the monitor now works correctly) [Ken White]
+
+-psx.xml: Added CHD images of redump.org USA disc set. [Aeternal]
+
+-psx.xml: Added some more prototypes and misc disks. [Fabio Priuli]
+
+-sorcerer_cass.xml: Added many games. [Robbbert]
+
+
+New NOT_WORKING software list additions
+---------------------------------------
+
+-cdi.xml: added a few recently dumped prototypes. [Fabio Priuli]
+
+-fmtowns_cd.xml: completed addition of known dumps. [r09, Breiztiger]
+
+-leapster.xml: 8 new dumps added [Team Europe]
+
+-pc98_cd.xml: added software list with misc CHDs from several sources 
+ [r09]
+
+-vsmile.xml: 6 new dumps added [Team Europe]
+
+-vsmile_cart.xml: added a few new US dumps [Rimsky82]
+
