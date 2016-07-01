@@ -1128,15 +1128,15 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.37b16 (0.52)</td>
 			<td class="date">02 Jul 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b16s.zip">m37b16s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b16b.zip">m37b16b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b16/m37b16s.zip">m37b16s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b16/m37b16b.zip">m37b16b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b16.txt">whatsnew_037b16.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b15 (0.51)</td>
 			<td class="date">24 May 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b15s.zip">m37b15s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b15b.zip">m37b15b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b15/m37b15s.zip">m37b15s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b15/m37b15b.zip">m37b15b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b15.txt">whatsnew_037b15.txt</a></td>
 		</tr>
 		  </table>
@@ -1158,36 +1158,36 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.37b14 (0.50)</td>
 			<td class="date">07 Apr 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b14s.zip">m37b14s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b14b.zip">m37b14b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b14/m37b14s.zip">m37b14s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b14/m37b14b.zip">m37b14b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b14.txt">whatsnew_037b14.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b13 (0.49)</td>
 			<td class="date">10 Mar 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b13s.zip">m37b13s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b13b.zip">m37b13b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b13/m37b13s.zip">m37b13s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b13/m37b13b.zip">m37b13b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b13.txt">whatsnew_037b13.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b12 fixed</td>
 			<td class="date">17 Feb 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b12fix.zip">m37b12fix.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b12b_fix.zip">m37b12b_fix.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b12p1/m37b12fix.zip">m37b12fix.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b12p1/m37b12b_fix.zip">m37b12b_fix.zip</a></td>
 			<td class="date">(n/a)</td>
 		</tr>
 		<tr>
 			<td class="date">0.37b12 (0.48)</td>
 			<td class="date">15 Feb 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b12s.zip">m37b12s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b12b.zip">m37b12b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b12/m37b12s.zip">m37b12s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b12/m37b12b.zip">m37b12b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b12.txt">whatsnew_037b12.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b11 (0.47)</td>
 			<td class="date">17 Jan 2001</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b11s.zip">m37b11s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b11b.zip">m37b11b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b11/m37b11s.zip">m37b11s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b11/m37b11b.zip">m37b11b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b11.txt">whatsnew_037b11.txt</a></td>
 		</tr>
 		  </table>
@@ -1209,113 +1209,113 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.37b10 (0.46)</td>
 			<td class="date">05 Dec 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b10s.zip">m37b10s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b10b.zip">m37b10b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b10/m37b10s.zip">m37b10s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b10/m37b10b.zip">m37b10b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b10.txt">whatsnew_037b10.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b9 (0.45)</td>
 			<td class="date">06 Nov 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b9s.zip">m37b9s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b9b.zip">m37b9b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b9/m37b9s.zip">m37b9s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b9/m37b9b.zip">m37b9b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b9.txt">whatsnew_037b9.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b8 (0.44)</td>
 			<td class="date">02 Oct 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b8s.zip">m37b8s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b8b.zip">m37b8b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b8/m37b8s.zip">m37b8s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b8/m37b8b.zip">m37b8b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b8.txt">whatsnew_037b8.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b7 (0.43)</td>
 			<td class="date">05 Sep 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b7s.zip">m37b7s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b7b.zip">m37b7b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b7/m37b7s.zip">m37b7s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b7/m37b7b.zip">m37b7b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b7.txt">whatsnew_037b7.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b6 (0.42)</td>
 			<td class="date">20 Aug 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b6s.zip">m37b6s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b6b.zip">m37b6b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b6/m37b6s.zip">m37b6s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b6/m37b6b.zip">m37b6b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b6.txt">whatsnew_037b6.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b5 (0.41)</td>
 			<td class="date">27 Jul 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b5s.zip">m37b5s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b5b.zip">m37b5b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b5/m37b5s.zip">m37b5s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b5/m37b5b.zip">m37b5b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b5.txt">whatsnew_037b5.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b4 (0.40)</td>
 			<td class="date">16 Jun 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b4s.zip">m37b4s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b4b.zip">m37b4b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b4/m37b4s.zip">m37b4s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b4/m37b4b.zip">m37b4b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b4.txt">whatsnew_037b4.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b3 (0.39)</td>
 			<td class="date">27 May 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b3s.zip">m37b3s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b3b.zip">m37b3b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b3/m37b3s.zip">m37b3s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b3/m37b3b.zip">m37b3b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b3.txt">whatsnew_037b3.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b2 (0.38)</td>
 			<td class="date">06 May 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b2s.zip">m37b2s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b2b.zip">m37b2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b2/m37b2s.zip">m37b2s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b2/m37b2b.zip">m37b2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b2.txt">whatsnew_037b2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.37b1 (0.37)</td>
 			<td class="date">06 Apr 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b1s.zip">m37b1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m37b1b.zip">m37b1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b1/m37b1s.zip">m37b1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b1/m37b1b.zip">m37b1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_037b1.txt">whatsnew_037b1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36</td>
 			<td class="date">21 Mar 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame036s.zip">mame036s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame036b.zip">mame036b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036/mame036s.zip">mame036s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036/mame036b.zip">mame036b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036.txt">whatsnew_036.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36rc2</td>
 			<td class="date">13 Mar 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36rc2s.zip">m36rc2s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36rc2b.zip">m36rc2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037r2/m36rc2s.zip">m36rc2s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037r2/m36rc2b.zip">m36rc2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036rc2.txt">whatsnew_036rc2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36rc1</td>
 			<td class="date">26 Feb 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36rc1s.zip">m36rc1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36rc1b.zip">m36rc1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037r1/m36rc1s.zip">m36rc1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037r1/m36rc1b.zip">m36rc1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036rc1.txt">whatsnew_036rc1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b16</td>
 			<td class="date">03 Feb 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b16s.zip">m36b16s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b16b.zip">m36b16b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b16/m36b16s.zip">m36b16s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b16/m36b16b.zip">m36b16b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b16.txt">whatsnew_036b16.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b15</td>
 			<td class="date">21 Jan 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b15s.zip">m36b15s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b15b.zip">m36b15b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b15/m36b15s.zip">m36b15s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b15/m36b15b.zip">m36b15b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b15.txt">whatsnew_036b15.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b14</td>
 			<td class="date">10 Jan 2000</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b14s.zip">m36b14s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b14b.zip">m36b14b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b14/m36b14s.zip">m36b14s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b14/m36b14b.zip">m36b14b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b14.txt">whatsnew_036b14.txt</a></td>
 		</tr>
 		  </table>
@@ -1337,218 +1337,218 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.36b13</td>
 			<td class="date">30 Dec 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b13s.zip">m36b13s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b13b.zip">m36b13b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b13/m36b13s.zip">m36b13s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b13/m36b13b.zip">m36b13b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b13.txt">whatsnew_036b13.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b12</td>
 			<td class="date">18 Dec 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b12s.zip">m36b12s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b12b.zip">m36b12b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b12/m36b12s.zip">m36b12s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b12/m36b12b.zip">m36b12b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b12.txt">whatsnew_036b12.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b11</td>
 			<td class="date">05 Dec 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b11s.zip">m36b11s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b11b.zip">m36b11b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b11/m36b11s.zip">m36b11s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b11/m36b11b.zip">m36b11b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b11.txt">whatsnew_036b11.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b10</td>
 			<td class="date">20 Nov 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b10s.zip">m36b10s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b10b.zip">m36b10b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b10/m36b10s.zip">m36b10s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b10/m36b10b.zip">m36b10b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b10.txt">whatsnew_036b10.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b9.1</td>
 			<td class="date">14 Nov 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b91su.zip">m36b91su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b91b.zip">m36b91b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b9p1/m36b91su.zip">m36b91su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b9p1/m36b91b.zip">m36b91b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b91.txt">whatsnew_036b91.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b9</td>
 			<td class="date">13 Nov 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b9s.zip">m36b9s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b9b.zip">m36b9b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b9/m36b9s.zip">m36b9s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b9/m36b9b.zip">m36b9b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b9.txt">whatsnew_036b9.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b8</td>
 			<td class="date">30 Oct 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b8su.zip">m36b8su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b8b.zip">m36b8b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b8/m36b8su.zip">m36b8su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b8/m36b8b.zip">m36b8b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b8.txt">whatsnew_036b8.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b7</td>
 			<td class="date">17 Oct 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b7s.zip">m36b7s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b7b.zip">m36b7b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b7/m36b7s.zip">m36b7s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b7/m36b7b.zip">m36b7b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b7.txt">whatsnew_036b7.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b6</td>
 			<td class="date">29 Sep 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b6s.zip">m36b6s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b6b.zip">m36b6b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b6/m36b6s.zip">m36b6s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b6/m36b6b.zip">m36b6b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b6.txt">whatsnew_036b6.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b5</td>
 			<td class="date">18 Sep 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b5su.zip">m36b5su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b5b.zip">m36b5b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b5/m36b5su.zip">m36b5su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b5/m36b5b.zip">m36b5b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b5.txt">whatsnew_036b5.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b4</td>
 			<td class="date">04 Sep 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b4s.zip">m36b4s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b4b.zip">m36b4b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b4/m36b4s.zip">m36b4s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b4/m36b4b.zip">m36b4b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b4.txt">whatsnew_036b4.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b3</td>
 			<td class="date">22 Aug 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b3s.zip">m36b3s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b3b.zip">m36b3b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b3/m36b3s.zip">m36b3s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b3/m36b3b.zip">m36b3b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b3.txt">whatsnew_036b3.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b2</td>
 			<td class="date">08 Aug 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b2s.zip">m36b2s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b2b.zip">m36b2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b2/m36b2s.zip">m36b2s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b2/m36b2b.zip">m36b2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b2.txt">whatsnew_036b2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.36b1</td>
 			<td class="date">19 Jul 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b1s.zip">m36b1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m36b1b.zip">m36b1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b1/m36b1s.zip">m36b1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b1/m36b1b.zip">m36b1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b1.txt">whatsnew_036b1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35 fixed</td>
 			<td class="date">05 Jul 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame035s_fix.zip">mame035s_fix.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame035b_fix.zip">mame035b_fix.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035p1/mame035s_fix.zip">mame035s_fix.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035p1/mame035b_fix.zip">mame035b_fix.zip</a></td>
 			<td class="date">(n/a)</td>
 		</tr>
 		<tr>
 			<td class="date">0.35</td>
 			<td class="date">04 Jul 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame035s.zip">mame035s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame035b.zip">mame035b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035/mame035s.zip">mame035s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035/mame035b.zip">mame035b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035.txt">whatsnew_035.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35rc2</td>
 			<td class="date">24 Jun 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35rc2su.zip">m35rc2su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35rc2b.zip">m35rc2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035r2/m35rc2su.zip">m35rc2su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035r2/m35rc2b.zip">m35rc2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035rc2.txt">whatsnew_035rc2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35rc1</td>
 			<td class="date">13 Jun 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35rc1s.zip">m35rc1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35rc1b.zip">m35rc1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035r1/m35rc1s.zip">m35rc1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035r1/m35rc1b.zip">m35rc1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035rc1.txt">whatsnew_035rc1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b13</td>
 			<td class="date">24 May 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b13s.zip">m35b13s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b13b.zip">m35b13b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b13/m35b13s.zip">m35b13s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b13/m35b13b.zip">m35b13b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b13.txt">whatsnew_035b13.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b12</td>
 			<td class="date">01 May 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b12su.zip">m35b12su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b12b.zip">m35b12b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b12/m35b12su.zip">m35b12su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b12/m35b12b.zip">m35b12b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b12.txt">whatsnew_035b12.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b11</td>
 			<td class="date">22 Apr 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b11s.zip">m35b11s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b11b.zip">m35b11b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b11/m35b11s.zip">m35b11s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b11/m35b11b.zip">m35b11b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b11.txt">whatsnew_035b11.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b10</td>
 			<td class="date">08 Apr 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b10s.zip">m35b10s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b10b.zip">m35b10b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b10/m35b10s.zip">m35b10s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b10/m35b10b.zip">m35b10b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b10.txt">whatsnew_035b10.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b9</td>
 			<td class="date">30 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b9s.zip">m35b9s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b9b.zip">m35b9b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b9/m35b9s.zip">m35b9s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b9/m35b9b.zip">m35b9b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b9.txt">whatsnew_035b9.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b8</td>
 			<td class="date">24 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b8s.zip">m35b8s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b8b.zip">m35b8b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b8/m35b8s.zip">m35b8s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b8/m35b8b.zip">m35b8b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b8.txt">whatsnew_035b8.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b7</td>
 			<td class="date">18 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b7s.zip">m35b7s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b7b.zip">m35b7b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b7/m35b7s.zip">m35b7s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b7/m35b7b.zip">m35b7b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b7.txt">whatsnew_035b7.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b6</td>
 			<td class="date">15 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b6s.zip">m35b6s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b6b.zip">m35b6b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b6/m35b6s.zip">m35b6s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b6/m35b6b.zip">m35b6b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b6.txt">whatsnew_035b6.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b5</td>
 			<td class="date">07 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b5su.zip">m35b5su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b5b.zip">m35b5b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b5/m35b5su.zip">m35b5su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b5/m35b5b.zip">m35b5b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b5.txt">whatsnew_035b5.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b4</td>
 			<td class="date">01 Mar 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b4su.zip">m35b4su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b4b.zip">m35b4b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b4/m35b4su.zip">m35b4su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b4/m35b4b.zip">m35b4b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b4.txt">whatsnew_035b4.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b3</td>
 			<td class="date">15 Feb 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b3s.zip">m35b3s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b3b.zip">m35b3b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b3/m35b3s.zip">m35b3s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b3/m35b3b.zip">m35b3b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b3.txt">whatsnew_035b3.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b2</td>
 			<td class="date">24 Jan 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b2s.zip">m35b2s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b2b.zip">m35b2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b2/m35b2s.zip">m35b2s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b2/m35b2b.zip">m35b2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b2.txt">whatsnew_035b2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.35b1</td>
 			<td class="date">07 Jan 1999</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b1s.zip">m35b1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m35b1b.zip">m35b1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b1/m35b1s.zip">m35b1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame035b1/m35b1b.zip">m35b1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_035b1.txt">whatsnew_035b1.txt</a></td>
 		</tr>
 		  </table>
@@ -1570,155 +1570,155 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.34</td>
 			<td class="date">31 Dec 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame034s.zip">mame034s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame034b.zip">mame034b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034/mame034s.zip">mame034s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034/mame034b.zip">mame034b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034.txt">whatsnew_034.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34rc2</td>
 			<td class="date">21 Dec 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34rc2su.zip">m34rc2su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34rc2b.zip">m34rc2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034r2/m34rc2su.zip">m34rc2su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034r2/m34rc2b.zip">m34rc2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034rc2.txt">whatsnew_034rc2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34rc1</td>
 			<td class="date">14 Dec 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34rc1s.zip">m34rc1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34rc1b.zip">m34rc1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034r1/m34rc1s.zip">m34rc1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034r1/m34rc1b.zip">m34rc1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034rc1.txt">whatsnew_034rc1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b8</td>
 			<td class="date">29 Nov 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b8s.zip">m34b8s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b8b.zip">m34b8b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b8/m34b8s.zip">m34b8s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b8/m34b8b.zip">m34b8b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b8.txt">whatsnew_034b8.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b7</td>
 			<td class="date">10 Nov 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b7s.zip">m34b7s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b7b.zip">m34b7b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b7/m34b7s.zip">m34b7s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b7/m34b7b.zip">m34b7b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b7.txt">whatsnew_034b7.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b6</td>
 			<td class="date">28 Oct 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b6su.zip">m34b6su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b6b.zip">m34b6b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b6/m34b6su.zip">m34b6su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b6/m34b6b.zip">m34b6b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b6.txt">whatsnew_034b6.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b5</td>
 			<td class="date">16 Oct 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b5su.zip">m34b5su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b5b.zip">m34b5b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b5/m34b5su.zip">m34b5su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b5/m34b5b.zip">m34b5b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b5.txt">whatsnew_034b5.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b4</td>
 			<td class="date">04 Oct 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b4s.zip">m34b4s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b4b.zip">m34b4b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b4/m34b4s.zip">m34b4s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b4/m34b4b.zip">m34b4b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b4.txt">whatsnew_034b4.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b3</td>
 			<td class="date">17 Sep 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b3su.zip">m34b3su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b3b.zip">m34b3b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b3/m34b3su.zip">m34b3su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b3/m34b3b.zip">m34b3b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b3.txt">whatsnew_034b3.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b2</td>
 			<td class="date">30 Aug 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b2su.zip">m34b2su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b2b.zip">m34b2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b2/m34b2su.zip">m34b2su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b2/m34b2b.zip">m34b2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b2.txt">whatsnew_034b2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.34b1</td>
 			<td class="date">16 Aug 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b1s.zip">m34b1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m34b1b.zip">m34b1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b1/m34b1s.zip">m34b1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame034b1/m34b1b.zip">m34b1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_034b1.txt">whatsnew_034b1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33</td>
 			<td class="date">09 Aug 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame033s.zip">mame033s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame033b.zip">mame033b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033/mame033s.zip">mame033s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033/mame033b.zip">mame033b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033.txt">whatsnew_033.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33rc1</td>
 			<td class="date">29 Jul 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33rc1su.zip">m33rc1su.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33rc1b.zip">m33rc1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033r1/m33rc1su.zip">m33rc1su.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033r1/m33rc1b.zip">m33rc1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033rc1.txt">whatsnew_033rc1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b7</td>
 			<td class="date">21 Jul 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b7s.zip">m33b7s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b7b.zip">m33b7b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b7/m33b7s.zip">m33b7s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b7/m33b7b.zip">m33b7b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b7.txt">whatsnew_033b7.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b6</td>
 			<td class="date">16 Jun 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b6s.zip">m33b6s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b6b.zip">m33b6b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b6/m33b6s.zip">m33b6s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b6/m33b6b.zip">m33b6b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b6.txt">whatsnew_033b6.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b5</td>
 			<td class="date">10 Jun 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b5s.zip">m33b5s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b5b.zip">m33b5b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b5/m33b5s.zip">m33b5s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b5/m33b5b.zip">m33b5b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b5.txt">whatsnew_033b5.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b4</td>
 			<td class="date">31 May 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b4s.zip">m33b4s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b4b.zip">m33b4b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b4/m33b4s.zip">m33b4s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b4/m33b4b.zip">m33b4b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b4.txt">whatsnew_033b4.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b3</td>
 			<td class="date">17 May 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b3s.zip">m33b3s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b3b.zip">m33b3b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b3/m33b3s.zip">m33b3s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b3/m33b3b.zip">m33b3b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b3.txt">whatsnew_033b3.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b2</td>
 			<td class="date">08 May 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b2s.zip">m33b2s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b2b.zip">m33b2b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b2/m33b2s.zip">m33b2s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b2/m33b2b.zip">m33b2b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b2.txt">whatsnew_033b2.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.33b1</td>
 			<td class="date">03 May 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b1s.zip">m33b1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/m33b1b.zip">m33b1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b1/m33b1s.zip">m33b1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame033b1/m33b1b.zip">m33b1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_033b1.txt">whatsnew_033b1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.31</td>
 			<td class="date">25 Apr 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame031s.zip">mame031s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame031b.zip">mame031b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame031/mame031s.zip">mame031s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame031/mame031b.zip">mame031b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_031.txt">whatsnew_031.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.30</td>
 			<td class="date">08 Jan 1998</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame030s.zip">mame030s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame030b.zip">mame030b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame030/mame030s.zip">mame030s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame030/mame030b.zip">mame030b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_030.txt">whatsnew_030.txt</a></td>
 		</tr>
 		  </table>
@@ -1740,233 +1740,233 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.29</td>
 			<td class="date">20 Oct 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame029s.zip">mame029s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame029b.zip">mame029b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame029/mame029s.zip">mame029s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame029/mame029b.zip">mame029b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_029.txt">whatsnew_029.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.28</td>
 			<td class="date">07 Sep 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame028s.zip">mame028s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame028b.zip">mame028b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame028/mame028s.zip">mame028s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame028/mame028b.zip">mame028b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_028.txt">whatsnew_028.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.27</td>
 			<td class="date">10 Aug 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame027s.zip">mame027s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame027b.zip">mame027b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame027/mame027s.zip">mame027s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame027/mame027b.zip">mame027b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_027.txt">whatsnew_027.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.26.1</td>
 			<td class="date">18 Jul 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame261s.zip">mame261s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame261b.zip">mame261b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026p1/mame261s.zip">mame261s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026p1/mame261b.zip">mame261b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_026.txt">whatsnew_026.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.26</td>
 			<td class="date">14 Jul 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame026s.zip">mame026s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame026b.zip">mame026b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026/mame026s.zip">mame026s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026/mame026b.zip">mame026b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_026.txt">whatsnew_026.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.25</td>
 			<td class="date">28 Jun 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame025s.zip">mame025s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame025b.zip">mame025b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame025/mame025s.zip">mame025s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame025/mame025b.zip">mame025b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_025.txt">whatsnew_025.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.24</td>
 			<td class="date">13 Jun 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame024s.zip">mame024s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame024b.zip">mame024b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame024/mame024s.zip">mame024s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame024/mame024b.zip">mame024b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_024.txt">whatsnew_024.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.23.1</td>
 			<td class="date">03 Jun 1997</td>
 			<td class="date">(n/a)</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame231b.zip">mame231b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame231b.zip">mame231b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_023.txt">whatsnew_023.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.23</td>
 			<td class="date">02 Jun 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame023s.zip">mame023s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame023b.zip">mame023b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame023s.zip">mame023s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame023b.zip">mame023b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_023.txt">whatsnew_023.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.22</td>
 			<td class="date">25 May 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame022s.zip">mame022s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame022b.zip">mame022b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame022/mame022s.zip">mame022s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame022/mame022b.zip">mame022b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_022.txt">whatsnew_022.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.21.5</td>
 			<td class="date">16 May 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame215s.zip">mame215s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame215b.zip">mame215b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021p5/mame215s.zip">mame215s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021p5/mame215b.zip">mame215b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_215.txt">whatsnew_215.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.21</td>
 			<td class="date">12 May 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame021s.zip">mame021s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame021b.zip">mame021b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021/mame021s.zip">mame021s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021/mame021b.zip">mame021b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_021.txt">whatsnew_021.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.20</td>
 			<td class="date">05 May 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame020s.zip">mame020s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame020b.zip">mame020b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame020/mame020s.zip">mame020s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame020/mame020b.zip">mame020b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_020.txt">whatsnew_020.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.19</td>
 			<td class="date">26 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame019s.zip">mame019s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame019b.zip">mame019b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame019/mame019s.zip">mame019s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame019/mame019b.zip">mame019b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_019.txt">whatsnew_019.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.18</td>
 			<td class="date">20 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame018s.zip">mame018s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame018b.zip">mame018b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame018/mame018s.zip">mame018s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame018/mame018b.zip">mame018b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_018.txt">whatsnew_018.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.17</td>
 			<td class="date">14 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame017s.zip">mame017s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame017b.zip">mame017b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame017/mame017s.zip">mame017s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame017/mame017b.zip">mame017b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_017.txt">whatsnew_017.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.16</td>
 			<td class="date">13 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame016s.zip">mame016s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame016b.zip">mame016b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame016/mame016s.zip">mame016s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame016/mame016b.zip">mame016b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_016.txt">whatsnew_016.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.15</td>
 			<td class="date">06 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame015s.zip">mame015s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame015b.zip">mame015b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame015/mame015s.zip">mame015s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame015/mame015b.zip">mame015b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_015.txt">whatsnew_015.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.14</td>
 			<td class="date">02 Apr 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame014s.zip">mame014s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame014b.zip">mame014b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame014/mame014s.zip">mame014s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame014/mame014b.zip">mame014b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_014.txt">whatsnew_014.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.13</td>
 			<td class="date">26 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame013s.zip">mame013s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame013b.zip">mame013b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame013/mame013s.zip">mame013s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame013/mame013b.zip">mame013b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_013.txt">whatsnew_013.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.12</td>
 			<td class="date">23 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame012s.zip">mame012s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame012b.zip">mame012b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame012/mame012s.zip">mame012s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame012/mame012b.zip">mame012b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_012.txt">whatsnew_012.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.11</td>
 			<td class="date">16 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame011s.zip">mame011s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame011b.zip">mame011b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame011/mame011s.zip">mame011s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame011/mame011b.zip">mame011b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_011.txt">whatsnew_011.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.10</td>
 			<td class="date">13 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame010s.zip">mame010s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame010b.zip">mame010b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame010/mame010s.zip">mame010s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame010/mame010b.zip">mame010b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_010.txt">whatsnew_010.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.9.1</td>
 			<td class="date">09 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame09_1s.zip">mame09_1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame09_1b.zip">mame09_1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09p1/mame09_1s.zip">mame09_1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09p1/mame09_1b.zip">mame09_1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_09_1.txt">whatsnew_09_1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.9</td>
 			<td class="date">09 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame09s.zip">mame09s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame09b.zip">mame09b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09/mame09s.zip">mame09s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09/mame09b.zip">mame09b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_09.txt">whatsnew_09.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.8.1</td>
 			<td class="date">04 Mar 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame08_1s.zip">mame08_1s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame08_1b.zip">mame08_1b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08_1s.zip">mame08_1s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08_1b.zip">mame08_1b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_08_1.txt">whatsnew_08_1.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.8</td>
 			<td class="date">04 Mar 1997</td>
 			<td class="date">(n/a)</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame08b.zip">mame08b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08b.zip">mame08b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_08.txt">whatsnew_08.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.7</td>
 			<td class="date">27 Feb 1997</td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame07s.zip">mame07s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame07b.zip">mame07b.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame07/mame07s.zip">mame07s.zip</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame07/mame07b.zip">mame07b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_07.txt">whatsnew_07.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.6</td>
 			<td class="date">23 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame06.zip">mame06.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame06/mame06.zip">mame06.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_06.txt">whatsnew_06.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.5</td>
 			<td class="date">20 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame05.zip">mame05.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame05/mame05.zip">mame05.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_05.txt">whatsnew_05.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.4</td>
 			<td class="date">16 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame04.zip">mame04.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame04/releases/mame04.zip">mame04.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_04.txt">whatsnew_04.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.3</td>
 			<td class="date">13 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame03.zip">mame03.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame03/releases/mame03.zip">mame03.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_03.txt">whatsnew_03.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.2</td>
 			<td class="date">09 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame02.zip">mame02.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame02/mame02.zip">mame02.zip</a></td>
 			<td class="link"><a href="releases/readme_02.txt">readme_02.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.1</td>
 			<td class="date">05 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/releases/mame01.zip">mame01.zip</a></td>
+			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame01/mame01.zip">mame01.zip</a></td>
 			<td class="link"><a href="releases/readme_01.txt">readme_01.txt</a></td>
 		</tr>
 		  </table>
