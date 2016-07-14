@@ -306,6 +306,13 @@ $title = 'MAME | Project History';
   on-going move to C++ work.</td>
  </tr>
  <tr>
+  <td>8
+  Jun 10</td>
+  <td>0.138u2</td>
+  <td>Modern implementation of devices as derived classes
+  with mix-in interfaces.</td>
+ </tr>
+ <tr>
   <td>15
   May 10</td>
   <td>0.138</td>
@@ -392,6 +399,13 @@ $title = 'MAME | Project History';
   <td>0.125u8</td>
   <td>MAME debugger included all
   the time.</td>
+ </tr>
+  <tr>
+  <td>19
+  Feb 08</td>
+  <td>0.123u2</td>
+  <td>First implementation of a generic device
+  interface.</td>
  </tr>
  <tr>
   <td>01
