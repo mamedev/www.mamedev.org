@@ -270,7 +270,7 @@ $title = 'MAME | Project History';
   <td>15
   Aug 11</td>
   <td>0.143u3</td>
-  <td>Beginning of the concept of "devices". Further addition of gambling and fruit machine titles.</td>
+  <td>Device ROMs separated from drivers in loading and listing. Further addition of gambling and fruit machine titles.</td>
  </tr>
  <tr>
   <td>27
@@ -662,6 +662,14 @@ $title = 'MAME | Project History';
   <td>Aaron Giles implements CHD (Compressed Hard Disk - later Compressed Hunks of Data).</td>
  </tr>
  <tr>
+  <td>05
+  Feb 02</td>
+  <td>0.58</td>
+  <td> "Machine drivers," previously hard-coded structures,
+  now initialized by macro-based constructors, allowing
+  configurations to derive from each other.</td>
+ </tr>
+ <tr>
   <td>24
   Aug 01</td>
   <td>0.54</td>
@@ -716,6 +724,13 @@ $title = 'MAME | Project History';
   <td>0.36rc1</td>
   <td>Removed Pong and gambling
   game drivers.</td>
+ </tr>
+ <tr>
+  <td>10
+  Jan 00</td>
+  <td>0.36b14</td>
+  <td>Major reorganization of driver
+  configuration structures.</td>
  </tr>
  <tr>
   <td>10
