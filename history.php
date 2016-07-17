@@ -208,7 +208,7 @@ $title = 'MAME | Project History';
   new dev tools).</td>
  </tr>
  <tr>
-  <td>14
+  <td>30
   Oct 12</td>
   <td>0.147u2</td>
   <td>New implementation of device callback module.</td>
@@ -312,7 +312,7 @@ $title = 'MAME | Project History';
   on-going move to C++ work.</td>
  </tr>
  <tr>
-  <td>8
+  <td>17
   Jun 10</td>
   <td>0.138u2</td>
   <td>Modern implementation of devices as derived classes
@@ -365,7 +365,7 @@ $title = 'MAME | Project History';
   <td>Added some AGEMAME drivers.</td>
  </tr>
  <tr>
-  <td>26
+  <td>29
   Jan 09</td>
   <td>0.129u3</td>
   <td>First implementation of device callback module.</td>
@@ -413,7 +413,7 @@ $title = 'MAME | Project History';
   the time.</td>
  </tr>
   <tr>
-  <td>19
+  <td>21
   Feb 08</td>
   <td>0.123u2</td>
   <td>First implementation of a generic device
@@ -675,7 +675,7 @@ $title = 'MAME | Project History';
   <td>Aaron Giles implements CHD (Compressed Hard Disk - later Compressed Hunks of Data).</td>
  </tr>
  <tr>
-  <td>05
+  <td>06
   Feb 02</td>
   <td>0.58</td>
   <td> "Machine drivers," previously hard-coded structures,
@@ -739,7 +739,7 @@ $title = 'MAME | Project History';
   game drivers.</td>
  </tr>
  <tr>
-  <td>10
+  <td>11
   Jan 00</td>
   <td>0.36b14</td>
   <td>Major reorganization of driver
