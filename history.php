@@ -208,6 +208,12 @@ $title = 'MAME | Project History';
   new dev tools).</td>
  </tr>
  <tr>
+  <td>14
+  Oct 12</td>
+  <td>0.147u2</td>
+  <td>New implementation of device callback module.</td>
+ </tr>
+ <tr>
   <td>17
   Sep 12</td>
   <td>0.147</td>
@@ -359,6 +365,12 @@ $title = 'MAME | Project History';
   <td>Added some AGEMAME drivers.</td>
  </tr>
  <tr>
+  <td>26
+  Jan 09</td>
+  <td>0.129u3</td>
+  <td>First implementation of device callback module.</td>
+ </tr>
+ <tr>
   <td>21
   Dec 08</td>
   <td>0.128u7</td>
@@ -461,7 +473,8 @@ $title = 'MAME | Project History';
   <td>12
   Feb 07</td>
   <td>0.112u1</td>
-  <td>MAME code reorganized.</td>
+  <td>MAME code reorganized, separating game drivers from
+  emulation core in the source tree.</td>
  </tr>
  <tr>
   <td>07
@@ -888,8 +901,13 @@ $title = 'MAME | Project History';
   <td>23
   Mar 97</td>
   <td>0.12</td>
-  <td>First support for multiple
-  CPUs.</td>
+  <td>First multiple-CPU game emulated (Burger Time).</td>
+ </tr>
+ <tr>
+  <td>13
+  Mar 97</td>
+  <td>0.10</td>
+  <td>First non-Z80-based game emulated (Centipede).</td>
  </tr>
  <tr>
   <td>18
