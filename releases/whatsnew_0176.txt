@@ -1,0 +1,321 @@
+0.176
+-------
+
+
+MAMETesters Bugs Fixed
+----------------------
+- 06288: [Interface] UI:: Selecting "Category" after listing "Favorites" 
+  causes exception (Vas Crabb)
+- 06291: [Interface] (carpolo.c) carpolo: Unable to view recorded video made 
+  with -video bgfx/-window (Jezze)
+- 06286: [Misc.] (segaorun.c) shangon: Captured AVI video from this game shows 
+  only sound, no image (Angelo Salese)
+- 06263: [Interface] UI: Choosing any filter which has no data makes the UI 
+  unrecoverable (Maurizio Petrarota)
+- 06280: [Interface] PLUGINS: The plugin.ini file is created in the current folder 
+  when it should be created in the "ini" path. (crazyc)
+- 06279: [Interface] PLUGINS: pluginspath does not resolve $HOME (crazyc)
+- 06285: [Gameplay] (vendetta.c) esckids, esckidsj: Slowdowns in gameplay (Osso)
+- 06284: [Interface] Watchdog dialog is not able to be captured (cuavas)
+- 06246: [Graphics] (legionna.c) cupsocsb, cupsocsb2: Black screen (Angelo Salese)
+- 06268: [Crash/Freeze] MAME can crash when switching languages (Vas Crabb)
+- 06266: [DIP/Input] (seta.c) metafox: Bonus_Life DIPSETTING values and labels are incorrect (Tafoid)
+- 06262: [Crash/Freeze] All sets using SHARC drc: Crash when running DRC (Linux only?) (Ville Linde)
+- 06305: [Crash/Freeze] (atpci.c) at586, at586x3, ficvt503: Use of -kbd slot options 
+  3270pc or pcat causes crash (crazyc)
+- 06304: [Crash/Freeze] (mac.c) macse30: Crash when attempting to use any slot option for -pds030 (Osso)
+- 06309: [Crash/Freeze] (mac.c) macsefd: Crash on Exit using -pds slot (Osso)
+- 05534: [Crash/Freeze] (pc8001.c) All sets in pc8001.c: Crash after OK (Robbbert)
+- 06324: [Crash/Freeze] (funkball.c) funkball: Fatal Error at Start (Osso)
+- 06323: [Debugger] (psikyosh.c) gunbird2, s1945iii: Crash when attempting to use -cheat (AJR)
+- 06313: [Crash/Freeze] (victor9k.c) Crash when using -fdc:5d:0 and -fdc:5d:1 slot with '525ssqd' option (Pernod)
+- 06312: [Crash/Freeze] (osborne1.c) Crash when using -mb8877:0 and -mb8877:1 slot with '525sssd' option (Pernod)
+- 06311: [Crash/Freeze] (myb3k.c) Crash when using -fdc:0 and -fdc:1 slot with '525sssd' option (Pernod)
+- 06281: [Crash/Freeze] astrocde [280zzap]: 280Zzzap/Dodgem Cartridge Resets (Duke)
+
+Source Changes
+--------------
+-Scorpion4 7segment displays mostly fixed [John Parker]
+
+-Fixed coinage in Touchmaster 2000-8000 [MASH]
+
+-z80scc: fix dropped character problem for sun4_75, and fix edge cases
+ where datasheet recommendations are ignored allowing sun3/sun4 to
+ recognise keyboard and hk68v10 to work with correct SCC clock
+ [Joakim Larsson Edstrom]
+
+-pc9801: fixed mouse buttons [rzero9]
+
+-coco3 improvements: [milliluk]
+ * improve palettes and support alternate composite mode
+ * GIME fix for scanlines in legacy graphic modes
+
+-m6809: Improve debugging support for 6809/6309 cpus [milliluk]
+
+-GNU/kFreeBSD support [stevenc99]
+
+-Add arch defines for Linux alpha and mips64el. [Jordi Mallach]
+
+-Take pkg-config path from env if defined [Bernhard Frauendienst]
+
+-Name Neo-Geo AES, NeoGeo CD and FM Towns Marty buttons [Shideravan]
+
+-Updated *nix man pages. [Cesare Falco]
+
+-poisk1: unbreak after "Memory fun", add B623 sound card (skeleton) [shattered]
+
+-r9751: Add save state support, document progress and clean up, add PROM
+ version 4.2 [Brandon Munger]
+
+-ym2151, ym2413: Isolate, objectify, integrate [O. Galibert]
+
+-add Net-DIMM 3.03 firmware [letoram, gamerfan, Mark F., Smitdogg, The Dumping Union]
+
+-Netlist improvements:  [Couriersud]
+ * nltool now accepts -Ddefine=value to pass on to netlists
+ * improved option handling and added "dummy" options to add grouping
+    and examples in help output.
+ * improved --cmd=listdevices output
+ * Fix dynamic timestepping. This will work with breakout using real
+    capacitor modelling instead of delay devices. Really slow, but
+    very useful to calibrate timings.
+ * Fix an awful bug in timing for delay devices.
+ * Switched to clang 3.8 and made code compile with aggressive warnings.
+    This exposed serious issues with implicit constructors.
+ * Removed trampolines (OUTLOGIC, INPLOGIC and friends).
+ * Started using doxygen comment and documentation style. Added
+    doxygen files to documentation folder.
+ * Refactored code triggered by doxygen output.
+ * Moved internal and support classes into namespace detail.
+ * Use an unordered map in parser.
+ * Added iterators to pstring.
+ * Moved two macros, added more RAII and improved exceptions. Fixed
+    some bugs in parser code.
+ * Fixed a number of bugs in parser code and exception handling.
+
+-Forte Card: Switched the ver 110 (spanish) to parent set since it's a
+ newer version. Also cleaned up the driver. [Roberto Fresca]
+
+-Render module improvements: [Giuseppe Gorgoglione]
+ * Direct3D HLSL: use aviwrite to record AVI movies
+ * Cleanup patches for Direct3D renderer
+ * BGFX: fix crash when bgfx effect folder is not present
+
+-Fixed priority issues in Legionnaire, Heated Barrel, Denjin Makai and
+ Godzilla [Angelo Salese]
+
+-opwolf.cpp: fix all the gameplay problems by improving the c-chip
+ protection simulation [Bryan McPhail] 
+
+-Miscellaneous modernisation: [Nathan Woods]
+ * File create and format refactoring, better name/path validation
+   (with POSIX implementation from Vas Crabb)
+ * Use string objects in in core_file static functions, menu items,
+    strconv functions, image device extensions and softlist classes
+ * Consolide default implementation of create_option_guide()
+ * Filesel cleanup
+ * Migrate softlist code from simple_list to std::list
+
+-Added crt-geom and crt-geom-deluxe shaders for bgfx including several
+ aperture grille/shadow mask patterns (designed for RGB subpixel order)
+ [Jeremy Green]
+
+-Added option hide ROMless machines from the availables list.
+ [Maurizio Petrarota]
+
+-sun4 updates:
+ * Added SPARCStation 1+, 4/110, and 4/4x0 ROMs [Al Kossow]
+ * SPARC CPU core fixes [Ryan Holtz, Vas Crabb]
+ * Preliminary counter/timer support [R. Belmont]
+ * Separated sun4 and sun4c, started implementing unique original sun4
+    features. [R. Belmont]
+ * Support both 8 and 16 context variants of sun4c arch [R. Belmont]
+ * Improved original sun4 architecture support [R. Belmont]
+ * Initial FDC hookup [Ryan Holtz]
+ * Improved timers, logging - sun4_40 runs FORTH programs at ok
+    prompt [Ryan Holtz]
+
+-Add high-level emulation of Sun type 3/4/5/6 keyboards [Vas Crabb]
+ * U.S.A, Great Britain, Sweden and Japan layouts for Type 5
+ * Layout selection settings for Type 4 and Type 5
+ * Identification selection for type 4
+ * Adaptor for connecting to RS-232 port representing level translator
+ * Hook up to sun3, sun4 and sun4c
+
+-zeroteam: improve sprite/sprite priorities [AJR]
+
+-feversoc.cpp: Hook up EEPROM; remap buttons, hook up lamps and serial RTC [AJR]
+
+-denjinmk: hack sound comms to work without ROM patch [AJR]
+
+-vt100.cpp: Add the older vt102/vt131 romset to the vt131 driver as
+ another bios set [Lord Nightmare, Al Kossow]
+
+-Corrected many Mahjong dip switches and settings [system11]
+ * Fixes for: Mahjong Focus, Nozokimeguri Mahjong Peep Show,
+    Mahjong Fantasic Love & Ojousan
+ * Various Video System Mahjong dip switches
+
+-Final enhancements to HP TACO driver [fulivi]
+
+-Further IRQ passthrough cleanup [AJR]
+ * Remove irq_line methods from M6502, M6800, M6809, S2600 and replace
+    uses with DEVCB_INPUTLINE
+ * Remove a few IRQ passthroughs from spiders.cpp
+ * Add several aliases for M6800_IRQ_LINE
+
+-Increase uismall.bdf coverage: [Vas Crabb]
+ * Complete coverage of Latin Extended-A, most of Latin Extended-B
+ * Monotonic Greek
+ * Full ISO-8859-5 Cyrillic, many other Cyrillic characters
+ * Half-width katakana
+ * Some IPA Extensions
+
+-UI refactoring: [Vas Crabb]
+ * Move most main launch menu stuff out of the base menu class
+ * Move some common code from selgame and selsoft into selmenu
+ * Eliminate the troublesome static members in ui::menu
+ * Eliminate some function statics
+ * Move palette menu drawing code out of base into palette menu class
+ * Use std::bind, references where nullptr is unacceptable, and const
+    where appropriate
+ * Improve encapsulation of class members
+ * Reduce repeated string allocation in audit code
+ * Don't play so fast and loose with integer types
+ * Eliminate some expensive deep copies of vectors/maps
+ * .h -> .ipp for things that aren't really headers
+ * Remove members that have lifecycle associated with operation
+
+-DPS1: system boots up, working [Robbbert]
+
+-bankdev: pass through the debugger flag from the incoming space
+ argument [R. Belmont]
+
+-Apollo changes: [Hans Ostermeyer]
+ * Keyboard mapping adjusted to fit current MAME
+ * Fixed screen raw parameters
+ * Fixed disp.dex Test 20 (Video SYNC Gen. Add. Test) for color
+    displays
+
+-3c505: The Ethernet frame check sequence is now appended to transmit
+ data [Hans Ostermeyer]
+
+-input_common: fixed 0.172 regression for non-US keyboards
+ [Hans Ostermeyer]
+
+-fix item hilighting in debugger state view when scrolling [Vas Crabb]
+
+-Introduce validity checks for RGB utilities and fix bugs uncovered [Vas Crabb]
+ * Fix rgbvmx on Linux ppc64 and ppc64le targets with GCC 5
+ * Added several missing functions to rgbgen
+ * Fixed logical shift right in rgbgen
+ * Fixed sra that should be sra_imm in rdptpipe
+ * Added some simple SSE4.1 optimisations in rgbsse
+ * Re-organised rgbsse, rgbvmx and rgbgen to be in more logical order
+ * Fixed return type on some modifying operators
+ * Made some more reference parameters const
+ * Removed inline qualifier from a number of methods as it's implied
+    when body is present at declaration
+ * Mark some constructors explicit
+
+-null_modem: rtscts flow control + relevant fix to i8251 [shattered]
+
+-Updated driver with new information related to ID and gamelist for
+ tourvis.cpp  [system11, Tafoid]
+
+-Fix archimedes disk format [O. Galibert]
+
+-apple2: don't allow debugger to trigger slot switching [Peter Ferrie]
+
+-tiamc1: Kot-Rybolov implemented sound, documentation updates [MetalliC]
+
+-Tia-MC1 driver: Added support for KR580VV55A parallel peripheral
+ interface (clone of i8255), added technical notes about some odd
+ behaviour with some ports, listed the specs of Kot-Rybolov hardware,
+ and added all clocks via #define. [Roberto Fresca]
+
+-amstrad: fix undocumented mode 3. [Barry Rodewald]
+
+-bbc: added monitor configuration (Colour, B&W, Green, Amber) and
+ preliminary slots for expansion [Nigel Barnes]
+
+-Flaming 7's, original custom hardware improvement: [Roberto Fresca]
+ * Reverse-engineer protection to bypass the requested serial number.
+    The iButton device still needs to be hooked. Promoted these games to
+    working with their correspondent flags.
+ * Added tech notes, comments and instructions to boot the machine for
+    first time.
+
+-Flaming 7's, Taiwanese hardware: Reverse-engineer protection to bypass
+ the requested serial number. The iButton device still needs to be
+ hooked. Promoted the game to working with its correspondent flags.
+ Added technical notes. [Roberto Fresca]
+
+-hiscore.dat: Updates [Leezer]
+
+-alto2: Hunting the jiggly cursor bug [Juergen Buchmueller]
+
+-chihiro: added 837-13551 jvs input device, completed the communication
+ with jvs devices through usb [Samuele Zannoli]
+
+-chihiro: game crtaxihr "Crazy Taxi High Roller (Rev B)" boots too [Samuele Zannoli]
+
+Translations added or modified
+------------------------------
+Chinese (simplified/traditional) [YuiFAN]
+Greek [BraiNKilleRGR]
+Japanese [Vas Crabb]
+Portuguese (Brazil) [Ashura-X]
+
+New machines added or promoted from NOT_WORKING status
+------------------------------------------------------
+Swing Gal [BET] [system11]
+Player's Choice (M4C1) [Blair Quinney, The Dumping Union]
+Gorodki [shiru8bit, IgorR76, '15kop' arcade museum]
+Kot Rybolov [MetalliC, shiru8bit, IgorR76, '15kop' arcade museum]
+Flaming 7 (Custom Hardware, Main, 50 Bonus) [Roberto Fresca]
+Flaming 7 (Custom Hardware, Main, 500 Bonus) [Roberto Fresca]
+Flaming 7 (Custom Hardware, Main, 2000 Bonus) [Roberto Fresca]
+Flaming 7 (Custom Hardware, Egyptian Gold, 2000 Bonus) [Roberto Fresca]
+Flaming 7 (Taiwanese Hardware, unknown version) [Roberto Fresca]
+TeleVideo 990 [R. Belmont, Al Kossow, Carl]
+TeleVideo 995-65 [R. Belmont, Al Kossow, Carl]
+Rainbow-100B [Bavarese]
+MBC200 [Robbbert]
+
+New clones added or promoted from NOT_WORKING status
+----------------------------------------------------
+Beastie Feastie (Epos Tristar 9000 hardware) [The Iron Goat]
+Raiden Fighters 2 - Operation Hell Dive (Japan set 3) [IronGiant]
+LTM Portable (B+) [Nigel Barnes]
+LTM Portable (Master) [Nigel Barnes]
+Bubble Trouble (World, Rev B) [Alex Cmaylo, The Dumping Union]
+Sensory Chess Challenger 9 (set 2) [anonymous]
+Operation Thunderbolt (World, rev 1) [Muddymusic, The Dumping Union]
+Digital Equipment Corporation VT240 [Carl]
+Elektronika MC7105 [Shattered]
+Intergirl [f205v]
+
+New machines marked as NOT_WORKING
+----------------------------------
+Tomy Prin-C [TeamEurope]
+Datamax 8000 [Robbbert]
+
+
+New clones marked as NOT_WORKING
+--------------------------------
+BT Merlin M2105  [Nigel Barnes]
+
+
+New WORKING software list additions
+-----------------------------------
+pc98_cd.xml: Final batch of additions [rzero9]
+pce_tourvision.xml: Added a number of new dumps (15) [system11, Tafoid]
+poisk1_flop.xml: Added basic softlist [shattered]
+
+New NOT_WORKING software list additions
+---------------------------------------
+gamate.xml: Volcano Panic [Juan Felix Mateos and Mr. Postman]
+gamate.xml: Hot Hero; Baseball [Peter Wilhelmsen]
+gba_ereader.xml: Starting work doing the GBA e-reader software-list [Shideravan]
+
