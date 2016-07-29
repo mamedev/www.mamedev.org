@@ -137,7 +137,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://arcadeheroes.com/" target="blank">Arcade Heroes</a></li>
 		<li><a href="http://www.arcadeotaku.com/" target="blank">Arcade Otaku</a></li>
 		<li><a href="http://www.atariage.com/" target="blank">AtariAge</a></li>
-		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a><li>
+		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
 		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
 		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
