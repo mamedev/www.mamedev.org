@@ -97,6 +97,7 @@ $title = 'MAME | Resources';
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
+		<li><a href="http://arcade-history.com/" target="blank">Gaming-History</a></li>
 		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a></li>
 		<li><a href="http://replay.marpirc.net/" target="blank">MAME Action Replay Page (MARP)</a></li>
 		<li><a href="http://mameui.info/Bench.htm" target="blank">MAME Benchmarks</a></li>
