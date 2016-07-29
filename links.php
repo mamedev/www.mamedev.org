@@ -151,7 +151,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://flyers.arcade-museum.com/" target="blank">The Arcade Flyer Archive</a></li>
 		<li><a href="https://tcrf.net/" target="blank">The Cutting Room Floor</a></li>
 		<li><a href="http://www.twingalaxies.com/" target="blank">Twin Galaxies</a></li>
-		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS<a></li>
+		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS</a></li>
 	</ul>
 	
 	
