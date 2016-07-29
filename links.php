@@ -10,23 +10,23 @@ $title = 'MAME | Resources';
 
 	<h2>Information</h2>
 	<u1>
-		<li><a href="http://www.mamedev.org/about.html">About</a><li>
-		<li><a href="http://www.mamedev.org/history.html">History</a><li>
-		<li><a href="http://www.mamedev.org/legal.html">Legal</a><li>
-		<li><a href="http://www.mamedev.org/contact.html">Contact</a><li>
+		<li><a href="http://www.mamedev.org/about.html" target="blank"About</a></li>
+		<li><a href="http://www.mamedev.org/history.html" target="blank"History</a></li>
+		<li><a href="http://www.mamedev.org/legal.html" target="blank"Legal</a></li>
+		<li><a href="http://www.mamedev.org/contact.html" target="blank"Contact</a></li>
 	</u1>
 	<h2>Downloads></h2>
 	<u1>
-		<li><a href="http://www.mamedev.org/release.html">Latest Release</a><li>
-		<li><a href="http://www.mamedev.org/oldrel.html">Previous Releases</a><li>
+		<li><a href="http://www.mamedev.org/release.html" target="blank"Latest Release</a></li>
+		<li><a href="http://www.mamedev.org/oldrel.html" target="blank"Previous Releases</a></li>
 	</u1>
 	<h2>Documentation</h2>
 	<u1>
-		<li><a href="http://docs.mamedev.org/">MAME Documentation</a><li>
-		<li><a href="http://wiki.mamedev.org/">MAME Development Wiki</a><li>
-		<li><a href="http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions">MAME FAQ</a><li>
-		<li><a href="http://wiki.mamedev.org/index.php?title=How_MAME_Works">MAME Developer Docs</a><li>
-		<li><a href="http://www.mess.org/mess/howto" target="blank">MESS User's Manual</a><li>
+		<li><a href="http://docs.mamedev.org/" target="blank"MAME Documentation</a></li>
+		<li><a href="http://wiki.mamedev.org/" target="blank"MAME Development Wiki</a></li>
+		<li><a href="http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions" target="blank">MAME FAQ</a></li>
+		<li><a href="http://wiki.mamedev.org/index.php?title=How_MAME_Works" target="blank">MAME Developer Docs</a></li>
+		<li><a href="http://www.mess.org/mess/howto" target="blank">MESS User's Manual</a></li>
 	</u1>
 	<h2>Individual Developers' Sites</h2>
 	<p>
@@ -49,7 +49,7 @@ $title = 'MAME | Resources';
 	<h2>Extra Files for MAME</h2>
 	<u1>
 		<li><a href="http://www.progettoemma.net/?catlist" target="blank">Catlist</a></li>
-		<li><a href="http://ledblinky.net/Download.htm" target="blank">Colors.ini (LEDBlinky)</a></li>
+		<li><a href="http://ledblinky.net/Download.htm" target="blank">Colors.ini</a></li>
 		<li><a href="https://sites.google.com/site/procyonsjj/home/command-dat" target="blank">Command.dat</a></li>
 		<li><a href="http://controls.arcadecontrols.com/" target="blank">Controls.dat</a></li>
 		<li><a href="http://www.arcade-history.com/index.php?page=download" target="blank">History.dat</a></li>
@@ -96,14 +96,14 @@ $title = 'MAME | Resources';
 	</u1>
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
-		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a><li>
-		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a><li>
-		<li><a href="http://replay.marpirc.net/" target="blank">MAME Action Replay Page (MARP)</a><li>
-		<li><a href="http://mameui.info/Bench.htm" target="blank">MAME Benchmarks</a><li>
-		<li><a href="http://e2j.net/" target="blank">MAME E2J (JPN)</a><li>
+		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
+		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a></li>
+		<li><a href="http://replay.marpirc.net/" target="blank">MAME Action Replay Page (MARP)</a></li>
+		<li><a href="http://mameui.info/Bench.htm" target="blank">MAME Benchmarks</a></li>
+		<li><a href="http://e2j.net/" target="blank">MAME E2J (JPN)</a></li>
 		<li><a href="http://www.mamedb.com/" target="blank">mamedb.com</a></li>
 		<li><a href="http://www.mameworld.info/" target="blank">MAMEWorld</a></li>
-		<li><a href="http://www.mess.org/" target="blank">MESS</a><li>
+		<li><a href="http://www.mess.org/" target="blank">MESS</a></li>
 		<li><a href="http://nonmame.retrogames.com/" target="blank">NonMAME</a></li>
 		<li><a href="http://www.progettoemma.net/" target="blank">Progetto EMMA</a></li>
 		<li><a href="http://www.progettoemma.net/mess/" target="blank">ProjectMESS - MESS Software Lists Resource<a></li>
@@ -132,19 +132,19 @@ $title = 'MAME | Resources';
 	</u1>
 	<h2>General Arcade Sites</h2>
 	<ul>
-		<li><a href="http://www.mameworld.info/mameinfo/movies/index.html" target="blank">Arcade At The Movies</a><li>
+		<li><a href="http://www.mameworld.info/mameinfo/movies/index.html" target="blank">Arcade At The Movies</a></li>
 		<li><a href="http://www.arcadecollecting.com/" target="blank">ArcadeCollecting.com</a></li>
 		<li><a href="http://arcadeheroes.com/" target="blank">Arcade Heroes</a></li>
 		<li><a href="http://www.arcadeotaku.com/" target="blank">Arcade Otaku</a></li>
 		<li><a href="http://www.atariage.com/" target="blank">AtariAge</a></li>
 		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a><li>
-		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a><li>
-		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a><li>
-		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a><li>
-		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a><li>
-		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a><li>
+		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
+		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
+		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
+		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
+		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a></li>
 		<li><a href="http://www.ipdb.org/" target="blank">Internet Pinball Database (IPDB)</a></li>
-		<li><a href="http://www.tilt.it/deb/index-en.html" target="blank">Italian Coin-op Videogames Zone (ICVZ)</a><li>
+		<li><a href="http://www.tilt.it/deb/index-en.html" target="blank">Italian Coin-op Videogames Zone (ICVZ)</a></li>
 		<li><a href="http://www.recreativas.org/" target="blank">Recreativas Database</a></li>
 		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
 		<li><a href="http://strategywiki.org/wiki/Category:MAME" target="blank">StrategyWiki</a></li>
