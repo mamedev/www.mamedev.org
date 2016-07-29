@@ -17,7 +17,7 @@ $title = 'MAME | Contact the Team';
 						if (form.radiobut[i].checked) curvalue = form.radiobut[i].value;
 					
 					if (curvalue == "faq") form.action = "http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions";
-					else if (curvalue == "roms") form.action = "/links.php";
+					else if (curvalue == "roms") form.action = "/links.php#link";
 					else if (curvalue == "bug") form.action = "http://mametesters.org";
 					else if (curvalue == "legal") form.action = "/contact2.php?=legal";
 					else if (curvalue == "submit") form.action = "http://wiki.mamedev.org/index.php?title=Submitting_Source_Code";
