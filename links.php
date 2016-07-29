@@ -15,7 +15,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mamedev.org/legal.html" target="blank">Legal</a></li>
 		<li><a href="http://www.mamedev.org/contact.html" target="blank">Contact</a></li>
 	</ul>
-	<h2>Downloads></h2>
+	<h2>Downloads</h2>
 	<ul>
 		<li><a href="http://www.mamedev.org/release.html" target="blank">Latest Release</a></li>
 		<li><a href="http://www.mamedev.org/oldrel.html" target="blank">Previous Releases</a></li>
@@ -159,8 +159,8 @@ $title = 'MAME | Resources';
 	
 	
 	
-	<br/><br/>
-</div>
-<!-- /.container -->
-
+		<br/><br/><br/><br/>
+	</div>
+    <!-- /.container -->
+	
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
