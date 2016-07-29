@@ -10,15 +10,15 @@ $title = 'MAME | Resources';
 
 	<h2>Information</h2>
 	<u1>
-		<li><a href="http://www.mamedev.org/about.html" target="blank"About</a></li>
-		<li><a href="http://www.mamedev.org/history.html" target="blank"History</a></li>
-		<li><a href="http://www.mamedev.org/legal.html" target="blank"Legal</a></li>
-		<li><a href="http://www.mamedev.org/contact.html" target="blank"Contact</a></li>
+		<li><a href="http://www.mamedev.org/about.html" target="blank"></a>About</a></li>
+		<li><a href="http://www.mamedev.org/history.html" target="blank"></a>History</a></li>
+		<li><a href="http://www.mamedev.org/legal.html" target="blank"></a>Legal</a></li>
+		<li><a href="http://www.mamedev.org/contact.html" target="blank"></a>Contact</a></li>
 	</u1>
 	<h2>Downloads></h2>
 	<u1>
-		<li><a href="http://www.mamedev.org/release.html" target="blank"Latest Release</a></li>
-		<li><a href="http://www.mamedev.org/oldrel.html" target="blank"Previous Releases</a></li>
+		<li><a href="http://www.mamedev.org/release.html" target="blank"></a>Latest Release</a></li>
+		<li><a href="http://www.mamedev.org/oldrel.html" target="blank"></a>Previous Releases</a></li>
 	</u1>
 	<h2>Documentation</h2>
 	<u1>
@@ -154,7 +154,9 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS<a></li>
 	</ul>
 	
-
+	
+	
+	
 	<br/><br/>
 </div>
 <!-- /.container -->
