@@ -9,25 +9,25 @@ $title = 'MAME | Resources';
 	<center><h1 class="page-header">Resources</h1></center>
 
 	<h2>Information</h2>
-	<u1>
-		<li><a href="http://www.mamedev.org/about.html" target="blank"></a>About</a></li>
-		<li><a href="http://www.mamedev.org/history.html" target="blank"></a>History</a></li>
-		<li><a href="http://www.mamedev.org/legal.html" target="blank"></a>Legal</a></li>
-		<li><a href="http://www.mamedev.org/contact.html" target="blank"></a>Contact</a></li>
-	</u1>
+	<ul>
+		<li><a href="http://www.mamedev.org/about.html" target="blank">About</a></li>
+		<li><a href="http://www.mamedev.org/history.html" target="blank">History</a></li>
+		<li><a href="http://www.mamedev.org/legal.html" target="blank">Legal</a></li>
+		<li><a href="http://www.mamedev.org/contact.html" target="blank">Contact</a></li>
+	</ul>
 	<h2>Downloads></h2>
-	<u1>
-		<li><a href="http://www.mamedev.org/release.html" target="blank"></a>Latest Release</a></li>
-		<li><a href="http://www.mamedev.org/oldrel.html" target="blank"></a>Previous Releases</a></li>
-	</u1>
+	<ul>
+		<li><a href="http://www.mamedev.org/release.html" target="blank">Latest Release</a></li>
+		<li><a href="http://www.mamedev.org/oldrel.html" target="blank">Previous Releases</a></li>
+	</ul>
 	<h2>Documentation</h2>
-	<u1>
-		<li><a href="http://docs.mamedev.org/" target="blank"MAME Documentation</a></li>
-		<li><a href="http://wiki.mamedev.org/" target="blank"MAME Development Wiki</a></li>
+	<ul>
+		<li><a href="http://docs.mamedev.org/" target="blank">MAME Documentation</a></li>
+		<li><a href="http://wiki.mamedev.org/" target="blank">MAME Development Wiki</a></li>
 		<li><a href="http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions" target="blank">MAME FAQ</a></li>
 		<li><a href="http://wiki.mamedev.org/index.php?title=How_MAME_Works" target="blank">MAME Developer Docs</a></li>
 		<li><a href="http://www.mess.org/mess/howto" target="blank">MESS User's Manual</a></li>
-	</u1>
+	</ul>
 	<h2>Individual Developers' Sites</h2>
 	<p>
 	Please visit the <a href="http://wiki.mamedev.org/index.php/Developer_WIPs">Developer WIPs</a>
@@ -45,9 +45,9 @@ $title = 'MAME | Resources';
 		<li><a href="https://github.com/mamedev/mame/" target="blank">MAME's official repo on Github</a></li>
 		<li><a href="http://git.redump.net/mame/" target="blank">Redump.net's MAME/MESS GIT Repository Browser</a></li>
 		<li><a href="http://mame.dorando.at/svn/" target="blank">MAME Git History at Dorando.</a></li>
-	</u1>
+	</ul>
 	<h2>Extra Files for MAME</h2>
-	<u1>
+	<ul>
 		<li><a href="http://www.progettoemma.net/?catlist" target="blank">Catlist</a></li>
 		<li><a href="http://ledblinky.net/Download.htm" target="blank">Colors.ini</a></li>
 		<li><a href="https://sites.google.com/site/procyonsjj/home/command-dat" target="blank">Command.dat</a></li>
@@ -66,21 +66,21 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.progettoemma.net/mess/extra.html" target="blank">SysInfo.dat</a></li>
 		<li><a href="http://www.progettosnaps.net/command/" target="blank">Unofficial Command.dat</a></li>
 		<li><a href="http://highscore.mameworld.info/" target="blank">Unofficial Hiscore.dat (official comes with MAME)</a></li>
-	</u1>
+	</ul>
 	<h2>Frontends</h2>
 	<p>
 	Please visit <a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://www.mess.org/mess/howto#frontends" target="blank">
 	MESS User's Manual</a> for a list of these.
 	</p>
 	<h2>Social Media</h2>
-	<u1>
+	<ul>
 		<li><a href="https://www.facebook.com/mamedev.org/" target="blank">MAME on Facebook</a></li>
 		<li><a href="http://mamedev.imgur.com/" target="blank">MAME on imgur</a></li>
 		<li><a href="https://www.instagram.com/mamedev_org/" target="blank">MAME on Instagram</a></li>
 		<li><a href="https://twitter.com/mamedev_org" target="blank">MAME on Twitter</a></li>
-	</u1>
+	</ul>
 	<h2>Community and Support</h2>
-	<u1>
+	<ul>
 		<li><a href="http://www.mametesters.org/" target="blank">MAME Testers</a></li>
 		<li><a href="http://forum.mamedev.org/" target="blank">MAME Official Forums</a></li>
 		<li><a href="http://www.mamedev.org/irc.html" target="blank">Official MAME Chat on IRC</a></li>
@@ -93,7 +93,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
 		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
 		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums (ENG)</a></li>
-	</u1>
+	</ul>
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
@@ -111,13 +111,13 @@ $title = 'MAME | Resources';
 		<li><a href="http://unmamed.mameworld.info/" target="blank">UnMAMEd Games Database</a></li>
 	</ul>
 	<h2>Unofficial Forks and Ports</h2>
-	<u1>
+	<ul>
 		<li><a href="http://www.advancemame.it/" target="blank">AdvanceMAME</a></li>
 		<li><a href="http://hbmame.1emulation.com/" target="blank">HBMAME</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
 		<li><a href="http://wolfmame.marpirc.net/" target="blank">WolfMAME</a></li>
-	</u1>
+	</ul>
 	<h2>General Emulation Sites</h2>
 	<ul>
 		<li><a href="http://caesar.logiqx.com/" target="blank">CAESAR</a></li>
@@ -129,7 +129,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>		
 		<li><a href="http://www.retrogames.com/" target="blank">Retrogames</a></li>
 		<li><a href="http://www.zophar.net/" target="blank">Zophar's Domain</a></li>
-	</u1>
+	</ul>
 	<h2>General Arcade Sites</h2>
 	<ul>
 		<li><a href="http://www.mameworld.info/mameinfo/movies/index.html" target="blank">Arcade At The Movies</a></li>
@@ -153,6 +153,8 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.twingalaxies.com/" target="blank">Twin Galaxies</a></li>
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS<a></li>
 	</ul>
+	
+	
 	
 	
 	
