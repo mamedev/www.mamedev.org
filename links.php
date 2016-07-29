@@ -34,7 +34,7 @@ $title = 'MAME | Resources';
 	list on our <a href="http://wiki.mamedev.org/">Documentation Wiki</a> for an
 	up-to-date list of developer blogs, WIP pages, and to-do lists.
 	</p>
-	<h2>Sources for ROM Images</h2>
+	<h2 id="roms">Sources for ROM Images</h2>
 	<ul>
 		<li><a href="http://www.mamedev.org/roms" target="blank">mamedev.org</a> &mdash; a few owners have granted permission to use their ROMs for non-commercial use</li>
 		<li><a href="http://web.archive.org/web/20160402171815/http://www.gaelco.com/english/pages/hablando/frhablan.htm" target="blank">Gaelco</a> &mdash; has released the ROMs for their game <b>World Rally</b> for all to enjoy!</li>
