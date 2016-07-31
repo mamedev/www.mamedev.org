@@ -69,7 +69,8 @@ $title = 'MAME | Resources';
 	</ul>
 	<h2>Frontends</h2>
 	<p>
-	Please visit <a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://www.mess.org/mess/howto#frontends" target="blank">
+	Please visit <a href="http://docs.mamedev.org/usingmame/frontends.html" target="blank">MAME Documentation</a>, 
+	<a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://www.mess.org/mess/howto#frontends" target="blank">
 	MESS User's Manual</a> for a list of these.
 	</p>
 	<h2>Social Media</h2>
@@ -115,8 +116,14 @@ $title = 'MAME | Resources';
 	<ul>
 		<li><a href="http://www.advancemame.it/" target="blank">AdvanceMAME</a></li>
 		<li><a href="http://hbmame.1emulation.com/" target="blank">HBMAME</a></li>
+		<li><a href="https://sourceforge.net/projects/mameforslack/" target="blank">MAME for Slackware</a></li>
+		<li><a href="http://www.mamehub.com/" target="blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
+		<li><a href="http://www.pinmame.com/" target="blank">PinMAME</a></li>
+		<li><a href="http://rbelmont.mameworld.info/?page_id=163" target="blank">SDLMAME Homepage</a></li>
+		<li><a href="http://sdlmame.lngn.net/" target="blank">SDLMAME for Mac OS X</a></li>
+		<li><a href="http://sdlmame.wallyweek.org/" target="blank">SDLMAME for Ubuntu</a></li>
 		<li><a href="http://wolfmame.marpirc.net/" target="blank">WolfMAME</a></li>
 	</ul>
 	<h2>General Emulation Sites</h2>
