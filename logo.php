@@ -15,7 +15,7 @@ $title = 'MAME | Logo Information';
 		<h2>Information about the MAME logo and how it can be used</h2>
 	
 		<p>
-		The MAME logo was designed by chemical and cleaned up by Exodus3D. The original version
+		The MAME logo was designed by chemical and cleaned up by <a href="http://www.exodus3d.com/">Exodus3D</a>. The original version
 		of the logo did not indicate the MAME trademark, but this updated one does:
 		</p>
 	
