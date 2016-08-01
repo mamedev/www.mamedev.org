@@ -39,7 +39,7 @@
 
 	<p>
 	Although this logo does not appear in the official MAME trademark filing, it is still
-	covered by and governed by the <a href="trademark.html">rules of the MAME trademark</a>.
+	covered by and governed by the <a href="legal.html">rules of the MAME trademark</a>.
 	</p>
 
 	</div>
