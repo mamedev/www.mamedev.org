@@ -89,20 +89,34 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mameworld.info/ubbthreads/ubbthreads.php?Cat=" target="blank">MAMEWorld Forums</a></li>
 		<li><a href="http://forum.arcadecontrols.com/" target="blank">Build Your Own Arcade Controls Forum</a></li>
 		<li><a href="http://www.mameitalia.net/" target="blank">MAME Italia (ITA)</a></li>
+		<li><a href="http://www.arcadehits.net/forum/index.php" target="blank">arcadeHITS Forum</a></li>
 		<li><a href="http://www.arcadeitalia.net/" target="blank">Arcade Italia (ITA)</a></li>
+		<li><a href="http://arcade.emu-france.info/" target="blank">ArcadeFans (FR)</a></li>
+		<li><a href="http://arcademania.eu/" target="blank">Arcademania (ITA)</a></li>
 		<li><a href="http://www.arcadezentrum.com/forum/index.php" target="blank">Arcadezentrum (GER)</a></li>
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
-		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
+		<li><a href="http://www.aussiearcade.com" target="blank">Aussie Aurcade</a></li>
+		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum</a></li>
+		<li><a href="http://www.gamoover.net" targetSHMUPS! Forumnk">Gamoover (FRA)</a></li>
+		<li><a href="http://jammaplus.co.uk/" target="blank">JAMMA+ Forum</a></li>
 		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums (ENG)</a></li>
+		<li><a href="http://www.mame.gr/" target="blank">MAME.gr (GRC)</a></li>
+		<li><a href="http://shmups.system11.org/" target="blank">Shmups Forum</a></li>
+		<li><a href="http://www.ukvac.com/" target="blank">UKVAC</a></li>
+		
 	</ul>
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
+		<li><a href="http://www.arcadedatabase.com/" target="blank">Arcade Game Review Database</a></li>
+		<li><a href="http://www.arcadehits.net/" target="blank">arcadeHITS</a></li>
 		<li><a href="http://arcade-history.com/" target="blank">Gaming-History</a></li>
 		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a></li>
 		<li><a href="http://replay.marpirc.net/" target="blank">MAME Action Replay Page (MARP)</a></li>
 		<li><a href="http://mameui.info/Bench.htm" target="blank">MAME Benchmarks</a></li>
 		<li><a href="http://e2j.net/" target="blank">MAME E2J (JPN)</a></li>
+		<li><a href="http://www.vazcomics.org/mamend/" target="blank">MamEnd Arcade Endings Database</a></li>
+		<li><a href="http://www.mamechannel.it/" target="blank">MameChannel.it</a></li>
 		<li><a href="http://www.mamedb.com/" target="blank">mamedb.com</a></li>
 		<li><a href="http://www.mameworld.info/" target="blank">MAMEWorld</a></li>
 		<li><a href="http://www.mess.org/" target="blank">MESS</a></li>
@@ -129,37 +143,53 @@ $title = 'MAME | Resources';
 	<h2>General Emulation Sites</h2>
 	<ul>
 		<li><a href="http://caesar.logiqx.com/" target="blank">CAESAR</a></li>
+		<li><a href="http://cps2shock.emu-france.info/" target="blank">CPS-2 Shock</a></li>
 		<li><a href="http://www.emudreams.pl/" target="blank">Emu#Dreams (PL)</a></li>
 		<li><a href="http://www.emu-france.com/" target="blank">Emu-France (FRA)</a></li>
+		<li><a href="http://www.emuita.it/" target="blank">Emuita.it (ITA)</a></li>
+		<li><a href="http://www.emulab.it/" target="blank">EMULAB</a></li>
+		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9</a></li>
 		<li><a href="http://www.emulatronia.com/" target="blank">Emulatronia (ESP)</a></li>
 		<li><a href="http://www.emucamp.com/" target="blank">Emulation Camp</a></li>
 		<li><a href="http://www.emuunlim.com/" target="blank">EmuUnlim</a></li>
+		<li><a href="http://www.emuviews.com/" target="blank">EmuViews</a></li>
 		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>		
 		<li><a href="http://www.retrogames.com/" target="blank">Retrogames</a></li>
+		<li><a href="http://www.vg-network.com/" target="blank">VG-Network</a></li>
 		<li><a href="http://www.zophar.net/" target="blank">Zophar's Domain</a></li>
 	</ul>
 	<h2>General Arcade Sites</h2>
 	<ul>
 		<li><a href="http://www.mameworld.info/mameinfo/movies/index.html" target="blank">Arcade At The Movies</a></li>
 		<li><a href="http://www.arcadecollecting.com/" target="blank">ArcadeCollecting.com</a></li>
+		<li><a href="http://www.arcadebelgium.be/" target="blank">Arcade Belgium</a></li>
 		<li><a href="http://arcadeheroes.com/" target="blank">Arcade Heroes</a></li>
 		<li><a href="http://www.arcadeotaku.com/" target="blank">Arcade Otaku</a></li>
 		<li><a href="http://www.atariage.com/" target="blank">AtariAge</a></li>
+		<li><a href="http://www.atarigames.com/" target="blank">AtariGames.com</a></li>
+		<li><a href="http://www.atarimuseum.com/" target="blank">Atari Museum</a></li>
 		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
 		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
 		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
 		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
+		<li><a href="http://www.fpgaarcade.com/" target="blank">FPGA Arcade</a></li>
+		<li><a href="http://www.gamefaqs.com/" target="blank">GameFAQs</a></li>
 		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a></li>
 		<li><a href="http://www.ipdb.org/" target="blank">Internet Pinball Database (IPDB)</a></li>
 		<li><a href="http://www.tilt.it/deb/index-en.html" target="blank">Italian Coin-op Videogames Zone (ICVZ)</a></li>
+		<li><a href="http://www.mobygames.com/" target="blank">MobyGames</a></li>
+		<li><a href="http://www.neo-arcadia.com/" target="blank">Neo-Arcadia</a></li>
+		<li><a href="http://www.pong-story.com/" target="blank">Pong-Story</a></li>
 		<li><a href="http://www.recreativas.org/" target="blank">Recreativas Database</a></li>
-		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
+		<li><a href="http://www.shmups.com/" target="blank">SHMUPS!</a></li>
 		<li><a href="http://strategywiki.org/wiki/Category:MAME" target="blank">StrategyWiki</a></li>
+		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
 		<li><a href="http://flyers.arcade-museum.com/" target="blank">The Arcade Flyer Archive</a></li>
 		<li><a href="https://tcrf.net/" target="blank">The Cutting Room Floor</a></li>
 		<li><a href="http://www.twingalaxies.com/" target="blank">Twin Galaxies</a></li>
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS</a></li>
+		<li><a href="://www.video-games-museum.com/en" target="blank">Video Games Museum</a></li>
 	</ul>
 	
 	
