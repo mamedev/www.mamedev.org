@@ -64,6 +64,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://cheat.retrogames.com/" target="blank">Pugsy's Cheats</a></li>
 		<li><a href="http://www.arcadehits.net/mamescore/home.php?show=files" target="blank">Story.dat</a></li>
 		<li><a href="http://www.progettoemma.net/mess/extra.html" target="blank">SysInfo.dat</a></li>
+		<li><a href="http://www.progettosnaps.net/catver/" target="blank">Unofficial CatVer</a></li>
 		<li><a href="http://www.progettosnaps.net/command/" target="blank">Unofficial Command.dat</a></li>
 		<li><a href="http://highscore.mameworld.info/" target="blank">Unofficial Hiscore.dat (official comes with MAME)</a></li>
 	</ul>
@@ -91,13 +92,15 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mameitalia.net/" target="blank">MAME Italia (ITA)</a></li>
 		<li><a href="http://www.arcadehits.net/forum/index.php" target="blank">arcadeHITS Forum</a></li>
 		<li><a href="http://www.arcadeitalia.net/" target="blank">Arcade Italia (ITA)</a></li>
-		<li><a href="http://arcade.emu-france.info/" target="blank">ArcadeFans (FR)</a></li>
+		<li><a href="http://arcade.emu-france.info/" target="blank">ArcadeFans (FRA)</a></li>
+		<li><a href="http://arcadeforever.forumfree.it/" target="blank">Arcade Forever (ESP)</a></li>
 		<li><a href="http://arcademania.eu/" target="blank">Arcademania (ITA)</a></li>
 		<li><a href="http://www.arcadezentrum.com/forum/index.php" target="blank">Arcadezentrum (GER)</a></li>
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
+		<li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li>
 		<li><a href="http://www.aussiearcade.com" target="blank">Aussie Aurcade</a></li>
 		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum</a></li>
-		<li><a href="http://www.gamoover.net" targetSHMUPS! Forumnk">Gamoover (FRA)</a></li>
+		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
 		<li><a href="http://jammaplus.co.uk/" target="blank">JAMMA+ Forum</a></li>
 		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums (ENG)</a></li>
 		<li><a href="http://www.mame.gr/" target="blank">MAME.gr (GRC)</a></li>
@@ -182,6 +185,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.neo-arcadia.com/" target="blank">Neo-Arcadia</a></li>
 		<li><a href="http://www.pong-story.com/" target="blank">Pong-Story</a></li>
 		<li><a href="http://www.recreativas.org/" target="blank">Recreativas Database</a></li>
+		<li><a href="http://retrolaser.es/" target="blank">Retrolaser</a></li>
 		<li><a href="http://www.shmups.com/" target="blank">SHMUPS!</a></li>
 		<li><a href="http://strategywiki.org/wiki/Category:MAME" target="blank">StrategyWiki</a></li>
 		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
