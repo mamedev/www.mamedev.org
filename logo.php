@@ -12,7 +12,7 @@ $title = 'MAME | Logo Information';
 
 		<h2>MAME Logo</h2>
 		
-		<h2>Information about the MAME logo and how it can be used</h2>
+		<h3>Information about the MAME logo and how it can be used</h3>
 	
 		<p>
 		The MAME logo was designed by chemical and cleaned up by <a href="http://www.exodus3d.com/">Exodus3D</a>. The original version
