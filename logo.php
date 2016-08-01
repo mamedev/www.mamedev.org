@@ -6,11 +6,11 @@ $title = 'MAME | Logo Information';
     <!-- Page Content -->
     <div class="container">
 
-		<center><h1 class="page-header">MAME&reg; Logo Information</h1></center>
+		<center><h1 class="page-header">MAME Logo Information</h1></center>
 		
 		<a name="logo"></a>
 
-		<h2>MAME&reg; Logo</h2>
+		<h2>MAME Logo</h2>
 		
 		<h2>Information about the MAME logo and how it can be used</h2>
 	
