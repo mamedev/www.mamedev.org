@@ -142,6 +142,12 @@ $title = 'MAME | Project History';
   <td>Massive addition of mechanical games.</td>
  </tr>
  <tr>
+  <td>10
+  Oct 14</td>
+  <td>0.155</td>
+  <td>Raiden II / DX finally working.</td>
+ </tr>
+ <tr>
   <td>23
   Jul 14</td>
   <td>0.154</td>
@@ -202,6 +208,12 @@ $title = 'MAME | Project History';
   new dev tools).</td>
  </tr>
  <tr>
+  <td>30
+  Oct 12</td>
+  <td>0.147u2</td>
+  <td>New implementation of device callback module.</td>
+ </tr>
+ <tr>
   <td>17
   Sep 12</td>
   <td>0.147</td>
@@ -246,7 +258,7 @@ $title = 'MAME | Project History';
   Feb 12</td>
   <td>0.145u1</td>
   <td>7zip support and change in
-  CHD format.</td>
+  CHD format (CHD v5).</td>
  </tr>
  <tr>
   <td>20
@@ -264,7 +276,7 @@ $title = 'MAME | Project History';
   <td>15
   Aug 11</td>
   <td>0.143u3</td>
-  <td>Beginning of the concept of "devices". Further addition of gambling and fruit machine titles.</td>
+  <td>Device ROMs separated from drivers in loading and listing. Further addition of gambling and fruit machine titles.</td>
  </tr>
  <tr>
   <td>27
@@ -300,6 +312,13 @@ $title = 'MAME | Project History';
   on-going move to C++ work.</td>
  </tr>
  <tr>
+  <td>17
+  Jun 10</td>
+  <td>0.138u2</td>
+  <td>Modern implementation of devices as derived classes
+  with mix-in interfaces.</td>
+ </tr>
+ <tr>
   <td>15
   May 10</td>
   <td>0.138</td>
@@ -330,7 +349,7 @@ $title = 'MAME | Project History';
   Mar 09</td>
   <td>0.130u1</td>
   <td>Major change in CHD file
-  format.</td>
+  format (CHD v4).</td>
  </tr>
  <tr>
   <td>26
@@ -344,6 +363,12 @@ $title = 'MAME | Project History';
   Feb 09</td>
   <td>0.129u4</td>
   <td>Added some AGEMAME drivers.</td>
+ </tr>
+ <tr>
+  <td>29
+  Jan 09</td>
+  <td>0.129u3</td>
+  <td>First implementation of device callback module.</td>
  </tr>
  <tr>
   <td>21
@@ -386,6 +411,13 @@ $title = 'MAME | Project History';
   <td>0.125u8</td>
   <td>MAME debugger included all
   the time.</td>
+ </tr>
+  <tr>
+  <td>21
+  Feb 08</td>
+  <td>0.123u2</td>
+  <td>First implementation of a generic device
+  interface.</td>
  </tr>
  <tr>
   <td>01
@@ -441,7 +473,8 @@ $title = 'MAME | Project History';
   <td>12
   Feb 07</td>
   <td>0.112u1</td>
-  <td>MAME code reorganized.</td>
+  <td>MAME code reorganized, separating game drivers from
+  emulation core in the source tree.</td>
  </tr>
  <tr>
   <td>07
@@ -458,7 +491,7 @@ $title = 'MAME | Project History';
   implemented.</td>
  </tr>
  <tr>
-  <td>16`
+  <td>16
   Nov 06</td>
   <td>0.110u3</td>
   <td>Added support for split CHD.</td>
@@ -535,6 +568,12 @@ $title = 'MAME | Project History';
   reorganization around streams.</td>
  </tr>
  <tr>
+ <td>15
+  Feb 05</td>
+  <td>0.92u1</td>
+  <td>Raiden Fighters 2 (et al) finally working.</td>
+ </tr>
+ <tr>
   <td>13
   Feb 05</td>
   <td>0.92</td>
@@ -552,6 +591,12 @@ $title = 'MAME | Project History';
   <td>0.88</td>
   <td>Sega FD1094 decryption
   added.</td>
+ </tr>
+ <tr>
+  <td>21
+  Nov 03</td>
+  <td>0.77u1</td>
+  <td>CHD v3. "hdcomp" tool, got replaced by "chdman". (internal release)</td>
  </tr>
  <tr>
   <td>11
@@ -573,6 +618,12 @@ $title = 'MAME | Project History';
   <td>0.72</td>
   <td>First emulation of the
   SP0250 speech chip.</td>
+ </tr>
+ <tr>
+  <td>12
+  Jun 03</td>
+  <td>0.70u1</td>
+  <td>CHD v2.</td>
  </tr>
  <tr>
   <td>05
@@ -597,6 +648,12 @@ $title = 'MAME | Project History';
   CPU core added: MIPS3.</td>
  </tr>
  <tr>
+  <td>12
+  Jan 03</td>
+  <td>0.63</td>
+  <td>First actual CHD (Wargods).</td>
+ </tr>
+ <tr>
   <td>04
   Jul 02</td>
   <td>0.61</td>
@@ -610,6 +667,20 @@ $title = 'MAME | Project History';
   <td>Removed SoundBlaster FM
   support as software-based emulation finally became better in almost all
   cases.</td>
+ </tr>
+ <tr>
+  <td>22
+  Mar 02</td>
+  <td>0.59</td>
+  <td>Aaron Giles implements CHD (Compressed Hard Disk - later Compressed Hunks of Data).</td>
+ </tr>
+ <tr>
+  <td>06
+  Feb 02</td>
+  <td>0.58</td>
+  <td> "Machine drivers," previously hard-coded structures,
+  now initialized by macro-based constructors, allowing
+  configurations to derive from each other.</td>
  </tr>
  <tr>
   <td>24
@@ -666,6 +737,13 @@ $title = 'MAME | Project History';
   <td>0.36rc1</td>
   <td>Removed Pong and gambling
   game drivers.</td>
+ </tr>
+ <tr>
+  <td>11
+  Jan 00</td>
+  <td>0.36b14</td>
+  <td>Major reorganization of driver
+  configuration structures.</td>
  </tr>
  <tr>
   <td>10
@@ -728,12 +806,6 @@ $title = 'MAME | Project History';
   <td>0.1 (MESS)</td>
   <td>First public release of
   MESS.</td>
- </tr>
- <tr>
-  <td>10
-  Jun 98</td>
-  <td>0.33b5</td>
-  <td>First CHD.</td>
  </tr>
  <tr>
   <td>03
@@ -829,8 +901,13 @@ $title = 'MAME | Project History';
   <td>23
   Mar 97</td>
   <td>0.12</td>
-  <td>First support for multiple
-  CPUs.</td>
+  <td>First multiple-CPU game emulated (Burger Time).</td>
+ </tr>
+ <tr>
+  <td>13
+  Mar 97</td>
+  <td>0.10</td>
+  <td>First non-Z80-based game emulated (Centipede).</td>
  </tr>
  <tr>
   <td>18
@@ -851,8 +928,12 @@ $title = 'MAME | Project History';
   <td>0.1</td>
   <td>MAME 0.1 released.</td>
  </tr>
+ <tr>
+  <td> </td>
+  <td> </td>
+  <td> </td>
+ </tr>
 </table>
-<br>
 <p>
 This page has been heavily modified and enriched in May and June 2016, by <a target="_blank" href="http://blog.ilogic.gr">NLS</a>, using historical data from various sources. A big thanks to Fujix for the original chart idea and <a target="_blank" href="http://www.progettosnaps.net/">AntoPISA</a> for his "renameSET" detailed files that helped immensely to build the statistics.
 </p>
@@ -882,7 +963,6 @@ This page has been heavily modified and enriched in May and June 2016, by <a tar
   <td>MAME 0.1 released.</td>
  </tr>
 </table>
-
 </div>
 
 -->
