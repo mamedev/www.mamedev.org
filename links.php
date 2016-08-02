@@ -100,6 +100,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
 		<li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li>
 		<li><a href="http://www.aussiearcade.com" target="blank">Aussie Aurcade</a></li>
+		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
 		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum</a></li>
 		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
 		<li><a href="http://jammaplus.co.uk/" target="blank">JAMMA+ Forum</a></li>
@@ -180,7 +181,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
 		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
 		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
-		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
 		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
 		<li><a href="http://www.fpgaarcade.com/" target="blank">FPGA Arcade</a></li>
