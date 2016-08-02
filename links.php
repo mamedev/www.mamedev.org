@@ -13,6 +13,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mamedev.org/about.html" target="blank">About</a></li>
 		<li><a href="http://www.mamedev.org/history.html" target="blank">History</a></li>
 		<li><a href="http://www.mamedev.org/legal.html" target="blank">Legal</a></li>
+		<li><a href="http://www.mamedev.org/logo.html" target="blank">Logo</a></li
 		<li><a href="http://www.mamedev.org/contact.html" target="blank">Contact</a></li>
 	</ul>
 	<h2>Downloads</h2>
@@ -101,10 +102,10 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li>
 		<li><a href="http://www.aussiearcade.com" target="blank">Aussie Aurcade</a></li>
 		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
-		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum</a></li>
+		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum (ENG/ITA)</a></li>
 		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
 		<li><a href="http://jammaplus.co.uk/" target="blank">JAMMA+ Forum</a></li>
-		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums (ENG)</a></li>
+		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums</a></li>
 		<li><a href="http://www.mame.gr/" target="blank">MAME.gr (GRC)</a></li>
 		<li><a href="http://shmups.system11.org/" target="blank">Shmups Forum</a></li>
 		<li><a href="http://www.ukvac.com/" target="blank">UKVAC</a></li>
@@ -114,7 +115,7 @@ $title = 'MAME | Resources';
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
 		<li><a href="http://www.arcadedatabase.com/" target="blank">Arcade Game Review Database</a></li>
-		<li><a href="http://www.arcadehits.net/" target="blank">arcadeHITS</a></li>
+		<li><a href="http://www.arcadehits.net/" target="blank">arcadeHITS (FRA)</a></li>
 		<li><a href="http://arcade-history.com/" target="blank">Gaming-History</a></li>
 		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a></li>
 		<li><a href="http://replay.marpirc.net/" target="blank">MAME Action Replay Page (MARP)</a></li>
@@ -156,13 +157,13 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.emu-france.com/" target="blank">Emu-France (FRA)</a></li>
 		<li><a href="http://www.emuita.it/" target="blank">Emuita.it (ITA)</a></li>
 		<li><a href="http://www.emulab.it/" target="blank">EMULAB</a></li>
-		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9</a></li>
+		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9 (JPN)</a></li>
 		<li><a href="https://emulationrealm.net/" target="blank">Emulation Realm</a></li>
 		<li><a href="http://www.emulatronia.com/" target="blank">Emulatronia (ESP)</a></li>
 		<li><a href="http://www.emucamp.com/" target="blank">Emulation Camp</a></li>
 		<li><a href="http://www.emuunlim.com/" target="blank">EmuUnlim</a></li>
 		<li><a href="http://www.emuviews.com/" target="blank">EmuViews</a></li>
-		<li><a href="http://insertmorecoins.es/" target="blank">InsertMoreCoins</a></li>
+		<li><a href="http://insertmorecoins.es/" target="blank">InsertMoreCoins (ESP)</a></li>
 		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>		
 		<li><a href="http://www.retrogames.com/" target="blank">Retrogames</a></li>
 		<li><a href="http://www.vg-network.com/" target="blank">VG-Network</a></li>
