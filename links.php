@@ -180,14 +180,17 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
 		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
 		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
+		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
 		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
 		<li><a href="http://www.fpgaarcade.com/" target="blank">FPGA Arcade</a></li>
 		<li><a href="http://www.gamefaqs.com/" target="blank">GameFAQs</a></li>
+		<li><a href="http://www.ggdb.com/" target="blank">Great Game Database (ggdb.com)</a></li>
 		<li><a href="http://www.hardcoregaming101.net/" target="blank">Hardcore Gaming 101</a></li>
 		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a></li>
 		<li><a href="http://www.ipdb.org/" target="blank">Internet Pinball Database (IPDB)</a></li>
 		<li><a href="http://www.tilt.it/deb/index-en.html" target="blank">Italian Coin-op Videogames Zone (ICVZ)</a></li>
+		<li><a href="http://www.mikesarcade.com/arcade/" target="blank">MikesArcade.com</a></li>
 		<li><a href="http://www.mobygames.com/" target="blank">MobyGames</a></li>
 		<li><a href="http://www.neo-arcadia.com/" target="blank">Neo-Arcadia</a></li>
 		<li><a href="http://www.pong-story.com/" target="blank">Pong-Story</a></li>
@@ -200,8 +203,11 @@ $title = 'MAME | Resources';
 		<li><a href="https://tcrf.net/" target="blank">The Cutting Room Floor</a></li>
 		<li><a href="http://thegamesdb.net/" target="blank">TheGamesDB.net</a></li>
 		<li><a href="http://www.twingalaxies.com/" target="blank">Twin Galaxies</a></li>
+		<li><a href="http://www.uvlist.net/" target="blank">Universal Videogame List</a></li>
+		<li><a href="https://www.unseen64.net/" target="blank">Unseen64</a></li>
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS</a></li>
-		<li><a href="://www.video-games-museum.com/en" target="blank">Video Games Museum</a></li>
+		<li><a href="http://www.video-games-museum.com/en" target="blank">Video Games Museum</a></li>
+		<li><a href="http://www.x-cult.org/cat/28/Arcade/52/Main_Page/" target="blank">X-CulT</a></li>
 	</ul>
 	
 	
