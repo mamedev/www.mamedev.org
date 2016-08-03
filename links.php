@@ -186,6 +186,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
 		<li><a href="http://www.fpgaarcade.com/" target="blank">FPGA Arcade</a></li>
 		<li><a href="http://www.gamefaqs.com/" target="blank">GameFAQs</a></li>
+		<li><a href="http://gdri.smspower.org/" target="blank">Game Developer Research Institute (GDRI)</a></li>
 		<li><a href="http://www.ggdb.com/" target="blank">Great Game Database (ggdb.com)</a></li>
 		<li><a href="http://www.hardcoregaming101.net/" target="blank">Hardcore Gaming 101</a></li>
 		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a></li>
@@ -202,6 +203,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
 		<li><a href="http://flyers.arcade-museum.com/" target="blank">The Arcade Flyer Archive</a></li>
 		<li><a href="https://tcrf.net/" target="blank">The Cutting Room Floor</a></li>
+		<li><a href="http://dadgum.com/giantlist/" target="blank">The Giant List of Classic Game Programmers</a></li>
 		<li><a href="http://thegamesdb.net/" target="blank">TheGamesDB.net</a></li>
 		<li><a href="http://www.twingalaxies.com/" target="blank">Twin Galaxies</a></li>
 		<li><a href="http://www.uvlist.net/" target="blank">Universal Videogame List</a></li>
