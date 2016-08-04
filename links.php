@@ -13,7 +13,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mamedev.org/about.html" target="blank">About</a></li>
 		<li><a href="http://www.mamedev.org/history.html" target="blank">History</a></li>
 		<li><a href="http://www.mamedev.org/legal.html" target="blank">Legal</a></li>
-		<li><a href="http://www.mamedev.org/logo.html" target="blank">Logo</a></li
+		<li><a href="http://www.mamedev.org/logo.html" target="blank">Logo</a></li>
 		<li><a href="http://www.mamedev.org/contact.html" target="blank">Contact</a></li>
 	</ul>
 	<h2>Downloads</h2>
@@ -178,6 +178,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcadeotaku.com/" target="blank">Arcade Otaku</a></li>
 		<li><a href="http://www.atariage.com/" target="blank">AtariAge</a></li>
 		<li><a href="http://www.atarigames.com/" target="blank">AtariGames.com</a></li>
+		<li><a href="http://mcurrent.name/atarihistory/index.html" target="blank">Atari History Timelines</a></li>
 		<li><a href="http://www.atarimuseum.com/" target="blank">Atari Museum</a></li>
 		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
 		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
@@ -196,9 +197,11 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mobygames.com/" target="blank">MobyGames</a></li>
 		<li><a href="http://www.neo-arcadia.com/" target="blank">Neo-Arcadia</a></li>
 		<li><a href="http://www.pong-story.com/" target="blank">Pong-Story</a></li>
+		<li><a href="http://tech.quarterarcade.com" target="blank">QuarterArcade.com Coin-Op TechNet</a></li>
 		<li><a href="http://www.recreativas.org/" target="blank">Recreativas Database</a></li>
 		<li><a href="http://retrolaser.es/" target="blank">Retrolaser</a></li>
 		<li><a href="http://www.shmups.com/" target="blank">SHMUPS!</a></li>
+		<li><a href="http://www.starcade.tv/" target="blank">Starcade</a></li>
 		<li><a href="http://strategywiki.org/wiki/Category:MAME" target="blank">StrategyWiki</a></li>
 		<li><a href="http://www.system16.com/" target="blank">System 16</a></li>
 		<li><a href="http://flyers.arcade-museum.com/" target="blank">The Arcade Flyer Archive</a></li>
