@@ -6,10 +6,14 @@ $releasespath = 'releases/';
 
 function safe_filesize($size)
 {
-	if ($size!=0)
-		return round($size / 1024);
+	if ($size >= 1048576)
+		return round($size / 1048576) . ' MiB';
+	else if ($size >= 1024)
+		return round($size / 1024) . ' KiB';
+	else if ($size != 0)
+		return $size . ' B';
 	else
-		return 0;
+		return '0 B';
 }
 // And you're ready to go!
 $filename = "latest";
@@ -22,6 +26,8 @@ $tag_name = $response->tag_name;
 $version = str_replace("mame0","",$tag_name);
 $whatsnew = 'whatsnew_0' . $version . '.txt';
 $whatsnew_dc = 0;
+$listxml = $tag_name . 'lx.zip';
+$listxml_dc = 0;
 $source_exe = $tag_name . 's.exe';
 $source_exe_dc = 0;
 $source_zip = $tag_name . 's.zip';
@@ -36,9 +42,13 @@ $binary_debug_dc = 0;
 foreach ($response->assets as $asset) {
 	
 	switch ($asset->name) {	
-		case $whatsnew :
+		case $whatsnew:
 				$whatsnew_size = safe_filesize($asset->size);
 				$whatsnew_dc = $asset->download_count;
+				break;
+		case $listxml:
+				$listxml_size = safe_filesize($asset->size);
+				$listxml_dc = $asset->download_count;
 				break;
 		case $source_exe:
 				$source_exe_size = safe_filesize($asset->size);
@@ -95,7 +105,7 @@ $title = 'MAME | Latest MAME Release';
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary ?>">
 							<?php echo $binary ?>
 							</a></td>
-							<td class="number"><?php echo $binary_size ?> KB</td>
+							<td class="number"><?php echo $binary_size ?></td>
 							<td>MAME 0.<?php echo $version ?> Windows command-line binaries.</td>
 							<td align="right"><span class="badge"><?php echo $binary_dc ?></td>
 						</tr>
@@ -104,7 +114,7 @@ $title = 'MAME | Latest MAME Release';
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary_64bit ?>">
 							<?php echo $binary_64bit ?>
 							</a></td>
-							<td class="number"><?php echo $binary_64bit_size ?> KB</td>
+							<td class="number"><?php echo $binary_64bit_size ?></td>
 							<td>MAME 0.<?php echo $version ?> 64-bit Windows command-line binaries.</td>
 							<td align="right"><span class="badge"><?php echo $binary_64bit_dc ?></span></td>
 						</tr>
@@ -113,9 +123,18 @@ $title = 'MAME | Latest MAME Release';
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary_debug ?>">
 							<?php echo $binary_debug ?>
 							</a></td>
-							<td class="number"><?php echo $binary_debug_size ?> KB</td>
+							<td class="number"><?php echo $binary_debug_size ?></td>
 							<td>MAME 0.<?php echo $version ?> Windows command-line binaries (debug build).</td>
 							<td align="right"><span class="badge"><?php echo $binary_debug_dc ?></span></td>
+						</tr>
+						<tr>
+							<td class="link">
+							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $listxml ?>">
+							<?php echo $listxml ?>
+							</a></td>
+							<td class="number"><?php echo $listxml_size ?></td>
+							<td>MAME 0.<?php echo $version ?> full driver information in XML format.</td>
+							<td align="right"><span class="badge"><?php echo $listxml_dc ?></span></td>
 						</tr>
 					  </table>
 					  <div class="panel-footer">
@@ -155,7 +174,7 @@ $title = 'MAME | Latest MAME Release';
 							<a href="<?php echo $releasespath . $whatsnew ?>">
 							<?php echo $whatsnew ?>
 							</a></td>
-							<td class="number"><?php echo $whatsnew_size ?> KB</td>
+							<td class="number"><?php echo $whatsnew_size ?></td>
 							<td>List of what is new in this MAME release</td>
 							<td align="right">&nbsp;</td>
 						</tr>						
@@ -164,7 +183,7 @@ $title = 'MAME | Latest MAME Release';
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $source_exe ?>">
 							<?php echo $source_exe ?>
 							</a></td>
-							<td class="number"><?php echo $source_exe_size ?> KB</td>
+							<td class="number"><?php echo $source_exe_size ?></td>
 							<td>MAME 0.<?php echo $version ?> sources in self-extracting 7zip format (Windows only)</td>
 							<td align="right"><span class="badge"><?php echo $source_exe_dc ?></span></td>
 						</tr>
@@ -173,7 +192,7 @@ $title = 'MAME | Latest MAME Release';
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $source_zip ?>">
 							<?php echo $source_zip ?>
 							</a></td>
-							<td class="number"><?php echo $source_zip_size ?> KB</td>
+							<td class="number"><?php echo $source_zip_size ?></td>
 							<td>MAME 0.<?php echo $version ?> sources in ZIP format (all platforms)</td>
 							<td align="right"><span class="badge"><?php echo $source_zip_dc ?></span></td>
 						</tr>
