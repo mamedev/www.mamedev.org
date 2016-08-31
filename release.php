@@ -106,7 +106,7 @@ $title = 'MAME | Latest MAME Release';
 							<?php echo $binary ?>
 							</a></td>
 							<td class="number"><?php echo $binary_size ?></td>
-							<td>MAME 0.<?php echo $version ?> Windows command-line binaries.</td>
+							<td>MAME 0.<?php echo $version ?> 32-bit Windows command-line binaries.</td>
 							<td align="right"><span class="badge"><?php echo $binary_dc ?></td>
 						</tr>
 						<tr>
@@ -124,7 +124,7 @@ $title = 'MAME | Latest MAME Release';
 							<?php echo $binary_debug ?>
 							</a></td>
 							<td class="number"><?php echo $binary_debug_size ?></td>
-							<td>MAME 0.<?php echo $version ?> Windows command-line binaries (debug build).</td>
+							<td>MAME 0.<?php echo $version ?> 32-bit Windows command-line binaries (debug build).</td>
 							<td align="right"><span class="badge"><?php echo $binary_debug_dc ?></span></td>
 						</tr>
 						<tr>
