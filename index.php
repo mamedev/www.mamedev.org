@@ -132,7 +132,7 @@ else
 	$entries = array();
 
 // Compute a title for the page
-$pagetitle = "MAME | Multiple Arcade Machine Emulator";
+$pagetitle = "MAME";
 if ($category != "")
 	$pagetitle = $pagetitle . " in " . $catlist[$category];
 else if ($date != "")
