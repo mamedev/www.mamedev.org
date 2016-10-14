@@ -11,6 +11,8 @@ $title = 'MAME | Previous Releases';
 		<p>The latest official MAME release is available on the
 		<a href="release.html">Latest Release</a> page. Below is a collection of
 		older MAME releases, dating back to the first official release from February, 1997.
+    <p>MESS only releases (prior to 0.148) are available and are kindly hosted by
+		AntoPISA at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a>
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2016 MAME Releases</div>
