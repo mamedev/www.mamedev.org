@@ -208,6 +208,12 @@ $title = 'MAME | Project History';
   new dev tools).</td>
  </tr>
  <tr>
+  <td>30
+  Oct 12</td>
+  <td>0.147u2</td>
+  <td>New implementation of device callback module.</td>
+ </tr>
+ <tr>
   <td>17
   Sep 12</td>
   <td>0.147</td>
@@ -270,7 +276,7 @@ $title = 'MAME | Project History';
   <td>15
   Aug 11</td>
   <td>0.143u3</td>
-  <td>Beginning of the concept of "devices". Further addition of gambling and fruit machine titles.</td>
+  <td>Device ROMs separated from drivers in loading and listing. Further addition of gambling and fruit machine titles.</td>
  </tr>
  <tr>
   <td>27
@@ -304,6 +310,13 @@ $title = 'MAME | Project History';
   <td>0.139</td>
   <td>Larger binary due to
   on-going move to C++ work.</td>
+ </tr>
+ <tr>
+  <td>17
+  Jun 10</td>
+  <td>0.138u2</td>
+  <td>Modern implementation of devices as derived classes
+  with mix-in interfaces.</td>
  </tr>
  <tr>
   <td>15
@@ -352,6 +365,12 @@ $title = 'MAME | Project History';
   <td>Added some AGEMAME drivers.</td>
  </tr>
  <tr>
+  <td>29
+  Jan 09</td>
+  <td>0.129u3</td>
+  <td>First implementation of device callback module.</td>
+ </tr>
+ <tr>
   <td>21
   Dec 08</td>
   <td>0.128u7</td>
@@ -392,6 +411,13 @@ $title = 'MAME | Project History';
   <td>0.125u8</td>
   <td>MAME debugger included all
   the time.</td>
+ </tr>
+  <tr>
+  <td>21
+  Feb 08</td>
+  <td>0.123u2</td>
+  <td>First implementation of a generic device
+  interface.</td>
  </tr>
  <tr>
   <td>01
@@ -447,7 +473,8 @@ $title = 'MAME | Project History';
   <td>12
   Feb 07</td>
   <td>0.112u1</td>
-  <td>MAME code reorganized.</td>
+  <td>MAME code reorganized, separating game drivers from
+  emulation core in the source tree.</td>
  </tr>
  <tr>
   <td>07
@@ -648,6 +675,14 @@ $title = 'MAME | Project History';
   <td>Aaron Giles implements CHD (Compressed Hard Disk - later Compressed Hunks of Data).</td>
  </tr>
  <tr>
+  <td>06
+  Feb 02</td>
+  <td>0.58</td>
+  <td> "Machine drivers," previously hard-coded structures,
+  now initialized by macro-based constructors, allowing
+  configurations to derive from each other.</td>
+ </tr>
+ <tr>
   <td>24
   Aug 01</td>
   <td>0.54</td>
@@ -702,6 +737,13 @@ $title = 'MAME | Project History';
   <td>0.36rc1</td>
   <td>Removed Pong and gambling
   game drivers.</td>
+ </tr>
+ <tr>
+  <td>11
+  Jan 00</td>
+  <td>0.36b14</td>
+  <td>Major reorganization of driver
+  configuration structures.</td>
  </tr>
  <tr>
   <td>10
@@ -859,8 +901,13 @@ $title = 'MAME | Project History';
   <td>23
   Mar 97</td>
   <td>0.12</td>
-  <td>First support for multiple
-  CPUs.</td>
+  <td>First multiple-CPU game emulated (Burger Time).</td>
+ </tr>
+ <tr>
+  <td>13
+  Mar 97</td>
+  <td>0.10</td>
+  <td>First non-Z80-based game emulated (Centipede).</td>
  </tr>
  <tr>
   <td>18

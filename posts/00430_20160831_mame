@@ -1,0 +1,59 @@
+MAME 0.177
+
+<p>Today marks the end of the southern winter/northern summer, and time for the
+hotly anticipated August MAME release.  Possibly most importantly, we've fixed
+the issues that were causing menus to display off the edge of the screen on
+Windows (<a href="http://mametesters.org/view.php?id=6335">MT06335</a>).  We've
+integrated a fix for Aimtrack Dual Lightguns on windows from new contributor
+Pitou, and the behaviour of XAudio2 sound output should be much improved when
+adjusting game speed to match monitor refresh rate.  Mouse behaviour on SDL
+builds (Linux/Mac) is also improved.  Thanks very much to all the users who
+reported issues and helped out testing fixes.</p>
+
+<p>We have lots of newly working computer systems to show off: Xerox Alto-II,
+TeleNova Compis (a 16-bit educational computer from Sweden), Victor 9000,
+Wang Professional Computer (DOS-based but not IBM compatible), Atari Portfolio
+(of Terminator 2 fame), and Vector-06C (a mass-produced Soviet home computer).
+Newly working games include Namco Techno Drive, the original Japanese release
+of Orca's River Patrol, Korean puzzle game Intergirl, and gambling game Magical
+Butterfly.  Speaking of gambling games, this release is a huge update for BFM,
+JPM and Maygay fruit machines.  John Parker has created a tool that converts
+MFME layouts to MAME layouts and contributed layouts for hundreds of games.
+This should make it far easier and more rewarding to work on these drivers.</p>
+
+<p>MAME now includes a driver for a VGM music file player virtual machine (VGM
+is a popular video game music file format).  This feature is primarily intended
+as a way for developers to test sound cores and do A/B comparisons, as it's a
+lot easier to just load a VGM test case than to play a game until it uses the
+sound chip feature you want to test, but it's also a convenient way to enjoy a
+wide variety of video game music.  You can try it out by running <tt>mame
+vgmplay -bitb file.vgm</tt> or choosing "VGM player" from the list of systems
+and loading a VGM file in the appropriate media slot through the internal file
+manager.</p>
+
+<p>The generic serial terminal and keyboard devices have been greatly improved.
+This should make computers controlled via serial port far more usable.
+(Keyboard layout, key repeat, simultaneous keypresses, local echo, auto CR/LF
+and audible bell have all been improved and/or made configurable.)</p>
+
+<p>There are a number of improvements for MAME developers and contributors.  We
+now allow Unicode characters in C++ and Lua source comments.  This can make
+documentation clearer when referring to original machine labels.  Source files
+must be encoded in UTF-8 with no initial byte order mark.  Non-ASCII characters
+are allowed in comments, but not in most other parts of source files.  Source
+and comments must still be written in English.  We've improved build times a
+little, and migrated a lot of MAME-specific constructs to standard C++14 library
+features.  A number of MAME APIs have been streamlined and modernised.  The
+palette viewer now shows some details about the colour swatch under the mouse
+pointer (press F4 during gameplay to show, this may be interesting to regular
+users as well).</p>
+
+<p>Of course, this release also comes with more alternate versions of games
+supported (including The NewZealand Story, Metamorphic Force, Super Hang-On,
+Terminator 2, Golden Tee '98, Gulf Storm, and Teenage Mutant Ninja Turtles), and
+other fixes and improvements for machines already emulated by MAME (including
+Midway V-Unit outputs/layouts from Risugami and input/output improvements for
+gambling/medal games from AJR).  For a more complete list of changes, see the <a
+href="http://mamedev.org/releases/whatsnew_0177.txt">whatsnew.txt file</a>.  As
+always, you can get MAME 0.177 binaries and source at <a
+href="http://mamedev.org/release.html">the download page</a>.</p>
