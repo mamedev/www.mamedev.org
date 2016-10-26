@@ -55,6 +55,41 @@ $title = 'MAME | Project History';
   <td>Version</td>
   <td>Milestone</td>
  </tr>
+ <td>26
+  Oct 16</td>
+  <td>0.179</td>
+  <td>No more debug build. 32bit binary is marked as such. Some rare systems added. Big software list cleanup. Whatsnew includes some software list details.
+  </td>
+ </tr>
+ <tr>
+  <td>28
+  Sep 16</td>
+  <td>0.178</td>
+  <td>UI more modular (DATs described in LUA, not hardcoded) and other UI improvements. Many machine fixes. Many new layouts.
+  </td>
+ </tr>
+ <tr>
+  <td>31
+  Aug 16</td>
+  <td>0.177</td>
+  <td>Some big bugs got fixed (dual lightguns, menus out of screen). Many new computers added in machines. VGM file player. Improvements in serial/keyboard devices.
+  </td>
+ </tr>
+ <tr>
+  <td>27
+  Jul 16</td>
+  <td>0.176</td>
+  <td>Cooperation with Debian team. New shaders. More progress on SPARC machines.
+  </td>
+ </tr>
+ <tr>
+  <td>29
+  Jun 16</td>
+  <td>0.175</td>
+  <td>Much work on emulating Sun SPARC machines. Many new software list CHD dumps added (esp. for PSX).
+  </td>
+ </tr>
+  <tr>
  <tr>
   <td>27
   Apr 16</td>
