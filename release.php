@@ -32,12 +32,10 @@ $source_exe = $tag_name . 's.exe';
 $source_exe_dc = 0;
 $source_zip = $tag_name . 's.zip';
 $source_zip_dc = 0;
-$binary = $tag_name . 'b.exe';
-$binary_dc = 0;
+$binary_32bit = $tag_name . 'b_32bit.exe';
+$binary_32bit_dc = 0;
 $binary_64bit = $tag_name . 'b_64bit.exe';
 $binary_64bit_dc = 0;
-$binary_debug = $tag_name . 'b_debug.exe';
-$binary_debug_dc = 0;
 
 foreach ($response->assets as $asset) {
 	
@@ -58,18 +56,14 @@ foreach ($response->assets as $asset) {
 				$source_zip_size = safe_filesize($asset->size);
 				$source_zip_dc = $asset->download_count;
 				break;
-		case $binary:
-				$binary_size = safe_filesize($asset->size);
-				$binary_dc = $asset->download_count;
+		case $binary_32bit:
+				$binary_32bit_size = safe_filesize($asset->size);
+				$binary_32bit_dc = $asset->download_count;
 				break;
 		case $binary_64bit:
 				$binary_64bit_size = safe_filesize($asset->size);
 				$binary_64bit_dc = $asset->download_count;
 				break;
-		case $binary_debug:
-				$binary_debug_size = safe_filesize($asset->size);
-				$binary_debug_dc = $asset->download_count;
-				break;				
 	}
 }
 
@@ -102,12 +96,12 @@ $title = 'MAME | Latest MAME Release';
 						</tr>
 						<tr>
 							<td class="link">
-							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary ?>">
-							<?php echo $binary ?>
+							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary_32bit ?>">
+							<?php echo $binary_32bit ?>
 							</a></td>
-							<td class="number"><?php echo $binary_size ?></td>
+							<td class="number"><?php echo $binary_32bit_size ?></td>
 							<td>MAME 0.<?php echo $version ?> 32-bit Windows command-line binaries.</td>
-							<td align="right"><span class="badge"><?php echo $binary_dc ?></td>
+							<td align="right"><span class="badge"><?php echo $binary_32bit_dc ?></td>
 						</tr>
 						<tr>
 							<td class="link">
@@ -117,15 +111,6 @@ $title = 'MAME | Latest MAME Release';
 							<td class="number"><?php echo $binary_64bit_size ?></td>
 							<td>MAME 0.<?php echo $version ?> 64-bit Windows command-line binaries.</td>
 							<td align="right"><span class="badge"><?php echo $binary_64bit_dc ?></span></td>
-						</tr>
-						<tr>
-							<td class="link">
-							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary_debug ?>">
-							<?php echo $binary_debug ?>
-							</a></td>
-							<td class="number"><?php echo $binary_debug_size ?></td>
-							<td>MAME 0.<?php echo $version ?> 32-bit Windows command-line binaries (debug build).</td>
-							<td align="right"><span class="badge"><?php echo $binary_debug_dc ?></span></td>
 						</tr>
 						<tr>
 							<td class="link">
