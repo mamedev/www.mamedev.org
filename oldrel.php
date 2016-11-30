@@ -28,70 +28,70 @@ $title = 'MAME | Previous Releases';
 				<td class="date">0.179</td>
 				<td class="date">26 Oct 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0179/mame0179s.zip">mame0179s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0179/mame0179b_32bit.exe">mame0179b_32bit.exe</a><br><a href="https://github.com/mamedev/mame/releases/download/mame0179/mame0179b_64bit.exe">mame0179b_64bit.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0179/mame0179b_32bit.exe">mame0179b_32bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0179/mame0179b_64bit.exe">mame0179b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0179.txt">whatsnew_0179.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.178</td>
 				<td class="date">28 Sep 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0178/mame0178s.zip">mame0178s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0178/mame0178b.exe">mame0178b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0178/mame0178b.exe">mame0178b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0178/mame0178b_64bit.exe">mame0178b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0178.txt">whatsnew_0178.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.177</td>
 				<td class="date">31 Aug 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0177/mame0177s.zip">mame0177s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0177/mame0177b.exe">mame0177b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0177/mame0177b.exe">mame0177b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0177/mame0177b_64bit.exe">mame0177b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0177.txt">whatsnew_0177.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.176</td>
 				<td class="date">27 Jul 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0176/mame0176s.zip">mame0176s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0176/mame0176b.exe">mame0176b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0176/mame0176b.exe">mame0176b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0176/mame0176b_64bit.exe">mame0176b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0176.txt">whatsnew_0176.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.175</td>
 				<td class="date">29 Jun 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175s.zip">mame0175s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175b.exe">mame0175b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175b.exe">mame0175b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175_64bit.exe">mame0175b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0175.txt">whatsnew_0175.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.174</td>
 				<td class="date">25 May 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174s.zip">mame0174s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174b.exe">mame0174b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174b.exe">mame0174b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0174/mame0174b_64bit.exe">mame0174b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0174.txt">whatsnew_0174.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.173</td>
 				<td class="date">27 Apr 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0173/mame0173s.zip">mame0173s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0173/mame0173b.exe">mame0173b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0173/mame0173b.exe">mame0173b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0173/mame0173b_64bit.exe">mame0173b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0173.txt">whatsnew_0173.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.172</td>
 				<td class="date">30 Mar 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0172/mame0172s.zip">mame0172s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0172/mame0172b.exe">mame0172b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0172/mame0172b.exe">mame0172b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0172/mame0172b_64bit.exe">mame0172b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0172.txt">whatsnew_0172.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.171</td>
 				<td class="date">24 Feb 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0171/mame0171s.zip">mame0171s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0171/mame0171b.exe">mame0171b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0171/mame0171b.exe">mame0171b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0171/mame0171b_64bit.exe">mame0171b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0171.txt">whatsnew_0171.txt</a></td>
 			</tr>	
 			<tr>
 				<td class="date">0.170</td>
 				<td class="date">27 Jan 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0170/mame0170s.zip">mame0170s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0170/mame0170b.exe">mame0170b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0170/mame0170b.exe">mame0170b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0170/mame0170b_64bit.exe">mame0170b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0170.txt">whatsnew_0170.txt</a></td>
 			</tr>	
 		  </table>
@@ -115,84 +115,84 @@ $title = 'MAME | Previous Releases';
 				<td class="date">0.169</td>
 				<td class="date">30 Dec 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0169/mame0169s.zip">mame0169s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0169/mame0169b.exe">mame0169b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0169/mame0169b.exe">mame0169b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0169/mame0169b_64bit.exe">mame0169b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0169.txt">whatsnew_0169.txt</a></td>
 			</tr>	
 			<tr>
 				<td class="date">0.168</td>
 				<td class="date">25 Nov 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0168/mame0168s.zip">mame0168s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0168/mame0168b.exe">mame0168b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0168/mame0168b.exe">mame0168b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0168/mame0168b_64bit.exe">mame0168b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0168.txt">whatsnew_0168.txt</a></td>
 			</tr>	
 			<tr>
 				<td class="date">0.167</td>
 				<td class="date">28 Oct 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0167/mame0167s.zip">mame0167s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0167/mame0167b.exe">mame0167b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0167/mame0167b.exe">mame0167b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0167/mame0167b_64bit.exe">mame0167b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0167.txt">whatsnew_0167.txt</a></td>
 			</tr>	
 			<tr>
 				<td class="date">0.166</td>
 				<td class="date">30 Sep 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0166/mame0166s.zip">mame0166s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0166/mame0166b.exe">mame0166b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0166/mame0166b.exe">mame0166b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0166/mame0166b_64bit.exe">mame0166b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0166.txt">whatsnew_0166.txt</a></td>
 			</tr>						
 			<tr>
 				<td class="date">0.165</td>
 				<td class="date">26 Aug 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0165/mame0165s.zip">mame0165s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0165/mame0165b.exe">mame0165b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0165/mame0165b.exe">mame0165b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0165/mame0165b_64bit.exe">mame0165b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0165.txt">whatsnew_0165.txt</a></td>
 			</tr>						
 			<tr>
 				<td class="date">0.164</td>
 				<td class="date">29 Jul 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0164/mame0164s.zip">mame0164s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0164/mame0164b.exe">mame0164b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0164/mame0164b.exe">mame0164b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0164/mame0164b_64bit.exe">mame0164b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0164.txt">whatsnew_0164.txt</a></td>
 			</tr>						
 			<tr>
 				<td class="date">0.163</td>
 				<td class="date">24 Jun 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0163/mame0163s.zip">mame0163s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0163/mame0163b.exe">mame0163b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0163/mame0163b.exe">mame0163b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0163/mame0163b_64bit.exe">mame0163b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0163.txt">whatsnew_0163.txt</a></td>
 			</tr>				
 			<tr>
 				<td class="date">0.162</td>
 				<td class="date">27 May 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0162/mame0162s.zip">mame0162s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0162/mame0162b.exe">mame0162b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0162/mame0162b.exe">mame0162b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0162/mame0162b_64bit.exe">mame0162b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0162.txt">whatsnew_0162.txt</a></td>
 			</tr>				
 			<tr>
 				<td class="date">0.161</td>
 				<td class="date">29 Apr 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0161/mame0161s.zip">mame0161s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0161/mame0161b.exe">mame0161b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0161/mess0161b.exe">mess0161b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0161/mame0161b.exe">mame0161b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0161/mame0161b_64bit.exe">mame0161b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0161/mess0161b.exe">mess0161b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0161/mess0161b_64bit.exe">mess0161b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0161.txt">whatsnew_0161.txt</a><br/><a href="releases/messnew_0161.txt">messnew_0161.txt</a></td>
 			</tr>			
 			<tr>
 				<td class="date">0.160</td>
 				<td class="date">25 Mar 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0160/mame0160s.zip">mame0160s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0160/mame0160b.exe">mame0160b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0160/mess0160b.exe">mess0160b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0160/mame0160b.exe">mame0160b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0160/mame0160b_64bit.exe">mame0160b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0160/mess0160b.exe">mess0160b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0160/mess0160b_64bit.exe">mess0160b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0160.txt">whatsnew_0160.txt</a><br/><a href="releases/messnew_0160.txt">messnew_0160.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.159</td>
 				<td class="date">25 Feb 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0159/mame0159s.zip">mame0159s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0159/mame0159b.exe">mame0159b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0159/mess0159b.exe">mess0159b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0159/mame0159b.exe">mame0159b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0159/mame0159b_64bit.exe">mame0159b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0159/mess0159b.exe">mess0159b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0159/mess0159b_64bit.exe">mess0159b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0159.txt">whatsnew_0159.txt</a><br/><a href="releases/messnew_0159.txt">messnew_0159.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.158</td>
 				<td class="date">28 Jan 2015</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0158/mame0158s.zip">mame0158s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0158/mame0158b.exe">mame0158b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0158/mess0158b.exe">mess0158b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0158/mame0158b.exe">mame0158b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0158/mame0158b_64bit.exe">mame0158b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0158/mess0158b.exe">mess0158b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0158/mess0158b_64bit.exe">mess0158b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0158.txt">whatsnew_0158.txt</a><br/><a href="releases/messnew_0158.txt">messnew_0158.txt</a></td>
 			</tr>
 		  </table>
@@ -215,35 +215,35 @@ $title = 'MAME | Previous Releases';
 				<td class="date">0.157</td>
 				<td class="date">31 Dec 2014</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0157/mame0157s.zip">mame0157s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0157/mame0157b.exe">mame0157b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0157/mess0157b.exe">mess0157b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0157/mame0157b.exe">mame0157b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0157/mame0157b_64bit.exe">mame0157b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0157/mess0157b.exe">mess0157b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0157/mess0157b_64bit.exe">mess0157b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0157.txt">whatsnew_0157.txt</a><br/><a href="releases/messnew_0157.txt">messnew_0157.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.156</td>
 				<td class="date">26 Nov 2014</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0156/mame0156s.zip">mame0156s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0156/mame0156b.exe">mame0156b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0156/mess0156b.exe">mess0156b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0156/mame0156b.exe">mame0156b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0156/mame0156b_64bit.exe">mame0156b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0156/mess0156b.exe">mess0156b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0156/mess0156b_64bit.exe">mess0156b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0156.txt">whatsnew_0156.txt</a><br/><a href="releases/messnew_0156.txt">messnew_0156.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.155</td>
 				<td class="date">15 Oct 2014</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0155/mame0155s.zip">mame0155s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0155/mame0155b.exe">mame0155b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0155/mess0155b.exe">mess0155b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0155/mame0155b.exe">mame0155b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0155/mame0155b_64bit.exe">mame0155b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0155/mess0155b.exe">mess0155b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0155/mess0155b_64bit.exe">mess0155b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0155.txt">whatsnew_0155.txt</a><br/><a href="releases/messnew_0155.txt">messnew_0155.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.154</td>
 				<td class="date">23 Jul 2014</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0154/mame0154s.zip">mame0154s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0154/mame0154b.exe">mame0154b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0154/mess0154b.exe">mess0154b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0154/mame0154b.exe">mame0154b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0154/mame0154b_64bit.exe">mame0154b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0154/mess0154b.exe">mess0154b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0154/mess0154b_64bit.exe">mess0154b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0154.txt">whatsnew_0154.txt</a><br/><a href="releases/messnew_0154.txt">messnew_0154.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.153</td>
 				<td class="date">07 Apr 2014</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0153/mame0153s.zip">mame0153s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0153/mame0153b.exe">mame0153b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0153/mess0153b.exe">mess0153b.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0153/mame0153b.exe">mame0153b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0153/mame0153b_64bit.exe">mame0153b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0153/mess0153b.exe">mess0153b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0153/mess0153b_64bit.exe">mess0153b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0153.txt">whatsnew_0153.txt</a><br/><a href="releases/messnew_0153.txt">messnew_0153.txt</a></td>
 			</tr>
 		  </table>
@@ -266,35 +266,35 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.152</td>
 			<td class="date">24 Dec 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0152/mame0152s.zip">mame0152s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0152/mame0152b.exe">mame0152b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0152/mess0152b.exe">mess0152b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0152/mame0152b.exe">mame0152b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0152/mame0152b_64bit.exe">mame0152b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0152/mess0152b.exe">mess0152b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0152/mess0152b_64bit.exe">mess0152b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0152.txt">whatsnew_0152.txt</a><br/><a href="releases/messnew_0152.txt">messnew_0152.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.151</td>
 			<td class="date">05 Nov 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0151/mame0151s.zip">mame0151s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0151/mame0151b.exe">mame0151b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0151/mess0151b.exe">mess0151b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0151/mame0151b.exe">mame0151b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0151/mame0151b_64bit.exe">mame0151b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0151/mess0151b.exe">mess0151b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0151/mess0151b_64bit.exe">mess0151b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0151.txt">whatsnew_0151.txt</a><br/><a href="releases/messnew_0151.txt">messnew_0151.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.150</td>
 			<td class="date">17 Sep 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0150/mame0150s.zip">mame0150s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0150/mame0150b.exe">mame0150b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0150/mess0150b.exe">mess0150b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0150/mame0150b.exe">mame0150b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0150/mame0150b_64bit.exe">mame0150b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0150/mess0150b.exe">mess0150b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0150/mess0150b_64bit.exe">mess0150b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0150.txt">whatsnew_0150.txt</a><br/><a href="releases/messnew_0150.txt">messnew_0150.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.149</td>
 			<td class="date">11 Jun 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0149/mame0149s.zip">mame0149s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0149/mame0149b.exe">mame0149b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0149/mess0149b.exe">mess0149b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0149/mame0149b.exe">mame0149b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0149/mame0149b_64bit.exe">mame0149b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0149/mess0149b.exe">mess0149b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0149/mess0149b_64bit.exe">mess0149b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0149.txt">whatsnew_0149.txt</a><br/><a href="releases/messnew_0149.txt">messnew_0149.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.148</td>
 			<td class="date">11 Jan 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148s.zip">mame0148s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b.exe">mame0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b.exe">mess0148b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b.exe">mame0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b_64bit.exe">mame0148b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b.exe">mess0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b_64bit.exe">mess0148b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0148.txt">whatsnew_0148.txt</a><br/><a href="releases/messnew_0148.txt">messnew_0148.txt</a></td>
 		</tr>
 		  </table>
@@ -317,21 +317,21 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.147</td>
 			<td class="date">17 Sep 2012</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0147/mame0147s.zip">mame0147s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0147/mame0147b.exe">mame0147b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0147/mame0147b.exe">mame0147b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0147/mame0147b_64bit.exe">mame0147b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0147.txt">whatsnew_0147.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.146</td>
 			<td class="date">21 May 2012</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0146/mame0146s.zip">mame0146s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0146/mame0146b.exe">mame0146b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0146/mame0146b.exe">mame0146b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0146/mame0146b_64bit.exe">mame0146b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0146.txt">whatsnew_0146.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.145</td>
 			<td class="date">05 Feb 2012</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0145/mame0145s.zip">mame0145s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0145/mame0145b.exe">mame0145b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0145/mame0145b.exe">mame0145b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0145/mame0145b_64bit.exe">mame0145b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0145.txt">whatsnew_0145.txt</a></td>
 		</tr>
 		  </table>
@@ -354,21 +354,21 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.144</td>
 			<td class="date">13 Nov 2011</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0144/mame0144s.zip">mame0144s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0144/mame0144b.exe">mame0144b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0144/mame0144b.exe">mame0144b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0144/mame0144b_64bit.exe">mame0144b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0144.txt">whatsnew_0144.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.143</td>
 			<td class="date">28 Jun 2011</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0143/mame0143s.zip">mame0143s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0143/mame0143b.exe">mame0143b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0143/mame0143b.exe">mame0143b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0143/mame0143b_64bit.exe">mame0143b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0143.txt">whatsnew_0143.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.142</td>
 			<td class="date">03 Apr 2011</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0142/mame0142s.zip">mame0142s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0142/mame0142b.exe">mame0142b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0142/mame0142b.exe">mame0142b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0142/mame0142b_64bit.exe">mame0142b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0142.txt">whatsnew_0142.txt</a></td>
 		</tr>
 		  </table>
@@ -392,35 +392,35 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.141</td>
 			<td class="date">31 Dec 2010</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0141/mame0141s.zip">mame0141s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0141/mame0141b.exe">mame0141b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0141/mame0141b.exe">mame0141b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0141/mame0141b_64bit.exe">mame0141b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0141.txt">whatsnew_0141.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.140</td>
 			<td class="date">21 Oct 2010</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0140/mame0140s.zip">mame0140s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0140/mame0140b.exe">mame0140b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0140/mame0140b.exe">mame0140b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0140/mame0140b_64bit.exe">mame0140b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0140.txt">whatsnew_0140.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.139</td>
 			<td class="date">11 Aug 2010</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0139/mame0139s.zip">mame0139s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0139/mame0139b.exe">mame0139b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0139/mame0139b.exe">mame0139b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0139/mame0139b_64bit.exe">mame0139b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0139.txt">whatsnew_0139.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.138</td>
 			<td class="date">15 May 2010</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0138/mame0138s.zip">mame0138s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0138/mame0138b.exe">mame0138b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0138/mame0138b.exe">mame0138b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0138/mame0138b_64bit.exe">mame0138b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0138.txt">whatsnew_0138.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.137</td>
 			<td class="date">11 Mar 2010</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0137/mame0137s.zip">mame0137s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0137/mame0137b.exe">mame0137b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0137/mame0137b.exe">mame0137b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0137/mame0137b_64bit.exe">mame0137b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0137.txt">whatsnew_0137.txt</a></td>
 		</tr>
 		  </table>
@@ -443,56 +443,56 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.136</td>
 			<td class="date">31 Dec 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0136/mame0136s.zip">mame0136s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0136/mame0136b.exe">mame0136b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0136/mame0136b.exe">mame0136b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0136/mame0136b_64bit.exe">mame0136b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0136.txt">whatsnew_0136.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.135</td>
 			<td class="date">31 Oct 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0135/mame0135s.zip">mame0135s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0135/mame0135b.exe">mame0135b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0135/mame0135b.exe">mame0135b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0135/mame0135b_64bit.exe">mame0135b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0135.txt">whatsnew_0135.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.134</td>
 			<td class="date">10 Sep 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0134/mame0134s.zip">mame0134s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0134/mame0134b.exe">mame0134b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0134/mame0134b.exe">mame0134b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0134/mame0134b_64bit.exe">mame0134b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0134.txt">whatsnew_0134.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.133</td>
 			<td class="date">20 Jul 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0133/mame0133s.zip">mame0133s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0133/mame0133b.exe">mame0133b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0133/mame0133b.exe">mame0133b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0133/mame0133b_64bit.exe">mame0133b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0133.txt">whatsnew_0133.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.132</td>
 			<td class="date">08 Jun 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0132/mame0132s.zip">mame0132s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0132/mame0132b.exe">mame0132b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0132/mame0132b.exe">mame0132b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0132/mame0132b_64bit.exe">mame0132b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0132.txt">whatsnew_0132.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.131</td>
 			<td class="date">23 April 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0131/mame0131s.zip">mame0131s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0131/mame0131b.exe">mame0131b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0131/mame0131b.exe">mame0131b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0131/mame0131b_64bit.exe">mame0131b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0131.txt">whatsnew_0131.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.130</td>
 			<td class="date">09 Mar 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0130/mame0130s.zip">mame0130s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0130/mame0130b.exe">mame0130b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0130/mame0130b.exe">mame0130b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0130/mame0130b_64bit.exe">mame0130b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0130.txt">whatsnew_0130.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.129</td>
 			<td class="date">04 Jan 2009</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0129/mame0129s.zip">mame0129s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0129/mame0129b.exe">mame0129b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0129/mame0129b.exe">mame0129b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0129/mame0129b_64bit.exe">mame0129b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0129.txt">whatsnew_0129.txt</a></td>
 		</tr>
 		  </table>
@@ -515,42 +515,42 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.128</td>
 			<td class="date">16 Oct 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0128/mame0128s.zip">mame0128s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0128/mame0128b.exe">mame0128b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0128/mame0128b.exe">mame0128b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0128/mame0128b_64bit.exe">mame0128b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0128.txt">whatsnew_0128.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.127</td>
 			<td class="date">19 Aug 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0127/mame0127s.zip">mame0127s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0127/mame0127b.exe">mame0127b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0127/mame0127b.exe">mame0127b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0127/mame0127b_64bit.exe">mame0127b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0127.txt">whatsnew_0127.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.126</td>
 			<td class="date">06 Jul 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0126/mame0126s.zip">mame0126s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0126/mame0126b.exe">mame0126b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0126/mame0126b.exe">mame0126b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0126/mame0126b_64bit.exe">mame0126b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0126.txt">whatsnew_0126.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.125</td>
 			<td class="date">05 May 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0125/mame0125s.zip">mame0125s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0125/mame0125b.exe">mame0125b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0125/mame0125b.exe">mame0125b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0125/mame0125b_64bit.exe">mame0125b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0125.txt">whatsnew_0125.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.124</td>
 			<td class="date">23 Mar 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0124/mame0124s.zip">mame0124s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0124/mame0124b.exe">mame0124b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0124/mame0124b.exe">mame0124b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0124/mame0124b_64bit.exe">mame0124b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0124.txt">whatsnew_0124.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.123</td>
 			<td class="date">05 Feb 2008</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0123/mame0123s.zip">mame0123s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0123/mame0123b.exe">mame0123b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0123/mame0123b.exe">mame0123b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0123/mame0123b_64bit.exe">mame0123b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0123.txt">whatsnew_0123.txt</a></td>
 		</tr>
 		  </table>
@@ -573,21 +573,21 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.122</td>
 			<td class="date">18 Dec 2007</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0122/mame0122s.zip">mame0122s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0122/mame0122b.exe">mame0122b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0122/mame0122b.exe">mame0122b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0122/mame0122b_64bit.exe">mame0122b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0122.txt">whatsnew_0122.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.121</td>
 			<td class="date">18 Nov 2007</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0121/mame0121s.zip">mame0121s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0121/mame0121b.exe">mame0121b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0121/mame0121b.exe">mame0121b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0121/mame0121b_64bit.exe">mame0121b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0121.txt">whatsnew_0121.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.120</td>
 			<td class="date">15 Oct 2007</td>
 			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame0120/mame0120s.zip">mame0120s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame0120/mame0120b.exe">mame0120b.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame0120/mame0120b.exe">mame0120b.exe</a><<br/><a href="https://github.com/mamedev/historic-mame/releases/download/mame0120/mame0120b_64bit.exe">mame0120b_64bit.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0120.txt">whatsnew_0120.txt</a></td>
 		</tr>
 		<tr>
