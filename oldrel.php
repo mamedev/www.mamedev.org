@@ -294,7 +294,7 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.148</td>
 			<td class="date">11 Jan 2013</td>
 			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148s.zip">mame0148s.zip</a></td>
-			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b.exe">mame0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b_64bit.exe">mame0148b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b.exe">mess0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b_64bit.exe">mess0148b_64bit.exe</a></td>
+			<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b.exe">mame0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mame0148b_64bit.exe">mame0148b_64bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b.exe">mess0148b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0148/mess0148b_64bit_update.exe">mess0148b_64bit_update.exe</a></td>
 			<td class="link"><a href="releases/whatsnew_0148.txt">whatsnew_0148.txt</a><br/><a href="releases/messnew_0148.txt">messnew_0148.txt</a></td>
 		</tr>
 		  </table>
