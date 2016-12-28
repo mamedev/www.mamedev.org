@@ -177,6 +177,12 @@ $title = 'MAME | Project History';
   <td>Massive addition of mechanical games.</td>
  </tr>
  <tr>
+  <td>20
+  Oct 14</td>
+  <td></td>
+  <td>Project (also) on GIT.</td>
+ </tr>
+ <tr>
   <td>10
   Oct 14</td>
   <td>0.155</td>
@@ -187,12 +193,6 @@ $title = 'MAME | Project History';
   Jul 14</td>
   <td>0.154</td>
   <td>Many devices added.</td>
- </tr>
- <tr>
-  <td>20
-  Oct 14</td>
-  <td></td>
-  <td>Project (also) on GIT.</td>
  </tr>
  <tr>
   <td>07
