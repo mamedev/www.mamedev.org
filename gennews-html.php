@@ -3,7 +3,7 @@
 
 $rootpath = $_SERVER['DOCUMENT_ROOT'] . '/';
 
-$title = 'MAME Multiple Arcade Machine Emulator';
+$title = 'MAMEDEV.org | Home of The MAME Project';
 ?>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
 
@@ -23,7 +23,7 @@ if ($post == "")
 
         <!-- Marketing Icons Section -->
         <div class="row">
-            <center><h1 class="page-header">Welcome to The Official Site of MAME Development Team</h1></center>
+            <center><h1 class="page-header">Welcome to The Official Site of the MAME Development Team</h1></center>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4><i class="fa fa-fw fa-check"></i> What is MAME</h4>
