@@ -14,7 +14,7 @@ $title = 'MAME | Legal Information';
 
 					<pre>
 MAME - Multiple Arcade Machine Emulator
-Copyright (C) 1997-2016 Nicola Salmoria and the MAME team
+Copyright (C) 1997-2017 Nicola Salmoria and the MAME team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
