@@ -28,7 +28,7 @@ $title = 'MAME | Project History';
 		<h2>Daily Work-in-Progress 1999-2004</h2>
 		
 		<p>
-		Another fascinating way to look back at the project's history is to peruse the incredibly detailed Daily MAME Work-in-Progress (WIP) pages. From <a href="oldwip/wip9902.html">Feburary 1999</a> through <a href="oldwip/wip0407.html">July 2004</a>, Santeri Saarimaa took on the challenging task of maintaining a detailed daily work-in-progress report of MAME development. These page represent a peek into what was happening during one of the most active times in the project's development.
+		Another fascinating way to look back at the project's history is to peruse the incredibly detailed Daily MAME Work-in-Progress (WIP) pages. From <a href="oldwip/wip9902.html">February 1999</a> through <a href="oldwip/wip0407.html">July 2004</a>, Santeri Saarimaa took on the challenging task of maintaining a detailed daily work-in-progress report of MAME development. These page represent a peek into what was happening during one of the most active times in the project's development.
 		</p>
 		
 		<h2>Tables</h2>
