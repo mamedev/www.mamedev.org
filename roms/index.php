@@ -22,7 +22,6 @@ $title = 'MAME | ROMs for Free Download';
 
 					<div class="panel panel-primary">
 					  <div class="panel-heading">Exidy Games</div>
-						<div class="table-responsive">
 					  <table class="table">
 					<tr>
 						<td class="link" width="20%">
@@ -121,11 +120,9 @@ $title = 'MAME | ROMs for Free Download';
 					</tr>
 					</table>
 					</div>
-					</div>
 
 					<div class="panel panel-primary">
 					  <div class="panel-heading">Other Games</div>
-					  <div class="table-responsive">
 					  <table class="table">
 					<tr>
 						<td class="link" width="20%">
@@ -159,7 +156,6 @@ $title = 'MAME | ROMs for Free Download';
 						</td>
 					</tr>
 					</table>
-					</div>
 					</div>
 
 						<br/><br/>
