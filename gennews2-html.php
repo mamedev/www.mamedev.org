@@ -117,4 +117,5 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
     <!-- /.row -->
     <!-- /.container -->
 	<br/><br/><br/>
+	<br/><br/><br/>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
