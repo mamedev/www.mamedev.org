@@ -72,6 +72,31 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
             <div class="col-lg-12">
                 <center><h2 class="page-header">News</h2></center>
             </div>
+	    <!-- navigation bar -->
+    <div class="row">
+	<?php
+        if ($prevurl != "")
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	else
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	?>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+	<?php
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
+		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
+		echo("\t\t</div>\n");
+	?>
+	</div>
+    <!-- /.row -->
 <?php 
 	if (count($entries) == 0)
 		echo("<p>No matching items found!</p>");
@@ -95,7 +120,7 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 ?>
 		<!-- posts end -->
     </div>
-	 
+    <div class="row"></div> 
     <!-- navigation bar -->
     <div class="row">
 	<?php
@@ -107,7 +132,9 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 	}
 	else
 	{
-		echo("<div class=\"col-md-2\"></div>\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
 	}
 	?>
         <div class="col-md-2"></div>
@@ -117,6 +144,7 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
 		echo("\t\t</div>\n");
 	?>
+	</div>
     <!-- /.row -->
     <!-- /.container -->
 	<br/><br/><br/>
