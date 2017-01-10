@@ -100,14 +100,14 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
     <div class="row">
 	    <?php
         echo("\t\t\t\t\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
-        echo("\t\t\t\t\t\t<h5><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\">" . "&lt; Newer News" . "</a></h5>\n");
+        echo("\t\t\t\t\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class="btn btn-success"><h5>" . "&lt; Newer" . "</a></h5></center>\n");
         echo("\t\t\t\t\t</div>\n");
 	    ?>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
 	    <?php
         echo("\t\t\t\t\t<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
-        echo("\t\t\t\t\t\t<h5><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\">" . "Older News &gt;" . "</a></h5>\n");
+        echo("\t\t\t\t\t\t<center><h5><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class="btn btn-success"><h5>" . "Older &gt;" . "</a></h5></center>\n");
         echo("\t\t\t\t\t</div>\n");
 	    ?>
     <!-- /.row -->
