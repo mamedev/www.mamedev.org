@@ -86,8 +86,8 @@ $title = 'MAME | Contact the Team';
 								<input type="reset" name="reset" value="Reset" class="btn btn-warning"/>
 							</div>
 					</form>
-		<br/><br/>
+		
 	</div>
     <!-- /.container -->
-	
+	<br/><br/><br/>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
