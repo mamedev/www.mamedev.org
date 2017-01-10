@@ -99,9 +99,14 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
     <!-- navigation bar -->
     <div class="row">
 	    <?php
-        echo("<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
-        echo("\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
-        echo("</div>\n");
+        if ($prevurl != "")
+	{
+		echo("<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        	echo("\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
+        	echo("</div>\n");
+	}
+	else
+		echo("<div class=\"col-md-2\"></div>\n";
 	    ?>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
