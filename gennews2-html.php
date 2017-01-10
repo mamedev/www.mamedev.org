@@ -95,19 +95,25 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 ?>
 		<!-- posts end -->
     </div>
+	 
+    <!-- navigation bar -->
     <div class="row">
-        <div class="col-md-1">.col-md-1</div>
+        <div class="col-md-1"></div>
+	    <?php
         echo("\t\t\t\t\t<div id=\"new-news-nav" . "\" class=\"col-md-1\">\n");
         echo("\t\t\t\t\t\t<h3><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\">" . "&lt; Newer News" . "</a></h3>\n");
         echo("\t\t\t\t\t</div>\n");
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
-        <div class="col-md-1">.col-md-1</div>
+	    ?>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+	    <?php
         echo("\t\t\t\t\t<div id=\"old-news-nav" . "\" class=\"col-md-1\">\n");
         echo("\t\t\t\t\t\t<h3><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\">" . "Older News &gt;" . "</a></h3>\n");
         echo("\t\t\t\t\t</div>\n");
-        <div class="col-md-1">.col-md-1</div>
+	    ?>
+        <div class="col-md-1"></div>
     <!-- /.row -->
     <!-- /.container -->
 	<br/><br/><br/>
