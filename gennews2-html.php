@@ -52,13 +52,13 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
             <div class="col-lg-12">
                 <center><h2 class="page-header">Supported Platforms</h2></center>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <center><i class="fa fa-windows fa-5x"></i><br/><br/><a href="release.php" class="btn btn-success"><h2>Download</h2></a><br/></center>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-4">
 				<center><i class="fa fa-apple fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/></center>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-4">
                 <center><i class="fa fa-linux fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/></center>
             </div>
         </div>
@@ -77,21 +77,20 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 	<?php
         if ($prevurl != "")
 	{
-		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-6 col-xs-6\">\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
         	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
         	echo("\t\t</div>\n");
 	}
 	else
 	{
-		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-6\ col-xs-6\">\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
         	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
         	echo("\t\t</div>\n");
 	}
 	?>
         <div class="col-md-4 col-sm-6 col-xs-6"></div>
-        <div class="col-md-4 col-sm-6 col-xs-6"></div>
-	<?php
-		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-6 col-xs-6\">\n");
+        <?php
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
 		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
 		echo("\t\t</div>\n");
 	?>
@@ -126,21 +125,20 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 	<?php
         if ($prevurl != "")
 	{
-		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-6 col-xs-6\">\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
         	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
         	echo("\t\t</div>\n");
 	}
 	else
 	{
-		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-6\ col-xs-6\">\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
         	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
         	echo("\t\t</div>\n");
 	}
 	?>
-        <div class="col-md-4 col-sm-6 col-xs-6"></div>
-        <div class="col-md-4 col-sm-6 col-xs-6"></div>
+        <div class="col-md-4 col-sm-4 col-xs-4"></div>
 	<?php
-		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-6 col-xs-6\">\n");
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
 		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
 		echo("\t\t</div>\n");
 	?>
