@@ -91,8 +91,8 @@ $title = 'MAME | Latest MAME Release';
 						<tr>
 							<th width="23%">File</th>
 							<th width="12%">Size</th>
-							<th width="65%">Description</th>
-							<th>Downloads</th>
+							<th width="53%">Description</th>
+							<th width="12%">Downloads</th>
 						</tr>
 						<tr>
 							<td class="link">
@@ -150,8 +150,8 @@ $title = 'MAME | Latest MAME Release';
 						<tr>
 							<th width="23%">File</th>
 							<th width="12%">Size</th>
-							<th width="65%">Description</th>
-							<th>Downloads</th>
+							<th width="53%">Description</th>
+							<th width="12%">Downloads</th>
 						</tr>
 
 						<tr>
