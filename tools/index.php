@@ -94,7 +94,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 
 <p>There are also <strong>buildtools_32.bat</strong> and <strong>conemu_32.bat</strong> enforcing mingw32 on 64-bit tools (makes sense if you use combined distribution).</p>
 
-</a><p><a name="user-content-advanced">For more information about Msys2, see </a><a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
+</a><p>For more information about Msys2, see <a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
 
 <p><a name="user-content-optional"></a></p><a name="user-content-optional">
 
