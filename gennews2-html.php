@@ -99,16 +99,16 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
     <!-- navigation bar -->
     <div class="row">
 	    <?php
-        echo("\t\t\t\t\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
-        echo("\t\t\t\t\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
-        echo("\t\t\t\t\t</div>\n");
+        echo("<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        echo("\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
+        echo("</div>\n");
 	    ?>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
 	    <?php
-        echo("\t\t\t\t\t<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
-        echo("\t\t\t\t\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success\"><h5>" . "Older &gt;" . "</h5></a></center>\n");
-        echo("\t\t\t\t\t</div>\n");
+        echo("<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
+        echo("\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success\"><h5>" . "Older &gt;" . "</h5></a></center>\n");
+        echo("</div>\n");
 	    ?>
     <!-- /.row -->
     <!-- /.container -->
