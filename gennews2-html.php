@@ -101,24 +101,21 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 	<?php
         if ($prevurl != "")
 	{
-		echo("<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
-        	echo("\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
-        	echo("</div>\n");
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
 	}
 	else
 	{
-		// echo("<div class=\"col-md-2\"></div>\n";
-		echo("<div id=\"new-news-nav" . "\" class=\"col-md-2\">\n");
-        	echo("\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\"><h5>" . "&lt; Newer" . "</h5></a></center>\n");
-        	echo("</div>\n");
+		echo("<div class=\"col-md-2\"></div>\n");
 	}
 	?>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
 	<?php
-		echo("<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
-		echo("\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\"><h5>" . "Older &gt;" . "</h5></a></center>\n");
-		echo("</div>\n");
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-2\">\n");
+		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
+		echo("\t\t</div>\n");
 	?>
     <!-- /.row -->
     <!-- /.container -->
