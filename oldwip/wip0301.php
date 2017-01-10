@@ -175,7 +175,7 @@ $title = 'MAME | Work-in-Progress';
 				<div class="row">
 					<h2>2003-01-21</h2>
 					<p>
-					Stephane Humbert added another version of Real Mahjong Haihai. Derrick Renaud submitted an update, adding sample sounds (that are not yet recorded) to the Circus, Clowns and Seawolf drivers, adding blue background artwork and coin counter to Seawolf, adding preliminary discrete sounds and fixing controls in Polaris, and modifying the Donkey Kong sounds a little. David Haywood added the RGB brightness control to the Sega System 32 driver, fixing colored light effects in Alien³ and lightning effects in Jurassic Park. Chris Kirmse sped up the data file handling. Acho A. Tang submitted fixes and improvements to a number of drivers, including correct colors to the B-wings and Zaviga driver, preliminary star field simulation in the Aeroboto / Formation Z driver, tuned music in Equites, fixed DIP switches in the Namco System 1 driver, improved sprite clipping and fixed hangs in the Namco System 86 driver, fixed graphics glitches in Super Dodge Ball, fixed sound banking bug in the Wec Le Mans 24, fixed reversed stereo in some games that use the K054539 sound chip, fixed the misaligned graphics in Burning Force, fixed a variety of issues in the SNK driver and some bugs in the Sega System 16 driver. Nicola Salmoria added Raiga - Strato Fighter to the Ninja Gaiden driver but it suffers from unemulated protection and is not playable. Bryan McPhail fixed an infinite loop in the Atari vector generators. David Haywood also fixed the crash in Jan Jan Shimasyo in the SSV driver.
+					Stephane Humbert added another version of Real Mahjong Haihai. Derrick Renaud submitted an update, adding sample sounds (that are not yet recorded) to the Circus, Clowns and Seawolf drivers, adding blue background artwork and coin counter to Seawolf, adding preliminary discrete sounds and fixing controls in Polaris, and modifying the Donkey Kong sounds a little. David Haywood added the RGB brightness control to the Sega System 32 driver, fixing colored light effects in AlienÂ³ and lightning effects in Jurassic Park. Chris Kirmse sped up the data file handling. Acho A. Tang submitted fixes and improvements to a number of drivers, including correct colors to the B-wings and Zaviga driver, preliminary star field simulation in the Aeroboto / Formation Z driver, tuned music in Equites, fixed DIP switches in the Namco System 1 driver, improved sprite clipping and fixed hangs in the Namco System 86 driver, fixed graphics glitches in Super Dodge Ball, fixed sound banking bug in the Wec Le Mans 24, fixed reversed stereo in some games that use the K054539 sound chip, fixed the misaligned graphics in Burning Force, fixed a variety of issues in the SNK driver and some bugs in the Sega System 16 driver. Nicola Salmoria added Raiga - Strato Fighter to the Ninja Gaiden driver but it suffers from unemulated protection and is not playable. Bryan McPhail fixed an infinite loop in the Atari vector generators. David Haywood also fixed the crash in Jan Jan Shimasyo in the SSV driver.
 					</p>
 					<div class="wippix">
 						<img src="wippics/0301/system32_rgb1.png" alt="Sega System 32 RGB brightness control" width="320" height="224" />
@@ -614,7 +614,8 @@ $title = 'MAME | Work-in-Progress';
     </div>    
     </div>
     <!-- main end -->
-
+	<br/><br/><br/>
+<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
 </body>
 
 </html>
