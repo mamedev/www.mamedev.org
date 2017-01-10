@@ -337,7 +337,7 @@ $title = 'MAME | Work-in-Progress';
 					</p>
 				</div>
 
-				<div class="rowlast">
+				<div class="row">
 					<h2>1999-02-06</h2>
 					<p>
 					Some jewels already. You probably all know of Street Fighter already (Olivier Galibert),
