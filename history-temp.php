@@ -16,19 +16,19 @@ $title = 'MAME | Project History';
 		available in the various whatsnew.txt files that can be found on the <a href="oldrel.html">Previous Releases</a> page. The content of these files has also been extracted into our wiki in the <a href="http://wiki.mamedev.org/index.php/Previous_MAME_Versions">Previous MAME Versions</a> section.
 		</p>
 		
-		<a target="_blank" href="mame_chart_0174.png"><img alt="Chart of MAME Development" align="right" src="mame_chart_0174_thumb.png" width="256" height="167" /></a>
+		<a target="_blank" href="mame_chart_latest-1224.png"><img alt="Chart of MAME Development" align="right" src="mame_chart_latest-256.png" width="256" height="181" /></a>
 
 		<h2>Supported ROMs</h2>
 
 		<p>
 		An alternate measure of the success of the project is to simply count the number of supported sets. The chart at the right (click for a larger view) shows the overall trend since the beginning.
 		</p>
-		<a target="_blank" href="mame_chart_0174.pdf">Vector PDF file</a>
+		<a target="_blank" href="mame_chart_latest.pdf">Vector PDF file</a>
 
 		<h2>Daily Work-in-Progress 1999-2004</h2>
 		
 		<p>
-		Another fascinating way to look back at the project's history is to peruse the incredibly detailed Daily MAME Work-in-Progress (WIP) pages. From <a href="oldwip/wip9902.html">Feburary 1999</a> through <a href="oldwip/wip0407.html">July 2004</a>, Santeri Saarimaa took on the challenging task of maintaining a detailed daily work-in-progress report of MAME development. These page represent a peek into what was happening during one of the most active times in the project's development.
+		Another fascinating way to look back at the project's history is to peruse the incredibly detailed Daily MAME Work-in-Progress (WIP) pages. From <a href="oldwip/wip9902.html">February 1999</a> through <a href="oldwip/wip0407.html">July 2004</a>, Santeri Saarimaa took on the challenging task of maintaining a detailed daily work-in-progress report of MAME development. These page represent a peek into what was happening during one of the most active times in the project's development.
 		</p>
 		
 		<h2>Tables</h2>
@@ -55,6 +55,56 @@ $title = 'MAME | Project History';
   <td>Version</td>
   <td>Milestone</td>
  </tr>
+ <tr>
+ <td>28
+  Dec 16</td>
+  <td>0.181</td>
+  <td>Many MCUs are implemented improving sound in many games. Votrax SC-01 emulated. Further ARM improvements (Archimedes). Debugger works on Linux/Mac.
+  </td>
+ </tr>
+ <tr>
+ <td>30
+  Nov 16</td>
+  <td>0.180</td>
+  <td>Improvement in ARM CPU, in turn improves Archimenes emulation. Acclaim RAX sound board emulated, bringing improvements to some classics.
+  </td>
+ </tr>
+ <tr>
+ <td>26
+  Oct 16</td>
+  <td>0.179</td>
+  <td>No more debug build. 32bit binary is marked as such. Some rare systems added. Big software list cleanup. Whatsnew includes some software list details.
+  </td>
+ </tr>
+ <tr>
+  <td>28
+  Sep 16</td>
+  <td>0.178</td>
+  <td>UI more modular (DATs described in LUA, not hardcoded) and other UI improvements. Many machine fixes. Many new layouts.
+  </td>
+ </tr>
+ <tr>
+  <td>31
+  Aug 16</td>
+  <td>0.177</td>
+  <td>Some big bugs got fixed (dual lightguns, menus out of screen). Many new computers added in machines. VGM file player. Improvements in serial/keyboard devices.
+  </td>
+ </tr>
+ <tr>
+  <td>27
+  Jul 16</td>
+  <td>0.176</td>
+  <td>Cooperation with Debian team. New shaders. More progress on SPARC machines.
+  </td>
+ </tr>
+ <tr>
+  <td>29
+  Jun 16</td>
+  <td>0.175</td>
+  <td>Much work on emulating Sun SPARC machines. Many new software list CHD dumps added (esp. for PSX).
+  </td>
+ </tr>
+  <tr>
  <tr>
   <td>27
   Apr 16</td>
@@ -142,6 +192,12 @@ $title = 'MAME | Project History';
   <td>Massive addition of mechanical games.</td>
  </tr>
  <tr>
+  <td>20
+  Oct 14</td>
+  <td></td>
+  <td>Project (also) on GIT.</td>
+ </tr>
+ <tr>
   <td>10
   Oct 14</td>
   <td>0.155</td>
@@ -152,12 +208,6 @@ $title = 'MAME | Project History';
   Jul 14</td>
   <td>0.154</td>
   <td>Many devices added.</td>
- </tr>
- <tr>
-  <td>20
-  Oct 14</td>
-  <td></td>
-  <td>Project (also) on GIT.</td>
  </tr>
  <tr>
   <td>07
