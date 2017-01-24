@@ -16,14 +16,14 @@ $title = 'MAME | Project History';
 		available in the various whatsnew.txt files that can be found on the <a href="oldrel.html">Previous Releases</a> page. The content of these files has also been extracted into our wiki in the <a href="http://wiki.mamedev.org/index.php/Previous_MAME_Versions">Previous MAME Versions</a> section.
 		</p>
 		
-		<a target="_blank" href="mame_chart_0174.png"><img alt="Chart of MAME Development" align="right" src="mame_chart_0174_thumb.png" width="256" height="167" /></a>
+		<a target="_blank" href="mame_chart_latest-1224.png"><img alt="Chart of MAME Development" align="right" src="mame_chart_latest-256.png" width="256" height="181" /></a>
 
 		<h2>Supported ROMs</h2>
 
 		<p>
 		An alternate measure of the success of the project is to simply count the number of supported sets. The chart at the right (click for a larger view) shows the overall trend since the beginning.
 		</p>
-		<a target="_blank" href="mame_chart_0174.pdf">Vector PDF file</a>
+		<a target="_blank" href="mame_chart_latest.pdf">Vector PDF file</a>
 
 		<h2>Daily Work-in-Progress 1999-2004</h2>
 		
@@ -55,6 +55,21 @@ $title = 'MAME | Project History';
   <td>Version</td>
   <td>Milestone</td>
  </tr>
+ <tr>
+ <td>28
+  Dec 16</td>
+  <td>0.181</td>
+  <td>Many MCUs are implemented improving sound in many games. Votrax SC-01 emulated. Further ARM improvements (Archimedes). Debugger works on Linux/Mac.
+  </td>
+ </tr>
+ <tr>
+ <td>30
+  Nov 16</td>
+  <td>0.180</td>
+  <td>Improvement in ARM CPU, in turn improves Archimenes emulation. Acclaim RAX sound board emulated, bringing improvements to some classics.
+  </td>
+ </tr>
+ <tr>
  <td>26
   Oct 16</td>
   <td>0.179</td>
