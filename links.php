@@ -116,7 +116,6 @@ $title = 'MAME | Resources';
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="blank">Arcade Database (ADB)</a></li>
-		<li><a href="http://www.arcadedatabase.com/" target="blank">Arcade Game Review Database</a></li>
 		<li><a href="http://www.arcadehits.net/" target="blank">arcadeHITS (FRA)</a></li>
 		<li><a href="http://arcade-history.com/" target="blank">Gaming-History</a></li>
 		<li><a href="http://mahjonginmame.com/" target="blank">Mahjong in MAME</a></li>
@@ -126,7 +125,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://e2j.net/" target="blank">MAME E2J (JPN)</a></li>
 		<li><a href="http://www.vazcomics.org/mamend/" target="blank">MamEnd Arcade Endings Database</a></li>
 		<li><a href="http://www.mamechannel.it/" target="blank">MameChannel.it</a></li>
-		<li><a href="http://www.mamedb.com/" target="blank">mamedb.com</a></li>
 		<li><a href="http://www.mameworld.info/" target="blank">MAMEWorld</a></li>
 		<li><a href="http://www.mess.org/" target="blank">MESS</a></li>
 		<li><a href="http://nonmame.retrogames.com/" target="blank">NonMAME</a></li>
@@ -190,7 +188,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.fpgaarcade.com/" target="blank">FPGA Arcade</a></li>
 		<li><a href="http://www.gamefaqs.com/" target="blank">GameFAQs</a></li>
 		<li><a href="http://gdri.smspower.org/" target="blank">Game Developer Research Institute (GDRI)</a></li>
-		<li><a href="http://www.ggdb.com/" target="blank">Great Game Database (ggdb.com)</a></li>
 		<li><a href="http://www.hardcoregaming101.net/" target="blank">Hardcore Gaming 101</a></li>
 		<li><a href="http://www.arcade-museum.com/" target="blank">International Arcade Museum (KLOV)</a></li>
 		<li><a href="http://www.ipdb.org/" target="blank">Internet Pinball Database (IPDB)</a></li>

@@ -20,7 +20,7 @@ $title = 'MAME | Logo Information';
 		</p>
 	
 		<p>
-		<img src="MAMELogoTMSmall.jpg" align="center" width="450" height="150">
+		<img class="img-responsive" src="MAMELogoTMSmall.jpg" align="center" width="450" height="150">
 		<p>
 
 		<p>

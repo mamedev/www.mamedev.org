@@ -344,7 +344,8 @@ $title = 'MAME | Work-in-Progress';
     </div>    
     </div>
     <!-- main end -->
-
+	<br/><br/><br/>
+<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
 </body>
 
 </html>

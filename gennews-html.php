@@ -3,7 +3,7 @@
 
 $rootpath = $_SERVER['DOCUMENT_ROOT'] . '/';
 
-$title = 'MAME Multiple Arcade Machine Emulator';
+$title = 'MAMEDEV.org | Home of The MAME Project';
 ?>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
 
@@ -23,7 +23,7 @@ if ($post == "")
 
         <!-- Marketing Icons Section -->
         <div class="row">
-            <center><h1 class="page-header">Welcome to The Official Site of MAME Development Team</h1></center>
+            <center><h1 class="page-header">Welcome to The Official Site of the MAME Development Team</h1></center>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h4><i class="fa fa-fw fa-check"></i> What is MAME</h4>
@@ -47,19 +47,19 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
         </div>
         <!-- /.row -->
 
-        <!-- Supported Plaforms Section -->
+        <!-- Supported Platforms Section -->
         <div class="row">
             <div class="col-lg-12">
                 <center><h2 class="page-header">Supported Platforms</h2></center>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <center><i class="fa fa-windows fa-5x"></i><br/><br/><a href="release.php" class="btn btn-success"><h2>Download</h2></a></center>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <center><i class="fa fa-windows fa-5x"></i><br/><br/><a href="release.php" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
-            <div class="col-md-4 col-sm-6">
-				<center><i class="fa fa-apple fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a></center>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+				<center><i class="fa fa-apple fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
-            <div class="col-md-4 col-sm-6">
-                <center><i class="fa fa-linux fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a></center>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <center><i class="fa fa-linux fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
         </div>
         <!-- /.row -->
@@ -72,6 +72,30 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
             <div class="col-lg-12">
                 <center><h2 class="page-header">News</h2></center>
             </div>
+	    <!-- navigation bar -->
+    <div class="row">
+	<?php
+        if ($pagenum == "")
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	else
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	?>
+        <div class="col-md-4 col-sm-4 col-xs-4"></div>
+        <?php
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
+		echo("\t\t</div>\n");
+	?>
+	</div>
+    <!-- /.row -->
 <?php 
 	if (count($entries) == 0)
 		echo("<p>No matching items found!</p>");
@@ -95,6 +119,32 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 ?>
 		<!-- posts end -->
     </div>
+    <div class="row"></div> 
+    <!-- navigation bar -->
+    <div class="row">
+	<?php
+        if ($pagenum == "")
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	else
+	{
+		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+        	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\">" . "&lt; Newer" . "</a></center>\n");
+        	echo("\t\t</div>\n");
+	}
+	?>
+        <div class="col-md-4 col-sm-4 col-xs-4"></div>
+	<?php
+		echo("\t<div id=\"old-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
+		echo("\t\t<center><a title=\"Older News &gt;" . "\" rel=\"next\" href=\"/" . $nexturl . "\" class=\"btn btn-success btn-sm\">" . "Older &gt;" . "</a></center>\n");
+		echo("\t\t</div>\n");
+	?>
+	</div>
+    <!-- /.row -->
     <!-- /.container -->
+	<br/><br/><br/>
 	<br/><br/><br/>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>

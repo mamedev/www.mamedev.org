@@ -16,7 +16,7 @@ $title = 'MAME | Tools for building MAME on Windows';
 
 <p>The MAME development environment for Windows consists of the GCC compiler (by way of MinGW), and the MSYS2 (POSIX/Unix compatability layer), plus various utilities such as Python and Git. It is available as a prepackaged installer, or can be assembled from upstream components. </p>
 
-</a><p><a name="user-content-introduction">Source control is handled by github (<strong><em></em></strong></a><strong><em><a href="https://github.com/mamedev/mame.git">https://github.com/mamedev/mame.git</a></em></strong>), so you'll need to check out a copy.
+</a><p>Source control is handled by github (<strong><em><a href="https://github.com/mamedev/mame.git">https://github.com/mamedev/mame.git</a></em></strong>), so you'll need to check out a copy.
 Various modules are disabled by default, such as the MAME interactive debugger, but can be enabled through arguments when building and may require additional MSYS2 packages to be installed.</p>
 
 <p><a name="user-content-installandbuild"></a></p><a name="user-content-installandbuild">
@@ -28,7 +28,7 @@ Various modules are disabled by default, such as the MAME interactive debugger, 
 <h3><a id="user-content-downloads" class="anchor" href="#downloads" aria-hidden="true"></a>Downloads</h3>
 
 </a><ul><a name="user-content-downloads">
-</a><li><a name="user-content-downloads">Windows 64-bit (x64) - </a><a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys64-2016-02-16.exe">msys64-2016-02-16.exe</a> </li>
+</a><li>Windows 64-bit (x64) - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys64-2016-02-16.exe">msys64-2016-02-16.exe</a> </li>
 <li>Windows 32-bit (x86) - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys32-2016-02-16.exe">msys32-2016-02-16.exe</a></li>
 <li>Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys64-32-2016-02-16.exe">msys64-32-2016-02-16.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
 </ul>
@@ -94,7 +94,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 
 <p>There are also <strong>buildtools_32.bat</strong> and <strong>conemu_32.bat</strong> enforcing mingw32 on 64-bit tools (makes sense if you use combined distribution).</p>
 
-</a><p><a name="user-content-advanced">For more information about Msys2, see </a><a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
+</a><p>For more information about Msys2, see <a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
 
 <p><a name="user-content-optional"></a></p><a name="user-content-optional">
 
