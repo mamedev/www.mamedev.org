@@ -16,7 +16,7 @@ $title = 'MAME | Project History';
 		available in the various whatsnew.txt files that can be found on the <a href="oldrel.html">Previous Releases</a> page. The content of these files has also been extracted into our wiki in the <a href="http://wiki.mamedev.org/index.php/Previous_MAME_Versions">Previous MAME Versions</a> section.
 		</p>
 		
-		<a target="_blank" href="mame_chart_latest-1224.png"><img alt="Chart of MAME Development" align="right" src="mame_chart_latest-256.png" width="256" height="181" /></a>
+		<a target="_blank" href="mame_chart_latest-1224.jpg"><img alt="Chart of MAME Development" align="right" src="mame_chart_latest-256.jpg" width="256" height="181" /></a>
 
 		<h2>Supported ROMs</h2>
 
