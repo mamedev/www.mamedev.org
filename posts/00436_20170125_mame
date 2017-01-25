@@ -1,0 +1,63 @@
+MAME 0.182
+
+<p>As we approach the 20th anniversary of the first MAME release, we’ve
+got a really exciting update for you.  There’s so much awesome stuff in
+this month’s release that there’s no way we can possibly cover it all
+here.  MAME is a team effort, and we’d like to thank everyone who’s
+contributed towards making this release as awesome as we think it is.
+One very exciting addition is support for another version of the
+East German Poly-Play system, with German and Czech ROM sets providing
+ten games, six of which are new.  Protection on Future Flash/Laser Base
+has finally been emulated, so you can take a look at Hoei’s take on
+Missile Command.  A dump of the <a
+href="http://caps0ff.blogspot.com/2016/12/taking-down-45-tatakae-big-fighter.html">damaged
+microcontroller (MCU)</a> from Tatakae! Big Fighter makes this title
+and Sky Robo finally playable.  Another eagerly awaited addition is the
+Hot-B prototype Hangzo.</p>
+
+<p>Serial ports have been hooked up on Race Drivin’ allowing you to link
+two MAME instances over TCP, reproducing the multi-player experience
+with liked cabinets.  To do this, use a null modem slot device and
+configure it for 38,400 Baud, 8 data bits, even parity, and 1 stop bit.
+It would also be possible to connect a MAME instance to a real board set
+by forwarding the connection to a serial port on the host system.</p>
+
+<p>We’ve received a contributed PortAudio output module and integrated
+it in this release.  This provides a cross-platform low latency audio
+output solution.  Performance should be similar to Steinberg ASIO on
+Windows 7 or later without the licensing issues, and better than SDL
+audio on Linux.  It can be enabled by setting the sound parameter to
+portaudio on the command line or in an ini file.  Of course, all the
+other audio output modules are still supported, so if you're happy with
+your current setup you don’t have to change anything.</p>
+
+<p>Although we haven’t added a huge number of new microcontroller (MCU)
+dumps in this release, substantial work has gone into improving systems
+where we already have dumps but the emulation is lacking.  MCU emulation
+was added to Puzznic, Joshi Volleyball and Gladiator.  For Puzznic, this
+places player data at the correct location in RAM and supplies the game
+with a pseudo-random number sequence rather than a stream of zeros.
+Joshi Volleyball now behaves better in service mode, allowing coins and
+inputs to be tested.  Gladiator now honours the coinage DIP switches.
+The MC68705 core has had a complete overhaul, and all drivers using it
+have been reviewed.  This fixes lots of subtle issues: for example
+Change Lanes will now skip the full memory tests if configured to ignore
+them in DIP switches, timings have improved in Arkanoid, and the
+Apple II mouse card is slightly improved.  We now emulate the ’705
+family well enough to support stand-alone MCU programmer boards.</p>
+
+<p>Other improvements include working sound in Pole Position bootlegs,
+improved video in Winning Run, preliminary banked 256 colour mode for
+the NEC PC-9821, kana input on the Sharp X1, a VME bus system with
+preliminary support for the miniFORCE 2P21 chassis, additional
+Aristocrat Mark 5 peripheral emulation allowing non-US games to boot,
+Corvus hard disks for the DEC Rainbow 100, preliminary work on Atari
+Stunt Cycle (displays the playfield), fixes for the Aussie Byte and
+Otrona Attaché, and support for octal and binary numbers in debugger
+expressions.</p>
+
+<p>For more detail on what’s changed, check out the <a
+href="http://mamedev.org/releases/whatsnew_182.txt">whatsnew.txt
+file</a>, or grab the source or Windows binaries from <a
+href="http://mamedev.org/release.html">the download page</a> straight
+away.</p>
