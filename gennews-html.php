@@ -75,7 +75,7 @@ Please note that MAME is a registered trademark of Nicola Salmoria, and permissi
 	    <!-- navigation bar -->
     <div class="row">
 	<?php
-        if ($pagenum == "")
+        if ($pagenum == "" && $post = "")
 	{
 		echo("\t<div id=\"new-news-nav" . "\" class=\"col-md-4 col-sm-4 col-xs-4\">\n");
         	echo("\t\t<center><a title=\"&lt; Newer News" . "\" rel=\"prev\" href=\"/" . $prevurl . "\" class=\"btn btn-success btn-sm\" disabled=\"disabled\">" . "&lt; Newer" . "</a></center>\n");
