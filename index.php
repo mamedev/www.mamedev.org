@@ -37,6 +37,7 @@ $count = 7;
 $start = 0;
 $prevurl = "";
 $nexturl = "?page=2";
+$pagenum = "";
 
 if (isset($_GET["page"]) && $_GET["page"] != "")
 {
