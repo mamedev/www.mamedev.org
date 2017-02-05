@@ -199,7 +199,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 
 		<br/><br/>
 			<a href="previous-20160216.php">Previous version</a> is still available
-	<br/><br/>
+	<br/><br/><br/><br/>
 </div>
 <!-- /.container -->
 
