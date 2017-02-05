@@ -28,9 +28,9 @@ Various modules are disabled by default, such as the MAME interactive debugger, 
 <h3><a id="user-content-downloads" class="anchor" href="#downloads" aria-hidden="true"></a>Downloads</h3>
 
 </a><ul><a name="user-content-downloads">
-</a><li>Windows 64-bit (x64) - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys64-2017-02-05.exe">msys64-2017-02-05.exe</a> </li>
-<li>Windows 32-bit (x86) - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys32-2017-02-05.exe">msys32-2017-02-05.exe</a></li>
-<li>Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys64-32-2017-02-05.exe">msys64-32-2017-02-05.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
+</a><li>Windows 64-bit (x64) - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys64-2016-02-16.exe">msys64-2016-02-16.exe</a> </li>
+<li>Windows 32-bit (x86) - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys32-2016-02-16.exe">msys32-2016-02-16.exe</a></li>
+<li>Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/1.5/msys64-32-2016-02-16.exe">msys64-32-2016-02-16.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
 </ul>
 
 <p><a name="user-content-installation"></a></p><a name="user-content-installation">
@@ -39,7 +39,7 @@ Various modules are disabled by default, such as the MAME interactive debugger, 
 
 <p>If you are installing it in a location other than the default (<em>c:\msys64</em> or <em>c:\msys32</em>), after you unpack double-click : <strong>autorebase.bat</strong></p>
 
-<p>To open a non-posix shell there are two batch files: <strong>win32env.bat</strong> for regular windows console.</p>
+<p>To open a non-posix shell there are two batch files: <strong>win32env.bat</strong> for regular windows console, and <strong>win32con.bat</strong> for fancy looking conemu console.</p>
 
 <p><strong>Important</strong> thing is to setup your git environment first</p>
 
@@ -88,7 +88,11 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 
 <h2><a id="user-content-alternative-shells-for-advanced-usage" class="anchor" href="#alternative-shells-for-advanced-usage" aria-hidden="true"></a>Alternative Shells for advanced usage</h2>
 
-<p>For a simple MSYS32 terminal use <strong>mingw64.exe</strong> to start or <strong>mingw32.exe</strong>. </p>
+<p>For a simple MSYS32 terminal use <strong>buildtools.bat</strong> to start. </p>
+
+<p>For a fancier looking one use <strong>conemu.bat</strong>. </p>
+
+<p>There are also <strong>buildtools_32.bat</strong> and <strong>conemu_32.bat</strong> enforcing mingw32 on 64-bit tools (makes sense if you use combined distribution).</p>
 
 </a><p>For more information about Msys2, see <a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
 
@@ -198,7 +202,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 </a>
 
 		<br/><br/>
-			<a href="previous-20160216.php">Previous version</a> is still available
+			<a href="previous-20150228.php">Previous version</a> is still available
 	<br/><br/>
 </div>
 <!-- /.container -->
