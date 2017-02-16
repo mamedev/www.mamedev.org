@@ -62,7 +62,7 @@ number of the MAME release from which it was was derived.
 					</p>
                  	<h2>Official Contact Information</h2>
                     <p>For questions regarding the MAME license, trademark, or other usage, go to http://mamedev.org/.</p>
-                    <p>MAME is a registered trademark of Nicola Salmoria. </p>
+                    <p>MAME is a registered trademark of Gregory Ember. </p>
 <br/><br/>                         
 	</div>
     <!-- /.container -->

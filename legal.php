@@ -36,7 +36,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
                  	<h2>Trademark</h2>
                  	
                  	<p>
-                 	MAME&reg; is a registered trademark of Nicola Salmoria. The "MAME" name
+                 	MAME&reg; is a registered trademark of Gregory Ember. The "MAME" name
                  	and MAME logo may not be used without first obtaining permission of the
                  	trademark holder.
                  	</p>
@@ -66,7 +66,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
                  	<b>Q. Can I sell my product with the MAME logo on it?</b><br/>
 
                  	A. No. Putting the logo on your product makes it appear that the product is
-                 	something officially endorsed by Nicola Salmoria, and constitutes <a href="#trademark">trademark</a>
+                 	something officially endorsed by Gregory Ember, and constitutes <a href="#trademark">trademark</a>
                  	infringement.
                  	</p>
                  	
@@ -74,7 +74,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
                  	<b>Q. Can I use the MAME logo to advertise my product?</b><br/>
 
                  	A. No. Using the logo in your advertising makes it appear that the product is
-                 	something officially endorsed by Nicola Salmoria, and constitutes <a href="#trademark">trademark</a>
+                 	something officially endorsed by Gregory Ember, and constitutes <a href="#trademark">trademark</a>
                  	infringement.
                  	</p>
                  	
