@@ -51,8 +51,8 @@ $title = 'MAME | Resources';
 	<ul>
 		<li><a href="http://www.progettoemma.net/?catlist" target="blank">Catlist</a></li>
 		<li><a href="http://ledblinky.net/Download.htm" target="blank">Colors.ini</a></li>
-		<li><a href="https://sites.google.com/site/procyonsjj/home/command-dat" target="blank">Command.dat</a></li>
-		<li><a href="http://controls.arcadecontrols.com/" target="blank">Controls.dat</a></li>
+		<li><a href="http://www.progettosnaps.net/command/" target="blank">Command.dat</a></li>
+		<li><a href="https://web.archive.org/web/20150220112407id_/http://controls.arcadecontrols.com/" target="blank">Controls.dat</a></li>
 		<li><a href="http://www.arcade-history.com/index.php?page=download" target="blank">History.dat</a></li>
 		<li><a href="http://www.progettosnaps.net/gameinit/" target="blank">GameInit.dat</a></li>
 		<li><a href="http://mrdo.mameworld.info/mame_artwork.php" target="blank">MAME Artwork</a></li>
@@ -155,13 +155,12 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.emucr.com/" target="blank">EmuCR (CHN)</a></li>
 		<li><a href="http://www.emudreams.pl/" target="blank">Emu#Dreams (PL)</a></li>
 		<li><a href="http://www.emu-france.com/" target="blank">Emu-France (FRA)</a></li>
-		<li><a href="http://www.emuita.it/" target="blank">Emuita.it (ITA)</a></li>
 		<li><a href="http://www.emulab.it/" target="blank">EMULAB</a></li>
 		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9 (JPN)</a></li>
 		<li><a href="https://emulationrealm.net/" target="blank">Emulation Realm</a></li>
 		<li><a href="http://www.emulatronia.com/" target="blank">Emulatronia (ESP)</a></li>
 		<li><a href="http://www.emucamp.com/" target="blank">Emulation Camp</a></li>
-		<li><a href="http://www.emuunlim.com/" target="blank">EmuUnlim</a></li>
+		<li><a href="http://web.archive.org/web/20161024142934id_/http://www.emuunlim.com/" target="blank">EmuUnlim</a></li>
 		<li><a href="http://www.emuviews.com/" target="blank">EmuViews</a></li>
 		<li><a href="http://insertmorecoins.es/" target="blank">InsertMoreCoins (ESP)</a></li>
 		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>		
