@@ -62,7 +62,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.progettosnaps.net/messinfo" target="blank">MESSINFO.dat</a></li>
 		<li><a href="http://nplayers.arcadebelgium.be/" target="blank">NPlayers</a></li>		
 		<li><a href="http://www.progettosnaps.net/" target="blank">Progetto-Snaps</a></li>
-		<li><a href="http://cheat.retrogames.com/" target="blank">Pugsy's Cheats</a></li>
+		<li><a href="http://www.mamecheat.co.uk/" target="blank">Pugsy's Cheats</a></li>
 		<li><a href="http://www.arcadehits.net/mamescore/home.php?show=files" target="blank">Story.dat</a></li>
 		<li><a href="http://www.progettoemma.net/mess/extra.html" target="blank">SysInfo.dat</a></li>
 		<li><a href="http://www.progettosnaps.net/catver/" target="blank">Unofficial CatVer</a></li>
@@ -139,7 +139,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://hbmame.1emulation.com/" target="blank">HBMAME</a></li>
 		<li><a href="https://github.com/jsmess/jsmess" target="blank">jsMESS</a></li>
 		<li><a href="https://sourceforge.net/projects/mameforslack/" target="blank">MAME for Slackware</a></li>
-		<li><a href="http://www.mamehub.com/" target="blank">MAMEHub</a></li>
+		<li><a href="http://mamehub.com/" target="blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
 		<li><a href="http://www.pinmame.com/" target="blank">PinMAME</a></li>
