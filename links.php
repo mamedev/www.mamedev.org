@@ -91,6 +91,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mameworld.info/ubbthreads/ubbthreads.php?Cat=" target="blank">MAMEWorld Forums</a></li>
 		<li><a href="http://forum.arcadecontrols.com/" target="blank">Build Your Own Arcade Controls Forum</a></li>
 		<li><a href="http://www.mameguide.info" target="blank">Mameguide</a></li>
+		<li><a href="http://arcademania.eu/" target="blank">Arcademania (ITA)</a></li>
 		<li><a href="http://www.mame.gr/" target="blank">MAME.gr (GRC)</a></li>
 		<li><a href="https://www.reddit.com/r/MAME/" target="blank">MAME at reddit (unofficial)</a></li>
 		<li><a href="http://www.arcadehits.net/forum/index.php" target="blank">arcadeHITS Forum</a></li>
@@ -98,7 +99,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://arcade.emu-france.info/" target="blank">ArcadeFans (FRA)</a></li>
 		<li><a href="http://arcadeforever.forumfree.it/" target="blank">Arcade Forever (ESP)</a></li>
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
-		<li><a href="http://arcademania.eu/" target="blank">Arcademania (ITA)</a></li>
 		<li><a href="http://www.arcadezentrum.com/forum/index.php" target="blank">Arcadezentrum (GER)</a></li>
 		<li><a href="http://forum.arcadeotaku.com/" target="blank">Arcade Otaku Forums</a></li>
 		<li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li>
