@@ -38,8 +38,8 @@ $binary_64bit = $tag_name . 'b_64bit.exe';
 $binary_64bit_dc = 0;
 
 foreach ($response->assets as $asset) {
-	
-	switch ($asset->name) {	
+
+	switch ($asset->name) {
 		case $whatsnew:
 				$whatsnew_size = safe_filesize($asset->size);
 				$whatsnew_dc = $asset->download_count;
@@ -75,16 +75,16 @@ $title = 'MAME | Latest MAME Release';
     <div class="container">
 
 					<center><h1 class="page-header">Latest MAME Release</h1></center>
-                 
+
 					<h2>Official Windows Binary Packages</h2>
 
 					<p>
-					The table below provides links to the official Windows command-line binaries. Larger files are hosted on external 
+					The table below provides links to the official Windows command-line binaries. Larger files are hosted on external
 					mirrors, selected at random, which may require a temporary redirect to the mirror site in order to
 					download the file.
 					</p>
 					<p><b>Statistics are updated each 5 minutes</b></p>
-					
+
 					<div class="panel panel-primary">
 					  <div class="panel-heading">MAME 0.<?php echo $version ?> Official Binaries</div>
 					  <table class="table">
@@ -125,25 +125,25 @@ $title = 'MAME | Latest MAME Release';
 					  <div class="panel-footer">
 						<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
 					  </div>
-					</div>					
-										
+					</div>
+
 					<br/>
-					
-					
-					
+
+
+
 					<hr/>
-					
+
 					<h2>Official Source Code Packages</h2>
 
 					<p>
 					The latest official MAME release is version 0.<?php echo $version ?>. The table below provides links to the source code.
 					</p>
 					<p>
-					The table below provides links to the official source packages. Larger files are hosted on external 
+					The table below provides links to the official source packages. Larger files are hosted on external
 					mirrors, selected at random, which may require a temporary redirect to the mirror site in order to
 					download the file.
 					</p>
-					
+
 					<div class="panel panel-primary">
 					  <div class="panel-heading">MAME 0.<?php echo $version ?> Source Code</div>
 					  <table class="table">
@@ -162,7 +162,7 @@ $title = 'MAME | Latest MAME Release';
 							<td class="number"><?php echo $whatsnew_size ?></td>
 							<td>List of what is new in this MAME release</td>
 							<td align="right">&nbsp;</td>
-						</tr>						
+						</tr>
 						<tr>
 							<td class="link">
 							<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $source_exe ?>">
@@ -185,20 +185,20 @@ $title = 'MAME | Latest MAME Release';
 					  <div class="panel-footer">
 						<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
 					  </div>
-					</div>					
+					</div>
 
 					<br/>
 
 					<p>
-					MAME source releases in now packaged in one of two ways. If you are running a Windows system, you 
+					MAME source releases in now packaged in one of two ways. If you are running a Windows system, you
 					can download the smaller <a href="http://www.7-zip.org/" target="blank">7-zip</a> self-extracting archive. If you are
-					on a non-Windows system, you can download the sources as a standard ZIP file. Note that this ZIP file is 
-					packaged as a "double ZIP" file, meaning that when you extract the file that you download, it will produce a 
-					second large ZIP file which must also be extracted to give you the final sources. This is done to produce 
-					what is effectively a "solid" archive and improves the compression ratio of the MAME and MESS sources.
+					on a non-Windows system, you can download the sources as a standard ZIP file. Note that this ZIP file is
+					packaged as a "double ZIP" file, meaning that when you extract the file that you download, it will produce a
+					second large ZIP file which must also be extracted to give you the final sources. This is done to produce
+					what is effectively a "solid" archive and improves the compression ratio of the MAME sources.
 					</p>
-				
-            <!-- content end --> 
+
+            <!-- content end -->
     </div>
     <!-- /.container -->
 	<br/><br/><br/>
