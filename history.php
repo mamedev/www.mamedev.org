@@ -66,7 +66,7 @@ $title = 'MAME | Project History';
  <td>30
   Nov 16</td>
   <td>0.180</td>
-  <td>Improvement in ARM CPU, in turn improves Archimenes emulation. Acclaim RAX sound board emulated, bringing improvements to some classics.
+  <td>Improvement in ARM CPU, in turn improves Archimedes emulation. Acclaim RAX sound board emulated, bringing improvements to some classics.
   </td>
  </tr>
  <tr>
