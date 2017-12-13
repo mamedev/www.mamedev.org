@@ -1,0 +1,33 @@
+Changes for Future Releases
+
+<p>We’ll be making a few changes to the Windows binaries from MAME 0.193
+onwards.  This will only affect pre-built Windows binaries – packaged
+source won’t be affected, and default build settings won’t change.  If
+everything goes to plan, the following changes will be made:</p>
+
+<ul>
+<li>Both 32-bit and 64-bit binaries will be built with GCC 7.2 (changed
+from GCC 6.3).  This change shouldn’t be noticeable for most users.</li>
+<li>32-bit binaries will require SSE2.  Minimum CPU required will be
+Intel Pentium 4, AMD Opteron, AMD Athlon 64, or equivalent.</li>
+</ul>
+
+<p>A number of Linux distributions have already switched to GCC 7, and a
+significant number of MAME developers and users build MAME with GCC 7 on
+Windows.  We don’t anticipate any major issues as a result.  The minimum
+supported GCC version is still GCC 5.1 and is unlikely to change for
+some time yet.</p>
+
+<p>Requiring SSE 2 improves performance and makes behaviour of 32-bit
+and 64-bit builds more consistent.  Note that this only affects our
+packaged binary releases – by default, 32-bit x86 builds won’t require
+SSE.  You’ll just have to compile MAME yourself if the SSE 2 requirement
+is a problem for your use case.  However, recent MAME versions are
+unlikely to perform well on x86 CPUs that predate SSE 2 support.</p>
+
+<p>In other news, the latest version of the Visual Studio 2017 C++
+compiler is capable of building MAME.  Visual Studio 2015 will be the
+primary supported version of Visual Studio for a few more releases, but
+if you were holding off updating to Visual Studio 2017 because of
+problems compiling variable templates and constexpr, you’ll be pleased
+to know that Microsoft has resolved these issues.</p>
