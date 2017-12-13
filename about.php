@@ -11,7 +11,7 @@ $title = 'MAME | About MAME';
 
 		<h2>Purpose</h2>
                     <p>
-MAME's main purpose is to be a refefence to the inner workings of the
+MAME's main purpose is to be a reference to the inner workings of the
 emulated machines. This is done both for educational purposes and for
 preservation purposes, in order to prevent historical software from
 disappearing forever once the hardware it runs on stops working. Of
