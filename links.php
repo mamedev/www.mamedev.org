@@ -27,7 +27,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://wiki.mamedev.org/" target="blank">MAME Development Wiki</a></li>
 		<li><a href="http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions" target="blank">MAME FAQ</a></li>
 		<li><a href="http://wiki.mamedev.org/index.php?title=How_MAME_Works" target="blank">MAME Developer Docs</a></li>
-		<li><a href="http://www.mess.org/mess/howto" target="blank">MESS User's Manual</a></li>
+		<li><a href="http://mess.redump.net/mess/howto" target="blank">MESS User's Manual</a></li>
 	</ul>
 	<h2 id="link">Individual Developers' Sites</h2>
 	<p>
@@ -58,7 +58,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://mrdo.mameworld.info/mame_artwork.php" target="blank">MAME Artwork</a></li>
 		<li><a href="http://samples.mameworld.info/" target="blank">MAME Samples</a></li>
 		<li><a href="http://mameinfo.mameworld.info/" target="blank">MAMEInfo.dat</a></li>
-		<li><a href="http://www.mess.org/artwork" target="blank">MESS Artwork</a></li>
+		<li><a href="http://mess.redump.net/artwork" target="blank">MESS Artwork</a></li>
 		<li><a href="http://www.progettosnaps.net/messinfo" target="blank">MESSINFO.dat</a></li>
 		<li><a href="http://nplayers.arcadebelgium.be/" target="blank">NPlayers</a></li>		
 		<li><a href="http://www.progettosnaps.net/" target="blank">Progetto-Snaps</a></li>
@@ -72,7 +72,7 @@ $title = 'MAME | Resources';
 	<h2>Frontends</h2>
 	<p>
 	Please visit <a href="http://docs.mamedev.org/usingmame/frontends.html" target="blank">MAME Documentation</a>, 
-	<a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://www.mess.org/mess/howto#frontends" target="blank">
+	<a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://mess.redump.net/mess/howto#frontends" target="blank">
 	MESS User's Manual</a> for a list of these.
 	</p>
 	<h2>Social Media</h2>
@@ -125,7 +125,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.vazcomics.org/mamend/" target="blank">MamEnd Arcade Endings Database</a></li>
 		<li><a href="http://www.mamechannel.it/" target="blank">MameChannel.it</a></li>
 		<li><a href="http://www.mameworld.info/" target="blank">MAMEWorld</a></li>
-		<li><a href="http://www.mess.org/" target="blank">MESS</a></li>
+		<li><a href="http://mess.redump.net/" target="blank">MESS</a></li>
 		<li><a href="http://nonmame.retrogames.com/" target="blank">NonMAME</a></li>
 		<li><a href="http://www.progettoemma.net/" target="blank">Progetto EMMA</a></li>
 		<li><a href="http://www.progettoemma.net/mess/" target="blank">ProjectMESS - MESS Software Lists Resource<a></li>
