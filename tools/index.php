@@ -28,9 +28,9 @@ Various modules are disabled by default, such as the MAME interactive debugger, 
 <h3><a id="user-content-downloads" class="anchor" href="#downloads" aria-hidden="true"></a>Downloads</h3>
 
 </a><ul><a name="user-content-downloads">
-</a><li>Windows 64-bit (x64) - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys64-2017-02-05.exe">msys64-2017-02-05.exe</a> </li>
-<li>Windows 32-bit (x86) - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys32-2017-02-05.exe">msys32-2017-02-05.exe</a></li>
-<li>Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/2.0/msys64-32-2017-02-05.exe">msys64-32-2017-02-05.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
+</a><li>Windows 64-bit (x64) - <a href="https://github.com/mamedev/buildtools/releases/download/3.0/msys32-2017-12-26.exe">msys32-2017-12-26.exe</a> </li>
+<li>Windows 32-bit (x86) - <a href="https://github.com/mamedev/buildtools/releases/download/3.0/msys64-2017-12-26.exe">msys64-2017-12-26.exe</a></li>
+<li>Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/3.0/msys64-32-2017-12-26.exe">msys64-32-2017-12-26.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
 </ul>
 
 <p><a name="user-content-installation"></a></p><a name="user-content-installation">
@@ -198,7 +198,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 </a>
 
 		<br/><br/>
-			<a href="previous-20160216.php">Previous version</a> is still available
+			<a href="previous-20170205.php">Previous version</a> is still available
 	<br/><br/><br/><br/>
 </div>
 <!-- /.container -->
