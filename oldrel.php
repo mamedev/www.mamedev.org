@@ -2369,42 +2369,42 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.6</td>
 			<td class="date">23 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame06/mame06.zip">mame06.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame06.zip">mame06.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame06.zip">mame06.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_06.txt">whatsnew_06.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.5</td>
 			<td class="date">20 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame05/mame05.zip">mame05.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame05.zip">mame05.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame05.zip">mame05.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_05.txt">whatsnew_05.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.4</td>
 			<td class="date">16 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame04/releases/mame04.zip">mame04.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame04.zip">mame04.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame04.zip">mame04.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_04.txt">whatsnew_04.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.3</td>
 			<td class="date">13 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame03/releases/mame03.zip">mame03.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame03.zip">mame03.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame03.zip">mame03.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_03.txt">whatsnew_03.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.2</td>
 			<td class="date">09 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame02/mame02.zip">mame02.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame02.zip">mame02.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame02.zip">mame02.zip</a></td>
 			<td class="link"><a href="releases/readme_02.txt">readme_02.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.1</td>
 			<td class="date">05 Feb 1997</td>
 <!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame01/mame01.zip">mame01.zip</a></td>-->
-			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame01.zip">mame01.zip</a></td>
+			<td class="link" colspan="2" align="center"><a href="https://mirrors.xmission.com/mame/releases/mame01.zip">mame01.zip</a></td>
 			<td class="link"><a href="releases/readme_01.txt">readme_01.txt</a></td>
 		</tr>
 		  </table>
