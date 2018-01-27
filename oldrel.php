@@ -2382,13 +2382,15 @@ $title = 'MAME | Previous Releases';
 		<tr>
 			<td class="date">0.4</td>
 			<td class="date">16 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame04/releases/mame04.zip">mame04.zip</a></td>
+<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame04/releases/mame04.zip">mame04.zip</a></td>-->
+			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame04.zip">mame04.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_04.txt">whatsnew_04.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.3</td>
 			<td class="date">13 Feb 1997</td>
-			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame03/releases/mame03.zip">mame03.zip</a></td>
+<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame03/releases/mame03.zip">mame03.zip</a></td>-->
+			<td class="link" colspan="2"><a href="https://mirrors.xmission.com/mame/releases/mame03.zip">mame03.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_03.txt">whatsnew_03.txt</a></td>
 		</tr>
 		<tr>
