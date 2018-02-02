@@ -348,12 +348,6 @@ $title = 'MAME | Project History';
   <td>New and more flexible implementation of device callback module.</td>
  </tr>
  <tr>
-  <td>17
-  Sep 12</td>
-  <td>0.147</td>
-  <td>Pong is back in MAME.</td>
- </tr>
- <tr>
   <td>21
   Aug 12</td>
   <td>-</td>
@@ -366,6 +360,12 @@ $title = 'MAME | Project History';
   <td>0.146u5</td>
   <td>New dev tools including
   support for building QT4. Massive addition of mechanical games and clones (not necessarily working).</td>
+ </tr>
+  <tr>
+  <td>30
+  Jul 12</td>
+  <td>0.146u4</td>
+  <td>Initial support for netlist emulation of discrete circuits. Pong is back in MAME.</td>
  </tr>
  <tr>
   <td>26
