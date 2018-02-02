@@ -94,7 +94,7 @@ $title = 'MAME | Project History';
  <td>27
   Sep 17</td>
   <td>0.190</td>
-  <td>MGaelco additions, ZX Spectrum slots supported. Improvements for HP systems.
+  <td>Gaelco additions, ZX Spectrum slots supported. Improvements for HP systems.
   </td>
  </tr>
  <tr>
