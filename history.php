@@ -56,6 +56,104 @@ $title = 'MAME | Project History';
   <td>Milestone</td>
  </tr>
  <tr>
+ <td>31
+  Jan 18</td>
+  <td>0.194</td>
+  <td>Hyperstone E1-XS recompiler. Improvements in cheats, lua scripting, internal debugger, disassembly. Improved support for TV games. More LCD handhelds.
+  </td>
+ </tr>
+ <tr>
+ <td>29
+  Jan 18</td>
+  <td></td>
+  <td>This list now uses UI reported numbers for graphs (since 0.171). Parents include BIOS.
+  </td>
+ </tr>
+ <tr>
+ <td>27
+  Dec 17</td>
+  <td>0.193</td>
+  <td>Windows binaries GCC7 (SSE2 minimum). Tiger handhelds. Many new arcade.
+  </td>
+ </tr>
+ <tr>
+ <td>29
+  Nov 17</td>
+  <td>0.192</td>
+  <td>Many games improved. New prototypes added. Many Aristocrat MK5 additions. IGS PGM2 software improved. Fixes for FM Towns. Many PC software list additions.
+  </td>
+ </tr>
+ <tr>
+ <td>25
+  Oct 17</td>
+  <td>0.191</td>
+  <td>Many improvements by Haze. Experimental Hitachi SH3 recompiler, improvements for Saturn, MIPS3, Voodoo. Many software list additions.
+  </td>
+ </tr>
+ <tr>
+ <td>27
+  Sep 17</td>
+  <td>0.190</td>
+  <td>MGaelco additions, ZX Spectrum slots supported. Improvements for HP systems.
+  </td>
+ </tr>
+ <tr>
+ <td>30
+  Aug 17</td>
+  <td>0.189</td>
+  <td>On-going parameter fixes. Many performance improvements and bug fixes. Good progress for DECO cassette system. Improvements in GUI.
+  </td>
+ </tr>
+ <tr>
+ <td>26
+  Jul 17</td>
+  <td>0.188</td>
+  <td>Some protections were cracked. First INTELLEC 4 emulation. More handheld LCD.
+  </td>
+ </tr>
+ <tr>
+ <td>28
+  Jun 17</td>
+  <td>0.187</td>
+  <td>More Game & Watch, some original protection implemented, improvements in shaders. Many little updates.
+  </td>
+ </tr>
+ <tr>
+ <td>29
+  May 17</td>
+  <td>0.186</td>
+  <td>Many arcade additions and improvements. More handhelds including some Game & Watch. Improvements for TI-99. Improvements in command line parameters (speed and patterns supported).
+  </td>
+ </tr>
+ <tr>
+ <td>26
+  Apr 17</td>
+  <td>0.185</td>
+  <td>Fix for multiple button assignment to sub-devices. Many software list additions.
+  </td>
+ </tr>
+ <tr>
+ <td>29
+  Mar 17</td>
+  <td>0.184</td>
+  <td>Non-emulation improvements. Many new arcade dumps. New chess computers. Improved Famicom emulation. Many new BBC and PC software list additions.
+  </td>
+ </tr>
+ <tr>
+ <td>22
+  Feb 17</td>
+  <td>0.183</td>
+  <td>Many rares to celebrate MAME 20 years. Improvements for Amiga/C64. Added some handheld games.
+  </td>
+ </tr>
+ <tr>
+ <td>25
+  Jan 17</td>
+  <td>0.182</td>
+  <td>Continued serious work on various MCUs. Implemented PortAudio.
+  </td>
+ </tr>
+ <tr>
  <td>28
   Dec 16</td>
   <td>0.181</td>
