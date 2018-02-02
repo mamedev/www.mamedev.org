@@ -65,7 +65,7 @@ $title = 'MAME | Project History';
  <tr>
  <td>29
   Jan 18</td>
-  <td></td>
+  <td>-</td>
   <td>This list now uses UI reported numbers for graphs (since 0.171). Parents include BIOS.
   </td>
  </tr>
@@ -115,14 +115,14 @@ $title = 'MAME | Project History';
  <td>28
   Jun 17</td>
   <td>0.187</td>
-  <td>More Game & Watch, some original protection implemented, improvements in shaders. Many little updates.
+  <td>More Game &amp; Watch, some original protection implemented, improvements in shaders. Many little updates.
   </td>
  </tr>
  <tr>
  <td>29
   May 17</td>
   <td>0.186</td>
-  <td>Many arcade additions and improvements. More handhelds including some Game & Watch. Improvements for TI-99. Improvements in command line parameters (speed and patterns supported).
+  <td>Many arcade additions and improvements. More handhelds including some Game &amp; Watch. Improvements for TI-99. Improvements in command line parameters (speed and patterns supported).
   </td>
  </tr>
  <tr>
@@ -202,15 +202,13 @@ $title = 'MAME | Project History';
   <td>Much work on emulating Sun SPARC machines. Many new software list CHD dumps added (esp. for PSX).
   </td>
  </tr>
-  <tr>
  <tr>
   <td>27
   Apr 16</td>
   <td>0.173</td>
-  <td>Plenty new graphics
+  <td>Plenty of new graphics
   scaling modes. Support for large archives (&gt;4GB and newer archive
-  features), solving the issue with huge zipped extras in PD. Some work towards
-  Universal Windows App support (UWP).
+  features). Some work towards Universal Windows App support (UWP).
   </td>
  </tr>
  <tr>
@@ -225,7 +223,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>04
   Mar 16</td>
-  <td></td>
+  <td>-</td>
   <td>MAME is now Free and Open
   Source software based on GPL-2.0+ license.</td>
  </tr>
@@ -247,7 +245,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>01
   Jan 16</td>
-  <td></td>
+  <td>-</td>
   <td>MSYS2 based tools to build
   MAME.</td>
  </tr>
@@ -259,16 +257,10 @@ $title = 'MAME | Project History';
   First release to build clean in Raspberry Pi 2 and other ARM Linux targets.</td>
  </tr>
  <tr>
-  <td>25
-  Nov 15</td>
-  <td>0.168</td>
-  <td>More HLSL changes.</td>
- </tr>
- <tr>
-  <td>28
-  Oct 15</td>
-  <td>0.167</td>
-  <td>Major HLSL changes.</td>
+  <td>29
+  Jul 15</td>
+  <td>0.164</td>
+  <td>New address space created for decrypted opcode accesses.</td>
  </tr>
  <tr>
   <td>27
@@ -279,7 +271,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>20
   May 15</td>
-  <td></td>
+  <td>-</td>
   <td>MAME starts work to become
   Open Source.</td>
  </tr>
@@ -292,7 +284,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>20
   Oct 14</td>
-  <td></td>
+  <td>-</td>
   <td>Project (also) on GIT.</td>
  </tr>
  <tr>
@@ -300,12 +292,6 @@ $title = 'MAME | Project History';
   Oct 14</td>
   <td>0.155</td>
   <td>Raiden II / DX finally working.</td>
- </tr>
- <tr>
-  <td>23
-  Jul 14</td>
-  <td>0.154</td>
-  <td>Many devices added.</td>
  </tr>
  <tr>
   <td>07
@@ -337,7 +323,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>10
   Mar 13</td>
-  <td></td>
+  <td>-</td>
   <td>Site on new server.</td>
  </tr>
  <tr>
@@ -351,7 +337,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>07
   Dec 12</td>
-  <td></td>
+  <td>-</td>
   <td>Support for Python (and
   new dev tools).</td>
  </tr>
@@ -359,7 +345,7 @@ $title = 'MAME | Project History';
   <td>30
   Oct 12</td>
   <td>0.147u2</td>
-  <td>New implementation of device callback module.</td>
+  <td>New and more flexible implementation of device callback module.</td>
  </tr>
  <tr>
   <td>17
@@ -370,7 +356,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>21
   Aug 12</td>
-  <td></td>
+  <td>-</td>
   <td>Project (MAME and MESS)
   moved to SVN.</td>
  </tr>
@@ -382,24 +368,11 @@ $title = 'MAME | Project History';
   support for building QT4. Massive addition of mechanical games and clones (not necessarily working).</td>
  </tr>
  <tr>
-  <td>30
-  Jul 12</td>
-  <td>0.146u4</td>
-  <td>Major addition of mechanical games and clones
-  .</td>
- </tr>
- <tr>
   <td>26
   Apr 12</td>
-  <td></td>
+  <td>-</td>
   <td>Miodrag Milanovic (Micko)
   takes over from Kale.</td>
- </tr>
- <tr>
-  <td>08
-  Apr 12</td>
-  <td>0.145u6</td>
-  <td>Many drivers modernized.</td>
  </tr>
  <tr>
   <td>19
@@ -409,28 +382,10 @@ $title = 'MAME | Project History';
   CHD format (CHD v5).</td>
  </tr>
  <tr>
-  <td>20
-  Sep 11</td>
-  <td>0.143u6</td>
-  <td>One more major addition of gambling and fruit machine titles.</td>
- </tr>
- <tr>
-  <td>25
-  Aug 11</td>
-  <td>0.143u4</td>
-  <td>Further addition of gambling and fruit machine titles.</td>
- </tr>
- <tr>
   <td>15
   Aug 11</td>
   <td>0.143u3</td>
-  <td>Device ROMs separated from drivers in loading and listing. Further addition of gambling and fruit machine titles.</td>
- </tr>
- <tr>
-  <td>27
-  Jul 11</td>
-  <td>0.143u2</td>
-  <td>Major addition of gambling titles.</td>
+  <td>Device ROMs separated from drivers in loading and listing.</td>
  </tr>
  <tr>
   <td>24
@@ -441,7 +396,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>05
   Apr 11</td>
-  <td></td>
+  <td>-</td>
   <td>Angelo Salese (Kale) takes
   over from Aaron Giles (longest standing yet - with Nicola Salmoria close
   behind) as MAME coordinator.</td>
@@ -570,7 +525,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>01
   Dec 07</td>
-  <td></td>
+  <td>-</td>
   <td>New server for
   mamedev.org.</td>
  </tr>
@@ -606,7 +561,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>17
   Jun 07</td>
-  <td></td>
+  <td>-</td>
   <td>SDL headers/libraries.
   Build SDLMAME out of the box.</td>
  </tr>
@@ -627,7 +582,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>07
   Feb 07</td>
-  <td></td>
+  <td>-</td>
   <td>MAME 10 year anniversary.
   Wiki added in mamedev.org.</td>
  </tr>
@@ -669,7 +624,7 @@ $title = 'MAME | Project History';
  <tr>
   <td>23
   Jan 06</td>
-  <td></td>
+  <td>-</td>
   <td>mamedev.org is finally an
   .org (and on new servers).</td>
  </tr>
@@ -697,14 +652,14 @@ $title = 'MAME | Project History';
  <tr>
   <td>18
   Apr 05</td>
-  <td></td>
+  <td>-</td>
   <td>Aaron Giles takes over
   from David Haywood as MAME coordinator.</td>
  </tr>
  <tr>
   <td>07
   Apr 05</td>
-  <td></td>
+  <td>-</td>
   <td>mamedev.org is born
   (mamedev.com actually initially).</td>
  </tr>
@@ -741,6 +696,13 @@ $title = 'MAME | Project History';
   added.</td>
  </tr>
  <tr>
+  <td>20
+  Jan 04</td>
+  <td>0.78u6</td>
+  <td>Internal reorganization 
+  of memory system. Beginning of effort to merge separate maps for read and 
+  write accesses.</td>
+ </tr>
   <td>21
   Nov 03</td>
   <td>0.77u1</td>
@@ -838,6 +800,13 @@ $title = 'MAME | Project History';
   MAMETesters bugs.</td>
  </tr>
  <tr>
+  <td>19
+  Aug 01</td>
+  <td>-</td>
+  <td>First checkins for
+  AdvanceMAME (0.37b16).</td>
+ </tr>
+ <tr>
   <td>16
   Aug 01</td>
   <td>0.37b15 (MESS)</td>
@@ -849,13 +818,6 @@ $title = 'MAME | Project History';
   <td>0.53</td>
   <td>Abandoning of
   &quot;beta&quot; numbering scheme.</td>
- </tr>
- <tr>
-  <td>19
-  Aug 01</td>
-  <td>-</td>
-  <td>First checkins for
-  AdvanceMAME (0.37b16).</td>
  </tr>
  <tr>
   <td>24
