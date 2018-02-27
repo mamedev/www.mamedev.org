@@ -15,6 +15,24 @@ $title = 'MAME | Previous Releases';
 		AntoPISA at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a>
 
 		<div class="panel panel-primary">
+		  <div class="panel-heading">2018 MAME Releases</div>
+		  <table class="table">
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date">0.194</td>
+				<td class="date">31 Jan 2018</td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0194/mame0194s.zip">mame0194s.zip</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0194/mame0194b_32bit.exe">mame0194b_32bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0194/mame0194b_64bit.exe">mame0194b_64bit.exe</a></td>
+				<td class="link"><a href="releases/whatsnew_0194.txt">whatsnew_0194.txt</a></td>
+			</tr>
+		  </table>
+
 		  <div class="panel-heading">2017 MAME Releases</div>
 		  <table class="table">
 			<tr>
