@@ -169,7 +169,7 @@ $title = 'MAME | Latest MAME Release';
 							<?php echo $source_exe ?>
 							</a></td>
 							<td class="number"><?php echo $source_exe_size ?></td>
-							<td>MAME 0.<?php echo $version ?> sources in self-extracting 7zip format (Windows only)</td>
+							<td>MAME 0.<?php echo $version ?> sources in self-extracting 7zip format (self-extracting on Windows, can be extracted with P7ZIP on other operating systems)</td>
 							<td align="right"><span class="badge"><?php echo $source_exe_dc ?></span></td>
 						</tr>
 						<tr>
