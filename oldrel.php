@@ -8,12 +8,11 @@ $title = 'MAME | Previous Releases';
 
 		<center><h1 class="page-header">Previous MAME Releases</h1></center>
 
-		<p>The latest official MAME release is available on the
+		The latest official MAME release is available on the
 		<a href="release.html">Latest Release</a> page. Below is a collection of
-		older MAME releases, dating back to the first official release from February, 1997.
-    <p>MESS only releases (prior to 0.148) are available and are kindly hosted by
-		AntoPISA at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a>
-
+		older MAME releases, dating back to the first official release from February, 1997.<br>
+		MESS only releases (prior to version 0.148) are available and are kindly hosted by AntoPISA at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a><p>
+		
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2018 MAME Releases</div>
 		  <table class="table">
@@ -204,7 +203,7 @@ $title = 'MAME | Previous Releases';
 				<td class="date">0.175</td>
 				<td class="date">29 Jun 2016</td>
 				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175s.zip">mame0175s.zip</a></td>
-				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175b.exe">mame0175b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175_64bit.exe">mame0175b_64bit.exe</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175b.exe">mame0175b.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0175/mame0175b_64bit.exe">mame0175b_64bit.exe</a></td>
 				<td class="link"><a href="releases/whatsnew_0175.txt">whatsnew_0175.txt</a></td>
 			</tr>
 			<tr>
@@ -1656,7 +1655,7 @@ $title = 'MAME | Previous Releases';
 			<td class="date">0.36b13</td>
 			<td class="date">30 Dec 1999</td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b13/m36b13s.zip">m36b13s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m36b13s.zip">m36b13s.zip</a></td>
+			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m36b13su.zip">m36b13su.zip</a></td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame036b13/m36b13b.zip">m36b13b.zip</a></td>-->
 			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/m36b13b.zip">m36b13b.zip</a></td>
 			<td class="link"><a href="releases/whatsnew_036b13.txt">whatsnew_036b13.txt</a></td>
