@@ -106,7 +106,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
 		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum (ENG/ITA)</a></li>
 		<li><a href="http://www.gamoover.net" target="blank">Gamoover (FRA)</a></li>
-		<li><a href="http://jammaplus.co.uk/" target="blank">JAMMA+ Forum</a></li>
 		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums</a></li>
 		<li><a href="http://shmups.system11.org/" target="blank">Shmups Forum</a></li>
 		<li><a href="http://www.ukvac.com/" target="blank">UKVAC</a></li>
@@ -211,11 +210,12 @@ $title = 'MAME | Resources';
 		<li><a href="https://www.unseen64.net/" target="blank">Unseen64</a></li>
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS</a></li>
 		<li><a href="http://www.video-games-museum.com/en" target="blank">Video Games Museum</a></li>
-		<li><a href="http://www.x-cult.org/cat/28/Arcade/52/Main_Page/" target="blank">X-CulT</a></li>
 	</ul>
 	
 	
 	
+			
+			
 	
 	
 	
