@@ -6,13 +6,16 @@ $title = 'MAME | Previous Releases';
     <!-- Page Content -->
     <div class="container">
 
-		<center><h1 class="page-header">Previous MAME Releases</h1></center>
+		<h1 class="page-header" style="text-align: center;">Previous MAME Releases</h1>
 
-		The latest official MAME release is available on the
-		<a href="release.html">Latest Release</a> page. Below is a collection of
+		<p>The latest official MAME release is available on the
+		<a href="release.html">Latest Release</a> page.  Below is a collection of
 		older MAME releases, dating back to the first official release from February, 1997.<br>
-		MESS only releases (prior to version 0.148) are available and are kindly hosted by AntoPISA at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a><p>
-		
+		MESS only releases (prior to version 0.148) are available and are kindly hosted by AntoPISA
+		at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a>.  MAME
+		releases are available at <a href="https://github.com/mamedev/mame/releases">GitHub</a> and
+		<a href="https://sourceforge.net/projects/mame/files/mame/">SourceForge</a>.</p>
+
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2018 MAME Releases</div>
 		  <table class="table">
@@ -22,6 +25,13 @@ $title = 'MAME | Previous Releases';
 				<th width="23%">Source</th>
 				<th width="23%">Binary (Windows)</th>
 				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date">0.199</td>
+				<td class="date">27 Jun 2018</td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0199/mame0199s.zip">mame0199s.zip</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0199/mame0199b_32bit.exe">mame0199b_32bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0199/mame0199b_64bit.exe">mame0199b_64bit.exe</a></td>
+				<td class="link"><a href="releases/whatsnew_0199.txt">whatsnew_0199.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date">0.198</td>
