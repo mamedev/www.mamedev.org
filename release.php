@@ -138,8 +138,18 @@ $title = 'MAME | Latest MAME Release';
 					<p>
 					The latest official MAME release is version 0.<?php echo $version ?>. The table below provides links to the source code.
 					</p>
+
 					<p>
-					The table below provides links to the official source packages. Larger files are hosted on external
+					We recommend cloning source code from our <a href="https://github.com/mamedev/mame/" target="_blank">official
+					git repository on github</a>.  You can also clone tagged releases from our mirrors at <a
+					href="https://gitlab.com/mamedev/mame" target="_blank">GitLab</a> and <a href="https://sourceforge.net/p/mame/code/"
+					target="_blank">SourceForge</a>.  You can clone the MAME 0.<?php echo $version ?> source code without
+					fetching the entire revision history with this command:<br/>
+					<tt>git clone -b mame0<?php echo $version ?> --depth 1 https://github.com/mamedev/mame.git mame0<?php echo $version ?></tt>
+					</p>
+
+					<p>
+					The table below provides links to packaged source archives. Larger files are hosted on external
 					mirrors, selected at random, which may require a temporary redirect to the mirror site in order to
 					download the file.
 					</p>
@@ -190,12 +200,14 @@ $title = 'MAME | Latest MAME Release';
 					<br/>
 
 					<p>
-					MAME source releases in now packaged in one of two ways. If you are running a Windows system, you
-					can download the smaller <a href="http://www.7-zip.org/" target="blank">7-zip</a> self-extracting archive. If you are
-					on a non-Windows system, you can download the sources as a standard ZIP file. Note that this ZIP file is
-					packaged as a "double ZIP" file, meaning that when you extract the file that you download, it will produce a
-					second large ZIP file which must also be extracted to give you the final sources. This is done to produce
-					what is effectively a "solid" archive and improves the compression ratio of the MAME sources.
+					MAME source releases in now packaged in one of two ways. If you are running Windows, and/or have <a
+					href="http://www.7-zip.org/" target="_blank">7-Zip</a> or <a href="http://p7zip.sourceforge.net/"
+					target="_blank">P7ZIP</a> installed, you can download the smaller 7-Zip self-extracting archive.  Otherwise
+					you can download the sources as a standard ZIP archive.  Note that this ZIP file is packaged as a “double
+					ZIP” file, meaning that when you extract the file that you download, it will produce a second, larger ZIP
+					file which must also be extracted to give you the final sources.  This is done to produce what is
+					effectively a “solid” archive and improves the compression ratio of the MAME sources.  Packaged source uses
+					Windows line endings, and timestamps in the ZIP archive are in the timezone of the packager.
 					</p>
 
             <!-- content end -->
