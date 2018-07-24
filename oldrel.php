@@ -2201,7 +2201,7 @@ $title = 'MAME | Previous Releases';
 			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame261s.zip">mame261s.zip</a></td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026p1/mame261b.zip">mame261b.zip</a></td>-->
 			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame261b.zip">mame261b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_026.txt">whatsnew_026.txt</a></td>
+			<td class="link"><a href="releases/whatsnew_261.txt">whatsnew_261.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.26</td>
@@ -2236,7 +2236,7 @@ $title = 'MAME | Previous Releases';
 			<td class="date">(n/a)</td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame231b.zip">mame231b.zip</a></td>-->
 			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame231b.zip">mame231b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_023.txt">whatsnew_023.txt</a></td>
+			<td class="link"><a href="releases/whatsnew_231.txt">whatsnew_231.txt</a></td>
 		</tr>
 		<tr>
 			<td class="date">0.23</td>
