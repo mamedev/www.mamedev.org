@@ -77,7 +77,7 @@ $title = 'MAME | Latest MAME Release';
 					<h1 class="page-header" style="text-align: center;">Latest MAME Release</h1>
 
 					<p>
-					Latest official MAME release at <a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/"
+					Latest official MAME release at <a href="https://github.com/mamedev/mame/releases/<?php  echo 'mame0' . $version ?>/"
 					target="_blank">GitHub</a> or <a href="https://sourceforge.net/projects/mame/files/<?php  echo 'mame/0.' . $version ?>/"
 					target="_blank">SourceForge</a>
 					</p>
