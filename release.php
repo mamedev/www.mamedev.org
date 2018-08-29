@@ -147,7 +147,7 @@ $title = 'MAME | Latest MAME Release';
 
 					<p>
 					We recommend cloning source code from our <a href="https://github.com/mamedev/mame/" target="_blank">official
-					git repository on github</a>.  You can also clone tagged releases from our mirrors at <a
+					git repository on GitHub</a>.  You can also clone tagged releases from our mirrors at <a
 					href="https://gitlab.com/mamedev/mame" target="_blank">GitLab</a> and <a href="https://sourceforge.net/p/mame/code/"
 					target="_blank">SourceForge</a>.  You can clone the MAME 0.<?php echo $version ?> source code without
 					fetching the entire revision history with this command:<br/>
@@ -185,7 +185,7 @@ $title = 'MAME | Latest MAME Release';
 							<?php echo $source_exe ?>
 							</a></td>
 							<td class="number"><?php echo $source_exe_size ?></td>
-							<td>MAME 0.<?php echo $version ?> sources in self-extracting 7zip format (self-extracting on Windows, can be extracted with P7ZIP on other operating systems)</td>
+							<td>MAME 0.<?php echo $version ?> sources in self-extracting 7-Zip format (self-extracting on Windows, can be extracted with P7ZIP on other operating systems)</td>
 							<td align="right"><span class="badge"><?php echo $source_exe_dc ?></span></td>
 						</tr>
 						<tr>
