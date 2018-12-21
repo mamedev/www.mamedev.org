@@ -3,10 +3,10 @@ $title = 'MAME | Contact the Team';
 ?>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
 
-    <!-- Page Content -->
-    <div class="container">
+	<!-- Page Content -->
+	<div class="container">
 
-		<center><h1 class="page-header">Contacting the MAME Team</h1></center>
+		<h1 class="page-header"><center>Contacting the MAME Team</center></h1>
 		
 				<script language="JavaScript" type="text/javascript">
 				//<![CDATA[
@@ -15,7 +15,7 @@ $title = 'MAME | Contact the Team';
 					var curvalue = "";
 					for (var i = 0; i < form.radiobut.length; i++)
 						if (form.radiobut[i].checked) curvalue = form.radiobut[i].value;
-					
+
 					if (curvalue == "faq") form.action = "http://wiki.mamedev.org/index.php?title=Frequently_Asked_Questions";
 					else if (curvalue == "roms") form.action = "/links.php#link";
 					else if (curvalue == "bug") form.action = "http://mametesters.org";
@@ -42,37 +42,37 @@ $title = 'MAME | Contact the Team';
 						I can't figure out how to use the software!
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="roms">
 						Where can I get ROMs to run in MAME?
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="bug">
 						I think I found a bug in MAME and I'd like to report it.
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="legal">
 						I have a legal question or wish to report abuse of MAME.
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="submit">
 						I have a new ROM dump that I would like to submit.
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="submit">
 						I've made some changes to the source code and would like to submit them.
 						</input>
 						</p>
-						
+
 						<p>
 						<input type="radio" name="radiobut" value="none">
 						None of the above.
@@ -83,6 +83,6 @@ $title = 'MAME | Contact the Team';
 					</form>
 		<br/><br/>
 	</div>
-    <!-- /.container -->
-	
+	<!-- /.container -->
+
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
