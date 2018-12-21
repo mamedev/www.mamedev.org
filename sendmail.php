@@ -43,7 +43,7 @@
 
 <body>
 	
-	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.txt'); ?>
+	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
     
     <!-- main start -->
     <div id="main">
