@@ -19,7 +19,7 @@
 	{
 		$validator = new EmailAddressValidator;
 		if ($validator->check_email_address($email))
-			mail($targets[$recipient], $subject, $text, "From: " . $email) or die ("Error mailing");
+			mail($targets[$recipient], $subject, $text, array("From" => "noreply@mamedev.org", "Reply-To" => $email)) or die ("Error mailing");
 	}
 ?>
 
