@@ -90,7 +90,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 
 <p>For a simple MSYS32 terminal use <strong>mingw64.exe</strong> to start or <strong>mingw32.exe</strong>. </p>
 
-</a><p>For more information about Msys2, see <a href="http://sourceforge.net/p/msys2/wiki/MSYS2%20introduction/">MSYS2 Introduction</a>. </p>
+</a><p>For more information about Msys2, see <a href="https://github.com/msys2/msys2/wiki/MSYS2-introduction">MSYS2 Introduction</a>. </p>
 
 <p><a name="user-content-optional"></a></p><a name="user-content-optional">
 
