@@ -177,8 +177,8 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.atarigames.com/" target="blank">AtariGames.com</a></li>
 		<li><a href="http://mcurrent.name/atarihistory/index.html" target="blank">Atari History Timelines</a></li>
 		<li><a href="http://www.atarimuseum.com/" target="blank">Atari Museum</a></li>
-		<li><a href="http://www.cinemarcade.com/" target="blank">CinemArcade</a></li>
-		<!-- <li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li> -->
+		<li><a href="http://web.archive.org/web/20180427115528/http://www.cinemarcade.com:80/" target="blank">CinemArcade</a></li>
+		<li><a href="http://www.coinop.org/" target="blank">Coinop.org</a></li>
 		<li><a href="http://discrete.mameworld.info/" target="blank">Discrete Logistics</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="blank">Dragon's Lair Project</a></li>
 		<li><a href="http://www.flyerfever.com/" target="blank">Flyer Fever</a></li>
