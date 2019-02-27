@@ -17,6 +17,24 @@ $title = 'MAME | Previous Releases';
 		<a href="https://sourceforge.net/projects/mame/files/mame/">SourceForge</a>.</p>
 
 		<div class="panel panel-primary">
+		  <div class="panel-heading">2019 MAME Releases</div>
+		  <table class="table">
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date">0.206</td>
+				<td class="date">30 Jan 2019</td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0206/mame0206s.zip">mame0206s.zip</a></td>
+				<td class="link"><a href="https://github.com/mamedev/mame/releases/download/mame0206/mame0206b_32bit.exe">mame0206b_32bit.exe</a><br/><a href="https://github.com/mamedev/mame/releases/download/mame0206/mame0206b_64bit.exe">mame0206b_64bit.exe</a></td>
+				<td class="link"><a href="releases/whatsnew_0206.txt">whatsnew_0206.txt</a></td>
+			</tr>
+		  </table>
+
 		  <div class="panel-heading">2018 MAME Releases</div>
 		  <table class="table">
 			<tr>
