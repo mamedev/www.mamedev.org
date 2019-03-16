@@ -193,7 +193,6 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mobygames.com/" target="blank">MobyGames</a></li>
 		<li><a href="http://www.neo-arcadia.com/" target="blank">Neo-Arcadia</a></li>
 		<li><a href="http://www.pong-story.com/" target="blank">Pong-Story</a></li>
-		<li><a href="http://tech.quarterarcade.com" target="blank">QuarterArcade.com Coin-Op TechNet</a></li>
 		<li><a href="http://www.recreativas.org/" target="blank">Recreativas Database</a></li>
 		<li><a href="http://retrolaser.es/" target="blank">Retrolaser</a></li>
 		<li><a href="http://www.shmups.com/" target="blank">SHMUPS!</a></li>
