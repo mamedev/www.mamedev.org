@@ -20,11 +20,19 @@ $title = 'MAME | Logo Information';
 		</p>
 	
 		<p>
-		<img class="img-responsive" src="MAMELogoTMSmall.jpg" align="center" width="450" height="150">
+		<img class="img-responsive" src="MAMELogoRSmall.jpg" align="center" width="450" height="150">
 		<p>
 
 		<p>
-		<a href="MAMELogoTM.jpg">Click here</a> to download a high resolution (4500x1500) version.
+		<a href="MAMELogoR.jpg">Click here</a> to download a high resolution (4500x1500) version (JPEG).
+		</p>
+	    
+	    	<p>
+		<a href="MAMELogoR.png">Click here</a> to download a high resolution (4500x1500) version (PNG).
+		</p>
+
+	    	<p>
+		<a href="MAMELogoR-trans.png">Click here</a> to download a high resolution (4500x1500) transparent version (PNG).
 		</p>
 
 		<p>
