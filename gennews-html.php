@@ -26,22 +26,21 @@ if ($post == "")
             <center><h1 class="page-header">Welcome to The Official Site of the MAME Development Team</h1></center>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4><i class="fa fa-fw fa-check"></i> What is MAME</h4>
+					<h4>What is MAME?</h4>
 				</div>
 				<div class="panel-body">
 					<p>MAME is a multi-purpose emulation framework.</p>
-					<p>MAME's purpose is to preserve decades of software history. As electronic technology continues to rush forward, MAME prevents this important "vintage" software from being lost and forgotten. This is achieved by documenting the hardware and how it functions. The source code to MAME serves as this documentation. The fact that the software is usable serves primarily to validate the accuracy of the documentation (how else can you prove that you have recreated the hardware faithfully?). Over time, MAME (originally stood for Multiple Arcade Machine Emulator) absorbed the sister-project MESS (Multi Emulator Super System), so MAME now documents a wide variety of (mostly vintage) computers, video game consoles and calculators, in addition to the arcade video games that were its initial focus.</p>
+					<p>MAME’s purpose is to preserve decades of software history. As electronic technology continues to rush forward, MAME prevents this important "vintage" software from being lost and forgotten. This is achieved by documenting the hardware and how it functions. The source code to MAME serves as this documentation. The fact that the software is usable serves primarily to validate the accuracy of the documentation (how else can you prove that you have recreated the hardware faithfully?). Over time, MAME (originally stood for Multiple Arcade Machine Emulator) absorbed the sister-project MESS (Multi Emulator Super System), so MAME now documents a wide variety of (mostly vintage) computers, video game consoles and calculators, in addition to the arcade video games that were its initial focus.</p>
 				</div>
 			</div>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h4><i class="fa fa-fw fa-check"></i> License</h4>
+					<h4>License</h4>
 				</div>
 				<div class="panel-body">
-				The MAME project as a whole is distributed under the terms of the <a href="http://opensource.org/licenses/GPL-2.0">GNU General Public License, 2</a> (GPL-2.0), since it contains code made available under multiple GPL-compatible licenses. 
-				A great majority of files (over 90% including core files) are under the <a href="http://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause License</a> and we would encourage new contributors to distribute files under this license.
-<br/>
-Please note that MAME is a registered trademark of Gregory Ember, and permission is required to use the "MAME" name, logo or wordmark.
+				<p>The MAME project as a whole is distributed under the terms of the <a href="http://opensource.org/licenses/GPL-2.0">GNU General Public License, 2</a> (GPL-2.0), since it contains code made available under multiple GPL-compatible licenses.
+				A great majority of files (over 90% including core files) are under the <a href="http://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause License</a> and we would encourage new contributors to distribute files under this license.</p>
+				<p>Please note that MAME is a registered trademark of Gregory Ember, and permission is required to use the "MAME" name, logo or wordmark.</p>
 				</div>
 			</div>
         </div>
