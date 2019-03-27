@@ -17,7 +17,7 @@ $title = 'MAME | Tools for building MAME on Windows';
 <p>The MAME development environment for Windows consists of the GCC compiler (by way of MinGW), and the MSYS2 (POSIX/Unix compatability layer), plus various utilities such as Python and Git. It is available as a prepackaged installer, or can be assembled from upstream components. </p>
 
 </a><p>Source control is handled by github (<strong><em><a href="https://github.com/mamedev/mame.git">https://github.com/mamedev/mame.git</a></em></strong>), so you'll need to check out a copy.
-Various modules are disabled by default, such as the MAME interactive debugger, but can be enabled through arguments when building and may require additional MSYS2 packages to be installed.</p>
+Various modules are disabled by default, but can be enabled through arguments when building and may require additional MSYS2 packages to be installed.</p>
 
 <p><a name="user-content-installandbuild"></a></p><a name="user-content-installandbuild">
 
