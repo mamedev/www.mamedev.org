@@ -7,6 +7,17 @@ $title = 'MAME | Legal Information';
     <div class="container">
 
 		<center><h1 class="page-header">MAME Legal Information</h1></center>
+
+               	<a name="disclaimer"</a>
+
+                 	<h2>Disclaimer</h2?
+                 	
+                 	<p>
+                        The source code to MAME&reg; is provided under the GNU General Public License version 2
+	                or later as of Git revision 35ccf865aa366845b574e1fdbc71c4866b3d6a0f and the release of
+                        MAME 0.172. Source files may also be licensed as specified in the file header. This
+                        license does not apply to prior versions of MAME.
+		        </p>
 		
 		<a name="license"></a>
 
@@ -52,6 +63,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
                  	the MAME source code is to examine it, using it to understand how the games 
                  	worked, and then write your own emulation code. Sorry, there is no free
                  	lunch here.
+			
                  	</p>
                  	<h2>Common Questions</h2>
                  	
