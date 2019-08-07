@@ -8,9 +8,9 @@ $title = 'MAME | Legal Information';
 
 		<center><h1 class="page-header">MAME Legal Information</h1></center>
 
-               	<a name="disclaimer"</a>
+               	<a name="disclaimer"></a>
 
-                 	<h2>Disclaimer</h2?
+	        <h2>Disclaimer</h2>
                  	
                  	<p>
                         The source code to MAME&reg; is provided under the GNU General Public License version 2
