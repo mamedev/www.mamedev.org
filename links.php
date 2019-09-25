@@ -60,7 +60,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://mameinfo.mameworld.info/" target="blank">MAMEInfo.dat</a></li>
 		<li><a href="http://mess.redump.net/artwork" target="blank">MESS Artwork</a></li>
 		<li><a href="http://www.progettosnaps.net/messinfo" target="blank">MESSINFO.dat</a></li>
-		<li><a href="http://nplayers.arcadebelgium.be/" target="blank">NPlayers</a></li>		
+		<li><a href="http://nplayers.arcadebelgium.be/" target="blank">NPlayers</a></li>
 		<li><a href="http://www.progettosnaps.net/" target="blank">Progetto-Snaps</a></li>
 		<li><a href="http://www.mamecheat.co.uk/" target="blank">Pugsy's Cheats</a></li>
 		<li><a href="http://www.arcadehits.net/mamescore/home.php?show=files" target="blank">Story.dat</a></li>
@@ -71,7 +71,7 @@ $title = 'MAME | Resources';
 	</ul>
 	<h2>Frontends</h2>
 	<p>
-	Please visit <a href="http://docs.mamedev.org/usingmame/frontends.html" target="blank">MAME Documentation</a>, 
+	Please visit <a href="http://docs.mamedev.org/usingmame/frontends.html" target="blank">MAME Documentation</a>,
 	<a href="http://mameworld.info/" target="blank">MAMEWorld</a> or the <a href="http://mess.redump.net/mess/howto#frontends" target="blank">
 	MESS User's Manual</a> for a list of these.
 	</p>
@@ -109,7 +109,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://forums.arcade-museum.com/" target="blank">KLOV Forums</a></li>
 		<li><a href="http://shmups.system11.org/" target="blank">Shmups Forum</a></li>
 		<li><a href="http://www.ukvac.com/" target="blank">UKVAC</a></li>
-		
+
 	</ul>
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
@@ -161,7 +161,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://web.archive.org/web/20161024142934id_/http://www.emuunlim.com/" target="blank">EmuUnlim</a></li>
 		<li><a href="http://www.emuviews.com/" target="blank">EmuViews</a></li>
 		<li><a href="http://insertmorecoins.es/" target="blank">InsertMoreCoins (ESP)</a></li>
-		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>		
+		<li><a href="http://ngemu.com/" target="blank">NGEmu</a></li>
 		<li><a href="http://www.retrogames.com/" target="blank">Retrogames</a></li>
 		<li><a href="http://www.vg-network.com/" target="blank">VG-Network</a></li>
 		<li><a href="http://www.zophar.net/" target="blank">Zophar's Domain</a></li>
@@ -211,16 +211,10 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcade-museum.com/vaps/" target="blank">VAPS</a></li>
 		<li><a href="http://www.video-games-museum.com/en" target="blank">Video Games Museum</a></li>
 	</ul>
-	
-	
-	
-			
-			
-	
-	
-	
+
+
 		<br/><br/><br/><br/>
 	</div>
     <!-- /.container -->
-	
+
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/footer.html'); ?>
