@@ -206,7 +206,7 @@ $title = 'MAME | Latest MAME Release';
 					<br/>
 
 					<p>
-					MAME source releases in now packaged in one of two ways. If you are running Windows, and/or have <a
+					MAME source releases are now packaged in one of two ways. If you are running Windows, and/or have <a
 					href="http://www.7-zip.org/" target="_blank">7-Zip</a> or <a href="http://p7zip.sourceforge.net/"
 					target="_blank">P7ZIP</a> installed, you can download the smaller 7-Zip self-extracting archive.  Otherwise
 					you can download the sources as a standard ZIP archive.  Note that this ZIP file is packaged as a “double
