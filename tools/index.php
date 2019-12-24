@@ -28,7 +28,7 @@ Various modules are disabled by default, but can be enabled through arguments wh
 <h3><a id="user-content-downloads" class="anchor" href="#downloads" aria-hidden="true"></a>Downloads</h3>
 
 </a><ul><a name="user-content-downloads">
-</a><li>Windows Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/4.0/msys64-32-2019-03-25.exe">msys64-32-2019-03-25.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
+</a><li>Windows Dual 32-bit/64-bit - <a href="https://github.com/mamedev/buildtools/releases/download/5.0/msys64-32-2019-12-23.exe">msys64-32-2019-12-23.exe</a> <em>(If you have 64-bit Windows but wish to build for both 32-bit and 64-bit. To switch between different mingw versions use <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
 </ul>
 
 <p><a name="user-content-installation"></a></p><a name="user-content-installation">
@@ -196,7 +196,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 </a>
 
 		<br/><br/>
-			<a href="previous-20171226.php">Previous version</a> is still available
+			<a href="previous-20190326.php">Previous version</a> is still available
 	<br/><br/><br/><br/>
 </div>
 <!-- /.container -->
