@@ -151,7 +151,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://caesar.logiqx.com/" target="blank">CAESAR</a></li>
 		<li><a href="http://cps2shock.emu-france.info/" target="blank">CPS-2 Shock</a></li>
 		<li><a href="http://www.emucr.com/" target="blank">EmuCR (CHN)</a></li>
-		<li><a href="http://www.emudreams.pl/" target="blank">Emu#Dreams (PL)</a></li>
+		<li><a href="http://www.emudreams.cba.pl/" target="blank">Emu#Dreams (PL)</a></li>
 		<li><a href="http://www.emu-france.com/" target="blank">Emu-France (FRA)</a></li>
 		<li><a href="http://www.emulab.it/" target="blank">EMULAB</a></li>
 		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9 (JPN)</a></li>
