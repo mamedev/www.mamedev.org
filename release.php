@@ -59,6 +59,7 @@ foreach ($response->assets as $asset) {
 
 function release_mirror_file($filename)
 {
+	global $version;
 	if (true)
 		echo '<a href="https://github.com/mamedev/mame/releases/download/mame0' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
 	else
