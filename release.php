@@ -176,7 +176,7 @@ $title = 'MAME | Latest MAME Release';
 		<br/>
 
 		<p>
-		If you are running Windows, and/or have <a href="http://www.7-zip.org/" target="_blank">7-Zip</a> or
+		If you are running Windows, and/or have <a href="https://www.7-zip.org/" target="_blank">7-Zip</a> or
 		<a href="http://p7zip.sourceforge.net/" target="_blank">P7ZIP</a> installed, you can download the
 		self-extracting 7-Zip self-extracting archive.
 		</p>
