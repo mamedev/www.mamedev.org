@@ -1,12 +1,33 @@
 <?php
 $title = 'MAME | Previous Releases';
 
-function release_mirror_link($version, $filename, $githubrepo = 'mame')
+function release_mirror_file($version, $filename, $githubrepo = 'mame')
 {
 	if (true)
-		echo '<a class="link" href="https://github.com/mamedev/' . htmlspecialchars($githubrepo) . '/releases/download/mame0' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+		echo '<a href="https://github.com/mamedev/' . htmlspecialchars($githubrepo) . '/releases/download/mame0' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
 	else
-		echo '<a class="link" href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+}
+
+function ancient_mirror_file($version, $filename, $psdir)
+{
+	if (true)
+		echo '<a href="http://www.progettosnaps.net/MAME/' . htmlspecialchars($psdir) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+	else
+		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+}
+
+function release_mirror_directory($version, $githubrepo = 'mame')
+{
+	if (true)
+		echo '<a href="https://github.com/mamedev/' . htmlspecialchars($githubrepo) . '/releases/tag/mame0' . htmlspecialchars($version) . '">0.' . htmlspecialchars($version) . '</a>';
+	else
+		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/">0.' . htmlspecialchars($version) . '</a>';
+}
+
+function ancient_mirror_directory($version)
+{
+	echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/">0.' . htmlspecialchars($version) . '</a>';
 }
 
 ?>
@@ -36,10 +57,10 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.218</td>
+				<td class="date"><?php release_mirror_directory('218'); ?></td>
 				<td class="date">2 Feb 2020</td>
-				<td class="link"><?php release_mirror_link('218', 'mame0218s.exe'); ?></td>
-				<td class="link"><?php release_mirror_link('218', 'mame0218b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('218', 'mame0218s.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('218', 'mame0218b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0218.txt">whatsnew_0218.txt</a></td>
 			</tr>
 		  </table>
@@ -60,87 +81,87 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.217</td>
+				<td class="date"><?php release_mirror_directory('217'); ?></td>
 				<td class="date">25 Dec 2019</td>
-				<td class="link"><?php release_mirror_link('217', 'mame0217s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('217', 'mame0217b_32bit.exe'); ?><br/><?php release_mirror_link('217', 'mame0217b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('217', 'mame0217s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('217', 'mame0217b_32bit.exe'); ?><br/><?php release_mirror_link('217', 'mame0217b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0217.txt">whatsnew_0217.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.216</td>
+				<td class="date"><?php release_mirror_directory('216'); ?></td>
 				<td class="date">27 Nov 2019</td>
-				<td class="link"><?php release_mirror_link('216', 'mame0216s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('216', 'mame0216b_32bit.exe'); ?><br/><?php release_mirror_link('216', 'mame0216b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('216', 'mame0216s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('216', 'mame0216b_32bit.exe'); ?><br/><?php release_mirror_link('216', 'mame0216b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0216.txt">whatsnew_0216.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.215</td>
+				<td class="date"><?php release_mirror_directory('215'); ?></td>
 				<td class="date">30 Oct 2019</td>
-				<td class="link"><?php release_mirror_link('215', 'mame0215s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('215', 'mame0215b_32bit.exe'); ?><br/><?php release_mirror_link('215', 'mame0215b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('215', 'mame0215s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('215', 'mame0215b_32bit.exe'); ?><br/><?php release_mirror_link('215', 'mame0215b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0215.txt">whatsnew_0215.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.214</td>
+				<td class="date"><?php release_mirror_directory('214'); ?></td>
 				<td class="date">25 Sep 2019</td>
-				<td class="link"><?php release_mirror_link('214', 'mame0214s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('214', 'mame0214b_32bit.exe'); ?><br/><?php release_mirror_link('214', 'mame0214b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('214', 'mame0214s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('214', 'mame0214b_32bit.exe'); ?><br/><?php release_mirror_link('214', 'mame0214b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0214.txt">whatsnew_0214.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.213</td>
+				<td class="date"><?php release_mirror_directory('213'); ?></td>
 				<td class="date">4 Sep 2019</td>
-				<td class="link"><?php release_mirror_link('213', 'mame0213s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('213', 'mame0213b_32bit.exe'); ?><br/><?php release_mirror_link('213', 'mame0213b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('213', 'mame0213s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('213', 'mame0213b_32bit.exe'); ?><br/><?php release_mirror_link('213', 'mame0213b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0213.txt">whatsnew_0213.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.212</td>
+				<td class="date"><?php release_mirror_directory('212'); ?></td>
 				<td class="date">3 Aug 2019</td>
-				<td class="link"><?php release_mirror_link('212', 'mame0212s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('212', 'mame0212b_32bit.exe'); ?><br/><?php release_mirror_link('212', 'mame0212b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('212', 'mame0212s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('212', 'mame0212b_32bit.exe'); ?><br/><?php release_mirror_link('212', 'mame0212b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0212.txt">whatsnew_0212.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.211</td>
+				<td class="date"><?php release_mirror_directory('211'); ?></td>
 				<td class="date">26 Jun 2019</td>
-				<td class="link"><?php release_mirror_link('211', 'mame0211s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('211', 'mame0211b_32bit.exe'); ?><br/><?php release_mirror_link('211', 'mame0211b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('211', 'mame0211s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('211', 'mame0211b_32bit.exe'); ?><br/><?php release_mirror_link('211', 'mame0211b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0211.txt">whatsnew_0211.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.210</td>
+				<td class="date"><?php release_mirror_directory('210'); ?></td>
 				<td class="date">30 May 2019</td>
-				<td class="link"><?php release_mirror_link('210', 'mame0210s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('210', 'mame0210b_32bit.exe'); ?><br/><?php release_mirror_link('210', 'mame0210b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('210', 'mame0210s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('210', 'mame0210b_32bit.exe'); ?><br/><?php release_mirror_link('210', 'mame0210b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0210.txt">whatsnew_0210.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.209</td>
+				<td class="date"><?php release_mirror_directory('209'); ?></td>
 				<td class="date">24 Apr 2019</td>
-				<td class="link"><?php release_mirror_link('209', 'mame0209s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('209', 'mame0209b_32bit.exe'); ?><br/><?php release_mirror_link('209', 'mame0209b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('209', 'mame0209s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('209', 'mame0209b_32bit.exe'); ?><br/><?php release_mirror_link('209', 'mame0209b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0209.txt">whatsnew_0209.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.208</td>
+				<td class="date"><?php release_mirror_directory('208'); ?></td>
 				<td class="date">27 Mar 2019</td>
-				<td class="link"><?php release_mirror_link('208', 'mame0208s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('208', 'mame0208b_32bit.exe'); ?><br/><?php release_mirror_link('208', 'mame0208b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('208', 'mame0208s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('208', 'mame0208b_32bit.exe'); ?><br/><?php release_mirror_link('208', 'mame0208b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0208.txt">whatsnew_0208.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.207</td>
+				<td class="date"><?php release_mirror_directory('207'); ?></td>
 				<td class="date">27 Feb 2019</td>
-				<td class="link"><?php release_mirror_link('207', 'mame0207s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('207', 'mame0207b_32bit.exe'); ?><br/><?php release_mirror_link('207', 'mame0207b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('207', 'mame0207s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('207', 'mame0207b_32bit.exe'); ?><br/><?php release_mirror_link('207', 'mame0207b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0207.txt">whatsnew_0207.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.206</td>
+				<td class="date"><?php release_mirror_directory('206'); ?></td>
 				<td class="date">30 Jan 2019</td>
-				<td class="link"><?php release_mirror_link('206', 'mame0206s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('206', 'mame0206b_32bit.exe'); ?><br/><?php release_mirror_link('206', 'mame0206b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('206', 'mame0206s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('206', 'mame0206b_32bit.exe'); ?><br/><?php release_mirror_link('206', 'mame0206b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0206.txt">whatsnew_0206.txt</a></td>
 			</tr>
 		  </table>
@@ -161,87 +182,87 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.205</td>
+				<td class="date"><?php release_mirror_directory('205'); ?></td>
 				<td class="date">26 Dec 2018</td>
-				<td class="link"><?php release_mirror_link('205', 'mame0205s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('205', 'mame0205b_32bit.exe'); ?><br/><?php release_mirror_link('205', 'mame0205b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('205', 'mame0205s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('205', 'mame0205b_32bit.exe'); ?><br/><?php release_mirror_link('205', 'mame0205b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0205.txt">whatsnew_0205.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.204</td>
+				<td class="date"><?php release_mirror_directory('204'); ?></td>
 				<td class="date">28 Nov 2018</td>
-				<td class="link"><?php release_mirror_link('204', 'mame0204s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('204', 'mame0204b_32bit.exe'); ?><br/><?php release_mirror_link('204', 'mame0204b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('204', 'mame0204s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('204', 'mame0204b_32bit.exe'); ?><br/><?php release_mirror_link('204', 'mame0204b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0204.txt">whatsnew_0204.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.203</td>
+				<td class="date"><?php release_mirror_directory('203'); ?></td>
 				<td class="date">31 Oct 2018</td>
-				<td class="link"><?php release_mirror_link('203', 'mame0203s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('203', 'mame0203b_32bit.exe'); ?><br/><?php release_mirror_link('203', 'mame0203b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('203', 'mame0203s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('203', 'mame0203b_32bit.exe'); ?><br/><?php release_mirror_link('203', 'mame0203b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0203.txt">whatsnew_0203.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.202</td>
+				<td class="date"><?php release_mirror_directory('202'); ?></td>
 				<td class="date">26 Sep 2018</td>
-				<td class="link"><?php release_mirror_link('202', 'mame0202s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('202', 'mame0202b_32bit.exe'); ?><br/><?php release_mirror_link('202', 'mame0202b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('202', 'mame0202s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('202', 'mame0202b_32bit.exe'); ?><br/><?php release_mirror_link('202', 'mame0202b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0202.txt">whatsnew_0202.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.201</td>
+				<td class="date"><?php release_mirror_directory('201'); ?></td>
 				<td class="date">29 Aug 2018</td>
-				<td class="link"><?php release_mirror_link('201', 'mame0201s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('201', 'mame0201b_32bit.exe'); ?><br/><?php release_mirror_link('201', 'mame0201b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('201', 'mame0201s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('201', 'mame0201b_32bit.exe'); ?><br/><?php release_mirror_link('201', 'mame0201b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0201.txt">whatsnew_0201.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.200</td>
+				<td class="date"><?php release_mirror_directory('200'); ?></td>
 				<td class="date">25 Jul 2018</td>
-				<td class="link"><?php release_mirror_link('200', 'mame0200s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('200', 'mame0200b_32bit.exe'); ?><br/><?php release_mirror_link('200', 'mame0200b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('200', 'mame0200s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('200', 'mame0200b_32bit.exe'); ?><br/><?php release_mirror_link('200', 'mame0200b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0200.txt">whatsnew_0200.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.199</td>
+				<td class="date"><?php release_mirror_directory('199'); ?></td>
 				<td class="date">27 Jun 2018</td>
-				<td class="link"><?php release_mirror_link('199', 'mame0199s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('199', 'mame0199b_32bit.exe'); ?><br/><?php release_mirror_link('199', 'mame0199b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('199', 'mame0199s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('199', 'mame0199b_32bit.exe'); ?><br/><?php release_mirror_link('199', 'mame0199b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0199.txt">whatsnew_0199.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.198</td>
+				<td class="date"><?php release_mirror_directory('198'); ?></td>
 				<td class="date">30 May 2018</td>
-				<td class="link"><?php release_mirror_link('198', 'mame0198s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('198', 'mame0198b_32bit.exe'); ?><br/><?php release_mirror_link('198', 'mame0198b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('198', 'mame0198s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('198', 'mame0198b_32bit.exe'); ?><br/><?php release_mirror_link('198', 'mame0198b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0198.txt">whatsnew_0198.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.197</td>
+				<td class="date"><?php release_mirror_directory('197'); ?></td>
 				<td class="date">25 Apr 2018</td>
-				<td class="link"><?php release_mirror_link('197', 'mame0197s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('197', 'mame0197b_32bit.exe'); ?><br/><?php release_mirror_link('197', 'mame0197b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('197', 'mame0197s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('197', 'mame0197b_32bit.exe'); ?><br/><?php release_mirror_link('197', 'mame0197b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0197.txt">whatsnew_0197.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.196</td>
+				<td class="date"><?php release_mirror_directory('196'); ?></td>
 				<td class="date">28 Mar 2018</td>
-				<td class="link"><?php release_mirror_link('196', 'mame0196s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('196', 'mame0196b_32bit.exe'); ?><br/><?php release_mirror_link('196', 'mame0196b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('196', 'mame0196s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('196', 'mame0196b_32bit.exe'); ?><br/><?php release_mirror_link('196', 'mame0196b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0196.txt">whatsnew_0196.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.195</td>
+				<td class="date"><?php release_mirror_directory('195'); ?></td>
 				<td class="date">28 Feb 2018</td>
-				<td class="link"><?php release_mirror_link('195', 'mame0195s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('195', 'mame0195b_32bit.exe'); ?><br/><?php release_mirror_link('195', 'mame0195b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('195', 'mame0195s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('195', 'mame0195b_32bit.exe'); ?><br/><?php release_mirror_link('195', 'mame0195b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0195.txt">whatsnew_0195.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.194</td>
+				<td class="date"><?php release_mirror_directory('194'); ?></td>
 				<td class="date">31 Jan 2018</td>
-				<td class="link"><?php release_mirror_link('194', 'mame0194s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('194', 'mame0194b_32bit.exe'); ?><br/><?php release_mirror_link('194', 'mame0194b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('194', 'mame0194s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('194', 'mame0194b_32bit.exe'); ?><br/><?php release_mirror_link('194', 'mame0194b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0194.txt">whatsnew_0194.txt</a></td>
 			</tr>
 		  </table>
@@ -262,87 +283,87 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.193</td>
+				<td class="date"><?php release_mirror_directory('193'); ?></td>
 				<td class="date">27 Dec 2017</td>
-				<td class="link"><?php release_mirror_link('193', 'mame0193s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('193', 'mame0193b_32bit.exe'); ?><br/><?php release_mirror_link('193', 'mame0193b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('193', 'mame0193s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('193', 'mame0193b_32bit.exe'); ?><br/><?php release_mirror_link('193', 'mame0193b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0193.txt">whatsnew_0193.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.192</td>
+				<td class="date"><?php release_mirror_directory('192'); ?></td>
 				<td class="date">29 Nov 2017</td>
-				<td class="link"><?php release_mirror_link('192', 'mame0192s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('192', 'mame0192b_32bit.exe'); ?><br/><?php release_mirror_link('192', 'mame0192b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('192', 'mame0192s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('192', 'mame0192b_32bit.exe'); ?><br/><?php release_mirror_link('192', 'mame0192b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0192.txt">whatsnew_0192.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.191</td>
+				<td class="date"><?php release_mirror_directory('191'); ?></td>
 				<td class="date">25 Oct 2017</td>
-				<td class="link"><?php release_mirror_link('191', 'mame0191s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('191', 'mame0191b_32bit.exe'); ?><br/><?php release_mirror_link('191', 'mame0191b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('191', 'mame0191s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('191', 'mame0191b_32bit.exe'); ?><br/><?php release_mirror_link('191', 'mame0191b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0191.txt">whatsnew_0191.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.190</td>
+				<td class="date"><?php release_mirror_directory('190'); ?></td>
 				<td class="date">27 Sep 2017</td>
-				<td class="link"><?php release_mirror_link('190', 'mame0190s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('190', 'mame0190b_32bit.exe'); ?><br/><?php release_mirror_link('190', 'mame0190b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('190', 'mame0190s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('190', 'mame0190b_32bit.exe'); ?><br/><?php release_mirror_link('190', 'mame0190b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0190.txt">whatsnew_0190.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.189</td>
+				<td class="date"><?php release_mirror_directory('189'); ?></td>
 				<td class="date">30 Aug 2017</td>
-				<td class="link"><?php release_mirror_link('189', 'mame0189s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('189', 'mame0189b_32bit.exe'); ?><br/><?php release_mirror_link('189', 'mame0189b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('189', 'mame0189s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('189', 'mame0189b_32bit.exe'); ?><br/><?php release_mirror_link('189', 'mame0189b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0189.txt">whatsnew_0189.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.188</td>
+				<td class="date"><?php release_mirror_directory('188'); ?></td>
 				<td class="date">26 Jul 2017</td>
-				<td class="link"><?php release_mirror_link('188', 'mame0188s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('188', 'mame0188b_32bit.exe'); ?><br/><?php release_mirror_link('188', 'mame0188b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('188', 'mame0188s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('188', 'mame0188b_32bit.exe'); ?><br/><?php release_mirror_link('188', 'mame0188b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0188.txt">whatsnew_0188.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.187</td>
+				<td class="date"><?php release_mirror_directory('187'); ?></td>
 				<td class="date">28 Jun 2017</td>
-				<td class="link"><?php release_mirror_link('187', 'mame0187s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('187', 'mame0187b_32bit.exe'); ?><br/><?php release_mirror_link('187', 'mame0187b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('187', 'mame0187s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('187', 'mame0187b_32bit.exe'); ?><br/><?php release_mirror_link('187', 'mame0187b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0187.txt">whatsnew_0187.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.186</td>
+				<td class="date"><?php release_mirror_directory('186'); ?></td>
 				<td class="date">31 May 2017</td>
-				<td class="link"><?php release_mirror_link('186', 'mame0186s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('186', 'mame0186b_32bit.exe'); ?><br/><?php release_mirror_link('186', 'mame0186b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('186', 'mame0186s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('186', 'mame0186b_32bit.exe'); ?><br/><?php release_mirror_link('186', 'mame0186b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0186.txt">whatsnew_0186.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.185</td>
+				<td class="date"><?php release_mirror_directory('185'); ?></td>
 				<td class="date">26 Apr 2017</td>
-				<td class="link"><?php release_mirror_link('185', 'mame0185s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('185', 'mame0185b_32bit.exe'); ?><br/><?php release_mirror_link('185', 'mame0185b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('185', 'mame0185s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('185', 'mame0185b_32bit.exe'); ?><br/><?php release_mirror_link('185', 'mame0185b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0185.txt">whatsnew_0185.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.184</td>
+				<td class="date"><?php release_mirror_directory('184'); ?></td>
 				<td class="date">29 Mar 2017</td>
-				<td class="link"><?php release_mirror_link('184', 'mame0184s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('184', 'mame0184b_32bit.exe'); ?><br/><?php release_mirror_link('184', 'mame0184b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('184', 'mame0184s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('184', 'mame0184b_32bit.exe'); ?><br/><?php release_mirror_link('184', 'mame0184b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0184.txt">whatsnew_0184.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.183</td>
+				<td class="date"><?php release_mirror_directory('183'); ?></td>
 				<td class="date">22 Feb 2017</td>
-				<td class="link"><?php release_mirror_link('183', 'mame0183s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('183', 'mame0183b_32bit.exe'); ?><br/><?php release_mirror_link('183', 'mame0183b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('183', 'mame0183s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('183', 'mame0183b_32bit.exe'); ?><br/><?php release_mirror_link('183', 'mame0183b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0183.txt">whatsnew_0183.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.182</td>
+				<td class="date"><?php release_mirror_directory('182'); ?></td>
 				<td class="date">25 Jan 2017</td>
-				<td class="link"><?php release_mirror_link('182', 'mame0182s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('182', 'mame0182b_32bit.exe'); ?><br/><?php release_mirror_link('182', 'mame0182b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('182', 'mame0182s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('182', 'mame0182b_32bit.exe'); ?><br/><?php release_mirror_link('182', 'mame0182b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0182.txt">whatsnew_0182.txt</a></td>
 			</tr>
 		  </table>
@@ -363,87 +384,87 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.181</td>
+				<td class="date"><?php release_mirror_directory('181'); ?></td>
 				<td class="date">28 Dec 2016</td>
-				<td class="link"><?php release_mirror_link('181', 'mame0181s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('181', 'mame0181b_32bit.exe'); ?><br/><?php release_mirror_link('181', 'mame0181b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('181', 'mame0181s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('181', 'mame0181b_32bit.exe'); ?><br/><?php release_mirror_link('181', 'mame0181b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0181.txt">whatsnew_0181.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.180</td>
+				<td class="date"><?php release_mirror_directory('180'); ?></td>
 				<td class="date">30 Nov 2016</td>
-				<td class="link"><?php release_mirror_link('180', 'mame0180s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('180', 'mame0180b_32bit.exe'); ?><br/><?php release_mirror_link('180', 'mame0180b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('180', 'mame0180s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('180', 'mame0180b_32bit.exe'); ?><br/><?php release_mirror_link('180', 'mame0180b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0180.txt">whatsnew_0180.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.179</td>
+				<td class="date"><?php release_mirror_directory('179'); ?></td>
 				<td class="date">26 Oct 2016</td>
-				<td class="link"><?php release_mirror_link('179', 'mame0179s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('179', 'mame0179b_32bit.exe'); ?><br/><?php release_mirror_link('179', 'mame0179b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('179', 'mame0179s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('179', 'mame0179b_32bit.exe'); ?><br/><?php release_mirror_link('179', 'mame0179b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0179.txt">whatsnew_0179.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.178</td>
+				<td class="date"><?php release_mirror_directory('178'); ?></td>
 				<td class="date">28 Sep 2016</td>
-				<td class="link"><?php release_mirror_link('178', 'mame0178s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('178', 'mame0178b.exe'); ?><br/><?php release_mirror_link('178', 'mame0178b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('178', 'mame0178s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('178', 'mame0178b.exe'); ?><br/><?php release_mirror_link('178', 'mame0178b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0178.txt">whatsnew_0178.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.177</td>
+				<td class="date"><?php release_mirror_directory('177'); ?></td>
 				<td class="date">31 Aug 2016</td>
-				<td class="link"><?php release_mirror_link('177', 'mame0177s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('177', 'mame0177b.exe'); ?><br/><?php release_mirror_link('177', 'mame0177b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('177', 'mame0177s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('177', 'mame0177b.exe'); ?><br/><?php release_mirror_link('177', 'mame0177b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0177.txt">whatsnew_0177.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.176</td>
+				<td class="date"><?php release_mirror_directory('176'); ?></td>
 				<td class="date">27 Jul 2016</td>
-				<td class="link"><?php release_mirror_link('176', 'mame0176s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('176', 'mame0176b.exe'); ?><br/><?php release_mirror_link('176', 'mame0176b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('176', 'mame0176s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('176', 'mame0176b.exe'); ?><br/><?php release_mirror_link('176', 'mame0176b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0176.txt">whatsnew_0176.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.175</td>
+				<td class="date"><?php release_mirror_directory('175'); ?></td>
 				<td class="date">29 Jun 2016</td>
-				<td class="link"><?php release_mirror_link('175', 'mame0175s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('175', 'mame0175b.exe'); ?><br/><?php release_mirror_link('175', 'mame0175b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('175', 'mame0175s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('175', 'mame0175b.exe'); ?><br/><?php release_mirror_link('175', 'mame0175b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0175.txt">whatsnew_0175.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.174</td>
+				<td class="date"><?php release_mirror_directory('174'); ?></td>
 				<td class="date">25 May 2016</td>
-				<td class="link"><?php release_mirror_link('174', 'mame0174s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('174', 'mame0174b.exe'); ?><br/><?php release_mirror_link('174', 'mame0174b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('174', 'mame0174s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('174', 'mame0174b.exe'); ?><br/><?php release_mirror_link('174', 'mame0174b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0174.txt">whatsnew_0174.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.173</td>
+				<td class="date"><?php release_mirror_directory('173'); ?></td>
 				<td class="date">27 Apr 2016</td>
-				<td class="link"><?php release_mirror_link('173', 'mame0173s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('173', 'mame0173b.exe'); ?><br/><?php release_mirror_link('173', 'mame0173b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('173', 'mame0173s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('173', 'mame0173b.exe'); ?><br/><?php release_mirror_link('173', 'mame0173b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0173.txt">whatsnew_0173.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.172</td>
+				<td class="date"><?php release_mirror_directory('172'); ?></td>
 				<td class="date">30 Mar 2016</td>
-				<td class="link"><?php release_mirror_link('172', 'mame0172s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('172', 'mame0172b.exe'); ?><br/><?php release_mirror_link('172', 'mame0172b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('172', 'mame0172s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('172', 'mame0172b.exe'); ?><br/><?php release_mirror_link('172', 'mame0172b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0172.txt">whatsnew_0172.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.171</td>
+				<td class="date"><?php release_mirror_directory('171'); ?></td>
 				<td class="date">24 Feb 2016</td>
-				<td class="link"><?php release_mirror_link('171', 'mame0171s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('171', 'mame0171b.exe'); ?><br/><?php release_mirror_link('171', 'mame0171b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('171', 'mame0171s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('171', 'mame0171b.exe'); ?><br/><?php release_mirror_link('171', 'mame0171b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0171.txt">whatsnew_0171.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.170</td>
+				<td class="date"><?php release_mirror_directory('170'); ?></td>
 				<td class="date">27 Jan 2016</td>
-				<td class="link"><?php release_mirror_link('170', 'mame0170s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('170', 'mame0170b.exe'); ?><br/><?php release_mirror_link('170', 'mame0170b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('170', 'mame0170s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('170', 'mame0170b.exe'); ?><br/><?php release_mirror_link('170', 'mame0170b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0170.txt">whatsnew_0170.txt</a></td>
 			</tr>
 		  </table>
@@ -464,87 +485,87 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.169</td>
+				<td class="date"><?php release_mirror_directory('169'); ?></td>
 				<td class="date">30 Dec 2015</td>
-				<td class="link"><?php release_mirror_link('169', 'mame0169s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('169', 'mame0169b.exe'); ?><br/><?php release_mirror_link('169', 'mame0169b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('169', 'mame0169s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('169', 'mame0169b.exe'); ?><br/><?php release_mirror_link('169', 'mame0169b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0169.txt">whatsnew_0169.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.168</td>
+				<td class="date"><?php release_mirror_directory('168'); ?></td>
 				<td class="date">25 Nov 2015</td>
-				<td class="link"><?php release_mirror_link('168', 'mame0168s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('168', 'mame0168b.exe'); ?><br/><?php release_mirror_link('168', 'mame0168b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('168', 'mame0168s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('168', 'mame0168b.exe'); ?><br/><?php release_mirror_link('168', 'mame0168b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0168.txt">whatsnew_0168.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.167</td>
+				<td class="date"><?php release_mirror_directory('167'); ?></td>
 				<td class="date">28 Oct 2015</td>
-				<td class="link"><?php release_mirror_link('167', 'mame0167s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('167', 'mame0167b.exe'); ?><br/><?php release_mirror_link('167', 'mame0167b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('167', 'mame0167s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('167', 'mame0167b.exe'); ?><br/><?php release_mirror_link('167', 'mame0167b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0167.txt">whatsnew_0167.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.166</td>
+				<td class="date"><?php release_mirror_directory('166'); ?></td>
 				<td class="date">30 Sep 2015</td>
-				<td class="link"><?php release_mirror_link('166', 'mame0166s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('166', 'mame0166b.exe'); ?><br/><?php release_mirror_link('166', 'mame0166b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('166', 'mame0166s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('166', 'mame0166b.exe'); ?><br/><?php release_mirror_link('166', 'mame0166b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0166.txt">whatsnew_0166.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.165</td>
+				<td class="date"><?php release_mirror_directory('165'); ?></td>
 				<td class="date">26 Aug 2015</td>
-				<td class="link"><?php release_mirror_link('165', 'mame0165s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('165', 'mame0165b.exe'); ?><br/><?php release_mirror_link('165', 'mame0165b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('165', 'mame0165s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('165', 'mame0165b.exe'); ?><br/><?php release_mirror_link('165', 'mame0165b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0165.txt">whatsnew_0165.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.164</td>
+				<td class="date"><?php release_mirror_directory('164'); ?></td>
 				<td class="date">29 Jul 2015</td>
-				<td class="link"><?php release_mirror_link('164', 'mame0164s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('164', 'mame0164b.exe'); ?><br/><?php release_mirror_link('164', 'mame0164b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('164', 'mame0164s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('164', 'mame0164b.exe'); ?><br/><?php release_mirror_link('164', 'mame0164b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0164.txt">whatsnew_0164.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.163</td>
+				<td class="date"><?php release_mirror_directory('163'); ?></td>
 				<td class="date">24 Jun 2015</td>
-				<td class="link"><?php release_mirror_link('163', 'mame0163s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('163', 'mame0163b.exe'); ?><br/><?php release_mirror_link('163', 'mame0163b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('163', 'mame0163s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('163', 'mame0163b.exe'); ?><br/><?php release_mirror_link('163', 'mame0163b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0163.txt">whatsnew_0163.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.162</td>
+				<td class="date"><?php release_mirror_directory('162'); ?></td>
 				<td class="date">27 May 2015</td>
-				<td class="link"><?php release_mirror_link('162', 'mame0162s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('162', 'mame0162b.exe'); ?><br/><?php release_mirror_link('162', 'mame0162b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('162', 'mame0162s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('162', 'mame0162b.exe'); ?><br/><?php release_mirror_link('162', 'mame0162b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0162.txt">whatsnew_0162.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.161</td>
+				<td class="date"><?php release_mirror_directory('161'); ?></td>
 				<td class="date">29 Apr 2015</td>
-				<td class="link"><?php release_mirror_link('161', 'mame0161s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('161', 'mame0161b.exe'); ?><br/><?php release_mirror_link('161', 'mame0161b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('161', 'mame0161s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('161', 'mame0161b.exe'); ?><br/><?php release_mirror_link('161', 'mame0161b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0161.txt">whatsnew_0161.txt</a><br/><a href="releases/messnew_0161.txt">messnew_0161.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.160</td>
+				<td class="date"><?php release_mirror_directory('160'); ?></td>
 				<td class="date">25 Mar 2015</td>
-				<td class="link"><?php release_mirror_link('160', 'mame0160s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('160', 'mame0160b.exe'); ?><br/><?php release_mirror_link('160', 'mame0160b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('160', 'mame0160s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('160', 'mame0160b.exe'); ?><br/><?php release_mirror_link('160', 'mame0160b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0160.txt">whatsnew_0160.txt</a><br/><a href="releases/messnew_0160.txt">messnew_0160.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.159</td>
+				<td class="date"><?php release_mirror_directory('159'); ?></td>
 				<td class="date">25 Feb 2015</td>
-				<td class="link"><?php release_mirror_link('159', 'mame0159s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('159', 'mame0159b.exe'); ?><br/><?php release_mirror_link('159', 'mame0159b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('159', 'mame0159s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('159', 'mame0159b.exe'); ?><br/><?php release_mirror_link('159', 'mame0159b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0159.txt">whatsnew_0159.txt</a><br/><a href="releases/messnew_0159.txt">messnew_0159.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.158</td>
+				<td class="date"><?php release_mirror_directory('158'); ?></td>
 				<td class="date">28 Jan 2015</td>
-				<td class="link"><?php release_mirror_link('158', 'mame0158s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('158', 'mame0158b.exe'); ?><br/><?php release_mirror_link('158', 'mame0158b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('158', 'mame0158s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('158', 'mame0158b.exe'); ?><br/><?php release_mirror_link('158', 'mame0158b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0158.txt">whatsnew_0158.txt</a><br/><a href="releases/messnew_0158.txt">messnew_0158.txt</a></td>
 			</tr>
 		  </table>
@@ -564,38 +585,38 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.157</td>
+				<td class="date"><?php release_mirror_directory('157'); ?></td>
 				<td class="date">31 Dec 2014</td>
-				<td class="link"><?php release_mirror_link('157', 'mame0157s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('157', 'mame0157b.exe'); ?><br/><?php release_mirror_link('157', 'mame0157b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('157', 'mame0157s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('157', 'mame0157b.exe'); ?><br/><?php release_mirror_link('157', 'mame0157b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0157.txt">whatsnew_0157.txt</a><br/><a href="releases/messnew_0157.txt">messnew_0157.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.156</td>
+				<td class="date"><?php release_mirror_directory('156'); ?></td>
 				<td class="date">26 Nov 2014</td>
-				<td class="link"><?php release_mirror_link('156', 'mame0156s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('156', 'mame0156b.exe'); ?><br/><?php release_mirror_link('156', 'mame0156b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('156', 'mame0156s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('156', 'mame0156b.exe'); ?><br/><?php release_mirror_link('156', 'mame0156b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0156.txt">whatsnew_0156.txt</a><br/><a href="releases/messnew_0156.txt">messnew_0156.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.155</td>
+				<td class="date"><?php release_mirror_directory('155'); ?></td>
 				<td class="date">15 Oct 2014</td>
-				<td class="link"><?php release_mirror_link('155', 'mame0155s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('155', 'mame0155b.exe'); ?><br/><?php release_mirror_link('155', 'mame0155b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('155', 'mame0155s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('155', 'mame0155b.exe'); ?><br/><?php release_mirror_link('155', 'mame0155b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0155.txt">whatsnew_0155.txt</a><br/><a href="releases/messnew_0155.txt">messnew_0155.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.154</td>
+				<td class="date"><?php release_mirror_directory('154'); ?></td>
 				<td class="date">23 Jul 2014</td>
-				<td class="link"><?php release_mirror_link('154', 'mame0154s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('154', 'mame0154b.exe'); ?><br/><?php release_mirror_link('154', 'mame0154b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('154', 'mame0154s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('154', 'mame0154b.exe'); ?><br/><?php release_mirror_link('154', 'mame0154b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0154.txt">whatsnew_0154.txt</a><br/><a href="releases/messnew_0154.txt">messnew_0154.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.153</td>
+				<td class="date"><?php release_mirror_directory('153'); ?></td>
 				<td class="date">07 Apr 2014</td>
-				<td class="link"><?php release_mirror_link('153', 'mame0153s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('153', 'mame0153b.exe'); ?><br/><?php release_mirror_link('153', 'mame0153b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('153', 'mame0153s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('153', 'mame0153b.exe'); ?><br/><?php release_mirror_link('153', 'mame0153b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0153.txt">whatsnew_0153.txt</a><br/><a href="releases/messnew_0153.txt">messnew_0153.txt</a></td>
 			</tr>
 		  </table>
@@ -615,38 +636,38 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.152</td>
+				<td class="date"><?php release_mirror_directory('152'); ?></td>
 				<td class="date">24 Dec 2013</td>
-				<td class="link"><?php release_mirror_link('152', 'mame0152s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('152', 'mame0152b.exe'); ?><br/><?php release_mirror_link('152', 'mame0152b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('152', 'mame0152s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('152', 'mame0152b.exe'); ?><br/><?php release_mirror_link('152', 'mame0152b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0152.txt">whatsnew_0152.txt</a><br/><a href="releases/messnew_0152.txt">messnew_0152.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.151</td>
+				<td class="date"><?php release_mirror_directory('151'); ?></td>
 				<td class="date">05 Nov 2013</td>
-				<td class="link"><?php release_mirror_link('151', 'mame0151s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('151', 'mame0151b.exe'); ?><br/><?php release_mirror_link('151', 'mame0151b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('151', 'mame0151s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('151', 'mame0151b.exe'); ?><br/><?php release_mirror_link('151', 'mame0151b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0151.txt">whatsnew_0151.txt</a><br/><a href="releases/messnew_0151.txt">messnew_0151.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.150</td>
+				<td class="date"><?php release_mirror_directory('150'); ?></td>
 				<td class="date">17 Sep 2013</td>
-				<td class="link"><?php release_mirror_link('150', 'mame0150s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('150', 'mame0150b.exe'); ?><br/><?php release_mirror_link('150', 'mame0150b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('150', 'mame0150s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('150', 'mame0150b.exe'); ?><br/><?php release_mirror_link('150', 'mame0150b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0150.txt">whatsnew_0150.txt</a><br/><a href="releases/messnew_0150.txt">messnew_0150.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.149</td>
+				<td class="date"><?php release_mirror_directory('149'); ?></td>
 				<td class="date">11 Jun 2013</td>
-				<td class="link"><?php release_mirror_link('149', 'mame0149s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('149', 'mame0149b.exe'); ?><br/><?php release_mirror_link('149', 'mame0149b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('149', 'mame0149s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('149', 'mame0149b.exe'); ?><br/><?php release_mirror_link('149', 'mame0149b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0149.txt">whatsnew_0149.txt</a><br/><a href="releases/messnew_0149.txt">messnew_0149.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.148</td>
+				<td class="date"><?php release_mirror_directory('148'); ?></td>
 				<td class="date">11 Jan 2013</td>
-				<td class="link"><?php release_mirror_link('148', 'mame0148s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('148', 'mame0148b.exe'); ?><br/><?php release_mirror_link('148', 'mame0148b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('148', 'mame0148s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('148', 'mame0148b.exe'); ?><br/><?php release_mirror_link('148', 'mame0148b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0148.txt">whatsnew_0148.txt</a><br/><a href="releases/messnew_0148.txt">messnew_0148.txt</a></td>
 			</tr>
 		  </table>
@@ -666,24 +687,24 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.147</td>
+				<td class="date"><?php release_mirror_directory('147'); ?></td>
 				<td class="date">17 Sep 2012</td>
-				<td class="link"><?php release_mirror_link('147', 'mame0147s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('147', 'mame0147b.exe'); ?><br/><?php release_mirror_link('147', 'mame0147b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('147', 'mame0147s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('147', 'mame0147b.exe'); ?><br/><?php release_mirror_link('147', 'mame0147b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0147.txt">whatsnew_0147.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.146</td>
+				<td class="date"><?php release_mirror_directory('146'); ?></td>
 				<td class="date">21 May 2012</td>
-				<td class="link"><?php release_mirror_link('146', 'mame0146s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('146', 'mame0146b.exe'); ?><br/><?php release_mirror_link('146', 'mame0146b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('146', 'mame0146s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('146', 'mame0146b.exe'); ?><br/><?php release_mirror_link('146', 'mame0146b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0146.txt">whatsnew_0146.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.145</td>
+				<td class="date"><?php release_mirror_directory('145'); ?></td>
 				<td class="date">05 Feb 2012</td>
-				<td class="link"><?php release_mirror_link('145', 'mame0145s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('145', 'mame0145b.exe'); ?><br/><?php release_mirror_link('145', 'mame0145b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('145', 'mame0145s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('145', 'mame0145b.exe'); ?><br/><?php release_mirror_link('145', 'mame0145b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0145.txt">whatsnew_0145.txt</a></td>
 			</tr>
 		  </table>
@@ -703,24 +724,24 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.144</td>
+				<td class="date"><?php release_mirror_directory('144'); ?></td>
 				<td class="date">13 Nov 2011</td>
-				<td class="link"><?php release_mirror_link('144', 'mame0144s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('144', 'mame0144b.exe'); ?><br/><?php release_mirror_link('144', 'mame0144b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('144', 'mame0144s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('144', 'mame0144b.exe'); ?><br/><?php release_mirror_link('144', 'mame0144b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0144.txt">whatsnew_0144.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.143</td>
+				<td class="date"><?php release_mirror_directory('143'); ?></td>
 				<td class="date">28 Jun 2011</td>
-				<td class="link"><?php release_mirror_link('143', 'mame0143s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('143', 'mame0143b.exe'); ?><br/><?php release_mirror_link('143', 'mame0143b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('143', 'mame0143s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('143', 'mame0143b.exe'); ?><br/><?php release_mirror_link('143', 'mame0143b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0143.txt">whatsnew_0143.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.142</td>
+				<td class="date"><?php release_mirror_directory('142'); ?></td>
 				<td class="date">03 Apr 2011</td>
-				<td class="link"><?php release_mirror_link('142', 'mame0142s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('142', 'mame0142b.exe'); ?><br/><?php release_mirror_link('142', 'mame0142b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('142', 'mame0142s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('142', 'mame0142b.exe'); ?><br/><?php release_mirror_link('142', 'mame0142b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0142.txt">whatsnew_0142.txt</a></td>
 			</tr>
 		  </table>
@@ -741,38 +762,38 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.141</td>
+				<td class="date"><?php release_mirror_directory('141'); ?></td>
 				<td class="date">31 Dec 2010</td>
-				<td class="link"><?php release_mirror_link('141', 'mame0141s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('141', 'mame0141b.exe'); ?><br/><?php release_mirror_link('141', 'mame0141b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('141', 'mame0141s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('141', 'mame0141b.exe'); ?><br/><?php release_mirror_link('141', 'mame0141b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0141.txt">whatsnew_0141.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.140</td>
+				<td class="date"><?php release_mirror_directory('140'); ?></td>
 				<td class="date">21 Oct 2010</td>
-				<td class="link"><?php release_mirror_link('140', 'mame0140s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('140', 'mame0140b.exe'); ?><br/><?php release_mirror_link('140', 'mame0140b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('140', 'mame0140s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('140', 'mame0140b.exe'); ?><br/><?php release_mirror_link('140', 'mame0140b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0140.txt">whatsnew_0140.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.139</td>
+				<td class="date"><?php release_mirror_directory('139'); ?></td>
 				<td class="date">11 Aug 2010</td>
-				<td class="link"><?php release_mirror_link('139', 'mame0139s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('139', 'mame0139b.exe'); ?><br/><?php release_mirror_link('139', 'mame0139b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('139', 'mame0139s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('139', 'mame0139b.exe'); ?><br/><?php release_mirror_link('139', 'mame0139b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0139.txt">whatsnew_0139.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.138</td>
+				<td class="date"><?php release_mirror_directory('138'); ?></td>
 				<td class="date">15 May 2010</td>
-				<td class="link"><?php release_mirror_link('138', 'mame0138s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('138', 'mame0138b.exe'); ?><br/><?php release_mirror_link('138', 'mame0138b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('138', 'mame0138s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('138', 'mame0138b.exe'); ?><br/><?php release_mirror_link('138', 'mame0138b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0138.txt">whatsnew_0138.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.137</td>
+				<td class="date"><?php release_mirror_directory('137'); ?></td>
 				<td class="date">11 Mar 2010</td>
-				<td class="link"><?php release_mirror_link('137', 'mame0137s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('137', 'mame0137b.exe'); ?><br/><?php release_mirror_link('137', 'mame0137b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('137', 'mame0137s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('137', 'mame0137b.exe'); ?><br/><?php release_mirror_link('137', 'mame0137b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0137.txt">whatsnew_0137.txt</a></td>
 			</tr>
 		  </table>
@@ -792,59 +813,59 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.136</td>
+				<td class="date"><?php release_mirror_directory('136'); ?></td>
 				<td class="date">31 Dec 2009</td>
-				<td class="link"><?php release_mirror_link('136', 'mame0136s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('136', 'mame0136b.exe'); ?><br/><?php release_mirror_link('136', 'mame0136b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('136', 'mame0136s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('136', 'mame0136b.exe'); ?><br/><?php release_mirror_link('136', 'mame0136b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0136.txt">whatsnew_0136.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.135</td>
+				<td class="date"><?php release_mirror_directory('135'); ?></td>
 				<td class="date">31 Oct 2009</td>
-				<td class="link"><?php release_mirror_link('135', 'mame0135s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('135', 'mame0135b.exe'); ?><br/><?php release_mirror_link('135', 'mame0135b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('135', 'mame0135s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('135', 'mame0135b.exe'); ?><br/><?php release_mirror_link('135', 'mame0135b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0135.txt">whatsnew_0135.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.134</td>
+				<td class="date"><?php release_mirror_directory('134'); ?></td>
 				<td class="date">10 Sep 2009</td>
-				<td class="link"><?php release_mirror_link('134', 'mame0134s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('134', 'mame0134b.exe'); ?><br/><?php release_mirror_link('134', 'mame0134b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('134', 'mame0134s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('134', 'mame0134b.exe'); ?><br/><?php release_mirror_link('134', 'mame0134b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0134.txt">whatsnew_0134.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.133</td>
+				<td class="date"><?php release_mirror_directory('133'); ?></td>
 				<td class="date">20 Jul 2009</td>
-				<td class="link"><?php release_mirror_link('133', 'mame0133s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('133', 'mame0133b.exe'); ?><br/><?php release_mirror_link('133', 'mame0133b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('133', 'mame0133s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('133', 'mame0133b.exe'); ?><br/><?php release_mirror_link('133', 'mame0133b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0133.txt">whatsnew_0133.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.132</td>
+				<td class="date"><?php release_mirror_directory('132'); ?></td>
 				<td class="date">08 Jun 2009</td>
-				<td class="link"><?php release_mirror_link('132', 'mame0132s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('132', 'mame0132b.exe'); ?><br/><?php release_mirror_link('132', 'mame0132b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('132', 'mame0132s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('132', 'mame0132b.exe'); ?><br/><?php release_mirror_link('132', 'mame0132b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0132.txt">whatsnew_0132.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.131</td>
+				<td class="date"><?php release_mirror_directory('131'); ?></td>
 				<td class="date">23 April 2009</td>
-				<td class="link"><?php release_mirror_link('131', 'mame0131s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('131', 'mame0131b.exe'); ?><br/><?php release_mirror_link('131', 'mame0131b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('131', 'mame0131s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('131', 'mame0131b.exe'); ?><br/><?php release_mirror_link('131', 'mame0131b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0131.txt">whatsnew_0131.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.130</td>
+				<td class="date"><?php release_mirror_directory('130'); ?></td>
 				<td class="date">09 Mar 2009</td>
-				<td class="link"><?php release_mirror_link('130', 'mame0130s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('130', 'mame0130b.exe'); ?><br/><?php release_mirror_link('130', 'mame0130b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('130', 'mame0130s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('130', 'mame0130b.exe'); ?><br/><?php release_mirror_link('130', 'mame0130b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0130.txt">whatsnew_0130.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.129</td>
+				<td class="date"><?php release_mirror_directory('129'); ?></td>
 				<td class="date">04 Jan 2009</td>
-				<td class="link"><?php release_mirror_link('129', 'mame0129s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('129', 'mame0129b.exe'); ?><br/><?php release_mirror_link('129', 'mame0129b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('129', 'mame0129s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('129', 'mame0129b.exe'); ?><br/><?php release_mirror_link('129', 'mame0129b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0129.txt">whatsnew_0129.txt</a></td>
 			</tr>
 		  </table>
@@ -864,45 +885,45 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.128</td>
+				<td class="date"><?php release_mirror_directory('128'); ?></td>
 				<td class="date">16 Oct 2008</td>
-				<td class="link"><?php release_mirror_link('128', 'mame0128s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('128', 'mame0128b.exe'); ?><br/><?php release_mirror_link('128', 'mame0128b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('128', 'mame0128s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('128', 'mame0128b.exe'); ?><br/><?php release_mirror_link('128', 'mame0128b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0128.txt">whatsnew_0128.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.127</td>
+				<td class="date"><?php release_mirror_directory('127'); ?></td>
 				<td class="date">19 Aug 2008</td>
-				<td class="link"><?php release_mirror_link('127', 'mame0127s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('127', 'mame0127b.exe'); ?><br/><?php release_mirror_link('127', 'mame0127b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('127', 'mame0127s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('127', 'mame0127b.exe'); ?><br/><?php release_mirror_link('127', 'mame0127b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0127.txt">whatsnew_0127.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.126</td>
+				<td class="date"><?php release_mirror_directory('126'); ?></td>
 				<td class="date">06 Jul 2008</td>
-				<td class="link"><?php release_mirror_link('126', 'mame0126s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('126', 'mame0126b.exe'); ?><br/><?php release_mirror_link('126', 'mame0126b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('126', 'mame0126s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('126', 'mame0126b.exe'); ?><br/><?php release_mirror_link('126', 'mame0126b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0126.txt">whatsnew_0126.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.125</td>
+				<td class="date"><?php release_mirror_directory('125'); ?></td>
 				<td class="date">05 May 2008</td>
-				<td class="link"><?php release_mirror_link('125', 'mame0125s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('125', 'mame0125b.exe'); ?><br/><?php release_mirror_link('125', 'mame0125b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('125', 'mame0125s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('125', 'mame0125b.exe'); ?><br/><?php release_mirror_link('125', 'mame0125b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0125.txt">whatsnew_0125.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.124</td>
+				<td class="date"><?php release_mirror_directory('124'); ?></td>
 				<td class="date">23 Mar 2008</td>
-				<td class="link"><?php release_mirror_link('124', 'mame0124s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('124', 'mame0124b.exe'); ?><br/><?php release_mirror_link('124', 'mame0124b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('124', 'mame0124s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('124', 'mame0124b.exe'); ?><br/><?php release_mirror_link('124', 'mame0124b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0124.txt">whatsnew_0124.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.123</td>
+				<td class="date"><?php release_mirror_directory('123'); ?></td>
 				<td class="date">05 Feb 2008</td>
-				<td class="link"><?php release_mirror_link('123', 'mame0123s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('123', 'mame0123b.exe'); ?><br/><?php release_mirror_link('123', 'mame0123b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('123', 'mame0123s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('123', 'mame0123b.exe'); ?><br/><?php release_mirror_link('123', 'mame0123b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0123.txt">whatsnew_0123.txt</a></td>
 			</tr>
 		  </table>
@@ -922,80 +943,80 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.122</td>
+				<td class="date"><?php release_mirror_directory('122'); ?></td>
 				<td class="date">18 Dec 2007</td>
-				<td class="link"><?php release_mirror_link('122', 'mame0122s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('122', 'mame0122b.exe'); ?><br/><?php release_mirror_link('122', 'mame0122b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('122', 'mame0122s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('122', 'mame0122b.exe'); ?><br/><?php release_mirror_link('122', 'mame0122b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0122.txt">whatsnew_0122.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.121</td>
+				<td class="date"><?php release_mirror_directory('121'); ?></td>
 				<td class="date">18 Nov 2007</td>
-				<td class="link"><?php release_mirror_link('121', 'mame0121s.zip'); ?></td>
-				<td class="link"><?php release_mirror_link('121', 'mame0121b.exe'); ?><br/><?php release_mirror_link('121', 'mame0121b_64bit.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('121', 'mame0121s.zip'); ?></td>
+				<td class="link"><?php release_mirror_file('121', 'mame0121b.exe'); ?><br/><?php release_mirror_link('121', 'mame0121b_64bit.exe'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0121.txt">whatsnew_0121.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.120</td>
+				<td class="date"><?php release_mirror_directory('120', 'historic-mame'); ?></td>
 				<td class="date">15 Oct 2007</td>
-				<td class="link"><?php release_mirror_link('120', 'mame0120s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('120', 'mame0120b.exe', 'historic-mame'); ?><br/><?php release_mirror_link('120', 'mame0120b_64bit.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('120', 'mame0120s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('120', 'mame0120b.exe', 'historic-mame'); ?><br/><?php release_mirror_link('120', 'mame0120b_64bit.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0120.txt">whatsnew_0120.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.119</td>
+				<td class="date"><?php release_mirror_directory('119', 'historic-mame'); ?></td>
 				<td class="date">13 Sep 2007</td>
-				<td class="link"><?php release_mirror_link('119', 'mame0119s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('119', 'mame0119b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('119', 'mame0119s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('119', 'mame0119b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0119.txt">whatsnew_0119.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.118</td>
+				<td class="date"><?php release_mirror_directory('118', 'historic-mame'); ?></td>
 				<td class="date">5 Aug 2007</td>
-				<td class="link"><?php release_mirror_link('118', 'mame0118s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('118', 'mame0118b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('118', 'mame0118s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('118', 'mame0118b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0118.txt">whatsnew_0118.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.117</td>
+				<td class="date"><?php release_mirror_directory('117', 'historic-mame'); ?></td>
 				<td class="date">10 Jul 2007</td>
-				<td class="link"><?php release_mirror_link('117', 'mame0117s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('117', 'mame0117b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('117', 'mame0117s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('117', 'mame0117b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0117.txt">whatsnew_0117.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.116</td>
+				<td class="date"><?php release_mirror_directory('116', 'historic-mame'); ?></td>
 				<td class="date">10 Jun 2007</td>
-				<td class="link"><?php release_mirror_link('116', 'mame0116s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('116', 'mame0116b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('116', 'mame0116s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('116', 'mame0116b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0116.txt">whatsnew_0116.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.115</td>
+				<td class="date"><?php release_mirror_directory('115', 'historic-mame'); ?></td>
 				<td class="date">06 May 2007</td>
-				<td class="link"><?php release_mirror_link('115', 'mame0115s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('115', 'mame0115b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('115', 'mame0115s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('115', 'mame0115b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0115.txt">whatsnew_0115.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.114</td>
+				<td class="date"><?php release_mirror_directory('114', 'historic-mame'); ?></td>
 				<td class="date">02 Apr 2007</td>
-				<td class="link"><?php release_mirror_link('114', 'mame0114s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('114', 'mame0114b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('114', 'mame0114s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('114', 'mame0114b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0114.txt">whatsnew_0114.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.113</td>
+				<td class="date"><?php release_mirror_directory('113', 'historic-mame'); ?></td>
 				<td class="date">05 Mar 2007</td>
-				<td class="link"><?php release_mirror_link('113', 'mame0113s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('113', 'mame0113b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('113', 'mame0113s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('113', 'mame0113b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0113.txt">whatsnew_0113.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.112</td>
+				<td class="date"><?php release_mirror_directory('112', 'historic-mame'); ?></td>
 				<td class="date">05 Feb 2007</td>
-				<td class="link"><?php release_mirror_link('112', 'mame0112s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('112', 'mame0112b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('112', 'mame0112s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('112', 'mame0112b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0112.txt">whatsnew_0112.txt</a></td>
 			</tr>
 		  </table>
@@ -1015,59 +1036,59 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.111</td>
+				<td class="date"><?php release_mirror_directory('111', 'historic-mame'); ?></td>
 				<td class="date">10 Dec 2006</td>
-				<td class="link"><?php release_mirror_link('111', 'mame0111s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('111', 'mame0111b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('111', 'mame0111s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('111', 'mame0111b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0111.txt">whatsnew_0111.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.110</td>
+				<td class="date"><?php release_mirror_directory('110', 'historic-mame'); ?></td>
 				<td class="date">05 Nov 2006</td>
-				<td class="link"><?php release_mirror_link('110', 'mame0110s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('110', 'mame0110b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('110', 'mame0110s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('110', 'mame0110b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0110.txt">whatsnew_0110.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.109</td>
+				<td class="date"><?php release_mirror_directory('109', 'historic-mame'); ?></td>
 				<td class="date">26 Sep 2006</td>
-				<td class="link"><?php release_mirror_link('109', 'mame0109s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('109', 'mame0109b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('109', 'mame0109s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('109', 'mame0109b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0109.txt">whatsnew_0109.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.108</td>
+				<td class="date"><?php release_mirror_directory('108', 'historic-mame'); ?></td>
 				<td class="date">20 Aug 2006</td>
-				<td class="link"><?php release_mirror_link('108', 'mame0108s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('108', 'mame0108b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('108', 'mame0108s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('108', 'mame0108b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0108.txt">whatsnew_0108.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.107</td>
+				<td class="date"><?php release_mirror_directory('107', 'historic-mame'); ?></td>
 				<td class="date">23 Jul 2006</td>
-				<td class="link"><?php release_mirror_link('107', 'mame0107s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('107', 'mame0107b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('107', 'mame0107s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('107', 'mame0107b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0107.txt">whatsnew_0107.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.106</td>
+				<td class="date"><?php release_mirror_directory('106', 'historic-mame'); ?></td>
 				<td class="date">13 May 2006</td>
-				<td class="link"><?php release_mirror_link('106', 'mame0106s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('106', 'mame0106b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('106', 'mame0106s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('106', 'mame0106b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0106.txt">whatsnew_0106.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.105</td>
+				<td class="date"><?php release_mirror_directory('105', 'historic-mame'); ?></td>
 				<td class="date">04 Apr 2006</td>
-				<td class="link"><?php release_mirror_link('105', 'mame0105s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('105', 'mame0105b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('105', 'mame0105s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('105', 'mame0105b.exe', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0105.txt">whatsnew_0105.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.104</td>
+				<td class="date"><?php release_mirror_directory('104', 'historic-mame'); ?></td>
 				<td class="date">05 Feb 2006</td>
-				<td class="link"><?php release_mirror_link('104', 'mame0104s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('104', 'mame0104b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('104', 'mame0104s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('104', 'mame0104b.zip', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0104.txt">whatsnew_0104.txt</a></td>
 			</tr>
 		  </table>
@@ -1087,121 +1108,101 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.103</td>
+				<td class="date"><?php release_mirror_directory('103', 'historic-mame'); ?></td>
 				<td class="date">30 Dec 2005</td>
-				<td class="link"><?php release_mirror_link('103', 'mame0103s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('103', 'mame0103b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('103', 'mame0103s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('103', 'mame0103b.zip', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0103.txt">whatsnew_0103.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.102</td>
+				<td class="date"><?php release_mirror_directory('102', 'historic-mame'); ?></td>
 				<td class="date">14 Nov 2005</td>
-				<td class="link"><?php release_mirror_link('102', 'mame0102s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('102', 'mame0102b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('102', 'mame0102s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('102', 'mame0102b.zip', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0102.txt">whatsnew_0102.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.101</td>
+				<td class="date"><?php release_mirror_directory('101', 'historic-mame'); ?></td>
 				<td class="date">09 Oct 2005</td>
-				<td class="link"><?php release_mirror_link('101', 'mame0101s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('101', 'mame0101b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('101', 'mame0101s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('101', 'mame0101b.zip', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0101.txt">whatsnew_0101.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.100</td>
+				<td class="date"><?php release_mirror_directory('100', 'historic-mame'); ?></td>
 				<td class="date">14 Sep 2005</td>
-				<td class="link"><?php release_mirror_link('100', 'mame0100s.zip', 'historic-mame'); ?></td>
-				<td class="link"><?php release_mirror_link('100', 'mame0100b.exe', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('100', 'mame0100s.zip', 'historic-mame'); ?></td>
+				<td class="link"><?php release_mirror_file('100', 'mame0100b.zip', 'historic-mame'); ?></td>
 				<td class="link"><a href="releases/whatsnew_0100.txt">whatsnew_0100.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.99</td>
+				<td class="date"><?php ancient_mirror_directory('99'); ?></td>
 				<td class="date">06 Aug 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame099/mame099s.zip">mame099s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame099s.zip">mame099s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame099/mame099b.zip">mame099b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame099b.zip">mame099b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('99', 'mame099s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('99', 'mame099b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_099.txt">whatsnew_099.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.98</td>
+				<td class="date"><?php ancient_mirror_directory('98'); ?></td>
 				<td class="date">10 Jul 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame098/mame098s.zip">mame098s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame098s.zip">mame098s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame098/mame098b.zip">mame098b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame098b.zip">mame098b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('98', 'mame098s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('98', 'mame098b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_098.txt">whatsnew_098.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.97</td>
+				<td class="date"><?php ancient_mirror_directory('97'); ?></td>
 				<td class="date">02 Jun 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame097/mame097s.zip">mame097s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame097s.zip">mame097s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame097/mame097b.zip">mame097b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame097b.zip">mame097b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('97', 'mame097s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('97', 'mame097b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_097.txt">whatsnew_097.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.96</td>
+				<td class="date"><?php ancient_mirror_directory('96'); ?></td>
 				<td class="date">03 May 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame096/mame096s.zip">mame096s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame096s.zip">mame096s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame096/mame096b.zip">mame096b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame096b.zip">mame096b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('96', 'mame096s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('96', 'mame096b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_096.txt">whatsnew_096.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.95</td>
+				<td class="date"><?php ancient_mirror_directory('95'); ?></td>
 				<td class="date">27 Mar 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame095/mame095s.zip">mame095s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame095s.zip">mame095s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame095/mame095b.zip">mame095b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame095b.zip">mame095b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('95', 'mame095s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('95', 'mame095b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_095.txt">whatsnew_095.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.94</td>
+				<td class="date"><?php ancient_mirror_directory('94'); ?></td>
 				<td class="date">06 Mar 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame094/mame094s.zip">mame094s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame094s.zip">mame094s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame094/mame094b.zip">mame094b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame094b.zip">mame094b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('94', 'mame094s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('94', 'mame094b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_094.txt">whatsnew_094.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.93</td>
+				<td class="date"><?php ancient_mirror_directory('93'); ?></td>
 				<td class="date">27 Feb 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame093/mame093s.zip">mame093s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame093s.zip">mame093s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame093/mame093b.zip">mame093b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame093b.zip">mame093b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('93', 'mame093s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('93', 'mame093b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_093.txt">whatsnew_093.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.92</td>
+				<td class="date"><?php ancient_mirror_directory('92'); ?></td>
 				<td class="date">13 Feb 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame092/mame092s.zip">mame092s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame092s.zip">mame092s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame092/mame092b.zip">mame092b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame092b.zip">mame092b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('92', 'mame092s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('92', 'mame092b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_092.txt">whatsnew_092.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.91</td>
+				<td class="date"><?php ancient_mirror_directory('91'); ?></td>
 				<td class="date">29 Jan 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame091/mame091s.zip">mame091s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame091s.zip">mame091s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame091/mame091b.zip">mame091b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame091b.zip">mame091b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('91', 'mame091s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('91', 'mame091b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_091.txt">whatsnew_091.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.90</td>
+				<td class="date"><?php ancient_mirror_directory('90'); ?></td>
 				<td class="date">04 Jan 2005</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame090/mame090s.zip">mame090s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame090s.zip">mame090s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame090/mame090b.zip">mame090b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame090b.zip">mame090b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('90', 'mame090s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('90', 'mame090b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_090.txt">whatsnew_090.txt</a></td>
 			</tr>
 		  </table>
@@ -1213,112 +1214,90 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2004 MAME Releases</div>
 		  <table class="table">
-		<tr>
-			<th width="16%">Version</th>
-			<th width="15%">Date</th>
-			<th width="23%">Source</th>
-			<th width="23%">Binary (Windows)</th>
-			<th width="23%">Whatsnew</th>
-		</tr>
-		<tr>
-			<td class="date">0.89</td>
-			<td class="date">24 Nov 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame089/mame089s.zip">mame089s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame089s.zip">mame089s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame089/mame089b.zip">mame089b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame089b.zip">mame089b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_089.txt">whatsnew_089.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.88</td>
-			<td class="date">24 Oct 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame088/mame088s.zip">mame088s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame088s.zip">mame088s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame088/mame088b.zip">mame088b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame088b.zip">mame088b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_088.txt">whatsnew_088.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.87</td>
-			<td class="date">21 Sep 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame087/mame087s.zip">mame087s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame087s.zip">mame087s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame087/mame087b.zip">mame087b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame087b.zip">mame087b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_087.txt">whatsnew_087.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.86</td>
-			<td class="date">22 Aug 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame086/mame086s.zip">mame086s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame086s.zip">mame086s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame086/mame086b.zip">mame086b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame086b.zip">mame086b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_086.txt">whatsnew_086.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.85</td>
-			<td class="date">07 Aug 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame085/mame085s.zip">mame085s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame085s.zip">mame085s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame085/mame085b.zip">mame085b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame085b.zip">mame085b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_085.txt">whatsnew_085.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.84</td>
-			<td class="date">02 Jul 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame084/mame084s.zip">mame084s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame084s.zip">mame084s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame084/mame084b.zip">mame084b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame084b.zip">mame084b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_084.txt">whatsnew_084.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.83</td>
-			<td class="date">05 Jun 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame083/mame083s.zip">mame083s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame083s.zip">mame083s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame083/mame083b.zip">mame083b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame083b.zip">mame083b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_083.txt">whatsnew_083.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.82</td>
-			<td class="date">06 May 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame082/mame082s.zip">mame082s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame082s.zip">mame082s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame082/mame082b.zip">mame082b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame082b.zip">mame082b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_082.txt">whatsnew_082.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.81</td>
-			<td class="date">01 Apr 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame081/mame081s.zip">mame081s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame081s.zip">mame081s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame081/mame081b.zip">mame081b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame081b.zip">mame081b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_081.txt">whatsnew_081.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.80</td>
-			<td class="date">06 Mar 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame080/mame080s.zip">mame080s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame080s.zip">mame080s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame080/mame080b.zip">mame080b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame080b.zip">mame080b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_080.txt">whatsnew_080.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.79</td>
-			<td class="date">28 Jan 2004</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame079/mame079s.zip">mame079s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame079s.zip">mame079s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame079/mame079b.zip">mame079b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame079b.zip">mame079b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_079.txt">whatsnew_079.txt</a></td>
-		</tr>
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('89'); ?></td>
+				<td class="date">24 Nov 2004</td>
+				<td class="link"><?php ancient_mirror_file('89', 'mame089s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('89', 'mame089b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_089.txt">whatsnew_089.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('88'); ?></td>
+				<td class="date">24 Oct 2004</td>
+				<td class="link"><?php ancient_mirror_file('88', 'mame088s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('88', 'mame088b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_088.txt">whatsnew_088.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('87'); ?></td>
+				<td class="date">21 Sep 2004</td>
+				<td class="link"><?php ancient_mirror_file('87', 'mame087s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('87', 'mame087b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_087.txt">whatsnew_087.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('86'); ?></td>
+				<td class="date">22 Aug 2004</td>
+				<td class="link"><?php ancient_mirror_file('86', 'mame086s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('86', 'mame086b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_086.txt">whatsnew_086.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('85'); ?></td>
+				<td class="date">07 Aug 2004</td>
+				<td class="link"><?php ancient_mirror_file('85', 'mame085s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('85', 'mame085b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_085.txt">whatsnew_085.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('84'); ?></td>
+				<td class="date">02 Jul 2004</td>
+				<td class="link"><?php ancient_mirror_file('84', 'mame084s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('84', 'mame084b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_084.txt">whatsnew_084.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('83'); ?></td>
+				<td class="date">05 Jun 2004</td>
+				<td class="link"><?php ancient_mirror_file('83', 'mame083s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('83', 'mame083b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_083.txt">whatsnew_083.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('82'); ?></td>
+				<td class="date">06 May 2004</td>
+				<td class="link"><?php ancient_mirror_file('82', 'mame082s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('82', 'mame082b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_082.txt">whatsnew_082.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('81'); ?></td>
+				<td class="date">01 Apr 2004</td>
+				<td class="link"><?php ancient_mirror_file('81', 'mame081s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('81', 'mame081b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_081.txt">whatsnew_081.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('80'); ?></td>
+				<td class="date">06 Mar 2004</td>
+				<td class="link"><?php ancient_mirror_file('80', 'mame080s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('80', 'mame080b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_080.txt">whatsnew_080.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('79'); ?></td>
+				<td class="date">28 Jan 2004</td>
+				<td class="link"><?php ancient_mirror_file('79', 'mame079s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('79', 'mame079b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_079.txt">whatsnew_079.txt</a></td>
+			</tr>
 		  </table>
 		  <div class="panel-footer">
 			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
@@ -1328,227 +1307,183 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2003 MAME Releases</div>
 		  <table class="table">
-		<tr>
-			<th width="16%">Version</th>
-			<th width="15%">Date</th>
-			<th width="23%">Source</th>
-			<th width="23%">Binary (Windows)</th>
-			<th width="23%">Whatsnew</th>
-		</tr>
-		<tr>
-			<td class="date">0.78</td>
-			<td class="date">25 Dec 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame078/mame078s.zip">mame078s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame078s.zip">mame078s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame078/mame078b.zip">mame078b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame078b.zip">mame078b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_078.txt">whatsnew_078.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.77</td>
-			<td class="date">11 Nov 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame077/mame077s.zip">mame077s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame077s.zip">mame077s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame077/mame077b.zip">mame077b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame077b.zip">mame077b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_077.txt">whatsnew_077.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.76</td>
-			<td class="date">19 Oct 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame076/mame076s.zip">mame076s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame076s.zip">mame076s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame076/mame076b.zip">mame076b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame076b.zip">mame076b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_076.txt">whatsnew_076.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.75</td>
-			<td class="date">12 Oct 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame075/mame075s.zip">mame075s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame075s.zip">mame075s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame075/mame075b.zip">mame075b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame075b.zip">mame075b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_075.txt">whatsnew_075.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.74</td>
-			<td class="date">14 Sep 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame074/mame074s.zip">mame074s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame074s.zip">mame074s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame074/mame074b.zip">mame074b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame074b.zip">mame074b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_074.txt">whatsnew_074.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.73</td>
-			<td class="date">03 Sep 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame073/mame073s.zip">mame073s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame073s.zip">mame073s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame073/mame073b.zip">mame073b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame073b.zip">mame073b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_073.txt">whatsnew_073.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.72</td>
-			<td class="date">09 Aug 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame072/mame072s.zip">mame072s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame072s.zip">mame072s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame072/mame072b.zip">mame072b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame072b.zip">mame072b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_072.txt">whatsnew_072.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.71</td>
-			<td class="date">04 Jul 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame071/mame071s.zip">mame071s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame071s.zip">mame071s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame071/mame071b.zip">mame071b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame071b.zip">mame071b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_071.txt">whatsnew_071.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.70</td>
-			<td class="date">11 Jun 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame070/mame070s.zip">mame070s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame070s.zip">mame070s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame070/mame070b.zip">mame070b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame070b.zip">mame070b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_070.txt">whatsnew_070.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.69</td>
-			<td class="date">23 May 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame069/mame069s.zip">mame069s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame069s.zip">mame069s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame069/mame069b.zip">mame069b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame069b.zip">mame069b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_069.txt">whatsnew_069.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.68</td>
-			<td class="date">15 May 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame068/mame068s.zip">mame068s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame068s.zip">mame068s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame068/mame068b.zip">mame068b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame068b.zip">mame068b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_068.txt">whatsnew_068.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.67</td>
-			<td class="date">06 Apr 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame067/mame067s.zip">mame067s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame067s.zip">mame067s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame067/mame067b.zip">mame067b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame067b.zip">mame067b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_067.txt">whatsnew_067.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.66</td>
-			<td class="date">10 Mar 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame066/mame066s.zip">mame066s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame066s.zip">mame066s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame066/mame066b.zip">mame066b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame066b.zip">mame066b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_066.txt">whatsnew_066.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.65</td>
-			<td class="date">10 Feb 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame065/mame065s.zip">mame065s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame065s.zip">mame065s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame065/mame065b.zip">mame065b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame065b.zip">mame065b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_065.txt">whatsnew_065.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.64</td>
-			<td class="date">26 Jan 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame064/mame064s.zip">mame064s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame064s.zip">mame064s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame064/mame064b.zip">mame064b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame064b.zip">mame064b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_064.txt">whatsnew_064.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.63</td>
-			<td class="date">12 Jan 2003</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame063/mame063s.zip">mame063s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame063s.zip">mame063s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame063/mame063b.zip">mame063b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame063b.zip">mame063b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_063.txt">whatsnew_063.txt</a></td>
-		</tr>
-		  </table>
-		  <div class="panel-footer">
-			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('78'); ?></td>
+				<td class="date">25 Dec 2003</td>
+				<td class="link"><?php ancient_mirror_file('78', 'mame078s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('78', 'mame078b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_078.txt">whatsnew_078.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('77'); ?></td>
+				<td class="date">11 Nov 2003</td>
+				<td class="link"><?php ancient_mirror_file('77', 'mame077s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('77', 'mame077b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_077.txt">whatsnew_077.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('76'); ?></td>
+				<td class="date">19 Oct 2003</td>
+				<td class="link"><?php ancient_mirror_file('76', 'mame076s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('76', 'mame076b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_076.txt">whatsnew_076.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('75'); ?></td>
+				<td class="date">12 Oct 2003</td>
+				<td class="link"><?php ancient_mirror_file('75', 'mame075s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('75', 'mame075b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_075.txt">whatsnew_075.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('74'); ?></td>
+				<td class="date">14 Sep 2003</td>
+				<td class="link"><?php ancient_mirror_file('74', 'mame074s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('74', 'mame074b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_074.txt">whatsnew_074.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('73'); ?></td>
+				<td class="date">03 Sep 2003</td>
+				<td class="link"><?php ancient_mirror_file('73', 'mame073s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('73', 'mame073b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_073.txt">whatsnew_073.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('72'); ?></td>
+				<td class="date">09 Aug 2003</td>
+				<td class="link"><?php ancient_mirror_file('72', 'mame072s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('72', 'mame072b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_072.txt">whatsnew_072.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('71'); ?></td>
+				<td class="date">04 Jul 2003</td>
+				<td class="link"><?php ancient_mirror_file('71', 'mame071s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('71', 'mame071b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_071.txt">whatsnew_071.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('70'); ?></td>
+				<td class="date">11 Jun 2003</td>
+				<td class="link"><?php ancient_mirror_file('70', 'mame070s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('70', 'mame070b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_070.txt">whatsnew_070.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('69'); ?></td>
+				<td class="date">23 May 2003</td>
+				<td class="link"><?php ancient_mirror_file('69', 'mame069s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('69', 'mame069b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_069.txt">whatsnew_069.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('68'); ?></td>
+				<td class="date">15 May 2003</td>
+				<td class="link"><?php ancient_mirror_file('68', 'mame068s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('68', 'mame068b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_068.txt">whatsnew_068.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('67'); ?></td>
+				<td class="date">06 Apr 2003</td>
+				<td class="link"><?php ancient_mirror_file('67', 'mame067s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('67', 'mame067b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_067.txt">whatsnew_067.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('66'); ?></td>
+				<td class="date">10 Mar 2003</td>
+				<td class="link"><?php ancient_mirror_file('66', 'mame066s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('66', 'mame066b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_066.txt">whatsnew_066.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('65'); ?></td>
+				<td class="date">10 Feb 2003</td>
+				<td class="link"><?php ancient_mirror_file('65', 'mame065s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('65', 'mame065b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_065.txt">whatsnew_065.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('64'); ?></td>
+				<td class="date">26 Jan 2003</td>
+				<td class="link"><?php ancient_mirror_file('64', 'mame064s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('64', 'mame064b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_064.txt">whatsnew_064.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('63'); ?></td>
+				<td class="date">12 Jan 2003</td>
+				<td class="link"><?php ancient_mirror_file('63', 'mame063s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('63', 'mame063b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_063.txt">whatsnew_063.txt</a></td>
+			</tr>
+			  </table>
+			  <div class="panel-footer">
+				<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
 		  </div>
 		</div>
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2002 MAME Releases</div>
 		  <table class="table">
-		<tr>
-			<th width="16%">Version</th>
-			<th width="15%">Date</th>
-			<th width="23%">Source</th>
-			<th width="23%">Binary (Windows)</th>
-			<th width="23%">Whatsnew</th>
-		</tr>
-		<tr>
-			<td class="date">0.62</td>
-			<td class="date">12 Nov 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame062/mame062s.zip">mame062s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame062s.zip">mame062s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame062/mame062b.zip">mame062b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame062b.zip">mame062b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_062.txt">whatsnew_062.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.61</td>
-			<td class="date">04 Jul 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame061/mame061s.zip">mame061s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame061s.zip">mame061s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame061/mame061b.zip">mame061b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame061b.zip">mame061b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_061.txt">whatsnew_061.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.60</td>
-			<td class="date">01 May 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame060/mame060s.zip">mame060s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame060s.zip">mame060s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame060/mame060b.zip">mame060b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame060b.zip">mame060b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_060.txt">whatsnew_060.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.59</td>
-			<td class="date">22 Mar 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame059/mame059s.zip">mame059s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame059s.zip">mame059s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame059/mame059b.zip">mame059b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame059b.zip">mame059b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_059.txt">whatsnew_059.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.58</td>
-			<td class="date">05 Feb 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame058/mame058s.zip">mame058s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame058s.zip">mame058s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame058/mame058b.zip">mame058b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame058b.zip">mame058b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_058.txt">whatsnew_058.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.57</td>
-			<td class="date">01 Jan 2002</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame057/mame057s.zip">mame057s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame057s.zip">mame057s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame057/mame057b.zip">mame057b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame057b.zip">mame057b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_057.txt">whatsnew_057.txt</a></td>
-		</tr>
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('62'); ?></td>
+				<td class="date">12 Nov 2002</td>
+				<td class="link"><?php ancient_mirror_file('62', 'mame062s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('62', 'mame062b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_062.txt">whatsnew_062.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('61'); ?></td>
+				<td class="date">04 Jul 2002</td>
+				<td class="link"><?php ancient_mirror_file('61', 'mame061s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('61', 'mame061b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_061.txt">whatsnew_061.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('60'); ?></td>
+				<td class="date">01 May 2002</td>
+				<td class="link"><?php ancient_mirror_file('60', 'mame060s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('60', 'mame060b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_060.txt">whatsnew_060.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('59'); ?></td>
+				<td class="date">22 Mar 2002</td>
+				<td class="link"><?php ancient_mirror_file('59', 'mame059s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('59', 'mame059b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_059.txt">whatsnew_059.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('58'); ?></td>
+				<td class="date">05 Feb 2002</td>
+				<td class="link"><?php ancient_mirror_file('58', 'mame058s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('58', 'mame058b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_058.txt">whatsnew_058.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('57'); ?></td>
+				<td class="date">01 Jan 2002</td>
+				<td class="link"><?php ancient_mirror_file('57', 'mame057s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('57', 'mame057b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_057.txt">whatsnew_057.txt</a></td>
+			</tr>
 		  </table>
 		  <div class="panel-footer">
 			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
@@ -1558,67 +1493,59 @@ function release_mirror_link($version, $filename, $githubrepo = 'mame')
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2001 MAME Releases</div>
 		  <table class="table">
-		<tr>
-			<th width="16%">Version</th>
-			<th width="15%">Date</th>
-			<th width="23%">Source</th>
-			<th width="23%">Binary (Windows)</th>
-			<th width="23%">Whatsnew</th>
-		</tr>
-		<tr>
-			<td class="date">0.56</td>
-			<td class="date">01 Nov 2001</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame056/mame056s.zip">mame056s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame056s.zip">mame056s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame056/mame056b.zip">mame056b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame056b.zip">mame056b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_056.txt">whatsnew_056.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.55</td>
-			<td class="date">17 Sep 2001</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame055/mame055s.zip">mame055s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame055s.zip">mame055s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame055/mame055b.zip">mame055b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame055b.zip">mame055b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_055.txt">whatsnew_055.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.54</td>
-			<td class="date">24 Aug 2001</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame054/mame054s.zip">mame054s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame054s.zip">mame054s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame054/mame054b.zip">mame054b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame054b.zip">mame054b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_054.txt">whatsnew_054.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.53</td>
-			<td class="date">12 Aug 2001</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame053/mame053s.zip">mame053s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame053s.zip">mame053s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame053/mame053b.zip">mame053b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame053b.zip">mame053b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_053.txt">whatsnew_053.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.37b16 (0.52)</td>
-			<td class="date">02 Jul 2001</td>
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('56'); ?></td>
+				<td class="date">01 Nov 2001</td>
+				<td class="link"><?php ancient_mirror_file('56', 'mame056s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('56', 'mame056b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_056.txt">whatsnew_056.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('55'); ?></td>
+				<td class="date">17 Sep 2001</td>
+				<td class="link"><?php ancient_mirror_file('55', 'mame055s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('55', 'mame055b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_055.txt">whatsnew_055.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('54'); ?></td>
+				<td class="date">24 Aug 2001</td>
+				<td class="link"><?php ancient_mirror_file('54', 'mame054s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('54', 'mame054b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_054.txt">whatsnew_054.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date"><?php ancient_mirror_directory('53'); ?></td>
+				<td class="date">12 Aug 2001</td>
+				<td class="link"><?php ancient_mirror_file('53', 'mame053s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('53', 'mame053b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_053.txt">whatsnew_053.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date">0.37b16 (0.52)</td>
+				<td class="date">02 Jul 2001</td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b16/m37b16s.zip">m37b16s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m37b16s.zip">m37b16s.zip</a></td>
+				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m37b16s.zip">m37b16s.zip</a></td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b16/m37b16b.zip">m37b16b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/m37b16b.zip">m37b16b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_037b16.txt">whatsnew_037b16.txt</a></td>
-		</tr>
-		<tr>
-			<td class="date">0.37b15 (0.51)</td>
-			<td class="date">24 May 2001</td>
+				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/m37b16b.zip">m37b16b.zip</a></td>
+				<td class="link"><a href="releases/whatsnew_037b16.txt">whatsnew_037b16.txt</a></td>
+			</tr>
+			<tr>
+				<td class="date">0.37b15 (0.51)</td>
+				<td class="date">24 May 2001</td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b15/m37b15s.zip">m37b15s.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m37b15s.zip">m37b15s.zip</a></td>
+				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/m37b15s.zip">m37b15s.zip</a></td>
 <!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame037b15/m37b15b.zip">m37b15b.zip</a></td>-->
-			<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/m37b15b.zip">m37b15b.zip</a></td>
-			<td class="link"><a href="releases/whatsnew_037b15.txt">whatsnew_037b15.txt</a></td>
-		</tr>
+				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/m37b15b.zip">m37b15b.zip</a></td>
+				<td class="link"><a href="releases/whatsnew_037b15.txt">whatsnew_037b15.txt</a></td>
+			</tr>
 		  </table>
 		  <div class="panel-footer">
 			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>

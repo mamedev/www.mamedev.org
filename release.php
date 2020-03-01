@@ -50,15 +50,19 @@ foreach ($response->assets as $asset) {
 				$source_exe_size = safe_filesize($asset->size);
 				$source_exe_dc = $asset->download_count;
 				break;
-		case $source_zip:
-				$source_zip_size = safe_filesize($asset->size);
-				$source_zip_dc = $asset->download_count;
-				break;
 		case $binary_64bit:
 				$binary_64bit_size = safe_filesize($asset->size);
 				$binary_64bit_dc = $asset->download_count;
 				break;
 	}
+}
+
+function release_mirror_file($filename)
+{
+	if (true)
+		echo '<a href="https://github.com/mamedev/mame/releases/download/mame0' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+	else
+		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
 }
 
 $title = 'MAME | Latest MAME Release';
@@ -95,19 +99,13 @@ $title = 'MAME | Latest MAME Release';
 				<th width="12%">Downloads</th>
 			</tr>
 			<tr>
-				<td class="link">
-				<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $binary_64bit ?>">
-				<?php echo $binary_64bit ?>
-				</a></td>
+				<td class="link"><?php release_mirror_file($binary_64bit); ?></td>
 				<td class="number"><?php echo $binary_64bit_size ?></td>
 				<td>MAME 0.<?php echo $version ?> 64-bit Windows command-line binaries.</td>
 				<td align="right"><span class="badge"><?php echo $binary_64bit_dc ?></span></td>
 			</tr>
 			<tr>
-				<td class="link">
-				<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $listxml ?>">
-				<?php echo $listxml ?>
-				</a></td>
+				<td class="link"><?php release_mirror_file($listxml); ?></td>
 				<td class="number"><?php echo $listxml_size ?></td>
 				<td>MAME 0.<?php echo $version ?> full driver information in XML format.</td>
 				<td align="right"><span class="badge"><?php echo $listxml_dc ?></span></td>
@@ -163,10 +161,7 @@ $title = 'MAME | Latest MAME Release';
 				<td align="right">&nbsp;</td>
 			</tr>
 			<tr>
-				<td class="link">
-				<a href="https://github.com/mamedev/mame/releases/download/<?php  echo 'mame0' . $version ?>/<?php echo $source_exe ?>">
-				<?php echo $source_exe ?>
-				</a></td>
+				<td class="link"><?php release_mirror_file($source_exe); ?></td>
 				<td class="number"><?php echo $source_exe_size ?></td>
 				<td>MAME 0.<?php echo $version ?> sources in self-extracting 7-Zip format (self-extracting on Windows, can be extracted with P7ZIP on other operating systems)</td>
 				<td align="right"><span class="badge"><?php echo $source_exe_dc ?></span></td>
