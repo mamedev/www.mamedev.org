@@ -37,11 +37,21 @@ function ancient_mirror_directory($version,  $title = NULL)
 		function mirrorclick(e)
 		{
 			e = e || window.event;
-			e = e.target || e.srcElement;
+			var elem = e.target || e.srcElement;
 			var attr = 'data-href-' + document.getElementById('select-mirror').selectedOptions[0].value;
-			if (e.hasAttribute(attr))
+			if (elem.hasAttribute(attr))
 			{
-				window.location.href = e.getAttribute(attr);
+				window.location.href = elem.getAttribute(attr);
+				if (e.cancelBubble != null)
+					e.cancelBubble = true;
+				if (e.stopPropagation)
+					e.stopPropagation();
+				if (e.preventDefault)
+					e.preventDefault();
+				if (window.event)
+					e.returnValue = false;
+				if (e.cancel != null)
+					e.cancel = true;
 				return false;
 			}
 			return true;
