@@ -3,37 +3,48 @@ $title = 'MAME | Previous Releases';
 
 function release_mirror_file($version, $filename, $githubrepo = 'mame')
 {
-	if (true)
-		echo '<a href="https://github.com/mamedev/' . htmlspecialchars($githubrepo) . '/releases/download/mame0' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
-	else
-		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+	$ghurl = htmlspecialchars('https://github.com/mamedev/' . $githubrepo . '/releases/download/mame0' . $version . '/' . $filename);
+	$sfurl = htmlspecialchars('https://sourceforge.net/projects/mame/files/mame/0.' . $version . '/' . $filename . '/download');
+	echo '<a href="' . $ghurl . '" onclick="mirrorclick()" data-href-gh="' . $ghurl . '" data-href-sf="' . $sfurl . '">' . htmlspecialchars($filename) . '</a>';
 }
 
 function ancient_mirror_file($version, $filename, $psdir)
 {
-	if (true)
-		echo '<a href="http://www.progettosnaps.net/MAME/' . htmlspecialchars($psdir) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
-	else
-		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/' . htmlspecialchars($filename) . '">' . htmlspecialchars($filename) . '</a>';
+	$sfurl = htmlspecialchars('https://sourceforge.net/projects/mame/files/mame/0.' . $version . '/' . $filename . '/download');
+	$psurl = htmlspecialchars('http://www.progettosnaps.net/MAME/' . $psdir . '/' . $filename);
+	echo '<a href="' . $sfurl . '" onclick="mirrorclick()" data-href-sf="' . $sfurl . '" data-href-ps="' . $psurl . '">' . htmlspecialchars($filename) . '</a>';
 }
 
 function release_mirror_directory($version, $githubrepo = 'mame')
 {
-	if (true)
-		echo '<a href="https://github.com/mamedev/' . htmlspecialchars($githubrepo) . '/releases/tag/mame0' . htmlspecialchars($version) . '">0.' . htmlspecialchars($version) . '</a>';
-	else
-		echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/">0.' . htmlspecialchars($version) . '</a>';
+	$ghurl = htmlspecialchars('https://github.com/mamedev/' . $githubrepo . '/releases/tag/mame0' . $version);
+	$sfurl = htmlspecialchars('https://sourceforge.net/projects/mame/files/mame/0.' . $version . '/');
+	echo '<a href="' . $ghurl . '" onclick="mirrorclick()" data-href-gh="' . $ghurl . '" data-href-sf="' . $sfurl . '">0.' . htmlspecialchars($version) . '</a>';
 }
 
 function ancient_mirror_directory($version,  $title = NULL)
 {
 	if ($title === NULL)
 		$title = '0.' . $version;
-	echo '<a href="https://sourceforge.net/projects/mame/files/mame/0.' . htmlspecialchars($version) . '/">' . htmlspecialchars($title) . '</a>';
+	$sfurl = htmlspecialchars('https://sourceforge.net/projects/mame/files/mame/0.' . $version . '/');
+	echo '<a href="' . $sfurl . '" data-href-sf="' . $sfurl . '">' . htmlspecialchars($title) . '</a>';
 }
 
 ?>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
+
+	<script type="text/javascript">
+		function mirrorclick(e)
+		{
+			e = e || window.event;
+			e = e.target || e.srcElement;
+			var attr = 'data-href-' + document.getElementById('select-mirror').selectedOptions[0].value;
+			if (e.hasAttribute(attr))
+			{
+			}
+			return true;
+		}
+	</script>
 
     <!-- Page Content -->
     <div class="container">
@@ -47,6 +58,8 @@ function ancient_mirror_directory($version,  $title = NULL)
 		at the <a href="http://www.progettosnaps.net/mess/repository/">MESS Repository</a>.  MAME
 		releases are available at <a href="https://github.com/mamedev/mame/releases">GitHub</a> and
 		<a href="https://sourceforge.net/projects/mame/files/mame/">SourceForge</a>.</p>
+
+		<p style="display: none">Preferred mirror: <select id="select-mirror"><option value="gh" selected>GitHub</option><option value="sf">SourceForge</option><option value="ps">Progetto-Snaps</option></select></p>
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2020 MAME Releases</div>
@@ -2143,295 +2156,235 @@ function ancient_mirror_directory($version,  $title = NULL)
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
-				<td class="date">0.29</td>
+				<td class="date"><?php ancient_mirror_directory('29'); ?></td>
 				<td class="date">20 Oct 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame029/mame029s.zip">mame029s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame029s.zip">mame029s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame029/mame029b.zip">mame029b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame029b.zip">mame029b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('29', 'mame029s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('29', 'mame029b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_029.txt">whatsnew_029.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.28</td>
+				<td class="date"><?php ancient_mirror_directory('28'); ?></td>
 				<td class="date">07 Sep 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame028/mame028s.zip">mame028s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame028s.zip">mame028s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame028/mame028b.zip">mame028b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame028b.zip">mame028b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('28', 'mame028s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('28', 'mame028b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_028.txt">whatsnew_028.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.27</td>
+				<td class="date"><?php ancient_mirror_directory('27'); ?></td>
 				<td class="date">10 Aug 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame027/mame027s.zip">mame027s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame027s.zip">mame027s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame027/mame027b.zip">mame027b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame027b.zip">mame027b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('27', 'mame027s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('27', 'mame027b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_027.txt">whatsnew_027.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.26.1</td>
+				<td class="date"><?php ancient_mirror_directory('26.1'); ?></td>
 				<td class="date">18 Jul 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026p1/mame261s.zip">mame261s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame261s.zip">mame261s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026p1/mame261b.zip">mame261b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame261b.zip">mame261b.zip</a></td>
-				<td class="link"><a href="releases/whatsnew_261.txt">whatsnew_261.txt</a></td>
+				<td class="link"><?php ancient_mirror_file('26.1', 'mame261s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('26.1', 'mame261b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_026_1.txt">whatsnew_261.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.26</td>
+				<td class="date"><?php ancient_mirror_directory('26'); ?></td>
 				<td class="date">14 Jul 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026/mame026s.zip">mame026s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame026s.zip">mame026s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame026/mame026b.zip">mame026b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame026b.zip">mame026b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('26', 'mame026s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('26', 'mame026b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_026.txt">whatsnew_026.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.25</td>
+				<td class="date"><?php ancient_mirror_directory('25'); ?></td>
 				<td class="date">28 Jun 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame025/mame025s.zip">mame025s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame025s.zip">mame025s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame025/mame025b.zip">mame025b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame025b.zip">mame025b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('25', 'mame025s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('25', 'mame025b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_025.txt">whatsnew_025.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.24</td>
+				<td class="date"><?php ancient_mirror_directory('24'); ?></td>
 				<td class="date">13 Jun 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame024/mame024s.zip">mame024s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame024s.zip">mame024s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame024/mame024b.zip">mame024b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame024b.zip">mame024b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('24', 'mame024s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('24', 'mame024b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_024.txt">whatsnew_024.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.23.1</td>
+				<td class="date"><?php ancient_mirror_directory('23.1'); ?></td>
 				<td class="date">03 Jun 1997</td>
 				<td class="date">(n/a)</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame231b.zip">mame231b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame231b.zip">mame231b.zip</a></td>
-				<td class="link"><a href="releases/whatsnew_231.txt">whatsnew_231.txt</a></td>
+				<td class="link"><?php ancient_mirror_file('23.1', 'mame231b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_023_1.txt">whatsnew_231.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.23</td>
+				<td class="date"><?php ancient_mirror_directory('23'); ?></td>
 				<td class="date">02 Jun 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame023s.zip">mame023s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame023s.zip">mame023s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame023/mame023b.zip">mame023b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame023b.zip">mame023b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('23', 'mame023s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('23', 'mame023b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_023.txt">whatsnew_023.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.22</td>
+				<td class="date"><?php ancient_mirror_directory('22'); ?></td>
 				<td class="date">25 May 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame022/mame022s.zip">mame022s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame022s.zip">mame022s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame022/mame022b.zip">mame022b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame022b.zip">mame022b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('22', 'mame022s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('22', 'mame022b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_022.txt">whatsnew_022.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.21.5</td>
+				<td class="date"><?php ancient_mirror_directory('21.5'); ?></td>
 				<td class="date">16 May 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021p5/mame215s.zip">mame215s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame215s.zip">mame215s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021p5/mame215b.zip">mame215b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame215b.zip">mame215b.zip</a></td>
-				<td class="link"><a href="releases/whatsnew_215.txt">whatsnew_215.txt</a></td>
+				<td class="link"><?php ancient_mirror_file('21.5', 'mame215s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('21.5', 'mame215b.zip', 'bin'); ?></td>
+				<td class="link"><a href="releases/whatsnew_021_5.txt">whatsnew_021_5.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.21</td>
+				<td class="date"><?php ancient_mirror_directory('21'); ?></td>
 				<td class="date">12 May 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021/mame021s.zip">mame021s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame021s.zip">mame021s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame021/mame021b.zip">mame021b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame021b.zip">mame021b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('21', 'mame021s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('21', 'mame021b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_021.txt">whatsnew_021.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.20</td>
+				<td class="date"><?php ancient_mirror_directory('20'); ?></td>
 				<td class="date">05 May 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame020/mame020s.zip">mame020s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame020s.zip">mame020s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame020/mame020b.zip">mame020b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame020b.zip">mame020b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('20', 'mame020s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('20', 'mame020b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_020.txt">whatsnew_020.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.19</td>
+				<td class="date"><?php ancient_mirror_directory('19'); ?></td>
 				<td class="date">26 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame019/mame019s.zip">mame019s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame019s.zip">mame019s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame019/mame019b.zip">mame019b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame019b.zip">mame019b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('19', 'mame019s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('19', 'mame019b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_019.txt">whatsnew_019.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.18</td>
+				<td class="date"><?php ancient_mirror_directory('18'); ?></td>
 				<td class="date">20 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame018/mame018s.zip">mame018s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame018s.zip">mame018s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame018/mame018b.zip">mame018b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame018b.zip">mame018b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('18', 'mame018s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('18', 'mame018b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_018.txt">whatsnew_018.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.17</td>
+				<td class="date"><?php ancient_mirror_directory('17'); ?></td>
 				<td class="date">14 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame017/mame017s.zip">mame017s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame017s.zip">mame017s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame017/mame017b.zip">mame017b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame017b.zip">mame017b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('17', 'mame017s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('17', 'mame017b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_017.txt">whatsnew_017.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.16</td>
+				<td class="date"><?php ancient_mirror_directory('16'); ?></td>
 				<td class="date">13 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame016/mame016s.zip">mame016s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame016s.zip">mame016s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame016/mame016b.zip">mame016b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame016b.zip">mame016b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('16', 'mame016s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('16', 'mame016b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_016.txt">whatsnew_016.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.15</td>
+				<td class="date"><?php ancient_mirror_directory('15'); ?></td>
 				<td class="date">06 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame015/mame015s.zip">mame015s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame015s.zip">mame015s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame015/mame015b.zip">mame015b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame015b.zip">mame015b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('15', 'mame015s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('15', 'mame015b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_015.txt">whatsnew_015.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.14</td>
+				<td class="date"><?php ancient_mirror_directory('14'); ?></td>
 				<td class="date">02 Apr 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame014/mame014s.zip">mame014s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame014s.zip">mame014s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame014/mame014b.zip">mame014b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame014b.zip">mame014b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('14', 'mame014s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('14', 'mame014b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_014.txt">whatsnew_014.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.13</td>
+				<td class="date"><?php ancient_mirror_directory('13'); ?></td>
 				<td class="date">26 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame013/mame013s.zip">mame013s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame013s.zip">mame013s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame013/mame013b.zip">mame013b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame013b.zip">mame013b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('13', 'mame013s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('13', 'mame013b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_013.txt">whatsnew_013.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.12</td>
+				<td class="date"><?php ancient_mirror_directory('12'); ?></td>
 				<td class="date">23 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame012/mame012s.zip">mame012s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame012s.zip">mame012s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame012/mame012b.zip">mame012b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame012b.zip">mame012b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('12', 'mame012s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('12', 'mame012b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_012.txt">whatsnew_012.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.11</td>
+				<td class="date"><?php ancient_mirror_directory('11'); ?></td>
 				<td class="date">16 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame011/mame011s.zip">mame011s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame011s.zip">mame011s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame011/mame011b.zip">mame011b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame011b.zip">mame011b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('11', 'mame011s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('11', 'mame011b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_011.txt">whatsnew_011.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.10</td>
+				<td class="date"><?php ancient_mirror_directory('10'); ?></td>
 				<td class="date">13 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame010/mame010s.zip">mame010s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame010s.zip">mame010s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame010/mame010b.zip">mame010b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame010b.zip">mame010b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('10', 'mame010s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('10', 'mame010b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_010.txt">whatsnew_010.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.9.1</td>
+				<td class="date"><?php ancient_mirror_directory('9.1'); ?></td>
 				<td class="date">09 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09p1/mame09_1s.zip">mame09_1s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame09_1s.zip">mame09_1s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09p1/mame09_1b.zip">mame09_1b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame09_1b.zip">mame09_1b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('9.1', 'mame09_1s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('9.1', 'mame09_1b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_09_1.txt">whatsnew_09_1.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.9</td>
+				<td class="date"><?php ancient_mirror_directory('9'); ?></td>
 				<td class="date">09 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09/mame09s.zip">mame09s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame09s.zip">mame09s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame09/mame09b.zip">mame09b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame09b.zip">mame09b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('9', 'mame09s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('9', 'mame09b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_09.txt">whatsnew_09.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.8.1</td>
+				<td class="date"><?php ancient_mirror_directory('8.1'); ?></td>
 				<td class="date">04 Mar 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08_1s.zip">mame08_1s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame08_1s.zip">mame08_1s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08_1b.zip">mame08_1b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame08_1b.zip">mame08_1b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('8.1', 'mame08_1s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('8.1', 'mame08_1b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_08_1.txt">whatsnew_08_1.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.8</td>
+				<td class="date"><?php ancient_mirror_directory('8'); ?></td>
 				<td class="date">04 Mar 1997</td>
 				<td class="date">(n/a)</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame08p1/mame08b.zip">mame08b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame08b.zip">mame08b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('8', 'mame08b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_08.txt">whatsnew_08.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.7</td>
+				<td class="date"><?php ancient_mirror_directory('7'); ?></td>
 				<td class="date">27 Feb 1997</td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame07/mame07s.zip">mame07s.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/src/mame07s.zip">mame07s.zip</a></td>
-<!--			<td class="link"><a href="https://github.com/mamedev/historic-mame/releases/download/mame07/mame07b.zip">mame07b.zip</a></td>-->
-				<td class="link"><a href="http://www.progettosnaps.net/MAME/bin/mame07b.zip">mame07b.zip</a></td>
+				<td class="link"><?php ancient_mirror_file('7', 'mame07s.zip', 'src'); ?></td>
+				<td class="link"><?php ancient_mirror_file('7', 'mame07b.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_07.txt">whatsnew_07.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.6</td>
+				<td class="date"><?php ancient_mirror_directory('6'); ?></td>
 				<td class="date">23 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame06/mame06.zip">mame06.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame06.zip">mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('6', 'mame06.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/whatsnew_06.txt">whatsnew_06.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.5</td>
+				<td class="date"><?php ancient_mirror_directory('5'); ?></td>
 				<td class="date">20 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame05/mame05.zip">mame05.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame05.zip">mame05.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('5', 'mame05.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/whatsnew_05.txt">whatsnew_05.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.4</td>
+				<td class="date"><?php ancient_mirror_directory('4'); ?></td>
 				<td class="date">16 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame04/releases/mame04.zip">mame04.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame04.zip">mame04.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('4', 'mame04.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/whatsnew_04.txt">whatsnew_04.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.3</td>
+				<td class="date"><?php ancient_mirror_directory('3'); ?></td>
 				<td class="date">13 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/mame03/releases/mame03.zip">mame03.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame03.zip">mame03.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('3', 'mame03.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/whatsnew_03.txt">whatsnew_03.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.2</td>
+				<td class="date"><?php ancient_mirror_directory('2'); ?></td>
 				<td class="date">09 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame02/mame02.zip">mame02.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame02.zip">mame02.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('2', 'mame02.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/readme_02.txt">readme_02.txt</a></td>
 			</tr>
 			<tr>
-				<td class="date">0.1</td>
+				<td class="date"><?php ancient_mirror_directory('1'); ?></td>
 				<td class="date">05 Feb 1997</td>
-<!--			<td class="link" colspan="2"><a href="https://github.com/mamedev/historic-mame/releases/download/mame01/mame01.zip">mame01.zip</a></td>-->
-				<td class="link" colspan="2" align="center"><a href="http://www.progettosnaps.net/MAME/bin/mame01.zip">mame01.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('1', 'mame01.zip', 'bin'); ?>mame06.zip</a></td>
 				<td class="link"><a href="releases/readme_01.txt">readme_01.txt</a></td>
 			</tr>
 		  </table>
