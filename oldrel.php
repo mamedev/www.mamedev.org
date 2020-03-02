@@ -2366,37 +2366,37 @@ function ancient_mirror_directory($version,  $title = NULL)
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('6'); ?></td>
 				<td class="date">23 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('6', 'mame06.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('6', 'mame06.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_06.txt">whatsnew_06.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('5'); ?></td>
 				<td class="date">20 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('5', 'mame05.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('5', 'mame05.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_05.txt">whatsnew_05.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('4'); ?></td>
 				<td class="date">16 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('4', 'mame04.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('4', 'mame04.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_04.txt">whatsnew_04.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('3'); ?></td>
 				<td class="date">13 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('3', 'mame03.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('3', 'mame03.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/whatsnew_03.txt">whatsnew_03.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('2'); ?></td>
 				<td class="date">09 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('2', 'mame02.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('2', 'mame02.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/readme_02.txt">readme_02.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('1'); ?></td>
 				<td class="date">05 Feb 1997</td>
-				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('1', 'mame01.zip', 'bin'); ?>mame06.zip</a></td>
+				<td class="link" colspan="2" align="center"><?php ancient_mirror_file('1', 'mame01.zip', 'bin'); ?></td>
 				<td class="link"><a href="releases/readme_01.txt">readme_01.txt</a></td>
 			</tr>
 		  </table>
