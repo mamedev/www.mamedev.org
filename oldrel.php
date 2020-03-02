@@ -41,6 +41,8 @@ function ancient_mirror_directory($version,  $title = NULL)
 			var attr = 'data-href-' + document.getElementById('select-mirror').selectedOptions[0].value;
 			if (e.hasAttribute(attr))
 			{
+				window.location.href = e.getAttribute(attr);
+				return false;
 			}
 			return true;
 		}
@@ -59,7 +61,7 @@ function ancient_mirror_directory($version,  $title = NULL)
 		releases are available at <a href="https://github.com/mamedev/mame/releases">GitHub</a> and
 		<a href="https://sourceforge.net/projects/mame/files/mame/">SourceForge</a>.</p>
 
-		<p style="display: none">Preferred mirror: <select id="select-mirror"><option value="gh" selected>GitHub</option><option value="sf">SourceForge</option><option value="ps">Progetto-Snaps</option></select></p>
+		<p>Preferred mirror: <select id="select-mirror"><option value="gh" selected>GitHub</option><option value="sf">SourceForge</option><option value="ps">Progetto-Snaps</option></select></p>
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2020 MAME Releases</div>
@@ -2181,7 +2183,7 @@ function ancient_mirror_directory($version,  $title = NULL)
 				<td class="date">18 Jul 1997</td>
 				<td class="link"><?php ancient_mirror_file('26.1', 'mame261s.zip', 'src'); ?></td>
 				<td class="link"><?php ancient_mirror_file('26.1', 'mame261b.zip', 'bin'); ?></td>
-				<td class="link"><a href="releases/whatsnew_026_1.txt">whatsnew_261.txt</a></td>
+				<td class="link"><a href="releases/whatsnew_026_1.txt">whatsnew_026_1.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('26'); ?></td>
@@ -2209,7 +2211,7 @@ function ancient_mirror_directory($version,  $title = NULL)
 				<td class="date">03 Jun 1997</td>
 				<td class="date">(n/a)</td>
 				<td class="link"><?php ancient_mirror_file('23.1', 'mame231b.zip', 'bin'); ?></td>
-				<td class="link"><a href="releases/whatsnew_023_1.txt">whatsnew_231.txt</a></td>
+				<td class="link"><a href="releases/whatsnew_023_1.txt">whatsnew_023_1.txt</a></td>
 			</tr>
 			<tr>
 				<td class="date"><?php ancient_mirror_directory('23'); ?></td>
