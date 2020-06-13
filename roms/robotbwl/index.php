@@ -8,8 +8,9 @@ $title = 'MAME | Robot Bowl (Exidy, 1977)';
 
 	<center><h1 class="page-header">Robot Bowl (Exidy, 1977)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
-						<b>Robot Bowl</b> have been made available for free, non-commercial use.
+						Thanks to the kind generosity of H.R. Kauffman, founder of Exidy and later president of the
+						holding company Xidy, Inc., the original ROM images for <b>Robot Bowl</b> have been made
+                                                available for free, non-commercial use.
 						</p>
 
 						<p>

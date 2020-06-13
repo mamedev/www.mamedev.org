@@ -8,8 +8,9 @@ $title = 'MAME | Top Gunner / Vertigo (Exidy, 1986)';
 
 	<center><h1 class="page-header">Top Gunner / Vertigo (Exidy, 1986)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
-						<b>Top Gunner</b> have been made available for free, non-commercial use.
+						Thanks to the kind generosity of H.R. Kauffman, founder of Exidy and later president of the
+						holding company Xidy, Inc., the original ROM images for <b>Top Gunner</b> have been made
+                                                available for free, non-commercial use.
 						</p>
 
 						<p>

@@ -7,10 +7,10 @@ $title = 'MAME | Spectar (Exidy, 1980)';
 <div class="container">
 
 	<center><h1 class="page-header">Spectar (Exidy, 1980)</h1></center>
-
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
-						<b>Spectar</b> have been made available for free, non-commercial use.
+						Thanks to the kind generosity of H.R. Kauffman, founder of Exidy and later president of the
+						holding company Xidy, Inc., the original ROM images for <b>Spectar</b> have been made
+                                                available for free, non-commercial use.
 						</p>
 
 						<p>
