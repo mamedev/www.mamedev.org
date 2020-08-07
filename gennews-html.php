@@ -112,7 +112,7 @@ if ($post == "")
 		echo("\t\t\t\t\t\t<div class=\"entry\">\n");
 		for ($line = 1; $line < count($data); $line++)
 		{
-			if (!preg_match("/\A\s*<!--\s*more\s*-->\s*$/", $data[$line])
+			if (!preg_match("/\A\s*<!--\s*more\s*-->\s*$/", $data[$line]))
 			{
 				echo("\t\t\t\t\t\t\t" . $data[$line]);
 			}

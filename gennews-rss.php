@@ -23,7 +23,7 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 			echo("\t\t\t<description><![CDATA[\n");
 			for ($line = 1; $line < count($data); $line++)
 			{
-				if (!preg_match("/\A\s*<!--\s*more\s*-->\s*$(.*)/", $data[$line], $matchgroups)
+				if (!preg_match("/\A\s*<!--\s*more\s*-->\s*$(.*)/", $data[$line]))
 				{
 					echo("\t\t\t\t" . $data[$line]);
 				}
