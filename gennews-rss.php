@@ -23,7 +23,7 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 			echo("\t\t\t<description><![CDATA[\n");
 			for ($line = 1; $line < count($data); $line++)
 			{
-				if (!preg_match("/\s*<!--\s*more\s*-->\s*$(.*)/", $data[$line], $matchgroups)
+				if (!preg_match("/\A\s*<!--\s*more\s*-->\s*$(.*)/", $data[$line], $matchgroups)
 				{
 					echo("\t\t\t\t" . $data[$line]);
 				}
@@ -32,7 +32,6 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 					echo("\t\t\t\t<p><a href=\"https://mamedev.org/?p=" . getpostnumber($entries[$index]) . "#readmore\">Read the rest of this entry »</a></p>\n");
 					break;
 				}
-				echo("\t\t\t\t" . $data[$line]);
 			}
 			echo("\t\t\t]]></description>\n");
 			echo("\t\t\t<pubDate>" . date("r", getposttimestamp($entries[$index])) . "</pubDate>\n");
