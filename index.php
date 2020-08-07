@@ -39,17 +39,17 @@ $prevurl = "";
 $nexturl = "?page=2";
 $pagenum = "";
 
-if (isset($_GET["page"]) && $_GET["page"] != "")
+if (isset($_GET["page"]) && preg_match("/\\A[1-9][0-9]*\\Z/", $_GET["page"]))
 {
-	$pagenum = $_GET["page"] - 1;
+	$pagenum = intval($_GET["page"]) - 1;
 	$start = $pagenum * $count;
 	$prevurl = "?page=" . ($pagenum);
 	$nexturl = "?page=" . ($pagenum + 2);
 }
-if (isset($_GET["p"]) && $_GET["p"] != "")
+if (isset($_GET["p"]) && preg_match("/\\A[1-9][0-9]*\\Z/", $_GET["p"]))
 {
-	$postnum = $_GET["p"];
-	$post = (($postnum/10000) % 10) . (($postnum/1000) % 10) . (($postnum/100) % 10) . (($postnum/10) % 10) . ($postnum % 10);
+	$postnum = intval($_GET["p"]);
+	$post = sprintf("%05d", $postnum % 100000);
 	$count = 1;
 }
 if (isset($_GET["m"]) && $_GET["m"] != "")

@@ -111,7 +111,21 @@ if ($post == "")
 		echo("\t\t\t\t\t\t<small>" . date("d M Y", getposttimestamp($entry)) . "</small>\n");
 		echo("\t\t\t\t\t\t<div class=\"entry\">\n");
 		for ($line = 1; $line < count($data); $line++)
-			echo("\t\t\t\t\t\t\t" . $data[$line]);
+		{
+			if (!preg_match("/\s*<!--\s*more\s*-->\s*$/", $data[$line])
+			{
+				echo("\t\t\t\t\t\t\t" . $data[$line]);
+			}
+			else if ($post == "")
+			{
+				echo("\t\t\t\t\t\t\t<p><a href=\"/?p=" . $number . "#readmore\">Read the rest of this entry »</a></p>\n");
+				break;
+			}
+			else
+			{
+				echo("\t\t\t\t\t\t\t<a name=\"readmore\"></a>\n");
+			}
+		}
 		echo("\t\t\t\t\t\t</div>\n");
 		echo("\t\t\t\t\t</div>\n");
 	}
