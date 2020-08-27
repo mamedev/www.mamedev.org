@@ -140,18 +140,18 @@ $title = 'MAME | Resources';
 		<li><a href="http://mamehub.com/" target="blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
-		<li><a href="http://www.pinmame.com/" target="blank">PinMAME</a></li>
+		<li><a href="http://pinmame.de/ target="blank">PinMAME</a></li>
 		<li><a href="http://rbelmont.mameworld.info/?page_id=163" target="blank">SDLMAME Homepage</a></li>
 		<li><a href="http://sdlmame.lngn.net/" target="blank">SDLMAME for Mac OS X</a></li>
 		<li><a href="http://sdlmame.wallyweek.org/" target="blank">SDLMAME for Ubuntu</a></li>
-		<li><a href="http://wolfmame.marpirc.net/" target="blank">WolfMAME</a></li>
+		<li><a href="https://github.com/mahlemiut/wolfmame/releases" target="blank">WolfMAME</a></li>
 	</ul>
 	<h2>General Emulation Sites</h2>
 	<ul>
 		<li><a href="http://caesar.logiqx.com/" target="blank">CAESAR</a></li>
 		<li><a href="http://cps2shock.emu-france.info/" target="blank">CPS-2 Shock</a></li>
 		<li><a href="http://www.emucr.com/" target="blank">EmuCR (CHN)</a></li>
-		<li><a href="http://www.emudreams.cba.pl/" target="blank">Emu#Dreams (PL)</a></li>
+		<li><a href="https://emudreams.ct8.pl/" target="blank">Emu#Dreams (PL)</a></li>
 		<li><a href="http://www.emu-france.com/" target="blank">Emu-France (FRA)</a></li>
 		<li><a href="http://www.emulab.it/" target="blank">EMULAB</a></li>
 		<li><a href="http://www.emulation9.com/" target="blank">emulation number 9 (JPN)</a></li>
