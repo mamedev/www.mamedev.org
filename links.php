@@ -140,7 +140,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://mamehub.com/" target="blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
-		<li><a href="http://pinmame.de/"> target="blank">PinMAME</a></li>
+		<li><a href="http://pinmame.de/" target="blank">PinMAME</a></li>
 		<li><a href="http://rbelmont.mameworld.info/?page_id=163" target="blank">SDLMAME Homepage</a></li>
 		<li><a href="http://sdlmame.lngn.net/" target="blank">SDLMAME for Mac OS X</a></li>
 		<li><a href="http://sdlmame.wallyweek.org/" target="blank">SDLMAME for Ubuntu</a></li>
