@@ -101,7 +101,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.arcadeinfo.de/" target="blank">Arcadeinfo.de (GER)</a></li>
 		<li><a href="http://www.arcadezentrum.com/forum/index.php" target="blank">Arcadezentrum (GER)</a></li>
 		<li><a href="http://forum.arcadeotaku.com/" target="blank">Arcade Otaku Forums</a></li>
-		<li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li>
+		<!-- <li><a href="http://www.aumap.org/" target="blank">AUMAP (ESP)</a></li> -->
 		<li><a href="http://www.aussiearcade.com" target="blank">Aussie Aurcade</a></li>
 		<li><a href="http://www.dragonslairfans.com/" target="blank">Dragon's Lair Fans</a></li>
 		<li><a href="http://www.emulab.it/forum/index.php" target="blank">EMULAB Forum (ENG/ITA)</a></li>
@@ -140,7 +140,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://mamehub.com/" target="blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="blank">MESSUI</a></li>
-		<li><a href="http://pinmame.de/ target="blank">PinMAME</a></li>
+		<li><a href="http://pinmame.de/"> target="blank">PinMAME</a></li>
 		<li><a href="http://rbelmont.mameworld.info/?page_id=163" target="blank">SDLMAME Homepage</a></li>
 		<li><a href="http://sdlmame.lngn.net/" target="blank">SDLMAME for Mac OS X</a></li>
 		<li><a href="http://sdlmame.wallyweek.org/" target="blank">SDLMAME for Ubuntu</a></li>
