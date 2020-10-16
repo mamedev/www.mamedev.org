@@ -1,0 +1,28 @@
+Keeping up with C++
+
+<p>Starting with the December 2020 development cycle (after the
+anticipated release of MAME 0.227), we will switch to compiling MAME as
+C++17.  Compiler and standard library support for C++17 is now
+sufficiently widespread that we can update and benefit from the new
+functionality.  The minimum compiler versions and corresponding
+standard library versions with adequate C++17 support are
+GCC/libstdc++ 7, clang/llvm/libc++ 6, and Visual C++/MSVCPRT 19.14
+(Visual Studio 2017 15.7).  This will be an increase in the required
+clang/llvm/libc++ version.</p>
+
+<p>A small number of C++17 standard library features that are not yet
+widely supported will not be permitted.  The following standard library
+features will not be permitted until support is more widespread:</p>
+
+<ul>
+	<li>Parallelism TS (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0024r2.html">P0024R2</a>)</li>
+	<li>Updating references to C standard to C11 (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0063r3.html">P0063R3</a>)</li>
+	<li>Elementary string conversions (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0067r5.html">P0067R5</a>)</li>
+	<li>Splicing maps and sets (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0083r3.pdf">P0083R3</a>)</li>
+	<li>Hardware interference size (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0154r1.html">P0154R1</a>)</li>
+	<li>File system library (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0218r1.html">P0218R1</a>)</li>
+	<li>Polymorphic memory resources (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0220r1.html">P0220R1</a>)</li>
+	<li>Mathematical special functions (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0226r1.pdf">P0226R1</a>, ISO/IEC 29124:2010)</li>
+	<li><tt>std::shared_ptr</tt>/<tt>std::weak_ptr</tt> with array support (<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0414r2.html">P0414R2</a>)</li>
+	<li><tt>std::is_aggregate</tt> (<a href="https://cplusplus.github.io/LWG/issue2911">LWG2911</a>)</li>
+</ul>
