@@ -16,7 +16,7 @@ $title = 'MAME | Alien Arena (Duncan Brown, 1985)';
 						Before downloading, you must acknowledge that you understand these images are to be used only for
 						non-commercial purposes. Do this by checking the box below the download button.
 						</p>
-	
+
 						<script language="JavaScript" type="text/javascript">
 						function isChecked()
 						{
@@ -34,9 +34,9 @@ $title = 'MAME | Alien Arena (Duncan Brown, 1985)';
 						<a href="alienar.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Alien Arena ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>

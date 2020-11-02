@@ -8,7 +8,7 @@ $title = 'MAME | Looping (Video Games GmbH, 1982)';
 
 	<center><h1 class="page-header">Looping (Video Games GmbH, 1982)</h1></center>
 						<p>
-						Thanks to the kind generosity of Reinhard Stompe, founder of Video Games GmbH, the original ROM images for 
+						Thanks to the kind generosity of Reinhard Stompe, founder of Video Games GmbH, the original ROM images for
 						<b>Looping</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,12 +34,12 @@ $title = 'MAME | Looping (Video Games GmbH, 1982)';
 						<a href="looping.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Looping ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
-						
-						
+
+
 					<h2>Description</h2>
 
 					<p>
@@ -69,10 +69,10 @@ $title = 'MAME | Looping (Video Games GmbH, 1982)';
 					Venture Line for US manufacture and distribution, and has seen home
 					release on the Colecovision.
 					</p>
-					
+
 					<p>
-					An interview with the devloper or Looping, Giorgio Ugozzoli, is available 
-					<a href="./looping-interview.html">here in English</a>, and 
+					An interview with the devloper or Looping, Giorgio Ugozzoli, is available
+					<a href="./looping-interview.html">here in English</a>, and
 					<a href="./looping-intervista.html">here in original Italian</a>!
 					</p>
 

@@ -8,7 +8,7 @@ $title = 'MAME | Teeter Torture (Exidy, 1982)';
 
 	<center><h1 class="page-header">Teeter Torture (Exidy, 1982)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Teeter Torture</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,15 +34,15 @@ $title = 'MAME | Teeter Torture (Exidy, 1982)';
 						<a href="teetert.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Teeter Torture ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 					<h2>Description</h2>
 
 					<p>
 					<b>Teeter Torture</b> is a game that has rather mysterious origins. Only a single cabinet has even
-					been found for it. (Fortunately it has been making regular appearances at the 
+					been found for it. (Fortunately it has been making regular appearances at the
 					<a href="http://www.caextreme.org" target="blank">California Extreme</a> show for a number of years.)
 					For years there was even confusion as to whether it was an Exidy-produced prototype or some bootleg
 					running on the Exidy hardware.

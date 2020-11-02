@@ -8,7 +8,7 @@ $title = 'MAME | Car Polo (Exidy, 1977)';
 
 	<center><h1 class="page-header">Car Polo (Exidy, 1977)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Car Polo</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,23 +34,23 @@ $title = 'MAME | Car Polo (Exidy, 1977)';
 						<a href="carpolo.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Car Polo ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
-						
 
-				
+
+
 					<h2>Description</h2>
 
 					<p>
-					<b>Car Polo</b> is an up-to-four player full color video game that combines the skills of driving with 
-					the intense player interaction of team sports. The object is to score by bumping or pushing the ball with 
-					a car into your team's goal. Teamwork revolves around passing and blocking strategy. Play becomes fast 
-					and furious, and excitement is enhanced by car motor noises, crash sounds, controlled grass skids and 
+					<b>Car Polo</b> is an up-to-four player full color video game that combines the skills of driving with
+					the intense player interaction of team sports. The object is to score by bumping or pushing the ball with
+					a car into your team's goal. Teamwork revolves around passing and blocking strategy. Play becomes fast
+					and furious, and excitement is enhanced by car motor noises, crash sounds, controlled grass skids and
 					bouncing ball motions.
 					</p>
-					
+
 					<p>
 					Car Polo was designed and programmed by Howell Ivey for Exidy, and is one of the first games to use the
 					combination of a microprocessor for running the game logic plus a color display.

@@ -8,7 +8,7 @@ $title = 'MAME | Circus (Exidy, 1977)';
 
 	<center><h1 class="page-header">Circus (Exidy, 1977)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Circus</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,9 +34,9 @@ $title = 'MAME | Circus (Exidy, 1977)';
 						<a href="circus.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Circus ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>
@@ -47,14 +47,14 @@ $title = 'MAME | Circus (Exidy, 1977)';
 					with a color overlay that gave each row of balloons at the top of the screen a different color.
 					It was designed and programmed by Edward Valeau and Howell Ivey of Exidy in 1977.
 					</p>
-					
+
 					<p>
-					Circus came in an upright dedicated cabinet, and may have also been available in a cocktail 
-					configuration as well. Circus machines had white sides with red painted sideart of several 
-					balloons in flight. The front of the machine was decorated with a large ornate monitor bezel 
-					that also doubled as a marquee (or nameplate). This bezel showed several clowns in a circus 
-					scene and had the game title spelled out with multicolored balloons. The control panel was 
-					unadorned, save for an analog spinner and a start button. The whole machine was finished off 
+					Circus came in an upright dedicated cabinet, and may have also been available in a cocktail
+					configuration as well. Circus machines had white sides with red painted sideart of several
+					balloons in flight. The front of the machine was decorated with a large ornate monitor bezel
+					that also doubled as a marquee (or nameplate). This bezel showed several clowns in a circus
+					scene and had the game title spelled out with multicolored balloons. The control panel was
+					unadorned, save for an analog spinner and a start button. The whole machine was finished off
 					in black T-molding.
 					</p>
 

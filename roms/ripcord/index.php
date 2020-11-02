@@ -8,7 +8,7 @@ $title = 'MAME | Rip Cord (Exidy, 1979)';
 
 	<center><h1 class="page-header">Rip Cord (Exidy, 1979)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Rip Cord</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,9 +34,9 @@ $title = 'MAME | Rip Cord (Exidy, 1979)';
 						<a href="ripcord.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Rip Cord ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>
@@ -47,7 +47,7 @@ $title = 'MAME | Rip Cord (Exidy, 1979)';
 					on one of the many targets down below. The challenge is to avoid the numerous enemy helicopters
 					that occupy the sky in between your plane and the ground.
 					</p>
-					
+
 					<p>
 					You control the timing of your jump with the Jump button, at which point your parachutist begins
 					hurtling toward the ground out of control. Pressing the D-Ring button shortly afterwards releases

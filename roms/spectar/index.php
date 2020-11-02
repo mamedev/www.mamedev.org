@@ -7,9 +7,9 @@ $title = 'MAME | Spectar (Exidy, 1980)';
 <div class="container">
 
 	<center><h1 class="page-header">Spectar (Exidy, 1980)</h1></center>
-	
+
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Spectar</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -35,18 +35,18 @@ $title = 'MAME | Spectar (Exidy, 1980)';
 						<a href="spectar.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Spectar ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>
-			        <p><b>Spectar</b>, released by Exidy in 1980, is the follow-up of <a href="../targ/">Targ</a>.
-			        Gameplay is apparently unchanged, you control a vehicle called Whummel into a 9x9 grid maze, 
-			        chasing down, and being chased by, the alien invaders. Targs have evolved into the more dangerous 
+			        <p><b>Spectar</b>, released by Exidy in 1980, is the follow-up to <a href="../targ/">Targ</a>.
+			        Gameplay is apparently unchanged, you control a vehicle called Whummel into a 9x9 grid maze,
+			        chasing down, and being chased by, the alien invaders. Targs have evolved into the more dangerous
 			        Rammers, and Spectars appears more often, shooting at player's ship.</p>
 
-			        <p>You use a 4 way joystick to guide your vehicle in the maze, and a pushbutton to shoot at 
+			        <p>You use a 4 way joystick to guide your vehicle in the maze, and a pushbutton to shoot at
 			        enemies. Up to two players can alternate in gameplay.</p>
 
 			        <p>The most noticeable difference from his predecessor is that to complete a level you must now

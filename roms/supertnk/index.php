@@ -8,7 +8,7 @@ $title = 'MAME | Super Tank (Video Games GmbH, 1981)';
 
 	<center><h1 class="page-header">Super Tank (Video Games GmbH, 1981)</h1></center>
 						<p>
-						Thanks to the kind generosity of Reinhard Stompe, founder of Video Games GmbH, the original ROM images for 
+						Thanks to the kind generosity of Reinhard Stompe, founder of Video Games GmbH, the original ROM images for
 						<b>Super Tank</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,9 +34,9 @@ $title = 'MAME | Super Tank (Video Games GmbH, 1981)';
 						<a href="supertnk.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Super Tank ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>

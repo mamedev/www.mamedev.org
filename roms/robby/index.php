@@ -34,12 +34,12 @@ $title = 'MAME | Robby Roto (Bally/Midway, 1981)';
 						<a href="robby.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Robby Roto ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
-						
-						
+
+
 
 					<h2>Description</h2>
 					<p>

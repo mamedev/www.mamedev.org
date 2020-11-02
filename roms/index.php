@@ -107,7 +107,7 @@ $title = 'MAME | ROMs for Free Download';
 						</td>
 
 						<td class="link" width="20%">
-						<a href="fax"><img src="fax/fax-thumb.png" width="80" height="60" alt="Fax" /></a><br/>
+						<a href="fax"><img src="fax/fax-thumb.png" width="80" height="60" alt="FAX" /></a><br/>
 						<a href="fax">Fax</a><br/>
 						&copy;1983 Exidy
 						</td>

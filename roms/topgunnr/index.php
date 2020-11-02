@@ -8,7 +8,7 @@ $title = 'MAME | Top Gunner / Vertigo (Exidy, 1986)';
 
 	<center><h1 class="page-header">Top Gunner / Vertigo (Exidy, 1986)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Top Gunner</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -33,9 +33,9 @@ $title = 'MAME | Top Gunner / Vertigo (Exidy, 1986)';
 						<a href="topgunnr.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Top Gunner ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>

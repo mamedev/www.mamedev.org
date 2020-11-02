@@ -9,7 +9,7 @@ $title = 'MAME | Gridlee (Videa, 1982)';
 	<center><h1 class="page-header">Gridlee (Videa, 1982)</h1></center>
 						<p>
 						Thanks to the kind generosity of the three co-founders of Videa&mdash;Howard Delman, Ed
-						Rotberg, and Roger Hector&mdash;the original ROM images from the only existing <b>Gridlee</b> 
+						Rotberg, and Roger Hector&mdash;the original ROM images from the only existing <b>Gridlee</b>
 						machine have been made available for free, non-commercial use.
 						</p>
 
@@ -35,9 +35,9 @@ $title = 'MAME | Gridlee (Videa, 1982)';
 						<a href="gridlee.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Gridlee ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 
 					<h2>Description</h2>
@@ -46,7 +46,7 @@ $title = 'MAME | Gridlee (Videa, 1982)';
 					<b>Gridlee</b> is a game that was never released. It was developed by Videa, Inc. in 1982, on
 					hardware designed by <a href="http://www.blueneptune.com/~delman/" target="_blank">Howard Delman</a>.
 					Videa was eventually acquired by Pizza Time Theater and formed the core of their new
-					Sente Technologies division. The hardware that  <b>Gridlee</b> ran on evolved into the 
+					Sente Technologies division. The hardware that  <b>Gridlee</b> ran on evolved into the
 					Bally/Sente SAC I system, which provided a cartridge-based arcade gaming platform that
 					supported such games as <b>Snake Pit</b>, <b>Stocker</b>, and <b>Hat Trick</b>.
 					</p>

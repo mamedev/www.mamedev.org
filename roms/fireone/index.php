@@ -8,7 +8,7 @@ $title = 'MAME | Fire One (Exidy, 1979)';
 
 	<center><h1 class="page-header">Fire One (Exidy, 1979)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Fire One</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -34,9 +34,9 @@ $title = 'MAME | Fire One (Exidy, 1979)';
 						<a href="fireone.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Fire One ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
 					<h2>Description</h2>
 
@@ -46,14 +46,14 @@ $title = 'MAME | Fire One (Exidy, 1979)';
 					The cabinet was split into two halves, with each player controlling their first-person
 					submarine perspective on their half of the screen.
 					</p>
-					
+
 					<p>The primary objective of the game is to find and destroy the enemy's submarine, while
-					avoiding the enemy's torpedoes. Through your virtual periscope you are free to launch one 
-					of your 8 torpedoes to take out any of the enemy's various ships for extra 
+					avoiding the enemy's torpedoes. Through your virtual periscope you are free to launch one
+					of your 8 torpedoes to take out any of the enemy's various ships for extra
 					points. It takes some time to reload each torpedo tube, so you must be judicious in how you
 					plan your attacks.
 					</p>
-					
+
 					<p>
 					In addition to being able to control the left/right rotation of your periscope, the game also
 					features a submerge button which you can use to temporarily hide from the enemy. Holding this

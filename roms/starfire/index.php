@@ -8,7 +8,7 @@ $title = 'MAME | Star Fire (Exidy, 1979)';
 
 	<center><h1 class="page-header">Star Fire (Exidy, 1979)</h1></center>
 						<p>
-						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for 
+						Thanks to the kind generosity of H.R. Kaufmann, president of Xidy, the original ROM images for
 						<b>Star Fire</b> have been made available for free, non-commercial use.
 						</p>
 
@@ -31,40 +31,41 @@ $title = 'MAME | Star Fire (Exidy, 1979)';
 
 						<center>
 						<div class="btn btn-success">
-						<a href="starfire.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Star Fire ROM images</h4></a>
-						<a href="starfir2.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Star Fire (alt) ROM images</h4></a>
+						<a href="starfire.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Star Fire (set 1) ROM images</h4></a>
+						<a href="starfirea.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Star Fire (set 2) ROM images</h4></a>
+						<a href="starfir2.zip" onclick="return isChecked();" title="Download now"  class="btn-success"><h4>Download the Star Fire 2 ROM images</h4></a>
 						<form name="agreeform" action="#">
 							<input type="checkbox" name="agree" />
-							I understand that these ROM images are for non-commercial use only
+							<label for="agree">I understand that these ROM images are for non-commercial use only</label>
 						</form>
-						</a>
+						</div>
 						</center>
-												
+
 					<h2>Description</h2>
 					<p>
 					Star Fire is an early color game programmed by David Rolfe with graphics designed by Ted Michon and Susan Ogg.
-					It was released by Exidy in 1979. Star Fire is a first-person space shooter where your mission is to seek out 
-					and destroy enemy spacecraft while avoiding incoming missiles. 
+					It was released by Exidy in 1979. Star Fire is a first-person space shooter where your mission is to seek out
+					and destroy enemy spacecraft while avoiding incoming missiles.
 					</p>
-					
+
 					<p>
 					If a number of elements of Star Fire seem similar to Star Wars, your eyes are not deceiving you. Star Fire was
 					originally designed as a Star Wars game, with the eventual hope that either a license would be purchased or
-					that they would change enough of the elements to avoid any legal entanglements. Originally, the authors had 
+					that they would change enough of the elements to avoid any legal entanglements. Originally, the authors had
 					hoped that Midway would pick up the game for distribution, but they passed and instead Exidy purchased the
 					game and released it.
 					</p>
 
 					<p>
-					Star Fire was the first game to come in an environmental cabinet, designed by Michael Cooper-Hart. Even more 
-					importantly from a historical perspective, Star Fire was the first game to keep a high score list where the 
-					player could enter his or her initials. Prior games had tracked the concept of a high score, but Star Fire 
-					was the first to let you personalize the high score entry and display a top ten list with your initials next 
+					Star Fire was the first game to come in an environmental cabinet, designed by Michael Cooper-Hart. Even more
+					importantly from a historical perspective, Star Fire was the first game to keep a high score list where the
+					player could enter his or her initials. Prior games had tracked the concept of a high score, but Star Fire
+					was the first to let you personalize the high score entry and display a top ten list with your initials next
 					to your high score.
 					</p>
 
 					<p>
-					An update to Star Fire, simply called "Star Fire II", was intended to go into the last run of Star Fire 
+					An update to Star Fire, simply called "Star Fire II", was intended to go into the last run of Star Fire
 					units. It features a more refined high score display and easier high score input.
 					</p>
 
