@@ -48,7 +48,7 @@ href="https://github.com/mamedev/buildtools/releases/download/6.0/msys64-2020-11
 <h3><a id="user-content-installation" class="anchor" href="#installation" aria-hidden="true"></a>Installation</h3>
 
 <p>If you are installing it in a location other than the default
-(<em>c:\msys64</em>), after you unpack, double-click:
+(<em>C:\Users\Public\msys64</em>), after you unpack, double-click:
 <strong>autorebase.bat</strong></p>
 
 <p>To open a Windows cmd.exe shell, there is a batch file
