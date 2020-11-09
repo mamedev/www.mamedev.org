@@ -37,7 +37,7 @@ page</a> on our documentation site.</p>
 
 <ul><li><a name="user-content-downloads"></a>Windows combined 32-bit/64-bit
 tools – <a
-href="https://github.com/mamedev/buildtools/releases/download/6.0/msys64-2020-11-03.exe">msys64-2020-11-03.exe</a>
+href="https://github.com/mamedev/buildtools/releases/download/5.0/msys64-32-2019-12-23.exe">msys64-32-2019-12-23.exe</a>
 <em>(The build tools require a 64-bit version of Windows, but include both
 32-bit and 64-bit compilers.  To switch between different MinGW versions, use
 <strong>config32.bat</strong> and <strong>config64.bat</strong>)</em></li>
@@ -211,7 +211,7 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 </a>
 
 		<br/><br/>
-			<a href="previous-20191223.php">Previous version</a> is still available
+			<a href="previous-20190326.php">Previous version</a> is still available
 	<br/><br/><br/><br/>
 </div>
 <!-- /.container -->

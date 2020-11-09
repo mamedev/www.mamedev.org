@@ -71,7 +71,7 @@ $title = 'MAME | Looping (Video Games GmbH, 1982)';
 					</p>
 
 					<p>
-					An interview with the devloper or Looping, Giorgio Ugozzoli, is available
+					An interview with the developer of Looping, Giorgio Ugozzoli, is available
 					<a href="./looping-interview.html">here in English</a>, and
 					<a href="./looping-intervista.html">here in original Italian</a>!
 					</p>
