@@ -1,0 +1,173 @@
+MAME 0.227 Release Delayed to December 2020
+
+<p>The slipping of release dates is nothing new in software development;
+it can, and does, happen with some frequency, for a whole assortment of
+reasons.  That said, with an aim towards increasing the transparency
+with which the MAME team operates, we have taken the unprecedented step
+of announcing it, and issuing a (hopefully) reasonable explanation as to
+why.</p>
+
+<p>The simple, and non-technical, reason for this decision is that the
+overall stability of the codebase, after some major changes under the
+hood in order to rectify technical debt after the release of MAME 0.226,
+is not where we would like it to be.  As with many projects, we have a
+boilerplate set of tests which are run on a regular basis.  When any
+major change to the core codebase occurs, there is the chance for
+instability – for reasons which will be clear in the more technical
+description to follow, the change was downright guaranteed to cause
+issues, despite the overall benefits once these issues are rectified.
+The metrics that have come from those tests indicate that the rate at
+which we are burning through regressions is not such that we can be
+reasonably assured of having a stable build by the time that it is
+necessary to have one to maintain a monthly release cadence.</p>
+
+<!--more-->
+
+<h2>The Technical Background’s Background</h2>
+
+<p>The following explanation assumes that the reader is a
+technically-apt coder, but is more experienced with languages that have
+automatic memory management, such as Java or C#.  This section is
+intended to go over already-known concepts, in order to provide a
+conceptual anchor point to contrast against the next section, which
+details manual memory-management.  For those with an intimate knowledge
+of C or C++, it would be worthwhile to jump to the next section.</p>
+
+<p>While there are many points to differentiate various languages, one
+of the more fundamental ones is the concept of memory management.</p>
+
+<p>Back in the days of 8-bit and 16-bit systems, when applications were
+written in assembly language, RAM was critically limited, and you could
+rest assured that your software – and only your software – was running
+on the hardware, it was possible to simply choose which location in RAM
+mapped directly to which variable in your code.</p>
+
+<p>With the advent of higher-level languages being viable for use on
+modern platforms, certain concessions had to be made, and one of them
+was the simple question of, “Where is my variable actually located?”</p>
+
+<p>Side-stepping the concept of static, local, global, and other
+variable storage classes that would make this already-long post even
+longer, in this case the focus will be on memory allocation.  An
+application generally starts up with a memory footprint equal to the
+amount of space needed for the code, as well as any variables that were
+able to be identified by the compiler.  Since the majority of an
+application’s memory use cannot be predicted at compile time – consider
+a game which can spawn potentially-infinite swarms of enemies – the
+majority of languages allow for a concept called “allocation”.</p>
+
+<p>Allocation is, at its most fundamental level, a contract between the
+program and the underlying operating system that it needs a block of
+memory, and that that memory will eventually be released.  In the case
+of languages such as Java or C#, it’s up to the underlying runtime
+environment to identify when the memory will be released.  In the case
+of other languages such as C or C++, this is something that is left up
+to the coder themself, for better or for worse.</p>
+
+<p>The languages which provide a facility for automatically releasing
+memory allocations are known as “garbage-collected” languages.  In a
+sense, the program is likened to a house that simply puts its trash out
+periodically for someone else to deal with.  However, the language’s
+garbage collector should never be considered omniscient.  Certain
+attitudes towards allocations can cause the garbage collector to spend
+an inordinate amount of time cleaning up after the coder, much like a
+real garbage collector if a household were to put out hundreds of tiny
+bins, all with one article of trash.</p>
+
+<p>Back to the subject of allocation rather than de-allocation, one
+important concept is that of how much hand-holding the allocator will
+give to the application.  This is, typically, very much up to the
+application itself.  More relevant, how it pertains to C and C++ is
+critically important here, and so it is where we’ll find ourselves in
+the next section.</p>
+
+<h2>(Technical) Background to the Front Again</h2>
+
+<p>C and C++, by virtue of allowing the coder to override the system
+allocator or deallocator, present said coder with a problem: How does
+one handle uninitialized memory?</p>
+
+<p>There are various ways of handling this, but it largely boils down to
+three strategies upon successful allocation: Immediately handing over a
+pointer to the allocated block, the same but clearing the block to zero,
+or also the same, but clearing the block to a known non-zero value
+instead.</p>
+
+<p>In all three cases, the calculus is one of performance.  Clearing the
+allocation to any sort of consistent value is typically a good way of
+either avoiding issues or exposing them quickly, but incurs a
+significant performance penalty during periods of heavy allocator use.
+Within the latter scope, clearing to a zero value might seem like the
+logical solution, but doing so can obscure uninitialized pointers; any
+sort of null pointer safety checks in the execution path will of course
+be hit, so the coder might never even be aware that without a clearing
+allocator, the pointer would never have been initialized.</p>
+
+<p>In the case of the former – not clearing anything at all – then it’s
+entirely unknown upfront what the values of various variables will be.
+They could be zero, they could be non-zero, they will simply be whatever
+resided in that block of RAM at the time it was handed over by the
+underlying operating system.  In this case, these uninitialized
+variables can wreak havoc on the code’s functionality, and that is what
+we are facing here in MAME’s case.</p>
+
+<p>For decades, MAME has always allocated memory and cleared it to a
+consistent value.  With the advent of switching to C++ years ago,
+however, quite a number of devices – implementations of individual chips
+or peripherals – and drivers – collections of devices to emulate a
+specific system or platform – were typically converted to be class-based
+as quickly as possible.  In so doing, people doing these bulk
+conversions often overlooked initializing class member variables within
+the class constructor, because the clearing allocator was the saving
+grace in that regard.</p>
+
+<h2>Clearly Benefiting Through Unclarity</h2>
+
+<p>With the release of MAME 0.226 out of the way, it was decided by our
+lead maintainer that the disadvantages of using a clearing allocator
+were outweighing the benefits.  While it maintained a semblance of
+stability, it was largely illusory: The underlying devices and drivers
+still had issues, but they were being masked.</p>
+
+<p>Meanwhile, this decision was holding back features that had been
+added to MAME over the years to further the stated goal of providing
+documentation.  The massive overhead involved in clearing every
+allocation involved in instantiating every driver – such as is done when
+invoking the <tt>-listxml</tt> command, or the <tt>-validate</tt>
+command, or many others – was entirely unnecessary in these context.</p>
+
+<p>With that in mind, the switch was thrown, and we moved over to using
+a simple non-clearing allocator.  This has, unfortunately, had the side
+effect of throwing years of technical debt into sharp relief.  While our
+automated testing has been able to catch many of the regressions, it’s
+not a perfect system.</p>
+
+<p>Due to the sheer number of systems that MAME emulates, regression
+runs are allowed 10 seconds per system, and are only flagged if they
+either crash outright or end in a PNG screenshot or WAV output that has
+a binary difference from the last known-good point.  Since this doesn’t
+even get past the initial power-on tests for a number of arcade games,
+it means that we don’t necessarily know if the systems will crash or
+exhibit incorrect behavior beyond that point.</p>
+
+<h2>What Does It All Mean?</h2>
+
+<p>As a team, we can’t in good faith put out a build this month without
+additional time for more testing and more fixes.</p>
+
+<p>The result we’re hoping for is that this delay will result not just
+in a more stable experience for everyone, but a more responsive
+experience when interacting with MAME through the command line.</p>
+
+<p>This isn’t a decision that is being taken lightly, but it is also
+something that we cannot hide from the general public.  The previous
+time a release date slipped by any amount of time, it not only harmed
+public faith in our release process, but it raised no end of questions
+from fans who wanted more information.</p>
+
+<p>Hopefully, this post will give more insight into not only what we’re
+doing, but how and why we're doing it.</p>
+
+<p>In the event of any questions pertaining to this decision, please
+feel free to reach out to me (the author) personally via my Twitter
+account: <a href="https://twitter.com/TheMogMiner">@TheMogMiner</a>.</p>
