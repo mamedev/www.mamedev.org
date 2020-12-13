@@ -119,7 +119,7 @@ $title = 'MAME | ROMs for Free Download';
 				</td>
 				<td class="link" width="20%">
 					<a href="witchcrd"><img src="witchcrd/witchcrd-thumb.png" width="80" height="60" alt="Witch Card" /></a><br/>
-					<a href="witchcrd">Witch Game</a><br/>
+					<a href="witchcrd">Witch Card</a><br/>
 					&copy;1991 Video Klein
 				</td>
 				<td class="link" width="20%">
@@ -131,11 +131,6 @@ $title = 'MAME | ROMs for Free Download';
 					<a href="wstrike"><img src="wstrike/wstrike-thumb.png" width="80" height="60" alt="Witch Strike" /></a><br/>
 					<a href="wstrike">Witch Strike</a><br/>
 					&copy;1992 Video Klein
-				</td>
-				<td class="link" width="20%">
-					<a href="witchcrd"><img src="witchcrd/witchcrd-thumb.png" width="80" height="60" alt="Witch Card" /></a><br/>
-					<a href="witchcrd">Witch Card</a><br/>
-					&copy;1994 Video Klein
 				</td>
 				<td class="link" width="20%">
 					<a href="witchjol"><img src="witchjol/witchjol-thumb.png" width="80" height="60" alt="Jolli Witch" /></a><br/>

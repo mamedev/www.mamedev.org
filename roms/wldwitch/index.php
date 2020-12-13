@@ -9,7 +9,7 @@ $title = 'MAME | Wild Witch (Video Klein, 2001)';
 	<h1 class="page-header" style="text-align: center">Wild Witch (Video Klein, 2001)</h1>
 
 	<p>
-	Thanks to the kind generosity of Wolfgang Nottebaum, Managing Director of Video Klein
+	Thanks to the kind generosity of Wolfgang Nottebaum, managing director of Video Klein
 	Automatenbau GmbH, the original ROM images for <b>Wild Witch</b> have been made available for
 	free, non-commercial use.
 	</p>

@@ -9,7 +9,7 @@ $title = 'MAME | Witch Strike (Video Klein, 1992)';
 	<h1 class="page-header" style="text-align: center">Witch Strike (Video Klein, 1992)</h1>
 
 	<p>
-	Thanks to the kind generosity of Wolfgang Nottebaum, Managing Director of Video Klein
+	Thanks to the kind generosity of Wolfgang Nottebaum, managing director of Video Klein
 	Automatenbau GmbH, the original ROM images for <b>Witch Strike</b> have been made available for
 	free, non-commercial use.
 	</p>
