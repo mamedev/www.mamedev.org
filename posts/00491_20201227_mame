@@ -1,0 +1,229 @@
+Lua in MAME: Time for an Overhaul
+
+<p>If you’ve been following along during out extended November/December
+development cycle for MAME 0.227, you might have noticed that we’ve
+migrated MAME to C++17.  As part of this, we’ve upgraded the C++/Lua
+interface library to sol3.  This has necessitated a shake-up of the Lua
+interface code.  We’ve taken this opportunity to re-think some MAME’s
+Lua interfaces.</p>
+
+<p>Some of the changes are not backwards-compatible and will require
+scripts to be migrated.  However, we believe these changes make our Lua
+interface more robust and efficient as well as making the Lua syntax
+more idiomatic.  We’ve exposed more functionality, too.  Most of the
+breaking changes fall into a few categories:</p>
+
+<ul>
+<li>Better aligning the Lua interface with MAME’s architecture.</li>
+<li>Using container wrappers rather than building Lua tables.</li>
+<li>Replacing simple getter methods with read-only properties.</li>
+<li>Moving the Lua API reference to our documentation web site.</li>
+</ul>
+
+<p>In particular, using container wrappers makes a lot of properties far
+more efficient because the collection no longer needs to be iterated and
+copied into a Lua table for every access.  We’ll go through most of the
+breaking changes and touch on some of the new functionality here.  There
+will still be occasional changes to the Lua APIs going forward, but
+we’re not anticipating another major upheaval like this soon.</p>
+
+<!--more-->
+
+<h3>Documentation changes</h3>
+
+<p>Previously, most of the Lua classes had brief method and property
+descriptions in the source code.  Most of this has been moved to our <a
+href="https://docs.mamedev.org/techspecs/luareference.html">a page on
+our documentation web site</a> and expanded on.  It’s easier to find the
+reference documentation here, the format is better-suited to detailed
+descriptions, and cross-references can be linked properly.</p>
+
+<p>Like the rest of our documentation, this is a work in progress, and
+will be built upon.</p>
+
+<h3>Core classes</h3>
+
+<ul>
+<li>The MAME machine manager <tt>machine</tt>, <tt>ui</tt>,
+<tt>options</tt> and <tt>plugins</tt> methods have been replaced with
+properties.  The plugin descriptions are now a container of objects
+rather than a table of tables.</li>
+<li>The running machine <tt>system</tt>, <tt>parameters</tt>,
+<tt>video</tt>, <tt>sound</tt>, <tt>outputs</tt>, <tt>memory</tt>,
+<tt>ioport</tt>, <tt>input</tt>, <tt>uiinput</tt>, <tt>render</tt>,
+<tt>debugger</tt> and <tt>options</tt> methods have been replaced with
+properties.</li>
+<li>The video manager <tt>frame_update</tt> method no longer takes an
+argument, it is assumed to be an out-of-band update.  The
+<tt>speed_factor</tt>, <tt>speed_percent</tt>,
+<tt>effective_frameskip</tt>, <tt>skip_this_frame</tt> and
+<tt>is_recording</tt> methods have been replaced with properties.  The
+<tt>size</tt> and <tt>pixels</tt> methods have been renamed to
+<tt>snapshot_size</tt> and <tt>snapshot_pixels</tt>, respectively.  New
+<tt>snapshot_native</tt> and <tt>snapshot_target</tt> properties have
+been added for better control over snapshots.</li>
+<li>The sound manager <tt>ui_mute</tt>, <tt>debugger_mute</tt> and
+<tt>system_mute</tt> methods have been replaced with properties.  The
+<tt>samples</tt> method has been renamed to <tt>get_samples</tt>.  New
+<tt>muted</tt> and <tt>recording</tt> properties have been added.</li>
+<li>The MAME UI manager <tt>options</tt>, <tt>get_line_height</tt> and
+<tt>is_menu_active</tt> methods have been replaced with properties
+called <tt>options</tt>, <tt>line_height</tt> and <tt>menu_active</tt>,
+respectively.</li>
+<li>The system driver <tt>default_layout</tt> property has been removed
+as it was never possible to use the object from Lua.</li>
+</ul>
+
+<h3>Devices</h3>
+
+<ul>
+<li>The tables of devices, screens and image devices have been replaced
+with wrappers for MAME’s device enumerators.  These are far more
+efficient to create, can be created for parts of the device tree, are
+more flexible with tags, and iterate in consistent depth-first creation
+order.  Image devices are now indexed by tag, which is more stable than
+the instance name when slot options are changed.</li>
+<li>Device <tt>name</tt>, <tt>shortname</tt>, <tt>tag</tt>,
+<tt>owner</tt> and <tt>debug</tt> methods have been replaced with
+properties.  Additional <tt>subtag</tt>, <tt>siblingtag</tt>,
+<tt>memshare</tt>, <tt>membank</tt>, <tt>memregion</tt>,
+<tt>ioport</tt>, <tt>subdevice</tt>, <tt>siblingdevice</tt> and
+<tt>parameter</tt> methods have been added for working with relative
+tags.  Additional <tt>basetag</tt>, <tt>configured</tt> and
+<tt>started</tt> properties have been added.</li>
+<li>Screen devices now expose all device methods and properties.  The
+<tt>width</tt>, <tt>height</tt>, <tt>refresh</tt>,
+<tt>refresh_attoseconds</tt>, <tt>frame_number</tt>, <tt>xscale</tt>
+and <tt>yscale</tt> methods have been replaced with properties.  The
+<tt>type</tt> method has been replaced with a property called
+<tt>screen_type</tt> to avoid ambiguity if the device type is exposed as
+an object in the future.  The screen’s render container is now exposed
+as a property.  Additional properties have been added to give current
+timing parameters.</li>
+<li>The order of the last two parameters to the screen device
+<tt>draw_box</tt> method have been reversed, to make it consistent with
+the <tt>draw_text</tt> method and to allow the fill colour to be omitted
+while supplying the line colour.  The flip flags returned by the
+<tt>orientation</tt> method have changed definition – they are now set
+if the screen image is flipped in addition to the rotation.</li>
+<li>The image device interface <tt>exists</tt>, <tt>filename</tt>,
+<tt>software_list_name</tt>, <tt>image_type_name</tt>, and <tt>crc</tt>
+methods have been replaced with properties.  The <tt>longname</tt>,
+<tt>manufacturer</tt> and <tt>year</tt> methods have been replaced with
+propertieds called <tt>software_longname</tt>,
+<tt>software_publisher</tt> and <tt>software_year</tt> to reduce
+potential confusion.  Additional <tt>formatlist</tt>, <tt>readonly</tt>
+and <tt>loaded_through_softlist</tt> properties have been added,
+providing access to the supported image formats and additional
+information about the mounted image.</li>
+<li>Cassette image devices and slot devices are now exposed to Lua
+scripts.</li>
+</ul>
+
+<h3>Memory system</h3>
+
+<ul>
+<li>The address space <tt>read_log_*</tt> and <tt>write_log_*</tt>
+methods have been renamed to <tt>readv_*</tt> and <tt>writev_*</tt>
+(“v” is a mnemonic for “virtual address”).</li>
+<li>Address maps are now exposed as objects with a few properties that
+apply to the map as a whole.  As a result, you now need to use
+<tt>space.map.entries</tt> to access an address space’s configured map
+entries.</li>
+<li>Address map entries are now objects rather than tables, and the
+properties have changed to expose more detail.  The <tt>offset</tt>
+and <tt>endoff</tt> properties have been replaced with
+<tt>address_start</tt> and <tt>address_end</tt>, and the address space’s
+mask is no longer applied to the values.  Handler data is also exposed
+as objects, so the <tt>readtype</tt> and <tt>writetype</tt> properties
+have been replaced with <tt>read.handlertype</tt> and
+<tt>write.handlertype</tt>, respectively.</li>
+<li>Memory shares and regions have had <tt>tag</tt>, <tt>length</tt>,
+<tt>endianness</tt>, <tt>bitwidth</tt> and <tt>bytewidth</tt> properties
+added.</li>
+<li>Memory banks now have <tt>tag</tt> and <tt>entry</tt> properties,
+allowing Lua script to get or set the active bank number.</li>
+<li>The memory manager’s <tt>shares</tt>, <tt>banks</tt> and
+<tt>regions</tt> properties now yield container wrappers rather than
+tables.</li>
+</ul>
+
+<h3>Input system</h3>
+
+<ul>
+<li>The I/O port manager’s <tt>natkeyboard</tt> method has been replaced
+with a property, and its <tt>ports</tt> property now yields a container
+wrapper rather than a table.  New <tt>type_pressed</tt>,
+<tt>type_name</tt>, <tt>token_to_input_type</tt> and
+<tt>input_type_to_token</tt> methods have been added for working with
+general inputs.</li>
+<li>The I/O port manager’s <tt>type_seq</tt> method now takes a sequence
+type string argument rather than an integer.  This makes it consistent
+with other methods that take a sequence type argument.</li>
+<li>The natural keyboard manager has several additional methods and
+properties.  In particular, it’s now possible to enable or disable
+keyboard and keypad devices, mirroring options in the keyboard mode
+menu.</li>
+<li>I/O port <tt>tag</tt> , <tt>active</tt> and <tt>live</tt> methods
+have been replaced with properties.</li>
+<li>Methods used to poll for input sequences have been removed from the
+input manager class.  Instead, you should use the methods to create a
+poller object with the desired intention and use that to poll for input
+codes or sequences.</li>
+<li>The input device class <tt>enabled</tt> and <tt>multi</tt>
+properties have been made read-only.  These properties should only be
+set by OSD input modules, based on capabilities and configuration.</li>
+<li>The input device item <tt>code</tt> method has been replaced with a
+property.</li>
+</ul>
+
+<h3>Render system</h3>
+
+<ul>
+<li>Brand new layout scripting model with enhanced capabilities.  Many
+layout objects are now exposed to layout scripts.  <a
+href="https://docs.mamedev.org/techspecs/layout_script.html">Basic
+documentation</a> with examples for the event-based model is
+available.</li>
+<li>Render bounds and colour objects are no longer returned as multiple
+floating-point numbers on the stack and can be instantiated using
+<tt>emu.render_bounds()</tt> and <tt>emu.render_color()</tt>,
+respectively.</li>
+<li>The render target <tt>width</tt>, <tt>height</tt>,
+<tt>pixel_aspect</tt>, <tt>hidder</tt> and <tt>is_ui_target</tt> methods
+have been replaced with properties.  The <tt>view_name</tt> method has
+been replaced with a property <tt>view_names</tt> that yields a
+container wrapper.  The <tt>view</tt> and <tt>zoom</tt> properties have
+been renamed to <tt>view_index</tt> and <tt>zoom_to_screen</tt>,
+respectively, for clarity.</li>
+<li>The render target <tt>view_bounds</tt> method has been removed.  The
+view object is exposed using the new <tt>current_view</tt> property.
+The bounds can be obtained using <tt>target.current_view.bounds</tt>
+(note that this now yields a render bounds object).</li>
+<li>The render target <tt>index</tt> property is now one-based, in order
+to work better with Lua containers.</li>
+<li>The render container <tt>orientation</tt>, <tt>xscale</tt>,
+<tt>yscale</tt>, <tt>xoffset</tt> and <tt>yoffset</tt> properties can be
+written from Lua.  An additional <tt>user_settings</tt> property allows
+other image adjustment settings to be read or written.</li>
+<li>The render container for a screen device is now accessible as a
+property.  In combination with enhancements to the render container
+interface, this allows Lua scripts to control many image adjustments
+provided by UI sliders.</li>
+<li>The render manager <tt>max_update_rate</tt>, <tt>ui_target</tt> and
+<tt>ui_container</tt> methods have been replaced with properties.  The
+<tt>targets</tt> property now yields a container wrapper with one-based
+indices rather than a table.</li>
+</ul>
+
+<h3>Debugger</h3>
+
+<ul>
+<li>The device debugger interface has additional <tt>bpenable</tt>,
+<tt>bpdisable</tt>, <tt>wpenable</tt> and <tt>wpdisable</tt> methods for
+enabling and disabling breakpoints and watchpoints.</li>
+<li>The device debugger interface methods for clearing breakpoints and
+watchpoints have been renamed to <tt>bpclear</tt> and <tt>wpclear</tt>
+to match the debugger commands.</li>
+<li>Breakpoints and watchpoints are now objects rather tables.</li>
+</ul>
