@@ -63,7 +63,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://nplayers.arcadebelgium.be/" target="_blank">NPlayers</a></li>
 		<li><a href="http://www.progettosnaps.net/" target="_blank">Progetto-Snaps</a></li>
 		<li><a href="http://www.mamecheat.co.uk/" target="_blank">Pugsy's Cheats</a></li>
-		<li><a href="http://www.arcadehits.net/mamescore/home.php?show=files" target="_blank">Story.dat</a></li>
+		<li><a href="http://web.archive.org/web/20181214171732/http://www.arcadehits.net/mamescore/home.php?show=files" target="_blank">Story.dat</a></li>
 		<li><a href="http://www.progettoemma.net/mess/extra.html" target="_blank">SysInfo.dat</a></li>
 		<li><a href="http://www.progettosnaps.net/catver/" target="_blank">Unofficial CatVer</a></li>
 		<li><a href="http://www.progettosnaps.net/command/" target="_blank">Unofficial Command.dat</a></li>
@@ -91,10 +91,10 @@ $title = 'MAME | Resources';
 		<li><a href="http://www.mameworld.info/ubbthreads/ubbthreads.php?Cat=" target="_blank">MAMEWorld Forums</a></li>
 		<li><a href="http://forum.arcadecontrols.com/" target="_blank">Build Your Own Arcade Controls Forum</a></li>
 		<li><a href="http://www.mameguide.info" target="_blank">Mameguide</a></li>
-		<li><a href="http://arcademania.eu/" target="_blank">Arcademania (ITA)</a></li>
+		<!-- <li><a href="http://arcademania.eu/" target="_blank">Arcademania (ITA)</a></li> -->
 		<li><a href="http://www.mame.gr/" target="_blank">MAME.gr (GRC)</a></li>
 		<li><a href="https://www.reddit.com/r/MAME/" target="_blank">MAME at reddit (unofficial)</a></li>
-		<li><a href="http://www.arcadehits.net/forum/index.php" target="_blank">arcadeHITS Forum</a></li>
+		<!-- <li><a href="http://www.arcadehits.net/forum/index.php" target="_blank">arcadeHITS Forum</a></li> -->
 		<li><a href="http://www.arcadeitalia.net/" target="_blank">Arcade Italia (ITA)</a></li>
 		<li><a href="http://arcade.emu-france.info/" target="_blank">ArcadeFans (FRA)</a></li>
 		<li><a href="http://arcadeforever.forumfree.it/" target="_blank">Arcade Forever (ESP)</a></li>
@@ -114,7 +114,7 @@ $title = 'MAME | Resources';
 	<h2>Other MAME-focused Sites</h2>
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="_blank">Arcade Database (ADB)</a></li>
-		<li><a href="http://www.arcadehits.net/" target="_blank">arcadeHITS (FRA)</a></li>
+		<!-- <li><a href="http://www.arcadehits.net/" target="_blank">arcadeHITS (FRA)</a></li> -->
 		<li><a href="http://arcade-history.com/" target="_blank">Gaming-History</a></li>
 		<li><a href="http://mahjonginmame.com/" target="_blank">Mahjong in MAME</a></li>
 		<li><a href="http://replay.marpirc.net/" target="_blank">MAME Action Replay Page (MARP)</a></li>
