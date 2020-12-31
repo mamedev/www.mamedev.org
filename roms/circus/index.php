@@ -34,6 +34,7 @@ $title = 'MAME | Circus (Exidy, 1977)';
 	<center>
 		<div class="btn btn-success">
 			<h4><a href="circus.zip" onclick="return isChecked();" title="Download now" class="btn-success">Download the Circus ROM images</a></h4>
+			<h4><a href="circuso.zip" onclick="return isChecked();" title="Download now" class="btn-success">Download the Circus (older) ROM images</a></h4>
 			<form name="agreeform" action="#">
 				<input type="checkbox" name="agree" />
 				<label for="agree">I understand that these ROM images are for non-commercial use only</label>

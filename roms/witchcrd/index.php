@@ -33,7 +33,7 @@ $title = 'MAME | Witch Card (Video Klein, 1991)';
 
 	<center>
 		<div class="btn btn-success">
-			<h4><a href="witchcde.zip" onclick="return isChecked();" title="Download now" class="btn-success">Download the Witch Card ROM images</a></h4>
+			<h4><a href="witchcrde.zip" onclick="return isChecked();" title="Download now" class="btn-success">Download the Witch Card ROM images</a></h4>
 			<form name="agreeform" action="#">
 				<input type="checkbox" name="agree" />
 				<label for="agree">I understand that these ROM images are for non-commercial use only</label>
