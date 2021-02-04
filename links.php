@@ -137,7 +137,7 @@ $title = 'MAME | Resources';
 		<li><a href="http://hbmame.1emulation.com/" target="_blank">HBMAME</a></li>
 		<li><a href="https://github.com/jsmess/jsmess" target="_blank">jsMESS</a></li>
 		<li><a href="https://sourceforge.net/projects/mameforslack/" target="_blank">MAME for Slackware</a></li>
-		<li><a href="http://mamehub.com/" target="_blank">MAMEHub</a></li>
+		<li><a href="https://reddit.com/r/MAMEHub/" target="_blank">MAMEHub</a></li>
 		<li><a href="http://mameui.info/" target="_blank">MAMEUI</a></li>
 		<li><a href="http://messui.1emulation.com/" target="_blank">MESSUI</a></li>
 		<li><a href="http://pinmame.de/" target="_blank">PinMAME</a></li>
