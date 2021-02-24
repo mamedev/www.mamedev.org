@@ -1,0 +1,273 @@
+MAME 0.229
+
+<p>It’s been an eventful month, culminating in the release of MAME 0.229
+today.  One change that you’ll notice straight away is that the “64”
+suffix is no longer added to the file name for 64-bit versions of MAME.
+If you’re unsure, you can see the data model at the end of the window
+title.</p>
+
+<p>One very elusive Argentinian title has finally made it into MAME this
+month.  We’ve very proud to present Ms PacMan Twin, an extensive hack of
+Ms. Pac-Man with simultaneous two-player cooperative gameplay.  Another
+rarity you can now experience is Midway’s unreleased Power Up Baseball –
+the NBA Jam of baseball.  On the topic of prototypes, Wayne Gretzky’s
+3D Hockey Fatality Edition is now supported.</p>
+
+<p>Several TV games for preschool age children from JAKKS Pacific’s
+Sharp Cookie line have been dumped and emulated, featuring popular
+characters like Dora the Explorer, Scooby-Doo, Spider-Man and Thomas
+the Tank Engine.  Travelling back a little, Mattel’s representations of
+Basketball, Hockey, Soccer, and Tag as electronic toys are now
+supported.  Elektronika Autoslalom has arrived from Russia (with love).
+Another batch of JPM IMPACT fruit machines have been promoted to working
+this month, making use of new artwork engine features for their internal
+layouts.</p>
+
+<p>Updates to the Win32 and Qt debuggers add a context menu to debugger
+views with an option to copy visible text to the clipboard, improve
+behaviour when views are scrolled to the bottom, and fix a crash when
+right-clicking some memory views.  We’re lucky enough to have received
+another shader update from cgwg, improving the appearance of the popular
+crt-geom and crt-geom-deluxe effects.  We’ve added support for the
+NEC/Renesas V850 family to unidasm.</p>
+
+<p>That’s all we’ve got time for here, but there are lots of software
+list updates, newly dumped bootlegs, bug fixes, and other enhancements
+that you can read about in the <a
+href="https://mamedev.org/releases/whatsnew_0229.txt">whatsnew.txt
+file</a>.  As always, you can get the source and 64-bit Windows binary
+packages from <a
+href="https://mamedev.org/release.html">the download page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers Bugs Fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=6650">06650</a>: [Graphics] (m58.cpp) 10yard: Graphics are misaligned. (Ivan Vangelista)</a>
+    <li><a href="https://mametesters.org/view.php?id=6668">06668</a>: [Graphics] (mhavoc.cpp) mhavoc, mhavoc2, mhavocp, mhavocrv: Not all graphics are displayed. (Robbbert)</a>
+    <li><a href="https://mametesters.org/view.php?id=6935">06935</a>: [Misc.] BGFX render module doesn’t find images when multiple artwork paths are configured. (AJR)</a>
+    <li><a href="https://mametesters.org/view.php?id=7795">07795</a>: [Debugger] Qt debugger: Debugger views display incorrectly when scrolled to the bottom. (Vas Crabb)</a>
+    <li><a href="https://mametesters.org/view.php?id=7860">07860</a>: [Compiling] N/A: Incorrect flags are passed to the compiler on ARM/AArch64 targets. (Belegdol)</a>
+    <li><a href="https://mametesters.org/view.php?id=7863">07863</a>: [Interface] (ksys573.cpp) pcnfrk4mk: Description does not match displayed title. (AriaOTP)</a>
+    <li><a href="https://mametesters.org/view.php?id=7866">07866</a>: [Crash/Freeze] (atarig1.cpp) pitfight3: Game crashes randomly in later matches. (O. Galibert)</a>
+    <li><a href="https://mametesters.org/view.php?id=7867">07867</a>: [Crash/Freeze] (c64.cpp) Most carts in c64_cart.xml: Cartridges no longer load correctly. (Ivan Vangelista)</a>
+    <li><a href="https://mametesters.org/view.php?id=7874">07874</a>: [Save/Restore] (gottlieb.cpp) cobram3, cobram3a: Games stop at a black screen with populated NVRAM files. (Ivan Vangelista)</a>
+</ul>
+
+<h3>New working machines</h3>
+<ul>
+    <li>Basketball (Mattel) [hap, Sean Riddle]</li>
+    <li>Black Knight Pinball (Entex) [hap, Sean Riddle, Rik]</li>
+    <li>Elektronika Autoslalom [hap]</li>
+    <li>Hockey (Mattel) [hap, Sean Riddle]</li>
+    <li>JAKKS Pacific Inc / Child Guidance / Handheld Games Dora the Explorer - Dora Saves the Mermaids (Sharp Cookie) (PAL, UK) [Sean Riddle, David Haywood]</li>
+    <li>JAKKS Pacific Inc / Child Guidance / Handheld Games Scooby-Doo! and The Pirate's Puzzles (Sharp Cookie) (PAL, UK) [Sean Riddle, David Haywood]</li>
+    <li>JAKKS Pacific Inc / Child Guidance / Pronto Games The Amazing Spider-Man - Great Math Caper (Sharp Cookie) (NTSC, US) [Sean Riddle, David Haywood]</li>
+    <li>JAKKS Pacific Inc / Child Guidance / Pronto Games Go Diego Go! - Aztec ABC Adventure (Sharp Cookie) (PAL, UK) [Sean Riddle, David Haywood]</li>
+    <li>Mattel Funtronics: Tag [hap, Sean Riddle]</li>
+    <li>Ms PacMan Twin (Argentina) [Roberto Fresca, Mirko Buffoni, ArcadeHacker, Rick2000, ytsejam, Recreativas.org]</li>
+    <li>National Semiconductor QuizKid Speller [hap, Sean Riddle]</li>
+    <li>Power Up Baseball (prototype) [Frank Cifaldi, Rich Whitehouse, Ryan Holtz, Travis Brown, Dan Filner]</li>
+    <li>Run Run Puppy [Houpela, MetalliC]</li>
+    <li>Soccer (Mattel) [hap, Sean Riddle]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Asteroids (bootleg on Lunar Lander hardware, set 2) [Juan Romero, ClawGrip]</li>
+    <li>Barracuda [Cam, Lamonsoff]</li>
+    <li>Born To Fight (Vifico license) [jordigahan, ClawGrip]</li>
+    <li>Defense (Defender bootleg) [chaneman]</li>
+    <li>Drift Out (Europe, Cameltry conversion) [twistedsymphony, Porchy]</li>
+    <li>Fidelity Electronics Elite A/S Challenger (Budapest program, model EWC) [Berger]</li>
+    <li>Galaxian (Electromar Spanish bootleg) [Juan Romero, ClawGrip]</li>
+    <li>Hot Night [system11, Brian Troha, The Dumping Union]</li>
+    <li>Hunchback (FAR S.A. bootleg on Galaxian hardware) [Juan Romero, ClawGrip]</li>
+    <li>JAKKS Pacific Inc / Child Guidance / Pronto Games Thomas &amp; Friends - Learning Circus Express (Sharp Cookie) (NTSC, US) [Sean Riddle, David Haywood]</li>
+    <li>Kamikaze (Electrogame, Spanish bootleg of Galaxian) [Juan Romero, ClawGrip]</li>
+    <li>Mars (bootleg) [jordigahan, ClawGrip]</li>
+    <li>National Semiconductor QuizKid Racer (MM5799 version) [hap, Sean Riddle]</li>
+    <li>Player's Edge Plus (PP0104) Standard Draw Poker (set 2, Fitzgeralds) [Brian Troha]</li>
+    <li>Radar Scope (TRS02, rev. D) [anonymous, Gaming Alexandria]</li>
+    <li>Storming Party / Riku Kai Kuu Saizensen (set 2) [f205v]</li>
+    <li>Street Fighter II': Magic KO Turbo!! - Nightmare Crack [f205v, maru79]</li>
+    <li>Wayne Gretzky's 3D Hockey Fatality Edition (prototype) [Andrew Welburn, bmx]</li>
+    <li>World Beach Volley (set 1, S87C751 audio CPU) [Caps0ff, jordigahan, ClawGrip]</li>
+</ul>
+
+<h3>Machines promoted to working</h3>
+<ul>
+    <li>Ace Of Clubs (Crystal) (IMPACT, GND D 4) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO1   H06) [James Wallace]</li>
+    <li>Novag Supremo [hap, bataais]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO10 C13) [James Wallace]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>Ace Of Clubs (Crystal) (IMPACT, GND D 4 P, Protocol) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO 9   14) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO 9 A 14) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO 9I  14) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO 9P  14) (Protocol) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO06   11) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO1  AH06) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO1 I H06) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO1 P H06) (Protocol) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO5   H10) [James Wallace]</li>
+    <li>Bonanza (JPM) (IMPACT) (BO5 I H10) [James Wallace]</li>
+    <li>The Hole (bootleg of The Pit) [caius]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO1 AC2) [James Wallace]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO10 AC13) [James Wallace]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO10 C13, Whitbread) [James Wallace]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO7 AC10) [James Wallace]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO7 C10) [James Wallace]</li>
+    <li>Sonic The Hedgehog (JPM) (IMPACT) (SO9 C12) [James Wallace]</li>
+</ul>
+
+<h3>New machines marked as NOT_WORKING</h3>
+<ul>
+    <li>Beatmania III [Windy Fairy]</li>
+    <li>G.T. Block Challenger [hap, chaneman]</li>
+    <li>Games Family [Victor Fernandez (City Game), ClawGrip]</li>
+    <li>Golden Fruits [jordigahan, ClawGrip]</li>
+    <li>Insight Enterprises Z80 SBC (prototype?) [Dirk Best, Tech Time Traveller]</li>
+    <li>Network Computing Devices MCX [Patrick Mackinlay]</li>
+    <li>Olympus (Z Games, version 10) [Ioannis Bampoulas]</li>
+    <li>Photo Play 2001 (Spanish) [jordigahan, ClawGrip]</li>
+    <li>PlayCenter Champions Tournament (v9.3) [Recreativas.org]</li>
+    <li>Pop'n Music Animelo [Windy Fairy]</li>
+    <li>Pop'n Music Mickey Tunes [Windy Fairy]</li>
+    <li>Score 5 [Ioannis Bampoulas]</li>
+    <li>Silverball (8.01) [jordigahan, ClawGrip]</li>
+    <li>Super Butterfly 2000 [Ioannis Bampoulas]</li>
+</ul>
+
+<h3>New clones marked as NOT_WORKING</h3>
+<ul>
+    <li>Mach 2 (set 2) [Victor Fernandez (City Game), ClawGrip]</li>
+    <li>Oli Bug (Jump Bug bootleg) [Juan Romero, ClawGrip]</li>
+    <li>ParaParaParadise 2nd Mix (AAA) [Windy Fairy]</li>
+    <li>Pop'n Music Mickey Tunes! [Windy Fairy]</li>
+    <li>Silverball (6.32) [Asure]</li>
+    <li>Silverball (7.20) [Asure]</li>
+    <li>Silverball Bulova (4.09, set 1) [Asure]</li>
+    <li>Silverball Bulova (4.09, set 2) [Asure]</li>
+</ul>
+
+<h3>New working software list additions</h3>
+<ul>
+    <li><b>apple1</b>: Hamurabi (Computerland), Nightmare #6 [Brutal Deluxe]</li>
+    <li><b>apple2_flop_clcracked</b>: Dr. Jessie's Dinosaur (cleanly cracked), Frogger (Main Street Publishing re-release) (cleanly cracked), Hugo Hound's Vowel Sounds: Long Vowels (cleanly cracked), The Isle of Mem (cleanly cracked), Jigsaw Jenerator (cleanly cracked), Math Concepts I (Version 06.29.84) (cleanly cracked), Math Concepts II (Version 06.29.84) (cleanly cracked), Osmotic Pressure (Version 1.1, dated 04/1985) (cleanly cracked), Pipeline (cleanly cracked), PlayWriter: Adventures in Space (cleanly cracked), PlayWriter: Castles and Creatures (cleanly cracked), Pollution Control (cleanly cracked), Reproduction Process (cleanly cracked), Starship Commander (Version 1.1) (cleanly cracked), Tim and the Cat and Grog the Frog (cleanly cracked), Uncle Clyde's Consonant Slides: Beginning Consonants (cleanly cracked) [4am, Firehawke]</li>
+    <li><b>apple2_flop_orig</b>: Alphabet Fun: Learning The Alphabet, Cause and Effect: What Makes It Happen, The Human Body and How It Works: The Digestive and Excretory Systems, The Human Body and How It Works: The Skeletal and Muscular Systems, Library Skills: Let's Learn About The Library, Parts of Speech: Fun with Verbs, Read and Spell: In the Days of Knights and Castles, Reading Fun: Beginning Consonant Sounds, Troll Math Class Level 3: I Can Multiply and Divide, Troll Math Class Level 4: Advanced Addition and Subtraction, Troll Math Class Level 5: Advanced Multiplication and Division, Understanding Maps and Globes [4am, Firehawke]</li>
+    <li><b>ekara_japan_a</b>: A-6 Pichi Pichi Pitch Pure Chapter 2 (Japan), A-8 Pichi Pichi Pitch Karaoke Party 2 (Japan) [WingedPikPik, TeamEurope]</li>
+    <li><b>fmtowns_cd</b>:<br/>
+    Ehon Writer School v1.1 L21, Gakuen Bakuretsu Tenkousei!, Hana no Kioku - Dainishou, if 1-2-3 CD Collection, Ikazuchi no Senshi Raidy 2 (1996-03-11), Kousoku Choujin, Misato-chan no Yume Nikki, Time Stripper Mako-chan, Tougenkyou [redump.org]<br/>
+    The Silent Service - Chinmoku no Kantai, Sotsugyou '93 - Graduation (older floppy disk) [redump.org, wiggy2k]</li>
+    <li><b>fmtowns_flop</b>:<br/>
+    Cameltry (cracked), Columns (cracked), Lord Monarch [cyo.the.vile]<br/>
+    Nonomura Byouin no Hitobito [r09]</li>
+    <li><b>hp_ipc_rom</b>: Software Engineering ROM [F.Ulivi]</li>
+    <li><b>ibm5150</b>:<br/>
+    Hare Raising Havoc (USA) [ArcadeShadow]<br/>
+    Cyrus 3-D Chess (shareware, Titanium Seal release), VGA Slot Machine (Titanium Seal release) [archive.org]<br/>
+    Maniac Mansion, Tunnels &amp; Trolls: Crusaders of Khazan, Valhalla - Ragnarok [The Good Old Days]</li>
+    <li><b>ibm5170</b>:<br/>
+    Descent (shareware, v1.1), King's Quest V: Absence Makes the Heart Go Yonder! (3.5"DD, v0.000.055, EGA release), King's Quest V: Absence Makes the Heart Go Yonder! (5.25", v0.000.051, VGA release), King's Quest V: Absence Makes the Heart Go Yonder! (5.25", v0.000.062, EGA release), Raptor - Call of the Shadows (shareware, v1.0, Titanium Seal release), Tubular Worlds, Warlords II, Warlords II - Scenario Builder [ArcadeShadow]<br/>
+    Wolfenstein 3-D (shareware, Titanium Seal release) [archive.org]<br/>
+    Mixed-Up Fairy Tales [The Good Old Days]</li>
+    <li><b>rx78_cart</b>: Space Enemy [Gaming Alexandria]</li>
+    <li><b>vgmplay</b>: Arctic (NEC PC-9801), Battle Storm (Family Computer), The Beverly Hillbillies (IBM PC AT), Bonk 3 - Bonk's Big Adventure (TG-16), Bonk's Adventure (TG-16), Bonk's Revenge (TG-16), Boxyboy (TG-16), Break In (PC Engine), Chew Man Fu (TG-16), Cyber Core (TG-16), Doraemon - Meikyuu Daisakusen (PC Engine), Final Lap Twin (TG-16), Fushigi no Yume no Alice (PC Engine), Hana Taaka Daka! (PC Engine), Impact MuSiX Disk #1 (MSX2), Impact MuSiX Disk #2 (MSX2), Impact MuSiX Disk #3 (MSX2), Impact MuSiX Disk #4 (MSX2), Impact MuSiX Disk #5 (MSX2), Kaizou Choujin Shubibinman (PC Engine), The Legend of Kyrandia - Book One (IBM PC AT), Lemmings 2 - The Tribes (IBM PC AT), Mario's Game Gallery (IBM PC AT), Mega Man V (Nintendo Game Boy), Monster Pro Wrestling (PC Engine), Moto Roader (TG-16), Moto Roader II (PC Engine), Pachicom (MSX), Spin Pair (PC Engine), Supaplex (IBM PC AT), Super Tetris 2 + Bombliss (NEC PC-9801), Ultra Toukon Densetsu (Seta 1) [vgmrips.net, Tafoid]</li>
+    <li><b>vsmile_cart</b>: The Batman - De redding van Gotham City (Netherlands), Disney's Mickey Mouse - De wonderwereld van Mickey (Netherlands), Marvel Spider-Man en Vrienden - Geheime Missies (Netherlands, rev. 123), Nick Jr. Dora - Dora's Reparatie Avontuur! (Netherlands, 2005), Nick Jr. Dora - Dora's Reparatie Avontuur! (Netherlands, 2009), Nickelodeon Spongebob Squarepants - Een Dag uit het Leven van een Spons (Netherlands), Spider-Man en Vrienden - Geheime Missies (Netherlands), Truckie's Rekenrace (Netherlands), Walt Disney's Assepoester - De wonderwereld van Assepoester (Netherlands, 2010), Walt Disney's Assepoester - De wonderwereld van Assepoester (Netherlands, alt, 2005), Walt Disney's Assepoester - De wonderwereld van Assepoester (Netherlands, rev. 123, 2007) [Ramco Sahara]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>fmtowns_cd</b>: Record of Lodoss War II - Goshiki no Maryuu, Sangokushi III [wiggy2k]</li>
+</ul>
+
+<h3>New NOT_WORKING software list additions</h3>
+<ul>
+    <li><b>lynx</b>: Lynx Othello [anonymous]</li>
+    <li><b>rx78_cart</b>: Excite Baseball [Gaming Alexandria]</li>
+    <li><b>vsmileb_cart</b>: Dierenhuis (Netherlands) [Ramco Sahara]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/issues/7369">7369</a>: neogeo.cpp, neogeocd.cpp: Added notes on regional differences in AES consoles. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7392">7392</a>: actions_atj2279b.cpp: Add notes about CPU and video resolution. [Onmp314]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7567">7567</a>: video/315_5313.cpp: Added TODO notes for things that need verification. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7623">7623</a>: apple1.xml: Added two entries. [Brutal Deluxe, Alexis B.]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7652">7652</a>: bus/rs232/printer.cpp: Added option for Radio Shack printer with select output on RxD. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7655">7655</a>: sms.xml: Corrected release year for Fire &amp; Ice. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7693">7693</a>: firebeat.cpp: Improved SPU, documented I/O ports, and fixed some graphical issues. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7696">7696</a>: nmk16.cpp: Fixed redhawks graphics, and added placeholders for undumped PROMs and PLDs. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7697">7697</a>: oric.cpp: Added oric1 BASIC 1.0 UK BIOS. [tante ju, rfka01]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7699">7699</a>: sound/rf5c400.cpp: Fixed looping, and implemented position read-back. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7700">7700</a>: photoplys.cpp: Added Photo Play 2001 (Spanish). [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7701">7701</a>: geniusjr.cpp: Added note about globbed 68HC05 on gls. [Sean Riddle, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7702">7702</a>: gfamily.cpp: Added Games Family. [Victor Fernandez (City Game), ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7703">7703</a>: gokidetor.cpp: Converted JEDEC files to MAME binary format and added anonymous namespace. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7705">7705</a>: bogeyman.cpp, shootout.cpp: Corrected monitor orientation to 180° rotation. [Corrado Tomaselli, Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7706">7706</a>: missbamby.cpp: Added Golden Fruits. [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7708">7708</a>: Fixed compiler flags for ARM/AArch64 targets. [Belegdol]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7709">7709</a>: docs: Changed “mame64” to “mame” in documentation. [Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7710">7710</a>: jungleyo.cpp: Fixed video emulation. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7713">7713</a>: Updated “2020” to “2021” in various places. [Stiletto]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7714">7714</a>: snesb51.cpp: Added BIOS version 12-07 for snes4sl. [Victor Fernandez (City Game), ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7715">7715</a>: docs: Updated instructions for building on macOS. [r0ni]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7719">7719</a>: itech32.cpp: Added Power Up Baseball (prototype). [Frank Cifaldi, Rich Whitehouse, Ryan Holtz, Travis Brown, Dan Filner]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7721">7721</a>: firebeat.cpp: Refactored driver code, and added initial beatmania III support. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7723">7723</a>: rainbow.cpp: Added 01.01.11A ROM for Rainbow 100 A ROM. [bsdimp, rfka01]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7724">7724</a>: hh_sm510.cpp: Improved gnw_egg display using scanned from unit. [algestam]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7725">7725</a>: formats/ap2_dsk.cpp: Added read-only support for <tt>.nib</tt> format images. [leesaudan2]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7726">7726</a>: hp_ipc.cpp: Added support for expansion ROMs. [F.Ulivi]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7727">7727</a>: hh_sm510.cpp: Verified that gnw_egg and gnw_mmouse microcontroller programs are identical. [algestam]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7728">7728</a>: viper.cpp: Added I/O and new dongles for ParaParaParadise 2nd Mix games. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7729">7729</a>: ibm5170.xml: Added eight entries. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7730">7730</a>: ibm5150.xml: Added Hare Raising Havoc (USA). [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7731">7731</a>: frontend: Added a few more driver flags to <tt>-listxml</tt> output. [Nathan Woods]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7733">7733</a>: galaxian.cpp: Added Kamikaze (Electrogame, Spanish bootleg of Galaxian). [Juan Romero, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7734">7734</a>: cpu/es5510: Partially implemented RAM clear function and serial control. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7735">7735</a>: galaxold.cpp: Added Hunchback (FAR S.A. bootleg on Galaxian hardware). [Juan Romero, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7738">7738</a>: spg2xx_jakks_sharp.cpp: Added The Amazing Spider-Man - Great Math Caper (Sharp Cookie) (NTSC, US). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7739">7739</a>: asteroid.cpp: Added Asteroids (bootleg on Lunar Lander hardware, set 2). [Juan Romero, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7741">7741</a>: bus/cpc/cpc_rs232.cpp: Reinstated RI handler. [Fergus Leen]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7742">7742</a>: fmtowns_flop.xml: Added two cracks and two original dumps, replaced one entry with a better dump, and removed a bad dump. [r09]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7744">7744</a>: fantland.cpp: Added Born To Fight (Vifico license). [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7747">7747</a>: hh_sm510.cpp: Confirmed gnw_mmouse uses microcontroller R mask option. [algestam]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7749">7749</a>: vsmile_cart.xml: Added eleven entries, changed names to use VTech region codes, and fixed parent/clone relationships. [Ramco Sahara, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7750">7750</a>: spinb.cpp: Added Mach 2 (set 2). [Victor Fernandez (City Game), ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7752">7752</a>: vsmilem_cart.xml: Changed names to use VTech country codes, and fixed a parent/clone relationship. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7753">7753</a>: apple2gs.cpp: Implemented some missing ADB commands. [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7755">7755</a>: spg2xx_jakks_sharp.cpp: Added two TV games. [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7757">7757</a>: spg2xx_jakks_sharp.cpp: Added Scooby-Doo! and The Pirate's Puzzles (Sharp Cookie) (PAL, UK). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7758">7758</a>: toaplan2.cpp: Fixed graphics ROM loading for nprobowl. [DavidHaywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7761">7761</a>: video/hng64.cpp: Only swap/clear 3D buffer when flag is set. [Happy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7762">7762</a>: ekara_japan_a.xml: Added two entries. [WingedPikPik, TeamEurope, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7764">7764</a>: fmtowns_cd.xml: Added eleven entries, replaced nineteen entries with better dumps and added three missing floppies. [r09]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7765">7765</a>: bus/isa/svga_s3.cpp: Added two additional BIOS variants. [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7766">7766</a>: bgfx: Added brightness boost, clamping to zero, and raster bloom effects to crt-geom and crt-geom-deluxe. [cgwg]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7767">7767</a>: galaxian.cpp: Dumped PROM for olibug and galkamika. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7768">7768</a>: spg2xx_jakks_sharp.cpp: Added Thomas &amp; Friends - Learning Circus Express (Sharp Cookie) (NTSC, US). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7769">7769</a>: silverball.cpp: Added five TAB Austria Silverball sets. [jordigahan, Asure, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7770">7770</a>: Fixed missing and duplicate source file references in build scripts. [Roberto Benfatto]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7773">7773</a>: generalplus_gpl16250_mobigo.cpp: Corrected release years. [AlesanddroPB95]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7781">7781</a>: raiden_ms.cpp: Fixed sound CPU communication and improved sound chip hook-up. [Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7787">7787</a>: Replaced <tt>ARRAY_LENGTH</tt> with C++17 <tt>std::size</tt> and cleaned up some code. [AJR]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7790">7790</a>: Added M68000 CPU support to gdbstub debugger. [nabetse]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7791">7791</a>: thoop2.cpp: Fixed sprite-sprite priorities. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7793">7793</a>: apple2gs.cpp: Enabled floppy sounds when using new IWM implementation. [leesaudan2]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7795">7795</a>: gamegear.xml: Changed description of suprjedi to match the box art and manual. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7796">7796</a>: ibm5150.xml: Added five entries. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7797">7797</a>: ibm5170.xml: Added two entries, and marked a modified disk as a bad dump. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7798">7798</a>: dkong.cpp: Added Radar Scope (TRS02, rev. D). [anonymous, Gaming Alexandria, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7799">7799</a>: gfamily.cpp: Re-dumped gmfamily hard disk. [ICEknight, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7801">7801</a>: playcenter.cpp: Added PlayCenter Champions Tournament (v9.3). [Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7802">7802</a>: cps2.cpp: updated credits. [Ange Albertini]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7803">7803</a>: apple2_flop_clcracked.xml, apple2_flop_orig.xml: Added latest original dumps and cracks. [4am, Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7804">7804</a>: ksys573.cpp: Added ATA CS1 to memory map. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7805">7805</a>: bus/megadrive/sk.cpp: Add notes for Sonic 3 &amp; Knuckles save feature. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/issues/7809">7809</a>: fmtowns_flop.xml: Fixed SHA1 digest for lordmon. [r09]</li>
+</ul>

@@ -74,6 +74,30 @@ function ancient_mirror_directory($version,  $title = NULL)
 		<p>Preferred mirror: <select id="select-mirror"><option value="gh" selected>GitHub</option><option value="sf">SourceForge</option><option value="ps">Progetto-Snaps</option></select></p>
 
 		<div class="panel panel-primary">
+		  <div class="panel-heading">2021 MAME Releases</div>
+		  <table class="table">
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php release_mirror_directory('228'); ?></td>
+				<td class="date">27 Jan 2021</td>
+				<td class="link"><?php release_mirror_file('228', 'mame0228s.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('228', 'mame0228b_64bit.exe'); ?></td>
+				<td class="link"><a href="releases/whatsnew_0228.txt">whatsnew_0228.txt</a></td>
+			</tr>
+		  </table>
+		  <div class="panel-footer">
+			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
+		  </div>
+		</div>
+
+
+		<div class="panel panel-primary">
 		  <div class="panel-heading">2020 MAME Releases</div>
 		  <table class="table">
 			<tr>
