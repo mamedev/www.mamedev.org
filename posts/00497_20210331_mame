@@ -1,0 +1,352 @@
+MAME 0.230
+
+<p>Fasten your seatbelts and get ready for MAME 0.230!  There are big
+changes this month, but before we get to that, let’s highlight some of
+the more routine additions.  Several TV games featuring adaptations of
+popular Hasbro board games are now supported, as well as a couple of
+VTech systems featuring Dora the Explorer.  Several electronic toys and
+handheld LED game from Mattel and Invicta have been emulated this month.
+There’s a big update for the Apple II software lists this month, with
+clean cracks of lots of educational software from MECC.</p>
+
+<p>If you’ve been following along with development, you’re no doubt
+excited about the new Yamaha OPM/OPN (YM2151, YM2203, YM2608, YM2610,
+YM2610B, YM2612, and YM3438) sound emulation core.  This addresses
+numerous subtle and not-so-subtle issues, particularly in Sega and Data
+East games.  Windy Fairy and Jennifer Taylor have continued to improve
+MAME’s support for Konami rhythm games, making beatmania IIDX,
+Beatmania III, Keyboardmania and ParaParaParadise games playable.
+Thanks to Happy, a couple more graphics issues with the Hyper Neo Geo 64
+have been fixed.</p>
+
+<p>There’s been a lot of work on the Apple IIgs and 68k Mac drivers this
+month.  As well as the flood of machines promoted to working, Apple 3.5"
+floppy support has been revolutionised, and improvements to ADB GLU
+microcontroller simulation make the IIgs control panel usable.  On the
+console side, save EEPROM support has been fixed for several Mega Drive
+games.</p>
+
+<p>Of course that’s not all, and you can read about all the additions,
+bug fixes, and enhancements in the <a
+href="https://mamedev.org/releases/whatsnew_0230.txt">whatsnew.txt
+file</a>.  You can get the source and 64-bit Windows binary packages
+from <a
+href="https://mamedev.org/release.html">the download page</a> and start
+playing.</p>
+
+<!--more-->
+
+<h3>MAME Testers Bugs Fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=5191">05191</a>: [Save/Restore] (megadriv.cpp) megadriv [evander,wboymw]: EEPROM data is not saved. (Ryan Holtz)</li>
+    <li><a href="https://mametesters.org/view.php?id=5580">05580</a>: [DIP/Input] (royalmah.cpp) cafetime: DIP switch settings are incorrect. (kamilz)</li>
+    <li><a href="https://mametesters.org/view.php?id=5785">05785</a>: [DIP/Input] (cabal.cpp) cabal and clones (except cabalbl): Coins don’t work when Demo Sound DIP switch is off. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=5800">05800</a>: [Sound] (megadriv.cpp) genesis / megadriv / megadrij [microm96] [microm96a] [micromm]: Incorrect horn sound. (Aaron Giles)</li>
+    <li><a href="https://mametesters.org/view.php?id=5875">05875</a>: [Misc.] (magictg.cpp) magictg: AddressSanitizer: Buffer overrun in ZR36120 emulation. (Robbbert)</li>
+    <li><a href="https://mametesters.org/view.php?id=6166">06166</a>: [Sound] (megadriv.cpp) megadriv [batman]: Bad emulated sound effects when hitting enemies. (Aaron Giles)</li>
+    <li><a href="https://mametesters.org/view.php?id=6740">06740</a>: [Sound] (dec0.cpp) slyspy, bouldash: Sound randomly speeds up and eventually stops working. (Aaron Giles)</li>
+    <li><a href="https://mametesters.org/view.php?id=6789">06789</a>: [Graphics] (namconb1.cpp) vshoot: Black screen after winning first match. (O. Galibert)</li>
+    <li><a href="https://mametesters.org/view.php?id=6930">06930</a>: [Sound] (dec0.cpp) robocop, robocopu, robocopw: The sound effect of the van’s back door cuts off suddenly. (Aaron Giles)</li>
+    <li><a href="https://mametesters.org/view.php?id=7023">07023</a>: [Misc.] (megadriv.cpp) megadriv [fatfury, fatfuryu]: Description is incomplete. (ArcadeShadow)</li>
+    <li><a href="https://mametesters.org/view.php?id=7052">07052</a>: [Gameplay] (mac128.cpp) macplus [bdrkcast]: Mac Plus interrupt timing is incorrect. (Lord Nightmare)</li>
+    <li><a href="https://mametesters.org/view.php?id=7161">07161</a>: [Sound] (dec0.cpp) baddudes: Missing sound in stage 3 boss transformation. (Aaron Giles)</li>
+    <li><a href="https://mametesters.org/view.php?id=7193">07193</a>: [Documentation] (megadriv.cpp) megadriv [jellyboy]: Release year is incomplete. (ArcadeShadow)</li>
+    <li><a href="https://mametesters.org/view.php?id=7303">07303</a>: [Media Support] (coco3.cpp) coco3 [tharogad]: The Castle of Tharogad game cartridge does not run. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=7389">07389</a>: [Sound] (williams.cpp) inferno: DAC sound is incorrect. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7767">07767</a>: [Documentation] (megadriv.cpp) [megadriv] tecmowc, tecmow92: These are regional variants of the same game. (ArcadeShadow)</li>
+    <li><a href="https://mametesters.org/view.php?id=7831">07831</a>: [Sound] (gaelco3d.cpp) surfplnt, surfplnt40, speedup: Sound has repeating distortion/crackling. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7849">07849</a>: [DIP/Input] (taitosj.cpp) sfposeid: Identified bonus life and infinite lives DIP switch settings. (jkburks)</li>
+    <li><a href="https://mametesters.org/view.php?id=7856">07856</a>: [Core] (ksys573.cpp) ddr2mla, ddrbocd, Analog DDR games: Songs run at half frame rate. (Windy Fairy)</li>
+    <li><a href="https://mametesters.org/view.php?id=7885">07885</a>: [Media Support] (xerox820.cpp) x820: Can no longer boot CP/M from floppy disk. [O. Galibert]</li>
+    <li><a href="https://mametesters.org/view.php?id=7886">07886</a>: [Media Support] (plus4.cpp) c16: Cartridges are ignored, system boots to BASIC. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7887">07887</a>: [Crash/Freeze] (divebomb.cpp) divebomb: [debug] K051316 ROM region is not a power-of-two size. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7889">07889</a>: [Crash/Freeze] (ti99_4p.cpp) ti99_4p, ti99_4ev: [debug] Assertion fails as VRAM size is unset on start. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7898">07898</a>: [Interface] (gaelco3d.cpp) speedup: Speed Up is missing a shifter overlay. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=7904">07904</a>: [Documentation] (monkey_king_3b.cpp) rs70_648: Manufacturer is not set. (AntoPISA)</li>
+    <li><a href="https://mametesters.org/view.php?id=7909">07909</a>: [Sound] (tecmo16.cpp) ginkun: Level Select, Minigame Select and Credits music doesn’t play. (David Haywood)</li>
+    <li><a href="https://mametesters.org/view.php?id=7916">07916</a>: [Crash/Freeze] (playch10.cpp) pc_pinbt: Exception when using single screen BIOS. (Ivan Vangelista)</li>
+</ul>
+
+<h3>New working machines</h3>
+<ul>
+    <li>Andrew Holme Mark 1 FORTH Computer [AJR]</li>
+    <li>Electronic Master Mind (Invicta) [hap, Sean Riddle]</li>
+    <li>Football 2 (Mattel) [hap, Sean Riddle]</li>
+    <li>Invicta Super-Sonic Electronic Master Mind [hap, Sean Riddle]</li>
+    <li>Kmart Dunk 'n Sunk [hap, Sean Riddle]</li>
+    <li>M.E.M. Belgium Memoquiz [hap, Sean Riddle]</li>
+    <li>Mattel Brain Baffler [hap, Sean Riddle]</li>
+    <li>Mattel Horoscope Computer [hap, Sean Riddle]</li>
+    <li>Mattel World Championship Football [hap, Sean Riddle, Kevin Horton, O. Galibert]</li>
+    <li>MSI / Bandai Namco Namco Classics Vol.1 (3-in-1) (MSI Plug &amp; Play) [Sean Riddle]</li>
+    <li>NSI International / Mammoth Toys (Licensed by Hasbro) TV Board Games 3-in-1: Boggle, Connect 4, Roll Over [Sean Riddle, David Haywood]</li>
+    <li>NSI International / Mammoth Toys (Licensed by Hasbro) TV Board Games 3-in-1: Silly 6 Pins, Hungry Hungry Hippos, Match 'em [Sean Riddle, David Haywood]</li>
+    <li>NSI International / Mammoth Toys (Licensed by Hasbro) TV Board Games 3-in-1: Simon, Battleship, Checkers [Sean Riddle, David Haywood]</li>
+    <li>NSI International / Mammoth Toys (Licensed by Hasbro) TV Board Games 6-in-1: Silly 6 Pins, Candy Land, Hungry Hungry Hippos, Match 'em, Mixin' Pics, Checkers [Sean Riddle, David Haywood]</li>
+    <li>NSI International / Mammoth Toys (Licensed by Hasbro) TV Board Games 6-in-1: Simon, Battleship, Mouse Trap, Checkers, Link-a-Line, Roll Over [Sean Riddle, David Haywood]</li>
+    <li>Selchow &amp; Righter Reader's Digest Q&amp;A - Computer Question &amp; Answer Game [hap, Sean Riddle]</li>
+    <li>Selchow &amp; Righter Scrabble Sensor - Electronic Word Game [hap, Sean Riddle]</li>
+    <li>Taikee / Oregon Scientific / V-Tac Technology Co Ltd. Teléfono interactivo de TV (Spain) [ClawGrip, Sean Riddle, David Haywood, ArcadeHacker]</li>
+    <li>Tiger Electronics Sub Wars (LED version) [hap, Sean Riddle, Rik]</li>
+    <li>Tri-1 (Fonas) [hap, Sean Riddle]</li>
+    <li>VTech Dora the Explorer - Dora TV Adventure Globe [Sean Riddle, David Haywood]</li>
+    <li>VTech Dora the Explorer - Dora TV Explorer Phone / Boots's Special Day [Sean Riddle, David Haywood, Kamaal Brown]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>beatmania IIDX 3rd style (GC992 JAB) [Jennifer Taylor]</li>
+    <li>beatmania IIDX 7th style (GCB44 JAB) [Jennifer Taylor]</li>
+    <li>beatmania IIDX Substream (983-AA JAA) [Jennifer Taylor]</li>
+    <li>Big 50 (JPM) (IMPACT) (BF12 L12) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 1) [James Wallace]</li>
+    <li>Camelot (JPM) (IMPACT) (CA8 C10) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC07C L12) (set 1) [James Wallace]</li>
+    <li>Cuore 1 (Italian, set 6) [f205v]</li>
+    <li>Cuore 1 (Italian, set 7) [f205v]</li>
+    <li>Genius 6 (V133F) [Arzeno Fabrice]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 5 C 8) (set 1) [James Wallace]</li>
+    <li>Go For Gold (JPM) (IMPACT) (set 1) [James Wallace]</li>
+    <li>Happy Hour (JPM) (IMPACT) (HH2 C5) (set 1) [James Wallace]</li>
+    <li>Keyboardheaven (Korea) [Jennifer Taylor, Windy Fairy]</li>
+    <li>Magic 10 Nevada (bootleg of Pool 10) [f205v]</li>
+    <li>Maze (Trog bootleg) [Jorge Silva]</li>
+    <li>Mega Man: The Power Battle (CPS2, USA 950925, SAMPLE Version) [bdlou]</li>
+    <li>Meijinsen (set 2) [AeroCityMayor, The Dumping Union]</li>
+    <li>Oedo Fight (Japan, Bloodless version) [ekorz]</li>
+    <li>Player's Edge Plus (PP0419) Standard Draw Poker (Old Chicago Casino) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0419) Standard Draw Poker (set 1) [Brian Troha]</li>
+    <li>Rabbit (Asia 1-28?) [twistedsymphony, The Dumping Union]</li>
+    <li>Raiders5 (Japan, set 2, bootleg?) [Paul Wood]</li>
+    <li>Saitek / Tandy Corporation Chess Champion 2150 [hap, Berger]</li>
+    <li>Surf Planet (Version 3.0) [jordigahan]</li>
+    <li>Task Force Harrier (Lettering bootleg) [hammy, EMG]</li>
+    <li>US AAF Mustang (Lettering bootleg) [hammy, Doctor Pinball]</li>
+</ul>
+
+<h3>Machines promoted to working</h3>
+<ul>
+    <li>Apple Computer Macintosh 128k [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh Classic [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh Classic II [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh II [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh II (FDHD) [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIci [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIsi [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIvx [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh LC III [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh Plus [R. Belmont, O. Galibert, Patrick Mackinlay]</li>
+    <li>Apple Computer Macintosh SE [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh SE (FDHD) [R. Belmont, O. Galibert]</li>
+    <li>beatmania IIDX 2nd style (GC985 JAA) [Jennifer Taylor]</li>
+    <li>beatmania IIDX 3rd style (GC992 JAC) [Jennifer Taylor]</li>
+    <li>beatmania IIDX 5th style (GCA17 JAA) [Jennifer Taylor]</li>
+    <li>beatmania IIDX Substream (983 JAA) [Jennifer Taylor]</li>
+    <li>Beatmania III [Windy Fairy]</li>
+    <li>Beatmania III Append 7th Mix [Windy Fairy]</li>
+    <li>Beatmania III The Final [Windy Fairy]</li>
+    <li>Keyboardmania [Windy Fairy]</li>
+    <li>Keyboardmania 2nd Mix [Windy Fairy]</li>
+    <li>Keyboardmania 3rd Mix [Windy Fairy]</li>
+    <li>ParaParaDancing [Windy Fairy]</li>
+    <li>ParaParaParadise [Windy Fairy]</li>
+    <li>ParaParaParadise v1.1 [Windy Fairy]</li>
+    <li>Untouchable (JPM) (IMPACT) (UN3B LO6) [David Haywood, James Wallace]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>Apple Computer Macintosh 512k [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh 512ke [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh II (w/o 68851 MMU) [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIcx [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIvi [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh IIx [R. Belmont, O. Galibert]</li>
+    <li>Apple Computer Macintosh SE/30 [R. Belmont, O. Galibert]</li>
+    <li>beatmania IIDX 3rd style (GC992 JAA) [Jennifer Taylor]</li>
+    <li>Big 50 (JPM) (IMPACT) (BF L8) [James Wallace]</li>
+    <li>Big 50 (JPM) (IMPACT) (BF12 AH12) [James Wallace]</li>
+    <li>Big 50 (JPM) (IMPACT) (BF12 L12, Whitbread) [James Wallace]</li>
+    <li>Big 50 (JPM) (IMPACT) (BF12P F12, Protocol) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 10) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 2) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 3) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 4) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 5) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 6) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 7) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 8) [James Wallace]</li>
+    <li>Big Bucks (JPM) (IMPACT) (set 9) [James Wallace]</li>
+    <li>bootleg (Unitron) Mac 512 [R. Belmont, O. Galibert]</li>
+    <li>bootleg (Unitron) Unitron 1024 [R. Belmont, O. Galibert]</li>
+    <li>Camelot (JPM) (IMPACT) (CA6 C8) [James Wallace]</li>
+    <li>Camelot (JPM) (IMPACT) (CA8 AC10) [James Wallace]</li>
+    <li>Camelot (JPM) (IMPACT) (CA8 C10, Whitbread) [James Wallace]</li>
+    <li>Camelot (JPM) (IMPACT) (CA8P C10, Protocol) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC02C L08) (set 14) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC07C L12) (set 2) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC11C L16) (set 4) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC12C L17) (set 12) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC16C L23) (set 6) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC16C L23) (set 7) [James Wallace]</li>
+    <li>Casino Crazy (JPM) (IMPACT) (CC16C L23) (set 9) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 5 C 8) (set 3, Whitbread) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 5P C 8) (set 2, Protocol) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 6 C 9) (set 4) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 6 C 9) (set 6) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 6 C 9) (set 7, Whitbread) [James Wallace]</li>
+    <li>Give Us A Break (JPM) (IMPACT) (GB 6P C 9) (set 5, Protocol) [James Wallace]</li>
+    <li>Go For Gold (JPM) (IMPACT) (set 2, Protocol) [James Wallace]</li>
+    <li>Go For Gold (JPM) (IMPACT) (set 3) [James Wallace]</li>
+    <li>Go For Gold (JPM) (IMPACT) (set 4, Whitbread) [James Wallace]</li>
+    <li>Happy Hour (JPM) (IMPACT) (HH2 C5) (set 2) [James Wallace]</li>
+    <li>Happy Hour (JPM) (IMPACT) (HH2 C5) (set 3) [James Wallace]</li>
+    <li>ParaParaParadise 1st Mix Plus [Windy Fairy]</li>
+    <li>Untouchable (JPM) (IMPACT) (UN3BI LO6) [David Haywood, James Wallace]</li>
+</ul>
+
+<h3>New machines marked as NOT_WORKING</h3>
+<ul>
+    <li>Akai Electric MPC60 MIDI Production Center [DBWBP]</li>
+    <li>Basic Fun Ms. Pac-Man (mini arcade) [Sean Riddle]</li>
+    <li>Basic Fun Pac-Man (mini arcade) [Sean Riddle]</li>
+    <li>Bee-Zerk [Bad A Billy, Smitdogg, The Dumping Union]</li>
+    <li>Corsario (Cirsa slot machine) [jordigahan, ClawGrip]</li>
+    <li>LeapFrog Turbo Twist Fact Blaster (US) [Sean Riddle, David Haywood]</li>
+    <li>LeapFrog Turbo Twist Spelling (US) [Sean Riddle, David Haywood]</li>
+    <li>LeapFrog Turbo Twist Vocabulator (US) [Sean Riddle, David Haywood]</li>
+    <li>Marbella Vice (100Hz display) [Arcade Player, Recreativas.org]</li>
+    <li>Mini Money [jordigahan, ClawGrip]</li>
+    <li>Mushiking The King Of Beetles 2006 First (Japan) [Darksoft, rtw]</li>
+    <li>Super Mario All-Stars (Nintendo Super System) [Mike Ortizz]</li>
+    <li>Tierras Salvajes (100Hz display) [Arcade Planet, Recreativas.org]</li>
+    <li>unknown VLC multigame [Bad A Billy, Smitdogg, The Dumping Union]</li>
+</ul>
+
+<h3>New clones marked as NOT_WORKING</h3>
+<ul>
+    <li>A.G. Soccer Ball (R18u, 2.1 sound) [PinMAME]</li>
+    <li>Bad Cats (LG-4) [PinMAME]</li>
+    <li>Cyber Troopers Virtual-On - Twin (Export) [twistedsymphony]</li>
+    <li>The Flintstones (LA-5) [PinMAME]</li>
+    <li>Lucky Draw (pinball, set 2) [PinMAME]</li>
+    <li>Mazan: Flash of the Blade (Japan, MAZ1 Ver.A) [Darksoft, MetalliC, rtw]</li>
+    <li>No Fear: Dangerous Sports (0.8X) [PinMAME]</li>
+    <li>Scorpion (Dec 24, 1993) [jordigahan, ClawGrip]</li>
+    <li>Theatre Of Magic (1.2A) [PinMAME]</li>
+    <li>Thunder Dragon (bootleg, set 2) [hammy, EMG]</li>
+    <li>Virtua Striker 2 '99.1 (Step 1.5, Export, USA, Revision B) [Brian Troha, The Dumping Union]</li>
+    <li>Virtua Striker 2 '99.1 (Step 1.5, Japan, Revision B) [Brian Troha, The Dumping Union]</li>
+</ul>
+
+<h3>New working software list additions</h3>
+<ul>
+    <li><b>apple2_flop_clcracked</b>: Life Story Frog (cleanly cracked), MECC-A103 Smoking: It's Up To You (cleanly cracked), MECC-A104 Payroll System: A Business Simulation (cleanly cracked), MECC-A106 Word Herd: Sound-Alikes (Version 1.0) (cleanly cracked), MECC-A107 Ducks (Version 1.1) (cleanly cracked), MECC-A109 Circus Math (Version 1.0) (cleanly cracked), MECC-A110 Exploring Sorting Routines (Version 1.1) (cleanly cracked), MECC-A111 Pets, Ltd. (Version 1.0) (cleanly cracked), MECC-A112 Word Wizards (Version 1.0) (cleanly cracked), MECC-A112 Word Wizards (Version 1.2) (cleanly cracked), MECC-A112 Word Wizards (Version 1.3) (cleanly cracked), MECC-A114 Writing an Opinion Paper (Version 1.0) (cleanly cracked), MECC-A115 Right of Way (Version 1.1) (cleanly cracked), MECC-A116 Puzzles and Posters (Version 1.1) (cleanly cracked), MECC-A116 Puzzles and Posters (Version 1.3) (cleanly cracked), MECC-A116 Puzzles and Posters (Version 1.6) (cleanly cracked), MECC-A119 Master Spell (Version 1.0) (cleanly cracked), MECC-A119 Master Spell (Version 1.3) (cleanly cracked), MECC-A120 Word Herd: Look-Alikes (Version 1.0) (cleanly cracked), MECC-A121 Jeux Mathematiques Classiques (Version 1.0) (cleanly cracked), MECC-A123 Prime Numbers (Version 1.0) (cleanly cracked), MECC-A124 Estimation (Version 1.0) (cleanly cracked), MECC-A125 Addition Logician (Version 1.0) (cleanly cracked), MECC-A126 Study Guide (Version 1.5) (cleanly cracked), MECC-A127 Salt and You (Version 1.0) (cleanly cracked), MECC-A128 Discovery Lab (Version 1.0) (cleanly cracked), MECC-A129 Data Handler (Version 1.0) (cleanly cracked), MECC-A130 MECC Keyboarding Primer (Version 1.0) (cleanly cracked), MECC-A131 MECC Keyboarding Master: Games and Drills (Version 1.1) (cleanly cracked), MECC-A132 MECC Writer (Version 1.1) (cleanly cracked), MECC-A132 MECC Writer (Version 1.2) (cleanly cracked), MECC-A133 MECC Writer (Version 1.2) (cleanly cracked), MECC-A134 MECC Speller (Version 1.0) (cleanly cracked), MECC-A135 MECC Editor (Version 1.0) (cleanly cracked), MECC-A136 MECC Graphing Primer (Version 1.0) (cleanly cracked), MECC-A137 MECC Graph (Version 1.1) (cleanly cracked), MECC-A159 Sound Tracks (Version 1.0) (cleanly cracked), MECC-A160 The Market Place (Version 1.0) (cleanly cracked), MECC-A161 Jenny's Journeys (Version 1.0) (cleanly cracked), MECC-A162 Path Tactics (Version 1.0) (cleanly cracked), MECC-A163 MECC Dataquest: The Fifty States (Version 1.0) (cleanly cracked), MECC-A164 Fun from A to Z (Version 1.0) (cleanly cracked), MECC-A165 Counting Critters (Version 1.0) (cleanly cracked), MECC-A166 Arithmetic Critters (Version 1.0) (cleanly cracked), MECC-A167 Quickflash (Version 1.0) (cleanly cracked), MECC-A168 Clock Works (Version 1.0) (cleanly cracked), MECC-A169 Speedway Math (Version 1.0) (cleanly cracked), MECC-A170 Number Munchers (Version 1.0) (cleanly cracked), MECC-A170 Number Munchers (Version 1.3) (cleanly cracked), MECC-A171 Show Time (Version 1.0) (cleanly cracked), MECC-A171 Show Time (Version 1.1) (cleanly cracked), MECC-A172 MECC Dataquest Composer (Version 1.0) (cleanly cracked), MECC-A175 Phonics Prime Time: Initial Consonants (Version 1.0) (cleanly cracked), MECC-A176 Phonics Prime Time: Final Consonants (Version 1.0) (cleanly cracked), MECC-A177 Phonics Prime Time: Vowels I (Version 1.0) (cleanly cracked), MECC-A178 Phonics Prime Time: Vowels II (Version 1.0) (cleanly cracked), MECC-A179 Phonics Prime Time: Blends and Digraphs (Version 1.0) (cleanly cracked), MECC-A180 Words at Work: Contraction Action (Version 1.0) (cleanly cracked), MECC-A181 Words at Work: Prefix Power (Version 1.0) (cleanly cracked), MECC-A182 Words at Work: Suffix Sense (Version 1.0) (cleanly cracked), MECC-A183 Words at Work: Compound It (Version 1.0) (cleanly cracked), MECC-A185 Those Amazing Reading Machines (Version 1.0) (cleanly cracked), MECC-A186 Those Amazing Reading Machines II (Version 1.0) (cleanly cracked), MECC-A187 Those Amazing Reading Machines III (Version 1.0) (cleanly cracked), MECC-A188 Those Amazing Reading Machines IV (Version 1.0) (cleanly cracked), MECC-A191 Odell Lake (Version 1.0) (cleanly cracked), MECC-A191 Odell Lake (Version 1.2) (cleanly cracked), MECC-A192 Coordinate Math (Version 1.0) (cleanly cracked), MECC-A192 Coordinate Math (Version 1.1) (cleanly cracked), MECC-A193 Equation Math (Version 1.0) (cleanly cracked), MECC-A193 Equation Math (Version 1.1) (cleanly cracked), MECC-A195 Money Works (Version 1.0) (cleanly cracked), MECC-A195 Money Works (Version 1.1) (cleanly cracked), MECC-A196 Fraction Munchers (Version 1.0) (cleanly cracked), MECC-A198 To Preserve, Protect and Defend (Version 1.1) (cleanly cracked), MECC-A199 Zoyon Patrol (Version 1.0) (cleanly cracked), MECC-A201 Conquering Whole Numbers (Version 1.0) (cleanly cracked), MECC-A201 Conquering Whole Numbers (Version 1.1) (cleanly cracked), MECC-A202 Fraction Concepts, Inc. (Version 1.0) (cleanly cracked), MECC-A202 Fraction Concepts, Inc. (Version 1.2) (cleanly cracked), MECC-A203 Fraction Practice Unlimited (Version 1.0) (cleanly cracked), MECC-A203 Fraction Practice Unlimited (Version 1.1) (cleanly cracked), MECC-A204 Conquering Fractions (Addition, Subtraction) (Version 1.0) (cleanly cracked), MECC-A204 Conquering Fractions (Addition, Subtraction) (Version 1.1) (cleanly cracked), MECC-A205 Conquering Fractions (Multiplication, Division) (Version 1.0) (cleanly cracked), MECC-A205 Conquering Fractions (Multiplication, Division) (Version 1.1) (cleanly cracked), MECC-A206 Decimal Concepts (Version 1.0) (cleanly cracked), MECC-A207 Conquering Decimals (Addition, Subtraction) (Version 1.0) (cleanly cracked), MECC-A208 Conquering Decimals (Multiplication, Division) (Version 1.0) (cleanly cracked), MECC-A208 Conquering Decimals (Multiplication, Division) (Version 1.1) (cleanly cracked), MECC-A209 Conquering Ratios and Proportions (Version 1.0) (cleanly cracked), MECC-A210 Conquering Percents (Version 1.0) (cleanly cracked), MECC-A210 Conquering Percents (Version 1.1) (cleanly cracked), MECC-A211 Mystery Objects (Version 1.0) (cleanly cracked), MECC-A212 Mystery Matter (Version 1.0) (cleanly cracked), MECC-A213 Miner's Cave (Version 1.0) (cleanly cracked), MECC-A214 Wood Car Rally (Version 1.0) (cleanly cracked), MECC-A214 Wood Car Rally (Version 1.1) (cleanly cracked), MECC-A215 Lunar Greenhouse (Version 1.0) (cleanly cracked), MECC-A216 Backyard Birds (Version 1.0) (cleanly cracked), MECC-A217 Weeds to Trees (Version 1.0) (cleanly cracked), MECC-A218 Invisible Bugs (Version 1.0) (cleanly cracked), MECC-A219 Five-Star Forecast (Version 1.0) (cleanly cracked), MECC-A220 Fossil Hunter (Version 1.0) (cleanly cracked), MECC-A221 Murphy's Minerals (Version 1.0) (cleanly cracked), MECC-A222 Sun and Seasons (Version 1.0) (cleanly cracked), MECC-A224 Instant Survey (Version 1.0) (cleanly cracked), MECC-A225 Time Navigator Leaps Back (Version 1.0) (cleanly cracked), MECC-A227 Patterns (Version 1.0) (cleanly cracked), MECC-A227 Patterns (Version 1.2) (cleanly cracked), MECC-A228 MECC Outliner (Version 1.0) (cleanly cracked), MECC-A229 Exploring Gas Laws (Version 1.0) (cleanly cracked), MECC-A230 Spelling Workout (Version 1.0) (cleanly cracked), MECC-A230 Spelling Workout (Version 1.1) (cleanly cracked), MECC-A230B Spelling List Editor (Version 1.0) (cleanly cracked), MECC-A230B Spelling List Editor (Version 1.1) (cleanly cracked), MECC-A230B Spelling List Editor (Version 1.2) (cleanly cracked), MECC-A230B Spelling List Editor (Version 1.3) (cleanly cracked), MECC-A230B Spelling List Editor (Version 1.4) (cleanly cracked), MECC-A231 Spellevator (Version 1.0) (cleanly cracked), MECC-A231 Spellevator (Version 1.2) (cleanly cracked), MECC-A231 Spellevator (Version 1.3) (cleanly cracked), MECC-A232 Spelling Press (Version 1.0) (cleanly cracked), MECC-A240 Computer Inspector (Version 1.0) (cleanly cracked), MECC-A241 LabelMaker (Version 1.0) (cleanly cracked), MECC-A242 Teach Option Organizer (Version 1.2) (cleanly cracked), MECC-A244 MECC Dataquest: The Middle East and North Africa (Version 1.0) (cleanly cracked), MECC-A245 Instant Survey (Version 1.0) (cleanly cracked), MECC-A246 Measure Works (Version 1.0) (cleanly cracked), MECC-A247 Time Navigator (Version 1.0) (cleanly cracked), MECC-A248 CommuniKeys (Version 1.1) (cleanly cracked), MECC-A250 MECC Dataquest: North American Mammals (Version 1.0) (cleanly cracked), MECC-A250 MECC Dataquest: North American Mammals (Version 1.1) (cleanly cracked), MECC-A251 Chemistry: The Periodic Table (Version 1.1) (cleanly cracked), MECC-A254 MECC Dataquest: Asia and Oceania (Version 1.0) (cleanly cracked), MECC-A255 Picture Chompers (Version 1.0) (cleanly cracked), MECC-A256 Bluegrass Bluff (Version 1.0) (cleanly cracked), MECC-A257 Problem Solving with Nim (Version 1.0) (cleanly cracked), MECC-A258 Estimation: Quick Solve I (Version 1.0) (cleanly cracked), MECC-A259 Estimation: Quick Solve II (Version 1.0) (cleanly cracked), MECC-A260 Conquering Math Worksheet Generator (Version 1.0) (cleanly cracked), MECC-A262 Probability Lab (Version 1.0) (cleanly cracked), MECC-A263 Exploring Sequences and Series (Version 1.0) (cleanly cracked), MECC-A271 Grammar Toy Shop (Version 1.0) (cleanly cracked), MECC-A272 Grammar Monsters (Version 1.0) (cleanly cracked), MECC-A273 Grammar Gazette (Version 1.0) (cleanly cracked), MECC-A278 The Living Cell (Version 1.0) (cleanly cracked), MECC-A279 Lewis and Clark Stayed Home (Version 1.0) (cleanly cracked), MECC-A280 Chemistry: Balancing Equations (Version 1.0) (cleanly cracked), MECC-A281 Paper Plane Pilot (Version 1.0) (cleanly cracked), MECC-A282 Cleanwater Detectives (Version 1.0) (cleanly cracked), MECC-A283 Woolly Bounce (Version 1.0) (cleanly cracked), MECC-A284 Cavity Busters (Version 1.0) (cleanly cracked), MECC-A290 Space Station Freedom (Version 1.0) (cleanly cracked), MECC-A291 Vacation Nation Travel (Version 1.0) (cleanly cracked), MECC-A292 Littletown Zoo (Version 1.0) (cleanly cracked), MECC-A295 Estimation Strategies (Version 1.0) (cleanly cracked), MECC-A296 Estimation Activities (Version 1.0) (cleanly cracked), MECC-A302 Fish School (Version 1.0) (cleanly cracked), MECC-A303 Moving Museum (Version 1.0) (cleanly cracked), MECC-A304 Eerieville Library (Version 1.0) (cleanly cracked), MECC-A306 Grammar Gobble (Version 1.0) (cleanly cracked), MECC-A307 Grammar Madness (Version 1.0) (cleanly cracked), MECC-A309 Woolly's Garden (Version 1.0) (cleanly cracked), MECC-A310 Wonderland Puzzles (Version 1.0) (cleanly cracked), MECC-A311 Picture A Story (Version 1.0) (cleanly cracked), MECC-A317 Take A Chance! (Version 1.0) (cleanly cracked), MECC-A330 Nutrition Nabber (Version 1.0) (cleanly cracked), MECC-A333 Pizza to Go (Version 1.0) (cleanly cracked), MECC-A334 Electrifying Adventures (Version 1.0) (cleanly cracked), MECC-A336 Amazing Arithmetricks (Version 1.0) (cleanly cracked), MECC-A337 Treasures for Sale (Version 1.0) (cleanly cracked), MECC-A340 CryptoQuest (Version 1.0) (cleanly cracked), MECC-A343 Science Giants (Version 1.0) (cleanly cracked), MECC-A351 Get Well, Woolly! (Version 1.0) (cleanly cracked), MECC-A401 Energy House (Version 1.0) (cleanly cracked), MECC-A402 Elementary Genetics (Version 1.1) (cleanly cracked), MECC-A403 Logic Gates (Version 1.0) (cleanly cracked), MECC-A405 Sports Stats (Version 1.0) (cleanly cracked), MECC-A406 Create-A-Base (Version 1.0) (cleanly cracked), MECC-A407 Book Worm (Version 1.0) (cleanly cracked), MECC-A712 Music Theory: Music Fundamentals (Version 1.0) (cleanly cracked), MECC-A719 Elementary Volume 5: Language Arts: Prefixes (Version 1.5) (cleanly cracked), MECC-A719 Elementary Volume 5: Language Arts: Prefixes (Version 1.7) (cleanly cracked), MECC-A721 Business Volume 3: Accounting (Version 1.8) (cleanly cracked), MECC-A726 Spelling Volume 1: Primary (Version 2.0) (cleanly cracked) [4am, Firehawke]</li>
+    <li><b>ekara_japan_s</b>: Hello Kitty Special (Japan) (SC0001-KTY) [TeamEurope]</li>
+    <li><b>ekara_japan_sp</b>: SP-05 Super Cartridge - TV POP Junior with Chibi Marukochan &amp; Anpanman (Japan) [TeamEurope]</li>
+    <li><b>fmtowns_cd</b>:<br/>
+    Alice no Yakata 3 (1995-05-16), Battle, Ehon Writer V1.1 L10, Never Land, Oto to E no Deru Eigo Jisho No. 2 - English in Dream, Populous II - Trials of the Olympian Gods - Expert, Running Girls - Hashiri Onna II + Rance 4.1 / 4.2 Hint Disk, Soreike! Anpanman - Tanoshii Eigo Asobi, Toshiyuki Yoshino - Lullaby of BirdLand, True Heart (alt), Viper GTS [redump.org]<br/>
+    Half Moon ni Kawaru made - Ramiya Ryou no Nijiiro Tamatebako [redump.org, wiggy2k]</li>
+    <li><b>fmtowns_flop_orig</b>:<br/>
+    CD+Graphics Player V1.1L10, Nihongo MS-DOS V6.2 L10 (Kihon Kinou), Ponyon [cyo.the.vile]<br/>
+    AIV - A Ressha de Ikou 4 - Map Construction + Power-Up Kit, Legends of Valour - Gouyuu no Densetsu - Demonstration [wiggy2k]</li>
+    <li><b>ibm5170</b>: Museum Madness Top Gun: Danger Zone [The Good Old Days]</li>
+    <li><b>sgi_mips</b>:<br/>
+    Hot Mix Volume 12 (alternate) [nixzone.nl, Davide Cavalca]<br/>
+    IRIX 6.5.20, IRIX 6.5.24, IRIX 6.5.25 [pixelbart.net, Davide Cavalca]</li>
+    <li><b>sorcerer_cass</b>: Cosmic Fighter (ported from TRS-80) [exidyboy]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>apple2_flop_clcracked</b>: MECC-A157 Oregon Trail (Version 1.1) (cleanly cracked) [4am, Firehawke]</li>
+    <li><b>fmtowns_cd</b>:<br/>
+    Nobunaga no Yabou - Sengoku Gun'yuuden [cherokee]<br/>
+    Windows 3.1 L11 [cyo.the.vile]</li>
+</ul>
+
+<h3>New NOT_WORKING software list additions</h3>
+<ul>
+    <li><b>ekara_japan_gk</b>: GK-2 - Disney Princess: Princess Debut (Japan), GK-3 - Disney Tinkerbell to Tinkle Star Uranai (Japan) [TeamEurope]</li>
+    <li><b>fmtowns_cd</b>: Scavenger 4 (HME-217B) [redump.org]</li>
+    <li><b>fmtowns_flop_orig</b>:<br/>
+    Nihongo MS-DOS V5.0 L10 (Kihon Kinou) [cyo.the.vile]<br/>
+    Mah-Saiko-Jong [wiggy2k]</li>
+    <li><b>leapfrog_didj_cart</b>: Super Chicks (USA) [TeamEurope]</li>
+    <li><b>leapfrog_zippity_cart</b>: Disney Princess - Magical Movement &amp; Learning (500-13590-A) (UK), The World of Cars - Driven to Learn (500-13589-B) (UK) [TeamEurope]</li>
+    <li><b>pockchalw</b>: Shinkenzemi Chuugaku Kouza - Chuu 1 Eigo (S11), Shinkenzemi Chuugaku Kouza - Chuu 2 Eigo, Shinkenzemi Chuugaku Kouza - Chuu 2 Eigo (N21), Shinkenzemi Chuugaku Kouza - Chuu 2 Eigo (N22), Shinkenzemi Chuugaku Kouza - Chuu 2 Eigo (N24), Shinkenzemi Chuugaku Kouza - Chuu 3 Eigo (N31), Shinkenzemi Chuugaku Kouza - Chuu 3 Eigo (N32), Shinkenzemi Chuugaku Kouza - Chuu 3 Eigo (N33), Shinkenzemi Chuugaku Kouza - Chuu 3 Eigo (N35), Shinkenzemi Chuugaku Kouza - Chuu 3 Eigo (N37), Shinkenzemi Chuugaku Kouza - Chuugaku Chiri (C), Shinkenzemi Chuugaku Kouza - Chuugaku Chiri (NC), Shinkenzemi Chuugaku Kouza - Chuugaku Chiri - Rekishi Pack (Chiri Soft - Rekishi Soft Kanzen Taiou Ban) (CR), Shinkenzemi Chuugaku Kouza - Chuugaku Rekishi (NR), Shinkenzemi Chuugaku Kouza - Chuugaku Rekishi (R), Shinkenzemi Chuugaku Kouza - Chuugaku Rika (1-bunya) (L1), Shinkenzemi Chuugaku Kouza - Chuugaku Rika (1-bunya) (L1) (*), Shinkenzemi Chuugaku Kouza - Chuugaku Rika (2-bunya) (L2), Shinkenzemi Chuugaku Kouza - Chuugaku Rika (2-bunya) (L2) (*), Shinkenzemi Chuugaku Kouza - Chuugaku Rika Pack (1-bunya - Soft 2-bunya Soft Kanzen Taiou Ban) (LP), Shinkenzemi Chuugaku Kouza - Koukou Juken (Ei - Sha - Ri) (0G1), Shinkenzemi Chuugaku Kouza - Koukou Juken (Ei - Sha - Ri) (1-G1), Shinkenzemi Chuugaku Kouza - Koukou Juken (Ei - Sha - Ri) (G-1), Shinkenzemi Chuugaku Kouza - Koukou Juken (Kuni - Suu) (G-2), Shinkenzemi Koukou Kouza - Daigaku Juken Series - Hinshutsu Eitango (T), Shinkenzemi Koukou Kouza - Daigaku Juken Series - Juuyou Eigo Koubun (B), Shinkenzemi Koukou Kouza - Hinshutsu Nihonshi Kouryaku (0D), Shinkenzemi Koukou Kouza - Hinshutsu Sekaishi Kouryaku (0W), Shinkenzemi Koukou Kouza - Hinshutsu Sekaishi Kouryaku (W), Shinkenzemi Koukou Kouza - Juuyou Kobun Kouryaku (A) (0BKD01) [skaman]</li>
+    <li><b>sega_beena_cart</b>: 1-nichi 10-pun de E ga Jouzu ni Kakeru Beena, Anpanman no Waku Waku Game Oekaki, Beena Town e Youkoso, Cooking Beena: O-Ryouri Dekichatta!, Disney Tanoshii O-Benkyou Series 1: Mic de Kantan ABC, Disney Tanoshii Oekaki: O-Mise-ya-san o Tsukutchaou!, Hello Kitty no Hiragana Katakana O-Namae Kaitemiyou!, Kouchuu Ouja Mushiking: Mori no Tami no Densetsu: Minna de Tanken! Kouchuu no Mori, Partner In TV! O-Uchi ni Wan-chan ga Yattekita, Point Gakushuu Tokei [TeamEurope]</li>
+</ul>
+
+<h3>Translations added or modified</h3>
+<ul>
+    <li>Portuguese (Brazil) [Chrystian Rafael Rubio de Melo]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/7695">7695</a>: Added synchronous I/O for RS232 port and HP98046 module. [F.Ulivi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7718">7718</a>: Added save state support for Namco System 21 family. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7756">7756</a>: machine/tc009xlvc.cpp: Integrated Z80 CPU core in device, and fixed background drawing (visible in gemcrush). [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7763">7763</a>: machine/fdc37c665gt.cpp: Reimplemented with added floppy and parallel port support. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7789">7789</a>: hng64.cpp: Implemented priority Z sort mode for sprites. [Happy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7792">7792</a>: hash/sgi_mips.xml: Added three entries, and missing discs for various entries. [nixzone.nl, pixelbart.net, Davide Cavalca]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7800">7800</a>: sound/setapcm.cpp: Added preliminary 16-voice ST0032 internal sound support (used by jclub2). [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7808">7808</a>: sound/ymfm.cpp: Added new BSD-licensed implementation of Yamaha OPN/OPM FM synthesis emulation. [Aaron Giles]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7810">7810</a>: hng64.cpp: Improved projection matrix calculation and 3D clipping. [Happy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7811">7811</a>: sound/cdda.cpp: Return LBA position as currently playing LBA (fixes issues with Konami System 573 games). [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7815">7815</a>: apple2gs.xml: Added descriptions for sys504 and sys601. [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7816">7816</a>: Added two TV games, and several LeapFrog and e-kara software list entries. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7817">7817</a>: twinkle.cpp: Removed periodic source for IRQ2. [Ziemas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7818">7818</a>: firebeat.cpp: Re-dumped CDs for two games, and added Keyboardheaven (Korea). [Jennifer, Taylor, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7819">7819</a>: neptunp2.cpp: Added Corsario (Cirsa slot machine). [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7821">7821</a>: spg2xx.cpp: Added Dora the Explorer - Dora TV Adventure Globe. [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7822">7822</a>: machine/t10mmc.cpp: Handle LBA zero correctly when first track is audio. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7824">7824</a>: elan_ep3a19a.cpp: Added two TV Board Games 6-in-1 games. [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7825">7825</a>: cps2.cpp: Added Mega Man: The Power Battle (CPS2, USA 950925, SAMPLE Version). [bdlou, r09]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7826">7826</a>: nova2001.cpp: Added Raiders5 (Japan, set 2, bootleg?). [Paul Wood, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7827">7827</a>: Added dongle dumps, improved cabinet info register settings, and updated notes. [Jennifer Taylor]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7828">7828</a>: firebeat.cpp: Improved <tt>IN1</tt> values, and added notes on DIP switches. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7829">7829</a>: ksys573.cpp: Use ddr2ml disc as base for ddr2mc2. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7831">7831</a>: psikyo.cpp: Fixed crash in samuraia and clones accessing non-existent ROM region. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7832">7832</a>: merits.cpp: Added Scorpion (Dec 24, 1993). [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7833">7833</a>: twinkle.cpp: Added all missing CD and hard disk dumps, and added three beatmania IIDX variants. [Jennifer Taylor]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7834">7834</a>: Improved Brazilian Portuguese translation. [Chrystian Rafael Rubio de Melo]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7834">7834</a>: firebeat.cpp: Added support for beatmania III floppy disk drive and spectrum analyzer. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7837">7837</a>: debugger: Added “<tt>wpsize</tt>” variable for accessing the access size that triggered a watchpoint. [moralrecordings]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7838">7838</a>: elan_ep3a19a.cpp: Added three TV Board Games 3-in-1 variants. [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7840">7840</a>: momoko.cpp: Fixed video code reading beyond the end of ROM region (caused glitches on high score table). [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7841">7841</a>: Fixed rewind functionality (GitHub <a href="https://github.com/mamedev/mame/issues/7806">#7806</a>). [feos]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7845">7845</a>: alg.cpp: Added 100 Hz display versions of Tierras Salvajes and Marbella Vice. [Arcade Planet, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7846">7846</a>: video/k057714.cpp: Implemented raster timing registers (fixes timings on some Konami Firebeat games). [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7847">7847</a>: jpmimpct.cpp, jpmimpctsw.cpp: Fixed reel display in j6big50, and added sound ROM for j6untch. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7848">7848</a>: generalplus_gpl16250_spi_direct.cpp: Added Pac-Man (mini arcade) and Ms. Pac-Man (mini arcade). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7849">7849</a>: midzeus.cpp: Disabled waveram drawing feature by default. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7850">7850</a>: spg2xx.cpp: Added Teléfono interactivo de TV (Spain). [ClawGrip, Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7851">7851</a>: zaxxon.cpp: Fixed tilemap/sprite priority for ixion; also demoted lastfght and raccoon to not working. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7856">7856</a>: joystand.cpp: Converted cartridge access function to <tt>address_map_bank_device</tt> and cleaned up code. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7857">7857</a>: leapfrog_iquest.cpp: Added Turbo Twist Spelling (US) and Turbo Twist Vocabulator (US). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7858">7858</a>: sega_beena_cart.xml: Added ten entries, and corrected pokebw scan sizes and checksums. [TeamEurope, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7859">7859</a>: apple2gs.cpp: Added checks for special key combinations to ADB GLU microcontroller simulation. [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7860">7860</a>: leapfrog_iquest.cpp: Added Turbo Twist Fact Blaster (US). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7861">7861</a>: spectrum_cass.xml: Updated metadata for six entries. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7864">7864</a>: fmtowns_flop.xml: Split into separate lists for original, cracked and miscellaneous software, and added seven entries. [r09]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7866">7866</a>: tecmo16.cpp: Improved interrupt acknowledge mechanism; 1943.cpp: Fixed drawing past the end of sprite RAM. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7871">7871</a>: apple2gs.cpp: Check for presence of floppy drives before deselecting them. [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7872">7872</a>: bgfx: Made crt-geom and crt-geom-deluxe scan lines adjustable, and added a low-pass filter for crt-geom-deluxe. [cgwg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7873">7873</a>: firebeat.cpp: Replaced Keyboardmania 1st Mix and 2nd Mix CD dumps with images including subchannel data. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7874">7874</a>: fmtowns_cd.xml: Added thirteen entries, replaced twelve entries with better dumps, and added five missing floppies. [r09]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7857">7857</a>: Added UI option to mute audio when emulation is not throttled (GitHub <a href="https://github.com/mamedev/mame/issues/7843">#7843</a>). [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7876">7876</a>: spectrum_cass.xml: Filled in year and publisher for many entries. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7879">7879</a>: ibm5170.xml: Added Museum Madness and Top Gun: Danger Zone. [The Good Old Days, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7881">7881</a>: coco12.cpp: Set proper tri-state value for keyboard PIA port B (fixes <a href="https://mametesters.org/view.php?id=7701">MT07701</a>). [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7882">7882</a>: alg.cpp: Added notes about Picmatic games. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7883">7883</a>: machine/i2cmem.cpp: Added Xicor X24C01 support (used for save data in some Mega Drive cartridges). [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7885">7885</a>: bus/megadrive/jcart.cpp: Fixed I²C read address for Codemasters games. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7886">7886</a>: bus/megadrive/sk.cpp: Fixed saving in Sonic 3 &amp; Knuckles, and allowed all cartridges to be locked on. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7887">7887</a>: apple2gs.cpp: Configure SCC Baud rate generator input clocks. [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7889">7889</a>: apple2_flop_clcracked.xml: Added latest cracks, with lots of MECC software. [4am, Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7893">7893</a>: gaelco3d.cpp: Added Surf Planet (Version 3.0). [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7894">7894</a>: apple2_flop_clcracked.xml: Fixed CRC for mcwacs10. [Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/7895">7895</a>: ssv.cpp: Fixed gdfs (Mobile Suit Gundam Final Shooting) sound ROM loading. [David Haywood]</li>
+</ul>
