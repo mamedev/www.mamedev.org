@@ -3,7 +3,7 @@
 
 $rootpath = $_SERVER['DOCUMENT_ROOT'] . '/';
 
-$title = 'MAMEDEV.org | Home of The MAME Project';
+$title = 'MAMEdev.org | Home of The MAME Project';
 ?>
 	<?php require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html'); ?>
 
