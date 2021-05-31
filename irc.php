@@ -78,12 +78,13 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html');
 	<h2>More Information About Libera.Chat</h2>
 	<ul>
 		<li><a href="https://libera.chat/policies">Network policies</a></li>
-		<li>
+		<li><a href="https://libera.chat/guidelines">Guidelines, recommendations and best practices</a></li>
 		<li><a href="https://libera.chat/guides/clients">Choosing an IRC client</a></li>
 		<li><a href="https://libera.chat/guides/connect">Connecting to Libera.Chat</a></li>
+		<li><a href="https://libera.chat/guides/sasl">Using SASL</a></li>
+		<li><a href="https://libera.chat/guides/channels">Using Channels</a></li>
 		<li><a href="https://libera.chat/guides/registration">Nickname Registration</a></li>
 		<li><a href="https://libera.chat/guides/sendpass">Resetting your Password</a></li>
-		<li><a href="https://libera.chat/guides/connect">Connecting to Libera.Chat</a></li>
 	</ul>
 
 </div>
