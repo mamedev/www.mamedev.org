@@ -59,7 +59,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/_include/html/header.html');
 	</p>
 
 	<p>
-	Channel <href="ircs://irc.libera.chat:6697/#mame">#mame</a> is used
+	Channel <a href="ircs://irc.libera.chat:6697/#mame">#mame</a> is
 	for user support and developer discussion.  General social chat is
 	allowed, provided it doesn’t interfere with support and development
 	discussions.  Anyone can join this channel, but you must register
