@@ -1,0 +1,101 @@
+Upcoming Changes in MAME
+
+<p>We’re well on our way through the current development cycle, and
+MAME 0.237 is going to have some significant changes, not just in terms
+of emulation, but in the user interface and debugger.  Don’t worry, no
+functionality has been removed.  In fact, we’ve added several features.
+It just might take a little while to adjust to the differences.</p>
+
+<p>First of all, we’ve added support for localised system name files, as
+used by front-ends like Retrofire, MxUI and MAME Plus!  Popular files
+include mame32j.lst (Japanese) and mame_cn.lst (Chinese).  You’ll be
+able to put your preferred system name file in the DATs (or “history”)
+folder, and select it in MAME’s UI customisation settings menu.  UI
+localisation support is more complete, and MAME 0.237 will include
+high-quality Chinese and Greek translations, thanks to YuiFAN and
+BraiNKilleRGR.</p>
+
+<p>Mouse/trackball navigation has been improved (you can even click DIP
+switches to toggle them), and the system and software selection menus
+have been tweaked to include more information and make better use of
+space.</p>
+
+<p>Lots of debugger commands have been enhanced to work better with
+newer memory system features.  We’ve also updated and expanded the
+debugger documentation, both <a
+href="https://docs.mamedev.org/debugger/">on our web site</a> and for
+the built-in <tt>help</tt> command.</p>
+
+<p>If you’re compiling MAME yourself, Python 2.7 will no longer be
+supported: compiling MAME now requires Python 3.2 or later (this won’t
+affect you if you just use MAME, Python isn’t required to run MAME).
+Most operating systems have included Python 3 for years, and our <a
+href="https://www.mamedev.org/tools/">MSYS64/MinGW build tools for
+Windows</a> already include Python 3.8 – as long as you have a
+<tt>python3</tt> command, you should be good to go.</p>
+
+<p>Read on for a more complete list of changes.</p>
+
+<!--more-->
+
+<h3>General UI changes</h3>
+
+<p>Settings in menus can be changed by clicking the left/right
+arrows.</p>
+
+<p>DIP switches can be toggled by clicking the DIP switch display below
+the menu.</p>
+
+<p>We’ve made the headings in the full-size info viewer clickable.</p>
+
+<h3>System and software selection menus</h3>
+
+<p>The info panel on the right now includes the name for systems, or the
+description, software list/item, and all info from the software list for
+software.  We’ve Added support for finding software items by alternate
+title, and added developer, distributor, author and programmer filters
+for software.</p>
+
+<p>There’s now an option to use to file manager to select media for
+systems that require media to be mounted.</p>
+
+<p>We’ve moved the option to return to the previous menu or exit from
+the menu to the right of the toolbar (use the UI cancel input if you
+aren’t using a pointing device), and moved the plugin selection option
+off the system selection menu to the settings menu.  We’ve removed the
+short name (or ROM set) for systems, the description for software, and
+the software list/item for software favourites from the info box below
+the menu (this info is all in the info panel on the right).  This frees
+up three lines for systems/software items.</p>
+
+<p>We’ve added a toolbar button to audit system ROMs/disk images
+(magnifying glass), and allowed selecting whether to audit media for all
+systems or only unavailable systems from the confirmation menu,
+eliminating the need for one input.  It’s now possible to cancel an
+audit, and auditing can use multiple CPU cores.</p>
+
+<h3>Debugger</h3>
+
+<p>Memory access syntax in expressions has been extended to support
+arbitrary address spaces and tags relative to the current CPU.</p>
+
+<p>Memory, watchpoint and cheat commands have been extended to work
+with arbitrary address address spaces.  This is an incompatible change
+for a number of commands that previously accepted a CPU parameter.  The
+device and/or address space are now supplied as a suffix on the
+address.</p>
+
+<p>Breakpoints and watchpoints can now be set for CPUs other than the
+CPU currently visible in the debugger by adding a device suffix to the
+address.  The commands for clearing, disabling and enabling breakpoints,
+watchpoints and registerpoints can now take multiple arguments to
+operate on more than one breakpoint/watchpoint/registerpoint at a time.
+The commands for listing breakpoints, watchpoints and registerpoints now
+accept an optional argument to list
+breakpoints/watchpoints/registerpoints for a single CPU.</p>
+
+<p>The history command now shows visited instructions in order from
+least recently visited to most recently visited.</p>
+
+<p>The Windows, Qt and macOS debuggers have a new option to show
+registerpoints in breakpoints/watchpoints windows.</p>
