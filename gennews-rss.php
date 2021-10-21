@@ -10,7 +10,7 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 		<language>en-us</language>
 		<pubDate><?php echo(date('r', getposttimestamp($postfiles[0]))); ?></pubDate>
 		<lastBuildDate><?php echo(date('r')); ?></lastBuildDate>
-		<docs>https://cyber.harvard.edu/rss/rss.html</docs>
+		<docs>https://www.rssboard.org/rss-specification</docs>
 
 		<?php
 		for ($index = 0; $index < count($entries); $index++)
