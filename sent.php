@@ -28,7 +28,7 @@ $title = 'MAME | Email Sent';
 					<p>
 					<b>UNDER NO CIRCUMSTANCES</b> will we respond or even look at your email if you are asking us to send 
 					you ROMs, or if you ask us where to download ROMs for free. You get ROMs by purchasing a game or PCB off 
-					of <a href="http://www.ebay.com/" target="_blank">eBay</a> and then using a ROM reader to read the data
+					of <a href="https://www.ebay.com/" target="_blank">eBay</a> and then using a ROM reader to read the data
 					into your PC.
 					</p>
 	<br/><br/>
