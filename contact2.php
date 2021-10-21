@@ -15,7 +15,7 @@ $title = 'MAME | Contact the Team';
 				
 					<p>
 					If you think you have found a bug in MAME, or are having trouble using the software, go back to the
-					<a href="http://mamedev.org/contact.html">main contact page</a> and select the appropriate option.
+					<a href="contact.php">main contact page</a> and select the appropriate option.
 					Email sent to this address regarding bugs or user support will be ignored completely.
 					</p>
 
