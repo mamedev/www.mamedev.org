@@ -91,7 +91,6 @@ $title = 'MAME | Resources';
 		<li><a href="https://www.mameworld.info/ubbthreads/ubbthreads.php?Cat=" target="_blank">MAMEWorld Forums</a></li>
 		<li><a href="http://forum.arcadecontrols.com/" target="_blank">Build Your Own Arcade Controls Forum</a></li>
 		<li><a href="https://www.mameguide.info" target="_blank">Mameguide</a></li>
-		<!-- <li><a href="https://arcademania.eu/" target="_blank">Arcademania (ITA)</a></li> -->
 		<li><a href="https://www.mame.gr/" target="_blank">MAME.gr (GRC)</a></li>
 		<li><a href="https://www.reddit.com/r/MAME/" target="_blank">MAME at reddit (unofficial)</a></li>
 		<!-- <li><a href="https://www.arcadehits.net/forum/index.php" target="_blank">arcadeHITS Forum</a></li> -->
