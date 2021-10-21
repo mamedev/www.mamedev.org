@@ -38,8 +38,8 @@ if ($post == "")
 					<h4>License</h4>
 				</div>
 				<div class="panel-body">
-				<p>The MAME project as a whole is distributed under the terms of the <a href="http://opensource.org/licenses/GPL-2.0">GNU General Public License, 2</a> (GPL-2.0), since it contains code made available under multiple GPL-compatible licenses.
-				A great majority of files (over 90% including core files) are under the <a href="http://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause License</a> and we would encourage new contributors to distribute files under this license.</p>
+				<p>The MAME project as a whole is distributed under the terms of the <a href="https://opensource.org/licenses/GPL-2.0">GNU General Public License, 2</a> (GPL-2.0), since it contains code made available under multiple GPL-compatible licenses.
+				A great majority of files (over 90% including core files) are under the <a href="https://opensource.org/licenses/BSD-3-Clause">BSD-3-Clause License</a> and we would encourage new contributors to distribute files under this license.</p>
 				<p>Please note that MAME is a registered trademark of Gregory Ember, and permission is required to use the "MAME" name, logo or wordmark.</p>
 				</div>
 			</div>
@@ -55,10 +55,10 @@ if ($post == "")
                 <center><i class="fa fa-windows fa-5x"></i><br/><br/><a href="release.php" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-				<center><i class="fa fa-apple fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
+				<center><i class="fa fa-apple fa-5x"></i><br/><br/><a href="//wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <center><i class="fa fa-linux fa-5x"></i><br/><br/><a href="http://wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
+                <center><i class="fa fa-linux fa-5x"></i><br/><br/><a href="//wiki.mamedev.org/index.php/SDL_Supported_Platforms" class="btn btn-success"><h2>Download</h2></a><br/><br/></center>
             </div>
         </div>
         <!-- /.row -->
