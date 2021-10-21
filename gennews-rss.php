@@ -10,7 +10,7 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 		<language>en-us</language>
 		<pubDate><?php echo(date('r', getposttimestamp($postfiles[0]))); ?></pubDate>
 		<lastBuildDate><?php echo(date('r')); ?></lastBuildDate>
-		<docs>http://blogs.law.harvard.edu/tech/rss</docs>
+		<docs>https://cyber.harvard.edu/rss/rss.html</docs>
 
 		<?php
 		for ($index = 0; $index < count($entries); $index++)
@@ -35,7 +35,7 @@ echo("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
 			}
 			echo("\t\t\t]]></description>\n");
 			echo("\t\t\t<pubDate>" . date("r", getposttimestamp($entries[$index])) . "</pubDate>\n");
-			echo("\t\t\t<guid>http://mamedev.org/?p=" . getpostnumber($entries[$index]) . "</guid>\n");
+			echo("\t\t\t<guid>https://mamedev.org/?p=" . getpostnumber($entries[$index]) . "</guid>\n");
 			echo("\t\t</item>\n");
 		}
 		?>
