@@ -1,0 +1,443 @@
+MAME 0.237
+
+<p>For everyone who’s waited patiently all month, MAME 0.237 is out
+today!  As well as the updates to the UI and debugger that we’ve already
+announced, there are several updates to the included plugins:</p>
+
+<ul>
+    <li>A brand-new <a
+    href="https://docs.mamedev.org/plugins/inputmacro.html">input
+    macro</a> plugin.</li>
+    <li>The <a href="https://docs.mamedev.org/plugins/data.html">data
+    plugin</a> can now show text from the Japanese command.dat file (or
+    a Chinese command.txt file if you rename it to command.dat).</li>
+    <li>The location the <a
+    href="https://docs.mamedev.org/plugins/hiscore.html">hiscore support
+    plugin</a> uses to store its data and configuration has changed.
+    You won’t lose your high scores, but you need to move the
+    <tt>.hi</tt> files from the <b>hi</b> folder to the <b>hiscore</b>
+    folder in your plugin data (<tt>homepath</tt>) folder.</li>
+    <li>The configuration format for the <a
+    href="https://docs.mamedev.org/plugins/autofire.html">autofire
+    plugin</a> has changed.  Unfortunately, you <em>will</em> need to
+    add your autofire button settings again.</li>
+</ul>
+
+<p>Interesting machines added this month include a Mexican TRS-80 Color
+Computer clone, Tronica Thunder Ball (a re-skin of Space Rescue with a
+nautical theme), the original version of Pengo that the widespread
+bootlegs seem to be based on, the original hardware revision of the
+Laser 128 (Apple II clone), and a slightly older version of Street
+Fighter Zero 2 Alpha for Asia.</p>
+
+<p>Master of multi-memory controllers kmg is still on a roll broadening
+NES/Famicom and clone cartridge compatibility.  Highlights of the month
+include:</p>
+
+<ul>
+    <li>Railway management simulator A Ressha de Ikou.</li>
+    <li>Recent NES/Famicom games released by Ancient to promote Gotta
+    Protectors (Minna de Mamotte Knight).  NES development is still
+    alive over two decades after the last licensed title was released in
+    1995.</li>
+    <li>The two Korean Brilliant Com (영재컴) edutainment games.</li>
+    <li>Some multi-game cartridges featuring the ambitious Titenic game,
+    inspired by a highly successful James Cameron film.</li>
+    <li>Kart Fighter – using the engine from an unlicensed NES port of
+    Street Fighter II, and unlicensed depictions of the character roster
+    from Super Mario Kart, this is almost a premonition of Super Smash
+    Bros.  It even features Yoshi’s tail smash, and depicts Kinopio
+    (Toad) as a bare-knuckle brawler long before the Mii costume was
+    available for purchase.</li>
+    <li>Well-known low-effort Mario-themed hack 7 Grand Dad.  PUSH ↑
+    START BUTTON.  GET ADDITION GAME.  AND NOURISH THE BLOOD</li>
+</ul>
+
+<p>Amiga software compatibility has been improved this month, the NEC
+PC-6001 family has gained a cartridge software list, and another batch
+of Commodore 64 cassettes has been added.  An issue was identified with
+“fake E7” Apple II cracks that could prevent them from working if they
+were written out to disks to use on original hardware.  Although this
+didn’t prevent them from being used in MAME, disk images with the issue
+fixed have been added to the software list.  Over a hundred Apple IIgs
+cracks have been added, too.</p>
+
+<p>You can read about all the exciting developments this month in the <a
+href="https://mamedev.org/releases/whatsnew_0237.txt">whatsnew.txt
+file</a>, or get the source and 64-bit Windows binary packages from <a
+href="https://mamedev.org/release.html">the download page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers Bugs Fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=6601">06601</a>: [Sound] (upscope.cpp) upscope: Some sound effects are missing. (Angelo Salese)</li>
+    <li><a href="https://mametesters.org/view.php?id=8068">08068</a>: [Crash/Freeze] (marineb.cpp) changes, changesa, hopprobo, looper, marineb, springer: Games freeze on soft reset. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=8093">08093</a>: [Documentation] (champbas.cpp) talbot: DIP switches marked as unknown control quota to advance round. (jkburks)</li>
+    <li><a href="https://mametesters.org/view.php?id=8095">08095</a>: [DIP/Input] (8080bw.cpp) gunchamp: DIP switch marked as unknown enables or disables high score name entry. (Wulfaz)</li>
+    <li><a href="https://mametesters.org/view.php?id=8096">08096</a>: [Documentation] (neogeo.cpp) legendos: Manufacturer should really be Wave Corp. / SNK. (Angelo Salese)</li>
+    <li><a href="https://mametesters.org/view.php?id=8103">08103</a>: [Interface] Loading loose software in systems that require media to be loaded is impractical using internal UI. (Vas Crabb)</li>
+    <li><a href="https://mametesters.org/view.php?id=8107">08107</a>: [Misc.] (cobra.cpp) bujutsu: Game title is incorrect. (J.J.Boy)</li>
+    <li><a href="https://mametesters.org/view.php?id=8111">08111</a>: [Crash/Freeze] (apollo.cpp) dn3500 and clones: Apollo machines cannot load programs from tape. (AJR)</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Advisor (Italian bootleg of Space Fury) [Matteo Legittimo, Andrew Welburn]</li>
+    <li>Asuka &amp; Asuka (Japan, version 1) [Brian Troha, The Dumping Union]</li>
+    <li>Buccaneer (set 2) [Jeremy Locke, Cam]</li>
+    <li>City Attack (Petaco S.A., bootleg of Pleiads) [Retromaniacs]</li>
+    <li>Cosmic Alien (version II, set 3) [Retromaniacs]</li>
+    <li>Fidelity Electronics Elite Champion Challenger [hap, Berger]</li>
+    <li>Floritas (Multivideo Spanish Moon Cresta bootleg) [Retromaniacs]</li>
+    <li>Guttang Gottong (Sede 3 bootleg on Galaxian hardware) [Retromaniacs]</li>
+    <li>ILCE / SEP Micro-SEP 1600 [Tim Lindner]</li>
+    <li>Komemokos ('Pac-Man (Cirsa, Spanish bootleg)' hack) [Ricardo - Factory Arcade, Recreativas.org]</li>
+    <li>Meteor (Alca bootleg of Moon Cresta) [Andrew Welburn, system11]</li>
+    <li>Pac-Man (Cirsa, Spanish bootleg on Galaxian hardware) [Ricardo - Factory Arcade, Recreativas.org]</li>
+    <li>Pengo (set 6, encrypted) [philmurr]</li>
+    <li>Street Fighter Zero 2 Alpha (Asia 960805) [Genaro Rodarte]</li>
+    <li>Super Rider (v1.3) [Michel Blanco]</li>
+    <li>Tronica Thunder Ball [algestam]</li>
+    <li>Video Technology Laser 128 (original hardware) [R. Belmont, Tom Greene]</li>
+    <li>Winning Spike (ver AAA) [f205v]</li>
+</ul>
+
+<h3>New machines marked as NOT_WORKING</h3>
+<ul>
+    <li>Casio CTK-551 [Devin Acker]</li>
+    <li>Exciting Boat Race [Phil Bennett]</li>
+    <li>Las Vegas (Jeutel, set 1) [Benjamin Roux, ClawGrip]</li>
+    <li>Manpuku Suizokukan [Darksoft, MetalliC, Mitsurugi_W, rtw, SNK-NEO-GEO]</li>
+    <li>Omron Luna [Plamen Mihaylov]</li>
+    <li>Speed Basketball [Tailsnic Retroworks]</li>
+    <li>Sun Microsystems SPARCstation ELC (Sun 4/25) [Yvan Janssens]</li>
+</ul>
+
+<h3>New clones marked as NOT_WORKING</h3>
+<ul>
+    <li>Amidar (Cirsa bootleg) [Retromaniacs]</li>
+    <li>Ensoniq KS-32 [TaunTek.com, R. Belmont]</li>
+    <li>Ice Cold Beer (set 2) [Robbbert]</li>
+    <li>Las Vegas (Jeutel, set 2) [Benjamin Roux, ClawGrip]</li>
+    <li>NEC PC-6601SR "Mr. PC" (Japan) [anonymous]</li>
+    <li>Yataimura Kingyosukui (1-player, Japan, Ver 1.005) [Darksoft, MetalliC, Mitsurugi_W, rtw, SNK-NEO-GEO]</li>
+</ul>
+
+<h3>New working software list additions</h3>
+<ul>
+    <li><b>apple2gs_flop_clcracked</b>:<br />
+      Algebra Volume 1 (Version 1.1.2) (cleanly cracked), Algebra Volume 3 (Revision 0) (cleanly cracked),
+      Algebra Volume 4 (Version 1.1) (cleanly cracked), Algebra Volume 6 (Version 1.0) (cleanly cracked),
+      All About America (cleanly cracked), The Ancient Art of War at Sea (cleanly cracked), Animate (cleanly cracked),
+      Ape Escape (cleanly cracked), Bank Street StoryBook 1.1 (cleanly cracked), Bank Street Writer II (cleanly cracked),
+      The Basics of BASIC (cleanly cracked), Boulderdash Construction Kit (cleanly cracked), Centauri Alliance (cleanly cracked),
+      Certificates and More! (cleanly cracked), The Circuit Simulator (cleanly cracked),
+      Computer Preparation for the SAT (Version 1.1A) (cleanly cracked), Conceptor (cleanly cracked), Conjecture (cleanly cracked),
+      Creative Play (cleanly cracked), The Dam Busters (cleanly cracked), Dondra - A New Beginning (cleanly cracked),
+      Dondra: A New Beginning (Revision 2) (cleanly cracked), The Eidolon (cleanly cracked), English Achievement IV (cleanly cracked),
+      Felony (Thunder Mountain release) (cleanly cracked), Five in a Row - Addition and Subtraction (cleanly cracked),
+      Forbidden Castle (cleanly cracked), Fractions (Version 3.1 / 25-NOV-83) (cleanly cracked),
+      The Games: Winter Edition (cleanly cracked), Goldfinger (cleanly cracked), The Hangtown Trilogy (Version 2.2) (cleanly cracked),
+      High Stakes (cleanly cracked), The Holy Grail (cleanly cracked), How to Read in the Content Areas (cleanly cracked),
+      In Search of the Most Amazing Thing (Revision 2) (cleanly cracked), Inca (cleanly cracked),
+      Indiana Jones in Revenge of the Ancients (cleanly cracked), Interlude II (cleanly cracked), Kung Fu Master (cleanly cracked),
+      Locksmith (Version 5.0 Revision C) (cleanly cracked), Locksmith (Version 5.0 Revision F) (cleanly cracked),
+      Mastering the SAT (cleanly cracked), Match Maker Biology Facts (cleanly cracked), The Math Twister (cleanly cracked),
+      Mathematics Skills Software Level 2 (cleanly cracked), MECC-A405 Sports Stats (Version 1.0) (cleanly cracked),
+      Microzine 7 (cleanly cracked), Microzine 9 (cleanly cracked), Microzine 14 (cleanly cracked),
+      Millionaire Release 2 (cleanly cracked), Mixed Number Concepts (cleanly cracked), The Movie Monster Game (cleanly cracked),
+      Mr. Pixel's Cartoon Kit (cleanly cracked), Multidimensional Personality Evaluation (cleanly cracked),
+      Multiple Choices (cleanly cracked), Mystery Sentences (cleanly cracked), Operation Frog (cleanly cracked),
+      PFS (Version A.02, 1980-10-23) (cleanly cracked), PFS (Version B.00, 1981-01-03) (cleanly cracked),
+      PFS:Write (Version 26-APR-86) (cleanly cracked), Pop 'R Spell (Rev 2) (cleanly cracked), Project Space Station (cleanly cracked),
+      Pyramid Puzzler (cleanly cracked), A Question of Scruples (cleanly cracked), Reading Workshop: Distant Views (cleanly cracked),
+      Reading Workshop: Running Free (cleanly cracked), Ricochet (cleanly cracked), RoboCop (cleanly cracked),
+      Robot Odyssey (Version 1.1) (cleanly cracked), Robot Odyssey I (Version 2.0) (cleanly cracked),
+      Rocky's Boots (Version 4.0) (cleanly cracked), Secret Filer (cleanly cracked), Serendipity (cleanly cracked),
+      Soko-Ban (cleanly cracked), Solo Flight (cleanly cracked), Space Journey (cleanly cracked), Spiderbot (cleanly cracked),
+      The Sporting News: Baseball (cleanly cracked), Spy vs. Spy III: Arctic Antics (cleanly cracked),
+      Squire (Version 1.0) (cleanly cracked), Story Maker (64K Version) (cleanly cracked), Story Tree (Version 1.4) (cleanly cracked),
+      Street Sports Baseball (cleanly cracked), Street Sports Basketball (cleanly cracked), Street Sports Football (cleanly cracked),
+      Street Sports Soccer (cleanly cracked), Sub Battle Simulator (cleanly cracked), Sub Mission (cleanly cracked),
+      Success with Typing (Version 1.2) (cleanly cracked), Summer Games (cleanly cracked), Summer Games II (cleanly cracked),
+      Swiss Family Robinson (cleanly cracked), Tag Team Wrestling (cleanly cracked), Tales of Mystery (cleanly cracked),
+      Techno Cop (cleanly cracked), Temple of Apshai Trilogy (cleanly cracked), Ten Little Robots (cleanly cracked),
+      Tink Tonk - Tuk Goes to Town (cleanly cracked), Tink! Tink! Tink's Subtraction Fair (cleanly cracked),
+      Tonk in the Land of the Buddy-Bots (cleanly cracked), Treasure Island (cleanly cracked), Trompers (cleanly cracked),
+      Voodoo Island (cleanly cracked), Where in Europe is Carmen Sandiego? (cleanly cracked),
+      Where in North Dakota is Carmen Sandiego? (cleanly cracked), Where in Time is Carmen Sandiego (Version 1.0) (cleanly cracked),
+      Where in the USA is Carmen Sandiego? (Version 2.0, 26-APR-1989) (cleanly cracked),
+      Where in the World is Carmen Sandiego? (Version 2.0 / 15-AUG-1989) (cleanly cracked), Who Framed Roger Rabbit (cleanly cracked),
+      Winnie the Pooh in the Hundred Acre Wood (Sierra On-Line) (cleanly cracked), The Wizard of Oz (cleanly cracked),
+      World Karate Championship (cleanly cracked), The World's Greatest Baseball Game (Enhanced Version) (cleanly cracked),
+      The World's Greatest Baseball Game (cleanly cracked), The World's Greatest Football Game (cleanly cracked) [4am, Firehawke]<br />
+      Boulder Dash II (cleanly cracked), Logic Builders (cleanly cracked) [4am, san inc., Firehawke]</li>
+    <li><b>apple2_flop_orig</b>:
+      Beyond Zork (Release 49 / 870917), Beyond Zork (Release 57 / 871221), Border Zone (Release 9 / 871008),
+      Bureaucracy (Release 86 / 870212), Genesis, The Hitchhiker's Guide to the Galaxy (Release 31 / 871119),
+      The Hitchhiker's Guide to the Galaxy (Release 56 / 841221), The Hitchhiker's Guide to the Galaxy (Release 58 / 851002),
+      Invisible Bugs (Version 1.1) (800K 3.5"), Killed Until Dead, Littletown Zoo (800K 3.5"), Magic Spells (Version 2.3) (800K 3.5"),
+      Math Rabbit (Version 1.3) (800K 3.5"), Mystery Objects (Version 1.1) (800K 3.5"), Number Munchers (Version 1.3) (800K 3.5"),
+      Picture Chompers (Version 1.0) (800K 3.5"), The Print Shop, ProDOS (Version B.1A 09-DEC-82), SuperPrint II (800K 3.5"),
+      Think Quick! (Version 1.4) (800K 3.5"), Track Attack, Woolly Bounce (Version 1.0) (800K 3.5"),
+      Word Attack Plus! (Version 1.2) (800K 3.5"), Word Attack Plus! French (Version 1.3) (800K 3.5"),
+      Word Attack Plus! Spanish (Version 1.2, 09.01.88) (800K 3.5"), Word Attack! (Version 06.01.87) (800K 3.5") [4am, Firehawke]</li>
+    <li><b>apple2gs_flop_clcracked</b>:
+      The Adventures of Sinbad (cleanly cracked), Aesop's Fables (cleanly cracked), All About America (cleanly cracked),
+      Ancient Land of Ys (cleanly cracked), Arkanoid (Version 12-Jan-89) (cleanly cracked),
+      Arkanoid II: Revenge of Doh (Version 18-Jul-89) (cleanly cracked),
+      Arkanoid II: Revenge of Doh (Version 29-Aug-89) (cleanly cracked), Battle Chess (cleanly cracked),
+      Block Out (Version 1.0) (cleanly cracked), Bubble Ghost (cleanly cracked), Bubble Ghost - Hard Drive compatible (cleanly cracked),
+      Calendar Crafter (Version 1.2) (cleanly cracked), California Games (cleanly cracked), Captain Blood (cleanly cracked),
+      Cavern Cobra (cleanly cracked), Club Backgammon (Version 1.0) (cleanly cracked), Club Backgammon (Version 2.0) (cleanly cracked),
+      Cribbage King / Gin King (Version 1.01) (cleanly cracked), Defender of the Crown (cleanly cracked), Déjà Vu (cleanly cracked),
+      Déjà Vu II: Lost in Las Vegas (cleanly cracked), Designer Prints (Version 1.0) (cleanly cracked),
+      Designer Puzzles (Version 1.0) (cleanly cracked), Destroyer (cleanly cracked), Downhill Challenge (cleanly cracked),
+      The Duel: Test Drive II (cleanly cracked), Fantavision (Version 1.0) (cleanly cracked),
+      Fantavision (Version 2.1) (cleanly cracked), Fast Break (cleanly cracked),
+      The Fidelity Chessmaster 2100 (Version 1.01 28-Sep-88) (cleanly cracked),
+      The Fidelity Chessmaster 2100 (Version 1.1 17-Nov-88) (cleanly cracked), Final Assault (cleanly cracked),
+      Gauntlet (cleanly cracked), Geometry (Version 1.0) (cleanly cracked), Gnarly Golf (cleanly cracked),
+      Grand Prix Circuit (cleanly cracked), The Graphics Studio (cleanly cracked), Great Western Shootout (cleanly cracked),
+      Hacker II: The Doomsday Papers (cleanly cracked), Hardball! (cleanly cracked), Hostage: Rescue Mission (cleanly cracked),
+      The Immortal (cleanly cracked), Impossible Mission II (cleanly cracked),
+      Jack Nicklaus' Greatest 18 Holes of Major Championship Golf (cleanly cracked), Jigsaw (Version 1.4 - 022988) (cleanly cracked),
+      The King of Chicago (cleanly cracked), King's Quest - Quest for the Crown (cleanly cracked),
+      King's Quest II - Romancing The Throne (cleanly cracked), King's Quest III - To Hier is Human (cleanly cracked),
+      LaserForce (cleanly cracked), The Last Ninja (cleanly cracked),
+      Leisure Suit Larry in the Land of the Lounge Lizards (cleanly cracked), The Logic Master (Version 1.5) (cleanly cracked),
+      Magical Myths (cleanly cracked), Mancala (Version 1.0) (cleanly cracked), Marble Madness (cleanly cracked),
+      Math Blaster Plus! (Version 1.0) (cleanly cracked), Math Blaster Plus! (Version 1.1) (cleanly cracked),
+      Math Wizard (cleanly cracked), Mavis Beacon Teaches Typing (Version 1.2 16-Nov-87) (cleanly cracked),
+      Mavis Beacon Teaches Typing (Version 1.8 21-Dec-88) (cleanly cracked), Mean 18 (cleanly cracked),
+      Mercury (Version 1.0) (cleanly cracked), Music Construction Set (Version 1.0) (cleanly cracked), Neuromancer (cleanly cracked),
+      Paperboy (cleanly cracked), Pipe Dream (cleanly cracked), The Print Shop (Version 1.0) (cleanly cracked),
+      Qix (Version 1.4? 16-Jan-90) (cleanly cracked), Read and Rhyme (cleanly cracked), Read-a-Rama (cleanly cracked),
+      Reader Rabbit (Version 2.2) (cleanly cracked), Reader Rabbit (Version 2.3) (cleanly cracked),
+      Reading and Me (Version 1.0) (cleanly cracked), Sea Strike (Version 1.0) (cleanly cracked), Serve and Volley (cleanly cracked),
+      Shanghai (Version 15-Sep-87) (cleanly cracked), Shanghai (Version 20-Jan-87) (cleanly cracked),
+      ShowOff (Version 1.1) (cleanly cracked), Silent Service (Version 925.01) (cleanly cracked),
+      Silpheed - Super Dogfighter (cleanly cracked), Skate or Die (Version 1.0 12-Aug-88) (cleanly cracked),
+      Skate or Die (Version 1.1 07-Oct-88) (cleanly cracked), Space Quest - The Sarien Encounter (cleanly cracked),
+      Space Quest II - Vohual's Revenge (cleanly cracked), Spirit of Excalibur (cleanly cracked),
+      Storybook Weaver (Version 1.0) (cleanly cracked), Storybook Weaver - World of Adventure (Version 1.0) (cleanly cracked),
+      Storybook Weaver - World of Make-Believe (Version 1.0) (cleanly cracked), Street Sports Soccer (cleanly cracked),
+      Superstar Ice Hockey (cleanly cracked), Tales From The Arabian Nights (cleanly cracked), Task Force (cleanly cracked),
+      Tetris (cleanly cracked), Thexder (Version 2.7) (cleanly cracked), The Third Courier (cleanly cracked),
+      Topdraw (Version 1.00A) (cleanly cracked), The Tower of Myraglen (Version 1.0) (cleanly cracked),
+      TrianGo (Version 1.0) (cleanly cracked), Uninvited (cleanly cracked), Vegas Craps (Version 1.0) (cleanly cracked),
+      Vegas Gambler (Version 1.0 07-Jun-88) (cleanly cracked), Vegas Gambler (Version 1.1 25-Jul-88) (cleanly cracked),
+      War in Middle Earth (cleanly cracked), Where in the U.S.A. is Carmen Sandiego? (cleanly cracked),
+      Where in the World is Carmen Sandiego? (cleanly cracked), Winter Games (cleanly cracked),
+      The Wonders of the Animal Kingdom (cleanly cracked), The Word Master (cleanly cracked), World Games (cleanly cracked),
+      World Tour Golf (cleanly cracked), Writer's Choice Elite (cleanly cracked), Xenocide (Version 11-Aug-89) (cleanly cracked),
+      Xenocide (Version 25-Sep-89) (unprotected), Zany Golf (cleanly cracked) [Brian Troha]</li>
+    <li><b>apple2gs_flop_orig</b>: King's Quest II (Version 2.0A), Solitaire Royale (Version 1.0) [4am, Firehawke]</li>
+    <li><b>c64_cass</b>:
+      Batman (Ocean), Battle Through Time, Beach-Head II, Beach-Head II (Erbe), Best of Elite: Vol. 1, Best of Elite: Vol. 2,
+      Beyond the Forbidden Forest, Beyond the Ice Palace (Elite Systems), Biff, Big Names Bonanza, Bigfoot, Bigtop Barney, Black Lamp,
+      Black Tiger, Blood Brothers, Blue Max, Blue Max 2001, The Blues Brothers, BMX Simulator 2, Bobby Bearing, The Boggit: Bored Too,
+      Bomb Jack (Elite Systems), Bomb Jack II (Elite Systems), Bonanza Bros, Bounty Bob Strikes Back!, Brave Starr,
+      Breakthru (U.S. Gold), Bubble Bobble (Firebird), Buck Rogers: Planet of Zoom, Buggy Boy, Bulldog, Burger Time, Cabal,
+      California Games, Capcom Collection, Captain America in: The Doom Tube of Dr. Megalomann, Catacombs, Championship Sprint,
+      Chart Busters, Chimera, China Miner, Chip's Challenge, Ciphoid 9, Cluedo, Cobra (Ocean), Coin Op Hits II, Combat School,
+      Comet Game, Comic Bakery, Commando (alt), Conflicts 1, Convoy Raider, Cosmic Causeway: Trailblazer II, Crazy Cars (Titus),
+      Crazy Comet, Crazy Kong (alt), Creatures 2: Torture Trouble, Critical Mass (Durell), Crystal Castles, Dark Force, Days of Thunder,
+      Death or Glory, Death Wish 3, The Deep, Deflektor, Delta, Desert Fox, Dick Tracy, Dig Dug, Dominator, Donald Duck's Playground,
+      Double Dragon, Double Take, Dough Boy, Dragon's Lair, Dragon's Lair (Preview), Dragon's Lair Part II: Escape from Singe's Castle,
+      Dragons of Flame, Dream Warrior, Drelbs, Druid, Dynamic Duo, Dynasty Wars, E-motion, Edd the Duck, Enduro Racer (Activision),
+      Epyx Epics, Escape, Escape-MCP, Every Second Counts, The Fabulous Wanda and the Secret of Life, the Universe, and Everything,
+      Fairlight, Famous Five, Fantasy World Dizzy [The Ultimate Tape Archive Team]</li>
+    <li><b>ibm5150</b>:
+      PGA Tour Golf, PGA Tour Golf (alt), PGA Tour Golf (Special Maxell edition), PGA Tour Golf: Tournament Course Disk, PowerMonger,
+      Silpheed (3.5", v3.2) [The Good Old Days]</li>
+    <li><b>ibm5170</b>:
+      Buzz Aldrin's Race into Space, Fates of Twinion, Leisure Suit Larry 6: Shape Up or Slip Out!, Shadow of Yserbius,
+      The Sierra ImagiNation Network, The Sierra ImagiNation Network (older), The Sierra Network, Star Wars: TIE Fighter (Germany)
+      [The Good Old Days]</li>
+    <li><b>megadriv</b>: Mortal Kombat (prototype) [drx, The Hidden Palace]</li>
+    <li><b>nes</b>:<br />
+      4 in 1 (JH-274), 4 in 1 (YH-4103), 7 Grand Dad (The Flintstones - The Rescue of Dino &amp; Hoppy pirate), 35 in 1 (K-3033),
+      1994 New Series Red Pig 7 in 1 (EW-002), 1994 Super HiK 7 in 1 (M-026), 1994 Super HiK 7 in 1 (M-027), 1998 HIGH 4 in 1 (YH-463),
+      Fudou Myouou Den (pirate), New Star 6 in 1 Game Cartridge [anonymous]<br />
+      Y2K 420 in 1 [BootGod]<br />
+      Super Cool Boy 4 in 1 (CB-4035) [CaH4e3, NewRisingSun]<br />
+      2 in 1 (NT-811), 4 in 1 1999, 64 in 1 (CF-015), 1100000 in 1, 9999999 in 1 - 1998 Series No. 10, Super 98 - 43 in 1 (VT321)
+      [Consolethinks]<br />
+      1997 8 in 1 (JY-112), 1998 Super Game 8 in 1 (JY-111) [Consolethinks, NewRisingSun]<br />
+      2 in 1 (GN-91B), 2 in 1 (VT-2037), 2 in 1 (VT-2038), 20 in 1 (CA-006), Super 2 in 1 (WQ 2047), Super Cool Boy 4 in 1 (CB-4011),
+      Super Cool Boy 4 in 1 (CB-4034, alt) [Consolethinks, Nikolka]<br />
+      Miss Peach World 1 - Super L.A. Cop (Japan) [famiac]<br />
+      1994 Super HiK 4 in 1 (JY-005), Rockman 6 in 1 (alt 2) [famiac, NewRisingSun]<br />
+      Batman - The Video Game (Brazil, pirate) [Fisher]<br />
+      Olympic I.Q. (Korea) [Gaming Alexandria]<br />
+      Gotta Protectors - Amazon's Running Diet, Minna de Mamotte Knight - Amazon no Diet Daisakusen [kmg]<br />
+      Golden Mario Party II - Around the World 6 in 1, Rockman 7 in 1 (JY-208) [krzsyiobal, NewRisingSun]<br />
+      AV Jiūjí Májiàng II (Asia, alt), Dòngdòngnǎo II: Guózhōng Yīngwén (I) (Taiwan, alt), Xiǎoxuéshēng Shùxué CAI (China),
+      Yeongjaekeom Cocoma Pack 1 (Korea) [MLX]<br />
+      4 in 1 (KG-443) [MrNorbert1994, Consolethinks]<br />
+      1000 in 1 (alt games), Black Dragon (Korea), Nar-ara Superboy (Korea), Super Cool Boy 3 in 1 (ABAB CB-403x),
+      Super RPG 5 in 1 (CH501) [NewRisingSun]<br />
+      1996 Super HiK 4 in 1 (JY-004) [NewRisingSun, taizou]<br />
+      1996 Yīngyǔ CAI 3 in 1 (China) [taizou]</li>
+    <li><b>pc6001_cart</b>:<br />
+      Canyon Climber, The Electric Pencil (v2.0R), N60 Extended BASIC [anonymous]<br />
+      Tutankham [HardcoreHubz, cyberat2600, Gaming Alexandria]<br />
+      Moon Raiders, Moon Raiders (older) [mosesu]</li>
+    <li><b>vgmplay</b>:
+      Aleste 2 (MSX2, OPLL), Aleste 2 (MSX2, PSG), Aleste Gaiden (MSX2, OPLL), Aleste Gaiden (MSX2, PSG), Alfred Chicken (NES),
+      Alfred Chicken (Nintendo Game Boy), Alien 3 (NES), Ano, Subarashii o Mou Ichido (Sharp X68000),
+      Brandish 2 - The Planet Buster Renewal (NEC PC-9801), Caesars Palace II (Nintendo Game Boy Color), Chambers of Shaolin (Atari ST),
+      Darkman (NES), Deadly Edge (Sharp X68000), Dragon Half (NEC PC-9801), F-1 Grand Prix Part II (Arcade),
+      F-1 Grand Prix Star II (Arcade), Farland Story - Tooi Kuni no Monogatari (NEC PC-9801),
+      Firecracker Music Collection Vol. 1 ~We Are Konamic Freaks~ (NEC PC-8801), Formula X (Sharp X68000), Garudius '95 (NEC PC-9801),
+      Group X (Sharp X68000), Gunbird (Arcade), Hebereke no Popoon (Arcade), Illumination Laser (Sharp X68000), James Bond Jr. (NES),
+      Jim Power in Mutant Planet (Atari ST), Jurassic Park (NES), Kisou Shinden Gen-Kaiser (NEC PC-9801), Overlord (NES),
+      Prajator - Image Ranger (NEC PC-8801, OPN), Prajator - Image Ranger (NEC PC-8801, OPNA), A Prehistoric Tale (Atari ST),
+      Prince of Persia (NEC PC-9801), Revival Xanadu (NEC PC-9801), Snake's Revenge (NES), Star Luster (Sharp X68000),
+      Super Sprint (Atari System 2), Tetris Plus 2 (Arcade), Tetris Plus 2 (Jaleco Mega System 32),
+      Touhou Fuumaroku ~ The Story of Eastern Wonderland (NEC PC-9801, OPNA), Wild Pilot (Arcade), Wings of Death (Atari ST),
+      Xenon 2 - Megablast (Atari ST), Ys II - Ancient Ys Vanished The Final Chapter (Sharp X1 Turbo) [vgmrips.net, Tafoid]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>amigaecs_flop</b>: Snapperazzi (Euro) [Angelo Salese]</li>
+    <li><b>amigaocs_flop</b>:
+      Altered Beast (Euro), The Amazing Spider-Man (Euro), Archipelagos (Euro), Aspar Master Grand Prix (Euro, Les Fous du Volant),
+      Bangkok Knights (Euro), Barbarian II (Euro, Palace, NRJ Vol. 4), Base Jumpers (Euro), Battle Squadron (Euro), Beach Volley (Euro),
+      Double Dragon (Euro, v2.16), Grid Start (Euro, Sextett), Hollywood Poker (Euro), Hollywood Poker (Euro, Budget),
+      Killing Machine (Euro), Knights of the Crystallion (Euro), Parasol Stars - The Story of Rainbow Islands II (Euro),
+      Player Manager (Euro), Player Manager (Ita), Profezia (Ita), Table Tennis Simulation (Euro), ThunderCats (Euro),
+      Time Runners 1 - Gateways in Time (Euro), Time Runners 2 - The Space Stone (Euro), The Times Crosswords Vol. 3 &amp; 4 (Euro),
+      Tip Off (Euro, French / German / Italian / Spanish), Total Football (Euro), Total Recall (Euro, Budget), Trinity (Euro, r11),
+      The Way of the Little Dragon (Euro), X-It (Euro), Xenon 2 - Megablast (Euro) [Angelo Salese]</li>
+    <li><b>nes</b>:
+      2 in 1 - Yu Yu + Dragonball Z, 7 in 1 (M-022), 101 in 1 Games, City Fighter IV (Asia), EverQuest - Wújìn de Rènwù (China),
+      Famicom Yarou Vol.1 - 7 in 1, Fùjiǎ Sānguó (China), Gimmick! (Asia, pirate), Kart Fighter (Asia, SOMARI-W), Lethal Weapon (China),
+      The Lord of King (Asia, pirate), Somari (Asia, SOMARI-P), Somari (Asia, SOMARI-W), Street Heroes (Taiwan), Super 4 in 1,
+      Super 7 in 1, Super 8 in 1, Super HIK 7 in 1 (K7006), Super HIK 8 in 1 King Fighter, Super Mario Family 10 in 1,
+      Sānguózhì - Yīngjié Zhuàn (China), Sānguózhì - Yīngjié Zhuàn (China, alt), Sānguózhì - Yīngjié Zhuàn (China, alt 2),
+      World Hero (Asia), World Hero (Asia, alt) [kmg]</li>
+</ul>
+
+<h3>New NOT_WORKING software list additions</h3>
+<ul>
+    <li><b>c64_cass</b>:
+      Bazooka Bill (Melbourne House), Brian Bloodaxe, Championship Wrestling, Crack Down, Creatures, Decathlon, Deceptor,
+      Doc the Destroyer, Dodgy Geezers, Donkey Kong (Ocean) [The Ultimate Tape Archive Team]</li>
+    <li><b>nes</b>: Rockman 6 in 1 (alt) [famiac, NewRisingSun]</li>
+    <li><b>pc6001_cart</b>:<br />
+      Micro-Painter, Music Editor, The Curse of Crowley Manor, Touch Panel Utility [anonymous]<br />
+      Dawn Patrol (beta) [fussballj]</li>
+</ul>
+
+<h3>Translations added or modified</h3>
+<ul>
+    <li>Chinese (Simplified) [YuiFAN]</li>
+    <li>Chinese (Traditional) [YuiFAN]</li>
+    <li>Greek [BraiNKilleRGR]</li>
+    <li>Japanese [Fujix, Vas Crabb]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/8300">8300</a>: Optimized the multithreading strategy for <tt>-listxml</tt>. [Nathan Woods]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8482">8482</a>: emu/softlist.cpp: Added a “notes” field to store notes about a software list or software list item. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8515">8515</a>: galaxian.cpp: Added two Pac-Man bootlegs. [Ricardo - Factory Arcade, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8537">8537</a>: apple2_flop_clcracked.xml, apple2gs_flop_orig.xml: Fixed E7 cracks, and added latest dumps and cracks. [4am, Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8541">8541</a>: bus/coco: Added initial RPK format support for CoCo ROM cartridges. [Nathan Woods]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8569">8569</a>: seta.cpp: Dumped PLDs for blandia, and added placeholders for undumped PLDs. [Sergio Galiano]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8570">8570</a>: Added preliminary support for the Casio CTK-551 keyboard and its H8/300-based SoC. [Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8582">8582</a>: bus/nes: Added support for the A Winner is You homebrew cartridge. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8605">8605</a>: sound/tt5665.cpp: Added support for per-channel voice commands. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8622">8622</a>: bus/nes: Added support for the Y2K 420 in 1 multi-game cartridge. [kmg, BootGod]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8624">8624</a>: bus/nes: Fixed graphical issues in Street Heroes, and added the jumper setting to select the title screen. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8625">8625</a>: tmspoker.cpp: Added two Jeutel “Las Vegas” sets. [Benjamin Roux, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8626">8626</a>: pc6001.cpp: Reworked emulation of the PC-6001mk2SR, fixing many issues and adding a cartridge software list. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8628">8628</a>: bus/nes: Added support for original Dòngdòngnǎo II cartridge; bus/nes.xml: corrected board type for Yeong-no Pyramid. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8629">8629</a>: champbas.cpp Added description for Talbot quota setting DIP switches (<a href="https://mametesters.org/view.php?id=8093">MT08093</a>). [Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8630">8630</a>: debugger: Extended target address syntax to include device/address space. [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8632">8632</a>: nes.xml: Added a N625092 board game, and updated emulation status for several items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8633">8633</a>: emu/video.cpp: Use configured snapshot file name for snapshot saved when <tt>-seconds_to_run</tt> completes. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8637">8637</a>: bus/snes: Improved SA1 timings, and cleaned up code. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8639">8639</a>: nes.xml: Added a colorful potpourri of games (ten new working items). [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8640">8640</a>: c64_cass.xml: Added ten working items and one non-working item. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8643">8643</a>: mpu4.cpp: Dumped PAL for Escalera Tobogan. [jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8644">8644</a>: bus/nes: Set multi-game cartridge bank size with feature elements in the software list; nes.xml: Added three items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8645">8645</a>: Updated bgfx, bx and bimg to latest upstream version (fixes GitHub <a href="https://github.com/mamedev/mame/issues/8057">#8057</a>). [Belegdol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8647">8647</a>: machine/amstrad.cpp: Corrected some typographical errors in comments. [jogo-]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8648">8648</a>: Revert “amstrad: fix spelling/grammar in the comments (<a href="https://github.com/mamedev/mame/pull/8647">#8647</a>)”. [R. Belmont]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8649">8649</a>: machine/amstrad.cpp: Fixed spelling/grammar errors in comments. [jogo-]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8651">8651</a>: c64_cass.xml: Added thirteen working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8652">8652</a>: machine/spg_renderer.cpp: Fixed four-level blending for tile layers. [Simon Eriksson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8651">8651</a>: bus/nes: Added support for a couple of homebrew 8-in-1 multi-game cartridges. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8655">8655</a>: hh_sm510.cpp: Added Tronica Thunder Ball. [algestam]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8656">8656</a>: machine/6883sam.cpp: Fixed debug log messages showing TY and M bits. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8658">8658</a>: bus/nes: Added the SZROM variant of the MMC1 mapper (fixes saved game corruption in A Ressha de Ikou). [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8660">8660</a>: cpu/m6502/st2205u.cpp: Added very preliminary ADPCM audio output. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8661">8661</a>: util: Cleaned up I/O interfaces further, and added a helper for generating dynamic classes on-the-fly. [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8663">8663</a>: c64_cass.xml: Corrected cassette labels from <a href="https://github.com/mamedev/mame/pull/8357">#8357</a> and <a href="https://github.com/mamedev/mame/pull/8640">#8640</a>. [Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8664">8664</a>: bagman.cpp: Changed botanic2 protection handler to return what the game expects and marked PAL dump as bad. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8665">8665</a>: bus/nes: Added support for multi-game cartridges using K-3033 and 970670C boards. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8666">8666</a>: bus/nes: Fixed loading and bank locking for EH8813A boards; nes.xml: Added two items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8668">8668</a>: hh_sm510.cpp: Add cheat inputs for trsrescue and trthuball. [algestam]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8670">8670</a>: nes.xml: Set correct board type for fjsanguo. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8671">8671</a>: c64_cass.xml: Added nine working items and one non-working item. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8672">8672</a>: bus/nes: Added support for GN-91B and NC-20MB multi-game cartridges; nes.xml: Added five working items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8674">8674</a>: Improved localisation support, enhanced software selection menus, and fixed some UI issues (addresses <a href="https://github.com/mamedev/mame/issues/8641">#8641</a>). [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8675">8675</a>: bus/nes: Added support for a couple Korean educational titles; nes.xml: Replaced bad dump of brillco2. [kmg, MLX]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8676">8676</a>: coco12.cpp: Added support for the ILCE / SEP Micro-SEP 1600. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8677">8677</a>: bus/nes: Added support for Super Mario Family, and re-dumped the program ROM. [kmg, MLX, NewRisingSun]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8678">8678</a>: c64_cass.xml: Added ten working items and one non-working item. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8679">8679</a>: bus/centronics/epson_lx810l.cpp: Fixed carriage position readback after soft reset. [Golden Child]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8680">8680</a>: bus/nes: Added support for Super RPG 5 in 1. [kmg, NewRisingSun]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8681">8681</a>: nes.xml: Removed mk4p8, as it’s a duplicate of mktrilgya. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8682">8682</a>: bus/nes: Improved 830118C multi-game cartridge emulation – all menu items now load; nes.xml: Added three items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8684">8684</a>: rmnimbus.cpp: Greatly improved mouse emulation (can use with Windows 1/2/3), and improved SASI/SCSI emulation. [prime6809]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8685">8685</a>: snes.xml: Changed descriptive and disambiguation text in descriptions to lowercase. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8686">8686</a>: sound/st0016.cpp: Refactored code; machine/st0016.cpp: Cleaned up interface to put connection details in drivers. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8687">8687</a>: bus/nes: Improved emulation for various VRC clone boards. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8689">8689</a>: c64_cass.xml: Added ten working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8690">8690</a>: bus/nes: Further improved VRC clone board emulation. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8691">8691</a>: Added preliminary SPARCstation ELC (Sun 4/25) support – passes boot diagnostics. [Yvan Janssens]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8692">8692</a>: bgfx: Updated mipmap and raster bloom passes in Fighters chain (fixes crash identified in GitHub <a href="https://github.com/mamedev/mame/issues/8538">#8538</a>). [sairuk]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8693">8693</a>: c64_cass.xml: Added seven working items and two non-working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8694">8694</a>: Updated Greek translation. [BraiNKilleRGR]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8695">8695</a>: bus/nes: Corrected VRC4/6/7 pseudo-scanline interrupt counter. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8697">8697</a>: galaxian.cpp: Added Floritas (Multivideo Spanish Moon Cresta bootleg). [Retromaniacs, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8698">8698</a>: cosmic.cpp: Added Cosmic Alien (version II, set 3). [Retromaniacs, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8699">8699</a>: bus/nes: Added two bootleg games using VRC2 clone hardware, and converted 900218 from a VRC4 clone to a VRC2 clone. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8700">8700</a>: phoenix.cpp: Added City Attack (Petaco S.A., bootleg of Pleiads). [Retromaniacs, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8701">8701</a>: nes.xml: Added a pair of recent promotional releases. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8702">8702</a>: nes.xml: Fixed name and alternate title for Rough World. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8704">8704</a>: cpu/m6502/st2205u.cpp: Added recognizable (but still awful) PSG sound emulation for the dphh8630 driver. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8705">8705</a>: c64_cass.xml: Added ten working items and two non-working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8706">8706</a>: bus/nes: Improved support for Super Cool Boy and related multi-game cartridges; nes.xml: Added seven working items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8712">8712</a>: apple2gs_flop_clcracked.xml: Added one hundred and fifteen existing cracks. [Brian Troha, Firehawke]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8713">8713</a>: bus/nes: Continued to improve emulation of VRC4 and clones; nes.xml: Added one item. [kmg, famiac, NewRisingSun]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8714">8714</a>: bus/nes: Corrected mirroring modes supported by VRC2 (fixes graphical glitches in Wai Wai World). [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8715">8715</a>: ibm5150.xml: Added six items. [The Good Old Days, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8716">8716</a>: ibm5170.xml: Added eight items, and re-dumped one item. [The Good Old Days, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8717">8717</a>: gba.xml: Changed descriptive and disambiguation text in descriptions to lowercase. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8719">8719</a>: bus/nes: Fixed graphics banking and mirroring issues that caused glitches in Rex Soft Wǔshì Hún (Samurai Spirits). [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8722">8722</a>: amiga.cpp: Improved software compatibility by fixing various issues with I/O, DMA and interrupts. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8723">8723</a>: bus/nes: Overhauled Somari board emulation, fixing failures to boot, crashes, and graphical issues. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8725">8725</a>: video/namco_c355spr.cpp: Merged functionality for Data East games using this chip. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8726">8726</a>: galaxian.cpp: Added brute-forced equivalent PAL image for guttangts3. [Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8728">8728</a>: bus/nes: Added support for a Somari board variant; nes.xml: Added one item. [kmg, MLX]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8729">8729</a>: sound/ay8910.cpp: Fixed AY8930 noise algorithm and PSG type selection. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8730">8730</a>: c64_cass.xml: Added fourteen working items and three non-working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8732">8732</a>: bus/nes: Added support for a 6-in-1 multi-game cartridge, and set MMC3 (TxROM) initial banks expected by some games. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8733">8733</a>: nes.xml: Added missing battery-backed RAM area for RPG Jinsei Game. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8734">8734</a>: c64_cass.xml: Corrected typo in parent name for Commando. [Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8735">8735</a>: bus/nes: Simplified VRC4 clone board T-230. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8737">8737</a>: c64_cass.xml: Added eleven working items. [The Ultimate Tape Archive Team, Steven Coomber]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8738">8738</a>: Updated Greek translation. [BraiNKilleRGR]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8739">8739</a>: dkong.cpp: Adjusted shootgal crosshair mapping to match the position shown in the game’s test mode. [aequites7]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8740">8740</a>: bus/nes: Improved emulation of HIK8IN1 multi-game cartridges and variants; nes.xml: Added three items. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8741">8741</a>: bus/nes: Fixed off-by-one error in VRC4/6/7 timer interrupt counter. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8743">8743</a>: bus/nes: Added comments about MMC3 initial VROM/VRAM bank configuration. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/8744">8744</a>: amigaocs_flop.xml: Changed descriptive and disambiguation text in descriptions to lowercase. [ArcadeShadow]</li>
+</ul>
