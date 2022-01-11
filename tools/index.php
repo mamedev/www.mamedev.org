@@ -37,7 +37,7 @@ href="https://github.com/mamedev/buildtools/releases/download/7.0/msys64-2022-01
 64-bit tools are included by default.  To build 32-bit binaries, install
 the 32-bit MinGW tools, and switch between environments using
 <strong>config32.bat</strong> and
-<strong>config64.bat<strong>)</em></li>
+<strong>config64.bat</strong>)</em></li>
 </ul>
 
 <h3><a id="user-content-installation" class="anchor" href="#installation" aria-hidden="true"></a>Installation</h3>
@@ -171,7 +171,6 @@ pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
 <p><strong>For x86</strong></p>
 
 <div class="highlight highlight-source-shell"><pre>   pacman -S mingw-w64-i686-clang mingw-w64-i686-clang-analyzer mingw-w64-i686-clang-tools-extra</pre></div>
-</a>
 
 		<br/><br/>
 			<a href="previous-20201103.php">Previous version</a> is still available
