@@ -101,7 +101,7 @@ $title = 'MAME | Resources';
 		<li><a href="https://www.arcadezentrum.com/forum/index.php" target="_blank">Arcadezentrum (GER)</a></li>
 		<li><a href="https://forum.arcadeotaku.com/" target="_blank">Arcade Otaku Forums</a></li>
 		<!-- <li><a href="https://www.aumap.org/" target="blank">AUMAP (ESP)</a></li> -->
-		<li><a href="https://www.aussiearcade.com" target="_blank">Aussie Aurcade</a></li>
+		<li><a href="https://www.aussiearcade.com" target="_blank">Aussie Arcade</a></li>
 		<li><a href="http://www.dragonslairfans.com/" target="_blank">Dragon's Lair Fans</a></li>
 		<li><a href="https://www.emulab.it/forum/index.php" target="_blank">EMULAB Forum (ENG/ITA)</a></li>
 		<li><a href="https://www.gamoover.net" target="_blank">Gamoover (FRA)</a></li>
