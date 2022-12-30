@@ -1,0 +1,394 @@
+MAME 0.251
+
+<p>It looks like MAME 0.251 has made it out the door just in time for
+the end of 2022!  December felt like a long month in MAME development,
+because so much happened!  Nebula, an elusive DECO Cassette game, is now
+emulated.  With working steering controls, Magical Pumpkin: Puroland de
+Daibouken is now playable.  Two members of the HP 9825 family from the
+1970s have been added, and issues with keyboard input on localised
+versions of the HP 86B have been fixed.</p>
+
+<p>One of the most interesting systems added this month is the so-called
+Gerät 32620, make by the Institut für Kosmosforschung of the Deutsche
+Demokratische Republik.  This device was used to read coded messages to
+be broadcast via shortwave radio numbers stations for reception by
+undercover agents.  If a human were to read the numbers, they could
+inadvertently disclose knowledge about the nature of the messages or the
+coding scheme in their speech patterns.  This device gives a small
+glimpse into the shadowy world of espionage.</p>
+
+<p>Konami fans have a lot to be excited about.  Firstly, two more
+hand-held LCD games have been added: Skate or Die, and Bill Elliott’s
+NASCAR Racing.  Secondly, Windy Fairy has been making steady progress on
+the PowerPC-based arcade systems, with gun controls now working in
+Teraburst.  Finally, various refinements and fixes to the CPU core for
+Konami’s custom 6809 processor have fixed a subtle parallax scrolling
+effect in the classic Padodius DA!</p>
+
+<p>Several systems have been fleshed out noticeably this month,
+including the
+<span style="font-variant: small-caps">NEC PC-8801mkII SR</span> family
+of Japanese computers, the 3com Palm IIIc and Palm m100 PDAs, and the
+Yamaha DX100 synthesizer.  Additionally, the NEC PC-88VA2 can now boot
+most software, and the work on the Palm systems has allowed the VTech
+IQ Unlimited to show signs of life.</p>
+
+<p>Quite a few systems have had pluggable controller support added this
+month, and support for some additional controllers has been added,
+including:</p>
+
+<ul>
+    <li>Pluggable controller support for consoles and computers from
+    Sega, NEC and Sharp.</li>
+    <li>Sega Mega Drive mouse and 4-player adaptor support.</li>
+    <li>Support for an ATmega-based paddle controller that works with
+    export versions of the Sega Master System.</li>
+    <li>NEC PC Engine mouse support.</li>
+    <li>Support for the Dempa Micom Soft XE-1AP, the first analog
+    gamepad.  Can be used with compatible software for the Sega Mega
+    Drive, NEC PC Engine, Sharp X68000 and FM Towns families.</li>
+</ul>
+
+<p>Of course, there are lots of other fixes and emulation improvements.
+The Apple <span style="font-variant: small-caps">IIgs</span> has better
+ADB and real-time clock emulation.  Sega’s Turbo and Buck Rogers: Planet
+of Zoom have better controls, and the latter has had graphical priority
+issues fixed.  The NES APU frame counter interrupt is now emulated,
+fixing issues with dozens of games.  For developers, debugger command
+and expression history is now saved between sessions.</p>
+
+<p>As always, you can read about all the changes this month in the <a
+href="https://www.mamedev.org/releases/whatsnew_0251.txt">whatsnew.txt
+file</a>, or download the source code and 64-bit Windows binary packages
+from <a href="https://www.mamedev.org/release.html">the
+download page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=315">00315</a>: [DIP/Input] (konami/hornet.cpp) terabrst: Gun controls do not work. (Windy Fairy)</li>
+    <li><a href="https://mametesters.org/view.php?id=5996">05996</a>: [Sound] (nintendo/nes.cpp) nes [summer92]: Drum sounds plays incorrectly. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=6186">06186</a>: [Sound] (nintendo/nes.cpp) nes [portopia]: No sound in Portopia Renzoku Satsujin Jiken. (kmg)</li>
+    <li><a href="https://mametesters.org/view.php?id=7199">07199</a>: [Media Support] (nec/pc8801.cpp) pc8801 [dkong3dg]: Donkey Kong 3 - Dai Gyakushuu does not boot. (Carl)</li>
+    <li><a href="https://mametesters.org/view.php?id=7241">07241</a>: [Misc.] (konami/nwk-tr.cpp) thrilld and clones: LAN board tests fail. (Windy Fairy)</li>
+    <li><a href="https://mametesters.org/view.php?id=7625">07625</a>: [Crash/Freeze] (nintendo/nes.cpp) nes [dquest and doordoor]: Games stop responding due to unimplemented interrupts. (kmg)</li>
+    <li><a href="https://mametesters.org/view.php?id=7658">07658</a>: [Sound] (nintendo/nes.cpp) nes [ajyureir]: No sound is played. (kmg)</li>
+    <li><a href="https://mametesters.org/view.php?id=7974">07974</a>: [Crash/Freeze] (apple/apple2.cpp) apple2: Out-of-bounds memory accesses when playing floppy drive sound samples. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8292">08292</a>: [Misc.] (neogeo/neogeo.cpp) ALL: BIOS settings selected when launching systems persist between sessions. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=8416">08416</a>: [Misc.] (trs/coco12.cpp) coco1, coco2, coco2b, coco3: Real-time clock should be a slot option for FDC cards. (Tim Lindner)</li>
+    <li><a href="https://mametesters.org/view.php?id=8443">08443</a>: [Misc.] (nintendo/nes.cpp) famicom: Most software using “hvc_basic” cartridges fails to start. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=8466">08466</a>: [Graphics] (msx/msx.cpp) fsa1fx [spmanbow]: Background does not scroll smoothly. (Wilbert Pol)</li>
+    <li><a href="https://mametesters.org/view.php?id=8481">08481</a>: [Misc.] (vsystem/aerofgt.cpp) aerfboot: Out-of-bounds memory accesses when drawing sprites. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8488">08488</a>: [Misc.] (misc/highvdeo.cpp) cfever1k, ciclone, girotutt: Out-of-bounds memory accesses when updating screen. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8490">08490</a>: [Misc.] some exidy/* drivers: Out-of-bounds memory accesses in sound emulation. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8492">08492</a>: [Misc.] (konami/combatsc.cpp) combatscb: Out-of-bounds memory accesses when drawing sprites. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8500">08500</a>: [Misc.] (taito/taitopjc.cpp) optiger: Out-of-range DSP ROM accesses. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8513">08513</a>: [Graphics] (sega/turbo.cpp) buckrog and clones: Sprite priorities are incorrect. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8514">08514</a>: [Sound] (jaleco/ginganin.cpp) ginganin, ginganina: Music plays at twice the correct tempo. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8520">08520</a>: [Sound] (nintendo/dkong.cpp) dkong3, dkong3hs, dkong3j: Stanley death sound only plays partially. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8522">08522</a>: [Sound] (toaplan/toaplan1.cpp) samesame: Continue music won’t stop if a coin is inserted at the continue screen. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8530">08530</a>: [Graphics] (seta/seta.cpp) zombraid: Tile maps display incorrectly. (David Haywood)</li>
+    <li><a href="https://mametesters.org/view.php?id=8531">08531</a>: [Graphics] (konami/parodius.cpp) parodius and clones: Parallax effects on level 7 and 9 backgrounds are incorrect. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8535">08535</a>: [Crash/Freeze] All: Entering full-screen mode with multiple output windows can cause MAME to crash. (Ryan Holtz)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>DECO Cassette System ROM Multigame (Darksoft, v17) [David Haywood]</li>
+    <li>Hewlett-Packard HP 9825A [F.Ulivi]</li>
+    <li>Hewlett-Packard HP 9831A [F.Ulivi]</li>
+    <li>Institut für Kosmosforschung Gerät 32620 (Sprach/Morsegenerator) [Dirk Best, natarii, Crypto Museum]</li>
+    <li>Konami (licensed from Electronic Arts) Skate or Die (Konami, handheld) [hap, Sean Riddle, Mr. Do]</li>
+    <li>Konami Bill Elliott's NASCAR Racing (handheld) [hap, Sean Riddle, Mr. Do]</li>
+    <li>Multitech Micro-Professor I/88 [Nigel Barnes]</li>
+    <li>Nebula (DECO Cassette) (UK) [Rene Balke, Darksoft, Senil Data Systems, David Haywood]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Bonze Adventure (World, prototype, older) [BL]</li>
+    <li>DECO Cassette System ROM Multigame (Darksoft, v15) [David Haywood]</li>
+    <li>DECO Cassette System ROM Multigame (Darksoft, v16) [David Haywood]</li>
+    <li>Final Fight 30th Anniversary Edition (World, hack) [Gregory Lewandowski]</li>
+    <li>Gun.Smoke (USA and Canada, 1986-01-20) [Victor Fernandez (City Game), Jordi Beltrán]</li>
+    <li>Power Instinct 2 (US, Ver. 94.04.08, set 2) [Sergio Galiano, Recreativos Piscis]</li>
+    <li>Science of Cambridge MK-14 VDU [Nigel Barnes]</li>
+    <li>Slots (Belgian Token, Game Card 95-750-452) [Gerald (COY)]</li>
+    <li>Tee'd Off (World) [system11]</li>
+</ul>
+
+<h3>Systems promoted to working</h3>
+<ul>
+    <li>Magical Pumpkin: Puroland de Daibouken (Japan 960712) [dink]</li>
+    <li>NEC PC-8801MA [Angelo Salese, O. Galibert, Carl]</li>
+    <li>NEC PC-8801MH [Angelo Salese, O. Galibert, Carl]</li>
+    <li>NEC PC-8801mkIISR [Angelo Salese, O. Galibert, Carl]</li>
+    <li>Yamaha DX100 Digital Programmable Algorithm Synthesizer [Pietro Gagliardi]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>3com Palm IIIc [Ryan Holtz]</li>
+    <li>3com Palm m100 [Ryan Holtz]</li>
+    <li>NEC PC-8801FA [Angelo Salese, O. Galibert, Carl]</li>
+    <li>NEC PC-8801MA2 [Angelo Salese, O. Galibert, Carl]</li>
+    <li>NEC PC-8801mkIIFR [Angelo Salese, O. Galibert, Carl]</li>
+    <li>NEC PC-8801mkIIMR [Angelo Salese, O. Galibert, Carl]</li>
+    <li>Tangerine Microtan 6809 System [Nigel Barnes]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>The Castle [caius]</li>
+    <li>Dream Rail [Recreativos Piscis]</li>
+    <li>Heat Up Hockey Image (Ver.1.003R) [Darksoft, MetalliC]</li>
+    <li>Name Club Disney (J 980614 V1.000) [Darksoft, TeamEurope]</li>
+    <li>Sprow MiniB Computer [Nigel Barnes, Sprow]</li>
+    <li>Super 555 (English version V1.5) [hammy]</li>
+    <li>Takara / SSD Company LTD Gun Gun Adventure (Japan) [Sean Riddle]</li>
+    <li>Transam Triton L7.2 [Ian Lockhart, Nigel Barnes]</li>
+    <li>Yataimura Shateki (1-player, Japan, Ver 1.000) [Darksoft, MetalliC, rtw]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>Pocket Gal / unknown card game [caius, hammy]</li>
+    <li>Racing Jam (GQ676AAC) [Windy Fairy]</li>
+    <li>Racing Jam (GQ676EAC) [Windy Fairy]</li>
+    <li>Racing Jam (GQ676JAC) [Windy Fairy]</li>
+    <li>Racing Jam: Chapter 2 (GQ888AAA) [Windy Fairy]</li>
+    <li>Racing Jam: Chapter 2 (GQ888UAA) [Windy Fairy]</li>
+    <li>The Rock [caius]</li>
+    <li>Tandy Radio Shack Deluxe Color Computer [Tim Lindner]</li>
+    <li>Thrill Drive (ABB) [Windy Fairy]</li>
+    <li>Thrill Drive (ABE) [Windy Fairy]</li>
+    <li>Thrill Drive (ACB) [Windy Fairy]</li>
+    <li>Thrill Drive (ACE) [Windy Fairy]</li>
+    <li>Thrill Drive (EDB) [Windy Fairy]</li>
+    <li>Thrill Drive (EDE) [Windy Fairy]</li>
+    <li>Thrill Drive (JCB) [Windy Fairy]</li>
+    <li>Thrill Drive (JCE) [Windy Fairy]</li>
+    <li>Thrill Drive (UDB) [Windy Fairy]</li>
+    <li>Thrill Drive (UDE) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GE713JAB) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GK713EAB) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GK713EEB) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GK713K*B) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GM713JAB) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GN713JAB) [Windy Fairy]</li>
+    <li>Thrill Drive (ver GP713JAB) [Windy Fairy]</li>
+    <li>Transam Triton L4.1 [Ian Lockhart, Nigel Barnes]</li>
+    <li>Transam Triton L5.1 [Ian Lockhart, Nigel Barnes]</li>
+    <li>Transam Triton L5.2 [Ian Lockhart, Nigel Barnes]</li>
+    <li>White Water (P-6) [Matt’s Basement Arcade, PinMAME]</li>
+    <li>Yamaha PSS-780 [TwistedTom]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>apple2_flop_misc</b>: Aleph Baiters, Borders, The Georgia Variations, Nosh Kosh [Josh Renaud, Sali Ariel, Keith Hacke]</li>
+    <li><b>aquarius_cass</b>: Doomsday Defender [Roy Templeman]</li>
+    <li><b>bbc_rom</b>:
+      FBBS 3.0, Kevin's Rip-off ROM 1.00, Meta Assembler 3.45A, MMFS 1.52, MMFS Turbo 1.52, Palesar RAM Manager 1.04, Ripper V1,
+      Ripper V1 (13 Commands), Ripper V1 (Disk Menu), Sci 1.34, Speech Synthesis 0.01, SSMP 2.00, View Trilogy, ViewFiler 0.2,
+      VT Clock 1.16 [Nigel Barnes]</li>
+    <li><b>bbcm_cart</b>: Master SD R2 [Ramptop]</li>
+    <li><b>coleco</b>:
+      Frogger II: Threedeep! (prototype, 19840615), Star Wars: The Arcade Game (prototype, 19840412) [Ed Semrad, Hidden Palace, VGHF]</li>
+    <li><b>hp9825_rom</b>:
+      9862 Plotter/Gen I/O ROM for 9825, General/extended I/O ROM for 9825, General/extended I/O/9862 plotter ROM for 9825,
+      General/extended I/O/plotter ROM for 9825, Plotter/Gen I/O ROM for 9825, String/Advanced programming ROM for 9825 [F.Ulivi]</li>
+    <li><b>hp9831_rom</b>: Mass storage ROM for 9831 [F.Ulivi]</li>
+    <li><b>ibm5150</b>:<br />
+      Teenage Mutant Hero Turtles (Spain, 3.5"), Teenage Mutant Hero Turtles (Spain, 5.25") [Abandon Socios]<br />
+      Arcade Hits, Bombuzal, Mega Man (3.5"), Pole Position, Street Fighting Man (alt), Zeliard (3.5"), Zeliard (5.25")
+      [The Good Old Days]<br />
+      Teenage Mutant Hero Turtles (5.25"), Zeliard (3.5", v2.0) [Old-Games.RU]</li>
+    <li><b>ibm5170_cdrom</b>:
+      5 Plus One: Pack 10 - The Blues Brothers, 5 Plus One: Pack 25 - TV Sports Football, The Bitmap Brothers Compilation,
+      Delphine Classic Collection - Adventure, Hocus Pocus (Europe), Hocus Pocus (Germany), Hocus Pocus (Germany, shareware),
+      Hocus Pocus (Spain), Hocus Pocus (USA), Hocus Pocus (USA, mail order release), Hocus Pocus (USA, rerelease),
+      Hocus Pocus (USA, rerelease, alt), id Anthology, id Anthology (rev 1), Zool 2, Zool: Ninja of the "Nth" Dimension [redump.org]</li>
+    <li><b>mk14_quik</b>: Falling Man, Invaders, Pong [Nigel Barnes]</li>
+    <li><b>mpf1_rom</b>: FORTH-I/88, VIP-I/88 [Nigel Barnes]</li>
+    <li><b>msx1_bee_card</b>:
+      Jet Set Willy, Takahashi Meijin no Boukenjima (Japan), Takahashi Meijin no Boukenjima (Japan, alt), Yakyuu Kyou (Japan)
+      [Wilbert Pol]</li>
+    <li><b>msx_softcard</b>: The Wreck (UK) [Wilbert Pol]</li>
+    <li><b>nes</b>:<br />
+      Nighttime Bastards [anonymous]<br />
+      Crazy Land (USA, prototype), Galaxy 5000 - Racing in the 51st Century (USA, prototype), Hoops (USA, prototype),
+      Iron Tank - The Invasion of Normandy (USA, prototype), R.B.I. Baseball 2 (USA, prototype, 19900307),
+      Rally Bike (USA, prototype, 19900226), RoadBlasters (USA, prototype), Shadow of the Ninja (USA, sample), Silkworm (USA, prototype)
+      [Ed Semrad, Hidden Palace, VGHF]<br />
+      Mick &amp; Mack as the Global Gladiators (prototype, 19930528), Mick &amp; Mack as the Global Gladiators (prototype, 19930528, alt),
+      Mick &amp; Mack as the Global Gladiators (prototype, 19930616), Mick &amp; Mack as the Global Gladiators (prototype, 19930630),
+      Mick &amp; Mack as the Global Gladiators (prototype, 19930709) [ICEknight, steem69]<br />
+      2 in 1 - GEMiNIM &amp; Siamond, Sudoku 2007 [NESBrew12]</li>
+    <li><b>pc8801_flop</b>:<br />
+      D' (cracked) [Neo Kobe Collection]<br />
+      Donkey Kong 3 - Dai Gyakushuu [The Game Preservation Society, Carl, Disk Blitz]</li>
+    <li><b>sms</b>:
+      King's Quest - Quest for the Crown (USA, prototype, 19890203), Monopoly (USA, prototype, alt), Super Monaco GP (USA, prototype)
+      [Ed Semrad, smspower, VGHF]</li>
+    <li><b>snes</b>: 16 Bit Xmas 2011 - Christmas Craze (USA), 16 Bit Xmas 2012 - Snowball Fight (USA) [retroUSB]</li>
+    <li><b>sprachmg</b>: English (Polish speaker), German, German (older), Spanish [Crypto Museum]</li>
+    <li><b>spectrum_cass</b>:
+      ACE 2088 (MCM), Adidas Championship Football (Erbe), Adidas Championship Tie Break (Musical 1) [spectrumcomputing.co.uk]
+    <li><b>triton_rom</b>: Fast VDU [Ian Lockhart]
+    <li><b>x68k_flop</b>:<br />
+      SX-Window v3.1 (alt 2) [Brice Onken]<br />
+      Casablanca ni Ai o - Satsujin-sha wa Jikuu o Koete, Death Bringer, Dome, Emerald Dragon, The Hot File Express (1991-12-24),
+      The Hot File Express (1993-10-28), Genocide 2 - Master of the Dark Communion, Signatory - Chouinsha, Tritorn Final,
+      Warning Type 68 [krugman]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>ibm5150</b>:
+      ABC's Wide World of Sports Boxing, Ancient Land of Ys, Big Top (cracked), Crypto Cube,
+      IBM Personal Computer DOS (Version 1.10) (Master diskette, alt), Kobayashi Naru, PC Globe 4.0 [Angelo Salese]</li>
+    <li><b>megadriv</b>: Rockman Mega World (Japan, EEPROM) [einstein95]</li>
+    <li><b>nes</b>:
+      Akagawa Jirou no Yuurei Ressha (Japan), Castelian (Europe), Door Door (FMG pirate), Door Door (Japan), Dragon Quest (Japan),
+      Dragon Quest II - Akuryou no Kamigami (Japan), GeGeGe no Kitarou - Youkai Daimakyou (FMG pirate),
+      GeGeGe no Kitarou - Youkai Daimakyou (Japan), GeGeGe no Kitarou - Youkai Daimakyou (Japan, prototype),
+      The Guardian Legend (Europe), The Guardian Legend (USA), Guardic Gaiden (Japan), Jesus - Kyoufu no Bio Monster (Japan),
+      Mahjong Taikai (Japan), Mendel Palace (USA), The Mutant Virus (USA), Ninja Jajamaru - Ginga Daisakusen (Japan),
+      Ninja Jajamaru - Ginga Daisakusen (Japan, prototype), Ninja Kid (USA), Portopia Renzoku Satsujin Jiken (Japan), Qix (USA),
+      Quinty (Japan), Squashed (USA, prototype), WWF WrestleMania (Europe), WWF WrestleMania (USA) [kmg]</li>
+    <li><b>pc8801_flop</b>:
+      3D Golf Simulation - Super Version, Abunai Tengu Densetsu, Abunai Tengu Densetsu (Ver.1.05 alt Disk A),
+      Abunai Tengu Densetsu (alt 3), Abunai Tengu Densetsu (alt Disk A 2), Adult Inn '87-'88 Bangai-hen,
+      Advanced Fantasian - Quest for Lost Sanctuary, Advanced Fantasian - Quest for Lost Sanctuary (alt 2),
+      Advanced Fantasian - Quest for Lost Sanctuary (alt User Disk), Adventureland, Aino New Loaders 4, Aino New Loaders 4 (alt),
+      Aino New Loaders Vol. 5, Akazukin-chan, Akujo Densetsu II - Sailor-fuku Rhapsody,
+      Akujo Densetsu II - Sailor-fuku Rhapsody (alt Disk A), Akuryou no Machi, Alice Tachi no Gogo Vol. 1,
+      Alice Tachi no Gogo Vol. 1 (alt), Alphos, Amazon Gakujutsu Tanken (alt), Ashura no To, Bastard Special,
+      Bishoujo Shashinkan - Moving School, Bishoujo Shashinkan - Moving School (alt?), Bishoujo Shashinkan - Studio Cut,
+      Bishoujo Shashinkan - Studio Cut (alt?), The Black Onyx, The Black Onyx (Version 4.1), The Byoin, Campaign-ban Daisenryaku 2,
+      Can Can Bunny Superior, Can Can Bunny Superior (alt 2), Can Can Bunny Superior (alt?), Card Game Change Vol.1,
+      Card Game Change Vol.1 (alt), Carmine, Carmine (alt?), Columns, Comsight, Corridor, The Dragon Princess, Expert88 (Ver 2.1),
+      Fruit Panic, Hansen Simulator - Thousantis-go no Bouken, Hydlide 3 - The Space Memories, Key On, KyuRyuTou, KyuRyuTou (SR ver),
+      Maildog Muku, Motoko-hime Adventure, Music with Obie - Animal Quartet, My Lolita, Operation L, The Paladin, Penguin-kun Wars,
+      Penguin-kun Wars (alt), Rats &amp; Star (V2.07), Romancia, SeeNa - Wide screen, Sekai Yaruhodo So Much, Shanghai SR,
+      Shin Kugyokuden Demo, Snatcher Demo, Snatcher Demo (alt), Sorcerian (v1.0), Sorcerian (v1.1), Star Cruiser, Still Sword,
+      Super Jack 88 (SB2 version), Ten to Chi to, Testament Expansion Map, Tetris (alt?), Tobira wo Hirakete, Tonky, Triton, Weird 2,
+      WiBArM, Woody Poco, World Golf (alt), Xanadu, Xanadu (alt), Xanadu Scenario II - The Resurrection of Dragon (hack), Xylos,
+      Yakyuu-dou, Yakyuu-dou (alt), ZETA-88 Vol. 2 [Angelo Salese, O. Galibert, Carl]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>ekara_japan_a</b>: A-2 Mermaid Melody Pichi Pichi Pitch vol.2 (Japan) [WingedPikPik, TeamEurope]</li>
+    <li><b>hp9831_rom</b>: Matrix/plotter ROM for 9831 [F.Ulivi]</li>
+    <li><b>pc8801_flop</b>: D' (alt) [Neo Kobe Collection]</li>
+    <li><b>stv</b>: Name Club Disney (J 980614 V1.000) [Darksoft, TeamEurope]</li>
+    <li><b>x68k_flop</b>: 38 Man Kilo no Kokuu, Soft de Hard na Monogatari II [krugman]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/9278">9278</a>: yamaha/ymdx100.cpp: Implemented most of the Yamaha DX100 emulation. [Pietro Gagliardi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/9859">9859</a>: osd/modules/file: Don’t magically substitute environment variables when opening files. [Nathan Woods]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10419">10419</a>: ibm5170_cdrom.xml: Added sixteen working items. [redump.org, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10509">10509</a>: msx1_cart.xml, msx1_cass.xml, msx1_flop.xml: Cleaned up descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10513">10513</a>: msx2_cart.xml, msx2_cass.xml, msx2_flop.xml, msx2p_flop.xml: Cleaned up descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10527">10527</a>: sega_beena_cart.xml: Use lowercase for things that aren’t proper nouns in software list description. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10572">10572</a>: cpu/m6809: Improved emulation to TFR and EXG instructions. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10575">10575</a>: trs/coco12.cpp, trs/coco3.cpp: Moved real-time clocks to slot cards where they belong (addresses <a href="https://mametesters.org/view.php?id=8416">MT08416</a>). [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10595">10595</a>: hp/hp9825.cpp: Added support for the HP 9825A and HP 9831. [fulivi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10604">10604</a>: apple2_flop_misc.xml: Added four working Israeli games. [Josh Renaud, Aali Ariel, Keith Hacke, telanus]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10605">10605</a>: Fixed some misspellings, mostly involving the word “occurrences”. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10607">10607</a>: misc/cocoloco.cpp: Corrected misspelled DIP switch setting name for Coco Loco. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10610">10610</a>: bus/msx: Added support for Hudson Soft Bee Cards and Electric Software Astron Softcards. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10611">10611</a>: snes.xml: Added two 16 Bit Xmas titles. [retroUSB, kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10614">10614</a>: konami/hornet.cpp, konami/cobra.cpp, konami/nwk-tr.cpp: Refactored JVS host code. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10615">10615</a>: machine/upd765.cpp: Don’t raise data interrupt on abnormal command termination. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10617">10617</a>: konami/konami_gn676_lan.cpp: Rewrote GN676 LAN board emulation. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10619">10619</a>: video/v9938.cpp: Implemented V9958 registers 26 and 27 for graphic23 and graphic4 modes (fixes <a href="https://mametesters.org/view.php?id=8466">MT08466</a>). [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10621">10621</a>: x68k_flop.xml: Added twelve new dumps from original disks (ten working). [krugman, r09]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10622">10622</a>: apple2_flop_orig.xml: Use title case for publisher names. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10623">10623</a>: rz1_cass.xml: Use lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10624">10624</a>: a800.xml: Use unabbreviated country names and lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10625">10625</a>: konami/konmedal.cpp: Corrected the K051649 clock frequency for a few titles (fixes sound pitch). [BoxCubed]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10627">10627</a>: konami/hornet.cpp: Improved Silent Scope and Teraburst I/O emulation. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10629">10629</a>: msx/slot/cartridge.cpp: Don’t unnecessarily copy software memory region contents. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10630">10630</a>: dataeast/deco_mlc.cpp: Added subtitle to descriptions for Asian releases of Skull Fang games. [Michael Sanborn]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10633">10633</a>: barcrest/mpu4.cpp, barcrest/mpu4vid.cpp: Encapsulated sampled sound board as a device. [James Wallace]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10635">10635</a>: ibm5150.xml: Retested software marked as partially supported or unsupported. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10636">10636</a>: megadriv.xml: Fixed cartridge type for rockman1. [einstein95]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10637">10637</a>: konami/hornet: Fixed regression causing Teraburst’s gun I/O to fail boot test. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10639">10639</a>: pcecd.xml: Use unabbreviated country names in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10640">10640</a>: pc98.xml: Use lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10641">10641</a>: machine/mc68328.cpp, palm/palm.cpp: Improved LCD controller emulation and cleaned up code. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10642">10642</a>: dataeast/decocass.cpp: Added Nebula (UK). [Rene Balke, Darksoft, Senil Data Systems, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10643">10643</a>: spectrum_cass.xml: Added three working items, and removed a duplicate item. [spectrumcomputing.co.uk, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10644">10644</a>: sound/nes_apu.cpp: Only allow reading status register; nintendo/dkong.cpp: Fixed crashes in dkong3b. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10645">10645</a>: misc/cave.cpp: Added PEEL18CV8 PLD dumps for Power Instinct 2 and Power Instinct Legends. [Sergio Galiano]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10647">10647</a>: bus/coco: Cleaned up code a little. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10648">10648</a>: trs/coco12.cpp: Added unreleased Deluxe Color Computer machine configuration with a placeholder ROM. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10649">10649</a>: atari/sprint8.cpp: Cleaned up input code. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10651">10651</a>: tecmo/tehkanwc.cpp: Added world version of Tee'd Off. [system11, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10653">10653</a>: dataeast/decocass.cpp: Removed “clown car credits” from comments. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10654">10654</a>: seta/x1_012.cpp, seta/seta_v.cpp: Moved video update trigger from device to drivers (works around <a href="https://mametesters.org/view.php?id=8530">MT08530</a>). [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10656">10656</a>: nec/pc88va.cpp: Improved emulation, allowing most software to boot on the PC-88VA2. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10658">10658</a>: misc/cave.cpp: Added a newly dumped US version of Power Instinct 2. [Sergio Galiano, Recreativos Piscis]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10659">10659</a>: apple1.xml: Use title case for publisher names. [einstein95]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10660">10660</a>: vtech/vsmile.cpp: Added machine configuration switches, allowing access to BIOS test mode. [KanedaFr]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10663">10663</a>: Added duty cycle effects to layouts for fruit machines using ROC10937 and clones, and improved emulation. [James Wallace]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10664">10664</a>: tiger/gamecom.cpp: Improved audio emulation (still very innacurate). [FateForWindows]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10665">10665</a>: namco/mappy.cpp: Put DIP switch settings in order from least generous to most generous. [einstein95]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10666">10666</a>: nintendo/vsnes.cpp: Aligned default DIP switch settings with factory defaults. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10667">10667</a>: atari/starshp1.cpp: Set thrust control to slow when not pushing button. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10668">10668</a>: hp/hp80.cpp: Fixed keyboard issues with hp86b_001 and hp86b_004 systems. [F.Ulivi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10669">10669</a>: yamaha/ympsr16.cpp: Added skeleton driver for Yamaha PSS-780. [TwistedTom]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10670">10670</a>: nintendo/cham24.cpp: Added save state support and cleaned up code. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10671">10671</a>: sms.xml: Added three working prototypes. [Ed Semrad, smspower, VGHF, kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10672">10672</a>: coleco.xml: Added two working prototypes. [Ed Semradm Hidden Palace, VGHF, kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10673">10673</a>: capcom/cps1.cpp: Created mapper by decoding the recently dumped SFZ63B PAL. [TwistedTom]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10674">10674</a>: nes.xml: Added twelve working items. [Ed Semrad, Hidden Palace, VGHF, NESBrew12, anonymous, kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10677">10677</a>: sega/model3.cpp: Added drive board ROMs from Scud Race to Dirt Devils (uses the same PCB). [Museo del Recreativo, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10678">10678</a>: video/ppu2c0x.cpp: Improved behavior of OAM writes during PPU rendering. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10680">10680</a>: Added recently-added system driver source files to arcade and MESS filter files. [MASH]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10681">10681</a>: dataeast/decocass.cpp: Cleaned up BIOS macros, fixed bit error in cnebula tape image and added bootlegs. [DavidHaywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10682">10682</a>: sega/sms.cpp: Refactored Game Gear handling. [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10683">10683</a>: tvgames/xavix.cpp: Added Gun Gun Adventure (not working). [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10684">10684</a>: palm/palm.cpp: Improved Palm IIIc support; machine/mc68328.cpp: Added MC68EZ328 variant. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10685">10685</a>: nec/pc8801.cpp: Promoted PC-8801mkII SR machines to working. [Angelo Salese, O. Galibert, Carl]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10686">10686</a>: bus/a7800/rom.cpp, nes.xml: Use proper bank order for Activision 128K cartridges. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10687">10687</a>: bus/megadrive/jcart.cpp: Fixed typo in include guard macro. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10689">10689</a>: vsmileb_cart.xml: Added regional titles for undumped Teletubbies game. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10690">10690</a>: capcom/gunsmoke.cpp: Added a new North American set of Gun.Smoke. [Victor Fernandez (City Game), Jordi Beltrán, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10691">10691</a>: nintendo/playch10.cpp: Added separate gun trigger input. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10692">10692</a>: osd/windows: Fixed a potential crash when toggling full-screen mode (<a href="https://mametesters.org/view.php?id=8535">MT08535</a>). [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10694">10694</a>: sega/sg1000.cpp: Made SG-1000 player 1 controller fixed, and fixed crash on starting Othello Multivision consoles. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10695">10695</a>: bus/snes/snes_slot.cpp: Fixed reported ROM speed when logging cartridge header. [TwistedTom]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10696">10696</a>: palm/palm.cpp: Split Palm LCD controller into a separate device, promoted Palm m100 to working. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10697">10697</a>: skeleton: Renamed Vector 4 to Vector 3, and fixed some incorrect Vector 4 machine configuration. [Eric Anderson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10698">10698</a>: ibm5150.xml: Added eleven working items. [The Good Old Days, Abandon Socios, Old-Games.RU, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10699">10699</a>: ibm5170_cdrom.xml: Corrected misspelled game title in notes for 5plus1_25. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10700">10700</a>: sound/upd934g.cpp: Use <tt>device_rom_interface</tt> rather than a read callback for external memory. [Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10702">10702</a>: yamaha/ymdx9.cpp: Resolved issues with incoming MIDI. [Anthony]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10704">10704</a>: sega/turbo.cpp: Added missing pedal inputs. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10705">10705</a>: kiwako/mrjong.cpp: Fixed horizontal sprite offset when screen is flipped. [Pierre Cornier]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10707">10707</a>: sega/turbo.cpp: Clarified lives DIP switch setting name for Turbo. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10709">10709</a>: jpm/jmpsys5.cpp: Started working on inputs, and added reel interface. [James Wallace]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10712">10712</a>: sega/turbo_v.cpp: Simplified bit field extraction. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10715">10715</a>: sound/nes_apu.cpp: Implemented frame counter interrupt (fixes <a href="https://mametesters.org/view.php?id=6186">MT06186</a>, <a href="https://mametesters.org/view.php?id=7625">MT07625</a> and <a href="https://mametesters.org/view.php?id=7658">MT07658</a>). [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10716">10716</a>: nintendo/dkong.cpp: Added more notes about dkong3 sound. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10717">10717</a>: docs: Added preliminary guide for would-be contributors. [Ryan Holtz, Vas Crabb, O. Galibert]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10718">10718</a>: nes.xml: Added five builds of an unreleased prototype. [ICEknight, steem69, kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10719">10719</a>: sharp/x68k_v.cpp: Cleaned up screen update function. [grantek]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10725">10725</a>: Reverted “sharp/x68k_v.cpp: Cleaned up screen update function” (PR <a href="https://github.com/mamedev/mame/pull/10719">#10719</a>) – it breaks Super Hang-On. [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10728">10728</a>: midway/omegrace.cpp: Replaced input lookup table with encoder function. [kmg]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10731">10731</a>: msx1_flop.xml: Improved metadata and removed disk conversions. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10732">10732</a>: tvgogo.xml: Replaced country name abbreviations in descriptions with full names. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10733">10733</a>: x68k_flop.xml: Added an alternate version of SX-Window 3.1. [Brice Onken]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10734">10734</a>: einstein.xml: Use lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10735">10735</a>: spectrum_cart.xml: Use lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10736">10736</a>: cdi.xml: Replaced country name abbreviations in descriptions with full names. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10737">10737</a>: vtech_storio_cart.xml: Use lowercase for things that aren’t proper nouns in software list description. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/10739">10739</a>: digiblast_cart.xml: Use lowercase for things that aren’t proper nouns in software list description. [ArcadeShadow]</li>
+</ul>
