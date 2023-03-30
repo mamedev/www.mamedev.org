@@ -74,6 +74,29 @@ function ancient_mirror_directory($version,  $title = NULL)
 		<p>Preferred mirror: <select id="select-mirror"><option value="gh" selected>GitHub</option><option value="sf">SourceForge</option><option value="ps">Progetto-Snaps</option></select></p>
 
 		<div class="panel panel-primary">
+		  <div class="panel-heading">2023 MAME Releases</div>
+		  <table class="table">
+			<tr>
+				<th width="16%">Version</th>
+				<th width="15%">Date</th>
+				<th width="23%">Source</th>
+				<th width="23%">Binary (Windows)</th>
+				<th width="23%">Whatsnew</th>
+			</tr>
+			<tr>
+				<td class="date"><?php release_mirror_directory('252'); ?></td>
+				<td class="date">22 Feb 2023</td>
+				<td class="link"><?php release_mirror_file('252', 'mame0252s.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('252', 'mame0252b_64bit.exe'); ?></td>
+				<td class="link"><a href="releases/whatsnew_0252.txt">whatsnew_0252.txt</a></td>
+			</tr>
+		  </table>
+		  <div class="panel-footer">
+			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
+		  </div>
+		</div>
+
+		<div class="panel panel-primary">
 		  <div class="panel-heading">2022 MAME Releases</div>
 		  <table class="table">
 			<tr>
@@ -273,7 +296,6 @@ function ancient_mirror_directory($version,  $title = NULL)
 		  </div>
 		</div>
 
-
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2020 MAME Releases</div>
 		  <table class="table">
@@ -359,7 +381,6 @@ function ancient_mirror_directory($version,  $title = NULL)
 			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
 		  </div>
 		</div>
-
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2019 MAME Releases</div>
@@ -461,7 +482,6 @@ function ancient_mirror_directory($version,  $title = NULL)
 		  </div>
 		</div>
 
-
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2018 MAME Releases</div>
 		  <table class="table">
@@ -562,7 +582,6 @@ function ancient_mirror_directory($version,  $title = NULL)
 		  </div>
 		</div>
 
-
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2017 MAME Releases</div>
 		  <table class="table">
@@ -662,7 +681,6 @@ function ancient_mirror_directory($version,  $title = NULL)
 			<center><?php require($_SERVER['DOCUMENT_ROOT'] . '/mirrors.txt'); ?></center>
 		  </div>
 		</div>
-
 
 		<div class="panel panel-primary">
 		  <div class="panel-heading">2016 MAME Releases</div>
