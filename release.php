@@ -84,8 +84,12 @@ $title = 'MAME | Latest MAME Release';
 		<h2>Official Windows Binary Packages</h2>
 
 		<p>
-		The table below provides links to the official Windows command-line binaries. Larger files are hosted on external
-		mirrors, selected at random, which may require a temporary redirect to the mirror site in order to
+		The table below provides links to the official Windows
+		binaries. They provide both GUI (just launch the exe)
+		and command-line operation (for starting by hand or
+		from a frontend).  Larger files are hosted on external
+		mirrors, selected at random, which may require a
+		temporary redirect to the mirror site in order to
 		download the file.
 		</p>
 		<p><b>Statistics are updated each 5 minutes</b></p>
@@ -102,7 +106,7 @@ $title = 'MAME | Latest MAME Release';
 			<tr>
 				<td class="link"><?php release_mirror_file($binary_64bit); ?></td>
 				<td class="number"><?php echo $binary_64bit_size ?></td>
-				<td>MAME 0.<?php echo $version ?> 64-bit Windows command-line binaries.</td>
+				<td>MAME 0.<?php echo $version ?> 64-bit Windows binaries.</td>
 				<td align="right"><span class="badge"><?php echo $binary_64bit_dc ?></span></td>
 			</tr>
 			<tr>
