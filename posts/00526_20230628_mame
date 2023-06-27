@@ -1,0 +1,337 @@
+MAME 0.256
+
+<p>Yes, it’s already time for MAME 0.256, our midyear release!  Several
+very rare and exciting things have turned up this month.  Remember that
+rally racing game Top Driving that was added last month?  This month,
+Mortal Race, an earlier, rarer game based on the same codebase has been
+found and dumped.  The rare Gamate cartridge Mighty Boxer has finally
+been tracked down and dumped, which means all Gamate games known to have
+been released are accounted for.  Taiko no Tatsujin RT: Nippon no Kokoro
+has been dumped, bringing us closer to completing the Namco System 10
+collection.  This offshoot of the popular series was designed for venues
+like hospitals and aged care facilities.  It doesn’t accept coins, and
+it features easier songs.  Four more versions of the prototype arcade
+game Turbo Sub have also been dumped and added.</p>
+
+<p>For computers, there are lots of software list additions,
+particularly for MSX and ZX Spectrum.  The Heathkit H89 now has enough
+functionality emulated to be marked working.  You can now add ROM cards
+to your emulated Apple II computers, and FLEX now works on the TRS Color
+Computer family.</p>
+
+<p>There are also lots of emulation improvements, including fixes for a
+few more Taito F3 graphical glitches, and better graphics layer mixing
+on Sharp X68000.  Behind the scenes, we’ve been working on support for
+wait states in the MOS 6502 and Hitachi H8 CPU families and there have
+been some changes to streamline the code.</p>
+
+<p>As always, you can read all about everything that’s changed this
+month in the <a
+href="https://www.mamedev.org/releases/whatsnew_0256.txt">whatsnew.txt
+file</a>.  The source code and 64-bit Windows binary packages are
+available from <a href="https://www.mamedev.org/release.html">the
+download page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=899">00899</a>: [Graphics] (taito/taito_f3.cpp) kaiserkn: Best Players screen does not show scores. (ywy)</li>
+    <li><a href="https://mametesters.org/view.php?id=2576">02576</a>: [Graphics] (taito/taito_f3.cpp) kirameki: Backgrounds in dance stage and photo shoot are not displayed correctly. (ywy)</li>
+    <li><a href="https://mametesters.org/view.php?id=8650">08650</a>: [Crash/Freeze] (sharp/x68k.cpp) x68000: Emulator crashes with less than four emulated floppy drives connected. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=8656">08656</a>: [DIP/Input] (misc/micro3d.cpp) botss, f15se: Analog joystick range is asymmetrical. (Vas Crabb)</li>
+    <li><a href="https://mametesters.org/view.php?id=8662">08662</a>: [Sound] (sunelectronics/markham.cpp) banbam, pettanp: Relative volumes of SN76496 DCSG outputs are incorrect. (ValleyBell)</li>
+    <li><a href="https://mametesters.org/view.php?id=8663">08663</a>: [Misc.] (namco/namcos1.cpp) All sets in namcos1.cpp: Coin counters are incremented on boot. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8664">08664</a>: [Misc.] (sega/turbo.cpp) buckrog and clones, subroc3d: Coin counters are incremented on boot. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8665">08665</a>: [Misc.] (tatsumi/tx1.cpp) All sets in tx1.cpp: Coin counters increment on boot, and only two coins slots exist. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8666">08666</a>: [Misc.] (sega/segahang.cpp) All sets in segahang.cpp: Coin counters are incremented on boot. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8668">08668</a>: [Misc.] (sega/segas16a.cpp) All sets in segas16a.cpp: Coin counters are incremented on boot. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8670">08670</a>: [Misc.] (sega/stv.cpp) All sets on stv.cpp: Coin counters are incremented on boot. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8677">08677</a>: [Graphics] (nintendo/popeye.cpp) All sets in popeye.cpp: Interlaced video output is incorrect with frame skipping. (hap)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>Addometer Company Addometer Calculator [hap, Sean Riddle]</li>
+    <li>Lakeside Strobe [hap, Sean Riddle]</li>
+    <li>Mortal Race [Museo del Recreativo, David Haywood, ClawGrip]</li>
+    <li>Player's Edge Plus (X000014P+XP000055) Standard Draw Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (X000127P+XP000038) Deuces Wild Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (X002004P+XP000038) Double Double Bonus Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (X002046P+XP000038) Ace$ Bonus Poker [Brian Troha]</li>
+    <li>Systemhuset / Loproc Conchess Plymate Glasgow Plus (set 1) [Mr. Lars]</li>
+    <li>Tiger Electronics Finger Bowl [hap, Sean Riddle]</li>
+    <li>Yamaha DD-9 Digital Percussion [BCM, Devin Acker]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Amidar (bootleg, set 2) [Rubén Casaña, ClawGrip]</li>
+    <li>Condor (Valadon Automation bootleg of Phoenix) [Retromaniacs, Recreativas.org]</li>
+    <li>Consumenta Computer / Loproc Conchess (standard, set 1) [Mr. Lars]</li>
+    <li>Euro League (Italian hack of Tecmo World Cup '90, set 3) [nnap]</li>
+    <li>Pit &amp; Run - F-1 Race (set 3) [Shane Reel, Jeff Willard]</li>
+    <li>Player's Edge Plus (BE0013) Blackjack [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0005) Standard Draw Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0042) 10's or Better (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0083) 10's or Better (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0094) Standard Draw Poker (set 2) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0117) Standard Draw Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0122) Deuces Wild Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0125) Deuces Wild Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0143) Deuces Joker Wild Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0418) Deuces Wild Poker (set 2) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0420) Standard Draw Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0425) Joker Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0430) Deuces Joker Wild Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0451) Bonus Poker Deluxe [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0459) Joker Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0469) Deuces Wild Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0508) Loose Deuce Deuces Wild! Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0540) Double Bonus Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0729) Double Bonus Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0750) Standard Draw Poker (set 1) [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0777) Royal Deuces Poker?? [Brian Troha]</li>
+    <li>Psycho-Nics Oscar (World revision 0, bootleg) [Armando78]</li>
+    <li>Sky Fire [IZ8DWF]</li>
+    <li>Systemhuset / Loproc Conchess Plymate Glasgow Plus (set 2) [Mr. Lars]</li>
+    <li>Sprint 4 (Rev 03) [Andrew Welburn]</li>
+    <li>Tandy Corporation Computerized Arcade (COP421 version, model 60-2159A) [hap, Sean Riddle]</li>
+    <li>TeddyBoy Blues (315-5111, Old Ver.) [TeamEurope]</li>
+    <li>Turbo Sub (prototype rev. TSB8) [Chris, Jason Spindler]</li>
+    <li>Turbo Sub (prototype rev. TSC5) [Chris, Jason Spindler]</li>
+    <li>Turbo Sub (prototype rev. TSC5*) [Chris, Jason Spindler]</li>
+    <li>Turbo Sub (prototype rev. TSC8) [Chris, Jason Spindler]</li>
+</ul>
+
+<h3>Systems promoted to working</h3>
+<ul>
+    <li>Heath Company Heathkit H89 [Mark Garlanger]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>Asus Polo "Genie" (SiS630 chipset) [The Retro Web]</li>
+    <li>Asus Terminator P-3 "Cusc" (SiS630 chipset) [The Retro Web]</li>
+    <li>Caramball [Retromaniacs, Recreativas.org]</li>
+    <li>ECS P5TX-LA (i430TX) [Angelo Salese]</li>
+    <li>Gamble Poker (v816, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Gamushara Battle! Puchi Monster (Japan 990519) [nnap]</li>
+    <li>Hack Inc  Sandbox PCI/AGP PC (440BX) [Angelo Salese]</li>
+    <li>Happy Video [jordigahan, Recreativas.org]</li>
+    <li>LeapFrog LeapPad Plus Microphone [Sean Riddle, ClawGrip]</li>
+    <li>Lost Treasure (V1.03) [caius]</li>
+    <li>Montana Choice (MG0225) Multi-Game [Brian Troha]</li>
+    <li>Mini Hockey [Museo Arcade Vintage, ClawGrip]</li>
+    <li>Orla HK1000 [AJR]</li>
+    <li>Orla XM200 Orchestra Module [AJR]</li>
+    <li>Red Line (v808, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Roland Music Style Card TN-SC2 Software List holder [ValleyBell]</li>
+    <li>Super Six Plus II English Mark Darts (v3.3) [ClawGrip]</li>
+    <li>Super Stars (v839, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Taiko no Tatsujin RT: Nippon no Kokoro (Japan, TKN1 Ver.A) [nnap, Hajime0512, Peter Wilhelmsen, Samuel Neves]</li>
+    <li>unknown Top game [caius]</li>
+    <li>Wheel of Fortune (P517 V16, English) [Roberto Fresca, Gerald (COY)]</li>
+    <li>Zida V630E Baby AT (SiS630 chipset) [The Retro Web]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>Arkanoid (Phoenix Electronics Co. license) [Darran, The Dumping Union]</li>
+    <li>Black Knight (L-2) [Quench]</li>
+    <li>Fruit Star (v810, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Gamble Poker (v812, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Hack Inc. Sandbox PCI PC (430HX with Riva 128) [Angelo Salese]</li>
+    <li>Octopussy [Victor Fernandez (City Game)]</li>
+    <li>Player's Edge (PK0785-PC041) Tens or Better [Brian Troha]</li>
+    <li>Player's Edge (PK0788-PC041) Tens or Better [Brian Troha]</li>
+    <li>Player's Edge (PK1015-PC088) 4 of a Kind Bonus Poker [Brian Troha]</li>
+    <li>Player's Edge (PK1031-PC088) 4 of a Kind Bonus Poker [Brian Troha]</li>
+    <li>Player's Edge Plus (KE0026) Keno [Brian Troha]</li>
+    <li>Player's Edge Plus (PP0079) Standard Draw Poker [Brian Troha]</li>
+    <li>Super Stars (v834, encrypted) [TeamEurope, f205v, Roberto Fresca]</li>
+    <li>Wheel of Fortune (P517 V11, English) [Roberto Fresca, Gerald (COY)]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>a800</b>:<br />
+      Prince of Persia (AtariMAX i/f), Prince of Persia (SIC! i/f) [AtariAge]<br />
+      Atrax #01 (Poland), Atrax #02 (Poland), Atrax #03 (Poland), Atrax #04 (Poland), Atrax #05 (Poland), Atrax #06 (Poland),
+      Atrax #08 (Poland), Atrax #09 (Poland), Atrax #10 (Poland), Atrax #11 (Poland), Atrax #12 (Poland), Atrax #13 (Poland),
+      Atrax #15 (Poland) [Atarimania]<br />
+      Maxflash Cartridge Studio - Demonstration Workbook [Atarimax]<br />
+      SIC! 31-in-1 Demonstration [SIC! team]</li>
+    <li><b>abc1600_hdd</b>: Formatted Micropolis 1325A 69MB, Formatted NEC D5216A 20MB [Curt Coder]</li>
+    <li><b>gamate</b>: Mighty Boxer [Peter Wilhelmsen, Morten Shearman Kirkegaard]</li>
+    <li><b>gameboy</b>: Debagame Tester: Second Impact (Ver 10.24) [Christopher Graves, LuigiBlood]</li>
+    <li><b>gbcolor</b>:
+      Grimace’s Birthday (V1.1), Grimace’s Birthday (V1.2), Grimace’s Birthday (V1.3), Grimace’s Birthday (V1.4),
+      Grimace’s Birthday (V1.5), Grimace’s Birthday (initial release) [nickisarchivinget]</li>
+    <li><b>ibm5170</b>:
+      Basket Playoff (re-release), Brutal: Paws of Fury, The Colonel's Bequest (Futura release), Discworld,
+      Dungeon Master II: The Legend of Skullkeep, Eye of the Beholder: Trilogy,
+      Hoyle: Official Book of Games - Volume 3 (VGA, Futura release), Risky Woods (Futura release),
+      Super Space Invaders (Big Games release), Thomas the Tank Engine &amp; Friends - Electronic Paint Box,
+      Thomas the Tank Engine &amp; Friends - The Collection [Total DOS Collection]</li>
+    <li><b>megacdj</b>:
+      Heavenly Symphony - Formula One World Championship 1993 Hibaihin (Japan), Keiou Yuugekitai Taikenban Hibaihin (Japan),
+      Lunar - Eternal Blue Hibaihin Auto Demo (Japan), Microcosm Demo CD (Japan), Night Trap Hibaihin (Japan),
+      Popful Mail Taikenban Hibaihin (Japan), Sonic the Hedgehog CD Hibaihin (Japan), Thunderhawk Hibaihin (Japan),
+      Urusei Yatsura - Dear My Friends Hibaihin (Japan), WonderMega Collection - Game Garden (Alt),
+      Yumemi Yakata no Monogatari Hibaihin (Japan) [redump.org]</li>
+    <li><b>msx1_cart</b>:<br />
+      PSGed (v0.4b), PSGed (v0.8b), PSGed (v0.82b) [aorante]<br />
+      O [cobinee]<br />
+      Nohzdyve [crunchworks]<br />
+      MSX Pasocalc (Japan), Nayade Resistance - Episode I (alt), Nice Soccer World Cup, No (Japan), Nogalious (demo), Olion,
+      Operation Wolf (v3), Othello Competicao (Portuguese), Pacific (v1.0.0), Pacific (v1.1.0), Pacific (v1.2.4), Peek-A-Boo (older),
+      Perfect Fit, Perfect Math for First Preparatory Class - Part 1-1 (Arab),
+      Perfect Science for First Preparatory Class - Part 1-2 (Arab), Phantomas Saga Infinity, Photon, Picture Painter (Japan),
+      Picture Painter (Japan, alt), PIHKAL, Pretty Kingdom (older), Printer Soft Print Lab (Japan), PWND part 2 - Of je assembly lust,
+      PWND part 2 - Of je assembly lust (alt), PWND part 3 - Full Metal Snake (v1.0), QBIQS (v1.2), Quartet (v1.1),
+      Questprobe 2: Spiderman, Raftoid (v1.0), Rally (Japan), Ratbox, Rise Out from Dungeons (Korea), Risky Rick (demo),
+      River Raid (Japan, alt), Robotto Demo, Running Naked in a Field of Flowers (older), RX Editor YRM-302 (Japan, alt),
+      Yeoja Wres (Korea) [file-hunter]<br />
+      Noborunoca (v0.7.0), Noborunoca (v1.0.0) [Hiromasa Tanaka]<br />
+      Neuras, Ruptus [Inufuto]<br />
+      Numberman, Paco el Bombas, Paco el Bombas REDUX (English), Paco el Bombas REDUX (Italian), Paco el Bombas REDUX (Spanish),
+      Paco el Bombas REDUX (Spanish, older), Paco Time Attack (v1.0), Paco Time Attack (v1.1) [MSX Resoure Center]<br />
+      Night Escape [msxblue]<br />
+      Namake's Bridgedrome, Nayade Resistance - Episode I, NeoPONG512 (v1.0), NeoPONG512 (v1.1), Night City (English),
+      Night City (Spanish), Night Driver, Ninja Savior, No Back Down, Open Wide!, Operation Wolf (v1), PAC-01, Pacific (v1.2.0),
+      Pair Logic, Parachuteless Joe, Peek-A-Boo, Penguin Café (English), Penguin Café (French), Penguin Mind, Penguin Race, Penguin Run,
+      PickinX, Picture Puzzle, Pippo La Scopa Ficcanaso, Pitman, Plumber, Pointless Platform (release 1), Pointless Shooting,
+      Pretty Kingdom, Puzzybox, PWND - Of je worst lust, PWND - Of je worst lust (alt), PWND part 3 - Full Metal Snake (v1.1),
+      QBIQS (v1.0), QBIQS (v1.1), Quartet (v1.2), Raftoid (v1.1), Raven, Reflexion, Reflexion (alt), Relevo's Snowboarding, Retaliot,
+      Robo Rumble, Robots, Running Naked in a Field of Flowers [MSXDev]<br />
+      RMD [n.i]<br />
+      MSX Pong! [nightfoxandco]<br />
+      Pak Pak [ochixn]<br />
+      Pointless Platform (release 2) [tni]<br />
+      Pegged [under4mhz]</li>
+    <li><b>neocd</b>: Double Dragon (Japan) [redump.org]</li>
+    <li><b>segacd</b>:
+      Compton's Interactive Encyclopedia v2.00S (USA), Note! Color Mechanica (USA), Note! Color Mechanica (USA, alt),
+      What is X'Eye Multi Entertainment System (USA) [redump.org]</li>
+    <li><b>specpls3_flop</b>:<br />
+      Dungeons of Gomilandia (v0.1a) [RetroWorks]<br />
+      Dungeons of Gomilandia (v0.1), Reaper, Seto Taisho Special Edition [Spectrum Computing]<br />
+      2 por 1: Rock'n Roller + Wells &amp; Fargo, Averno, The Dragonslayer Trilogy, High Steel (Erbe, alt), The Sunflower Number Show (alt),
+      The Tears of the Moon + Laskar's Crystals, Test Match [Steven Brown, Planeta Sinclair]<br />
+      19 Part One - Boot Camp, El Asombroso Spider-Man y Capitán America en La Venganza del Dr. Muerte!, Dragons of Flame,
+      The Duel - Test Drive II (Dro Soft), El Equipo A, Frightmare (Zafiro), Gunship (Erbe, alt), Pit-Fighter (Dro Soft),
+      Power Magic (alt), Rainbow Islands (Erbe, alt), Renaud, Shadow Warriors (Erbe), Solo, Starlife, Ulises [El Trastero del Spectrum]</li>
+    <li><b>spectrum_cass</b>:<br />
+      Z80 Attack [Javi Ortiz]<br />
+      Futebol 87 (pirate) [João Cruz, Planeta Sinclair]<br />
+      The Rocky Horror Show (Zafiro) [Luís Rato, Planeta Sinclair]<br />
+      3D Tanks (Elettronica), Astroblaster, Astrodata 3000 №4, Backgammon (1982, Pi Software),
+      Biorhythms (type-in from book "Cambridge Colour Collection"), Bomber (1984, Prince), Campo Minado (Microparadise),
+      Future Knight (Erbe, medium case), Future Knight (Erbe, small case), Hostages (Erbe), Mini Battle Tank, Planetoids,
+      Son of Blagger (Paxman), Spitfire '40 (Zafi Chip), Splat! (System 4), Talisman (Aackosoft) [Spectrum Computing]<br />
+      Anttown-3D, Archivio, Backgammon (pirate), Bioritmi (pirate), Briscola, The Calling (48K, alt, Adventure Workshop),
+      Campo Minato (pirate), Carambola (pirate), Carrarmati Tanx (pirate), Chequered Flag (pirate), Cookie (pirate),
+      Dragons of Flame (Erbe), Everest Ascent (pirate), Firebirds (Microbyte), Firebirds (pirate), Flight Joystick (pirate),
+      Talisman of Lost Souls + The Guardian, Temple of Vran (sample), Temple of Vran (sample, alt) [Steven Brown, Planeta Sinclair]</li>
+    <li><b>tx0_ptp</b>:<br />
+      FLIT - Flexowriter Interrogation Tape, FLIT II [Bitsavers]<br />
+      FLITloader Punch [Bitsavers, AJR]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>a800</b>:
+      Mega Cartridge 01 (Chile, pirate), Mega Cartridge 02 (Chile, pirate), Mega Cartridge 03 (Chile, pirate),
+      Mega Cartridge 05 (Chile, pirate), Mega Cartridge 06 (Chile, pirate), Mega Cartridge 07 (Chile, pirate),
+      Mega Cartridge 09 (Chile, pirate), Mega Cartridge 10 (Chile, pirate), Mega Cartridge 12 (Chile, pirate),
+      Mega Cartridge 13 (Chile, pirate), Mega Cartridge 14 (Chile, pirate), Mega Cartridge 15 (Chile, pirate), Prisma 1 (Chile, pirate),
+      Prisma 2 (Chile, pirate), Prisma 3 (Chile, pirate), Prisma 4 (Chile, pirate), Prisma 5 (Chile, pirate), Prisma 6 (Chile, pirate),
+      Prisma Super 15-2 (Chile, pirate), Turbo Cartridge C1 (Chile, pirate), Turbo Cartridge C2 (Chile, pirate),
+      Turbo Cartridge C3 (Chile, pirate), Turbo Cartridge C4 (Chile, pirate), Turbo Cartridge X1 (Chile, pirate),
+      Turbo Cartridge X2 (Chile, pirate), The Writer's Tool [Angelo Salese]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>a5200</b>: Bosconian 5200 - Star Destroyer (Ultimate Version) [AariAge]</li>
+    <li><b>a800</b>:<br />
+      Turbo Hit (Blizzard 32kb) [atari.area]<br />
+      Atrax #14 (Poland), Atrax #16 (Poland) [Atarimania]</li>
+    <li><b>megacdj</b>:
+      Psychic Detective Series vol.3 - AYA Auto Demo (Japan), Silpheed Hibaihin (Japan), Silpheed Hibaihin (Japan) (Fixed) [redump.org]</li>
+    <li><b>msx1_cart</b>:<br />
+      Rogo Language Card SVI-2000C (Europe), Rogo Language Card SVI-2000C (Europe, alt) [file-hunter]<br />
+      DPQ-280 Quick Disk Drive, DPQ-280 Quick Disk Drive (alt), QDM-01 Quick Disk Drive, VY-0002 Quick Disk Drive [hans otten]</li>
+    <li><b>r8_card</b>: SN-R8-09 Power Drums U.S.A. [ValleyBell]</li>
+    <li><b>roland_tnsc2</b>: TN-SC2-04 Dance [ValleyBell]</li>
+    <li><b>segacd</b>: Surgical Strike (Brazil, 32X) [redump.org]</li>
+    <li><b>specpls3_flop</b>:<br />
+      The Archon Collection, Skate Wars, Spectrum +3 Spectacular [Steven Brown, Planeta Sinclair]<br />
+      Heavy Metal [El Trastero del Spectrum]</li>
+    <li><b>spectrum_cass</b>:<br />
+      Time-Gate (Investronica) [Spectrum Computing]<br />
+      Asteroidi (pirate), Astro Blaster (pirate), Centipede (pirate), Cruising On Broadway (pirate), Dictator (pirate)
+      [Steven Brown, Planeta Sinclair]</li>
+    <li><b>u110_card</b>: SN-SPLA-01 Sound Elements Vol. 1 (U-01) [ValleyBell]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/10528">10528</a>: bus/a800: Modernized Atari 8-bit computer cartridge handling. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11142">11142</a>: ibm5170.xml: Added eleven working items. [Total DOS Collection, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11187">11187</a>: atari/pong.cpp: Added a note about photos apparently showing Rebound with an orange overlay. [Michael Sanborn]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11233">11233</a>: namco/namcos12.cpp: Updated links and years in comments. [simzy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11237">11237</a>: exidy/exidy.cpp: Corrected palettes for Targ and Spectar. [Timothy Shiels]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11257">11257</a>: seibu/raiden.cpp: Marked version with checkpoints as Japan release. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11267">11267</a>: gameboy.xml: Added Debagame Tester, and corrected cartridge type for bartescj. [Christopher Graves, LuigiBlood, ICEknight]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11273">11273</a>: dragon_cart.xml: Replaced cyrus cartridge dump with individual chip dumps. [ClawGrip, ICEknight]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11276">11276</a>: heathkit/z37_fdc.cpp: Added H/Z-37 soft-sectored floppy controller, and promoted Heathkit H89 to working. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11283">11283</a>: emu/device.h: Removed device read/write line member macros in favor of explicit function signatures. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11284">11284</a>: Moved PC VGA classes to separate source files, and added some additional variants. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11286">11286</a>: msx1_cart.xml: Added 28 items (26 working). [file-hunter, MSXDev, n.i, Inufuto, Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11291">11291</a>: galaxian/galaxian.cpp: Added an Amidar bootleg. [Rubén Casaña, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11292">11292</a>: skeleton/happyvideo.cpp: Added a skeleton driver for a Chinese kiddy ride. [jordigahan, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11295">11295</a>: video/epic12.cpp: Improved timing when drawing outside the clipping area. [buffi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11296">11296</a>: atari/atarist.cpp: Only reset the video device that’s present (fixes crashes with ste). [Kelvin Sherlock]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11299">11299</a>: sunelectronics/markham.cpp: Tidied up some comments. [ToastmanJack]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11302">11302</a>: namco/namcos10.cpp: Added Taiko no Tatsujin RT. [nnap, Hajime0512, Peter Wilhelmsen, Samuel Neves, Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11303">11303</a>: psikyo/psikyo.cpp: Corrected screen timings and interrupts for Gunbird and Sengoku Ace. [buffi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11304">11304</a>: skeleton/minihock.cpp: Added a skeleton for a partially dumped Spanish air hockey table. [Museo Arcade Vintage, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11306">11306</a>: msx1_cart.xml: Added four Quick Disk interfaces (not working). [hans otten, Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11307">11307</a>: cpu/z80: Handle EI instruction received on interrupt acknowledge cycle in interrupt mode 0. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11309">11309</a>: compis.xml: Added some recently spotted titles to the list of undumped software. [FakeShemp]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11310">11310</a>: Tidied up descriptions for LeapFrog software lists. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11311">11311</a>: taito/taito_f3_v.cpp: Fixed visible tile check for alternate tilemap (fixes <a href="https://mametesters.org/view.php?id=2576">MT02576</a>). [ywy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11321">11321</a>: leapfrog/leappad.cpp: Dumped LeapPad Plus Microphone system ROM. [Sean Riddle, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11322">11322</a>: taito/taito_f3_v.cpp: Fixed trstar line zoom regression caused by pull request <a href="https://github.com/mamedev/mame/pull/11073">#11073</a>. [ywy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11323">11323</a>: Added two Roland sample cards dumps, a Roland style card dump and a placeholder driver. [ValleyBell]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11324">11324</a>: misc/anes.cpp: Implemented ROM banking so games boot, and added preliminary video and inputs. [Luca Elia, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11325">11325</a>: taito/pkspirit.cpp: Added preliminary video emulation. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11326">11326</a>: specpls3_flop.xml: Added thirty items (26 working) and replaced one item with a better dump. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11329">11329</a>: bus/coco/coco_fdc.cpp: Fixed interrupt handling and added FLEX disk format. [Michael R. Furman]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11330">11330</a>: heath/h19.cpp: Implemented Shift-Reset functionality. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11332">11332</a>: msx1_cart.xml: Added sixty working items. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11333">11333</a>: emu/devcb.h: emu/devcb.h: Eliminated the need to call <tt>resolve()</tt> on callbacks. [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11334">11334</a>: taito/taitowlf.cpp: Updated to use new PCI system. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11335">11335</a>: gamate.xml: Added Mighty Boxer. [Peter Wilhelmsen, Morten Shearman Kirkegaard, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11338">11338</a>: bfm/bfm_sc2.cpp: Added sound ROM to Majestic Bells non-protocol version (sc2majes). [Paul-Arnold]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11339">11339</a>: heath/h19.cpp Implemented Shift-Reset functionality (addresses issues with pull request <a href="https://github.com/mamedev/mame/pull/11330">#11330</a>). [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11340">11340</a>: roland/roland_mt32.cpp: Added mt32 ROM version 2.0.7 as a BIOS option. [Brandon Munger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11341">11341</a>: edevices/stlforce.cpp: Added Mortal Race. [Museo del Recreativo, David Haywood, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11342">11342</a>: imagedev/floppy.cpp: Added TEAC FD55-A and FD55-B drives. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11344">11344</a>: segacd.xml, megacdj.xml: Added nineteen items (fifteen working). [redump.org, David Silva]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11347">11347</a>: msx1_cart.xml: Added twenty working items, and added floppy disk images to HB-3600. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11348">11348</a>: yamaha/ympsr150.cpp: Added DD-9 Digital Percussion. [BCM, Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11349">11349</a>: neocd.xml: Added Double Dragon (Japan). [redump.org, David Silva]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11350">11350</a>: spectrum_cass.xml: Added 44 items (38 working), and replaced one item with a better dump. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11351">11351</a>: casio/cz101.cpp: Added version 1 firmware as a BIOS option for cz101. [BCM, Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11354">11354</a>: funtech/supracan.cpp: Load Super A'Can internal 68000 CPU ROM. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11357">11357</a>: skeleton/caramball.cpp: Added a skeleton driver for a Spanish air hockey table. [Retromaniacs, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11358">11358</a>: phoenix/phoenix.cpp: Added a Valadon Automation bootleg of Phoenix. [Retromaniacs, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11359">11359</a>: misc/esripsys.cpp: Added four additional versions of Turbo Sub. [Chris, Jason Spindler, lupinthird]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11361">11361</a>: misc/arachnid.cpp: Added a new “English Mark Darts” set (as new parent). [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11362">11362</a>: amstrad/pda600_copro.cpp: Don’t assume <tt>std::array</tt> iterators are pointers. [Patrick Mackinlay]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11364">11364</a>: misc/compucranes.cpp: Dumped and added a crane game from Covielsa. [Victor Fernandez (City Game), ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11367">11367</a>: sunelectronics/markham.cpp: Fixed relative volumes of SN76496 DCSG outputs for banbam and pettanp (<a href="https://mametesters.org/view.php?id=8662">MT08662</a>). [ValleyBell]</li>
+</ul>
