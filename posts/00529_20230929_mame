@@ -1,0 +1,301 @@
+MAME 0.259
+
+<p>It looks like MAME 0.259 just squeaked in before the end of
+September!  As usual, it’s packed with exciting stuff.  One thing we
+know some of you have been patiently waiting for is emulation of Namco
+System 12 games using the CDXA board and CD-ROM storage: Truck
+Kyosokyoku and the interesting but unsuccessful Um Jammer Lammy NOW!
+The work to support these games also puts us in a better position to
+support systems that use SH-2 CPUs with different combinations of
+onboard peripherals.  Also added this month are two Konami LCD games,
+Bandai’s two-player tabletop U-Boat game, and three arcade games on
+dgPix hardware.</p>
+
+<p>On a completely different front, VME-based systems in MAME have had a
+major overhaul.  The system of backplanes and cards is more faithfully
+reproduced.  Speaking of cards, another ZXBUS storage interface card has
+been emulated for enhanced ZX Spectrum derivatives with a suitable slot.
+In other card-related news, work on PC video cards is still progressing,
+with the added benefit of fixing MegaTouch XL 6000 graphics this month.
+While we’re talking about graphics, the Sharp X68000 had a few glitches
+fixed, too.</p>
+
+<p>Initial support for built-in Ethernet has been implemented for
+several Macintosh Quadra systems, and some bugs in the onboard video
+emulation for MC68040-based Macs were fixed.  Also in Apple news, the
+Apple III now runs at a more realistic speed, and there’s been a little
+progress on the first-generation PowerMac family.</p>
+
+<p>MAME now has support for hard-sectored floppy formats, which were a
+thing back in the days of big 8" drives, and a few issues with how TD0
+format disk images are handled were fixed.  Also related to floppy
+disks, the poorly-received TIB Disc Drive DD-001 that attached to the
+Commodore 64’s cartridge port is now emulated.  Finally, players curious
+about CPS-2 games can now twiddle the debugging DIP switches that were
+apparently present on development systems.</p>
+
+<p>Of course, there’s a lot more in this release than we can highlight
+here, but you can read all about it in the  <a
+href="https://www.mamedev.org/releases/whatsnew_0259.txt">whatsnew.txt
+file</a>.  Source code and 64-bit Windows binary packages are available
+on <a href="https://www.mamedev.org/release.html">the download
+page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=8748">08748</a>: [Graphics] (zaccaria/zac1b1120.cpp) dodgem: Incorrect graphics are displayed when cars collide. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8756">08756</a>: [Crash/Freeze] (vsystem/ojankohs.cpp) ccasino: Game freezes after dealing tiles. (Osso)</li>
+    <li><a href="https://mametesters.org/view.php?id=8757">08757</a>: [Documentation] (konami/konmedalppc.cpp) turfwld3: The description does not match the game title. (AntoPISA)</li>
+    <li><a href="https://mametesters.org/view.php?id=8763">08763</a>: [Graphics] (merit/mtouchxl.cpp) mtchxl6k: Frame buffer is displayed with incorrect resolution and format. (Angelo Salese)</li>
+    <li><a href="https://mametesters.org/view.php?id=8764">08764</a>: [Sound] (seta/speedatk.cpp) speedatk, daifugo: Sound pitch is too high. (Yasuhiro Ogawa)</li>
+    <li><a href="https://mametesters.org/view.php?id=8766">08766</a>: [Documentation] (namco/namcos23.cpp) timecrs2 and clones: Source comments describe resolved issues. (VasiliyFamiliya)</li>
+    <li><a href="https://mametesters.org/view.php?id=8769">08769</a>: [Crash/Freeze] (sega/segaorun.cpp) shangon: Emulator crashes after inserting a coin. (Osso)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>Bandai U-Boat [hap, Sean Riddle, eggs]</li>
+    <li>Beat Player 2000 [Phil Bennett, system11]</li>
+    <li>Booby Kids (Magnet System) [Hugo Benedet, Recreativas.org]</li>
+    <li>Fidelity Electronics Bridge Bidder [hap, Sean Riddle]</li>
+    <li>Fidelity Electronics Elite Premiere [hap, Berger]</li>
+    <li>Fishing Maniac 2+ [Phil Bennett, system11]</li>
+    <li>Hegener + Glaser Mephisto Montreal 68000 [hap, anonymous]</li>
+    <li>Hegener + Glaser Mephisto Roma II [hap, anonymous]</li>
+    <li>Konami Star Trek: 25th Anniversary (handheld) [hap, Sean Riddle, Mr. Do]</li>
+    <li>Konami Top Gun: Second Mission (handheld) [hap, Sean Riddle]</li>
+    <li>Let's Dance [Phil Bennett, system11]</li>
+    <li>Novag Chess Robot Adversary [hap, anonymous]</li>
+    <li>Super Tank Attack (prototype rev. 1.12) [Phil Bennett]</li>
+    <li>Um Jammer Lammy NOW! (Japan, UL1/VER.A) [Phil Bennett, Eric Yockey, Windy Fairy]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Amerug (Shoei bootleg of Atari Football) [Team Japump, Wayder]</li>
+    <li>beatstage complete MIX (ver KA-B) [Lemony Vengeance, Phil Bennett, DeepSeaSqueeze]</li>
+    <li>The Big Pro Wrestling! (set 2) [Andrew Welburn]</li>
+    <li>Danger Zone (rev 0) [Brian Troha, The Dumping Union]</li>
+    <li>Espial (Japan) [QtQ, Team Japump]</li>
+    <li>Espial (Nova Apparate license) [QtQ, Team Japump]</li>
+    <li>F-15 Strike Eagle (rev. 2.2 02/25/91, 29K ver. 3.1f) [Phil Bennett]</li>
+    <li>Flicky (64k Version, on Up'n Down boardset, set 2) [caius]</li>
+    <li>Gran Derby (Spanish hack of Jockey Club) [Roberto Fresca]</li>
+    <li>Macro-Cosm Wars (bootleg of Galaxian) [coolmod, The Dumping Union]</li>
+    <li>Reel Fun (Version 7.00) [Brian Troha, The Dumping Union]</li>
+    <li>Super Ruleta 36 (Spanish hack of The Roulette) [Roberto Fresca]</li>
+    <li>Super Volleyball (US, Data East license) [Domenico Cervini]</li>
+    <li>Tatakai no Banka (Japan, old ver.) [Team Japump, Wayder]</li>
+    <li>Time Scanner (set 3, Japan, System 16B) (FD1089B 317-0024) [Team Japump, Wayder]</li>
+    <li>Trivia (Questions Series 11 Alt Question Rom, set 2) [Brian Troha, The Dumping Union]</li>
+    <li>Wonder Boy - Monster Land (English, difficulty hack) [bisboch, Alexforg83]</li>
+    <li>Xain'd Sleena (bootleg, set 2) [nnap]</li>
+</ul>
+
+<h3>Systems promoted to working</h3>
+<ul>
+    <li>Dora Neco BanBan [Roberto Fresca, Grull Osgo]</li>
+    <li>Fashion Gambler (set 1) [AJR]</li>
+    <li>Quick Jack [AJR]</li>
+    <li>Skat TV [AJR]</li>
+    <li>Truck Kyosokyoku (Japan, TKK2/VER.A) [Windy Fairy]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>Fashion Gambler (set 2) [AJR]</li>
+    <li>Hipoly (bootleg of Hyper Olympic) [QtQ, Team Japan, Wayder]</li>
+    <li>Skat TV (version TS3) [AJR]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>Amazon Spirit (Konami Endeavour, NSW) [Guru]</li>
+    <li>Ball Challenge (20020607 1.0 OVERSEA) [Brian Troha, The Dumping Union]</li>
+    <li>Blue Moon II [Dam0, Heihachi_73]</li>
+    <li>Bubblen Roulette (main ver. 1.8, video ver. 1.3) [Phil Bennett]</li>
+    <li>Costa Brava [Grull Osgo]</li>
+    <li>Creatures of the Sea (20050328 USA 6.3) [Brian Troha, The Dumping Union]</li>
+    <li>Doraemon no Dokodemo Door [Zx48k, hammy]</li>
+    <li>Eibise (Japan) [Phil Bennett]</li>
+    <li>Multi-Action 7551-20-R3T [Brian Troha, The Dumping Union]</li>
+    <li>National Semiconductor ICM-3216 [smj_crash]</li>
+    <li>Quizard Fun and Fascination (French Edition V1 - 01/96) [f205v, TeamEurope]</li>
+    <li>Sevilla [Grull Osgo]</li>
+    <li>Silicon Graphics Professional IRIS 4D/70 [Patrick Mackinlay]</li>
+    <li>Terebi Denwa Super Mario World [Phil Bennett]</li>
+    <li>Toledo [Grull Osgo]</li>
+    <li>Tropical Chance [R. Belmont, Windy Fairy, Taro]</li>
+    <li>unknown Merit game (4435-81, U5-1) [Brian Troha, The Dumping Union]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>Bonk's Adventure (prototype) [Bryan McPhail]</li>
+    <li>Fantastic Car (Micro-87 hardware, older) [jordigahan]</li>
+    <li>Kart Duel (World, KTD2/VER.A) [Phil Bennett, hammy, Darksoft]</li>
+    <li>Safe Money (Konami Endeavour, NSW) [Guru]</li>
+    <li>Sandbox PCI PC (430HX with Matrox Millennium) [Angelo Salese]</li>
+    <li>Zero Team (Japan?, earlier?, set 2) [nnap]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>bingobear</b>: Doctor Bingo Bear [Sean Riddle]</li>
+    <li><b>c64_cart</b>:<br />
+      Disc Drive DD-001 (v1.0) [LHS]<br />
+      Disc Drive DD-001 (v1.1) [Steve Gray]</li>
+    <li><b>c64_flop_misc</b>: Games and Utility Disc (v1.1) [LHS]</li>
+    <li><b>coleco</b>: Pitfall! (alt), Smurf Rescue in Gargamel's Castle (prototype), Space Panic (alt) [David Viens]</li>
+    <li><b>ibm5170</b>: Interact Magnum 6 Game Controller Driver for Windows 95 [archive.org]</li>
+    <li><b>ibm5170_cdrom</b>: Best of the Best Shareware Volume 2 (Canada), Heroes of Might and Magic (USA, DOS, v1.0) [archive.org]</li>
+    <li><b>msx1_cass</b>:<br />
+      The Queen's Footsteps (Italian) [Davide Bucci]<br />
+      Las Aventuras de Rudolphine Rur [Dwalin]<br />
+      The A-Team (Spain, alt), Akujo Densetsu (Japan), Animation Editor "EDDY" (Japan), Aoi Uchuu no Bouken (Japan),
+      The Archers (Europe), Bang! Bang! (Japan), Cannon Ball (United Kingdom), Cannon Fighter (Europe), Cetus (United Kingdom),
+      The Chess Game (Europe), Chitei Tanken (Japan), Chōjin Locke: Majo no Millennium (Japan), Chubby Gristle (United Kingdom),
+      Color Plotter/Printer-yō Sekai Chizu Soft (Japan), D-Day (Netherlands), The Dam Busters (Europe), Dizzy Ball (Japan),
+      Donpan (Japan), Driller Tanks (Europe), Eagle (Spain), Echec (France), Emerald Isle (Europe), English Words (Netherlands),
+      Eric and the Floaters (Europe), Flappy (Japan), Football Manager (Europe), Football Manager - World Cup Edition (Europe),
+      Freddy Hardest (United Kingdom, Italy, alt), French is Fun (Europe, alt), Front Line (United Kingdom), Gnome Ranger (Europe),
+      Gnome Ranger (Europe, cracked), Golden Grave II (Japan), Graphic Editor (Japan),
+      The Growing Pains of Adrian Mole (United Kingdom), Hype (Netherlands), Ingrid's Back (United Kingdom),
+      Ingrid's Back (United Kingdom, cracked), Inleiding tot de SpectraVideo SV 728 (Netherlands),
+      Jet Fighter (One player version) (Europe, Aackosoft), Jewels of Darkness I - Colossal Adventure (United Kingdom),
+      Jewels of Darkness I - Colossal Adventure (United Kingdom, alt), Jewels of Darkness II - Adventure Quest (United Kingdom),
+      Jewels of Darkness III - Dungeon Adventure (United Kingdom), Jump Jet (Europe), Kamikaze (Japan), Katori Senso (Japan),
+      Keystone Kapers (United Kingdom), Keystone Kapers (United Kingdom, alt), Lancelot (United Kingdom), Let's Computer (Japan),
+      Lord Watson (Spain), Mandragore (United Kingdom), Marude Son Goku (Japan), Minder (United Kingdom), Mister Jaws (Netherlands),
+      MST-CALC (Europe), The Munsters (Europe), Ninja (Netherlands, Aackosoft), Ninja (Netherlands, Eaglesoft), Octopuss (France),
+      Offering (Japan), Oh No! (Brazil), Perez the Mouse, Phantomas 2 (Spain, alt), Photographic Memory (Netherlands), Pirates (Spain),
+      Portopia Renzoku Satsujin Jiken (Japan), Punchy &amp; Judy (United Kingdom), Rabbian (Japan), River Chase (Japan), Rodman (demo),
+      Roller (Finland), Scapeghost (Europe), Sea Hunter (Europe), The Secret Diary of Adrian Mole Aged 13¾ (Europe),
+      Seijo Densetsu: Five Holy Girls (Japan), Shiro to Kuro no Densetsu (Japan), Silicon Dreams I - Snowball (United Kingdom),
+      Silicon Dreams II - Return to Eden (United Kingdom), Silicon Dreams III - The Worm in Paradise (United Kingdom),
+      Silvestro (Italy), Sky Diver (Japan, alt), Soviet (Spain, alt), Space Harrier II (Europe), Starbuster (Europe),
+      Supermaze (United Kingdom), Super MSX N.1 (1987-05) (Italy), Super MSX N.2 (1987-06) (Italy), Super MSX N.3 (1987-07/08) (Italy),
+      Super MSX N.4 (1987-09) (Italy), Super MSX N.5 (1987-10) (Italy), Super MSX N.6 (1987-11) (Italy),
+      Super MSX N.7 (1987-12) (Italy), Super MSX N.8 (1988-01) (Italy), Super MSX N.9 (1988-02) (Italy),
+      Super MSX N.10 (1988-03) (Italy), Super MSX N.11 (1988-04) (Italy), Super MSX N.12 (1988-05) (Italy),
+      Super MSX N.13 (1988-06) (Italy), Super MSX N.14 (1988-09) (Italy), Super MSX N.15 (1988-10) (Italy),
+      Super MSX N.16 (1988-11) (Italy), Super MSX N.17 (1988-12) (Italy), Super MSX N.18 (1989-01) (Italy),
+      Super MSX N.19 (1989-02) (Italy), Super MSX N.20 (1989-04) (Italy), Super MSX N.21 (1989-05) (Italy),
+      Super MSX N.22 (1989-06) (Italy), Super MSX N.23 (1989-09) (Italy), Super MSX N.24 (1989-10) (Italy),
+      Super MSX N.25 (1989-12) (Italy), Super MSX N.26 (1990-01) (Italy), Super MSX N.27 (1990-02) (Italy), Tank (Finland),
+      Tape Login MSX Game Book (Japan), Teach Yourself BASIC (United Kingdom), The Temptation of the Apartment Wife (Japan),
+      Time and Magik I - Lords of Time (Europe), Time and Magik III - The Price of Magik (Europe), Time and Magik (United Kingdom),
+      Time and Magik (United Kingdom, alt), Time and Magik (United Kingdom, cracked), The Tomato Princess from Salad Land (Japan),
+      Torreoscura (Spanish), Vampire (Europe), Vampire (Europe, alt), Video Poker (Brazil, Disprosoft), Wilco (Spain), Wild Cat (Japan),
+      W Series 1 - Biotech / Killer Station (Japan), W Series 3 - Fire Ball / Akarui Nouen (Japan),
+      W Series 4 - Ame no Hi wa Ōisogashi / Super Doors (Japan), The Wreck (United Kingdom), Xenon (United Kingdom),
+      Zero Fighter (Japan) [file-hunter]<br />
+      Aerial, Battlot, Bootskell, Cacorm, Cavit, Guntus, Impetus, Lift, Neuras, Ruptus [Inufuto]<br />
+      Fantastic Football [MSXdev]<br />
+      Akalabeth [Óscar Toledo Gutiérrez]</li>
+    <li><b>msx1_flop</b>:<br />
+      May The Force Be With You, Wired Shooting [cobinee]<br />
+      3D Maze, XOR [chalky]<br />
+      Storm Rescue [Concurso MSX-BASIC]<br />
+      Pyramid Quest [Crappysoft]<br />
+      Las Aventuras de Rudolphine Rur (Spanish), Las Aventuras de Rudolphine Rur (Spanish, xmessage) [Dwalin]<br />
+      10 Programas Serie Oro (Spain), 20 Programas Serie Oro (Spain), 666 - Uma Aventura Macabra,
+      747 400b Flight Simulator (Europe, cracked), La Abadia del Crimen (Spain, alt), Alfabet en Deelsom (Netherlands),
+      Alien Panic (Spain), Andon (Japan, hacked), Baruko, Blinky's Scary School, Burner Burst, Buster Mystery, City (Japan),
+      Duad-MSX (Japan), Engels + Procenten (Netherlands), Fracta (Brazil), Ghosts'n Goblins (v1.1.0), Graphos III (Brazil),
+      Gruta de Maquine (Brazil), Hibernated 1 - Eight Feet Under, Hibernated 1 - This Place is Death,
+      The Iron Gauntz (Japan, prototype), Kame Graphics, Konami Game Collection 1: Action Series (Japan, alt),
+      Konami Game Collection 4: Sports Series 2 (Japan, alt), Lettergrijper + Geld (Netherlands), Logic (Russia),
+      Manuscript (United Kingdom), Mood Land, MSX Compilation 5 (Netherlands), MSXMAS Demo, MSX PageMaker DeLuxe (Brazil),
+      Muhonmourn 3 (v1.0), Muhonmourn 3 (v1.1, with Ninja Tap support), Music Creator (Netherlands), Nibbles, Oceano, Paint-it,
+      Paint-it (rev1), Paint-it (rev2), Palhada City (Brazil), Penguin Catcher (v1.0), Professional Data Retrieve (Brazil),
+      Professional Paint (Brazil), Professional Publisher (Brazil, cracked),
+      Rekenen tot 20 + Optellen en aftrekken tot 100 + Taalbedrijf (Netherlands), Search for Mum (Netherlands), SF Zone 1999 (Japan),
+      Sim City, Simulador Profesional de Tenis (Spain), Stripgirl, SubCommander (older), Super Adventure, Super Procole 2 (Japan),
+      Super Procole 3 (Japan), Super Procole (Japan), Supersellers 1 (Netherlands), Twin Hammer (Korea), Wash Man (v1.0),
+      Wash Man (v1.1), Wash Man (v1.2), Wash Man (v1.3), Wash Man (v1.5), Wash Man (v1.9), The Wood (Spain),
+      Woordmaker en Cijferend Vermenigvuldigen (Netherlands), Word Plus (Brazil), Wordstore+ (Netherlands), Xadrama, Xarchon,
+      XOR (older), Yellow Submarin, Yobai, Zen (United Kingdom), Zero Gravity [file-hunter]<br />
+      The zoBITRONics Inc [Hannu Töyrylä]<br />
+      Galaxy Zone [Hitoshi Iwai]<br />
+      Maze Chase [JLTurSan]<br />
+      Bounce Mania, Defence (v1.3), Kill Mice, Micro Rocketz, Muhonmourn 3 (v1.1), Penguin Catcher (v1.1), SubCommander (v1.02),
+      The Tower of Gold, Wash Man (v2.8), Zone TNT [MSXdev]<br />
+      8192 Story Tower, JUMPER, Last War, Last War II, Mars, Mars II [NAGI-P SOFT]<br />
+      Roger Dice (Spain) [Oniric Factor]<br />
+      Raftoid [Platty Soft]<br />
+      UZIX (v1.0.0) [UZIX]</li>
+    <li><b>svision</b>: Sonny X'press (prototype) [anonymous]</li>
+    <li><b>vic10</b>: Slalom (World) [David Viens]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>cpc_cass</b>: Amstrad Action (Issue 004) Christmas Gift [ICEknight]</li>
+    <li><b>megadriv</b>: San San (Japan) [Angelo Salese]</li>
+    <li><b>x68k_flop</b>: Atomic Robo-Kid, Terra Drive [Carl, Angelo Salese]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>ibm5170_cdrom</b>:<br />
+      Blindness (Italy) [archive.org]<br />
+      The Matrox Millennium Multimedia SuperPack (v1.60) [VOGONS]</li>
+    <li><b>msx1_cass</b>:<br />
+      The Queen's Footsteps (English) [Davide Bucci]<br />
+      Light Pen Graphic v1.0 (Japan) [file-hunter]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/10047">10047</a>: cpu/z80: Rewrote Z80 CPU core to support cycle-by-cycle operation. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11150">11150</a>: imagedev/floppy.cpp: Added support for hard-sectored floppy disk formats. [Eric Anderson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11430">11430</a>: bus/nscsi: Added SCSI tape drive device using SIMH tape image format. [Miëtek Bak]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11493">11493</a>: 3rdparty/bgfx, 3rdparty/bimg, 3rdparty/bx: Updated to current upstream versions. [Belegdol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11500">11500</a>: cpu/sh: Refactored SH-2 refactored code to separate onboard peripherals from CPU core. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11505">11505</a>: apple/apple3_m.cpp: Reduce CPU clock frequency during active video display, and approximate DRAM contention. [Rob Justice]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11509">11509</a>: cpc_cass.xml: Improved metadata for Amstrad Action cover tapes, and promoted amsac004 to working. [ICEknight]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11510">11510</a>: bus/msx/module/sfg.cpp: Moved classes to anonymous namespace. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11511">11511</a>: msx1_flop.xml: Added 105 working items, and replaced one item with a better dump. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11512">11512</a>: cpu/powerpc: Don’t overwrite RA in lmw instruction (Tropical Chance depends on this). [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11513">11513</a>: heathkit/h89.cpp: Added machine configuration option for CPU speed upgrade modifications. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11514">11514</a>: konami/twin16.cpp: Dumped priority PROM for The Final Round/Hard Puncher. [jotego]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11516">11516</a>: compclr2_flop.xml: Fixed a typo in disk image labels (“asteriods”). [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11517">11517</a>: konami/nwk-tr.cpp: Fixed mismatched timekeeper data for GM and GN sets, and added hand brake for thrilldgnj. [sjy96525]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11518">11518</a>: msx1_flop.xml: Fixed incorrect disk image size for XOR. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11521">11521</a>: Fixed MinGW AArch64 build issues. [invertego]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11522">11522</a>: cpu/z80/z80.cpp: Improved emulation of undocumented flags, and removed timing tables. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11523">11523</a>: bus/spectrum: Added ZXBUS Nemo IDE Controller. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11524">11524</a>: igs/pgm_v.cpp: Hard-code sprite zoom table entry 0x0f to 1 (ddp3 expects zero in this entry to behave like 1). [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11526">11526</a>: Made the Apple Macintosh software list descriptions more consistent. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11527">11527</a>: heathkit/tlb.cpp: Added machine configurations options for CPU speed and CRT phosphor color. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11529">11529</a>: misc/falgas_m89.cpp: Added a newer version of “Fantastic Car” on M87 hardware. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11530">11530</a>: machine/rp5c15.cpp: Added a configurable year offset for systems that use a different epoch (e.g. X68000). [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11531">11531</a>: heathkit/tlb.cpp: Added Superset ROM/upgrade modification. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11532">11532</a>: msx1_cass.xml: Added 71 items (69 working), and replaced two items with better dumps. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11533">11533</a>: namco/namcos12.cpp: Re-dumped ROMs for Kart Duel. [Phil Bennett, Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11534">11534</a>: heathkit/tlb.cpp: Fixed video output for GP-19 in graphics mode. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11536">11536</a>: orca/espial.cpp: Added two additional versions of Espial. [QtQ, Team Japump, Wayder]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11537">11537</a>: igs/igs011.cpp, igs/igs017.cpp: Improved transliterated titles. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11538">11538</a>: heathkit/tlb.cpp: Fixed warning about uninitialised member variable. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11540">11540</a>: capcom/cps2.cpp: Added support for debug DIP switches found on development systems. [Damian Rogers]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11541">11541</a>: amstrad/amstrad.cpp: Fixed I/O timings after Z80 CPU refactoring. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11542">11542</a>: sinclair/sprinter.cpp: Fixed sound output channels in 16b mode. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11543">11543</a>: efo/cedar_magnet.cpp: Added Booby Kids, and sorted the games. [Huge Benedet, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11544">11544</a>: misc/falgas_m89.cpp: Fixed typo in fantcar87 ROM label. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11546">11546</a>: osd/sdl: Don’t specify <tt>SDL_WINDOW_BORDERLESS</tt> for full-screen windows. [Davidian1024]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11547">11547</a>: osd/sdl: Fixed interpretation of result of <tt>SDL_GetDesktopDisplayMode</tt>. [Davidian1024]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11548">11548</a>: Added a bootleg of Atari Football and an older version of Trojan, and re-dumped Hipoly. [Team Japump, QtQ, Wayder]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11550">11550</a>: frontend/mame/luaengine.cpp: Corrected spelling of screen device <tt>xoffset</tt> and <tt>yoffset</tt> property names. [Golden Child]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11554">11554</a>: msx1_cass.xml: Added 29 working items. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11555">11555</a>: sega/system1.cpp: Corrected ROM labels for raflesiau. [Wayder]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11556">11556</a>: handheld/hh_tms1k.cpp: Added an item to the list of known microcontrollers in the header comment. [SomeRandomGuyIdk]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11558">11558</a>: namco/namcos12.cpp: Emulated games with CDXA board. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11559">11559</a>: msx1_cass.xml: Added 53 working items, and replaced one item with a better dump. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11560">11560</a>: konami/djmain.cpp: Added Beatstage Complete Mix (Ver KA-B). [Lemony Vengeance, Phil Bennett, DeepSeaSqueeze]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11562">11562</a>: msx1_flop.xml: Removed 26 disk conversions. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11563">11563</a>: machine/t10mmc.cpp: Fixed reading user data from mode 1 tracks using the read CD command. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11566">11566</a>: sega/segas16b.cpp: Added an FD1089B-protected version of Time Scanner on System 16B. [Team Japump, Wayder]</li>
+</ul>
