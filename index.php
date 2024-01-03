@@ -13,7 +13,7 @@ function getposttimestamp($post)
 {
 	$extract = explode("_", $post);
 	$day = $extract[1] % 100;
-	$month = ($extract[1] / 100) % 100;
+	$month = ((int)($extract[1] / 100)) % 100;
 	$year = (int)($extract[1] / 10000);
 	return mktime(12, 0, 0, $month, $day, $year);
 }
