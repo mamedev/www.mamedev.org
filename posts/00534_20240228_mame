@@ -1,0 +1,366 @@
+MAME 0.263
+
+<p>Are you all ready for MAME 0.263?  This release has some big changes
+that are going to affect everyone: several default UI control
+assignments have changed, including pause and save/load state.  The
+changes will hopefully make life easier for people emulating computers.
+After updating, please check the User Interface input assignments and
+make any changes necessary for your setup.</p>
+
+<p>We’ve fixed some long-standing bugs this month.  Issues affecting
+large hard disk images (tens of gigabytes) have been fixed, and
+chdman will now report more invalid combinations of options rather than
+just producing invalid output files.  Crashes or hangs when emulating
+systems that use discrete sound circuitry simulation on multi-core ARM
+systems should be fixed, as well as occasional bad sound output from the
+discrete circuitry simulation.</p>
+
+<p>Thanks to recent work reverse-engineering the K052591 chip, this
+release features improved protection simulation for Hexion, S.P.Y. and
+Thunder Cross.  Newly supported systems include a few computers from the
+former Yugoslavia, two more Tiger LCD games, and several more chess
+computers.  The ROMs for the unreleased Deluxe Color Computer have been
+dumped recently, allowing emulation to be completed, and there’s a big
+update for the Apple II software lists this month.</p>
+
+<p>As always, the <a
+href="https://www.mamedev.org/releases/whatsnew_0263.txt">whatsnew.txt
+file</a> tells you about everything that’s changed in this release, and
+you can get the source code and 64-bit Windows binary packages from
+<a href="https://www.mamedev.org/release.html">the download
+page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=8814">08814</a>: [Sound] (namco/namcos2.cpp) dsaber: Dragon Saber music plays at inconsistent speed. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8818">08818</a>: [Crash/Freeze] (misc/magicard.cpp) magicrde: Watchpoints on PIC16F54 special function registers can cause crashes. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=8822">08822</a>: [Crash/Freeze] (igs/pgm.cpp) drgw3, drgw3100, drgw3105, dwex, dwex101cn: Hangs before games start. (Ivan Vangelista)</li>
+    <li><a href="https://mametesters.org/view.php?id=8824">08824</a>: [Core] (funworld/funworld.cpp) pool10j, pool10k: Placeholder PAL dumps have incorrect sizes. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8825">08825</a>: [DIP/Input] (msx/sfkick.cpp) sfkick, sfkicka, spinkick: Analog and digital paddle controls have opposite directions. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=8826">08826</a>: [Crash/Freeze] (taito/rbisland.cpp) jumping and clones: Emulator crashes when starting system. (hap)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>CXG Systems / Newcrest Technology Sphinx Chess Professor [hap, Berger]</li>
+    <li>Double Dragon II: The Revenge (Tiger) [algestam, Sean Riddle]</li>
+    <li>Institut Ivo Lola Ribar Lola 8 [Stevan Parojcic]</li>
+    <li>Iskra HR-84 [Robert Kovač, Andrej Gerbec, Miodrag Milanović]</li>
+    <li>Mighty Max (Tiger) [hap, Sean Riddle]</li>
+    <li>Novag Mentor 16 [hap, Berger]</li>
+    <li>Open 5 Cards [Roberto Fresca, Aussiekanga]</li>
+    <li>Primo (Novag) [hap, Berger]</li>
+    <li>Saitek Kasparov GK 2000 [hap, Sean Riddle]</li>
+    <li>Saitek Kasparov Prisma [hap, Sean Riddle]</li>
+    <li>SciSys Kasparov Turbo S-24K [hap, Berger]</li>
+    <li>Yamaha MU10 [Matt, O. Galibert]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Guardians / Denjin Makai II (bootleg) [ShootTheCore]</li>
+    <li>Hachoo! (Japan) [xtrasmiley]</li>
+    <li>Heath Company Heathkit H89 with SigmaSoft IGC [Mark Garlanger]</li>
+    <li>Institut Ivo Lola Ribar Lola 8 NK [Marko Solajic]</li>
+    <li>Lord of Gun (World) [Brian Troha, The Dumping Union]</li>
+    <li>Magic Train (Ver. 1.4) [Roberto Fresca]</li>
+    <li>Panda Train (Ver. 1.3) [Roberto Fresca, AJR]</li>
+    <li>Phoenix (bootleg) [Recreativas.org]</li>
+    <li>Psion Series 3a (2M) (US) [techfury]</li>
+    <li>Santaka-002 [ZX-PK.ru]</li>
+    <li>Side by Side (Ver 3.0 OK) [Sean Sutton, Smitdogg, hammy, Brian Troha, The Dumping Union]</li>
+    <li>Sports Authority Challenge (Rev 3) [Brian Troha, The Dumping Union]</li>
+    <li>Vuelo Espacial (Spanish bootleg of UniWar S) [Jorge Silva, Arnaldo Lopes]</li>
+    <li>Wild Fang (year hack?) [Tailsnic Retroworks]</li>
+    <li>Zoku Otenamihaiken (V2.05J 2003/05/12 18:00) [twistedsymphony, rtw]</li>
+</ul>
+
+<h3>Systems promoted to working</h3>
+<ul>
+    <li>Joker's Wild (B52 system, BP55114-V1104, Ver.054NMV) [Roberto Fresca]</li>
+    <li>Jozsef and Endre Lukacs Homelab 2 / Aircomp 16 [linuxforum5, R. Belmont]</li>
+    <li>Wyse Technology WY-100 [AJR]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>Joker's Wild (B52 system, BP55114-V1104, Ver.054NMV, Harrah's GFX) [Roberto Fresca]</li>
+    <li>Joker's Wild (B52 system, WP02001-054, Ver.031WM) [Roberto Fresca]</li>
+    <li>Tandy Radio Shack Deluxe Color Computer [Brian Wiesler, Tim Lindner]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>Bingo Planet (Rev C) (M1 Satellite board) [hammy]</li>
+    <li>Black jack (Olympic Games, v5.04, upgrade kit for Wild Card) [Roberto Fresca, Matt B]</li>
+    <li>Breakaway Music Systems Vocalizer 1000 [Loscha, Devin Acker]</li>
+    <li>Dream Rail Lovely [Sergio Galiano]</li>
+    <li>George Scolaro pc532 [Patrick Mackinlay]</li>
+    <li>Iskra Delta Partner [Jernej Jakob]</li>
+    <li>Konami Nekketsu Powerpro Champ (Japan) [TeamEurope, David Haywood]</li>
+    <li>Konami Soukai Golf Champ (Japan) [TeamEurope, David Haywood]</li>
+    <li>Konami Zettai Zetsumei Dangerous Jiisan - Mini Game de Taiketsu ja! [TeamEurope, David Haywood]</li>
+    <li>Konami Zettai Zetsumei Dangerous Jiisan Party ja! Zen-in Shuugou!! [TeamEurope, David Haywood]</li>
+    <li>Mattel Pixter Multi-Media [QUFB]</li>
+    <li>Micro-Term 440 [Bitsavers]</li>
+    <li>Multi-Action 6710-21 [Brian Troha, The Dumping Union]</li>
+    <li>Multi-Action 8350-00-R1 [Brian Troha, The Dumping Union]</li>
+    <li>Operation Tiger Second Mission (Ver 2.02 J) [lukemorse1]</li>
+    <li>Packy's Treasure Slot (Japan, main ver. 1.3, video ver. 1.1) [Phil Bennett]</li>
+    <li>Quasimidi Musikelektronik GmbH Quasimidi Sirius [DBWBP]</li>
+    <li>Quasimidi Musikelektronik GmbH Rave-O-Lution 309 [DBWBP]</li>
+    <li>Renda Fighter (Japan, main ver. 2.02, video ver. 2.03) [hammy, Phil Bennett]</li>
+    <li>Space Game (Bingo 6+1) [BonelessChicken, Recreativas.org]</li>
+    <li>Wild Card (Olympic Games, v2.0) [Roberto Fresca, Matt B]</li>
+    <li>Yamaha MU15 [Matt, O. Galibert]</li>
+    <li>Yamaha MU128 [Matt, O. Galibert]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>Acorn Computers Acorn A3010 (German) [Nigel Barnes]</li>
+    <li>Martial Beat (G*B47 VER. JAB) [Windy Fairy]</li>
+    <li>Scud Race / Sega Super GT - Deluxe (Export) [Paul Prosser]</li>
+    <li>Sugorotic JAPAN (STJ1 Ver.A) [buffi]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>apple2_flop_clcracked</b>:<br />
+      Ace Detective (revision 3) (4am crack), ACT Preparation Series (version 1984) (4am crack),
+      Adventures in Problem Solving: Alice's Adventure in Numberland (4am crack),
+      Adventures in Problem Solving: A Trip to London (4am crack), Adventures in Problem Solving: Marathon (4am crack),
+      Adventures in Problem Solving: The Treasure of Forest Isle (4am crack), Alfred's Music Achievement Series: Level I (4am crack),
+      Algebra Volume 3 (revision 4, 1984) (Britannica) (4am crack), Aliencounter and Face Flash (revision 2) (4am crack),
+      Alligator Mix (version 1985 revision 2) (4am crack), Alphabet Fun: Big and Little Letters (4am crack),
+      Alphabet Zoo (revision 2) (4am crack), Alphabet Zoo (revision 3) (4am crack), Animal Photo Fun (4am crack),
+      Animal Stories IV (4am crack), Architectural Review &amp; Testmaker (version 2.0) (4am crack), The Art of Communication 2 (4am crack),
+      The Banking Simulation (4am crack), The Banking Tutorial (version 5.2) (4am crack),
+      The Bare Facts on Composers Volume 2 (4am crack), The Bare Facts on Composers Volume 3 (4am crack),
+      The Bare Facts on Intervals and Chords (4am crack), The Bare Facts on Music History (4am crack),
+      The Bare Facts on Notes, Rhythm, and Terms (4am crack), Basic Number Facts: Practice (4am crack),
+      Battling Bugs and Concentraction (revision 2) (4am crack), Beyond Pinball (version 1.1) (4am crack),
+      Billboard (verion 0.0) (4am crack), Black Belt (revision 2) (4am crack), Broadsides (revision 1) (4am crack),
+      Broadsides (revision 2) (4am crack), Broadsides (revision 3) (4am crack), Broadsides (revision 4) (4am crack),
+      CAAT Skill Tester: Decimals (4am crack), CAAT Skill Tester: Fractions: Addition and Subtraction (4am crack),
+      CAAT Skill Tester: Fractions: Multiplication and Division (4am crack), CAAT Skill Tester: Whole Numbers (4am crack),
+      Career Scan IV (version 09.15.83N) (4am crack), Cash Versus Credit Buying (4am crack),
+      Cause and Effect (version 02.15.85) (4am crack), Change Maker (4am crack),
+      Child Development 2: Theories of Child Development (4am crack), Child Development 5: Infancy and Toddlerhood (4am crack),
+      A Christmas Adventure (version 2.0) (4am crack), Classification of Objects (4am crack), Classmate (version 2.0) (4am crack),
+      Clowning Around (revision 2) (4am crack), Collamore Castle: Strategies for Problem Solving Level 1 (4am crack),
+      Comparison Kitchen (4am crack), Computer Biology Lab: Clam Dissection (4am crack),
+      Computer Biology Lab: Crayfish Dissection (4am crack), Computer Biology Lab: Earthworm Dissection (4am crack),
+      Computer Biology Lab: Frog Dissection (4am crack), Computer Biology Lab: Starfish Dissection (4am crack),
+      Computers in Government (A-122 version 1.0) (4am crack), Continents and Countries (4am crack),
+      Copy II Plus (version 1.0) (4am crack), Cotton Tales (version 1990) (4am crack),
+      The Counting Bee (version 1.1, 26-FEB-82) (4am crack), Cribbage/Solitaire (4am crack),
+      Crosscountry Canada (revsion 1, 1986) (4am crack), Crosscountry Canada (version 4.0) (4am crack),
+      Crosscountry USA (version 4.0) (4am crack), Crosscountry USA (version 5.1) (4am crack), Crystal Caverns (revision 0) (4am crack),
+      The Cube (4am crack), Cyborg (version 1) (4am crack), Dancing Dinos (4am crack),
+      Dataquest: The Presidents (A-140 version 1.1) (4am crack), Dinosaur Dig (4am crack), Dinosaurs (release 1) (4am crack),
+      Dragon Mix (version 1985) (4am crack), The Dream Machine (4am crack), E-Z Learner (4am crack),
+      Early Discoveries: Size and Logic (version 07.31.85) (4am crack), Early Games: Matchmaker (revision 2) (4am crack),
+      Effective Study Skills (4am crack), Electric Circuits (revision 1) (4am crack), Electric Circuits (revision 2) (4am crack),
+      The Evelyn Wood Dynamic Reader (4am crack), Excel-A-Read (4am crack), Farmfiler (version 03.11.83) (4am crack),
+      Fish Scales (version 4.0) (4am crack), Following Written Directions (4am crack), Fortress (revision 2) (4am crack),
+      Fraction Fever (revision 1) (4am crack), Fractions (version 3.0 04-10-82) (4am crack),
+      Fun with Directions (version 1984) (4am crack), The Gem of Zephyrr (version 1.1.0) (4am crack),
+      Genesis: The Adventure Game Creator (4am crack), Genetic Engineering (4am crack), German Vocabulary Builder (4am crack),
+      Glidepath (version 1.0) (4am crack), Golf Classic and Compubar (4am crack),
+      Go to the Head of the Class (Media Materials) (4am crack), Graphing (A-817 version 1.0) (4am crack),
+      Graphing Equations (version 1.3) (4am crack), Guitar Wizard (version 11611) (4am crack), Gulp!! and Arrow Graphics (4am crack),
+      Human Body Exploration (4am crack), Improving Your Memory (4am crack), Industrialism in America (4am crack),
+      Inferential Anne: Level II (4am crack), J-Bird (4am crack), Joe Theismann's Pro Football (4am crack), Key Signatures (4am crack),
+      Kids at Work (4am crack), Kitchen Planner (4am crack), Les Sports (4am crack),
+      Let's Explore Word Processing (Media Materials) (4am crack), Library Adventure: Blue Level (4am crack),
+      Library Magic (revision 0) (4am crack), Magic Slate II: 20-Column Apple //e Version (version 1.0) (4am crack),
+      Magic Slate II: 40-Column Apple //e Version (version 1.0) (4am crack), MasterType (version 1.7) (4am crack),
+      Mathematics Action Games: Picture Parts: Basic Operations (4am crack),
+      Mathematics Courseware Series: Adventures in Addition and Subtraction 3 (4am crack),
+      Mathematics Courseware Series: Bicycling Through Decimals 3 (4am crack),
+      Mathematics Courseware Series: Decimal Deli 2 (4am crack), Mathematics Courseware Series: Division 2 (4am crack),
+      Mathematics Courseware Series: Division 3: The Prairie (4am crack),
+      Mathematics Courseware Series: Electrifying Fractions 2 (4am crack),
+      Mathematics Courseware Series: Fantastic Fractions 1 (4am crack), Mathematics Courseware Series: Fractions 3 (4am crack),
+      Mathematics Courseware Series: Fractions 5: The River (4am crack),
+      Mathematics Courseware Series: Mighty Multiplication 2 (4am crack),
+      Mathematics Courseware Series: Percent 1: Get The Percent (4am crack), Mathematics Courseware Series: Percent 2 (4am crack),
+      Medalist Series: Black Americans (version 04.13.84) (4am crack), Medalist Series: Presidents (version 11.23.84) (4am crack),
+      Medalist Series: Women in History (version 11.21.83) (4am crack), Microtyping II (4am crack),
+      Mind Puzzles (H-102 version 1.0-1984.05.25) (4am crack), Miner 2049er (revision 1) (4am crack),
+      Modeling (A-823 version 1.0) (4am crack), Money! Money! (version 02.05.87) (4am crack), Monkey Business (revision 2) (4am crack),
+      Monsters and Make-Believe (version 1.1) (4am crack), Music Tutor (Passport Designs) (4am crack),
+      Mystery Mazes Case 3: Castle Clues (4am crack), Painter Power (4am crack),
+      People of the Old Testament (version 03.09.90) (4am crack), Perception (version 3.1) (4am crack),
+      Personality Profile 2 (4am crack), Physical or Chemical (4am crack), Picture Perfect (version 1987) (4am crack),
+      Place Value: Ones, Tens, and Hundreds (4am crack), Plato's Cave (4am crack), Please Help Me: Spelling (4am crack),
+      Polls and Politics (A-820 version 1.0) (4am crack), Prescriptive Math Drill (version 04.13.84) (4am crack),
+      Primary Reading: Following Written Directions (4am crack), Primary WordMath (4am crack), Prime Ducks (4am crack),
+      Problem-Solving Strategies (H-103 version 1.0-1984.09.25) (4am crack), Pro Golf Challenge (4am crack),
+      Quizagon (revision 0) (4am crack), Rainbow Painter (4am crack), Rascal Takes A Ride Home (4am crack),
+      Rascal Takes A Ride to School (4am crack), Reading for Understanding: Native Americans (4am crack),
+      Reading Workshop: Grade 6 (Mindscape) (4am crack), Read &amp; Rhyme (4am crack), Return to Reading: The Black Stallion (4am crack),
+      Return to Reading: To Kill A Mockingbird (4am crack), Rhythm Write (4am crack), Run Your Own Train (revision 2) (4am crack),
+      Scientific Simulations (version 1.0) (4am crack), Sesame Street Crayon: Letters For You (version 1987-10-31) (4am crack),
+      Shadow Hawk One (revision 1) (4am crack), Shadow Hawk One (revision 2) (4am crack), Shadows and Light (4am crack),
+      Shutterbug's Pictures (4am crack), Sliding Block (revision 2) (Merit) (4am crack), Social Studies: Africa (4am crack),
+      Sound and Vibrations (4am crack), Space Journey: Planets and Stars (4am crack), Spellakazam (revision 1) (4am crack),
+      Spelling and Reading Primer (version 2.0.1) (4am crack), Spelling Bee (version 1.1) (4am crack),
+      The Spy's Adventures in Europe (version 1986-09-30) (4am crack), Start Solving: Honeybear (4am crack),
+      Start Solving: Sam's Sticker Store (4am crack), Start Solving: Tina's TV Show (4am crack), Stickers (4am crack),
+      Stickybear Opposites (800K 3.5") (4am crack), Story Maker (revision 2, 64K) (4am crack), The Story of Creation (4am crack),
+      Strategies for Test Taking (4am crack), Strategies in Problem Solving: Dinosaurs and Squids (4am crack),
+      Strategies in Problem Solving: Spinners and Slugs (4am crack), Super-Text II Form Letter Module (version 1984) (4am crack),
+      Tales From The Arabian Nights (4am crack), Teddy Takes a Rain Walk (4am crack), Test Construction and Review (4am crack),
+      Thinkers: Mathematics Unlimited Problem Solving (4am crack), Total Learning System (4am crack),
+      Troll Sports Math: Math Word Problems for Grades 4 to 6 (4am crack), Type Hype (revision 2) (4am crack),
+      Type Right on Your Apple IIe (4am crack), Under Fire (4am crack), U.S. Constitution Tutor (4am crack),
+      The U.S. Constitution: Nationalism and Federalism (version 1984) (4am crack), U.S. History: The Growth of a Nation (4am crack),
+      U.S. History: The Young Republic (4am crack), Walt Disney Card &amp; Party Shop (4am crack), Water Pollution (4am crack),
+      Werewolf!! (4am crack), What's the Problem: Ace Reporter (4am crack), What's the Problem: Chester and the Cheese (4am crack),
+      What's the Problem: Where in the World? (4am crack), Wings Out of Shadow (4am crack), Wizard of Words (version 1.0) (4am crack),
+      Word Scrambler and Spelling Tutor (4am crack), Wordwise (4am crack), WordWorx (4am crack), Zoo Master (revision 2) (4am crack)
+      [4am]<br />
+      Arizona Mix (A-335 version 1.0) (4am and san inc crack), Car Builder (revision 4) (4am and san inc crack),
+      Dog Sled Ambassadors (A-339 version 1.0) (4am and san inc crack), The General Manager (version 2.0S) (4am and san inc crack),
+      The General Manager (version 2.0Y) (4am and san inc crack), Hard Hat Mack (4am and san inc crack),
+      Magic Spells (version 1.1) (4am and san inc crack), Math Word Problems (4am and san inc crack),
+      Music Construction Set (revision 2) (4am and san inc crack), Spare Change (4am and san inc crack),
+      Square Pairs (version 1.0) (4am and san inc crack), Stickybear Opposites (revision 2) (4am and san inc crack),
+      Stickybear Printer (version 1) (4am and san inc crack), Stickybear Reading (revision 2) (4am and san inc crack),
+      Stickybear Town Builder (revision 2) (4am and san inc crack), Stickybear Typing (revision 3) (4am and san inc crack),
+      Stickybear Word Problems (revision 2) (4am and san inc crack), Zenith (4am and san inc crack) [4am, san inc]</li>
+    <li><b>apple2_flop_orig</b>: Copy II Plus (version 1.0), Copy II Plus (version 2.2), Galactic Gladiators [4am]</li>
+    <li><b>bbc_rom</b>:
+      Arcadians (unofficial RFS), Arkanoid (unofficial ROM), Boxford TCL 125/240 2.02, Boxford TCL 125/240 2.04,
+      Boxford TCL 125/240 6.00, Database 1.21, Economatics Control ROM 1.04, Enigma Plus 2.4, GameROM: Rocket Raid 1.10,
+      HyperDriver 1.30, IEEE 1.92, IEEE 1.98, Kix (unofficial ROM), LVL Echo 1.01, Micronet 2000 1.1, Music 1.2, PMS Multi-Font NTQ 4.0,
+      Pengo (unofficial ROM), Ramrod MS4.00c (alt), Robotron (unofficial ROM), Rocket Raid (unofficial ROM),
+      Snapper v1 (unofficial ROM), Snapper v2 (unofficial ROM), Speech Extension 0.1, StarGraph 3.01, Unicore 2.2,
+      User Port Transfer 1.01, Wordwise Companion, Zalaga (unofficial RFS) [Nigel Barnes]</li>
+    <li><b>ekara_japan</b>:<br />
+      Kids' Song Best 40 (Japan) (EC0084-KSB) [TeamEurope, David Haywood]<br />
+      Enkamichi Volume 8 (Japan) (EC0058-ENK) [TeamEurope]</li>
+    <li><b>ekara_japan_d</b>:
+      Dream Cartridge: Best Artist Vol.7 (Japan) (DC0008-BAT), Dream Cartridge: Best Hit Vol.10 (Japan) (DC0006-BHT) [TeamEurope]</li>
+    <li><b>ekara_japan_en</b>: Enka-shū Dai Ichi-hen (Japan) (EN-1), Enka-shū Dai Ni-hen (Japan) (EN-2) [TeamEurope, David Haywood]</li>
+    <li><b>ekara_japan_kd</b>: Kids' Song 20 (Japan) (KD-1) [TeamEurope, David Haywood]</li>
+    <li><b>ekara_japan_m</b>:
+      Artist Mini Volume 9 (Yamaguchi Momoe) (Japan) (MC0016-ATM), J-Pop Mix Mini Volume 1 (Japan) (MC0009-JPM)
+      [TeamEurope, David Haywood]</li>
+    <li><b>ekara_japan_packin</b>: Saiten Cartridge: Morning Musume Special (Japan) (BX01-MOR) [TeamEurope, David Haywood]</li>
+    <li><b>ekara_japan_s</b>:
+      Saiten Cartridge: Nesshō Vol. 5 (Japan) (SC0016-SAI), Saiten Cartridge: PostPet (Japan) (SC0011-PST) [TeamEurope, David Haywood]</li>
+    <li><b>ekara_japan_sp</b>: Super Cartridge: TV Pop Junior (Japan) (SP-06) [TeamEurope]</li>
+    <li><b>h88_cass</b>:
+      BUG-8 02.05.00, BUG-8 02.06.00, Extended Benton Harbor Basic 10.05.00, Extended Benton Harbor Basic 10.05.01,
+      Extended Benton Harbor Basic 10.06.00, Heath H8 Assembler 04.05.00, Heath H8 Assembler 04.06.00, Heath/Wintek H8 Editor 03.05.00,
+      Heath/Wintek H8 Editor 03.06.00 [Society of Eight-Bit Heathkit Computerists]</li>
+    <li><b>msx1_cart</b>:<br />
+      Hotbit HB-8000 Demo (Brazil), Ligue-se ao Expert (Brazil), Mood Land, Princess Quest [file-hunter]<br />
+      Magical Tower Adventure [MSXdev]</li>
+    <li><b>msx2_cart</b>:<br />
+      DSKPRO (v11.6) [file-hunter]<br />
+      MEGA-SCSI (128KB), MEGA-SCSI (256KB), MEGA-SCSI (512KB), MEGA-SCSI (1024KB) [file-hunter, Wilbert Pol]</li>
+    <li><b>psion_ssd</b>: 3Fax Software [techfury]</li>
+    <li><b>sega_beena_cart</b>:<br />
+      Pururun! Shizuku-chan: Asonde Tanoshiku Nouryoku Up [TeamEurope]<br />
+      Taiko no Tatsujin: Ongaku Lesson [TeamEurope, QUFB]</li>
+    <li><b>spectrum_cass</b>:<br />
+      Impossabubble [Dave Clarke]<br />
+      Alien Girl (demo, English), Alien Girl (demo, Spanish) [Javier Fopiani]<br />
+      Cocoa and the Time Machine (48K, English), Cocoa and the Time Machine (48K, Portuguese),
+      Cocoa and the Time Machine (48K, Spanish), Cocoa and the Time Machine (128K, English), Cocoa and the Time Machine (128K, Spanish),
+      Hakkenkast - The Demo Dungeon (48K), Hakkenkast - The Demo Dungeon (128K), The Swarm is Coming... (48K, update 2),
+      The Swarm is Coming... (128K, update 2), Twenty Four Hour Parsley People (English), Twenty Four Hour Parsley People (Portuguese),
+      Twenty Four Hour Parsley People (Spanish) [Minilop Retroware]<br />
+      Adventure 4-Pack (alt), Desdobramentos de Totobola, La Diosa de Cozumel (Matra edition), Máquina do Poker, Melotron, Poker Aberto,
+      Stripping Penelope, Throne of Fire (PIM) [Planeta Sinclair]<br />
+      Ad Lunam (English), Ad Lunam (Italian), Ad Lunam (Spanish), Ad Lunam Plus (English), Ad Lunam Plus (Italian),
+      Ad Lunam Plus (Spanish), Demon's Dream, F-19 Stealth Fighter (set 4, Erbe), Insert Coins II,
+      Inspector Gadget and the Circus of Fear, Micro Olympics / Olympic Spectacular (Profisoft), Micro Primer - Software Pack 1,
+      Micro Primer - Software Pack 2, Microfair Madness (Zenobi, alt), Mysterious Dimensions (48K), NATO Assault (128K version),
+      Project Future (bug fix), Pud Pud (Zafi Chip), Puffy's Saga (MCM), Red Arrows (System 4), Rival Gang, Rival Gang EXT (demo),
+      Road Toad (bug fix), Roust (demo), Super 48K Box (rev. 2, TAP tape image), Terrapins (demo), Throne of Fire (IBSA),
+      Tiro al Blanco (Investronica), World Games (Erbe), Wunderwaffe, ZX Larry [Spectrum Computing]<br />
+      Apulija-13 (v2.1, English), Apulija-13 (v2.1, English, extra), Apulija-13 (v2.1, French), Apulija-13 (v2.1, German),
+      Apulija-13 (v2.1, Italian), Apulija-13 (v2.1, Portuguese), Apulija-13 (v2.1, Spanish) [Zankle Soft]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>apple2_flop_clcracked</b>:
+      Mathematics Courseware Series: Addition and Subtraction 4: City Sights (4am crack),
+      Mathematics Courseware Series: The Mysteries of Multiplication 3 (4am crack) [4am]</li>
+    <li><b>bbc_rom</b>: Micron Plus EPROM Programmer 1.20, SPX 2.01 [Nigel Barnes]</li>
+    <li><b>msx2_cart</b>: Video Digitizer (Japan) [file-hunter]</li>
+    <li><b>pixter_cart</b>:
+      Alphabet Forest, Clifford - The Big Red Dog, Cyberchase, Mazes, Puzzles &amp; Games, SpongeBob SquarePants - Math Adventure [QUFB]</li>
+</ul>
+
+<h3>Translations added or modified</h3>
+<ul>
+    <li>Russian [Arbars, holub, Vas Crabb]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/11801">11801</a>: heathkit/h89.cpp: Added Heathkit H89 with SigmaSoft Interactive Graphics Controller as a clone system. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11840">11840</a>: bus/qbus: Added DVK MX floppy disk drive controller card. [shattered]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11964">11964</a>: cpu/t11: Fixed MTPS/MFPS data width and improved emulation of differences between variants. [shattered]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11971">11971</a>: apple2_flop_clcracked.xml, apple2_flop_orig.xml: Added latest floppy disk dumps and cracks. [4am, san inc, A-Noid]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11972">11972</a>: pinball/recel.cpp: Added ‘Space Game (Bingo 6+1)’, and corrected comments. [BonelessChicken, Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11975">11975</a>: rm/rmnimbus.cpp: Changed default mouse mode to high-level simulation. [Robin Sergeant]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11981">11981</a>: machine/sa1110.cpp: Use address maps for on-board peripherals; hp/jornada.cpp: Hooked up entire keyboard. [Ryan Holtz]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11984">11984</a>: phoenix/phoenix.cpp: Added a bootleg of Phoenix. [Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11985">11985</a>: emu/memarray.cpp: Fixed little Endian byte reads and writes for 64-bit areas. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11986">11986</a>: msx/msx.cpp,msx/msx2.cpp: Enabled floppy disk drive sounds. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11988">11988</a>: rm/rm380z.cpp: Fixed video RAM addressing, allowing characters to be read back from the screen. [Robin Sergeant]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11989">11989</a>: jaleco/megasys1.cpp: Added Japanese version of Hachoo! as a clone; ekara_japan*.xml: Added four cartridges. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11990">11990</a>: apple/apple2e.cpp: Removed a duplicate variable assignment in Ctrl-Reset handler code. [xotmatrix]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11991">11991</a>: sega/segaai.cpp: Improved µPD7759 ROM bank selection (improves speech). [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11992">11992</a>: konami/hexion.cpp, konami/spy.cpp, konami/thunderx.cpp: Made K052591 simulation better reflect real programs. [furrtek]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11994">11994</a>: handheld/hh_sm510.cpp: Added Tiger Double Dragon II: The Revenge. [algestam, Sean Riddle]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11995">11995</a>: cpu/t11: Added basic support for the K1801VM1. [shattered]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11996">11996</a>: apple/apple2e.cpp: Update language card memory map when language card is enabled or disabled. [xotmatrix]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/11999">11999</a>: nec/pce.cpp, nec/pce_cd.cpp: Cleaned up code. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12000">12000</a>: netlist/pexception.cpp, sound/pulse_sound.cpp: Fixed compilation when using musl libc runtime library. [Elaine Gibson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12001">12001</a>: irem/travrusa.cpp: Added an alternate palette PROM arrangement for Traverse USA, MotoTour and MotoRace USA. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12002">12002</a>: heath/h89.cpp: Added Ultimeth 2k ROM as a BIOS option. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12006">12006</a>: sega/sega_beena_cart.xml: Added two working items. [TeamEurope, QUFB]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12009">12009</a>: lynx.xml: Marked raiden as a possible bootleg of the CES version. [David Silva]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12012">12012</a>: util/cdrom.cpp: Removed unreachable additional handler for MODE2/2336 tracks (GitHub <a href="https://github.com/mamedev/mame/issues/9084">#9084</a>). [stonedDiscord]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12013">12013</a>: mattel/pixtermu.cpp, pixter_cart.xml: Added a skeleton Mattel Pixter Multi-Media driver and software list. [QUFB]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12015">12015</a>: galaxian/galaxian.cpp: Added a Spanish bootleg of UniWar S from Centromatic. [Jorge Silva, Arnaldo Lopes, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12016">12016</a>: cpu/m6809: Fixed HD6309 indirect W register references in indexed addressing modes. [Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12017">12017</a>: rainbow.xml; intv.xml; digilog320.xml; compclr2_flop.xml: Use lowercase for things that aren't proper nouns. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12019">12019</a>: heathkit/h89.cpp, h88_cass.xml: Added a software list for Heathkit H88 cassettes. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12020">12020</a>: tecmo/gaiden.cpp: Added an version of Wild Fang using a different program version. [Tailsnic Retroworks, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12026">12026</a>: cpu/patinhofeio/patinho_feio.cpp: Fixed missing space in warning log message. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12027">12027</a>: ussr/1801vp014.cpp: Added simulated MS7008 keyboard using K1801VP1-014 controller. [shattered]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12028">12028</a>: lib/netlist: Removed duplicate <tt>$(OBJ)/devices</tt> from object directories in makefile. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12029">12029</a>: cpu/z180, machine/ldv1000hle.cpp: Removed some extraneous semicolons. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12030">12030</a>: Fixed indentation of some <tt>ROM_END</tt> and <tt>INPUT_PORTS_END</tt> statements. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12031">12031</a>: rm/rm380z.cpp: Improved character mode video emulation. [Robin Sergeant]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12032">12032</a>: msx1_cart.xml: Added five working items. [file-hunter, MSXdev, Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12033">12033</a>: tvgames/spg29x.cpp: Added the internal SPG290 ROM for the Mattel HyperScan (not hooked up yet). [ppcasm, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12034">12034</a>: sound/discrete.cpp: Use appropriate memory barriers for task synchronisation (fixes GitHub <a href="https://github.com/mamedev/mame/issues/11373">#11373</a>). [Vas Crabb]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12035">12035</a>: bandai/design_master.cpp: Added the internal H8/328 ROM for the Bandai Design Master. [Sean Riddle, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12036">12036</a>: cpu/tms32010: Fixed memory access helpers for variants with 64k-word program space. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12037">12037</a>: misc/vocalizer.cpp: Added a driver for the Breakaway Music Systems Vocalizer 1000 (not working). [Loscha, Devin Acker]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12040">12040</a>: util/chd.cpp: Calculate pessimistic size for buffer needed to store compressed hunk map (fixes GitHub <a href="https://github.com/mamedev/mame/issues/12023">#12023</a>). [balrog]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12041">12041</a>: konami/ksys573.cpp: Added Martial Beat JAB version (not working). [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12042">12042</a>: spectrum_cass.xml: Added 61 working items, and added language information for many items. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12043">12043</a>: trs/coco12.cpp: Dumped ROMs for Deluxe Color Computer and promoted it to working. [Brian Wiesler, Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12046">12046</a>: mindset_flop.xml, adam_flop.xml, next_hdd.xml: Made software list descriptions follow conventions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12047">12047</a>: Removed some unnecessary backslash line continuations in C++ and Python code. [amameuser]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12049">12049</a>: trs/coco12_m.cpp: Fixed base address for Deluxe Color Computer RAM bank. [Nigel Barnes, Tim Lindner]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12050">12050</a>: machine/z80scc.cpp: Added support for RTxC transmit/receive clock source. [Colin Leroy-Mira]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12052">12052</a>: msx2_cart.xml: Added six items (five working); bus/msx/cart/scsi.cpp: Added partial MegaSCSI support. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12055">12055</a>: hash/ekara_japan*.xml: Added nine cartridges; skeleton/hudson_poems.cpp: Added four games. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12057">12057</a>: util/bitstream.cpp: Fixed cases where bits would be dropped when reading and writing. [Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12060">12060</a>: util/bitstream.h: Adjust <tt>m_doffset</tt> based on <tt>m_dbitoffs</tt> when flushing (fixes errors reading LaserDisc CHDs). [Windy Fairy]</li>
+</ul>
