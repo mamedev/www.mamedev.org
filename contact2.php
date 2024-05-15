@@ -7,17 +7,17 @@ $title = 'MAME | Contact the Team';
     <div class="container">
 
 		<center><h1 class="page-header">Contacting the MAME Team</h1></center>
-		
+				<?php /*
 				<p>
-					If you need to contact the MAME development team for any reason, please fill out the form below. Make
-					sure you select the appropriate person or group to send it to.
-					</p>
-				
-					<p>
-					If you think you have found a bug in MAME, or are having trouble using the software, go back to the
-					<a href="contact.php">main contact page</a> and select the appropriate option.
-					Email sent to this address regarding bugs or user support will be ignored completely.
-					</p>
+				If you need to contact the MAME development team for any reason, please fill out the form below. Make
+				sure you select the appropriate person or group to send it to.
+				</p>
+
+				<p>
+				If you think you have found a bug in MAME, or are having trouble using the software, go back to the
+				<a href="contact.php">main contact page</a> and select the appropriate option.
+				Email sent to this address regarding bugs or user support will be ignored completely.
+				</p>
 
 				<script language="JavaScript" type="text/javascript">
 				//<![CDATA[
@@ -51,42 +51,62 @@ $title = 'MAME | Contact the Team';
 				//]]>
 				</script>
 
-					<form onsubmit="return checkForm(this)" name="email" method="post" action="#">
-							<input type="hidden" name="success" value="sent.html" />
+				<form onsubmit="return checkForm(this)" name="email" method="post" action="#">
+						<input type="hidden" name="success" value="sent.html" />
 
-							<div class="input-group">	
-								<span class="input-group-addon">Send To:</span>
-								<select name="recipient" class="form-control">
-									<option selected="selected" value="dummy">Select a recipient...</option>
-									<option value="-">---</option>
-									<option value="webmaster">MAMEDev.org Webmaster</option>
-									<option value="legal">MAME License/Trademark Questions</option>
-									<option value="-">---</option>
-									<option value="team">MAME Team (general)</option>
-								</select>
-							</div>
-							<br/>
-							<div class="input-group">	
-								<span class="input-group-addon">From:</span>
-								<input type="text" size="50" name="email" class="form-control" />
-							</div>
-							<br/>
-							<div class="input-group">	
-								<span class="input-group-addon">Subject:</span>
-								<input type="text" size="50" name="subject" class="form-control"/>
-							</div>
-							<br/>
-							<div class="input-group">	
-								<span class="input-group-addon">Message:</span>
-								<textarea name="comment" cols="75" rows="10"class="form-control"></textarea>
-							</div>
-							<br/>
-							<div class="input-group">	
-								<input type="submit" name="submit" value="Send" class="btn btn-success"/>
-								<input type="reset" name="reset" value="Reset" class="btn btn-warning"/>
-							</div>
-					</form>
-		
+						<div class="input-group">
+							<span class="input-group-addon">Send To:</span>
+							<select name="recipient" class="form-control">
+								<option selected="selected" value="dummy">Select a recipient...</option>
+								<option value="-">---</option>
+								<option value="webmaster">MAMEDev.org Webmaster</option>
+								<option value="legal">MAME License/Trademark Questions</option>
+								<option value="-">---</option>
+								<option value="team">MAME Team (general)</option>
+							</select>
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">From:</span>
+							<input type="text" size="50" name="email" class="form-control" />
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">Subject:</span>
+							<input type="text" size="50" name="subject" class="form-control"/>
+						</div>
+						<br/>
+						<div class="input-group">
+							<span class="input-group-addon">Message:</span>
+							<textarea name="comment" cols="75" rows="10"class="form-control"></textarea>
+						</div>
+						<br/>
+						<div class="input-group">
+							<input type="submit" name="submit" value="Send" class="btn btn-success"/>
+							<input type="reset" name="reset" value="Reset" class="btn btn-warning"/>
+						</div>
+				</form>
+				*/ ?>
+				<p>
+				If you need to contact the MAME development team for any reason, please register and post at one of
+				the following forums:
+				</p>
+
+				<ul>
+					<li><a href="https://github.com/orgs/mamedev/discussions">MAMEdev Discussions on GitHub</a></li>
+					<li><a href="https://forum.mamedev.org/">MAMEdev Forum</a></li>
+					<li><a href="https://reddit.com/r/MAME/">r/MAME on reddit</a></li>
+					<li><a href="https://forums.bannister.org/">Emuversal Bulletin Board</a></li>
+				</ul>
+
+				<p>
+				If you think you have found a bug in MAME, or are having trouble using the software, go back to the
+				<a href="contact.php">main contact page</a> and select the appropriate option.
+				</p>
+
+				<p>
+				The e-mail contact form currently unavailable due to abuse.
+				</p>
 	</div>
     <!-- /.container -->
 	<br/><br/><br/>

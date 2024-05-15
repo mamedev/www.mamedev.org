@@ -2,6 +2,7 @@
 
 <?php
 
+	/*
 	$recipient = $_POST['recipient'];
 	$email = $_POST['email'];
 	$subject = $_POST['subject'];
@@ -21,6 +22,7 @@
 		if ($validator->check_email_address($email))
 			mail($targets[$recipient], $subject, $text, array("From" => "noreply@mamedev.org", "Reply-To" => $email)) or die ("Error mailing");
 	}
+	*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,6 +50,7 @@
 	<!-- Page Content -->
 	<div class="container">
 
+		<?php /*
 		<h1 class="page-header"><center>Sending Email</center></h1>
 				<h1><center>Sending Email</center></h1>
 
@@ -56,6 +59,7 @@
 					Sending your mail. If nothing happens, please click <a href="sent.html">HERE</a>
 					</p>
 				</div>
+		*/ ?>
 
 	</div>
 	<!-- /.container -->
