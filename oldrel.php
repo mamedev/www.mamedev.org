@@ -84,6 +84,13 @@ function ancient_mirror_directory($version,  $title = NULL)
 				<th width="23%">Whatsnew</th>
 			</tr>
 			<tr>
+				<td class="date"><?php release_mirror_directory('268'); ?></td>
+				<td class="date">31 Jul 2024</td>
+				<td class="link"><?php release_mirror_file('268', 'mame0268s.exe'); ?></td>
+				<td class="link"><?php release_mirror_file('268', 'mame0268b_64bit.exe'); ?></td>
+				<td class="link"><a href="releases/whatsnew_0268.txt">whatsnew_0268.txt</a></td>
+			</tr>
+			<tr>
 				<td class="date"><?php release_mirror_directory('267'); ?></td>
 				<td class="date">30 Jun 2024</td>
 				<td class="link"><?php release_mirror_file('267', 'mame0267s.exe'); ?></td>

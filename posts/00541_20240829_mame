@@ -1,0 +1,206 @@
+MAME 0.269
+
+<p>It’s almost the end of August, which means it must be time for
+MAME 0.269 to be unleashed on the world!  The widely-used Zilog Z8410
+DMA controller emulation has had an overhaul this month.  In concert
+with the recent Z80 CPU work, this allows more realistic I/O timings for
+numerous systems.  If you’re curious about unreleased prototypes, BASIC
+is starting to show signs of life on the Commodore 65.</p>
+
+<p>Two additional Japanese releases of Capcom fighting games on CPS-2
+hardware have been found this month: a more recent version of X-Men Vs.
+Street Fighter than any previously dumped set, and a version of Hyper
+Street Fighter II released a bit over a week before the latest known
+update.  The microcontroller for Irem’s Gallop on M72 hardware has been
+dumped, allowing simulation code to be removed.  Thanks to Peter
+Wilhelmsen and XingXing, the pace of dumping internal ROMs from IGS027A
+ARM CPUs has picked up, so we might see more progress on IGS games
+soon.</p>
+
+<p>Of course, there’s lots more to enjoy, including an 8085-based
+prototyping board, more chess computers, and improvements to MAME’s
+debugger.  You can read all about it in the <a
+href="https://www.mamedev.org/releases/whatsnew_0269.txt">whatsnew.txt
+file</a>, or get the source code and 64-bit Windows binary packages from
+<a href="https://www.mamedev.org/release.html">the download
+page</a>.</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=8902">08902</a>: [Gameplay] (casio/pv1000.cpp) pv1000: Running any game causes the emulated system to crash. (lidnariq)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>Atlantis Computers MCG-85 [Nigel Barnes]</li>
+    <li>Fidelity International Gambit Voice [hap, Sean Riddle]</li>
+    <li>Jeux Nathan Mega 10.000: L'Encyclopédie Électronique [hap, Sean Riddle]</li>
+    <li>Novag Industries Diamond [hap, Berger]</li>
+    <li>Novag Industries Emerald Classic Plus [hap, Berger]</li>
+    <li>Saitek / Heuristic Software Kasparov Blitz (set 1) [hap, Berger]</li>
+    <li>Senario Drum Super Star [David Haywood, Sean Riddle, Peter Wilhelmsen]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Heavy Barrel (US, revision 3) [Brian Troha, The Dumping Union]</li>
+    <li>Hyper Street Fighter II: The Anniversary Edition (Japan 040123) [bugcutt]</li>
+    <li>Nics TV Boy (Nics, NTSC) [Taksangs]</li>
+    <li>Quiz Gakuen Paradise (Japan, ver. 1.02) [hammy]</li>
+    <li>Quiz Gekiretsu Scramble (Japan, prototype) [hammy]</li>
+    <li>Saitek / Heuristic Software Kasparov Blitz (set 2) [hap, Berger]</li>
+    <li>Tarzan Chuang Tian Guan (China, V110) [hammy]</li>
+    <li>Umi de Poker / Marine Paradise (Japan, newer) [Ioannis Bampoulas]</li>
+    <li>X-Men Vs. Street Fighter (Japan 970113) [bugcutt]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>Altos Computer Systems ACS586 [Lubomir Rintel]</li>
+    <li>Bandai / Koto Dragon Ball Z x One Piece: Battle Taikan Gum-Gum no Kamehameha: Omee no Koe de Ora o Yobu (Japan)
+      [David Haywood, TeamEurope]</li>
+    <li>Cai Jin Shen Long (link version, extension, S111CN) [dyq, little0, Guru]</li>
+    <li>Cai Jin Shen Long (link version, host) [dyq, little0, Guru]</li>
+    <li>Dancing Bells [hammy]</li>
+    <li>Geki Makaimura [Darksoft]</li>
+    <li>IVL Technologies (Disney / Memcorp Inc license) Karaoke Microphone Pro / KaraokeMicro Star (Greece) [David Haywood, TeamEurope]</li>
+    <li>IVL Technologies (Lexibook / Imago license) Disney Princess Handheld Karaoke Player (DKS7000-P) [David Haywood, TeamEurope]</li>
+    <li>Jin Hu Lu 2 [dyq, little0, Guru]</li>
+    <li>Long Hu Da Man Guan [dyq, little0, Guru]</li>
+    <li>Long Teng Hu Yue [dyq, little0, Guru]</li>
+    <li>Magical Jack (VA 4.00) [Ioannis Bampoulas]</li>
+    <li>Magical Jack Plus (VA 6.03) [Ioannis Bampoulas]</li>
+    <li>Manguan Caishen (link version, extension, S110CN) [dyq, little0, Guru]</li>
+    <li>Manguan Caishen (link version, host) [dyq, little0, Guru]</li>
+    <li>Mars Electronics Automatic Products Vending Machine model 110 (set 1) [Joan RF, jordigahan]</li>
+    <li>Micro Concepts Microbox II [Nigel Barnes, David Rumball]</li>
+    <li>PK - New Exciting Poker! [hammy]</li>
+    <li>Poker &amp; 21 [Ioannis Bampoulas]</li>
+    <li>Seiko MAP-1010 [Nigel Barnes, JLTurSan]</li>
+    <li>Takara / SSD Company LTD Duel Masters: Duel Station (Japan) [David Haywood, TeamEurope]</li>
+    <li>Takara Tomy Boku wa Plarail Untenshi Shinkansen de Ikou! Plus (Japan) [David Haywood, TeamEurope]</li>
+    <li>Technics SX-KN5000 [Felipe Sanches, Angelo Salese]</li>
+    <li>Tropical Fruits (V. 24-06.00 Rev. 4.0) [The Dumping Union]</li>
+    <li>Turbo PK [hammy]</li>
+    <li>unknown WHT gambling game [hammy]</li>
+    <li>Wan Wan Dash [TeamEurope, Darksoft]</li>
+    <li>Zanussi / Necta Firenze (vending machine) [Joan RF, jordigahan]</li>
+    <li>Zanussi / Necta unknown Zanussi / Necta vending machine [Joan RF, jordigahan]</li>
+    <li>Zanussi / Necta Venezia (coffee vending machine) [Joan RF, jordigahan]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>Crazy Balls (Bontempi) [Domenico Cervini]</li>
+    <li>Fruit Genie (Version 1-1-03, set 2) [Ioannis Bampoulas]</li>
+    <li>Fruit Genie (Version 1-1-03, set 3) [Ioannis Bampoulas]</li>
+    <li>Fruit Genie (Version 1-1-03, set 4) [Ioannis Bampoulas]</li>
+    <li>Fruit Genie (VT 2.11) [Ioannis Bampoulas]</li>
+    <li>Long Hu Da Man Guan Plus [dyq, little0, Guru]</li>
+    <li>Magical Jack (VA 2.0) [Ioannis Bampoulas]</li>
+    <li>Magical Jack (VA 3.11) [Ioannis Bampoulas]</li>
+    <li>Magical Jack (VA 3.30) [Ioannis Bampoulas]</li>
+    <li>Magical Jack Plus (VA 6.01) [Ioannis Bampoulas]</li>
+    <li>Manguan Caishen (China, V106CS) [dyq, little0, Guru]</li>
+    <li>Mars Electronics Automatic Products Vending Machine model 110 (set 2) [Joan RF, jordigahan]</li>
+    <li>Pentacup (rev. T) [Matt Walsh, PinMAME]</li>
+    <li>Shuang Long Qiang Zhu 2 VS (China, set 2) [dyq, little0, Guru]</li>
+    <li>Te Yi Gong Neng (China, V632C) [dyq, little0, Guru]</li>
+    <li>Tic Tac Trivia (6221-25, U5-0E, 05/08/86, UK) [hammy, Brian Troha, The Dumping Union]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>altos586</b>: Altos Diagnostic Executive [Lubomir Rintel]</li>
+    <li><b>ekara_cart</b>: Super Cartridge: Best Hit (Japan) (SP-07) [David Haywood, TeamEurope]</li>
+    <li><b>hp98x6_rom</b>: BASIC 4.0, BASIC 5.1, SSS HPL+II [F.Ulivi]</li>
+    <li><b>microbox2_flop</b>: Microbox II 6809 FLEX V3.01, Microbox II Distribution [David Rumball]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>c64_cart</b>: Pitfall II: The Lost Caverns [Angelo Salese]</li>
+    <li><b>msx1_cart</b>: X &amp; Y (Arab) [Wilbert Pol]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>easy_karaoke_cart</b>:
+      Disney Princess 10-Song Karaoke Cartridge I (DK-P1), Karaoke Microphone Pro Cartridge 1 (Greece) [David Haywood, TeamEurope]</li>
+    <li><b>leapfrog_leappad_cart</b>:
+      Anpanman no CoCoPad de AIUEO kyoushitsu Pinocchio (Japan),
+      Benny and Friends English Book Vol. 2 -Majo to taiketsu! Daibouken- (Japan),
+      CoCoPad ROM Cassette Kono men o ue ni shiteirete ne! (11 November 2007, 1 January 2008) (Japan),
+      CoCoPad ROM Cassette Kono men o ue ni shiteirete ne! (3 March 2007 - 5 May 2007) (Japan),
+      CoCoPad ROM Cassette Kono men o ue ni shiteirete ne! (7 July 2007, 9 September 2007) (Japan), Disney Princess (Japan),
+      Disney's World of English 1: Birthday Fun (Japan), Disney's World of English 2: The Picnic (Japan),
+      Disney's World of English 3: The Circus (Japan), Disney's World of English 4: The Zoo (Japan),
+      ECC Junior no hajimete eikaiwa! 1 Eigo de tanoshiku Say Hello! (Japan), FUN-damentals Series - Smart Guide to 4th Grade (UK),
+      Hello Kitty no gakkou no ichinichi (Japan), Idainaru Sakkyokukatachi (Japan),
+      Kikansha Thomas to nakamatachi - Kikansha Thomas Yakunitatsu kikansha (Japan),
+      Kodomo Challenge English CoCoPad ROM Cassette Kono men o ue ni shiteirete ne! (2008/3 March - Shimajirou to Libby no
+      ABC Adventure, 2008/5 May - Shimajirou to Libby no Touch and step game de asobou) (Japan),
+      Kuma no Pooh-san Hachimitsu no tsubo ga ippai Pooh-san to kazu·katachi (Japan), Kuma no Pooh-san: Pooh-san to Hachimitsu (Japan),
+      Minna de tanoshiku! CoCoPad (Otameshi soft) (Japan),
+      Okaasan to Issho: Goo Choco Lantan: Spoo no Fushigi na Oto no Daibouken! (Japan),
+      Shinkenzemi Challenge 2-nensei Korasho to issho ni kuku o oboeyou! (Japan), Yuuki Rinrin Anpunch! (Japan)
+      [David Haywood, TeamEurope]</li>
+    <li><b>psion1</b>: Science Pack (alt), Utility Pack (alt) [Nigel Barnes]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/11670">11670</a>: altos/altos586.cpp: Added preliminary Altos ACS586 emulation. [Lubomir Rintel]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12494">12494</a>: machine/z80dma.cpp: Implemented burst mode and refactored code, and hooked up BUSRQ/BUSAK in systems using it. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12564">12564</a>: misc/marywu.cpp: Improved peripherals – it’s now possible to trigger music from the debugger. [flama12333]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12569">12569</a>: skeleton/zfirenze.cpp, skeleton/zvenezia.cpp: Dumped three Zanussi/Necta vending machines. [Joan RF, jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12596">12596</a>: skeleton/marsvending.cpp: Dumped two Mars Electronics vending machines. [Joan RF, jordigahan, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12604">12604</a>: dai_cass/xml: Moved language information to <tt>info</tt> elements; pcw.xml, xegs.xml: Cleaned up descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12610">12610</a>: debugger/debuggdbstub.cpp: Added an option to set the IP address to listen on. [Ramiro Polla]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12615">12615</a>: a800_flop.xml; a2600.xml: Improved descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12619">12619</a>: c128_flop.xml; plus4_cart.xml; vic1001_flop.xml; pet_rom.xml: Cleaned up descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12623">12623</a>: casio/pv1000.cpp: Assert BUSRQ during active display (gives more realistic performance). [lidnariq]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12624">12624</a>: Dumped three karaoke cartridges and two IVL Technologies karaoke systems. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12626">12626</a>: leapfrog_leappad_cart.xml: Dumped 21 CocoPad cartridges and one LeapPad cartridge. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12627">12627</a>: heathzenith/mms77316_fdc.cpp: Suppress side effects of data reads for debugger accesses. [Mark Garlanger]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12628">12628</a>: igs/igs_fear.cpp: Added more detail to manufacturer and description metadata. [Michael Sanborn]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12630">12630</a>: metro/metro.cpp: Split driver state class for different hardware configurations and cleaned up code. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12631">12631</a>: casio/pv1000.cpp: Fixed video scan line interrupt generation regression. [lidnariq]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12632">12632</a>: skeleton/koto_zevio.cpp: Added a skeleton Koto Laboratory Zevio SoC driver with one game. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12633">12633</a>: tvgames/generalplus_gpl16250_spi.cpp: Added a Plarail Shinkansen driving game (not working). [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12634">12634</a>: neogeo/neogeo_spr.h: Fixed horizontal video timings; neogeo/midas.cpp: Fixed zoom table RAM size. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12638">12638</a>: capcom/cps2.cpp: Added newer revisions of Hyper Street Fighter II and X-Men Vs. Street Fighter. [bugcutt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12639">12639</a>: tvgames/xavix_2000.cpp: Added preliminary support for Duel Masters: Duel Station. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12640">12640</a>: gaelco/gaelco3d.cpp: Added placeholders for the undumped microcontroller used by Speed Up. [Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12641">12641</a>: konami/xmen.cpp: Added service switch inputs. [jotego]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12642">12642</a>: igs/pgm2.cpp: Dumped the CPLD for Bu Bu Car. [Victor Fernandez (City Game), Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12643">12643</a>: misc/changyu.cpp: Hooked up the OPLL sound chip and vertical sync interrupt. [flama12333]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12645">12645</a>: sgi_mips.xml: Renamed some NetBSD CD-ROM images to make labels unique across parent/clone sets. [jflatt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12646">12646</a>: cpu/t11, ussr/bk.cpp: Improved interrupt handling on the 1801VM1 CPU and fixed miscellaneous issues. [shattered]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12647">12647</a>: sinclair/tsconf.cpp: Fixed graphics layer priorities and screen updates. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12649">12649</a>: matsushita/kn5000.cpp: Added a skeleton driver for the Technics SX-KN5000 keyboard. [Felipe Sanches, Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12651">12651</a>: konami/k052109.cpp: Implemented a configuration bit used by xmen and gradius3 allowing a workaround to be removed. [jotego]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12652">12652</a>: tvgames/spg2xx.cpp: Added Senario Drum Super Star. [David Haywood, Sean Riddle, Peter Wilhelmsen]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12654">12654</a>: gaelco/gaelco3d.cpp: Added placeholder for Football Power ball controller microcontroller ROM. [Recreativas.org, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12655">12655</a>: tvgames/spg2xx.cpp: Filled in the year for Drum Super Star. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12656">12656</a>: atari/a2600.cpp: Added an NTSC TV Boy variant from Nics. [Taksangs, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12657">12657</a>: tvgames/spg2xx_wiwi.cpp: Filled in the year for Double Dance Mania: Mega 12 (shown on packaging). [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12659">12659</a>: casio/pv1000.cpp: Fixed I/O port reads and interrupt acknowledgement. [lidnariq]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12661">12661</a>: hp/hp98x6.cpp, hp/hp98x6_optrom.cpp, hp98x6_rom.xml: Added HP98x6 series option ROM support. [F.Ulivi]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12662">12662</a>: cirsa/neptunp2.cpp: Dumped B. Gaming Technology Dancing Bells (not working). [hammy, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12663">12663</a>: atari/cops.cpp: Added default non-volatile RAM contents for Revelations. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12664">12664</a>: igs/igs_fear.cpp: Save non-volatile RAM contents, and cleaned up inputs. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12665">12665</a>: sat_cart.xml, sat_vccart.xml: Avoid abbreviations and use lowercase for descriptive text in descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12667">12667</a>: igs/igs_m027.cpp: igs/igs_m027xa.cpp: Dumped internal ROMs for two IGS027A CPUs. [Peter Wilhelmsen, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12671">12671</a>: igs/igs_m027.cpp: Dumped internal ROMs for four IGS027A CPUs. [Guru, XingXing, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12672">12672</a>: konami/k573fpga.cpp: Implemented proper MP3 decryption for Dance Dance Revolution Solo Bass Mix. [spicyjpeg, Windy Fairy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12675">12675</a>: machine/intelfsh.cpp: Added ST M29W640GB 8K Flash device. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12677">12677</a>: igs/igs_m027.cpp: Dumped internal ROMs for two IGS027A CPUs. [Guru, XingXing, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12679">12679</a>: emu/debug/dvdisasm.cpp: Fixed horizontal scrolling; debugger/win: Don’t restrict maximum window width. [dave-br]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12680">12680</a>: igs/igs_m027.cpp, igs/igs_m027_link.cpp: Dumped internal ROMs for four IGS027A CPUs. [Guru, XingXing, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12681">12681</a>: msx1_cart.xml: Corrected ROM loading for X &amp; Y. [Wilbert Pol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12683">12683</a>: igs/igs_m027.cpp: Added decryption for lhdmg and lhdmgp. [XingXing, Happy]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/12685">12685</a>: igs/pgmcrypt.cpp: Fixed decryption for mgcs3 and mgzz; igs/igs_m027.cpp corrected a game title. [XingXing, Happy]</li>
+</ul>
