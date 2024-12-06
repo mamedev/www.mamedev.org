@@ -67,7 +67,7 @@ function ancient_mirror_directory($version,  $title = NULL)
 		<a href="release.html">Latest Release</a> page.  Below is a collection of
 		older MAME releases, dating back to the first official release from February, 1997.<br>
 		MESS only releases (prior to version 0.148) are available and are kindly hosted by AntoPISA
-		at the <a href="https://www.progettosnaps.net/mess/">MESS Repository</a>.  MAME
+		at the <a href="https://www.progettosnaps.net/mess/repository/">MESS Repository</a>.  MAME
 		releases are available at <a href="https://github.com/mamedev/mame/releases">GitHub</a> and
 		<a href="https://sourceforge.net/projects/mame/files/mame/">SourceForge</a>.</p>
 
