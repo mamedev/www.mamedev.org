@@ -30,10 +30,10 @@ $listxml = $tag_name . 'lx.zip';
 $listxml_dc = 0;
 $source_exe = $tag_name . 's.exe';
 $source_exe_dc = 0;
-$source_zip = $tag_name . 's.zip';
-$source_zip_dc = 0;
-$binary_64bit = $tag_name . 'b_64bit.exe';
-$binary_64bit_dc = 0;
+$binary_x64 = $tag_name . 'b_x64.exe';
+$binary_x64_dc = 0;
+$binary_arm64 = $tag_name . 'b_arm64.exe';
+$binary_arm64_dc = 0;
 
 foreach ($response->assets as $asset) {
 
@@ -50,9 +50,13 @@ foreach ($response->assets as $asset) {
 				$source_exe_size = safe_filesize($asset->size);
 				$source_exe_dc = $asset->download_count;
 				break;
-		case $binary_64bit:
-				$binary_64bit_size = safe_filesize($asset->size);
-				$binary_64bit_dc = $asset->download_count;
+		case $binary_x64:
+				$binary_x64_size = safe_filesize($asset->size);
+				$binary_x64_dc = $asset->download_count;
+				break;
+		case $binary_arm64:
+				$binary_arm64_size = safe_filesize($asset->size);
+				$binary_arm64_dc = $asset->download_count;
 				break;
 	}
 }
@@ -95,7 +99,7 @@ $title = 'MAME | Latest MAME Release';
 		<p><b>Statistics are updated each 5 minutes</b></p>
 
 		<div class="panel panel-primary">
-		  <div class="panel-heading">MAME 0.<?php echo $version ?> Official Binaries</div>
+		  <div class="panel-heading">MAME 0.<?php echo $version ?> Official Binary Packages</div>
 		  <table class="table">
 			<tr>
 				<th width="23%">File</th>
@@ -104,15 +108,23 @@ $title = 'MAME | Latest MAME Release';
 				<th width="12%">Downloads</th>
 			</tr>
 			<tr>
-				<td class="link"><?php release_mirror_file($binary_64bit); ?></td>
-				<td class="number"><?php echo $binary_64bit_size ?></td>
-				<td>MAME 0.<?php echo $version ?> 64-bit Windows binaries.</td>
-				<td align="right"><span class="badge"><?php echo $binary_64bit_dc ?></span></td>
+				<td class="link"><?php release_mirror_file($binary_x64); ?></td>
+				<td class="number"><?php echo $binary_x64_size ?></td>
+				<td>MAME 0.<?php echo $version ?> Windows x64 binaries<br/>
+				Requires Windows 7 or later and a CPU with x86-64-v2 functionality</td>
+				<td align="right"><span class="badge"><?php echo $binary_x64_dc ?></span></td>
+			</tr>
+			<tr>
+				<td class="link"><?php release_mirror_file($binary_arm64); ?></td>
+				<td class="number"><?php echo $binary_arm64_size ?></td>
+				<td>MAME 0.<?php echo $version ?> Windows Arm64 binaries<br />
+				Requires Windows 10 or later and a CPU with Armv8.2-A functionality</td>
+				<td align="right"><span class="badge"><?php echo $binary_arm64_dc ?></span></td>
 			</tr>
 			<tr>
 				<td class="link"><?php release_mirror_file($listxml); ?></td>
 				<td class="number"><?php echo $listxml_size ?></td>
-				<td>MAME 0.<?php echo $version ?> full driver information in XML format.</td>
+				<td>MAME 0.<?php echo $version ?> full driver information in XML format</td>
 				<td align="right"><span class="badge"><?php echo $listxml_dc ?></span></td>
 			</tr>
 		  </table>
