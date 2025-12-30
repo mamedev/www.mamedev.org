@@ -1,0 +1,533 @@
+MAME 0.284
+
+<p>MAME 0.284 is ready just in time for the end of the year!  Two
+interesting arcade prototypes have turned up this month.  One is Saurian
+Front, an early version of what became Strike Force, developed at
+Williams before they acquired the Midway name.  The other is a
+completely unreleased Atari game called Jammin’ that runs on Donkey Kong
+hardware.  There are a few more Sega Model 2 fixes this month, helping
+Virtua Cop 2 in particular.</p>
+
+<p>The Brainchild PLS-1000, a hand-held educational device from the ’90s
+that you may not even have heard of, is now emulated.  You can now use
+various replacement keyboards for early Apple II computers, some of
+which had advanced features like macro recording.  There were some big
+software list updates this month for quite a few computers.  The
+floptool disk image utility included with MAME has improved usability.
+You can even simulate receiving a Sega Channel broadcast on your
+emulated Sega Genesis.</p>
+
+<p>Of course, there’s far more in this release than we can talk about
+here, and you can read all about it in the <a
+href="https://www.mamedev.org/releases/whatsnew_0284.txt">whatsnew.txt
+file</a>.  The source code and 64-bit Windows binary packages are
+linked from <a href="https://www.mamedev.org/release.html">our
+download page</a>.  All the best in the new year from MAMEdev!</p>
+
+<!--more-->
+
+<h3>MAME Testers bugs fixed</h3>
+<ul>
+    <li><a href="https://mametesters.org/view.php?id=2411">02411</a>: [Graphics] (taito/taito_f2.cpp) cameltryj: Glitches are visible on the stage select screen. (dink)</li>
+    <li><a href="https://mametesters.org/view.php?id=8883">08883</a>: [Crash/Freeze] (konami/xmen.cpp) xmen and clones: The game can freeze after changing settings. (Dirk Best)</li>
+    <li><a href="https://mametesters.org/view.php?id=9287">09287</a>: [Graphics] (sega/model2.cpp) vcop2: Shot enemies and burning cars flash magenta instead of white. (Matthew Daniels)</li>
+    <li><a href="https://mametesters.org/view.php?id=9292">09292</a>: [Sound] (namco/namcos10.cpp) g13jnr: The emulator may crash processing sound. (O. Galibert)</li>
+    <li><a href="https://mametesters.org/view.php?id=9300">09300</a>: [DIP/Input] (pacman/pacman.cpp) newpuc2, newpuc2b: Bonus life settings are labelled incorrectly. (UnclePetros)</li>
+    <li><a href="https://mametesters.org/view.php?id=9310">09310</a>: [Sound] (pc/ibmpcjr.cpp) ibmpcjr: The SN76496 produces an audible buzz after starting the system. (AJR)</li>
+    <li><a href="https://mametesters.org/view.php?id=9313">09313</a>: [Sound] (sega/model2.cpp) vcop2: Music does not play in the beginner stage. (Matthew Daniels)</li>
+    <li><a href="https://mametesters.org/view.php?id=9315">09315</a>: [Sound] (taito/superchs.cpp) superchs and clones: Some sound effects do not play. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=9316">09316</a>: [Sound] (pc/ct486.cpp) ct486 with sb16_lle: Sound eventually stops working properly in Wolfenstein 3D. (Angelo Salese)</li>
+    <li><a href="https://mametesters.org/view.php?id=9323">09323</a>: [Documentation] (misc/unkhorse.cpp) unkhorse: The game title is actually Derby Derby. (QtQ)</li>
+    <li><a href="https://mametesters.org/view.php?id=9326">09326</a>: [Graphics] (nichibutsu/armedf.cpp) terraf and clones: Tilemap graphics appear to be cropped. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=9327">09327</a>: [Graphics] (nichibutsu/armedf.cpp) terraf and clones: Some sprites are not visible. (motomachi16)</li>
+    <li><a href="https://mametesters.org/view.php?id=9328">09328</a>: [Sound] (nichibutsu/armedf.cpp) terraf and clones: The FM sound chip should be a YM3812. (Lord Nightmare)</li>
+    <li><a href="https://mametesters.org/view.php?id=9329">09329</a>: [Sound] (nichibutsu/armedf.cpp) armedf and clones: The FM sound chip should be a YM3812. (Lord Nightmare)</li>
+    <li><a href="https://mametesters.org/view.php?id=9331">09331</a>: [Graphics] (konami/finalizr.cpp) finalizr: The screen image is cropped incorrectly. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=9332">09332</a>: [DIP/Input] (konami/finalizr.cpp) finalizr: The screen orientation DIP switch settings are reversed. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=9333">09333</a>: [Gameplay] (dataeast/dec8.cpp) ghostb and clones, meikyuh and clone: Most sprites are missing in stage 2. (hap)</li>
+    <li><a href="https://mametesters.org/view.php?id=9339">09339</a>: [Crash/Freeze] (esprit/esp250c.cpp) esp250c: The emulator may crash when updating the screen. (Dirk Best)</li>
+</ul>
+
+<h3>New working systems</h3>
+<ul>
+    <li>Brainchild PLS-1000 [Sean Riddle, Angelo Salese]</li>
+    <li>Jammin' (prototype) [SynaMax, Dutchman2000, David Haywood]</li>
+    <li>MAME DSP563xx unit tests [O. Galibert]</li>
+    <li>Novag Industries Gomoku Computer [hap, Berger]</li>
+    <li>South Carolina Applied Technology The Dimension [hap, Sean Riddle]</li>
+</ul>
+
+<h3>New working clones</h3>
+<ul>
+    <li>Cat AB ABC 80 with ABC80L [Curt Coder]</li>
+    <li>Crazy Monkey (bootleg, 050120, payout percentage modified) [hammy]</li>
+    <li>El Dorado (V1.5U, Dyna/Grayhound) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS01: American Gold, Star Sevens, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS02: Black Bart, Diamonds 7's, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS03: Cash Cabaret, Wild West, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS04: Diamond Delight II, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS05: Diamond Double, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS06: Dream Catcher, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS07: Egyptian Gold, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS08: Flaming 7's, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS09: Golden Treasure, Flaming 7's #2, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS10: Greenbacks, Lucky Shamrock, Red White &amp; Blue 7's, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS11: Harley Davidson Black, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS12: Harley Davidson White, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS13: Hollywood Nights, Dynamite Diamonds, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS14: House of Fury, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS15: Independence Day, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS16: Infinity, Diamond Doubles, Cherry Bonus, All Sevens) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS17: Jackpot Junction, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS18: Jokers Wild, Deuces Wild, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS19: Konocti Gold, Bar TNT, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS20: Midnight 7's, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS21: Mighty Buffalo, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS22: Moolah, Diamonds 7's, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS23: Moon Over SA, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS24: Sturgeon 7's, Native American Gold, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS25: Native Nickels, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS26: Native Nickels, Sun God, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS27: Palace of Riches, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS28: Phantom, Diamonds 7's, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS29: Prospector's Gold, Red Hot Ice, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS30: Prospector's Gold, Red White &amp; Blue 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS31: Red Hot Ice, Red White &amp; Blue 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS32: Rising Star, Trophy Bucks, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS33: Rockin' Reels, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS34: Rockin' Reels, Rising Star, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS35: Rolling Thunder, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS36: Super Stars &amp; Stripes, Sweethearts &amp; Sevens, Star Sevens, Cherry Bonus)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS37: Sweethearts &amp; Sevens, Diamonds 7's, Cherry Bonus, Nevada Numbers)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS38: Wild Thing, Jokers Wild, Cherry Bonus Wild, Nevada Numbers Wild)
+      [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Flaming 7's (50 bonus, GS39: Wild Fire, Diamonds 7's, Cherry Bonus, Nevada Numbers) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Fruit Bonus 2000 / New Cherry 2000 (Version 3.7) [Ioannis Bampoulas]</li>
+    <li>Gauntlet Legends (version 1.4) [Hydreigon]</li>
+    <li>hack (Videx) Apple ][+ (with Enhancer ][ lowercase display mod) [AJR, Apple II Documentation Project]</li>
+    <li>Head On 2 (Sega Slimline) [SNESNESCUBE64]</li>
+    <li>Hegener + Glaser Mephisto Blitz- und Problemlösungs-Modul (prototype) [Mr. Lars]</li>
+    <li>Hegener + Glaser Mephisto Blitz- und Problemlösungs-Modul (set 3) [Mr. Lars]</li>
+    <li>Hyperdrive (ver 1.31, Oct 21 1998) [Hydreigon]</li>
+    <li>IPM Invader (M11) [Apocalypse, Dwayne Kirkwood]</li>
+    <li>Janyou Part I (Double Bet) [hammy]</li>
+    <li>Lars Hjorth Mephisto Blitz- und Problemlösungs-Modul (version 25.2) [Mr. Lars]</li>
+    <li>Mingxing San Que Yi (Taiwan, V102TW) [Mr. Zhang, little0]</li>
+    <li>Ms. Pac-Man (bootleg, set 6) [Ioannis Bampoulas]</li>
+    <li>Omega Fighter (set 2) [Dwayne Kirkwood, Apocalypse Brian Troha]</li>
+    <li>Pit Boss Superstar (9221-10-00) [Brian Troha, The Dumping Union]</li>
+    <li>Progear (Europe 010117) [Eduardo Anay, smf]</li>
+    <li>Saurian Front (proto v5.0 8/07/90)
+      [Enrique Robledo Arnuncio, Sean Sutton, Smitdogg, rtw, Gor, Brian Troha, Carl, coolmod, The Dumping Union]</li>
+    <li>Super Fruit Bonus (Version 2.3) [Ioannis Bampoulas]</li>
+    <li>Triple Draw Poker (Video Village) [Apocalypse, Dwayne Kirkwood]</li>
+    <li>Trivia ? Whiz Edition 4 (6221-10, U5-0A, alt Strange But True trivia) [Brian Troha, The Dumping Union]</li>
+    <li>World Invader [Domenico Cervini]</li>
+    <li>Xevious (Atari, set 4) [Siftware]</li>
+</ul>
+
+<h3>Systems promoted to working</h3>
+<ul>
+    <li>Funtech Entertainment Super A'Can [Angelo Salese, Ryan Holtz]</li>
+    <li>Sega / International Business Machines Teradrive (Japan, Model 2) [Angelo Salese]</li>
+</ul>
+
+<h3>Clones promoted to working</h3>
+<ul>
+    <li>Sega / International Business Machines Teradrive (Japan, Model 3) [Angelo Salese]</li>
+</ul>
+
+<h3>New systems marked not working</h3>
+<ul>
+    <li>Akai / Roger Linn MPC 2000XL [R. Belmont]</li>
+    <li>The Aladdin (V1.2U) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Animal Kaiser - The King Of Animals (ANA1004-NA-B) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Animal Kaiser - The King of Animals (Evo 1, ANA2004-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Animal Kaiser - The King of Animals (Evo 2, ANA2004-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Animal Kaiser - The King of Animals (Evo 8, ANA2004-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Animal Kaiser - The King of Animals (unknown Evo, ANA2004-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Casio Color Digital Diary (CSF-5550) [QUFB]</li>
+    <li>Casio My Magic Diary (JD-5000) [QUFB]</li>
+    <li>Casio Opinion (RX-850) [QUFB]</li>
+    <li>Casio Pet Avenue - My room fantasy [QUFB]</li>
+    <li>Casio Super Denshi Techou - Pet World [QUFB]</li>
+    <li>Casio Super Denshi Techou Jr. - Nigaoe Telepathy [QUFB]</li>
+    <li>Casio Super Denshi Techou Jr. - Pet Telepathy [QUFB]</li>
+    <li>Casio Super Denshi Techou Jr. - Puppy Telepathy [QUFB]</li>
+    <li>Da Huangguan [little0]</li>
+    <li>Dongshizhang (China, Ver. 212) [Mr. Kong]</li>
+    <li>Golden Egg (version U1.8) [Ioannis Bampoulas]</li>
+    <li>Golden Treasure Island (Ver. Alpha 100) [Ioannis Bampoulas]</li>
+    <li>Hard Puncher Hajime no Ippo - The Fighting! (VER.2.02J) [buffi, hammy]</li>
+    <li>Hewlett-Packard HP 620LX [QUFB]</li>
+    <li>Kidz Biz / Jakks Pacific VJ Starz Dance Mat [TeamEurope, David Haywood]</li>
+    <li>Mahjong Tokkyu Kaiten-ban Part 2 (Japan) [dyq, little0]</li>
+    <li>Pac-Man Battle Royale (US, PBR1022-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Pac-Man's Arcade Party (PMAAM12-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>The Pirates of Dark Water (SNES bootleg) [hammy, little0, Mr. Kong]</li>
+    <li>Qianxi Jielong [little0]</li>
+    <li>Silicon Graphics IRIS 1400 [Bitsavers]</li>
+    <li>Torch Computers Quad X [Bitsavers]</li>
+    <li>Torch Computers Quad X (68030 prototype) [Plamen Mihaylov]</li>
+    <li>Umi Monogatari Lucky Marine Theater (ULS1001-ST-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>unknown 8085-based crane game [SpinalFeyd]</li>
+    <li>unknown Amstar cards game (set 1) [Siftware]</li>
+    <li>unknown Hom Inn cards game [little0]</li>
+    <li>Waku Waku Thomas (Japan) [hammy, SpinalFeyd]</li>
+</ul>
+
+<h3>New clones marked not working</h3>
+<ul>
+    <li>The Aladdin (V1.1A) [Robertto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>AS-1 Controller (set 2) [CoolFox, gamerfan, rtw, f205v, Smitdogg, Sean Sutton, Brian Troha, Gamecorp]</li>
+    <li>AS-1 Controller (set 3) [CoolFox, gamerfan, rtw, f205v, Smitdogg, Sean Sutton, Brian Troha, Gamecorp]</li>
+    <li>AS-1 Controller (set 4) [CoolFox, gamerfan, rtw, f205v, Smitdogg, Sean Sutton, Brian Troha, Gamecorp]</li>
+    <li>Backgammon (Wand) [stonedDiscord]</li>
+    <li>Cherry Master '99 (QL-1 V9B.00, Cleco, Hand Count?) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Cherry Master '99 (QL-1 V9B.00, USA long PCB) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Cherry Master '99 (QQ-1 V9B.00, Cleco) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Cyber Police ESWAT (bootleg with MC68705) [hammy]</li>
+    <li>Double Dragon (bootleg with 3xM6809, set 3)
+      [Roberto Fresca, Walter Redondito Areco, Gabriel Vega (El Pampa), Emmanuel Firmapaz, Club Argentino de Arcades]</li>
+    <li>Double Dragon (bootleg with 3xM6809, set 4) [Roberto Fresca, f205v]</li>
+    <li>El Dorado (V1.1U) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>New Texas '99 (QL-1 V9B.00, Kolom V1) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Pac-Man Battle Royale (Japan, PBR101-1-NA-A) [Guru, Baffski, rtw, ekorz]</li>
+    <li>Radica Family Tetris (PAL) [TeamEurope]</li>
+    <li>Sky Robo (bootleg) [Apocalypse, Dwayne Kirkwood]</li>
+    <li>SSD Company LTD XaviX Aerostep MC (XaviXPORT, Japan) [David Haywood, TeamEurope]</li>
+    <li>SSD Company LTD XaviX Baseball (XaviXPORT, Japan) [David Haywood, TeamEurope]</li>
+    <li>SSD Company LTD XaviX Boxing / Jackie Chan PowerBoxing (XaviXPORT, Japan) [David Haywood, TeamEurope]</li>
+    <li>Tarzan (V201FA) [Ioannis Bampoulas]</li>
+    <li>Texas '99 (QL-1 V9B.00) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Texas '99 (QL-1 V9B.00, Cleco, Hand Count?) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Texas '99 (QL-1 V9B.00, USA long PCB) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Texas '99 (QQ-1 V9B.00, bootleg) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Texas '99 (QQ-1 V9B.00, Cleco) [Roberto Fresca, Grull Osgo, Ioannis Bampoulas]</li>
+    <li>Tonton (Japan, ver. 1.00) [hammy]</li>
+    <li>Treasure Ocean (v1.2) [Ioannis Bampoulas]</li>
+    <li>unknown Amstar cards game (set 2) [Siftware]</li>
+</ul>
+
+<h3>New working software list items</h3>
+<ul>
+    <li><b>apple2_flop_clcracked</b>:<br />
+      Comprehension Power Program: Level E-2 (4am crack), MIDI/4 Plus Enhanced Edition (version 1.1) (4am crack),
+      Math Sequences: Percents (version 1984) (4am crack), Star Traders (4am crack) [4am, A-Noid]<br />
+      MIDI/8 Plus (version 1.2) (4am and san inc crack) [4am, san inc, A-Noid]</li>
+    <li><b>apple2_flop_misc</b>: Enhancer ][ Utility Diskette [AJR, ASIMOV Apple II Collection]</li>
+    <li><b>apple2_flop_orig</b>:
+      12-Bar Tunesmith, The 21st Century Music Series: Playing and Reading Music, 4-Track Editor for Soundchaser Computer Music System,
+      Algebra Action: Courseware for Algebra I, Algebra Plotter Plus, Aliencounter &amp; Face Flash (revision 1),
+      Aliencounter &amp; Face Flash (revision 2), Aliencounter &amp; Face Flash (revision 3), Alpine Tram Ride (revision 0), Arithmekicks,
+      Arithmetickle, Aural Skills Trainer: Basic Chords, Aural Skills Trainer: Intervals, Aural Skills Trainer: Seventh Chords,
+      Award Maker Plus (version 23611), Balancing Act, Battling Bugs &amp; Concentraction (revision 1),
+      Battling Bugs &amp; Concentraction (revision 2), Bike Hike (revision 0), Blazing Paddles (revision 0),
+      Blazing Paddles (version 04421), Blazing Paddles (version 04431), Bolo, Cat 'n Mouse, Clef Notes Drill,
+      Clowning Around (revision 1), Cotton Tales (version 1987), Cotton Tales (version 1990), Dinosaur's Lunch, Dungeon Campaign,
+      Dyno-Quest, Ear Challenger: A Music Game, Early Music Skills, Easy Street,
+      English MicroLab: Assessment of English Skills (version A1), Factor Blast, The Flying Carpet, Follow Me, FourWord &amp; WordLift,
+      Fraction-oids (version 1989), Frenzy &amp; Flip Flop, Functional Harmony: Basic Chords,
+      Functional Harmony: Borrowed and Altered Chords, Functional Harmony: Diatonic Seventh Chords,
+      Functional Harmony: Secondary Dominants, Golf Classic &amp; Compubar, The Great Maine to California Race,
+      Guitar Wizard (version 11601), Guitar Wizard (version 11611), Gulp!! &amp; Arrow Graphics, Gulp!! &amp; Frenzy,
+      Hear Today... Play Tomorrow: Descending/Ascending Intervals, Hear Today... Play Tomorrow: Ear Training Skills,
+      Hear Today... Play Tomorrow: Find That Tune, Hear Today... Play Tomorrow: Melodic Dictation Beginning Level,
+      Hear Today... Play Tomorrow: Melodic Dictation Intermediate Level, How to Weigh an Elephant, The Jar Game &amp; Chaos,
+      Jumblezzz (version 1987), Kamikaze, Keyboard Arpeggios, Keyboard Blues, Keyboard Chords, Keyboard Extended Jazz Harmonies,
+      Keyboard Fingerings, Keyboard Intervals, Keyboard Jazz Harmonies, Keyboard Note Drill, Keyboard Speed Reading, Keyboard Tutor,
+      King Cribbage, Korg 800 4-Track MIDI Sequencer (version 1.0), Laser Bounce, Leadsheeter, Learning to Add &amp; Subtract (revision 1),
+      Let's Go Fishing, Listen! A Music Skills Program, Master Tracks (version 1.8), Master Tracks Pro (version 1.2), Match Up!,
+      Math Marvels, Math Masters, Math in a Nutshell, Micro League Baseball (Micro League Sports Association) (revision 1),
+      Micro League Baseball (Micro League Sports Association) (revision 2),
+      Micro League Baseball (Micro League Sports Association) (revision 3), Micro League Baseball: Box Score / Stats Compiler Disk,
+      Micro League Baseball: General Manager / Owner Disk, Microscopic Journey, Microtyping II, MIDI/4 (revision 5),
+      MIDI/8 Plus (version 1.2), MIDI/8 Plus for MPU-401 (version 1.2), Monkey Business (revision 1), Monkey Business (revision 2),
+      Music Appreciation: A Study Guide, Music Composer Quiz, Music History Review: Composers,
+      Music Theory Flash Cards (version 10/2/84), Musical Stairs (version 1984), Musical Terminology,
+      Note Detective I: Elementary Level, Note Detective II: Intermediate Level, Note Speller,
+      Number Please: Visual and Sequential Memory Practice (release 1), Patterns in Pitch (Composition and Dictation): Level One,
+      Patterns in Pitch (Composition and Dictation): Level Two, Patterns in Rhythm (Composition and Dictation): Level Three,
+      Patterns in Rhythm (Composition and Dictation): Level Two, Perspectives in Music History, Picture Perfect (version 1989),
+      Pipeline, Pixit (revision 0), Pixit (version 01331), Pixit Shape Library #1: Shapes &amp; Fonts, Pixit Shape Library #2: Science,
+      Pixit Shape Library #3: Kid Stuff, PolyWriter (version 1.2), Pop 'R Spell &amp; Pop 'R Spell Challenge, Prince (version 15521),
+      Prince (version 15531), Qwerty's Alphabet Adventure, Race Car Keys, Race the Clock, Rainy Day Games (version 13501), RoboMath,
+      Sargon II, Scrambled Eggs! (revision 1), Scrambled Eggs! (revision 2), Shutterbug's Pictures, Shuttle Intercept,
+      Sliding Block (revision 1) (Learning Technologies), Speedy Delivery, Story Sketcher (800K 3.5"),
+      Super Ear Challenger (version 1984), Take 1 (version 06431), Take 1 (version 06451),
+      Take 1 Animation Library #1: Actors &amp; Actions, Take 1 Animation Library #2: Heroes &amp; Villians,
+      Take 1 Animation Library #3: Business, Take 1 Programmer's Toolkit (version 10601-0000), Tank Attack &amp; Death Run, Tap-It,
+      Tranquility Base, Tune It ][, U-Boat Command, Wilderness Campaign, Word Machine &amp; Word Machine with Spelling List,
+      Zoo Puppet Theater [4am, A-Noid]</li>
+    <li><b>ibm5150</b>:<br />
+      The Norton Utilities 2.00, The Norton Utilities 2.01 (1983-07-04), The Norton Utilities 2.01 (1983-11-03),
+      The Norton Utilities 3.00, The Norton Utilities 4.00, The Norton Utilities 5.00 (1990-07-17) (5.25" disk),
+      The Norton Utilities 5.00 (1990-09-25) (5.25" disk), The Norton Utilities 5.00 (1990-12-11) (3.5" disk),
+      The Norton Utilities 6.00 (International) (3.5" disk), The Norton Utilities 6.01 (3.5" disk),
+      The Norton Utilities 6.01 (5.25" disk), The Norton Utilities Advanced Edition 4.50 (3.5" disk),
+      The Norton Utilities Advanced Edition 4.51 (3.5" disk), The Norton Utilities Advanced Edition 4.51 (5.25" disk) [BetaArchive]<br />
+      The Norton Utilities Advanced Edition 4.01 [Circuit Rewind]<br />
+      The Norton Utilities Advanced Edition 4.50 (5.25" disk) [Jeff Parsons]</li>
+    <li><b>ibm5170</b>:<br />
+      Norton Utilities for Windows 95 (version 1.0), Norton Utilities für Windows 95 (version 1.0) [archive.org]<br />
+      Die Norton Utilities 7.00 (1993-05-12) (3.5" disk), Die Norton Utilities 7.00 (1993-06-22) (3.5" disk),
+      The Norton Utilities 7.00 (3.5" disk), The Norton Utilities 7.00 (beta) (5.25" disk),
+      The Norton Utilities 7.00 (International) (3.5" disk), The Norton Utilities for Windows/DOS 8.00,
+      The Norton Utilities for Windows/DOS 8.00 (1994-02-28), Die Norton Utilities für Windows/DOS 8.00,
+      Die Norton Utilities für Windows/DOS 8.03, Le Norton Utilities per Windows/DOS 8.00, Norton Utilities для Windows 95 (версия 1.0)
+      [BetaArchive]<br />
+      Cheops pyramid (Sweden) [conradtrout]<br />
+      Alfons påhittelåda (Sweden), Handla med Alfons (Sweden) [FakeShemp]<br />
+      Alfons på äventyr i trafiken (Sweden), Kom till Alfons hemliga kalas (Sweden), Måla med Alfons (Sweden),
+      Pussla med Alfons (Sweden) [Max lundell]<br />
+      DOOM II: Hell on Earth (1.666) (Germany) [Mike Swanson]<br />
+      Mitt första datorprogram (Sweden) [retrotrollet]<br />
+      Norton Utilities for Windows 95 (version 1.0, upgrade) [WinWorld]</li>
+    <li><b>ibm5170_cdrom</b>:<br />
+      Norton Utilities 4.0, Norton Utilities 2000, Norton Utilities 2001, Norton Utilities for Windows 95 (version 1.0),
+      Norton Utilities for Windows 95 (version 2.0), Norton Utilities for Windows 95 (version 3.0), Norton Utilities for Windows NT 4.0
+      [archive.org]<br />
+      Norton Utilities 2002 [BetaArchive]<br />
+      Chasm: The Rift (Europe), Full Tilt! 2 Pinball (version 1.0), Full Tilt! Pinball (version 1.1),
+      Full Tilt! Pinball (version 1.1) (Scholastic Edition), Full Tilt! Pinball (version 1.1) (Thrustmaster OEM), Mega Man X (USA, DOS)
+      [redump.org]<br />
+      BSD on Windows (1.5) [vic485]</li>
+    <li><b>m5_cass</b>: 3D Squash, Rainbow Block, Reflection, Sansuu Keisan, Synthesizer, Touchdown, UFO Game [bsittler]</li>
+    <li><b>mac_flop_clcracked</b>:
+      Earl Weaver Baseball (version 1.5) (san inc crack), Wizardry II: The Knight of Diamonds (version 4.0) (san inc crack)
+      [4am, san inc, A-Noid]</li>
+    <li><b>mac_flop_orig</b>: Earl Weaver Baseball (version 1.5), Wizardry II: The Knight of Diamonds (version 4.0) [4am, A-Noid]</li>
+    <li><b>msx1_cart</b>:
+      3-D Bomberman (Japan), Akarui Nouen (Japan), Babbulkund 1999 (Japan), Binary Land (Japan), Biotech (Japan),
+      Bomber Man Special (Japan), Bousou Tokkyuu SOS - Stop The Express (Japan), Busy Rainy Day (Japan), Chick Fighter (Japan),
+      Dimensional Wars (Japan), Dog Fighter (Japan), Driller Tanks (Japan), Fireball (Japan), Gang Man (Japan), Gunman (Japan),
+      Help (Japan), Kaeru Shooter (Japan), Killer Station (Japan), Mah-Jong Crazy (Japan), MJ-05 (Japan), Police Dog (Japan),
+      Power Fail (Japan), Sea Bomber (Japan), Sky Diver (Japan), Star Soldier (Japan), Submarine Shooter (Japan), Super Doors (Japan),
+      T-Plan (Japan), Vegetable Crash (Japan), Zero Fighter (Japan) [file-hunter]</li>
+    <li><b>mz2000_snap</b>:
+      BASIC MZ-1Z001 (v1.0c), BASIC MZ-1Z002 (v1.0a), Binary Land, Cloud Kingdom, Dawn Patrol, Falcon Adventure, Flicky, Front Line,
+      Lucy, Mahjong, Mario Bros. Special, Plazma Line, Underground City, Wild Western, Xetter, Xetter II [TOSEC]</li>
+    <li><b>neogeo</b>: Bang Bang Busters 2 (demo v1.0) [PixelHeart]</li>
+    <li><b>nes</b>: Micro Mages Second Quest, Roniu's Tale, Roniu's Tale (demo version) [Mike Swanson]</li>
+    <li><b>pc6001_cass</b>:
+      The Amazon, Amita, Block, Break Through, Door Door, Earthbound, Eggy, Head On, Jintori Game, Power Knight, Pro Racer, Pyramid,
+      Space Enemy, Super Ball, Tiny Xevious, Trick Boy [TOSEC]</li>
+    <li><b>pc6001mk2_cass</b>:
+      Bokosuka Wars, Cannon Ball, Castle Excellent, Chack 'n Pop, Chrith Ai no Tabidachi, Daidasso, Dig Dug, Door Door Mk. II,
+      Dr. Slump Bubble Daisakusen, Flappy, Hisya, Ice Block, Nuts &amp; Milk, Pascom Tower, Plazma Line, Punchball Mario, Thunder Force,
+      Vegetable Crash [TOSEC]</li>
+    <li><b>pc98</b>:<br />
+      Soapland Story [krugman]<br />
+      Metal Force, N88 Disk BASIC(86) (v2.0, 2HD) [Neo Kobe Collection]</li>
+    <li><b>pc98_flop_orig</b>: Crux, Cycle Fight, DNA, Kaze, Slowdown [krugman]</li>
+    <li><b>pls1000_cart</b>:
+      Capitalization (v2.83), Decimal Math (v2.83), Introduction to Algebra (v2.83), Punctuation (v2.90), Word Knowledge (v2.83)
+      [Sean Riddle]</li>
+    <li><b>psx</b>:<br />
+      Xena - Warrior Princess (USA, prototype 19990811) [Hidden Palace]<br />
+      Xena - Warrior Princess (Europe), Xena - Warrior Princess (Europe, prototype 19990819), Xena - Warrior Princess (France),
+      Xena - Warrior Princess (Germany), Xena - Warrior Princess (Spain) [redump.org]</li>
+    <li><b>s2000_flop</b>: S2000 OS 2.00 [robcfg]</li>
+    <li><b>s3000_cdrom</b>:
+      Akai CD-ROM Sound Library Volume 1: Complete S3000 and CD3000 Sound Library,
+      Akai CD-ROM Sound Library Volume 2: Complete S1000/S1100 Library, Akai CD-ROM Sound Library Volume 3: Drum Kit Collection,
+      Akai CD-ROM Sound Library Volume 4: Rhythm Loop Collection, Akai CD-ROM Sound Library Volume 5: Percussion Collection,
+      Akai CD-ROM Sound Library Volume 6: Sound Effects Collection, Akai CD-ROM Sound Library Volume 7: New Keyboard Collection,
+      Akai CD-ROM Sound Library Volume 8: General MIDI Sets [archive.org]</li>
+    <li><b>specnext_sd</b>:<br />
+      Fiona's Flight [rcallenbach]<br />
+      System/Next 24.11 [SpecNext Ltd]</li>
+    <li><b>spectrum_betadisc_flop</b>:<br />
+      Aliens: Neoplasma 2 (demo v1.1, 50Hz), Aliens: Neoplasma 2 (demo v1.1, 60Hz), Aliens: Neoplasma 2 (demo v1.6, 50Hz),
+      Aliens: Neoplasma 2 (demo v1.6, 60Hz) [Sinc LAIR]<br />
+      Dizzy II - Treasure Island Dizzy - Extended Edition 2023, Dizzy III - Fantasy World Dizzy - Extended Edition 2024, E-SWAT (mod),
+      Final Fight (mod), Gremlins 2: The New Batch (mod), Gunrunner (mod), Pedro 1 + 2 + 3 (mod), Prince of Persia (mod),
+      Rick Dangerous 1 + 2 (mod), Yandex Retro Games Battle 2025 [Virtual TR-DOS]<br />
+      Attack (v1.0, Party Version), Attack (v1.1), Cindy Block (v1.0, Party Version), Cindy Block (v1.1),
+      Generals (v1.0, Party Version), Generals (v1.1), Kubanoid (v1.0, Party Version), Kubanoid (v1.1) [YRGB]<br />
+      Min! [ZX Art]</li>
+    <li><b>spectrum_cass</b>:<br />
+      Y.A.S.G. [Planeta Sinclair]<br />
+      First Aid (Eastmead Computer Systems), Letter Bomb [Planeta Sinclair, Steven Brown]<br />
+      Ciudades del Mundo, How to Get the Most Out of Your Computer, Nightflite (ZX Data), S.T.U.N. Runner (Erbe), Tunel 3D (Timex)
+      [Spectrum Computing]<br />
+      Asymmetry (v1.1), Cindy Block (v1.1), DS. Bodyguard (v1.1), Frostland (v1.1), Kubanoid (v1.1), Run Away Nose (v1.6),
+      Travel Unlimited (v1.1) [YRGB]</li>
+    <li><b>st_flop_demos</b>:
+      Full Metal Jacket, George Michael - Faith, INXS - Need You Tonight, Madonna - Holiday, Michael Jackson - The Way You Make Me Feel,
+      Rick Astley - Never Gonna Give You Up, Theme From Miami Vice, Yazz - The Only Way Is Up [pouet.net]</li>
+    <li><b>teradrive_flop</b>: The Manhole [ZiggyTheHamster]</li>
+    <li><b>teradrive_hdd</b>: IBM DOS (J4.06/V) [Nemesis]</li>
+    <li><b>zx81_cass</b>:<br />
+      Antiaéreo (type-in, Encliclopédia Prática de Informática - Volume 1),
+      O Barqueiro (type-in, Encliclopédia Prática de Informática - Volume 1),
+      Jogo das Letras (type-in, Encliclopédia Prática de Informática - Volume 1),
+      Tabuada (type-in, Encliclopédia Prática de Informática - Volume 1),
+      Tempo de Reação (type-in, Encliclopédia Prática de Informática - Volume 1) [Datassette]<br />
+      4 Magnificent Machine Code Games, 4 Magnificent Machine Code Games (alt), Condition Red, Greatest Games V1, Trader Jack,
+      ZX81 Arcade Pack, ZX81 Micro Computer Software [Planeta Sinclair, Mark Westmoreland, Steven Brown]<br />
+      Inheritance (alt 2) [Planeta Sinclair, Steven Brown]</li>
+</ul>
+
+<h3>Software list items promoted to working</h3>
+<ul>
+    <li><b>m5_cart</b>: Up Up Balloon [bsittler]</li>
+    <li><b>pc8801_flop</b>: Hoehoe Team 199x Music Disk Vol. 1 - Explosion [Aaron Giles, hap]</li>
+    <li><b>pc98</b>: Gao Gao! 1st - Radical Sequence, Grounseed [Angelo Salese]</li>
+    <li><b>x1_flop</b>: Alpha [holub]</li>
+</ul>
+
+<h3>New software list items marked not working</h3>
+<ul>
+    <li><b>ibm5170</b>: PC-FXGA (ISA16 DOS/V version) [archive.org]</li>
+    <li><b>ibm5170_cdrom</b>: Fallout (USA), Guimo (Germany, v2.2), Maniac Mansion: Day of the Tentacle (Europe) [redump.org]</li>
+    <li><b>pc98</b>:<br />
+      PC-FXGA (C-Bus version) [archive.org]<br />
+      Microsoft LAN Manager for MS-DOS (v2.1c) [NEC PC-9800 Central]</li>
+    <li><b>pc98_flop_orig</b>: Elysion (2HD version), Genesis, Mirai, Moon Child, Tritorn [krugman]</li>
+    <li><b>picno</b>: Manfī no Fushigi na Bōken [TeamEurope]</li>
+    <li><b>pippin</b>:
+      Compton's Interactive Encyclopedia (USA, prototype 19961028), Mr. Potato Head Saves Veggie Valley (USA, prototype 19961030),
+      Power Rangers Zeo Vs. The Machine Empire (USA, prototype 19961023) [redump.org]</li>
+</ul>
+
+<h3>Merged pull requests</h3>
+<ul>
+    <li><a href="https://github.com/mamedev/mame/pull/13161">13161</a>: midway/seattle.cpp: Added an additional version of Hyperdrive. [Hydreigon]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/13833">13833</a>: midway/vegas.cpp: Added an additional version of Gauntlet Legends and cleaned up ROMs for other games. [Hydreigon]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14311">14311</a>: philips/minitel_2_rpic.cpp: Added additional BIOS options and a media option for loading user ROMs. [Fabio D'Urso]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14429">14429</a>: mz2000_snap.xml: Added 16 MZ-2000 software items as snapshots since proper media support is currently lacking. [paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14443">14443</a>: seibu/sei25x_rise1x_spr.cpp: Merged SEI25X and RISE1X sprite hardware emulation into a device. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14450">14450</a>: hyperscan.xml, hyperscan_card.xml, x68k_flop.xml, orina_stylish_plus_cart.xml: Tidied list descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14453">14453</a>: Cleaned up code in VRender0-related drivers and devices. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14529">14529</a>: apple2_flop_orig.xml, apple2_flop_clcracked.xml, mac_flop_orig.xml, mac_flop_clcracked.xml: Added 27 items. [A-Noid]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14534">14534</a>: ibm5170.xml: Added eight Swedish games from Scandinavian PC Systems. [FakeShemp]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14537">14537</a>: spectrum_cass.xml: Added fifteen working items, and improved metadata. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14539">14539</a>: pacman/pacman.cpp: Corrected the bonus life DIP switch setting labels for Newpuc2 games. [UnclePetros]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14540">14540</a>: st_flop_demos.xml: Added eight music demos from AMJ. [pouet.net, Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14546">14546</a>: shared/namco_c355spr.cpp: Improved flexibility and cleaned up code. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14550">14550</a>: emu/rendlay.cpp: Improved performance of text component calculations and added an alignment mode. [Christian Brunschen]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14554">14554</a>: apple/apple2video.cpp: Improved FLASH timing. [arekkusu42]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14562">14562</a>: Improved the appearance of various Ensoniq layouts. [Christian Brunschen]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14564">14564</a>: tvgames/xavix_sound.cpp: Allow systems to override the default tempo. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14565">14565</a>: ensoniq/esqpanel.cpp, ensoniq/esq5505.cpp: Use keypad inputs for buttons (rather than keyboard). [Christian Brunschen]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14567">14567</a>: msx1_cart.xml: Added thirty working items. [file-hunter, paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14573">14573</a>: midway/vegas.cpp: Hooked up outputs for Cart Fury. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14575">14575</a>: sequential/prophet5.cpp: Added interactive internal artwork, and increased precision of adjuster inputs. [m1macrophage]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14576">14576</a>: toaplan/raizing.cpp: Added licensee names to region setting labels for bgareggak. [AugiteSoul]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14577">14577</a>: olivetti/att6300p_fdc.cpp: Emulated the AT&amp;T 6300 Plus 1.2 MB floppy drive controller. [donohoe00]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14578">14578</a>: misc/sfbonus.cpp: Added PCB type comments for several games. [Ioannis Bampoulas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14579">14579</a>: tvgames/xavix_2002.cpp: Dumped three Japanese XaviXPORT games (not working). [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14580">14580</a>: hash/ibmpcjx.cpp: Cleared erroneously set execute bit. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14581">14581</a>: misc/sfbonus.cpp: Added PCB type comments for several games. [Ioannis Bampoulas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14586">14586</a>: tvgames/xavix_m.cpp: Adjusted the timer logic so games no longer need the timer to be disabled. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14587">14587</a>: Dumped VJ Starz Dance Mat; Split Elan 3Axx video emulation into multiple devices for variants. [TeamEurope, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14589">14589</a>: ensoniq/esq5505.cpp: Fixed the VFX and SD-1 DUART clock frequency. [Giulio Zausa]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14590">14590</a>: apple: Fixed some issues with Apple II video emulation. [arekkusu42]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14592">14592</a>: sega/model2.cpp, cpu/i960: Fixed some video and I/O emulation issues (fixes <a href="https://mametesters.org/view.php?id=9287">MT09287</a>). [Matthew Daniels]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14593">14593</a>: konami/nwk-tr.cpp: Added the force feedback motor output for driving games. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14594">14594</a>: tecmo/gaiden.cpp: Made tilemap scrolling behave like real hardware (GitHub <a href="https://github.com/mamedev/mame/issues/14585">#14585</a>). [Jim Westfall]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14595">14595</a>: konami/zr107.cpp: Added the force feedback motor output. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14596">14596</a>: pc6001_cass.xml, pc6001mk2_cass.xml: Added software lists for PC-6001 family cassette software. [TOSEC, paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14597">14597</a>: misc/sfbonus.cpp: Added PCB type comments for a few games. [Ioannis Bampoulas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14598">14598</a>: casio/pickytlk.cpp, casio/superjr.cpp: Added eight more systems (not working). [QUFB]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14599">14599</a>: hp/hp620lx.cpp: Added a skeleton driver for the HP 620LX palmtop computer. [QUFB]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14604">14604</a>: sd132_flop.xml, sd1_flop.xml, vfxsd_flop.xml, ibm5170_cdrom-xml: Improved some metadata. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14606">14606</a>: vtech_innotab_cart.xml: Added a list of games in the header comment. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14608">14608</a>: igs/goldstar.cpp: Corrected DIP switch settings for cb3c. [Ioannis Bampoulas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14609">14609</a>: tvgames/generalplus_gpl16250_mobigo.cpp: Changed release years and added a list of undumped systems. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14612">14612</a>: emu/rendlay.cpp: Fixed cropped and incorrectly positioned text in some layouts. [Christian Brunschen]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14614">14614</a>: sinclair/specnext.cpp: Always use the specific access helper for register space accesses. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14615">14615</a>: konami/gticlub.cpp: Added the force feedback motor output. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14617">14617</a>: sega/model2.cpp: Added lamp outputs. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14619">14619</a>: namco/namcos22.cpp: Added LED and force feedback motor outputs for driving games. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14621">14621</a>: frontend/mame/luaengine.cpp: Allow scripts to check whether side effects are disabled. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14622">14622</a>: olivetti/m24_kbd.cpp: Improved mouse emulation. [donohoe00]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14623">14623</a>: Avoid passing <tt>-m</tt> flags for pointer size to the compiler on 64-bit RISC-V Linux. [Belegdol]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14625">14625</a>: sharp/mz700.cpp: Added the MZ-80K cassette list as a compatible software list. [paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14626">14626</a>: frontend/mame/luaengine.cpp: Expose <tt>machine::side_effects_disabled</tt> as a method rather than a property. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14627">14627</a>: machine/z80dma.cpp: Don’t raise a fatal error when an unknown register is accessed. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14629">14629</a>: mz2000_cass.xml: Reformatted notes for Polar Star II. [jflatt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14632">14632</a>: cpu/i86: Improved effective address calculation timing. [donohoe00]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14633">14633</a>: casio/superjr.cpp: Fixed the ROM size for jd320, and made ROM region lengths match ROM sizes. [QUFB]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14636">14636</a>: sega/model2.cpp: Added default backup RAM and EEPROM content for Hanguk Pro Yagu 98. [Matthew Daniels]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14640">14640</a>: ibm5170.xml: Corrected the media type for Grandmaster Chess, and marked Crystal Caves as a bad dump. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14641">14641</a>: frontend/mame/infoxml.cpp: Provide device tags as well as types. [Nathan Woods]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14643">14643</a>: m5_cart.xml: Replaced four items with better dumps; m5_cass.xml: Added seven working items. [bsittler, paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14645">14645</a>: sega/model2.cpp: Delay enabling interrupts when interrupt mask register is written (fixes <a href="https://mametesters.org/view.php?id=9313">MT09313</a>). [Matthew Daniels]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14647">14647</a>: psx.xml: Added six versions of Xena - Warrior Princess. [redump.org, Hidden Palace, David Silva]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14648">14648</a>: Added the PAL version of Family Tetris; Moved the Elan 3Axx devices into devices/machine. [David Haywood, TeamEurope]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14649">14649</a>: ibm5170.xml: Added a reconstructed copy of the German version of DOOM II. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14650">14650</a>: nes.xml: Added three working items. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14651">14651</a>: machine/dp8390.cpp: Set CR bit 5 on DMA completion. [Angelo Salese]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14654">14654</a>: neogeo.xml: Added a newer demo version of Bang Bang Busters 2. [PixelHeart, ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14655">14655</a>: m5_cass.xml: Removed incorrect Japanese title for UFO Game. [paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14657">14657</a>: ibm5170_cdrom.xml: Added BSD on Windows. [vic485, Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14660">14660</a>: nintendo/dkong.cpp: Added the Atari prototype Jammin' built from source. [SynaMax, Dutchman2000, David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14661">14661</a>: igs/goldstar.cpp: Show difficulty/payout rate DIP switch setting labels to match game. [Ioannis Bampoulas]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14665">14665</a>: Sorted Macintosh and Newton system short names in mame.lst. [stonedDiscord]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14666">14666</a>: misc/gamtor.cpp: Corrected CPU clock frequency, added real-time clock, and improved comments. [ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14668">14668</a>: midway/omegrace.cpp: Implemented screen flipping and added cocktail cabinet overlay to internal artwork. [Mark Deslauriers]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14669">14669</a>: atari/starwars.cpp: Changed the default DIP switch settings to match the manuals. [codefrog2002]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14670">14670</a>: snk/hng64.cpp: Added lamp and force feedback motor outputs. [Endprodukt]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14671">14671</a>: ibm5150.xml, ibm5170.xml, ibm5170_cdrom.xml: Added 1983 to 2002 versions of Norton Utilites. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14673">14673</a>: vtech_innotab_cart.xml: Expanded the list of known software in the header comment. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14674">14674</a>: zx81_cass.xml: Added thirteen working items. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14645">14645</a>: capcom/cps2.cpp: Added a European release of Progear (decryption key is missing). [Eduardo Anay, ClawGrip]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14677">14677</a>: sega/vicdual.cpp: Added an additional version of Head On 2. [SNESNESCUBE64]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14678">14678</a>: cpu/z80: Corrected Z80N non-maskable interrupt behavior in stackless mode. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14679">14679</a>: apple2_flop_orig.xml, Apple2_flop_clcracked.xml: Added 72 original dumps and improved metadata. [A-Noid]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14680">14680</a>: sound/cem3394.cpp: Allow self-oscillation when no waveforms are enabled. [m1macrophage]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14681">14681</a>: adp/manohman.cpp: Added an additional version of Merkur Backgammon. [stonedDiscord]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14682">14682</a>: ibm5150.xml: Added two additional versions of Norton Utilities. [Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14683">14683</a>: sinclair: Fixed several issues with Spectrum Next emulation. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14684">14684</a>: specnext_sd.xml: Added a software list with two Spectrum Next SD Card images. [David Haywood]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14687">14687</a>: msx1_cart.xml: Replaced the bad ROM dump for Chick Fighter. [paul75s]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14691">14691</a>: sinclair: Fixed some Spectrum Next graphical issues. [holub]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14693">14693</a>: spectrum_betadisc_flop.xml: Added 23 working items. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14697">14697</a>: vtech_innotab_cart.xml: Added a note about compatibility between regional variants. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14701">14701</a>: philips/mcd212.cpp: Fixed border colors in Mystic Midway (GitHub <a href="https://github.com/mamedev/mame/issues/14694">#14694</a>). [Vincent-Halver]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14704">14704</a>: ibm5170_cdrom.xml: Added four versions of Full Tilt! Pinball and its sequel. [reduump.org, Mike Swanson]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14706">14706</a>: apple2_flop_orig.xml, apple2_flop_clcracked.xml: Added 59 items and replaced one crack. [A-Noid]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14707">14707</a>: 3do_m2.xml, bbc_cass.xml, electron_cass.xml, amiga_flop.xml: Improved descriptions. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14711">14711</a>: tvgames/vtech_eu3a12.xpp: Added a list of similar undumped systems. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14712">14712</a>: bus/megadrive/cart/segach.cpp: Added a media option for loading a simulated transmission. [superctr]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14714">14714</a>: seibu/sei25x_rise1x_spr.cpp: Added a configuration option for allocating the raw sprite graphics bitmap. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14715">14715</a>: cpu/se3208/se3208dis.cpp, sound/vrender0.cpp, video/vrender0.cpp: Cleaned up a few details. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14716">14716</a>: midway/williams.cpp: Removed the version of Alien Arena without a sound program. [MajorHavocOnKLOV]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14718">14718</a>: pippin.xml: Added three items (not working). [redump.org, David Silva]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14720">14720</a>: vtech_innotab_cart.xml: Expanded the list of language/region codes in part numbers. [vtarchive]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14723">14723</a>: spectrum_cass.xml: Improved metadata. [ArcadeShadow]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14726">14726</a>: namco/namcos2_sprite.cpp, namco/namcos2_roz.cpp: Use priority mechanism rather than multiple drawing passes. [cam900]</li>
+    <li><a href="https://github.com/mamedev/mame/pull/14729">14729</a>: midway/williams.cpp: Renamed the Alien Arena clone to make the difference a bit more obvious. [MajorHavocOnKLOV]</li>
+</ul>
