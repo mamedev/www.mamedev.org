@@ -1,72 +1,141 @@
 Future plans announcement
 
-Hello everyone,<p>
+<p>Hello everyone,</p>
 
-It is rare that the MAME Team addresses the community with news of this magnitude, and we want to approach this moment with the transparency and care it deserves. What follows is a candid account of where this project stands, where it is going, and why the decisions we have made — difficult as some of them are — represent the most responsible path forward for a codebase that has grown into one of the most complex preservation efforts in the history of open-source software.<p>
+<p>It is rare that the MAME Team addresses the community with news of
+this magnitude, and we want to approach this moment with the
+transparency and care it deserves. What follows is a candid account of
+where this project stands, where it is going, and why the decisions we
+have made — difficult as some of them are — represent the most
+responsible path forward for a codebase that has grown into one of the
+most complex preservation efforts in the history of open-source
+software.</p>
 
-<b>🚀 On the Question of Technical Debt and Organizational Capacity</b><p>
+<p><b>🚀 On the Question of Technical Debt and Organizational Capacity</b></p>
 
-MAME has, for most of its existence, operated through the extraordinary dedication of volunteers who give their time and expertise freely. That generosity has produced something remarkable: a codebase that accurately emulates thousands of distinct hardware architectures, often to a degree of fidelity that no commercial effort has matched or even attempted. We do not take that legacy lightly. What we must acknowledge, however — and what we have been reluctant to state plainly until now — is that the accumulated complexity of that codebase has begun to exceed the realistic capacity of any volunteer-driven review process to maintain safely and sustainably.<p>
+<p>MAME has, for most of its existence, operated through the
+extraordinary dedication of volunteers who give their time and expertise
+freely. That generosity has produced something remarkable: a codebase
+that accurately emulates thousands of distinct hardware architectures,
+often to a degree of fidelity that no commercial effort has matched or
+even attempted. We do not take that legacy lightly. What we must
+acknowledge, however — and what we have been reluctant to state plainly
+until now — is that the accumulated complexity of that codebase has
+begun to exceed the realistic capacity of any volunteer-driven review
+process to maintain safely and sustainably.</p>
 
-The decision we are announcing today did not emerge from a single conversation or a sudden shift in priorities. It is the result of a long period of internal reflection on what it means to steward a project of this scope responsibly.<p>
+<p>The decision we are announcing today did not emerge from a single
+conversation or a sudden shift in priorities. It is the result of a long
+period of internal reflection on what it means to steward a project of
+this scope responsibly.</p>
 
-<b>🔧 The Confirmed Direction: Rust Migration and AI-Assisted Review</b><p>
+<p><b>🔧 The Confirmed Direction: Rust Migration and AI-Assisted Review</b></p>
 
-Following extensive deliberation, the MAME Team has reached a unanimous decision to pursue a <b>phased architectural migration toward Rust</b>, to be introduced incrementally across subsystems beginning with the May release. Concurrent with this migration, all pull requests submitted to the project will be subject to <b>mandatory AI-assisted code review</b> prior to human maintainer evaluation. Submissions that do not satisfy the automated review criteria will be closed without further escalation.<p>
+<p>Following extensive deliberation, the MAME Team has reached a
+unanimous decision to pursue a <b>phased architectural migration toward
+Rust</b>, to be introduced incrementally across subsystems beginning
+with the May release. Concurrent with this migration, all pull requests
+submitted to the project will be subject to <b>mandatory AI-assisted
+code review</b> prior to human maintainer evaluation. Submissions that
+do not satisfy the automated review criteria will be closed without
+further escalation.</p>
 
-We wish to be unambiguous: this is not a request for community input, nor is it a proposal subject to revision through discussion. The decision has been made. We are communicating it now because the community that has supported this work deserves to understand the reasoning behind it, not simply to receive the outcome.<p>
+<p>We wish to be unambiguous: this is not a request for community input,
+nor is it a proposal subject to revision through discussion. The
+decision has been made. We are communicating it now because the
+community that has supported this work deserves to understand the
+reasoning behind it, not simply to receive the outcome.</p>
 
-<b>📍 May Release Scope and Migration Priorities</b><p>
+<p><b>📍 May Release Scope and Migration Priorities</b></p>
 
-The May release represents the first concrete milestone in this transition. The initial migration scope includes:<p>
-
-<ul>
-<li> <b>Memory safety wrappers</b>: The highest-priority concern from a security and long-term maintainability standpoint.
-<li> <b>Sound driver subsystems</b>: An area of the codebase where Rust's ownership model offers the most immediate and demonstrable benefits.
-</ul>
-
-Our governing principle throughout this process is one that long-time contributors will recognize: if a driver cannot pass a cycle-accuracy parity check against the existing stable build, it does not ship. We will not sacrifice correctness for the sake of modernity.<p>
-
-<b>🖥️ Platform Targeting and Contributor Requirements</b><p>
-
-We recognize this element of the announcement may provoke significant discussion, and we want to address it directly.<p>
-
-Going forward, MAME's primary development target is a PC running a <b>recent version of Windows</b>, equipped with a GPU compliant with at minimum <b>DirectX 11 (SM5), OpenGL 4.3, or Vulkan</b>. This requirement is not arbitrary. The AI-assisted toolchain that underpins both code review and regression testing requires local model inference capabilities, and we believe it is reasonable to ask that contributors have access to hardware capable of running those tools.<p>
-
-We want to be clear about what this does and does not mean. Ports to other platforms remain explicitly permitted under the terms of the existing license. Those ports will be upstreamed as they become available, subject to the project's monthly token budget constraints. Modifications to source layout, core APIs, and OSD-layer support remain at the discretion of relevant fork maintainers, provided that any such modifications pass the AI-administered unit test suite prior to upstreaming. Contributions that exhaust the project's monthly token allocation will be queued to the following development cycle; we appreciate your patience as we calibrate these limits.<p>
-
-<b>🤖 On the Appropriate and Responsible Use of AI in This Context</b><p>
-
-We are aware that any announcement involving AI tooling will raise legitimate questions about the integrity of the work being produced. We want to address those questions honestly.<p>
-
-The language models integrated into our development pipeline serve three specific, bounded functions:<p>
-
-<ul>
-<li> <b>Structural refactoring</b>: Models are used to map established C++ memory-safety patterns into idiomatic Rust. Every output is reviewed and validated by a human contributor before it is considered for inclusion.
-<li> <b>Test matrix generation</b>: AI synthesizes comprehensive regression test cases derived from hardware datasheets, covering timing and behavioral edge cases at a scale that would be impractical to produce manually.
-<li> <b>Cycle-accuracy verification</b>: The AI-administered test suite exists to confirm, not to assume, that emulation fidelity is preserved throughout the migration process.
-</ul>
-
-We are not using generative tools to write drivers, to make architectural decisions, or to substitute for human expertise in matters of hardware behavior. The goal is augmentation of human capacity, not replacement of human judgment.<p>
-
-<b>🛠️ Communication Going Forward</b><p>
-
-Official updates regarding this migration will be communicated through:<p>
+<p>The May release represents the first concrete milestone in this
+transition. The initial migration scope includes:</p>
 
 <ul>
-<li> <b>GitHub</b>: Technical specifications, commit history, and branch tracking
-<li> <b>mamedev.org</b>: Milestone summaries and roadmap documentation
-<li> <b>Discord</b>: Community discussion and beta testing coordination
+    <li><b>Memory safety wrappers</b>: The highest-priority concern from a security and long-term maintainability standpoint.</li>
+    <li><b>Sound driver subsystems</b>: An area of the codebase where Rust's ownership model offers the most immediate and demonstrable benefits.</li>
 </ul>
 
-We are transitioning away from mailing lists as the primary channel for core development announcements. We recognize that this represents a meaningful change for a portion of our long-term community, and we have made this decision thoughtfully.<p>
+<p>Our governing principle throughout this process is one that long-time
+contributors will recognize: if a driver cannot pass a cycle-accuracy
+parity check against the existing stable build, it does not ship. We
+will not sacrifice correctness for the sake of modernity.</p>
 
-<b>🙏 A Final Word</b>
+<p><b>🖥️ Platform Targeting and Contributor Requirements</b></p>
 
-The history that MAME exists to preserve is irreplaceable. The hardware it documents is dying. The window during which accurate emulation can still be validated against physical reference hardware is narrowing. These are the stakes that motivate every decision described in this announcement, and they are the reason we have chosen to act now rather than continue managing decline incrementally.<p>
+<p>We recognize this element of the announcement may provoke significant
+discussion, and we want to address it directly.</p>
 
-The first milestone release will be accompanied by detailed comparison data demonstrating cycle-accuracy parity across all affected subsystems. We invite scrutiny of that data. We are confident it will speak for itself.<p>
+<p>Going forward, MAME's primary development target is a PC running a
+<b>recent version of Windows</b>, equipped with a GPU compliant with at
+minimum <b>DirectX 11 (SM5), OpenGL 4.3, or Vulkan</b>. This requirement
+is not arbitrary. The AI-assisted toolchain that underpins both code
+review and regression testing requires local model inference
+capabilities, and we believe it is reasonable to ask that contributors
+have access to hardware capable of running those tools.</p>
 
-Thank you, as always, for the trust you have placed in this project.<p>
+<p>We want to be clear about what this does and does not mean. Ports to
+other platforms remain explicitly permitted under the terms of the
+existing license. Those ports will be upstreamed as they become
+available, subject to the project's monthly token budget constraints.
+Modifications to source layout, core APIs, and OSD-layer support remain
+at the discretion of relevant fork maintainers, provided that any such
+modifications pass the AI-administered unit test suite prior to
+upstreaming. Contributions that exhaust the project's monthly token
+allocation will be queued to the following development cycle; we
+appreciate your patience as we calibrate these limits.</p>
 
-<b>MAME Core Team</b><p>
+<p><b>🤖 On the Appropriate and Responsible Use of AI in This Context</b></p>
+
+<p>We are aware that any announcement involving AI tooling will raise
+legitimate questions about the integrity of the work being produced. We
+want to address those questions honestly.</p>
+
+<p>The language models integrated into our development pipeline serve
+three specific, bounded functions:</p>
+
+<ul>
+    <li><b>Structural refactoring</b>: Models are used to map established C++ memory-safety patterns into idiomatic Rust. Every output is reviewed and validated by a human contributor before it is considered for inclusion.</li>
+    <li><b>Test matrix generation</b>: AI synthesizes comprehensive regression test cases derived from hardware datasheets, covering timing and behavioral edge cases at a scale that would be impractical to produce manually.</li>
+    <li><b>Cycle-accuracy verification</b>: The AI-administered test suite exists to confirm, not to assume, that emulation fidelity is preserved throughout the migration process.</li>
+</ul>
+
+<p>We are not using generative tools to write drivers, to make
+architectural decisions, or to substitute for human expertise in matters
+of hardware behavior. The goal is augmentation of human capacity, not
+replacement of human judgment.</p>
+
+<p><b>🛠️ Communication Going Forward</b></p>
+
+<p>Official updates regarding this migration will be communicated
+through:</p>
+
+<ul>
+    <li><b>GitHub</b>: Technical specifications, commit history, and branch tracking</li>
+    <li><b>mamedev.org</b>: Milestone summaries and roadmap documentation</li>
+    <li><b>Discord</b>: Community discussion and beta testing coordination</li>
+</ul>
+
+<p>We are transitioning away from mailing lists as the primary channel
+for core development announcements. We recognize that this represents a
+meaningful change for a portion of our long-term community, and we have
+made this decision thoughtfully.</p>
+
+<p><b>🙏 A Final Word</b></p>
+
+<p>The history that MAME exists to preserve is irreplaceable. The
+hardware it documents is dying. The window during which accurate
+emulation can still be validated against physical reference hardware is
+narrowing. These are the stakes that motivate every decision described
+in this announcement, and they are the reason we have chosen to act now
+rather than continue managing decline incrementally.</p>
+
+<p>The first milestone release will be accompanied by detailed
+comparison data demonstrating cycle-accuracy parity across all affected
+subsystems. We invite scrutiny of that data. We are confident it will
+speak for itself.</p>
+
+<p>Thank you, as always, for the trust you have placed in this
+project.</p>
+
+<p><b>MAME Core Team</b></p>

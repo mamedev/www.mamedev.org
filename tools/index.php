@@ -13,48 +13,86 @@ $title = 'MAME | Tools for building MAME on Windows';
 
 <h2><a id="user-content-introduction" class="anchor" href="#introduction" aria-hidden="true"></a>Introduction</h2>
 
-<p>The MAME development environment for Windows consists of the MinGW GCC
-compiler, MSYS2 environment (POSIX/Unix compatibility layer), plus various
-utilities such as Python and Git. It is available pre-packaged, or can be
-assembled by installing MSYS2 with the necessary packages.</p>
+<p>The standard environment for building MAME on Windows consists
+of:</p>
 
-<p>Our main source code repository is hosted on GitHub (<strong><em><a
-href="https://github.com/mamedev/mame.git">https://github.com/mamedev/mame.git</a></em></strong>),
-so you’ll need to check out a copy.  Various features are disabled by default,
-but can be enabled through arguments when building, and may require additional
-MSYS2 packages to be installed.  For more information on compiling MAME, see
-the <a href="https://docs.mamedev.org/initialsetup/compilingmame.html">relevant
+<ul>
+    <li>The MSYS2 environment (a Linux-like POSIX compatibility
+    layer</li>
+    <li>The MinGW GCC or clang compiler and libraries</li>
+    <li>Various utilities including Git, Python and GNU Make</li>
+</ul>
+
+<p>You can create a suitable environment by installing MSYS2, and then
+installing the necessary additional packages using the <b>pacman</b>
+package manager command.</p>
+
+<p>Our main source code repository is hosted on GitHub (<a
+href="https://github.com/mamedev/mame.git">https://github.com/mamedev/mame.git</a>),
+so you’ll need to check out a copy.  Various optional features are
+disabled by default, but can be by passing additional arguments to the
+<b>make</b> command.  Optional features may require additional MSYS2
+packages to be installed.  For more information on compiling MAME, see
+the <a
+href="https://docs.mamedev.org/initialsetup/compilingmame.html">relevant
 page</a> on our documentation site.</p>
 
 <h2><a id="user-content-installation-and-building" class="anchor" href="#installation-and-building" aria-hidden="true"></a>Installation and building</h2>
 
-<h3><a id="user-content-downloads" class="anchor" href="#downloads" aria-hidden="true"></a>Downloads</h3>
-
-<ul><li><a name="user-content-downloads"></a>Windows combined 32-bit/64-bit
-tools – <a
-href="https://github.com/mamedev/buildtools/releases/download/7.0/msys64-2022-01-12.exe">msys64-2022-01-12.exe</a>
-<em>(The build tools require a 64-bit version of Windows, and only
-64-bit tools are included by default.  To build 32-bit binaries, install
-the 32-bit MinGW tools, and switch between environments using
-<strong>config32.bat</strong> and
-<strong>config64.bat</strong>)</em></li>
-</ul>
-
 <h3><a id="user-content-installation" class="anchor" href="#installation" aria-hidden="true"></a>Installation</h3>
 
-<p>If you are installing it in a location other than the default
-(<em>C:\Users\Public\msys64</em>), after you unpack, double-click:
-<strong>autorebase.bat</strong></p>
+<p>First, download a copy of the MSYS2 environment from <a
+href="https://www.msys2.org/">their web site</a> and install it.  Note
+that the MSYS2 environment requires a 64-bit edition of Windows 10 1809
+or later for x86 or ARM.  After installing the MSYS2 environment, open
+one of the MSYS2 shells so you can start installing packages.</p>
 
-<p>To open a Windows cmd.exe shell, there is a batch file
-<strong>win32env.bat</strong> – this works better with interactive MinGW
-tools.</p>
+<p>You will always need to install Git, GNU Make, and the diff/patch
+utilities:</p>
 
-<p><strong>Important</strong> thing is to setup your git environment first</p>
+<div class="highlight highlight-source-shell"><pre>pacman -S git make diffutils patch</pre></div>
+
+<p>The additional packages you will need depend on the environment you
+will be using to build MAME.  If you’re using an x86 system, you can use
+the <b>UCRT64</b> environment.  This gives you a choice of the GCC and
+clang compilers.  You can also use the <b>CLANG64</b> environment,
+although this limits you to using the clang compiler, and some
+additional tools may not be available.  If you’re using an ARM system,
+you should use the <b>CLANGARM64</b> environment.</p>
+
+<p>If you’re using the <b>UCRT64</b> environment, you should install
+Python and the LLVM tools used for archiving static libraries and
+linking:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-ucrt-x86_64-{python,libc++,llvm,llvm-tools,lld}</pre></div>
+
+<p>If you’ll be building with the GCC compiler, install it as well:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-ucrt-x86_64-gcc</pre></div>
+
+<p>If you’ll be building with the clang compiler, install it as
+well:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-ucrt-x86_64-clang</pre></div>
+
+<p>If you’re using the <b>CLANG64</b> environment, you should install
+Python, the LLVM tools used for archiving static libraries and linking,
+clang, and the GCC compatibility wrapper:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-x86_64-{python,libc++,llvm,llvm-tools,lld,clang,gcc-compat}</pre></div>
+
+<p>If you’re using the <b>CLANGARM64</b> environment, you should install
+Python, the LLVM tools used for archiving static libraries and linking,
+clang, and the GCC compatibility wrapper:</p>
+
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-aarch64-{python,libc++,llvm,llvm-tools,lld,clang,gcc-compat}</pre></div>
+
+<p>After installing the required packages, an <strong>important</strong>
+thing is to set up Git first:</p>
 
 <div class="highlight highlight-source-shell"><pre>git config --global core.autocrlf <span class="pl-c1">true</span></pre></div>
 
-<p>And if you are contributor</p>
+<p>And if you are contributor:</p>
 
 <div class="highlight highlight-source-shell"><pre>git config --global user.email youremail@something.com<br/>
 git config --global user.name <span class="pl-s"><span class="pl-pds">"</span>Firstname Lastname<span class="pl-pds">"</span></span></pre></div>
@@ -66,114 +104,60 @@ directory:</p>
 
 <div class="highlight highlight-source-shell"><pre>git clone https://github.com/mamedev/mame.git</pre></div>
 
-<p>Alternatively, locate your existing source tree (drives are mapped to hidden dirs /c etc. under the virtual root):</p>
+<p>Alternatively, locate your existing source tree (drives are mapped to hidden directories <tt>/c</tt> etc. under the virtual root):</p>
 
 <div class="highlight highlight-source-shell"><pre><span class="pl-c1">cd</span> /c/Projects/mame</pre></div>
 
-<p>And finally to build:</p>
+<p>And finally to build, if you’re using the GCC compiler:</p>
 
 <div class="highlight highlight-source-shell"><pre>make</pre></div>
 
+<p>Or if you’re using the clang compiler:</p>
+
+<div class="highlight highlight-source-shell"><pre>make OVERRIDE_CC=clang OVERRIDE_CXX=clang++</pre></div>
+
 <h2><a id="user-content-updating-build-tools" class="anchor" href="#updating-build-tools" aria-hidden="true"></a>Updating build tools</h2>
 
-<p>Similar to package managers on Linux like apt-get, yum etc. MSYS2
-can automatically update packages for fixes, security updates etc.  To
-update all installed packages to current, from a regular Windows console
-run the following:</p>
+<p>Similar to package managers on Linux like apt-get, yum etc. MSYS2 can
+automatically update packages for fixes, security updates etc.  To
+update all installed packages to current, run the following command from
+an MSYS2 shell:</p>
 
 <div class="highlight highlight-source-shell"><pre>pacman -Sy<br/>
-pacman -S bash pacman msys2-runtime --noconfirm --needed</pre></div>
+pacman -S bash pacman msys2-runtime --needed</pre></div>
 
-<p>Next, exit the console and restart Msys2.</p>
+<p>Next, exit the shell and restart MSYS2.</p>
 
-<p>Finally, once back at the console, execute:</p>
+<p>Finally, once back at the shell, execute:</p>
 
-<div class="highlight highlight-source-shell"><pre>pacman -Su --noconfirm</pre></div>
+<div class="highlight highlight-source-shell"><pre>pacman -Su</pre></div>
 
 <h2><a id="user-content-alternative-shells-for-advanced-usage" class="anchor" href="#alternative-shells-for-advanced-usage" aria-hidden="true"></a>Alternative Shells for advanced usage</h2>
 
-<p>For a simple MSYS2 terminal use <strong>mingw64.exe</strong> to start.</p>
+<p>The shell you should use depends on the environment you’re using to
+build MAME:</p>
 
-<p>For more information about MSYS2, see <a href="https://github.com/msys2/msys2/wiki/MSYS2-introduction">MSYS2 Introduction</a>. </p>
+<ul>
+    <li><strong>ucrt64.exe</strong> for the 64-bit x86 UCRT64
+    environment</li>
+    <li><strong>clang64.exe</strong> for the 64-bit x86 CLANG64
+    environment</li>
+    <li><strong>clangarm64.exe</strong> for the 64-bit ARM CLANGARM64
+    environment</li>
+</ul>
+
+<p>For more information about MSYS2, see <a
+href="https://www.msys2.org/wiki/MSYS2-introduction/">MSYS2-Introduction</a>.</p>
 
 <h2><a id="user-content-optional-additional-packages" class="anchor" href="#optional-additional-packages" aria-hidden="true"></a>Optional additional packages</h2>
 
-<h3><a id="user-content-32bit" class="anchor" href="#sdl" aria-hidden="true"></a>SDL</h3>
-
-<p>If you wish to build 32-bit binaries:</p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-i686-gcc mingw-w64-i686-libc++ mingw-w64-i686-lld mingw-w64-i686-python mingw-w64-i686-SDL2 mingw-w64-i686-SDL2_ttf</pre></div>
-
-<h3><a id="user-content-qt5" class="anchor" href="#qt5" aria-hidden="true"></a>QT5</h3>
-
-<p>If you wish to build with the QT5 debugger:</p>
-
-<p><strong>For x64</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-x86_64-qt5</pre></div>
-
-<p><strong>For x86</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-i686-qt5</pre></div>
-
-<h3><a id="user-content-qt4" class="anchor" href="#qt4" aria-hidden="true"></a>QT4</h3>
-
-<p>If you with to build the QMC2 frontend or similar:</p>
-
-<p><strong>For x64</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-x86_64-qt4</pre></div>
-
-<p><strong>For x86</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-i686-qt4</pre></div>
-
-<h3><a id="user-content-ccache" class="anchor" href="#ccache" aria-hidden="true"></a>CCache</h3>
-
-<p>To be able to use ccache to speed-up (re)compilation</p>
-
-<p><strong>For x64</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-x86_64-ccache </pre></div>
-
-<p><strong>For x86</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-i686-ccache </pre></div>
-
-<h3><a id="user-content-cmake" class="anchor" href="#cmake" aria-hidden="true"></a>CMake</h3>
-
-<p>Used as build system for some other project that can be handy</p>
-
-<p><strong>For x64</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-x86_64-cmake </pre></div>
-
-<p><strong>For x86</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-i686-cmake </pre></div>
-
-<p><strong>To build in Windows environment use from build folder:</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>   cmake -G <span class="pl-s"><span class="pl-pds">"</span>MinGW Makefiles<span class="pl-pds">"</span></span> .. -DCMAKE_MAKE_PROGRAM=c:<span class="pl-cce">\m</span>sys64<span class="pl-cce">\w</span>in32<span class="pl-cce">\m</span>ake.exe</pre></div>
-
-<p><strong>To build in MSYS environment use from build folder:</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>   cmake -G <span class="pl-s"><span class="pl-pds">"</span>MSYS Makefiles<span class="pl-pds">"</span></span> ..</pre></div>
-
-<h3><a id="user-content-clang" class="anchor" href="#clang" aria-hidden="true"></a>Clang</h3>
-
-<p>If you wish to compile/link with the alternative Clang, go ahead and download <strong>STILL EXPERIMENTAL</strong>:</p>
-
-<p><strong>For x64</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>   pacman -S mingw-w64-x86_64-clang mingw-w64-x86_64-clang-analyzer mingw-w64-x86_64-clang-tools-extra </pre></div>
-
-<p><strong>For x86</strong></p>
-
-<div class="highlight highlight-source-shell"><pre>   pacman -S mingw-w64-i686-clang mingw-w64-i686-clang-analyzer mingw-w64-i686-clang-tools-extra</pre></div>
+<p>See our <a
+href="https://docs.mamedev.org/initialsetup/compilingmame.html#microsoft-windows">compiling
+documentation</a> for information on additional packages needed for
+optional features.</p>
 
 		<br/><br/>
-			<a href="previous-20201103.php">Previous version</a> is still available
+			<a href="previous-20220112.php">Previous version</a> is still available
 	<br/><br/><br/><br/>
 </div>
 <!-- /.container -->

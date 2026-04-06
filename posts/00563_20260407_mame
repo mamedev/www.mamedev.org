@@ -1,0 +1,121 @@
+Updated requirements for MAME
+
+<p>I hope you enjoyed our April Fools’ Day announcement.  With that out
+of the way, it’s time to discuss actual upcoming changes to MAME.  We’re
+upgrading the development language standard from C++17 to C++20 and
+winding back support for obsolete configurations.  We’ll also be
+reducing the frequency of releases a bit, so there will no longer be a
+release nearly every month.  There will be no April release; our next
+release will be near the end of May.</p>
+
+<p>A summary of updated requirements:</p>
+
+<ul>
+    <li>A compiler and C++ standard library with a reasonable level of
+    C++20 support.  GCC 11 is the oldest version of GCC that we will
+    support.  You can also use a reasonably up-to-date version of
+    clang.</li>
+    <li>Windows releases will require an updated installation of
+    Windows 10 or later.  Microsoft has already discontinued mainstream
+    support for Windows 10, as well as all prior versions of Windows
+    Home and Pro, and Windows 11 is already four years old.</li>
+    <li>MAME’s Qt-based debugger will require Qt 6.</li>
+</ul>
+
+<p>A summary of some functionality we’re removing:</p>
+
+<ul>
+    <li>The 32-bit x86 (i686) recompiler back-end.  It’s been over two
+    decades since the x86-64 architecture was introduced.  All major x86
+    operating systems have supported x86-64 for years, and 32-bit x86
+    support is being wound back.</li>
+    <li>Support for compiling on OpenSolaris and other System V UNIX
+    systems.  There are no actively developed OpenSolaris distributions
+    remaining, and no other System V UNIX variants have a meaningful
+    presence on desktop systems.</li>
+    <li>Specific optimisations for PowerPC host systems.  PowerPC and
+    OpenPOWER currently have no meaningful desktop presence, and the
+    Libre-SOC project to produce a completely free, high-performance
+    OpenPOWER implementation has stalled.</li>
+    <li>The obsolete aueffectutil tool for macOS.  This tool is no
+    longer relevant with MAME’s new audio output system, and it had not
+    been updated to work with recent versions of macOS.</li>
+    <li>The pre-built MSYS2 environments with included development
+    tools.  There are multiple issues with our MSYS2 environment that we
+    can’t practically solve.</li>
+</ul>
+
+<p>Read on for some more background and details.</p>
+
+<!--more-->
+
+<p>We’ve decided it’s time to upgrade to the next version of the C++
+standard and start taking advantage of the new functionality.  It’s
+been long enough that libraries and tools with adequate C++20 support
+should be widespread.  We’ll support building with GCC 11 and GNU
+libstdc++ 11 or later for now.  If you’re using clang to compile MAME,
+please be aware that clang 11 and 12 have unacceptably bad bugs in their
+implementation of C++20, and clang 13 may crash when compiling some
+constructs.  This means you may need a reasonably up-to-date version of
+clang to continue using it to build MAME.</p>
+
+<p>Similarly, Qt 6 is available in MSYS2 and has been provided by all
+major Linux distributions for quite some time.  We feel it’s a good time
+to remove support for Qt 5.</p>
+
+<p>Due to increased memory usage of newer versions of GCC and the
+removal of clang and other LLVM-related packages from the MSYS2 MINGW32
+package repository, it’s no longer practical to create 32-bit x86 builds
+of MAME for Windows.  As such, features for supporting 32-bit x86 on
+Windows will become unmaintained.  Since 32-bit x86 support in other
+operating systems is also being scaled back, we’ve decided it’s no
+longer worth the effort to maintain features catering to 32-bit x86
+specifically.  We’re removing functionality catering to PowerPC
+specifically at the same time as it has become similarly impractical to
+maintain.</p>
+
+<p>We will be switching to building x86-64 Windows release with clang,
+the libc++ standard library, and the Microsoft Universal CRT (UCRT) C
+runtime library.  This will mean our 64-bit x86 and ARM releases will be
+built with the same tools and libraries.</p>
+
+<p>It’s become apparent that support for MSYS2 environments using the
+obsolete MSVCRT C runtime library is being wound down.  Various packages
+are being removed from the repositories rather than being updated.  It
+will become necessary to migrate to one of the environments using the
+UCRT C runtime library, i.e. UCRT64 or CLANG64 for 64-bit x86, or
+CLANGARM64 for 64-bit ARM.  Our build scripts currently include support
+for building MAME using these environments with no additional
+effort.</p>
+
+<p>There are multiple issues with the pre-packaged MSYS2 environments we
+provide for download.  These include:</p>
+
+<ul>
+    <li>They have not matched the exact package versions used to build
+    MAME releases for a long time, so they are not useful for
+    reproducing official MAME releases.</li>
+    <li>They are updated infrequently.  This makes trying to update the
+    core MSYS2 runtime or any of the included packages fraught with
+    issues, as MSYS2 packages often have poor support skipping multiple
+    versions when updating.</li>
+    <li>Including packages to support building MAME across supported
+    configurations, as well as generally useful development tools, would
+    make the download impractically large.  On the other hand, omitting
+    packages leads to users encountering all the issues with updating
+    MSYS2 packages when they attempt to add packages to support their
+    use cases.</li>
+    <li>Packaging development tools isn’t part of our core mission, so
+    to speak, and takes time away from working on MAME development.</li>
+</ul>
+
+<p>As such, we recommend installing a standard MSYS2 environment and
+installing packages needed to build MAME using the pacman package
+manager command.  We list the necessary packages in <a
+href="https://docs.mamedev.org/initialsetup/compilingmame.html">our
+documentation</a>, and our Windows workflows on GitHub Actions show the
+necessary packages in a structured form.</p>
+
+<p>There will always be some bumps in the road with a major change like
+this, but we believe this is a necessary step as part of our mission to
+keep MAME development viable for the long term.</p>
