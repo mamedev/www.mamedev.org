@@ -111,7 +111,7 @@ $title = 'MAME | Latest MAME Release';
 				<td class="link"><?php release_mirror_file($binary_x64); ?></td>
 				<td class="number"><?php echo $binary_x64_size ?></td>
 				<td>MAME 0.<?php echo $version ?> Windows x64 binaries<br/>
-				Requires Windows 7 or later and a CPU with x86-64-v2 functionality</td>
+				Requires Windows 10 or later and a CPU with x86-64-v2 functionality</td>
 				<td align="right"><span class="badge"><?php echo $binary_x64_dc ?></span></td>
 			</tr>
 			<tr>
