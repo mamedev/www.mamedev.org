@@ -11,6 +11,7 @@ $title = 'MAME | Tools for building MAME on Windows';
 <h1>MAME Build Tools</h1>
 <br/>
 
+
 <h2><a id="user-content-introduction" class="anchor" href="#introduction" aria-hidden="true"></a>Introduction</h2>
 
 <p>The standard environment for building MAME on Windows consists
@@ -36,6 +37,7 @@ packages to be installed.  For more information on compiling MAME, see
 the <a
 href="https://docs.mamedev.org/initialsetup/compilingmame.html">relevant
 page</a> on our documentation site.</p>
+
 
 <h2><a id="user-content-installation-and-building" class="anchor" href="#installation-and-building" aria-hidden="true"></a>Installation and building</h2>
 
@@ -64,7 +66,7 @@ you should use the <b>CLANGARM64</b> environment.</p>
 Python and the LLVM tools used for archiving static libraries and
 linking:</p>
 
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-ucrt-x86_64-{python,libc++,llvm,llvm-tools,lld}</pre></div>
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-ucrt-x86_64-{python,libc++,llvm,llvm-tools,lld,gdb}</pre></div>
 
 <p>If you’ll be building with the GCC compiler, install it as well:</p>
 
@@ -79,13 +81,13 @@ well:</p>
 Python, the LLVM tools used for archiving static libraries and linking,
 clang, and the GCC compatibility wrapper:</p>
 
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-x86_64-{python,libc++,llvm,llvm-tools,lld,clang,gcc-compat}</pre></div>
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-x86_64-{python,libc++,llvm,llvm-tools,lld,gdb,clang,gcc-compat}</pre></div>
 
 <p>If you’re using the <b>CLANGARM64</b> environment, you should install
 Python, the LLVM tools used for archiving static libraries and linking,
 clang, and the GCC compatibility wrapper:</p>
 
-<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-aarch64-{python,libc++,llvm,llvm-tools,lld,clang,gcc-compat}</pre></div>
+<div class="highlight highlight-source-shell"><pre>pacman -S mingw-w64-clang-aarch64-{python,libc++,llvm,llvm-tools,lld,lldb,clang,gcc-compat}</pre></div>
 
 <p>After installing the required packages, an <strong>important</strong>
 thing is to set up Git first:</p>
@@ -96,6 +98,33 @@ thing is to set up Git first:</p>
 
 <div class="highlight highlight-source-shell"><pre>git config --global user.email youremail@something.com<br/>
 git config --global user.name <span class="pl-s"><span class="pl-pds">"</span>Firstname Lastname<span class="pl-pds">"</span></span></pre></div>
+
+
+<h3><a id="user-content-about-shells" class="anchor" href="#about-shells" aria-hidden="true"></a>About shells</h3>
+
+<p>The shell you should use depends on the environment you’re using to
+build MAME:</p>
+
+<ul>
+    <li><strong>ucrt64.exe</strong> for the 64-bit x86 UCRT64
+    environment</li>
+    <li><strong>clang64.exe</strong> for the 64-bit x86 CLANG64
+    environment</li>
+    <li><strong>clangarm64.exe</strong> for the 64-bit ARM CLANGARM64
+    environment</li>
+</ul>
+
+<p>If you want to use the MSYS2 tools in a Windows Command Prompt, first
+open the appropriate type of MSYS2 shell as listed above, then start the
+Windows Command Prompt using the aptly named <b>start</b> command:</p>
+
+<div class="highlight highlight-source-shell"><pre>start cmd</pre></div>
+
+<p>This will start a Command Prompt that inherits the environment and
+working directory from the MSYS2 shell.</p>
+
+<p>For more information about MSYS2, see <a
+href="https://www.msys2.org/wiki/MSYS2-introduction/">MSYS2-Introduction</a>.</p>
 
 <h3><a id="user-content-building" class="anchor" href="#building" aria-hidden="true"></a>Building</h3>
 
@@ -132,22 +161,45 @@ pacman -S bash pacman msys2-runtime --needed</pre></div>
 
 <div class="highlight highlight-source-shell"><pre>pacman -Su</pre></div>
 
-<h2><a id="user-content-alternative-shells-for-advanced-usage" class="anchor" href="#alternative-shells-for-advanced-usage" aria-hidden="true"></a>Alternative Shells for advanced usage</h2>
+<h3><a id="user-content-debugging" class="anchor" href="#debugging" aria-hidden="true"></a>Debugging</h3>
 
-<p>The shell you should use depends on the environment you’re using to
-build MAME:</p>
+<p>If you’re using the <b>UCRT64</b> or <b>CLANG64</b> environment on an
+x86 system, you can debug MAME using GDB.  If you’re on an ARM system
+using the <b>CLANGARM64</b> environment, you can debug MAME using LLDB
+(GDB is not available).</p>
 
-<ul>
-    <li><strong>ucrt64.exe</strong> for the 64-bit x86 UCRT64
-    environment</li>
-    <li><strong>clang64.exe</strong> for the 64-bit x86 CLANG64
-    environment</li>
-    <li><strong>clangarm64.exe</strong> for the 64-bit ARM CLANGARM64
-    environment</li>
-</ul>
+<p>Note that MinGW GDB and LLDB work best in a Windows Command Prompt
+shell, and you will experience various issues if you attempt to run them
+from an MSYS2 shell directly.  Start a Windows Command Prompt that
+inherits the environment from the MSYS2 shell using the <b>start</b>
+command:</p>
 
-<p>For more information about MSYS2, see <a
-href="https://www.msys2.org/wiki/MSYS2-introduction/">MSYS2-Introduction</a>.</p>
+<div class="highlight highlight-source-shell"><pre>start cmd</pre></div>
+
+<p>Then in the Windows Command Prompt, you can load MAME (or another
+program) into GDB:</p>
+
+<div class="highlight highlight-source-shell"><pre>gdb mame.exe</pre></div>
+
+<p>You can also use the <b>--arg</b> option to specify command line
+arguments for the program under test:</p>
+
+<div class="highlight highlight-source-shell"><pre>gdb --arg mame.exe -window -nomax -verbose galaga</pre></div>
+
+<p>Or if you’re using LLDB:</p>
+
+<div class="highlight highlight-source-shell"><pre>lldb mame.exe</pre></div>
+
+<p>LLDB assumes arguments following the name of the program should be
+passed on to it:</p>
+
+<div class="highlight highlight-source-shell"><pre>lldb mame.exe -window -nomax -verbose galaga</pre></div>
+
+<p>GDB provides <a href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/">a
+manual</a>, but if you’re a beginner, you may be better served by
+searching for a tutorial.  For more information about debugging with
+LLDB, see <a href="https://lldb.llvm.org/">their web site</a>.</p>
+
 
 <h2><a id="user-content-optional-additional-packages" class="anchor" href="#optional-additional-packages" aria-hidden="true"></a>Optional additional packages</h2>
 
