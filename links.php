@@ -53,7 +53,6 @@ $title = 'MAME | Resources';
 		<li><a href="https://ledblinky.net/Download.htm" target="_blank">Colors.ini</a></li>
 		<li><a href="https://www.progettosnaps.net/command/" target="_blank">Command.dat</a></li>
 		<li><a href="https://web.archive.org/web/20150220112407id_/http://controls.arcadecontrols.com/" target="_blank">Controls.dat</a></li>
-		<li><a href="https://www.arcade-history.com/index.php?page=download" target="_blank">History.dat</a></li>
 		<li><a href="https://www.progettosnaps.net/gameinit/" target="_blank">GameInit.dat</a></li>
 		<li><a href="https://mrdo.mameworld.info/mame_artwork.php" target="_blank">MAME Artwork</a></li>
 		<li><a href="https://samples.mameworld.info/" target="_blank">MAME Samples</a></li>
@@ -87,8 +86,6 @@ $title = 'MAME | Resources';
 		<li><a href="https://www.mametesters.org/" target="_blank">MAME Testers</a></li>
 		<li><a href="https://forum.mamedev.org/" target="_blank">MAME Official Forums</a></li>
 		<li><a href="https://www.mamedev.org/irc.html" target="_blank">Official MAME Chat on IRC</a></li>
-		<li><a href="https://forums.bannister.org/ubbthreads.php?ubb=postlist&Board=1" target="_blank">MAME Forum at Emuversal (Bannister.org)</a></li>
-		<li><a href="https://www.mameworld.info/ubbthreads/ubbthreads.php?Cat=" target="_blank">MAMEWorld Forums</a></li>
 		<li><a href="http://forum.arcadecontrols.com/" target="_blank">Build Your Own Arcade Controls Forum</a></li>
 		<li><a href="https://www.mameguide.info" target="_blank">Mameguide</a></li>
 		<li><a href="https://www.mame.gr/" target="_blank">MAME.gr (GRC)</a></li>
@@ -114,21 +111,15 @@ $title = 'MAME | Resources';
 	<ul>
 		<li><a href="http://adb.arcadeitalia.net/" target="_blank">Arcade Database (ADB)</a></li>
 		<!-- <li><a href="https://www.arcadehits.net/" target="_blank">arcadeHITS (FRA)</a></li> -->
-		<li><a href="https://arcade-history.com/" target="_blank">Gaming-History</a></li>
-		<li><a href="http://mahjonginmame.com/" target="_blank">Mahjong in MAME</a></li>
 		<li><a href="http://replay.marpirc.net/" target="_blank">MAME Action Replay Page (MARP)</a></li>
 		<li><a href="https://www.mameau.com/" target="_blank">mame•au</a></li>
-		<li><a href="http://mameui.info/Bench.htm" target="_blank">MAME Benchmarks</a></li>
 		<li><a href="https://e2j.net/" target="_blank">MAME E2J (JPN)</a></li>
-		<li><a href="https://www.vazcomics.org/mamend/" target="_blank">MamEnd Arcade Endings Database</a></li>
 		<li><a href="https://www.mamechannel.it/" target="_blank">MameChannel.it</a></li>
-		<li><a href="https://www.mameworld.info/" target="_blank">MAMEWorld</a></li>
 		<li><a href="http://mess.redump.net/" target="_blank">MESS</a></li>
 		<li><a href="http://nonmame.retrogames.com/" target="_blank">NonMAME</a></li>
 		<li><a href="https://web.archive.org/web/20210210190310/http://www.progettoemma.net/" target="_blank">Progetto EMMA</a></li>
 		<li><a href="https://web.archive.org/web/20210117150749/https://www.progettoemma.net/mess/" target="_blank">ProjectMESS - MESS Software Lists Resource<a></li>
-		<li><a href="https://mamedev.emulab.it/undumped/" target="_blank">Undumped Wiki</a></li>
-		<li><a href="https://unmamed.mameworld.info/" target="_blank">UnMAMEd Games Database</a></li>
+		<li><a href="https://undumped.miraheze.org/wiki/" target="_blank">Undumped Wiki</a></li>
 	</ul>
 	<h2>Unofficial Forks and Ports</h2>
 	<ul>
@@ -137,23 +128,19 @@ $title = 'MAME | Resources';
 		<li><a href="https://github.com/jsmess/jsmess" target="_blank">jsMESS</a></li>
 		<li><a href="https://sourceforge.net/projects/mameforslack/" target="_blank">MAME for Slackware</a></li>
 		<li><a href="https://reddit.com/r/MAMEHub/" target="_blank">MAMEHub</a></li>
-		<li><a href="http://mameui.info/" target="_blank">MAMEUI</a></li>
 		<li><a href="https://messui.1emulation.com/" target="_blank">MESSUI</a></li>
 		<li><a href="http://pinmame.de/" target="_blank">PinMAME</a></li>
-		<li><a href="https://rbelmont.mameworld.info/?page_id=163" target="_blank">SDLMAME Homepage</a></li>
 		<li><a href="https://sdlmame.lngn.net/" target="_blank">SDLMAME for Mac OS X</a></li>
 		<li><a href="https://sdlmame.wallyweek.org/" target="_blank">SDLMAME for Ubuntu</a></li>
 		<li><a href="https://github.com/mahlemiut/wolfmame/releases" target="_blank">WolfMAME</a></li>
 	</ul>
 	<h2>General Emulation Sites</h2>
 	<ul>
-		<li><a href="http://caesar.logiqx.com/" target="_blank">CAESAR</a></li>
 		<li><a href="http://cps2shock.emu-france.info/" target="_blank">CPS-2 Shock</a></li>
 		<li><a href="https://www.emucr.com/" target="_blank">EmuCR (CHN)</a></li>
 		<li><a href="https://emudreams.ct8.pl/" target="_blank">Emu#Dreams (PL)</a></li>
 		<li><a href="http://www.emu-france.com/" target="_blank">Emu-France (FRA)</a></li>
 		<li><a href="https://www.emulab.it/" target="_blank">EMULAB</a></li>
-		<li><a href="http://www.emulation9.com/" target="_blank">emulation number 9 (JPN)</a></li>
 		<li><a href="https://emulationrealm.net/" target="_blank">Emulation Realm</a></li>
 		<li><a href="http://www.emulatronia.com/" target="_blank">Emulatronia (ESP)</a></li>
 		<li><a href="http://www.emucamp.com/" target="_blank">Emulation Camp</a></li>
@@ -167,7 +154,6 @@ $title = 'MAME | Resources';
 	</ul>
 	<h2>General Arcade Sites</h2>
 	<ul>
-		<li><a href="https://www.mameworld.info/mameinfo/movies/index.html" target="_blank">Arcade At The Movies</a></li>
 		<li><a href="http://www.arcadecollecting.com/" target="_blank">ArcadeCollecting.com</a></li>
 		<li><a href="https://www.arcadebelgium.be/" target="_blank">Arcade Belgium</a></li>
 		<li><a href="https://arcadeheroes.com/" target="_blank">Arcade Heroes</a></li>
@@ -178,9 +164,7 @@ $title = 'MAME | Resources';
 		<li><a href="https://web.archive.org/web/20210716141211/http://www.atarimuseum.com/" target="_blank">Atari Museum</a></li>
 		<li><a href="https://web.archive.org/web/20180427115528/http://www.cinemarcade.com:80/" target="_blank">CinemArcade</a></li>
 		<li><a href="https://www.coinop.org/" target="_blank">Coinop.org</a></li>
-		<li><a href="https://discrete.mameworld.info/" target="_blank">Discrete Logistics</a></li>
 		<li><a href="http://www.dragons-lair-project.com/" target="_blank">Dragon's Lair Project</a></li>
-		<li><a href="https://www.flyerfever.com/" target="_blank">Flyer Fever</a></li>
 		<li><a href="https://www.fpgaarcade.com/" target="_blank">FPGA Arcade</a></li>
 		<li><a href="https://www.gamefaqs.com/" target="_blank">GameFAQs</a></li>
 		<li><a href="http://gdri.smspower.org/" target="_blank">Game Developer Research Institute (GDRI)</a></li>
@@ -192,7 +176,6 @@ $title = 'MAME | Resources';
 		<li><a href="https://www.mobygames.com/" target="_blank">MobyGames</a></li>
 		<li><a href="https://www.neo-arcadia.com/" target="_blank">Neo-Arcadia</a></li>
 		<li><a href="http://www.pong-story.com/" target="_blank">Pong-Story</a></li>
-		<li><a href="http://tech.quarterarcade.com" target="_blank">QuarterArcade.com Coin-Op TechNet</a></li>
 		<li><a href="https://www.recreativas.org/" target="_blank">Recreativas Database</a></li>
 		<li><a href="https://retrolaser.es/" target="_blank">Retrolaser</a></li>
 		<li><a href="http://www.shmups.com/" target="_blank">SHMUPS!</a></li>

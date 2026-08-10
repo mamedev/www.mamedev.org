@@ -96,7 +96,6 @@ $title = 'MAME | Contact the Team';
 					<li><a href="https://github.com/orgs/mamedev/discussions">MAMEdev Discussions on GitHub</a></li>
 					<li><a href="https://forum.mamedev.org/">MAMEdev Forum</a></li>
 					<li><a href="https://reddit.com/r/MAME/">r/MAME on reddit</a></li>
-					<li><a href="https://forums.bannister.org/">Emuversal Bulletin Board</a></li>
 				</ul>
 
 				<p>
